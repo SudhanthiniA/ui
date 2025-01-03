@@ -1,0 +1,580 @@
+<h5 class="m-b-10 ng-star-inserted">Add Fermentation Details
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/fermentation/list">
+            Fermentation</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="fermentationForm" autocomplete="off">
+            <app-card cardTitle="OT Plan Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control" formControlName="OTnumber" (click)="getotdetails($event.target.value)" [ngClass]="{'disabled':otfieldflag }">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of otnumberlist" value="{{item.id}}"> {{item.otNumber}}</option>
+                            </select>   
+                            <div *ngIf="formSubmitted && fermentationForm.get('OTnumber').errors || fermentationForm.get('OTnumber').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('OTnumber').errors?.required"><i class="fa fa-times"></i>
+                                OT Number is required
+                            </span>
+                        </div>                   
+                          </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Fermenter Require</label>
+                            <input type="text" disabled class="form-control"  formControlName="nooffermenterrequire" placeholder="" >
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Fermentation Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <h6>Prefermentor Details</h6>
+                        </div>
+                 
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pre-Fermenter Reference No</label>
+                            <select class="form-control" formControlName="prefrementerfillingserialno" (click)="getvessaldata($event)" >
+                                <option value="">Select</option>
+                               <option *ngFor="let data of prefermeterno" value="{{data.id}}"> {{data.preFerRefNo}}</option>
+                            </select>  
+                            <div *ngIf="formSubmitted && fermentationForm.get('prefrementerfillingserialno').errors || fermentationForm.get('prefrementerfillingserialno').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('prefrementerfillingserialno').errors?.required"><i class="fa fa-times"></i>
+                                Pre-Fermenter Reference No is required
+                            </span>
+                        </div>               
+                        </div>
+                    </div>
+
+          
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pre-Fermenter Vessal No</label>
+                            <input type="text"  disabled class="form-control" formControlName="prefermentervesalno"    placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pre-Fermenter Available Quantity</label>
+                            <input type="text"  disabled class="form-control"  formControlName="prefermenteravailablequantity"  placeholder="" >
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Broth Quantity Received</label>
+                            <input type="number" class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="wortquanityrecid" required placeholder="" (keyup) ="getavailablequantity($event.target.value)">
+                            <div *ngIf="formSubmitted && fermentationForm.get('wortquanityrecid').errors || fermentationForm.get('wortquanityrecid').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('wortquanityrecid').errors?.required"><i class="fa fa-times"></i>
+                                Broth Quantity Received is required
+                            </span>
+                        </div> 
+                        </div>
+                    </div>
+                 
+                    <div class="col-12">
+                        <h6>Molasses Details</h6>
+                        </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Raw Material Type</label>
+                            <select class="form-control" formControlName="rawmetirialtype" (click)="molassesTypes($event)">
+                                <option value="">Select</option>
+                               <option *ngFor="let user of gradelist" value="{{user.id}}"> {{user.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && fermentationForm.get('rawmetirialtype').errors || fermentationForm.get('rawmetirialtype').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('rawmetirialtype').errors?.required"><i class="fa fa-times"></i>
+                                Raw Material Type is required
+                            </span>
+                        </div> 
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Raw Material Tank</label>
+                            <select   formControlName="rawmetirialtank" class="form-control" (change)="getTankDetails($event.target.value)" >
+                            <option value="">{{ 'sugarmill.common.select' | translate }}
+                            </option>
+                            <option *ngFor="let item of tankList" value="{{item.id}}">
+                                {{item.tankName}}
+                            </option>
+                        </select>
+                        <div *ngIf="formSubmitted && fermentationForm.get('rawmetirialtank').errors || fermentationForm.get('rawmetirialtank').touched "
+                        class="error-msg">
+                        <span *ngIf="fermentationForm.get('rawmetirialtank').errors?.required"><i class="fa fa-times"></i>
+                            Raw Material Tank is required
+                        </span>
+                    </div> 
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity</label>
+                            <input type="text" class="form-control"  disabled formControlName="availablequantity"  placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" class="form-control" min="0"  oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="quantity" required placeholder="" (keyup)="validation($event.target.value)">
+                            <div *ngIf="formSubmitted && fermentationForm.get('quantity').errors || fermentationForm.get('quantity').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('quantity').errors?.required"><i class="fa fa-times"></i>
+                                Quantity is required
+                            </span>
+                        </div> 
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h6>Fermentor Details</h6>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Frementer Filling Serial No</label>
+                                <select class="form-control" formControlName="fermenterfillingserialno" (click)="fermentervessalcapacity($event)" >
+                                    <option value="">Select</option>
+                                   <option *ngFor="let data of fermetetorfillingsno" value="{{data.id}}"> {{data.tankName}}</option>
+                                </select>
+                                <div *ngIf="formSubmitted && fermentationForm.get('fermenterfillingserialno').errors || fermentationForm.get('fermenterfillingserialno').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('fermenterfillingserialno').errors?.required"><i class="fa fa-times"></i>
+                                    Frementer Filling Serial No is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermenter Vessal Capacity</label>
+                                <input type="text" disabled class="form-control"  formControlName="prefermentervesalcapacity"    placeholder="" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Final Wash Quantity</label>
+                                <input type="number" class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="finalwashquantity" required placeholder="" (keyup)="washquantityvalidation($event.target.value)" >
+                                <div *ngIf="formSubmitted && fermentationForm.get('finalwashquantity').errors || fermentationForm.get('finalwashquantity').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('finalwashquantity').errors?.required"><i class="fa fa-times"></i>
+                                    Final Wash Quantity is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Dip</label>
+                                <input type="number" class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="dip" required placeholder="">
+                                <div *ngIf="formSubmitted && fermentationForm.get('dip').errors || fermentationForm.get('dip').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('dip').errors?.required"><i class="fa fa-times"></i>
+                                    Dip is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation Date</label>
+                                <input type="date"  class="form-control"  formControlName="fermentationdateandtime" placeholder="" required>
+                                <div *ngIf="formSubmitted && fermentationForm.get('fermentationdateandtime').errors || fermentationForm.get('fermentationdateandtime').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('fermentationdateandtime').errors?.required"><i class="fa fa-times"></i>
+                                    Fermentation Date is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation Start Time</label>
+                                <input type="datetime-local" class="form-control"   formControlName="starttime" required placeholder="">
+                                <div *ngIf="formSubmitted && fermentationForm.get('starttime').errors || fermentationForm.get('starttime').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('starttime').errors?.required"><i class="fa fa-times"></i>
+                                    Fermentation Start Time  is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation End Time</label>
+                                <input type="datetime-local" class="form-control" formControlName="endtime" required placeholder="">
+                                <div *ngIf="formSubmitted && fermentationForm.get('endtime').errors || fermentationForm.get('endtime').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('endtime').errors?.required"><i class="fa fa-times"></i>
+                                    Fermentation End time  is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Initial Gravity</label>
+                                <input type="number" class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="initialgravity" required placeholder="">
+                                <div *ngIf="formSubmitted && fermentationForm.get('initialgravity').errors || fermentationForm.get('initialgravity').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('initialgravity').errors?.required"><i class="fa fa-times"></i>
+                                    Initial Gravity is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Final Gravity</label>
+                                <input type="number" class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="finalgravity" required placeholder="">
+                                <div *ngIf="formSubmitted && fermentationForm.get('finalgravity').errors || fermentationForm.get('finalgravity').touched "
+                                class="error-msg">
+                                <span *ngIf="fermentationForm.get('finalgravity').errors?.required"><i class="fa fa-times"></i>
+                                    Final Gravity   is required
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                 
+               
+ 
+                 
+
+                    <div class="col-12">
+                        <h6>Fermentor Quantity Details</h6>
+                        </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>P.H. of Wash</label>
+                            <input type="number"  class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="phofwash" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('phofwash').errors || fermentationForm.get('phofwash').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('phofwash').errors?.required"><i class="fa fa-times"></i>
+                                P.H.of wash is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol percentage in wash</label>
+                            <input type="number"  class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="alcoholpercentageinwash" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('alcoholpercentageinwash').errors || fermentationForm.get('alcoholpercentageinwash').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('alcoholpercentageinwash').errors?.required"><i class="fa fa-times"></i>
+                                Alcoholpercentageinwash   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aldehyde Percentage in wash</label>
+                            <input type="number"  class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="aldehydepercentageinwash" placeholder="" required >
+                            <div *ngIf="formSubmitted && fermentationForm.get('aldehydepercentageinwash').errors || fermentationForm.get('aldehydepercentageinwash').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('aldehydepercentageinwash').errors?.required"><i class="fa fa-times"></i>
+                                Aldehydepercentageinwash   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Percent Unfermented sugar in wash</label>
+                            <input type="number"  class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="percentunfermentedsugarwash" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('percentunfermentedsugarwash').errors || fermentationForm.get('percentunfermentedsugarwash').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('percentunfermentedsugarwash').errors?.required"><i class="fa fa-times"></i>
+                                Percentunfermentedsugarwash   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Theoratical Fermentation Yield in Wash</label>
+                            <input type="number"  class="form-control" min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="theoraticalfermentationinwash" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('theoraticalfermentationinwash').errors || fermentationForm.get('theoraticalfermentationinwash').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('theoraticalfermentationinwash').errors?.required"><i class="fa fa-times"></i>
+                                Theoraticalfermentationinwash   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Theoratical Fermentation Yield in Alcohol</label>
+                            <input type="number"  class="form-control" min="0"  oninput='this.value = Math.abs(this.value)' onwheel="return false;" formControlName="theoraticalfermentationinalcohol" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('theoraticalfermentationinalcohol').errors || fermentationForm.get('theoraticalfermentationinalcohol').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('theoraticalfermentationinalcohol').errors?.required"><i class="fa fa-times"></i>
+                                Theoraticalfermentationinalcohol   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sludge Discarded</label>
+                            <input type="number"  class="form-control"  min="0" oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="sludgediscarded" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('sludgediscarded').errors || fermentationForm.get('sludgediscarded').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('sludgediscarded').errors?.required"><i class="fa fa-times"></i>
+                                Sludgediscarded   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol percentage loss in sludge</label>
+                            <input type="number"  class="form-control" min="0"  oninput='this.value = Math.abs(this.value)' onwheel="return false;"  formControlName="alcoholpercentagelossinsludge" placeholder="" required>
+                            <div *ngIf="formSubmitted && fermentationForm.get('alcoholpercentagelossinsludge').errors || fermentationForm.get('alcoholpercentagelossinsludge').touched "
+                            class="error-msg">
+                            <span *ngIf="fermentationForm.get('alcoholpercentagelossinsludge').errors?.required"><i class="fa fa-times"></i>
+                                Alcohol percentage loss insludge   is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-right mb-4">
+                        <!-- <button type="button" class="btn btn-info mb-2"
+                            routerLink="/supplychainmanagement/distillery/fermentation/view">Preview</button> -->
+                        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+                        <button type="button" class="btn btn-primary ml-2 mb-2"(click)="savedata(fermentationForm,'SUBMITTED')">Submit</button>
+                        <button type="button" class="btn btn-secondary ml-2 mb-2"(click)="clear(fermentationForm)">Clear</button>
+
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Fermentation Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Fermentation Ref No</th>
+                                        <th>Pre-Frementer Ref No</th>
+                                        <th>Final Wash Quantity</th>
+                                        <th>Broth Quantity Received</th>
+                                        <th>Initial Gravity</th>
+                                        <th>Quantity</th>
+                                        <th>Final Gravity</th>
+                                        <!-- <th>Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let data of fermentationtable ; let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{data.referenceNumber}}</td>
+                                      <td>{{data.otPrefermentationProcessEntity?.preFerRefNo}}</td>
+                                      <td>{{data.finalWashQty}}</td>
+                                      <td>{{data.brothQtyRec}}</td>
+                                      <td>{{data.initialGravity}}</td>
+                                      <td>{{data.molassesQty}}</td>
+                                      <td>{{data.finalGravity}}</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <!-- <app-card cardTitle="Fermentation Result" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pre-Frementer Filling Serial No</label>
+                            <input type="text" class="form-control"  formControlName="prefermeterserialno" required placeholder="Enter the OT Number 1">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>P.H. of Wash</label>
+                            <input type="text"  class="form-control"  formControlName="phofwash" placeholder="100" required>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol percentage in wash</label>
+                            <input type="text"  class="form-control"  formControlName="alcoholpercentageinwash" placeholder="100" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aldehyde Percentage in wash</label>
+                            <input type="text"  class="form-control"  formControlName="aldehydepercentageinwash" placeholder="100" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Percent Unfermented sugar in wash</label>
+                            <input type="text"  class="form-control"  formControlName="percentunfermentedsugarwash" placeholder="100" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Theoratical Fermentation Yield in Wash</label>
+                            <input type="text"  class="form-control"  formControlName="theoraticalfermentationinwash" placeholder="100" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Theoratical Fermentation Yield in Alcohol</label>
+                            <input type="text"  class="form-control"  formControlName="theoraticalfermentationinalcohol" placeholder="100" required>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sludge Discarded</label>
+                            <input type="text"  class="form-control"  formControlName="sludgediscarded" placeholder="100" required>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol percentage loss in sludge</label>
+                            <input type="text"  class="form-control"  formControlName="alcoholpercentagelossinsludge" placeholder="100" required>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card> -->
+            <!-- <app-card cardTitle="Fermentation Result" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>   
+                                        <th>Pre-Frementer Filling Serial No</th>    
+                                        <th>P.H. of Wash </th>
+                                        <th>Alcohol percentage in wash</th>
+                                        <th>Aldehyde Percentage in wash</th>
+                                        <th>Percent Unfermented sugar in wash</th>
+                                        <th>Theoratical Fermentation Yield in Wash</th>
+                                        <th>Theoratical Fermentation Yield in Alcohol</th>
+                                        <th>Sludge Discarded</th>
+                                        <th>Alcohol percentage loss in sludge</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="FermentationResult"
+                                    *ngFor="let pres of fermentationForm?.get('FermentationResult')['controls']; let i=index"
+                                    id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                      
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='PreFrementerFillingSerialNo' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='PHofWash' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='Alcoholpercentageinwash' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='AldehydePercentageinwash' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='PercentUnfermentedsugarinwash' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='TheoraticalFermentationYieldinWash' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text"  formControlName='TheoraticalFermentationYieldinAlcohol' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='SludgeDiscarded' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName='Alcoholpercentagelossinsludge' required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-icon btn-success mr-2" type="button" (click)="addfermentableNewRow(i)">
+                                                <i class="feather icon-plus"></i></button>
+
+                                            <button class="btn btn-icon btn-danger mr-2" type="button" (click)="removefermetableSelectedRow(i)">
+                                                <i class="feather icon-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card> -->
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+     
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/fermentation/list">Cancel</button>
+    </div>
+</div>

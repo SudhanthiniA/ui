@@ -1,0 +1,82 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.uom.viewuom' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.inventory' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/inventory/uom/list">UOM</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.uom.detailsofselected' | translate }}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.code' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.code}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.name' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.name}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.description' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.description}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.status' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.active}}
+                </div>
+            </div>
+            <hr class="mt-2" />
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdby' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.createdBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdon' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.createdDate | date:"dd-MMM-yyyy"}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedby' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.modifedBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedon' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{uomObj?.modifiedDate | date:"dd-MMM-yyyy"}}
+                </div>
+            </div>
+
+        </app-card>
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary"
+                    routerLink="/inventory/uom/list">{{ 'master.common.back' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

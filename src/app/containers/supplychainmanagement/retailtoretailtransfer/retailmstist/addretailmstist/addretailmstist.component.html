@@ -1,0 +1,1110 @@
+<h5 class="m-b-10 ng-star-inserted">Add Retail MST/IST</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail to Retail Transfer</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail MST/IST</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-12 mt-3">
+        <app-card cardTitle="MST/IST Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Date</label>
+                    <input type="date" disabled placeholder="Enter Date" value="Lucknow" required class="form-control">
+                </div> 
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Verification Type</label>
+                    <select class="form-control">
+                        <option>IST</option>
+                    </select>
+                </div>              
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Performed By</label>
+                    <input type="text"  placeholder="Enter Performed By" required class="form-control">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Requested By</label>
+                    <input type="text" placeholder="Enter Requested By" value="RT-RTL-LCK-BT-2020-23456" required class="form-control">
+                </div>              
+            </div>
+        </app-card>
+        <app-card cardTitle="User Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Shop ID</label>
+                    <input type="text" disabled placeholder="Enter Shop ID" value="Lucknow" required class="form-control">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>License Type</label>
+                    <input type="text" disabled placeholder="Enter License Type" value="Lucknow" required class="form-control">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>License No</label>
+                    <input type="text" disabled placeholder="Enter License No" value="Lucknow" required class="form-control">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Unit Type</label>
+                    <input type="text" disabled placeholder="Enter Unit Type" value="Lucknow" required class="form-control">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Unit Name</label>
+                    <input type="text" disabled placeholder="Enter Unit Name" value="Lucknow" required class="form-control">
+                </div>
+            </div>
+        </app-card>
+
+        <form autocomplete="off">
+            <app-card cardTitle="Inspection Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                      <app-card [hidHeader]="true" cardTitle="Indent Acceptance"
+                        blockClass="table-border-style" class="list-panel stockavailability_tab">
+                        <!-- <div class="row">
+                          <div class="col mb-2">
+                            <label class="font-weight-bold float-left mt-1 mr-4 text-dark">Unit Type</label>
+                            <ul class="nav nav-pills segment float-left">
+                              <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#home">FL2</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#menu1">FL2B</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#menu2">Master Warehouse</a>
+                              </li>
+                            </ul>
+                            </div>
+                        </div> -->
+                        <ngb-tabset type="pills">
+                          <ngb-tab title="Details" class="mb-3">
+                            <ng-template ngbTabContent>
+                              <div class="table-responsive mb-2">
+                                <table class="table table-bordered text-center mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th>S.No</th>
+                                      <th>Brand Name(Parent ETIN)</th>
+                                      <th> Liquor Type</th>
+                                      <th>Liquor Sub Type</th>
+                                      <th>Package Size</th>
+                                      <th>Package Type</th>
+                                      <th>Strength</th>
+                                      <th>Stock-In Quantity</th>
+                                      <th>Stock Out Quantity</th>
+                                      <th>Sales Return Quantity</th>
+                                      <th>Dispatch Quantity</th>
+                                      <th>Sales Return Quantity</th>
+                                      <th>Case Missing</th>
+                                      <th>Bottle Missing</th>
+                                      <th>Case Damaged - Barcode Readable</th>
+                                      <th>Case Damaged - Barcode unreadable</th>
+                                      <th>Bottle Damaged - QR code readable</th>
+                                      <th>Bottle Damaged - QR code nonreadable</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>1</td>
+                                      <td> <select class="form-control">
+                                        <option>IST</option>
+                                    </select></td>
+                                    <td> <select class="form-control">
+                                        <option>Type 1</option>
+                                    </select></td>
+                                    <td> <select class="form-control">
+                                        <option>SubType 1</option>
+                                    </select></td>
+                                    <td> <select class="form-control">
+                                        <option>750 ML</option>
+                                    </select></td>
+                                    <td> <select class="form-control">
+                                        <option>Glasses</option>
+                                    </select></td>
+                                    <td> <select class="form-control">
+                                        <option>Strength</option>
+                                    </select></td>
+                                      <td class="text-left">100</td>
+                                      <td class="text-left">10</td>
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                      <td class="text-left">100</td> 
+                                    <td>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">New</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">Existing</label>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </ng-template>
+                          </ngb-tab>
+                          <ngb-tab title="Existing" class="mb-3">
+                            <ng-template ngbTabContent>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                            <app-card cardTitle="Breakage Entry Details" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date
+                                                            </label>
+                                                            <input type="text" class="form-control" value="20-Jul-2021" required disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2">
+                                                        <label>Add by All Stock/Brand Name</label>
+                                                        <div class="segment">
+                                                            <input type="radio" name="tab" id="tab1" checked>
+                                                            <label class="" for="tab1">All Stock</label>
+                                                            <input type="radio" name="tab" id="tab2">
+                                                            <label class="" for="tab2">Brand Name</label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Add by All Stock/Brand Name</label>
+                                                        <div class="switch-checkbox">
+                                                            <label class="switch-light mb-0">
+                                                                <input type="checkbox">
+                                                                <span>
+                                                                    <span>All Stock</span>
+                                                                    <span>Brand Name</span>
+                                                                </span>
+                                                                <a class="btn btn-primary"></a>
+                                                            </label>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Brand Name
+                                                            </label>
+                                                            <select class="form-control" >
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Liquor Type</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Liquor Subtype</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Liquor Detailed Description</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Strength</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Packaging Size</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">Packaging Type</label>
+                                                            <select class="form-control" required>
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">No of Bottles per Case
+                                                            </label>
+                                                          <select class="form-control">
+                                                              <option>Select</option>
+                                                              </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Available Cases
+                                                            </label>
+                                                            <input type="text" disabled name="AvailableBottle" class="form-control" required
+                                                                placeholder="Enter Available Cases">
+                                                            <div>
+                                                                <!-- <div><i class="fa fa-times"></i>
+                                                                    Available Bottles is required
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Available Bottles
+                                                            </label>
+                                                            <input type="text" disabled name="AvailableBottle" class="form-control" required
+                                                                placeholder="Enter Available Bottles">
+                                                            <div>
+                                                                <!-- <div><i class="fa fa-times"></i>
+                                                                    Available Bottles is required
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <!-- <div class="col-12 my-2">
+                                                        <h6>Damage/Missing Bottles and Case Details</h6>
+                                                    </div> -->
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                          <label class="mandatory">Issue Type</label>
+                                                          <select class="form-control" required>
+                                                            <option>Select</option>
+                                                            <option value="" data-toggle="modal" 
+                                                            (click)="caseModal()">Bottle Missing</option>
+                                                            <option >Bottle Damaged</option>
+                                                            <option data-toggle="modal" 
+                                                            (click)="casesMiss()">Cases Missing</option>
+                                                            <option>Cases Damaged</option>
+                                                            <option>Bottle Missing & Bottle Damaged</option>
+                                                            <option>Case Missing & Case Damaged</option>
+                                                            <option>Case Damaged & Bottle Missing</option>
+                                                          
+                                                                      </select>
+                                                         
+                                                        </div>
+                                                      </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                          <label class="mandatory">Damaged Type</label>
+                                                          <select class="form-control" required>
+                                                              <option>Select</option>
+                                                              <option value="" data-toggle="modal" 
+                                                            (click)="bottleMissBottQrUn()">QR Code Unreadable</option>
+                                                            <option value="" data-toggle="modal" 
+                                                            (click)="bottleDamQR()">QR Readable</option>
+                                                            <option value="" data-toggle="modal" 
+                                                            (click)="bottleDamQRun()">QR Unreadable</option>
+                                                            <option value="" data-toggle="modal" 
+                                                            (click)="casesMissingCaseBarUn()">Barcode Unreadable</option>
+                                                            <option value="" data-toggle="modal" 
+                                                            (click)="casesDamQR()">Barcode Readable</option>
+                                                           
+                                                                         </select>
+                                                         
+                                                        </div>
+                                                      </div>
+                                                       <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">No. of Missing Cases</label>
+                                                            <input type="number" required class="form-control" 
+                                     
+                                                            placeholder="Enter No. of Missing Cases">
+                                
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">No. of Missing Bottles</label>
+                                                            <input type="number" required class="form-control"
+                                                                placeholder="Enter No. of Missing Bottles">
+                                
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">No. of Damaged Cases</label>
+                                                            <input type="number" required class="form-control"
+                                                                placeholder="Enter No. of Damaged Cases">
+                                
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">No. of Damaged Bottles</label>
+                                                            <input type="number" required class="form-control"
+                                                                placeholder="Enter No. of Damaged Bottles">
+                                
+                                                        </div>
+                                                    </div>
+                                                  <!-- Bottle Missing 
+                                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Missing Bottles</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Cases</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <label>Scan Barcode</label>
+                                                    <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Scan Barcodes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan the Available QR Codes</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan Available QR Codes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Bottles Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Bottles to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Bottle damaged - QR readable 
+                                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Damaged Bottles</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Cases</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                                
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan the Available QR Code</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan Available QR Codes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Bottles Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                       <!-- Bottle damaged - QR Unreadable 
+                                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Damaged Bottles</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <label>Scan Barcode</label>
+                                                    <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Scan Barcode" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan the Available QR Code</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan Available QR Codes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Bottles Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Bottles to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Cases Missing 
+                                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">No. of Missing Cases</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                               
+                                               
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan  Available Barcodes</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan  Available Barcodes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Cases Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Cases to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Cases damaged - Barcode readable  -->
+                                                  <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Total No. of Damaged Cases</label>
+                                                        <input type="number" disabled class="form-control"
+                                                            value="2">
+                                
+                                                    </div>
+                                                </div>
+                                               
+                                               
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan Available  Barcodes</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan Available  Barcodes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Cases Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Cases damaged - Barcode unreadable 
+                                                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Total No. of Damaged Cases</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div>
+                                               
+                                               
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan  Available Barcodes</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan  Available Barcodes" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Cases Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Cases to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Bottle Missing and Bottle damaged 
+                                                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Bottles Missing</label>
+                                                                <input type="number"  class="form-control"
+                                                                    placeholder="Enter No. of Bottles Missing">
+                                        
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">No. of Bottles Damaged</label>
+                                                                <input type="number"  class="form-control"
+                                                                    placeholder="Enter No. of Bottles Damaged">
+                                        
+                                                            </div>
+                                                        </div>
+                                               
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <label>Scan   Barcode</label>
+                                                        <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Scan   Barcode" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <label>Scan Available   QR Code</label>
+                                                            <div class="input-group mb-3">
+                                                            <input type="text" class="form-control" placeholder="Scan Available   QR Code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                            <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                      
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Cases to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div> -->
+                                                         <!-- Case Missing and Case damaged -->
+                                                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="mandatory">No. of Case Missing</label>
+                                                                <input type="number"  class="form-control"
+                                                                    placeholder="Enter No. of Case Missing">
+                                        
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="mandatory">No. of Case Damaged</label>
+                                                                <input type="number"  class="form-control"
+                                                                    placeholder="Enter No. of Case Damaged">
+                                        
+                                                            </div>
+                                                        </div>
+                                               
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                            <label>Scan Available   Barcode</label>
+                                                            <div class="input-group mb-3">
+                                                            <input type="text" class="form-control" placeholder="Scan Available   Barcode" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                            <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                      
+                                                        <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="">Remaining
+                                                                    Cases to be
+                                                                    Scanned</label>
+                                                                <input type="number" disabled class="form-control"
+                                                                    value="2">
+                                        
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    <div class="col-12 text-right">
+                                                        <div class="mb-2">
+                                                            <button type="submit" class="btn btn-primary">Add</button>
+                                                            <button type="submit" class="btn btn-secondary ml-2">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <div class="table-responsive mb-2">
+                                                            <table class="table table-bordered text-center mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Issue<br>Type</th>
+                                                                        <th>Damage<br>Type</th>
+                                                                        <th>No. Damaged<br>Cases</th>
+                                                                        <th>No. Missing<br>Cases</th>
+                                                                        <th>No. Damaged<br>Bottles</th>
+                                                                        <th>No. Missing<br>Bottles</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td class="text-left">Bottle Missing</td>
+                                                                        <td></td>
+                                                                        <td class="text-left">
+                                                                         
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                         </td>
+                                                                         <td class="text-left">
+                                                                     0
+                                                                         </td>
+                                                                         <td class="text-center">
+                                                                            <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                                <i class="feather icon-edit-2"></i></button> -->
+                                                                         </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td class="text-left">Bottles Damaged</td>
+                                                                        <td class="text-left">QR Readable</td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                           </td>
+                                                                           <td class="text-left">
+                                                                               
+                                                                           </td>
+                                                                           <td class="text-left">
+                                                                           0
+                                                                            </td>
+                                                                            <td class="text-left">
+                                                                                
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                                    <i class="feather icon-edit-2"></i></button> -->
+                                                                             </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td class="text-left">Bottle Damaged</td>
+                                                                        <td class="text-left">QR Unreadable</td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                           </td>
+                                                                           <td class="text-left">
+                                                                               
+                                                                           </td>
+                                                                           <td class="text-left">
+                                                                          0
+                                                                            </td>
+                                                                            <td class="text-left">
+                                                                                
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                                    <i class="feather icon-edit-2"></i></button> -->
+                                                                             </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>4</td>
+                                                                        <td class="text-left">Cases Missing</td>
+                                                                        <td></td>
+                                                                        <td class="text-left">
+                                                                         
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                   0
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                         </td>
+                                                                         <td class="text-left">
+                                                                             
+                                                                         </td>
+                                                                         <td class="text-center">
+                                                                            <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                                <i class="feather icon-edit-2"></i></button> -->
+                                                                         </td>
+                                                                         
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td>5</td>
+                                                                      <td class="text-left">Cases Damaged</td>
+                                                                      <td class="text-left">QR Readable</td>
+                                                                      <td class="text-left">
+                                                                  0
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                       </td>
+                                                                       <td class="text-left">
+                                                                           
+                                                                       </td>
+                                                                       <td class="text-center">
+                                                                          <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                              <i class="feather icon-edit-2"></i></button> -->
+                                                                       </td>
+                                                                  </tr>
+                                                                    <tr>
+                                                                        <td>6</td>
+                                                                        <td class="text-left">Cases Damaged</td>
+                                                                        <td class="text-left">QR Unreadable</td>
+                                                                        <td class="text-left">
+                                                                      0
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                        </td>
+                                                                        <td class="text-left">
+                                                                            
+                                                                         </td>
+                                                                         <td class="text-left">
+                                                                             
+                                                                         </td>
+                                                                         <td class="text-center">
+                                                                            <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                                <i class="feather icon-edit-2"></i></button> -->
+                                                                         </td>
+                                                                         
+                                                                    </tr>
+                                                                   
+                                                                    <tr>
+                                                                      <td>7</td>
+                                                                      <td class="text-left">Bottle Missing & Bottle Damaged</td>
+                                                                      <td class="text-left">QR Unreadable</td>
+                                                                      <td class="text-left">
+                                                                    
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                       </td>
+                                                                       <td class="text-left">
+                                                                          0
+                                                                       </td>
+                                                                       <td class="text-center">
+                                                                          <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                              <i class="feather icon-edit-2"></i></button> -->
+                                                                       </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <td>8</td>
+                                                                      <td class="text-left">Case Missing & Case Damaged</td>
+                                                                      <td class="text-left">QR Unreadable</td>
+                                                                      <td class="text-left">
+                                                                     
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                         0
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                       </td>
+                                                                       <td class="text-left">
+                                                                           
+                                                                       </td>
+                                                                       <td class="text-center">
+                                                                          <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                              <i class="feather icon-edit-2"></i></button> -->
+                                                                       </td>
+                                                                  </tr>
+                                                                  <!-- <tr>
+                                                                      <td>9</td>
+                                                                      <td class="text-left">Case Damaged and Bottle Missing</td>
+                                                                      <td class="text-left">Barcode Unreadable</td>
+                                                                      <td class="text-left">
+                                                                
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                      </td>
+                                                                      <td class="text-left">
+                                                                          
+                                                                       </td>
+                                                                       <td class="text-left">
+                                                                          1
+                                                                       </td>
+                                                                       <td class="text-center">
+                                                                          <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                                              <i class="feather icon-edit-2"></i></button>
+                                                                       </td>
+                                                                  </tr> -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                        <label class="w-100 view-label">Total No. of Damaged Cases<span
+                                                                class="float-right">:</span></label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                     0
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                        <label class="w-100 view-label">Total No. of  Missing Cases<span
+                                                                class="float-right">:</span></label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                       0
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                        <label class="w-100 view-label">Total No. of  Missing Bottles<span
+                                                                class="float-right">:</span></label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 co'l-md-3 col-sm-6 col-6">
+                                                     0
+                                                    </div>
+                                                    
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                        <label class="w-100 view-label">Total No. of Damaged Bottles  <span
+                                                                class="float-right">:</span></label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                        0
+                                                    </div>
+                                                   
+                                                   
+                                                    
+                                                   
+                                                </div>
+                                               
+                                            </app-card>
+                                            <div class="row">
+                                                <div class="col-12 text-right">
+                                               <!--  <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button> -->
+                                                <button type="button" class="btn btn-info mb-2"
+                                                routerLink="/supplychainmanagement/wholesale/breakageentry/list">Preivew Report</button>
+                                                <button type="button" class="btn btn-success mb-2 ml-2">Download</button>
+                                                <button type="button" class="btn btn-primary ml-2 mb-2"
+                                                        routerLink="/supplychainmanagement/wholesale/breakageentry/list">Submit</button>
+                                                    <button type="button" class="btn btn-secondary ml-2 mb-2"
+                                                        routerLink="/supplychainmanagement/wholesale/breakageentry/list">Cancel</button>
+                                                </div>
+                                            </div>
+                                            <!-- <app-card cardTitle="Enter Details to Add Breakage Entry" class="list-panel add-panel">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Brand
+                                                            </label>
+                                                            <input type="text" name="Brand" class="form-control" #Brand="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['Brand']" required 
+                                                                placeholder="Enter Brand">
+                                                                <div *ngIf="Brand.invalid && (Brand.dirty || Brand.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="Brand?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Brand is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Packaging
+                                                            </label>
+                                                            <input type="text" name="Package" class="form-control" #Package="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['Package']" required 
+                                                                placeholder="Enter Packaging">
+                                                                <div *ngIf="Package.invalid && (Package.dirty || Package.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="Package?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Packaging is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Size
+                                                            </label>
+                                                            <input type="text"  name="Size" class="form-control" #Size="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['Size']" required 
+                                                                placeholder="Enter Size">
+                                                                <div *ngIf="Size.invalid && (Size.dirty || Size.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="Size?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Size is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Batch No
+                                                            </label>
+                                                            <input type="text"  name="BatchNo" class="form-control" #BatchNo="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['BatchNo']" required 
+                                                                placeholder="Enter Batch No">
+                                                                <div *ngIf="BatchNo.invalid && (BatchNo.dirty || BatchNo.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="BatchNo?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Batch No is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Available Bottles
+                                                            </label>
+                                                            <input type="text" name="AvailableBottle" class="form-control" #AvailableBottle="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['AvailableBottle']" required  
+                                                                placeholder="Enter Available Bottles">
+                                                                <div *ngIf="AvailableBottle.invalid && (AvailableBottle.dirty || AvailableBottle.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="AvailableBottle?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Available Bottles is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Breakage type
+                                                            </label>
+                                                            <select id="BreakageType" name="BreakageType" class="form-control" #BreakageType="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['BreakageType']" required >
+                                                                <option value="">Select</option>
+                                                                <option>Damaged Bottle</option>
+                                                            </select>
+                                                            <div *ngIf="BreakageType.invalid && (BreakageType.dirty || BreakageType.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="BreakageType?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Breakage type is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Breakage
+                                                            </label>
+                                                            <input type="text" name="Breakage" class="form-control" #Breakage="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['Breakage']" required 
+                                                                placeholder="Enter Breakage">
+                                                                <div *ngIf="Breakage.invalid && (Breakage.dirty || Breakage.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="Breakage?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Breakage is required
+                                                                </div>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label for="uploadpuc">QR Code</label>
+                                                            <div class="input-group cust-file-button">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" name="uploadpuc" disabled
+                                                                    id="uploadpuc">
+                                                                    <label class="custom-file-label">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Stock Bottles
+                                                            </label>
+                                                            <input type="text" name="StockBottle" class="form-control" #StockBottle="ngModel"
+                                                            [(ngModel)]="BreakageEntryObj['StockBottle']" required  
+                                                            placeholder="Enter Stock Bottles">
+                                                            <div *ngIf="StockBottle.invalid && (StockBottle.dirty || StockBottle.touched || formSubmitted)"
+                                                            class="error-msg">
+                                                            <div *ngIf="StockBottle?.errors?.required"><i class="fa fa-times"></i>
+                                                                Stock Bottles is required
+                                                            </div>
+                                                         </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </app-card> -->
+                                    </div>
+                                
+                                    <!-- <div class="col-12 text-right mb-4">
+                                        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addBreakageEntryDetails(BreakageEntryForm,true)">Save</button>
+                                        <button type="button" class="btn btn-secondary ml-2 mb-2"
+                                            routerLink="/supplychainmanagement/wholesale/breakageentry/list">Cancel</button>
+                                    </div> -->
+                                </div>
+                            </ng-template>
+                          </ngb-tab>
+                          <!-- <ngb-tab title="Existing">
+                            <ng-template ngbTabContent>
+                    
+                            </ng-template>
+                          </ngb-tab> -->
+                        </ngb-tabset>
+                      </app-card>
+                    </div>
+                  </div>
+        </app-card>
+        </form>
+
+    </div>
+</div>

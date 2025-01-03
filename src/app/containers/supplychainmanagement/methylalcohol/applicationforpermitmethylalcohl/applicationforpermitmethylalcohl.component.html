@@ -1,0 +1,104 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Application for Permit of Methyl Alcohol							
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink='/helpdeskmaster/actualprobelms/add'>
+        <i class="feather icon-plus mr-2"></i>
+        Add Application for Permit of Methyl Alcohol
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Methyl Alcohol</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Application for Permit of Methyl Alcohol</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Application for Permit of Methyl Alcohol List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered mb-0" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th> Application No</th>
+                            <th>Date of Application</th>
+                            <th>Purchaser Name</th>
+                            <th>Seller Name</th>
+                            <th>Quantity (BL)</th>
+                             <th>Status</th>                            
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td class="text-left">989JHH</td>
+                            <td class="text-left">20-08-24</td>
+                            <td>Sunil</td>
+                            <td>Ramesh</td>
+                            <td>100</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            
+                           
+
+
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                    (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary mr-2" type="button"
+                                    routerLink="/helpdeskmaster/faq/add">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- <tbody *ngIf="list?.length != 0">
+                        <tr *ngFor="let data of list;let i=index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>Category 1</td>
+                            <td>Sub Category 1</td>
+                            <td>{{data.actualProblem}}</td>
+                            <td>{{data.createdBy}}</td>
+                            <td>{{data.createdDate|date:'medium'}} </td>
+                            <td>{{data.modifiedBy}}</td>
+                            <td>{{data.modifiedDate|date:'medium'}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" (click)="navigateView(data.id)">
+                                <i class="feather icon-eye"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

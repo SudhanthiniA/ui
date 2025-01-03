@@ -1,0 +1,166 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Export Permit
+    <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="">
+    <i class="feather icon-plus mr-2"></i>
+    Add  Export Permit
+</button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Custom Bond</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Export Permit</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form #searchForm="ngForm">
+
+                <div class="row"> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Date" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Export Permit No</label>
+                            <input type="text" class="form-control" placeholder="Enter Export Permit No" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit No</label>
+                            <input type="text" class="form-control" placeholder="Enter Permit No" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                            <option value="">Select</option>
+
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="StockInHandList()">Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)="clear()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Export Permit Request" blockClass="table-border-style" class="list-panel stockavailability_tab">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <label></label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">CB 1</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">CB 2</label>
+                    </div>
+                </div>
+            </div>
+            <ngb-tabset type="pills">
+                <ngb-tab title="Pending Permit Request" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Date of Application</th>
+                                        <th>Application No</th>
+                                        <th>Unit Name</th>
+                                        <th>Custom Bondwarehouse Name</th>
+
+                                        <th>Quantity in B.L.</th>
+                                        <th>Export To</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>07-01-2022</td>
+                                        <td>APP001</td>
+                                        <td class="text-left">DQ Unit</td>
+                                        <td class="text-left">Bondwarehouse</td>
+
+                                        <td class="text-left">10</td>
+                                        <td class="text-left">Andhra Pradesh</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-primary ml-2" type="button" routerLink="">
+                            <i class="feather icon-edit-2"></i></button>
+                                            <button class="btn btn-icon btn-warning ml-2" type="button" routerLink="">
+                          <i class="feather icon-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Approved Permit Request" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Date of Application</th>
+                                        <th>Application No</th>
+                                        <th>Unit Name</th>
+                                        <th>Custom Bondwarehouse Name</th>
+                                        <th>Quantity in B.L.</th>
+                                        <th>Export To</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>07-Jan-2022</td>
+                                        <td>APP001</td>
+                                        <td class="text-left">DQ Unit</td>
+                                        <td class="text-left">DQ Warehouse</td>
+                                        <td class="text-left">10</td>
+                                        <td class="text-left">Andra Pradesh</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-primary ml-2" type="button" routerLink="">
+                            <i class="feather icon-edit-2"></i></button>
+                                            <button class="btn btn-icon btn-warning ml-2" type="button" routerLink="">
+                          <i class="feather icon-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+            <div class="row">
+                <div class="col-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">Pdf</a>
+                            <a class="dropdown-item" href="javascript:">Jpg</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

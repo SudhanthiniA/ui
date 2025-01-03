@@ -1,0 +1,253 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Tank Transfer
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li> -->
+            <!-- <li class="breadcrumb-item"><a href="javascript:">Distillery</a>
+            </li> -->
+            <li class="breadcrumb-item"><a href="javascript:">Tank Transfer</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.add' | translate }}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankTransferForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Date</label>
+                            <input type="date" name="reqdate" #reqdate="ngModel" [(ngModel)]="tanktransfer['reqdate']"
+                                disabled [min]="mindate" class="form-control" placeholder="Select Date" required
+                                value="{{ post.startDate | date:'yyyy-MM-dd' }}">
+                            <div *ngIf="reqdate.invalid && (reqdate.dirty || reqdate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reqdate?.errors?.required"><i class="fa fa-times"></i>
+                                    Request Date is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #tankTransferForm="ngForm" autocomplete="off">
+            <app-card cardTitle="From Tank" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Tank Name</label>
+                            <select class="form-control">
+                                <option value="">select</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transfer Quantity(Qtl)</label>
+                            
+                            <input type="text"  disabled  class="form-control" placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Grade</label>
+                            <select class="form-control" disabled>
+                                <option>Select</option>
+                            </select>
+                            <!-- <input type="text" placeholder="B-heavy Molasses" disabled  class="form-control"> -->
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Radar Details" class="list-panel add-panel">
+                <div class="row">
+    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label class="w-100 view-label">Is the Radar Based Mass Flow Meter <br>applicable
+                            <span class="float-right">:</span>
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                        <span>Yes</span>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Radar ID</label>
+                            <input type="text" name="radarid" class="form-control" placeholder="PDI/FL3A/UN/PRo/806192"
+                                required disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Request ID</label>
+                            <select class="form-control" required>
+                                <option>05</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Date and Time</label>
+                            <input type="text" placeholder="05/05/2024 14:02:30" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Start Reading</label>
+                            <input type="text" placeholder="1000" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">End Reading</label>
+                            <input type="text" placeholder="1000" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bulk Litre</label>
+                            <input type="text" placeholder="300" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #tankTransferForm="ngForm" autocomplete="off">
+            <app-card cardTitle="To Tank" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">To Tank Name</label>
+                            <select class="form-control"  required>
+                                <option value="">select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Is Tank Empty</label>
+                            <input type="text" class="form-control" disabled required value="0" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Capacity(Qtl)</label>
+                            <input type="text" name="capacity" class="form-control" 
+                                 value="Enter Capacity(Qtl)"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity(Qtl)</label>
+                            <input type="text" name="capacity" class="form-control" 
+                                 value="Enter Available Quantity(Qtl)"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Grade</label>
+                            
+                            <select class="form-control" disabled  required>
+                                <option value="">select</option>
+                            </select>
+                         </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Reason For Transfer</label>
+                            <input type="text"  class="form-control"  maxlength="500"
+                                 placeholder="Reason for Transfer" required>
+                           
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Radar Details" class="list-panel add-panel">
+                <div class="row">
+    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label class="w-100 view-label">Is the Radar Based Mass Flow Meter <br>applicable
+                            <span class="float-right">:</span>
+                        </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                        <span>Yes</span>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Radar ID</label>
+                            <input type="text" name="radarid" class="form-control" placeholder="PDI/FL3A/UN/PRo/806192"
+                                required disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Request ID</label>
+                            <select class="form-control" required>
+                                <option>05</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Date and Time</label>
+                            <input type="text" placeholder="05/05/2024 14:02:30" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Start Reading</label>
+                            <input type="text" placeholder="1000" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">End Reading</label>
+                            <input type="text" placeholder="1000" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bulk Litre</label>
+                            <input type="text" placeholder="300" class="form-control" disabled>
+                        </div>
+                    </div>
+    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" (click)="navigatePreview(tankTransferForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="tanktransferdata(tankTransferForm,'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="tanktransferdata(tankTransferForm,'INITIATE')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/tankoverview">Cancel</button>
+    </div>
+</div>

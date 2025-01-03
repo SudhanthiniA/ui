@@ -1,0 +1,111 @@
+<h5 class="m-b-10 ng-star-inserted"> {{ 'master.spirittype.type' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/product-type/list"> {{
+            'master.spirittype.type' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #spirittypeForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.spirittype.enterDetails' | translate }} {{ 'master.spirittype.type' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type Code </label>
+                            <input type="text" disabled  class="form-control" value="STMC01">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.spirittype.code' | translate }}</label>
+                            <input type="text" [(ngModel)]="spiritTypeObj.code" name="code"
+                                #code="ngModel" required class="form-control"
+                                minlength="3" maxlength="10"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.spirittype.code' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.code' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.code' | translate }}
+                                    {{ 'master.common.maximum' | translate }} 50
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.code' | translate }}
+                                    {{ 'master.common.minimum' | translate }} 3
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.spirittype.type' | translate }} Name</label>
+                            <input type="text" [(ngModel)]="spiritTypeObj.type" name="type" #type="ngModel"
+                                minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.spirittype.type' | translate }} Name"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="type.invalid && (type.dirty || type.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="type?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.type' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="type?.errors?.maxlength && !type?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.type' | translate }}
+                                    {{ 'master.common.maximum' | translate }} 50
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="type?.errors?.minlength && !type?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.spirittype.type' | translate }}
+                                    {{ 'master.common.minimum' | translate }} 3
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="spiritTypeObj.isActive" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="spiritTypeObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!spiritTypeObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="spiritTypeObj.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addspiritType(spirittypeForm)">{{
+            'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/spirit-type/list">{{ 'master.common.cancel'
+            | translate }}</button>
+    </div>
+</div>

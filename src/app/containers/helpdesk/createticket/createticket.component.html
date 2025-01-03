@@ -1,0 +1,339 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Create a Ticket
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Helpdesk</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Ticket</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Create a Ticket</a></li>
+</ul>
+<div class="row">
+    <form #createForm="ngForm" autocomplete="off">
+        <div class="col-xl-18">
+            <app-card cardTitle="Create a Ticket" blockClass="table-border-style" class="list-panel add-panel list-search">
+                <div class="row">
+                    <!-- <form [formGroup]="createForm" autocomplete="off"> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Type</label>
+                            <select name="entitytype" class="form-control" [disabled]="calldiscondisable" #entitytype="ngModel" [(ngModel)]="createObj['entitytype']" name="entitytype" required >
+                                        <option value="">Select</option>
+                                        <option *ngFor="let item of entitypes | slice:0:5"  value="{{item.id}}">{{item.name}}</option>
+                                    </select>
+                            <div *ngIf="entitytype.invalid && (entitytype.dirty || entitytype.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="entitytype?.errors?.required"><i class="fa fa-times"></i> Entity Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Name</label>
+                            <select name="entitytyname" class="form-control" [disabled]="calldiscondisable" #entitytyname="ngModel" [(ngModel)]="createObj['entitytyname']">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of entitynamelist" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                               <div *ngIf="entitytyname.invalid && (entitytyname.dirty || entitytyname.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="entitytyname?.errors?.required"><i class="fa fa-times"></i> Entity Name is required
+                                </div>
+                            </div>  
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <select name="categoryid" class="form-control" [disabled]="calldiscondisable" #categoryid="ngModel" [(ngModel)]="createObj['categoryid']" (change)="getsub($event)" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of cat" value="{{item.id}}">{{item.categoryName}}</option>
+                            </select>
+                            <div *ngIf="categoryid.invalid && (categoryid.dirty || categoryid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="categoryid?.errors?.required"><i class="fa fa-times"></i> Category Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sub Category Name</label>
+                            <select name="subcategoryid" class="form-control" [disabled]="calldiscondisable" #subcategoryid="ngModel" [(ngModel)]="createObj['subcategoryid']" required (change)="getsubbasissue($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of sub" value="{{item.id}}">{{item.subcategoryName}}</option>
+                            </select>
+                            <div *ngIf="subcategoryid.invalid && (subcategoryid.dirty || subcategoryid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="subcategoryid?.errors?.required"><i class="fa fa-times"></i> Sub Category Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> Call Disconnect</label>
+                            <select name="callstatus" class="form-control" #callstatus="ngModel" [(ngModel)]="createObj['callstatus']" required (change)="callstatuschange();">
+                                <option value="">Select</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <!-- <input type="text" name="counter" class="form-control" #counter="ngModel" [(ngModel)]="createObj['counter']" placeholder="" maxlength="10" required pattern="[0-9]+"> -->
+                            <div *ngIf="callstatus.invalid && (callstatus.dirty || callstatus.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="callstatus?.errors?.required"><i class="fa fa-times"></i> Status is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-8 col-md-8 col-sm-8 col-12"></div> -->
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Search By License Number</label>
+                            <input type="text" name="searchby" class="form-control" appInputRestriction [disabled]="calldiscondisable" #searchby="ngModel" [(ngModel)]="createObj['searchby']" placeholder="Search By License Number" required>
+                            <div *ngIf="searchby.invalid && (searchby.dirty || searchby.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="searchby?.errors?.required"><i class="fa fa-times"></i> Search By is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 offset-10">
+                            <button type="submit" class="btn btn-primary ml-2 mb-2" [disabled]="calldiscondisable" (click)="search(createForm,true)">Search</button>
+                            <button type="button" class="btn btn-secondary ml-2 mb-2" [disabled]="calldiscondisable" (click)="searchclear();">Clear</button>
+                        </div>
+                    </div>
+
+                    <!-- </form> -->
+                </div>
+                <!-- <form [formGroup]="AddForm" autocomplete="off"> -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <h6>CreateForm Entity Details
+                        </h6>
+                    </div>
+                </div>
+                <!-- <form #createForm="ngForm" autocomplete="off"> -->
+                <div class="row mt-2">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Name </label>
+                            <input type="text" disabled name="entityname" class="form-control" #entityname="ngModel" [(ngModel)]="createObj['entityname']">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Number </label>
+                            <input type="text" disabled name="licenceno" class="form-control" #licenceno="ngModel" [(ngModel)]="createObj['licenceno']">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> INRNo</label>
+                            <input type="text" disabled name="inrno" class="form-control" #inrno="ngModel" [(ngModel)]="createObj['inrno']" placeholder="LCT1234">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address </label>
+                            <input type="text" disabled name="addressLine1" class="form-control" #addressLine1="ngModel" [(ngModel)]="createObj['addressLine1']" placeholder="Unnanno 1">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address 2</label>
+                            <input type="text" disabled name="addressLine2" class="form-control" #addressLine2="ngModel" [(ngModel)]="createObj['addressLine2']" placeholder="Unnanno 2">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" disabled name="state" class="form-control" #state="ngModel" [(ngModel)]="createObj['state']" placeholder="Unnanno 2">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" disabled name="mobileno" class="form-control" #mobileno="ngModel" [(ngModel)]="createObj['mobileno']">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="text" disabled name="email" class="form-control" #email="ngModel" [(ngModel)]="createObj['email']">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <!-- <label>Counter No</label> -->
+                            <label>Call Number</label>
+                            <!-- <input type="text" class="textfield" value="" id="extra7" name="extra7" onkeypress="return isNumber(event)" /> -->
+                            <input type="text" name="counter" class="form-control" #counter="ngModel" [(ngModel)]="createObj['counter']" placeholder="" maxlength="10" required (keypress)="numberOnly($event)">
+                            <div *ngIf="counter.invalid && (counter.dirty || counter.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="counter?.errors?.required"><i class="fa fa-times"></i> Call Number is required
+                                </div>
+                                <div *ngIf="counter.errors.pattern">
+                                    Call number not valid.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <h6>
+                            Ticket Details
+                        </h6>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']!='2'">
+                        <div class="form-group">
+                            <label>Issue Details</label>
+                            <select required name="issuedetails" class="form-control" [disabled]="calldiscondisable" #issuedetails="ngModel" [(ngModel)]="createObj['issuedetails']" (change)="getissuebasknowledge($event);">
+                              
+                                <!-- <option value="test">TEST</option> -->
+                                <option value="">Select</option>
+                                <option *ngFor="let issdet of issuedetsubcatbased" value="{{issdet.id}}">{{issdet.issueName}}</option>
+                            </select>
+                            <div *ngIf="issuedetails.invalid && (issuedetails.dirty || issuedetails.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="issuedetails?.errors?.required"><i class="fa fa-times"></i> Issue Details is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']=='2'">
+                        <div class="form-group">
+                            <label>Issue Details</label>
+                            <input type="text" appInputRestriction name="issuedetails" class="form-control" [disabled]="calldiscondisable" #issuedetails="ngModel" [(ngModel)]="createObj['issuedetails']" placeholder="Issue Details">
+                            <div *ngIf="issuedetails.invalid && (issuedetails.dirty || issuedetails.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="issuedetails?.errors?.required"><i class="fa fa-times"></i> Issue Details is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']=='2'">
+                        <label>Knowledge Base</label>
+                        <input type="text" appInputRestriction name="knowledgebase" class="form-control" [disabled]="calldiscondisable" #knowledgebase="ngModel" [(ngModel)]="createObj['knowledgebase']" placeholder="Knowledge Base">
+                        <div *ngIf="knowledgebase.invalid && (knowledgebase.dirty || knowledgebase.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="knowledgebase?.errors?.required"><i class="fa fa-times"></i> Knowledge Base is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']!='2'">
+                        <label>Knowledge Base</label>
+                        <select required name="knowledgebase" class="form-control" [disabled]="calldiscondisable" #knowledgebase="ngModel" [(ngModel)]="createObj['knowledgebase']">
+                              <option value="">Select</option>
+                                <option *ngFor="let issdet of knowledgelistdet" value="{{issdet.id}}">{{issdet.answer}}</option>
+                            </select>
+                        <div *ngIf="knowledgebase.invalid && (knowledgebase.dirty || knowledgebase.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="knowledgebase?.errors?.required"><i class="fa fa-times"></i> Knowledge Base is required
+                            </div>
+                        </div>
+
+                        <!-- <select required name="knowledgebase" class="form-control" [disabled]="calldiscondisable" #knowledgebase="ngModel" [(ngModel)]="createObj['knowledgebase']">
+                            
+                            <option value="">Select</option>
+                            <option *ngFor="let knowl of knowledgelistdet" value="{{knowl.id}}">{{knowl.issueName}}</option>
+                        </select>
+                        <div *ngIf="knowledgebase.invalid && (knowledgebase.dirty || knowledgebase.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="knowledgebase?.errors?.required"><i class="fa fa-times"></i> Knowledge Base is required
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group mulitiselect">
+                            <div class="selectBox">
+                                <input type="text" name="knowledgebase" class="form-control" #knowledgebase="ngModel" [(ngModel)]="createObj['knowledgebase']" (click)="toggle()" placeholder="Select" required>
+                                <div class="checkboxes" *ngIf="show">
+                                    <label for="{{knowl.id}}" *ngFor="let knowl of knowledgelist">
+                                        <input type="checkbox" id="{{knowl.id}}" (change)="knowlselect(knowl)"/>{{knowl.issueName}}</label> -->
+                        <!-- <label for="two">
+                                        <input type="checkbox" id="two" />Issue Type 2</label>
+                                    <label for="three">
+                                        <input type="checkbox" id="three" />Issue Type 3</label> -->
+                        <!-- </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']=='4'||this.createObj['categoryid']==''">
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select name="priority" class="form-control" [disabled]="calldiscondisable" #priority="ngModel" required [(ngModel)]="createObj['priority']" (change)="getprior($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of priority1" value="{{item.id}}">{{item.priority}}</option>
+                            </select>
+                            <div *ngIf="priority.invalid && (priority.dirty || priority.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="priority?.errors?.required"><i class="fa fa-times"></i> Priority is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Assign Group</label>
+                            <select name="assigngroup" class="form-control" [disabled]="calldiscondisable" #assigngroup="ngModel" required [(ngModel)]="createObj['assigngroup']" name="categoryid">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of group" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="assigngroup.invalid && (assigngroup.dirty || assigngroup.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="assigngroup?.errors?.required"><i class="fa fa-times"></i> Assign Group is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Assign to</label>
+                            <select name="assignmem" class="form-control" [disabled]="calldiscondisable" #assignmem="ngModel"  [(ngModel)]="createObj['assignmem']">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of memberbasgroup" value="{{item.id}}">{{item.firstName}}</option>
+                            </select>
+                            <!-- <div *ngIf="assignmem.invalid && (assignmem.dirty || assignmem.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="assignmem?.errors?.required"><i class="fa fa-times"></i> Assign Member is required
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngIf="this.createObj['categoryid']=='4'||this.createObj['categoryid']==''">
+                        <div class="form-group">
+                            <label>SLA</label>
+                            <input type="text" disabled name="SLA" class="form-control" #SLA="ngModel" [(ngModel)]="createObj['SLA']" placeholder="SLA">
+                            <!-- <div *ngIf="SLA.invalid && (SLA.dirty || SLA.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="SLA?.errors?.required"><i class="fa fa-times"></i>
+                                SLA is required
+                            </div>
+                         </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12" *ngIf="createObj['callstatus']=='true'">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="desc" class="form-control" #desc="ngModel" required [(ngModel)]="createObj['desc']" rows="2">
+                            </textarea>
+                            <div *ngIf="desc.invalid && (desc.dirty || desc.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="desc?.errors?.required"><i class="fa fa-times"></i> Description is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </form> -->
+            </app-card>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary m-r-5" (click)="addticketDetails(createForm,true)">Submit</button>
+                    <button class="btn btn-secondary" (click)="clearticketform();">Clear</button>
+
+                </div>
+
+            </div>
+            <!-- </form> -->
+            <!-- </div> -->
+            <!-- </form> -->
+        </div>
+        <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered success_popup">
+            <div class="app-modal-body text-center">
+                <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+                <img src="assets/images/check.png" />
+                <h3 class="text-success">Application Submitted Successfully</h3>
+                <!-- <h6>Your Application Number is <span class="badge badge-light-success">{{registeredData.registrationNo}}</span></h6> -->
+            </div>
+        </app-ui-modal>

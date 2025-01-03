@@ -1,0 +1,156 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 8</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 8</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #bwfl8form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add BWFL 8" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name
+                            </label>
+                            <input type="text" required class="form-control" name="employeeName" #employeeName="ngModel" [(ngModel)]="bwfl8Obj['employeeName']"  class="form-control" placeholder="">
+                            <div *ngIf="employeeName.invalid && (employeeName.dirty || employeeName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="employeeName?.errors?.required"><i class="fa fa-times"></i>
+                                    Employee Name  is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Designation
+                            </label>
+                            <input type="text" required class="form-control" placeholder="Associate" name="employeeDesignation" #employeeDesignation="ngModel" [(ngModel)]="bwfl8Obj['employeeDesignation']" >
+                            <div *ngIf="employeeDesignation.invalid && (employeeDesignation.dirty || employeeDesignation.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="employeeDesignation?.errors?.required"><i class="fa fa-times"></i>
+                                    Employee Designation  is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Employee Address
+                            </label>
+                            <input type="text" required class="form-control" placeholder="Chennai" name="employeeAddress" #employeeAddress="ngModel" [(ngModel)]="bwfl8Obj['employeeAddress']">
+                            <div *ngIf="employeeAddress.invalid && (employeeAddress.dirty || employeeAddress.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="employeeAddress?.errors?.required"><i class="fa fa-times"></i>
+                                    Employee Address  is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Appointment in Bond Warehouse
+                            </label>
+                            <input type="date" required class="form-control" placeholder="16/01/2021"
+                            name="appointmentDate" #appointmentDate="ngModel" [(ngModel)]="bwfl8Obj['appointmentDate']">
+                            <div *ngIf="appointmentDate.invalid && (appointmentDate.dirty || appointmentDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="appointmentDate?.errors?.required"><i class="fa fa-times"></i>
+                                    Appointment Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reference to the order of the Deputy/Assistant Excise Commissioner approving the of the person employment of the person
+                            </label>
+                            <input type="text" required class="form-control" placeholder=""
+                            name="referenceDeputy" #referenceDeputy="ngModel" [(ngModel)]="bwfl8Obj['referenceDeputy']">
+                            <div *ngIf="referenceDeputy.invalid && (referenceDeputy.dirty || referenceDeputy.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="referenceDeputy?.errors?.required"><i class="fa fa-times"></i>
+                                    referenceDeputy is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/bwfl8/list">Back</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addbwfl8Details(bwfl8form,'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addbwfl8Details(bwfl8form,'SUBMITTED')">Submit</button>
+        <!-- routerLink="/supplychainmanagement/warehouse/bwfl8/list" -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/bwfl8/list">Cancel</button>
+
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="BrandNewObj" autocomplete="off">
+
+        <app-card cardTitle="BWFL8 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Employee Address</th>
+                            <th>Date of Appointment in Bond Warehouse</th>
+                            <th>Reference to the order of the Deputy/Assistant Excise Commissioner approving the of the person employment of the person</th>
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr formArrayName="requestBrandDetlist"
+                        *ngFor="let pres of BrandNewObj?.get('requestBrandDetlist')['controls']; let i=index"
+                        id="row{{i}}">
+                            <td >
+                                1
+                            </td>
+                            <td [formGroupName]="i">
+                                <input type="text" class="form-control" placeholder="Enter Name">
+                            </td>
+                            <td [formGroupName]="i">
+                                <input type="text" class="form-control" placeholder="Enter Designation">
+                            </td>
+                            <td [formGroupName]="i">
+                                <input type="text" class="form-control" placeholder="Enter Employee Address">
+                            </td>
+                            <td [formGroupName]="i">
+                                <input type="text" class="form-control" placeholder="Enter Date of Appoinment">
+                            </td>
+                            <td [formGroupName]="i">
+                                <input type="text" class="form-control" placeholder="Enter Reference to Order">
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/bwfl8/list">Back</button>
+            <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/bwfl8/list">Submit</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/bwfl8/list">Cancel</button>
+
+        </div>
+        </form>
+    </div>
+</div> -->

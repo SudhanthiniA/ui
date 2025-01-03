@@ -1,0 +1,143 @@
+<h5 class="m-b-10">
+    Dispatch Report
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Dispatch Report</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Dispatch Date</label>
+                        <input type="date" [(ngModel)]="dispatchObj.dispatchdate"
+                        name="dispatchdate" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text" class="form-control" [(ngModel)]="dispatchObj.indentNo"
+                        name="indentNo" placeholder="Enter Indent No">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass No</label>
+                        <input type="text" class="form-control"[(ngModel)]="dispatchObj.transportPassNo"
+                        name="transportPassNo"  placeholder="Enter Transport Pass No">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">FL2</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">FL2B</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">CL2</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchDispatch()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Dispatch Report List"  blockClass="table-border-style" class="list-panel">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <div class="table-responsive mb-2">
+                        <table class="table table-bordered"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    <th>Dispatch Date</th>
+                                    <th>Indent No</th>
+                                     <th>Transport Pass No</th>
+                                   <th>Unit Name</th>
+                                <th>Cases Dispatched</th>
+                                <th>Bottles Dispatched</th>
+                                <th>Action</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="text-center">20-May-2021</td>
+                                    <td class="text-center">IN1122</td>
+                                    <td class="text-center">TP1122</td>
+                                    <td class="text-center">Daural Distillery</td>
+                                    <td class="text-left">10</td>
+                                    <td class="text-left">100</td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button" 
+                                        routerLink="/supplychainmanagement/wholesale/dispatchreport/view">
+                                            <i class="feather icon-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                          
+                        </table>
+                    </div> -->
+                    <div class="table-responsive">
+                        <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"   
+                            [totalCount]="totalCount" [pageSize]="pageSize" 
+                            (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                        </app-mat-normal-table>
+                        <!-- (paginationEvent)="handlePagination($event)" -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

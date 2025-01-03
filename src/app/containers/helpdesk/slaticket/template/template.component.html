@@ -1,0 +1,114 @@
+<h5 class="m-b-10 ng-star-inserted">SLA
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/helpdesk/sla/template/add" type="submit">
+        <i class="feather icon-plus mr-2"></i> {{'helpdesk.common.add'|translate}}</button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.sla'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.template'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.list'|translate}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+
+        <app-card cardTitle="{{'helpdesk.template.templatesearch'|translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.template.templatename'|translate}}</label>
+                        <!-- <input type="text" appInputRestriction class="form-control" placeholder="Enter Template Name" name="priority" #priority="ngModel" [(ngModel)]="createObj['priority']"> -->
+                        <input type="text" list="staticUserIds" class="form-control" name="templatename" #templatename="ngModel" [(ngModel)]="createObj['templatename']" />
+                        <datalist id="staticUserIds">
+                            <option *ngFor="let data of list" [value]="data.templateName">{{data.templateName}}</option>
+                        </datalist>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.template.templatetype'|translate}}</label>
+                        <select class="form-control" name="templatetype" #templatetype="ngModel" [(ngModel)]="createObj['templatetype']">
+                            <option value="">{{'helpdesk.common.select'|translate}}</option>
+                            <option value="EMAIL">EMAIL</option>
+                            <option value="SMS">SMS</option>
+                            <option value="BOTH">BOTH</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.common.status'|translate}}</label>
+                        <div class="form-group">
+                            <select class="form-control" name="status" #status="ngModel" [(ngModel)]="createObj['status']">
+                                <option value="">{{'helpdesk.common.select'|translate}}</option>
+                                <option value="true">Active</option>
+                                <option value="false">InActive</option>
+                              
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12 text-right">
+                    <div class="form-group">
+                        <button class="btn btn-primary m-r-5" (click)="filtertemplate();">
+                            {{'helpdesk.common.search'|translate}}</button>
+                        <button class="btn btn-secondary" (click)="clearfilter();">
+                            {{'helpdesk.common.clear'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+
+        <app-card cardTitle="{{'helpdesk.template.listoftemplate'|translate}}" blockClass="table-border-style" class="list-panel">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive mt-0">
+                        <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead>
+                                <tr>
+                                    <th>{{'helpdesk.common.sno'|translate}}</th>
+                                    <th>{{'helpdesk.template.templatetype'|translate}}</th>
+                                    <th>{{'helpdesk.template.templatename'|translate}}</th>
+                                    <th>{{'helpdesk.common.status'|translate}}</th>
+                                    <th>{{'helpdesk.common.action'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="list?.length != 0">
+                                <tr *ngFor="let data of list;let i=index">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+
+                                    <td>{{data.templateType}}</td>
+                                    <td>{{data.templateName}}</td>
+
+
+                                    <td>
+                                        <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                        <span class="badge m-r-5 badge-light-success" *ngIf="!data.active">Inactive</span>
+                                    </td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary mr-2" type="button" (click)="navigateView(data.id)">
+                                            <i class="feather icon-eye"></i></button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+</div>

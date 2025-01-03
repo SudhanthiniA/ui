@@ -1,0 +1,206 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.common.edit' | translate}} {{
+   'bondWarehouse.orderpickupdetails.orderpickup'
+   | translate}}</h5>
+<ul class="breadcrumb p-0">
+   <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.orderpickupdetails.warehouse' | translate}}</a>
+   </li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.orderpickupdetails.orderpickup' | translate}}</a>
+   </li>
+   <li class="breadcrumb-item">{{ 'master.common.edit' | translate}}</li>
+</ul>
+<div class="row">
+   <div class="col-xl-12">
+      <form [formGroup]="orderPickUpForm" autocomplete="off">
+         <app-card
+            cardTitle="{{ 'master.common.edit' | translate}} - {{ 'bondWarehouse.orderpickupdetails.orderpickup' | translate}}"
+            class="list-panel add-panel">
+            <div class="row">
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.orderpickupdate' |
+                     translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  20-Apr-2021
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.indentNo' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.indentNo}}
+               </div>
+               <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">Sub-Indent Number<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  SI1122
+               </div> -->
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.indentDate' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.indentDate | date:'dd-MM-yyyy'}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.licenseType' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.licenseType}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.unittype' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.unittype}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.unitName' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.unitName}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'bondWarehouse.orderpickupdetails.unitaddress' | translate}}<span
+                        class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{indentdetails?.unitAddress}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <input type="text" class="form-control" placeholder="Bar Code" formControlName="barCode"
+                     placeholder="{{ 'bondWarehouse.orderpickupdetails.barcode' | translate}}"
+                     aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+               </div>
+               <div>
+                  <button class="btn btn-primary" type="button" (click)="addbarcodes()"><i
+                        class="fas fa-qrcode"></i></button>
+               </div>
+               <div class="col-12 mt-4">
+                  <div class="table-responsive">
+                     <table class="table table-bordered text-center">
+                        <thead>
+                           <tr>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.sno' | translate}}</th>
+                              <th>{{ 'bondWarehouse.damagedproducts.brandname' | translate}}<br>({{
+                                 'bondWarehouse.damagedproducts.brandnameparentetn' | translate}})</th>
+                              <th>{{ 'bondWarehouse.damagedproducts.liquor' | translate}}<br>{{
+                                 'bondWarehouse.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'bondWarehouse.damagedproducts.subliquor' | translate}}<br>{{
+                                 'bondWarehouse.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.package' | translate}}<br>{{
+                                 'bondWarehouse.orderpickupdetails.size' | translate}}</th>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.package' | translate}}<br>{{
+                                 'bondWarehouse.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.requested' | translate}}<br>{{
+                                 'bondWarehouse.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.requested' | translate}}<br>{{
+                                 'bondWarehouse.orderpickupdetails.bottles' | translate}}</th>
+                              <!-- <th>Bar Code</th> -->
+                              <th>{{ 'bondWarehouse.orderpickupdetails.scanned' | translate}}<br>{{
+                                 'bondWarehouse.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'bondWarehouse.orderpickupdetails.scanned' | translate}}<br>{{
+                                 'bondWarehouse.orderpickupdetails.bottles' | translate}}</th>
+                           </tr>
+                           <!-- <tr>
+                              <th>#</th>
+                              <th>Brand<br>Name<br>(Parent ETIN)</th>
+                              <th>Liquor<br>Type</th>
+                              <th>Sub Liquor<br>Type</th>
+                              <th>Package<br>Size</th>
+                              <th>Package<br>Type</th>
+                              <th>Requested<br>Cases</th>
+                              <th>Requested<br>Bottles</th>
+                              <!-- <th>Bar Code</th> 
+                              <th>Scanned<br>Cases</th>
+                              <th>Scanned<br>Bottles</th>
+                           </tr> -->
+                        </thead>
+                        <tbody>
+                           <tr formArrayName="orderpickUpDetails"
+                              *ngFor="let data of orderPickUpForm.get('orderpickUpDetails')['controls']; let i = index">
+                              <td [formGroupName]="i">{{i+1}}</td>
+                              <td [formGroupName]="i">
+                                 <input type="text" formControlName='brandNameValue' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i">
+                                 <input type="text" formControlName='liquorTypeValue' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i">
+                                 {{data.subLiquorTypeValue}}
+                                 <input type="text" formControlName='subLiquorTypeValue' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i">
+                                 <input type="text" formControlName='packageSizeValue' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i">
+                                 <input type="text" formControlName='packageTypeValue' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i" class="text-left">
+                                 <input type="text" formControlName='noOfCases' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i" class="text-left">
+                                 <input type="text" formControlName='noOfBottles' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i" class="text-left">
+                                 <input type="text" formControlName='noOfCasesScanned' readonly class="form-control">
+                              </td>
+                              <td [formGroupName]="i" class="text-left">
+                                 <input type="text" formControlName='noOfBottlesScanned' readonly class="form-control">
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </app-card>
+      </form>
+      <app-card cardTitle="Pick Up Logs" class="list-panel add-panel" *ngIf=isFlag>
+         <div class="row">
+            <div class="col-12">
+               <div class="table-responsive">
+                  <table class="table table-bordered text-center">
+                     <thead>
+                        <tr>
+                           <th>#</th>
+                           <th>Date</th>
+                           <th>Brand Name</th>
+                           <th>Package Size</th>
+                           <th>Package Type</th>
+                           <th>No. of Cases Scanned</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let data of orderPickUpLogData; let i = index">
+                           <td>{{i+1}}</td>
+                           <td>{{data.orderPickUpProductDetails[0]?.createdDate | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+                           <td>{{data.orderPickUpProductDetails[0]?.productLibrary.brandNameValue}}</td>
+                           <td>{{data.orderPickUpProductDetails[0]?.productLibrary.packageSizeValue}}</td>
+                           <td>{{data.orderPickUpProductDetails[0]?.productLibrary.packageTypeValue}}</td>
+                           <td>{{data.orderPickUpProductDetails[0]?.totCasesScanned}}</td>
+
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </app-card>
+   </div>
+   <div class="col-12 text-right mb-4">
+      <button type="button" class="btn btn-secondary mb-2" (click)=resett()>{{ 'master.common.reset' |
+         translate}}</button>
+      <button type="button" class="btn btn-warning mb-2 ml-2" (click)="saveorder(orderPickUpForm,'DRAFT')">{{
+         'master.common.saveasdraft' | translate}}</button>
+      <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveorder(orderPickUpForm,'SUBMITTED')">{{
+         'master.common.submit' | translate}}</button>
+      <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/warehouse/orderpickup/list">{{ 'master.common.cancel' | translate}}</button>
+   </div>
+</div>

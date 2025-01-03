@@ -1,0 +1,100 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'"> {{ 'master.subLiquorType.add' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'"> {{ 'master.subLiquorType.edit' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/subliquortype/list"> {{
+            'master.subLiquorType.subliquortype' | translate }} </a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="subLiquorTypeForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Liquor Type" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.subLiquorType.code' | translate }}</label>
+                            <input type="text" formControlName="code" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.subLiquorType.code' | translate }}"
+                                >
+                            <div *ngIf="f.code.invalid && (f.code.dirty || f.code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="f.code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.subLiquorType.code' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="f.code?.errors?.minlength && !f.code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.subLiquorType.name' | translate }}</label>
+                            <input type="text" formControlName="name"  class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.subLiquorType.name' | translate }}"
+                                >
+                            <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="f.name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.subLiquorType.name' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="f.name?.errors?.minlength && !f.name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.subLiquorType.liquortype' | translate }}</label>
+                            <select class="form-control" formControlName="liquortypeid">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of liquorTypeData" value={{data.id}}>{{data.name}}</option>
+                            </select>
+                            <div *ngIf="f.liquortypeid.invalid && (f.liquortypeid.dirty || f.liquortypeid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="f.liquortypeid.errors.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.subLiquorType.liquortype' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" formControlName="isActive" class="custom-control-input" id="switch1"
+                                    >
+                                <label class="custom-control-label" for="switch1" *ngIf="!f.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="f.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addrawmaterial(subLiquorTypeForm)">{{
+            'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/subliquortype/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

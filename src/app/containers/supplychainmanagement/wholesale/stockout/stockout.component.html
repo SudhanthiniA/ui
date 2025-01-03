@@ -1,0 +1,161 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock Out
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Out</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Dispatch Date</label>
+                        <input type="date" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass No</label>
+                        <input type="text" required id="transportpassno" class="form-control"
+                            placeholder="Enter Transport Pass No" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text" required id="indentno" class="form-control" placeholder="Enter Indent No" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Shop Name</label>
+                        <select id="shopname" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Shop ID/HBR No</label>
+                        <input type="text" id="shopid" required class="form-control"
+                            placeholder="Enter Shop ID/HBR No" />
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <select id="brand" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock Out List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Dispatch Date</th>
+                            <th>Transport Pass No</th>
+                            <th>Indent No</th>
+                            <th>Shop Name</th>
+                            <th>Shop Address</th>
+                            <th>Brand</th>
+                            <th>Liquor Type</th>
+                            <th>Sub Liquor Type</th>
+                            <th>Dispatch Bottles</th>
+                            <!-- <th>Status</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let data of stockoutlist; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.DispatchDate}}</td>
+                            <td>{{data.TransportPassNo}}</td>
+                            <td>{{data.IndentNo}}</td>
+                            <td class="text-left">{{data.ShopName}}</td>
+                            <td class="text-left">{{data.ShopIDHBRNo}}</td>
+                            <td class="text-left">{{data.Brand}}</td>
+                            <td>Rampur Select</td>
+                            <td>Whisky</td> 
+                            <td class="text-left">{{data.DispatchBottles}}</td>
+                            <!-- <td class="text-center">
+                                <span class="badge badge-light-success" *ngIf="data.status">Approved</span>
+                            </td> -->
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/wholesale/stockout/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+
+
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td class="text-center">1</td>
+                            <td class="text-center">20-Apr-2021</td>
+                            <td class="text-center">GP1122</td>
+                            <td class="text-center">IN1122</td>
+                            <td>Good Wines</td>
+                            <td>Plot No. 12,xyz nagar, Karnataka, Bangalore, Bangalore, Shivaji nagar, Majestic, 500001</td>
+                            <td>Rampur Select</td>
+                            <td>Whisky</td>
+                            <td>Single Malt</td>
+                            <td>100</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/wholesale/stockout/view">
+                                    <i class="feather icon-eye"></i></button>
+
+
+                            </td>
+                        </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mt-2">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

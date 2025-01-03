@@ -1,0 +1,55 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>  
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <app-card [hidHeader]="true" class="list-panel">
+                        <p class="mb-0 m-t-20">{{ 'retail.stockinhand.stockdetails' | translate }}</p>
+                        <h6 class="m-0">04 Feb 2021 19:00:00</h6>
+                    </app-card>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.stockinhand.brandsearch' | translate }}</label>
+                        <select class="form-control">
+                            <option>Jack Daniels (Black)</option>
+                            <option>Jhonny Walker (White)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'retail.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'retail.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.stockinhand.list' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'retail.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

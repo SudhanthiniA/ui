@@ -1,0 +1,392 @@
+<h5 class="m-b-10 ng-star-inserted">Add Penality on Undefined Subject</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Penality on Undefined Subject</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Boxing 2020-21" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Year
+                            </label>
+                            <input type="text" required id="year" name="year" class="form-control" #year="ngModel"
+                                disabled [(ngModel)]="boxingObj['year']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" required id="date" name="date" class="form-control"
+                                placeholder="Enter Date" #date="ngModel" disabled
+                                [(ngModel)]="boxingObj['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Boxing Id</label>
+                            <input type="text" disabled required class="form-control" value="Country Liquor">
+                        </div>
+                    </div>
+                  
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Production plan Details" class="list-panel add-panel">
+                <div class="row">
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plan ID</label>
+                            <input type="text" disabled required class="form-control" value="ID1234">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type of Liquor</label>
+                            <input type="text" disabled required class="form-control" value="Country Liquor">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label>Plan No
+                            </label>
+                            <input required type="text" id="planno" class="form-control" placeholder="Enter Plan No" name="planNo"
+                            #planNo="ngModel" [(ngModel)]="boxingObj['planNo']">
+                            <div *ngIf="planNo.invalid && (planNo.dirty || planNo.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="planNo?.errors?.required"><i class="fa fa-times"></i>
+                                Plan No is required </div>
+
+                        </div>
+                        </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand
+                            </label>
+                            <select id="brand" disabled required class="form-control" name="brand"
+                            #brand="ngModel" [(ngModel)]="boxingObj['brand']">
+                                <option value="">Select</option>
+                                <option value="Brand 1" selected>Brand 1</option>
+                                <option value="Brand 2">Brand 2</option>
+                                <option value="Brand 3">Brand 3</option>
+                            </select>
+                        </div>
+                        <div *ngIf="brand.invalid && (brand.dirty || brand.touched || formSubmitted)"
+                        class="error-msg">
+                        <div *ngIf="brand?.errors?.required"><i class="fa fa-times"></i>
+                            Brand is required </div>
+
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Package Size</label>
+                            <input type="text" disabled required class="form-control" value="180ml">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Cases</label>
+                            <input type="text" disabled required class="form-control" value="150">
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles</label>
+                            <input type="text" disabled required class="form-control" value="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles per case</label>
+                            <input type="text" disabled required class="form-control" value="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>ETIN</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>GTIN</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Boxing Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cases Pending for Transfer</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pending Quantity (B.L.)</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cases Transfered to Warehouse</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transferred Quantity (B.L.)</label>
+                            <input type="text" disabled required class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. Of Cases Scanned</label>
+                            <input type="text" disabled required class="form-control" value="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. Of Bottle Scanned</label>
+                            <input type="text" disabled required class="form-control" value="1500">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <input type="text" disabled required class="form-control" value="Active">
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+
+          <app-card cardTitle="Wastage Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Quantity (BL)</label>
+                            <input type="text" disabled required class="form-control" value="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Bottled(B.L.)</label>
+                            <input type="text" disabled required class="form-control" value="140">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage Quantity(B.L)</label>
+                            <input type="text" required class="form-control" value="Enter the Wastage Quantity(B.L)">
+                        </div>
+                    </div>
+                   
+                </div>
+            </app-card>
+         
+        </form>
+    </div>
+  
+    
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning ml-2 mb-2">Transfer to Warehouse</button>
+        <button type="button" class="btn btn-success ml-2 mb-2">Update Wastage</button>   
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/bottleboxing/list">Cancel</button>
+    </div>
+
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+    <app-card cardTitle="Boxing Log" class="list-panel add-panel">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Date and Time<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+              10-Jan-2021 10:00 AM
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Name of warehouse<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            -
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Brand<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+              -
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of cases transfered<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+        100
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Transferred Quantity(B.L)<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+        100
+            </div>
+           
+        </div>
+    </app-card>
+    </form>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-lg-12 ngb_accordion_1">
+        <form #boxingForm="ngForm" autocomplete="off">
+        <ngb-accordion [closeOthers]="false" activeIds="static-1" class="next-accordion">
+            <ngb-panel id="static-1">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Unit Details</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">License Type</label>
+                                <select class="form-control" required disabled>
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Unit Type</label>
+                                <select class="form-control" required disabled>
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                   
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Unit Name</label>
+                                <input type="text" class="form-control" disabled  value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Unit Address</label>
+                                <input type="text" class="form-control" disabled  value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Is there any presence of undefined subjects in the premises?</label>
+                                <input type="text" class="form-control"   value="">
+                            </div>
+                        </div>
+                      
+                         
+                    </div>
+                </ng-template>
+            </ngb-panel>
+           
+            <ngb-panel id="static-3">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Fees/Penalty Details</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fine to be Imposed</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" checked class="custom-control-input" id="customswitch1">
+                                    <label class="custom-control-label"  for="customswitch1" >Yes </label>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <label>Fine Type</label>
+                            <div class="segment"> <input type="radio" name="tab3" id="tab3" checked>
+                                <label class="" for="tab3">Penalty</label>
+                                <input type="radio" name="tab4" id="tab4" >
+                                <label class="" for="tab4">Compounding</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label> Amount</label>
+                                <input type="text" required class="form-control" disabled placeholder="Fine Amount" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label> Reply to Remarks</label>
+                                <input type="text" required class="form-control" placeholder="Reply to Remarks" >
+                            </div>
+                        </div>
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" data-toggle="modal" data-target="#exampleModal">
+                            <label class="w-100 view-label">Fine to be imposed<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            Yes
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" data-toggle="modal" data-target="#exampleModal">
+                            <label class="w-100 view-label">Fine Type<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            Penalty
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" data-toggle="modal" data-target="#exampleModal">
+                            <label class="w-100 view-label">Fine Amount<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            3500
+                        </div> -->
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Remarks</label>
+                                <input type="text" required class="form-control" placeholder="Enter Remarks" >
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                </ng-template>
+            </ngb-panel>
+            
+        </ngb-accordion>
+
+       
+    
+    </form>
+    </div>
+    
+
+
+    <div class="col-12 text-right mb-4 mt-4">
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+        routerLink="/supplychainmanagement/distillery/bottleboxing/list">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/bottleboxing/list">Back</button>
+    </div>
+
+</div>

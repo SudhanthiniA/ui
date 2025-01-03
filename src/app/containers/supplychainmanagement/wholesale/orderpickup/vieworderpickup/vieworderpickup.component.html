@@ -1,0 +1,173 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.common.view' | translate}} {{ 'wholesale.orderpickupdetails.orderpickup' | translate}}</h5>
+<ul class="breadcrumb p-0">
+   <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'wholesale.stockinhand.wholesale' | translate}}</a></li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'wholesale.orderpickupdetails.orderpickup' | translate}}</a></li>
+   <li class="breadcrumb-item">{{ 'master.common.view' | translate}}</li>
+</ul>
+<div class="row">
+   <div class="col-xl-12">
+      <form autocomplete="off">
+         <app-card cardTitle="{{ 'master.common.view' | translate}} - {{ 'wholesale.orderpickupdetails.orderpickup' | translate}}" class="list-panel add-panel">
+            <div class="row">
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.orderpickupdate' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  25/05/2021
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.indentnumber' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{orderdata?.indentNo}}
+               </div>
+               <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">Sub-Indent Number<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  SI1122
+               </div> -->
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.indentdate' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                 {{ orderdata?.indentDate | date:'dd/MM/yyyy' }}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.licensetype' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                BWFL
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unittype' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                 Retail
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unitname' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  {{orderdata?.unitName}}
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unitaddress' | translate}}<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  Plot No. 12,Shivaji nagar, Karnataka, Bangalore, 500001
+                  <!-- {{orderdata?.indentAcceptance.unitAddress || orderdata?.indentRequest.unitAddress}} -->
+               </div>
+               <div class="col-12">
+                  <div class="table-responsive">
+                     <table class="table table-bordered text-center">
+                        <thead>
+                           <tr>
+                              <th>{{ 'wholesale.orderpickupdetails.sno' | translate}}</th>
+                              <th>{{ 'wholesale.damagedproducts.brandname' | translate}}<br>({{ 'wholesale.damagedproducts.brandnameparentetn' | translate}})</th>
+                              <th>{{ 'wholesale.damagedproducts.liquor' | translate}}<br>{{ 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.damagedproducts.subliquor' | translate}}<br>{{ 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{ 'wholesale.orderpickupdetails.size' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{ 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.requested' | translate}}<br>{{ 'wholesale.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.requested' | translate}}<br>{{ 'wholesale.orderpickupdetails.bottles' | translate}}</th>
+                              <!-- <th>Bar Code</th> -->
+                              <th>{{ 'wholesale.orderpickupdetails.scanned' | translate}}<br>{{ 'wholesale.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.scanned' | translate}}<br>{{ 'wholesale.orderpickupdetails.bottles' | translate}}</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let order of orderdata?.retailIndentProducts;let i=index">
+                              <td>{{i+1}}</td>
+                              <td class="text-left">
+                                 {{order.parentETIN}}
+                              </td>
+                              <td class="text-left">
+                                 {{order.liquorTypeValue}}
+                              </td>
+                              <td class="text-left">
+                                 {{order.subLiquorTypeValue}}
+                              </td>
+                              <td class="text-left">
+                                 {{order.packageSizeValue || order.packageSize}}
+                              </td>
+                              <td class="text-left">{{order.packageTypeValue || order.packageType}}</td>
+                              <td class="text-left">
+                                 {{order.noOfCases || 0}}
+                              </td>
+                              <td class="text-left">{{order.noOfBottles || 0}}</td>
+                              <!-- <td>
+                                 <div class="input-group ">
+                                    <input type="text" class="form-control" placeholder="Bar Code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                       <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                    </div>
+                                 </div>
+                              </td> -->
+                              <td class="text-left"> {{order.noOfCasesScanned || 0}}</td>
+                              <td class="text-left">{{order.noOfBottlesScanned || 0}}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               
+            </div>
+         </app-card>
+      </form>
+   </div>
+
+</div>
+<div class="row">
+   <div class="col-xl-12">
+      <form autocomplete="off">
+         <app-card cardTitle="{{ 'wholesale.orderpickupdetails.pickuplogs' | translate}}" class="list-panel add-panel">
+            <div class="row">
+               <div class="col-12">
+                  <div class="table-responsive">
+                     <table class="table table-bordered text-center">
+                        <thead>
+                           <tr>
+                              <th>{{ 'wholesale.orderpickupdetails.sno' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.date' | translate}}</th>
+                              <th>{{ 'wholesale.damagedproducts.brandname' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{ 'wholesale.orderpickupdetails.size' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{ 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.noofcasesscanned' | translate}}</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let order of pickuplogs;let i=index">
+                              <td>{{i+1}}</td>
+
+                              <td class="text-left">
+                                 {{order.createdDate  | date:'dd/MM/yyyy h:mm:ss '}}
+                              </td>
+                              <td class="text-left">
+                                 {{order?.productLibrary.brandNameValue}}
+                              </td>
+                              <td class="text-left">
+                                 {{order?.productLibrary.packageSizeValue}}
+                              </td>
+                              <td class="text-left">{{order?.productLibrary.packageTypeValue || order.packageType}}</td>
+                              <td class="text-left">{{order.totCasesScanned || 0}}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               
+            </div>
+         </app-card>
+      </form>
+   </div>
+   <div class="col-12 text-right mb-4">
+      <button type="button" class="btn btn-secondary mb-2" (click)='orderpickupReset()'>{{ 'master.common.reset' | translate}}</button>
+    <!-- <--  <button type="button" class="btn btn-warning mb-2 ml-2">Save as Draft</button>
+      <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button> -->
+      <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/wholesale/orderpickup/list">{{ 'master.common.back' | translate}}</button>
+   </div>
+</div>

@@ -1,0 +1,98 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.returncustomer.add' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.returncustomer.returncustomer' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.add' | translate }}</a></li>
+</ul>
+
+<form #addForm="ngForm">
+    <div class="col-xl-12">
+
+        <app-card cardTitle="{{ 'retail.returncustomer.list' | translate }}" blockClass="table-border-style" class="list-panel list_search">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.scanorqrcode' | translate }}</label>
+                        <input type="number" class="form-control" [(ngModel)]="retunObj.code" name="qrcode"
+                            #qrcode="ngModel" placeholder="{{ 'retail.common.scanorqrcode' | translate }}" required />
+                        <div *ngIf="qrcode.invalid && (qrcode.dirty || qrcode.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="qrcode?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                {{ 'retail.returncustomer.qrrequired' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12 text-right">
+                    <label> &nbsp; </label>
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="getDetails()">{{ 'retail.common.getdetails' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive" *ngIf="this.showProductDetail">
+                <table class="table table-bordered text-center text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'retail.transaction.datetime' | translate }}</th>
+                            <th>{{ 'retail.stockavailability.productname' | translate }}</th>
+                            <th>{{ 'retail.stockavailability.packagetype' | translate }}</th>
+                            <th>{{ 'retail.common.size' | translate }}</th>
+                            <th>{{ 'retail.common.quantity' | translate }}</th>
+                            <th>{{ 'retail.common.amount' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let product of productDetails">
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.dateTime}}</td>
+                            <td class="text-left">{{product.productName}}</td>
+                            <td>{{product.packageType}}</td>
+                            <td>{{product.size}}</td>
+                            <td>{{product.quantity}}</td>
+                            <td class="text-right">{{product.amount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.returncustomer.addremarks' | translate }}" class="list-panel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.returncustomer.bottleleakage' | translate }}</label>
+                        <textarea class="form-control" name="remarks" [(ngModel)]="retunObj.remarks" #remarks="ngModel"
+                            placeholder="{{ 'retail.returncustomer.enterbottle' | translate }}" required></textarea>
+                        <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="remarks?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                {{ 'retail.returncustomer.remarks' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 col-12">
+            <p class="mt-2 mb-0">{{ 'retail.returncustomer.totalamountrefunded' | translate }}</p>
+            <h4 class="mb-0">₹2,8000.00</h4>
+        </div>
+
+        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 col-12 text-right mb-4">
+            <button class="btn btn-primary ml-2 mb-2" (click)="scanQR(addForm)">{{ 'retail.common.submit' | translate }}</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/retail/returnfromcustomer">{{ 'retail.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</form>

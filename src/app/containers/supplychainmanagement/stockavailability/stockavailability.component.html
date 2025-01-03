@@ -1,0 +1,233 @@
+<h5 class="m-b-10 ng-star-inserted">
+  {{ 'sugarmill.stockavailability.stockavailabilityoverview' | translate }}
+</h5>
+
+
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+  <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.stockavailability.sugarmill' | translate }}</a>
+  </li>
+  <li class="breadcrumb-item"><a
+      href="javascript:">{{ 'sugarmill.stockavailability.stockavailability' | translate }}</a></li>
+</ul>
+
+<div class="row">
+  <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg1">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.stockavailability.totalmolassesproduced' | translate }}</span>
+          <h3 class="mt-2">30,00,000</h3>
+          <span>2019-2020</span>
+          <i class="fas fa-glass-whiskey"></i>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg3">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.stockavailability.dispatched' | translate }}</span>
+          <h3 class="mt-2">17,00,000</h3>
+          <span>2019-2020</span>
+          <i class="feather icon-corner-up-right"></i>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg4">
+    <app-card [hidHeader]="true" cardClass="comp-card"
+      routerLink="/supplychainmanagement/sugarmills/stockavailability/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.stockavailability.totalavailability' | translate }}</span>
+          <h3 class="mt-2">13,00,000</h3>
+          <span>2019-2020</span>
+          <i class="fas fa-coins"></i>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="{{ 'sugarmill.stockavailability.stockavailabilityoverview' | translate }}"
+      blockClass="table-border-style" class="list-panel stockavailability_tab">
+
+      <ngb-tabset type="pills">
+        <ngb-tab title="{{ 'sugarmill.stockavailability.tankoverview' | translate }}" class="mb-3">
+          <ng-template ngbTabContent>
+            <div class="table-responsive">
+              <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                  <tr>
+                    <th>{{ 'sugarmill.stockavailability.s.no' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.storagetank' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.assetname' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.grade' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.totalcapacity' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.occupiedcapacity' | translate }} </th>
+                    <th>{{ 'sugarmill.stockavailability.availablecapacity' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="tankoverviewList?.length != 0">
+                  <tr *ngFor="let item of tankoverviewList;let i=index">
+                    <td>{{i+1}}</td>
+                    <td (click)="navigate(item.id)" class="text-primary text-left" style="cursor: pointer;">{{item.tankTypeResponseDto.name}}</td>
+                    <td class="text-left">{{item.assetName}}</td>
+                    <td class="text-left">{{item.grade}}</td>
+                    <td class="text-right">{{item.capacity}}</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">{{item.capacity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4 mt-2">
+                <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle
+                    type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"  href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"  href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"  href="javascript:">{{ 'sugarmill.common.jpg' | translate }}</a>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="{{ 'sugarmill.stockavailability.gradeoverview' | translate }}">
+          <ng-template ngbTabContent>
+            <div class="table-responsive">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th>{{ 'sugarmill.stockavailability.s.no' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.grade' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.totalcapacity' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.occupiedcapacity' | translate }}</th>
+                    <th>{{ 'sugarmill.stockavailability.availablecapacity' | translate }}</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-toggle="collapse" href="#groupList1" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <td>1</td>
+                    <td class="text-left">C - Heavy</td>
+                    <td class="text-right">200</td>
+                    <td class="text-right">75</td>
+                    <td class="text-right">125</td>
+                    <td class="text-right">
+                      <span class="badge"><i class="feather icon-chevron-right"></i></span>
+                    </td>
+                  </tr>
+                  <tr class="collapse" id="groupList1">
+                    <td colspan="7" class="p-2">
+                      <div class="table-responsive pt-0 mt-0">
+                        <table class="table table-bordered mb-0">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>
+                                  Tank
+                              </th>
+                              <th>{{ 'sugarmill.stockavailability.totalcapacity' | translate }}</th>
+                              <th>{{ 'sugarmill.stockavailability.occupiedcapacity' | translate }}</th>
+                              <th>{{ 'sugarmill.stockavailability.availablecapacity' | translate }}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td class="text-left">Tank 1</td>
+                              <td class="text-right">100</td>
+                              <td class="text-right">25</td>
+                              <td class="text-right">75</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td class="text-left">Tank 2</td>
+                              <td class="text-right">100</td>
+                              <td class="text-right">50</td>
+                              <td class="text-right">50</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-toggle="collapse" href="#groupList2" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    <td>2</td>
+                    <td class="text-left">B - Heavy</td>
+                    <td class="text-right">200</td>
+                    <td class="text-right">30</td>
+                    <td class="text-right">70</td>
+                    <td class="text-right">
+                      <span class="badge"><i class="feather icon-chevron-right"></i></span>
+                    </td>
+                  </tr>
+                  <tr class="collapse" id="groupList2">
+                    <td colspan="7" class="p-2">
+                      <div class="table-responsive pt-0 mt-0">
+                        <table class="table table-bordered mb-0">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>{{ 'sugarmill.stockavailability.tank' | translate }}</th>
+                              <th>{{ 'sugarmill.stockavailability.totalcapacity' | translate }}</th>
+                              <th>{{ 'sugarmill.stockavailability.occupiedcapacity' | translate }} </th>
+                              <th>{{ 'sugarmill.stockavailability.availablecapacity' | translate }}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td class="text-left">Tank 3</td>
+                              <td class="text-right">100</td>
+                              <td class="text-right">30</td>
+                              <td class="text-right">70</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td class="text-left">Tank 4</td>
+                              <td class="text-right">100</td>
+                              <td class="text-right">60</td>
+                              <td class="text-right">40</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4 mt-2">
+                <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle
+                    type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"  href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"  href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadCsv')" href="javascript:">{{ 'sugarmill.stockavailability.jpg' | translate }}</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </app-card>
+  </div>
+</div>

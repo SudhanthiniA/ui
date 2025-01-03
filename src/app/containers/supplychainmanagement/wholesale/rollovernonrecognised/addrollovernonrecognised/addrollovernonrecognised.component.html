@@ -1,0 +1,110 @@
+<h5 class="m-b-10 ng-star-inserted">Add Rollover Non Recognised</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Roll Over Non Recognised</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #RollForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add Rollover Non Recognised" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand
+                            </label>
+                            <input type="text"  name="Brand" class="form-control" #Brand="ngModel"
+                            [(ngModel)]="RollOverNonRecogniseObj['Brand']" required 
+                                placeholder="Enter Brand">
+                                <div *ngIf="Brand.invalid && (Brand.dirty || Brand.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Brand?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand is required
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size
+                            </label>
+                            <input type="text" name="Size" class="form-control" #Size="ngModel"
+                            [(ngModel)]="RollOverNonRecogniseObj['Size']" required 
+                                placeholder="Enter Size">
+                                <div *ngIf="Size.invalid && (Size.dirty || Size.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Size?.errors?.required"><i class="fa fa-times"></i>
+                                    Size is required
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Stock Box
+                            </label>
+                            <input type="text" name="StockBox" class="form-control" #StockBox="ngModel"
+                            [(ngModel)]="RollOverNonRecogniseObj['StockBox']" required 
+                                placeholder="Enter Stock Box">
+                                <div *ngIf="StockBox.invalid && (StockBox.dirty || StockBox.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="StockBox?.errors?.required"><i class="fa fa-times"></i>
+                                    Stock Box is required
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Rollover Boxes
+                            </label>
+                            <input type="number"  name="RollOverBox" class="form-control" #RollOverBox="ngModel"
+                            [(ngModel)]="RollOverNonRecogniseObj['RollOverBox']" required 
+                                placeholder="Enter Rollover Boxes">
+                                <div *ngIf="RollOverBox.invalid && (RollOverBox.dirty || RollOverBox.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="RollOverBox?.errors?.required"><i class="fa fa-times"></i>
+                                    Rollover Boxes is required
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> New ETIN
+                            </label>
+                            <input type="text" name="ETIN" class="form-control" #ETIN="ngModel"
+                            [(ngModel)]="RollOverNonRecogniseObj['ETIN']" required 
+                            placeholder="Enter New ETIN">
+                            <div *ngIf="ETIN.invalid && (ETIN.dirty || ETIN.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="ETIN?.errors?.required"><i class="fa fa-times"></i>
+                                Enter New ETIN is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload and Scan</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc" disabled>
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+   
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addDetails(RollForm,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/rollovernonrecognised/list">Cancel</button>
+    </div>
+</div>

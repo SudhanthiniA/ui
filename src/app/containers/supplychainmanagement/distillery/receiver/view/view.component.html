@@ -1,0 +1,136 @@
+<h5 class="m-b-10 ng-star-inserted">View Receiver
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/receiver/list">
+            Receiver</a></li>
+
+    <li aria-current="page" class="breadcrumb-item active">View</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="Receiver Details" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">OT Number 1<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{viewobj.Otnumber}}</span>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">OT Start Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{viewobj.OTstartdate | date:'yyyy-MM-dd'}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Receiver Number<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{viewobj.recivernumber}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Spirit Name<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{viewobj.spiritName}}</span>
+                    </div>
+
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                         <th>Fermentation Reference No</th>
+                                        <th>Quantity of Wash</th>
+                                        <th>Initial Gravity</th>
+                                        <th>Final Gravity</th>
+                                        <th>Alcohol Percentage in Wash</th>
+                                        <!-- <th>Spirit Name</th> -->
+                                        <th>Quantity(In. B.L.)</th>
+                                        <th>Strength</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor ="let data of viewtabledata; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            {{data.otFermentation.referenceNumber}} 
+                                        </td>
+                                        <td>
+                                            {{data.finalWashQty}} 
+                                        </td>
+                                        <td>
+                                            {{data.initialGravity}}
+                                        </td>
+                                        <td>
+                                            {{data.finalGravity}}
+                                        </td>
+                                        <td>
+                                            {{data.washAlcoholPercentage}}
+                                        </td>                                      
+                                        <!-- <td>
+                                            {{data.spiritName}}
+                                        </td> -->
+                                        <td>
+                                            {{data.spiritQty}}
+                                        </td>
+                                       <td>
+                                            {{data.strength}}
+                                        </td>
+                                      
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{viewobj.status}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Approved By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Admin</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Approved on<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>20-Jan-2021</span>
+                    </div>
+                </div>
+            </app-card>
+
+
+
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/distillery/receiver/add">Back</button> -->
+            <div  class="col-12 text-right mb-4">
+                <button *ngIf="addedit!== 'view' && !this.viewid" type="button" class="btn btn-success ml-2 mb-2"
+                >Print</button>
+                <button type="button" *ngIf="addedit!== 'view' && !this.viewid" class="btn btn-secondary ml-2 mb-2" 
+                routerLink="/supplychainmanagement/distillery/receiver/add">Back</button>
+            </div>
+         
+            <button type="button" *ngIf="addedit === 'view'" class="btn btn-secondary"
+                routerLink="/supplychainmanagement/distillery/receiver/list">Back</button>
+        </div>
+</div>

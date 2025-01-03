@@ -1,0 +1,195 @@
+<h5 class="m-b-10 ng-star-inserted">View Fermentation
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/fermentation/list">
+            Fermentation</a></li>
+
+    <li aria-current="page" class="breadcrumb-item active">View</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="OT Plan Details" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">OT Number<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{fermetationalldata?.otProductionPlan?.otNumber}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">
+                            No of Fermenter Requires<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{fermetationalldata?.otProductionPlan?.fermenterCount}}</span>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <app-card cardTitle="Fermentation Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Fermentation Reference No</th>
+                                        <th>Fermentation Date and Time</th>
+                                        <th>Frementer Filling Serial No</th>
+                                        <th>Fermentation Start Time</th>
+                                        <th>Broth Quantity Received</th>
+                                        <th>Initial Gravity</th>
+                                        <th>Raw Material Type</th>
+                                        <th>Molasses Serial No</th>
+                                        <!-- <th>Molasses Type</th> -->
+                                        <th>Quantity</th>
+                                        <th>Dip</th>
+                                        <!-- <th>Final Wash Quantity</th>
+                                        <th>Final Gravity</th>
+                                        <th>Fermentation End Date and Time</th> -->
+
+                                        <!-- <th>Button</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of fermetaiondata;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            {{data.referenceNumber}}
+                                        </td>
+
+                                        <td>
+                                            {{data.dateTime}}
+                                        </td>
+                                        <td>
+                                            {{data.fermentationTank.tankName}}
+                                        </td>
+                                        <td>
+                                            {{data.processStartTime}}
+                                        </td>
+                                        <td>
+                                            {{data.brothQtyRec}}
+                                        </td>
+
+                                        <td>
+                                          {{data.initialGravity}}
+                                        </td>
+                                        <td>
+                                           {{data.molassesTank.tankName}}
+                                        </td>
+                                        <td>
+                                            {{data.molassesTank.specification}}
+                                        </td>
+                                        <!-- <td>
+                                            {{data.molassesStockTransfer.productType}}
+                                        </td> -->
+                                        <td>
+                                            {{data.molassesQty}}
+                                        </td>
+                                        <td>
+                                            {{data.dip}}
+                                        </td>
+                                        <!-- <td>
+                                            Type 1
+                                        </td>
+                                        <td>
+                                            50
+                                        </td>
+                                        <td>
+                                            -
+                                        </td>
+                                        <td>
+                                            50
+                                        </td>
+
+                                        <td>
+                                            10-Jan-2021
+                                        </td> -->
+
+                                        <!-- <td>
+                            <button type="button" class="btn btn-success">Send to Still</button>
+                          </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Fermentation Result" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Fermentation Reference No</th>
+                                        <!-- <th>P.H. of Wash </th> -->
+                                        <th>Alcohol percentage in wash</th>
+                                        <th>Aldehyde Percentage in wash</th>
+                                        <th>Percent Unfermented sugar in wash</th>
+                                        <th>Theoratical Fermentation Yield in Wash</th>
+                                        <th>Theoratical Fermentation Yield in Alcohol</th>
+                                        <th>Sludge Discarded</th>
+                                        <th>Alcohol percentage loss in sludge</th>
+                                        <!-- <th>Verified By</th>
+                                        <th>Verified On</th> -->
+                                        <!-- <th>Button</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of fermetaiondata;let i=index">
+                                        <td>{{i+1}}</td>
+                                       <td>
+                                           {{data.referenceNumber}}
+                                       </td>
+                                        <td>
+                                            {{data.washAlcoholPercentage}}
+                                        </td>
+                                        <td>
+                                            {{data.washAldehydePercentage}}
+                                        </td>
+                                        <td>
+                                            {{data.finalWashQty}}
+                                        </td>
+                                        
+                                        <td>
+                                            {{data.washTheoraticalFermentationYield}}
+                                        </td>
+                                        <td>
+                                            {{data.sludgeDiscarded}}
+                                        </td>
+                                        <td>
+                                            {{data.washUnfermentedPercent}}
+                                        </td>
+                                        <td>{{data.washPh}}</td>
+                                        <!-- <td>
+                                            Admin
+                                        </td>
+                                        <td>
+                                            10-Jan-2021
+                                        </td> -->
+                                        <!-- <td>
+                                            <button type="button" class="btn btn-success">Send to Still</button>
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/distillery/fermentation/list">Back</button>
+    </div>
+</div>

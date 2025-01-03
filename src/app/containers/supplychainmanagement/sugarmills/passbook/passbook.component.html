@@ -1,0 +1,121 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.passbook.passbooklist' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.passbook.passbook' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.passbook.date' | translate }}</label>
+                        <input type="date" class="form-control"
+                            placeholder="{{ 'sugarmill.sugarmill.enterapplicationid' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.passbook.sugarmillname' | translate }}</label>
+                        <select id="location" name="location" class="form-control">
+                            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                            <option>Sugarmill1</option>
+                            <option>Sugarmill2</option>
+                            <option>Sugarmill3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>MF4 {{ 'sugarmill.passbook.passnumber' | translate }}</label>
+                        <input type="text" class="form-control"
+                            placeholder="{{ 'sugarmill.passbook.enterpassnumber' | translate }}">
+                    </div>
+                </div>
+                <div class=" col-12 text-right">
+                    <button type="submit"
+                        class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.passbook.passbooklist' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.passbook.date' | translate }}</th>
+                            <th>{{ 'sugarmill.passbook.sugarmillname' | translate }}</th>
+                            <th>MF4 {{ 'sugarmill.passbook.passnumber' | translate }}</th>
+                            <th>{{ 'sugarmill.passbook.liftedmolasses' | translate }}(Qtl)</th>
+                            <th>{{ 'sugarmill.passbook.allocatedcapacity' | translate }}(Qtl)</th>
+                            <th>{{ 'sugarmill.passbook.inspectedby' | translate }}
+                                ({{ 'sugarmill.common.sugarmill' | translate }})</th>
+                            <th>{{ 'sugarmill.passbook.designation' | translate }}</th>
+                            <th>{{ 'sugarmill.passbook.inspectedby' | translate }}
+                                ({{ 'sugarmill.passbook.distillery' | translate }})</th>
+                            <th>{{ 'sugarmill.passbook.designation' | translate }}</th>
+                            <th>{{ 'sugarmill.common.status' | translate }}</th>
+                            <th style="text-align: center;width: 100px;">{{ 'sugarmill.common.action' | translate }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="passbookList?.length != 0">
+
+                        <tr *ngFor="let item of passbookList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.date | date:'dd-MMM-yyyy'}}</td>
+                            <td class="text-left">{{item.sugarMillName}}</td>
+                            <td>{{item.mf4PassNumber}}</td>
+                            <td class="text-right">{{item.liftedMolassesCapacity}}</td>
+                            <td class="text-right">{{item.allotedCapacity}}</td>
+                            <td class="text-left">{{item.inspectionBySugarmillPerson}}</td>
+                            <td class="text-left">{{item.designationSuarmillPerson}}</td>
+                            <td class="text-left">{{item.inspectionByDistilleryPerson}}</td>
+                            <td class="text-left">{{item.designationDistilleryPerson}}</td>
+                            <td>
+                                <span class="badge badge-light-success"
+                                    *ngIf="item.status">{{ 'sugarmill.MF9.submitted' | translate }}</span>
+                                <span class="badge badge-light-warning"
+                                    *ngIf="!item.status">{{ 'sugarmill.MF9.drafts' | translate }}</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" (click)="navigateView(item.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button *ngIf="!item.status" class="btn btn-icon btn-secondary ml-2" type="button"
+                              (click) = "navigateEdit(item.id)">
+                                  <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"  href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"  href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"  href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,374 @@
+<h5 class="m-b-10 ng-star-inserted">Activity Log
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Admin</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Activity Log</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Year</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Month</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Weak</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>All Roles</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>All IPs</label>
+                        <input class="form-control" placeholder="Enter All IPs">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input class="form-control" placeholder="Enter User Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Log Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Entity/Role Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Data Altered</label>
+                        <input class="form-control" placeholder="Enter Data Altered">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Alteration Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('ALL')">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No. of Logs</span>
+            <h3 class="mt-2">1000</h3>
+            <i class="fas fa-history"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" (click)="cardOnClick('ACCEPTED')" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No. of Approval Activities</span>
+            <h3 class="mt-2">800</h3>
+            <i class="fas fa-check"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('PENDING')">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No. of SCM Activities</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fas fa-tasks"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card bg-danger" (click)="cardOnClick('REJECTED')">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No. of Alert Activities</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fa fa-exclamation text-danger"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+        <app-card cardTitle="Activity Log List" class="list-panel">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive mt-2 mb-2">
+                                <table class="table table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Log Type</th>
+                                            <th>Description</th>
+                                            <th>Data Altered</th>
+                                            <th>Alteration Type</th>
+                                            <th>User Role</th>
+                                            <th>User Name</th>
+                                            <th>IP Address</th>
+                                            <th>Date - Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                Login activity related
+                                            </td>
+                                            <td>login</td>
+                                            <td>---</td>
+                                            <td>--</td>
+                                            <td>Excise Inspector</td>
+                                            <td>inspectoragra@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.1</td>
+                                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Login activity related</td>
+                                            <td>logout</td>
+                                            <td>---</td>
+                                            <td>--</td>
+                                            <td>Excise Inspector</td>
+                                            <td>inspectoragra@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.2</td>
+                                            <td class="text-center">01 Nov 2021 & 10:00</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>License related</td>
+                                            <td>Need Clarification
+                                            </td>
+                                            <td>Address
+                                            </td>
+                                            <td>Update</td>
+                                            <td>Brewery</td>
+                                            <td>breweryagra@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.4</td>
+                                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Approval Flow related</td>
+                                            <td>recheck the tank measurement </td>
+                                            <td>---
+                                            </td>
+                                            <td>--</td>
+                                            <td>AEC Brewery</td>
+                                            <td>breweryagra@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.4</td>
+                                            <td class="text-center">01 Nov 2021 & 11:00</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>SCM related</td>
+                                            <td>Transport Pass
+                                            </td>
+                                            <td>Vehicle No.
+                                            </td>
+                                            <td>Update</td>
+                                            <td>Distillery</td>
+                                            <td>distilleryaligarh@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.5</td>
+                                            <td class="text-center">02 Nov 2021 & 17:50</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Alert and Case related</td>
+                                            <td>Case ID
+                                            </td>
+                                            <td>Case ID
+                                            </td>
+                                            <td>Added</td>
+                                            <td>Helpdesk</td>
+                                            <td>helpdesk@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.6</td>
+                                            <td class="text-center">01 Nov 2021 & 11:30</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Payment related</td>
+                                            <td>Success
+                                            </td>
+                                            <td>Challan No.
+                                            </td>
+                                            <td>Added</td>
+                                            <td>Brewery</td>
+                                            <td>breweryagra@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.7</td>
+                                            <td class="text-center">04 Nov 2021 & 18:00</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>8</td>
+                                            <td>Masters related</td>
+                                            <td>Role Master
+                                            </td>
+                                            <td>Role Master
+                                            </td>
+                                            <td>Added</td>
+                                            <td>Admin</td>
+                                            <td>adminupexcise@gmail.com</td>                                            
+                                            <td class="text-center">192.168.1.8</td>
+                                            <td class="text-center">05 Nov 2021 & 11:30</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="feather icon-eye"></i></button>
+                                                  <button class="btn btn-icon btn-warning mr-2" type="button"
+                                                  routerLink="">
+                                                  <i class="fa fa-star"></i></button>
+                                                 
+                                              </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                          <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle
+                              type="button">Download</button>
+                            <div ngbDropdownMenu>
+                              <a class="dropdown-item" href="javascript:">Excel</a>
+                              <a class="dropdown-item"  href="javascript:">Pdf</a>
+                              <a class="dropdown-item"  href="javascript:">Jpg</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-8 text-right p-0">
+                            <img src="assets/images/pagenation.png" />
+                        </div>
+                    </div>  
+    </app-card>

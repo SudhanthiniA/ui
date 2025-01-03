@@ -1,0 +1,117 @@
+<h5 class="m-b-10 ng-star-inserted">
+    PD 9C Efficiency Summary List
+    <button type="submit" *ngIf="entity_type !='UP_EXCISE'" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/add">
+        <i class="feather icon-plus"></i>
+       Add PD 9C Efficiency Summary
+    </button>   
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/list">Fermentation and Distillation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/list"> PD 9C Efficiency Summary</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>From Date And Time</label>
+                        <input type="datetime-local" class="form-control" name="fromDate" #fromDate="ngModel" [(ngModel)]="pd9cObj['fromDate']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>To Date and Time</label>
+                        <input type="datetime-local" class="form-control" name="toDate" #toDate="ngModel" [(ngModel)]="pd9cObj['toDate']">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchapi()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click) = "resetKey()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" PD 9C Efficiency Summary List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Total Volume and Initial Gravity of Wash Made in Fermenter</th>
+                            <th>Alcohol % in wash</th>
+                            <th>Total Loss</th>
+                            <th>Overall Efficiency</th>
+                            <th>status</th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>1</td>
+                            <td>21/05/2021</td>
+                            <td>25/05/2021</td>
+                            <td>500</td>
+                            <td>40</td>
+                            <td>10</td>
+                            <td>30</td>
+                            <td class="table-action-column">
+                                <span class="badge m-r-5 badge-light-success">Submitted</span>
+                                <!-- <span class="badge m-r-5 badge-light-warning">Draft</span> -->
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-edit btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/add">
+                                    <i class="feather icon-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                        href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                        href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                        href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="PD9 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond"  [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+
+        </app-card>
+    </div>
+</div> -->

@@ -1,0 +1,87 @@
+<h5 class="m-b-10 ng-star-inserted">View Location</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.detailsofselected' | translate }} {{ 'master.common.location' | translate }}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.locationcode' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.locCode}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.shortname' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.locationCode}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.locationname' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.locationName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.state' | translate }} {{ 'master.common.name' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.state}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.country' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.country}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.status' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" disabled class="custom-control-input" id="switch1" [attr.checked]="locationObject.isActive ? '' : null">
+                        <label class="custom-control-label" for="switch1" *ngIf="!locationObject.isActive">{{ 'master.common.inactive' | translate }}</label>
+                        <label class="custom-control-label" for="switch1" *ngIf="locationObject.isActive">{{ 'master.common.active' | translate }}</label>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-2"/>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.createdBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.modifiedby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.modifiedBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.modifiedon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{locationObject?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+            </div>
+        </app-card>
+        <div class="row">
+            <div class="col-12 text-right mb-3">
+                <button type="submit" class="btn btn-secondary" routerLink="/location/location/list">{{ 'master.common.back' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

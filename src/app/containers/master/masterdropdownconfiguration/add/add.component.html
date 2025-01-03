@@ -1,0 +1,179 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{editid==undefined?'Add':'Edit'}} Dropdown Configuration
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.common.master'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{'master.dropdownmaster.independent.dropdownconfiguration'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{editid==undefined?'Add':'Edit'}} Dropdown Configuration</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="productForm">
+
+            <app-card cardTitle="{{'master.dropdownmaster.independent.dropdowndetails'|translate}}" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.dropdownmaster.independent.code'|translate}} <span class="error-msg">*</span></label>
+                            <input type="text" class="form-control" formControlName="code" [readonly]=isReadonly
+                                (change)=codeChecking($event.target.value)>
+                            <div *ngIf="formSubmitted && (f.code.errors )" class="error-msg">
+                                <div *ngIf="f.code?.errors?.required">
+                                    <i class="fa fa-times"></i> Code is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.dropdownmaster.independent.value'|translate}} <span class="error-msg">*</span></label>
+                            <input type="text" class="form-control" formControlName="paramValue">
+                            <div *ngIf="formSubmitted && (f.paramValue.errors )" class="error-msg">
+                                <div *ngIf="f.paramValue?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'master.dropdownmaster.independent.valueisrequired'|translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.dropdownmaster.independent.description'|translate}} <span class="error-msg">*</span></label>
+                            <input type="text" class="form-control" formControlName="description">
+                            <div *ngIf="formSubmitted && (f.description.errors )" class="error-msg">
+                                <div *ngIf="f.description?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'master.dropdownmaster.independent.descriptionreq'|translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.dropdownmaster.independent.comments'|translate}} <span class="error-msg">*</span></label>
+                            <textarea name="" id="" cols="30" rows="2" class="form-control"
+                                formControlName="comments"></textarea>
+                            <div *ngIf="formSubmitted && (f.comments.errors )" class="error-msg">
+                                <div *ngIf="f.comments?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'master.dropdownmaster.independent.commentsreq'|translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="{{'master.dropdownmaster.independent.adddropdownconfig'|translate}}" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-12 text-right">
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" (click)=addProduct(productForm)>{{'master.common.add'|translate}}</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'master.dropdownmaster.independent.code'|translate}}<span class="text-danger">*</span></th>
+                                    <th>{{'master.dropdownmaster.independent.value'|translate}}<span class="text-danger">*</span></th>
+                                    <th>{{'master.dropdownmaster.independent.additional1'|translate}}</th>
+                                    <th>{{'master.dropdownmaster.independent.additional2'|translate}}</th>
+                                    <th>{{'master.dropdownmaster.independent.isactive'|translate}}</th>
+                                    <th>{{'master.common.action'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr formArrayName="rows"
+                                    *ngFor="let data of productForm.get('rows')['controls']; let i=index;">
+                                    <td [formGroupName]="i">{{i+1}}</td>
+                                    <td [formGroupName]="i">
+                                        <div *ngIf="data.get('id').value;else other_content">
+                                            <input type="text" class="form-control" formControlName="code"
+                                                (change)="checkRowCode($event.target.value, data, i)" disabled="true">
+                                        </div>
+                                        <ng-template #other_content>
+                                            <input type="text" class="form-control" formControlName="code"
+                                                (change)="checkRowCode($event.target.value, data, i)"
+                                                [ngClass]="{ 'is-invalid':  formSubmitted && productForm.get('rows')['controls'][i].get('code').errors?.required}">
+
+                                        </ng-template>
+
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <input type="text" class="form-control" formControlName="value"
+                                            [ngClass]="{ 'is-invalid':  formSubmitted && productForm.get('rows')['controls'][i].get('value').errors?.required}">
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <input type="text" class="form-control" formControlName="additionalValue1"
+                                            [ngClass]="{ 'is-invalid':  formSubmitted && productForm.get('rows')['controls'][i].get('additionalValue1').errors?.required}">
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <input type="text" class="form-control" formControlName="additionalValue2"
+                                            [ngClass]="{ 'is-invalid':  formSubmitted && productForm.get('rows')['controls'][i].get('additionalValue2').errors?.required}">
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" formControlName="isActive"
+                                                class="custom-control-input" [id]=i
+                                                [attr.checked]="productForm.get('rows').value[i].isActive ? true : false">
+                                            <label class="custom-control-label" [for]=i
+                                                *ngIf="!productForm.get('rows').value[i].isActive">{{
+                                                'master.common.inactive' | translate }}</label>
+                                            <label class="custom-control-label" [for]=i
+                                                *ngIf="productForm.get('rows').value[i].isActive">{{
+                                                'master.common.active' | translate }}</label>
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div>
+                                            <button *ngIf="i > 0" class="btn btn-danger" (click)="deleteRow(i,data)"
+                                                [style.display]="data.get('id').value ? 'none' : 'block'">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="{{'master.dropdownmaster.independent.commentlist'|translate}}" blockClass="table-border-style" class="search-panel" *ngIf="isComment">
+                <div class="row">
+                </div>
+                <br /><br />
+                <div class="table-responsive">
+                    <table class="table table-bordered w-auto" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{'master.dropdownmaster.independent.date'|translate}}</th>
+                                <th>{{'master.dropdownmaster.independent.username'|translate}}</th>
+                                <th>{{'master.dropdownmaster.independent.comments'|translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of commentList; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{data.createdDate | date:'dd-MM-yyyy h:mm:a'}}</td>
+                                <td>{{data.userName}}</td>
+                                <td>{{data.comments}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <!-- <button class="btn btn-warning ml-2 mb-2" (click)="save(productForm,'DRAFT')">Save as Draft</button> -->
+            <button class="btn btn-primary ml-2 mb-2" (click)="save(productForm,'SUBMITTED')">
+                {{'master.common.submit'|translate}}</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/master/dropdownconfiguration/list">
+                {{'master.common.cancel'|translate}}</button>
+        </div>
+    </div>
+</div>

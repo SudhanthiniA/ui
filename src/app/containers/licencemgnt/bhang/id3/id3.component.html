@@ -1,0 +1,509 @@
+<h5 class="m-b-10 ng-star-inserted">Application for License I.D - 3</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bhang/Ganja/Opium/Nira/Tadi & Sendhi</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Application for License I.D - 3</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="ID3Form" autocomplete="off">
+            <app-card cardTitle="Application Form" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="text"  class="form-control" readonly formControlName="financialyear" placeholder="2020-2021" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="applicationDate">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>CL2</option>
+                                 <option>FL2</option>
+                               </select>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control" formControlName="salutationId">
+                              <option value="">Select</option>
+                              <option value="1">MR</option>
+                              <option value="2">MISS</option>
+                              <option value="3">MR</option>
+                              <option value="4">DR</option>
+                             </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('salutationId').errors || ID3Form.get('salutationId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('salutationId').errors?.required"><i class="fa fa-times"></i>
+                                    Salutation is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName">
+                            <div *ngIf="formSubmitted && ID3Form.get('firstName').errors || ID3Form.get('firstName').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('firstName').errors?.required"><i class="fa fa-times"></i>
+                                    First Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name" formControlName="middleName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName">
+                            <div *ngIf="formSubmitted && ID3Form.get('lastName').errors || ID3Form.get('firstName').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('lastName').errors?.required"><i class="fa fa-times"></i>
+                                    Last Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Mobile Number" formControlName="applicantMobileNumber">
+                            <div *ngIf="formSubmitted && ID3Form.get('applicantMobileNumber').errors || ID3Form.get('applicantMobileNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('applicantMobileNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Mobile Number of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="text" class="form-control" placeholder="Enter Email Id" formControlName="applicantMailId">
+                            <div *ngIf="formSubmitted && ID3Form.get('applicantMailId').errors || ID3Form.get('applicantMailId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('applicantMailId').errors?.required"><i class="fa fa-times"></i>
+                                    Email Id of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Aadhaar Number" formControlName="applicantAadharNo">
+                            <div *ngIf="formSubmitted && ID3Form.get('applicantAadharNo').errors || ID3Form.get('applicantAadharNo').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('applicantAadharNo').errors?.required"><i class="fa fa-times"></i>
+                                    Aadhaar Number of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control" formControlName="genderId">
+                                 <option value="">Select</option>
+                                 <option value="1">Male</option>
+                                 <option value="2">Female</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('genderId').errors || ID3Form.get('genderId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('genderId').errors?.required"><i class="fa fa-times"></i>
+                                    Gender is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="dob">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text" class="form-control" placeholder="Enter PAN Number" formControlName="panNumber">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" readonly placeholder="INDIA" formControlName="country">
+                            <div *ngIf="formSubmitted && ID3Form.get('country').errors || ID3Form.get('country').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('country').errors?.required"><i class="fa fa-times"></i>
+                                    Country is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control"  placeholder="Enter Pincode" formControlName="pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control"  formControlName="stateId" id=stateId>
+                                <option value="">Select</option>
+                                <option value="1">UP</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('stateId').errors || ID3Form.get('stateId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('stateId').errors?.required"><i class="fa fa-times"></i>
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control"  formControlName="districtId">
+                              <option value="">Select</option>
+                              <option value="1">Lucknow</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('districtId').errors || ID3Form.get('districtId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('districtId').errors?.required"><i class="fa fa-times"></i>
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control"  formControlName="tehsilId">
+                               <option value="">Select</option>
+                               <option value="1">Mohanlalganj</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('tehsilId').errors || ID3Form.get('tehsilId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('tehsilId').errors?.required"><i class="fa fa-times"></i>
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control"  formControlName="urbanOrRural" (change)="show($event)">
+                                <option value="">Select</option>
+                                <option >Urban</option>
+                                <option >Rural</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('urbanOrRural').errors || ID3Form.get('urbanOrRural').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('urbanOrRural').errors?.required"><i class="fa fa-times"></i>
+                                    Urban/Rural is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control"  formControlName="muncipalAreaId" >
+                               <option value="">Select</option>
+                               <option value="1">Municipal corporation</option>
+                               <option value="2">Nagar Palika</option>
+                               <option value="3">Other Municipal Area</option>
+                               <option value="4"> Cantt. Board</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('muncipalAreaId').errors || ID3Form.get('muncipalAreaId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('muncipalAreaId').errors?.required"><i class="fa fa-times"></i>
+                                    Municipal Area is required
+                                </span>
+                            </div>
+                             <!-- Municipal corporation/Nagar Palika/Other Municipal Area/ Cantt. Board -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control"  placeholder="Enter Ward" formControlName="ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="number" class="form-control"  placeholder="Enter Block" formControlName="blockId">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="number" class="form-control"  placeholder="Enter Village" formControlName="villageId">
+                            <div *ngIf="formSubmitted && ID3Form.get('villageId').errors || ID3Form.get('villageId').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('villageId').errors?.required"><i class="fa fa-times"></i>
+                                    village is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control"  formControlName="policeStation">
+                               <option value="">Select</option>
+                               <option >Gomti nagar</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('policeStation').errors || ID3Form.get('policeStation').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('policeStation').errors?.required"><i class="fa fa-times"></i>
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control"  placeholder="Enter Locality" formControlName="locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control"  placeholder="Enter Street" formControlName="street">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+
+
+            <app-card cardTitle="Schedule" class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S NO</th>
+                                <th>District</th>
+                                <th>Godown</th>
+                                <th>Per KG price, on which supplier has to supply spontaneoulsy grown bhang plant</th>
+                                <!-- <th>Owner Name</th>
+                                <th>Number of Tree</th>
+                                <th>Kind of Tree to be tapped</th>
+                                <th>Remarks</th> -->
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="scheduleDetailsEntityList"
+                                *ngFor="let pres of ID3Form?.get('scheduleDetailsEntityList')['controls']; let i=index"
+                                id="row{{i}}">
+                                <!-- <td class="text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="1" formControlName="salutationId">
+                                    </div>
+                                </td> -->
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group  mb-0">
+                                        {{i+1}}
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Enter District" formControlName="districtId">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Enter Godown" formControlName="godownId">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="priceGrownBhangPlant" placeholder="Per KG price, on which supplier has to supply spontaneoulsy grown bhang plant">
+                                    </div>
+                                </td>
+                                <!-- <td class="text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Owner Name">
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Number of Tree">
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Kind of Tree to be tapped">
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light-success">Approved</span>
+                                    <span class="badge badge-light-danger">Failure</span>
+
+                                </td> -->
+                                <td class="table-action-column">
+
+                                    <button class="btn btn-icon btn-primary" (click)="addrow()">
+                                                <i class="feather icon-plus"></i>
+                                    </button>
+                                    <button class="btn btn-icon btn-danger ml-2" (click)="removeSelectedRow(i)">
+                                                    <i class="feather icon-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="number" class="form-control" formControlName="bankAccountNumber" placeholder="Enter Bank Account Number">
+                            <div *ngIf="formSubmitted && ID3Form.get('bankAccountNumber').errors || ID3Form.get('bankAccountNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('bankAccountNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Account Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text" class="form-control" formControlName="bankIfsc" placeholder="Enter IFSC">
+                            <div *ngIf="formSubmitted && ID3Form.get('bankIfsc').errors || ID3Form.get('bankIfsc').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('bankIfsc').errors?.required"><i class="fa fa-times"></i>
+                                    Bank IFSC is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select class="form-control"  formControlName="bankName">
+                               <option value="">Select</option>
+                               <option >ICIC</option>
+                               <option >HDFC</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ID3Form.get('bankName').errors || ID3Form.get('bankName').touched "
+                                class="error-msg">
+                                <span *ngIf="ID3Form.get('bankName').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Payment Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="number" class="form-control" placeholder="Enter Application/Processing Fees" formControlName="applicationFees">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+
+
+        </form>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2" (click)="addSTDetails(ID3Form)">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2" (click)="preview(ID3Form)" >Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="addSTDetails(ID3Form)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2" routerLink="/licencemgnt/bhang">Cancel</button>
+        </div>
+    </div>
+</div>

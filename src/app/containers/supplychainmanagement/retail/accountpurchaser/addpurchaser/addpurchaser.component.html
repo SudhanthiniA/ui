@@ -1,0 +1,368 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Account Purchaser
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Account Purchaser</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="accountPurchaserForm" autocomplete="off">
+            <app-card cardTitle="Add Account Purchaser" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Receipt</label>
+                            <input type="date" class="form-control" formControlName='receiptDate'>
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('receiptDate').errors || accountPurchaserForm.get('receiptDate').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('receiptDate').errors?.required">
+                                    Date of Receipt is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass No </label>
+                            <input type="text" class="form-control" formControlName='permitNumber'
+                                placeholder="Enter Transport Pass No ">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('permitNumber').errors || accountPurchaserForm.get('permitNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('permitNumber').errors?.required">
+                                    Transport Pass No is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Number </label>
+                            <input type="text" class="form-control" formControlName='permitNumber'
+                                placeholder="Enter Permit Number ">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('permitNumber').errors || accountPurchaserForm.get('permitNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('permitNumber').errors?.required">
+                                    Permit Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit or Pass Granted for Import</label>
+                            <input type="number" class="form-control" formControlName='passGrantedforImport'
+                                placeholder="Enter Permit or Pass Granted for Import">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('passGrantedforImport').errors || accountPurchaserForm.get('passGrantedforImport').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('passGrantedforImport').errors?.required">
+                                    Permit or Pass Granted for Import is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name </label>
+                            <input type="text" class="form-control" formControlName='name' placeholder="Enter Name ">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('name').errors || accountPurchaserForm.get('name').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('name').errors?.required">
+                                    Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" disabled>
+                                <option>India</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" class="form-control" formControlName='pincode'
+                                placeholder="Enter Pincode">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('pincode').errors || accountPurchaserForm.get('pincode').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('pincode').errors?.required">
+                                    Pincode is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" disabled>
+                                <option>Uttra Pradesh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District </label>
+                            <select class="form-control" disabled>
+                                <option>Lucknow</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil </label>
+                            <select class="form-control" disabled>
+                                <option>Tehsil 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural </label>
+                            <select class="form-control" disabled>
+                                <option>Urban 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area </label>
+                            <select class="form-control" disabled>
+                                <option>Area 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward </label>
+                            <select class="form-control" disabled>
+                                <option>Ward 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station </label>
+                            <select class="form-control" disabled>
+                                <option>Police Station 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality </label>
+                            <select class="form-control" disabled>
+                                <option>Locality 1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" disabled class="form-control" required placeholder="Enter Street">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No of the Firm</label>
+                            <input type="text" class="form-control" formControlName='licenseNo'
+                                placeholder="Enter License No of the Firm">
+                            <div *ngIf="formSubmitted && accountPurchaserForm.get('licenseNo').errors || accountPurchaserForm.get('licenseNo').touched "
+                                class="error-msg">
+                                <span *ngIf="accountPurchaserForm.get('licenseNo').errors?.required">
+                                    License No of the Firm is required
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">#</th>
+                                        <th rowspan="2">Brand Name</th>
+                                        <th colspan="5">Quantity Received</th>
+                                        <th rowspan="2">Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Batch No.</th>
+                                        <th>Bottles (Cases)</th>
+                                        <th>Quantity (In ML)</th>
+                                        <th>Pints</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="quantityReceivedList"
+                                        *ngFor="let item of accountPurchaserForm.get('quantityReceivedList')['controls']; let i=index">
+                                        <td>1</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Select</option>
+                                            </select>
+                                            <div class="error-msg text-left"
+                                                *ngIf="formSubmitted && accountPurchaserForm.controls.quantityReceivedList.controls[i].controls.brandName.hasError('required')">
+                                                Brand Name is required
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Enter Batch No.">
+                                            <div class="error-msg text-left"
+                                                *ngIf="formSubmitted && accountPurchaserForm.controls.quantityReceivedList.controls[i].controls.batchNo.hasError('required')">
+                                                Batch No. is required
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Bottles (Cases)">
+                                            <div class="error-msg text-left"
+                                                *ngIf="formSubmitted && accountPurchaserForm.controls.quantityReceivedList.controls[i].controls.bottles.hasError('required')">
+                                                Bottles are required
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity (In ML)">
+                                            <div class="error-msg text-left"
+                                                *ngIf="formSubmitted && accountPurchaserForm.controls.quantityReceivedList.controls[i].controls.quantity.hasError('required')">
+                                                Quantity is required
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="number" class="form-control" placeholder="Enter Pints">
+                                            <div class="error-msg text-left"
+                                                *ngIf="formSubmitted && accountPurchaserForm.controls.quantityReceivedList.controls[i].controls.pints.hasError('required')">
+                                                Pints is required
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="text" class="form-control" placeholder="Enter Remarks">
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Add Unit Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                <option>BWFL1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Name </label>
+                            <Input class="form-control" placeholder="Enter Unit Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Unit Address </label>
+                            <Input class="form-control" placeholder="Enter Unit Address">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">#</th>
+                                        <th rowspan="2">Brand Name</th>
+                                        <th rowspan="2">Package Size</th>
+                                        <th rowspan="2">Package Type</th>
+                                        <th colspan="7">Quantity Received</th>
+                                        <th rowspan="2">Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>No.of cases</th>
+                                        <th>No. of Bottles </th>                                        
+                                        <th>Strength</th>
+                                        <th>Bulk Litre</th>
+                                        <th>Total No.of Cases</th>
+                                        <th>Total No.of Bottles</th>
+                                        <th>Total Bulk Litres</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Select</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Select</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option>Select</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Enter No.of cases">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Enter No. of Bottles">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Enter Strength">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Enter Bulk Litre">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Enter Total No.of Cases">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" placeholder="Enter Total No.of Bottles">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Enter Total Bulk Litres">
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        
+            
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info mb-2"
+                    routerLink="/supplychainmanagement/retail/accountpurchaser/view">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2"
+                    (click)="addAccountPurchaser(accountPurchaserForm)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/retail/accountpurchaser/list">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

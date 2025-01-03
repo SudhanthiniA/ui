@@ -1,0 +1,121 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'master.liquortype.liquortype' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/master/liquortype/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'master.common.add' | translate }} {{ 'master.liquortype.liquortype' | translate }}
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.liquortype.liquortype' | translate }} </a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.liquortype.liquortype' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.liquortype.liquortypecode' | translate }}</label>
+                        <input type="text" class="form-control"  name = code #code = ngModel [(ngModel)]="liqObj['code']" placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.code' | translate }}">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.liquortype.liquortypename' | translate }}</label>
+                        <input type="text" class="form-control"  name= name #name = ngModel [(ngModel)]="liqObj['name']" placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.name' | translate }}">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.brand.brandname' | translate }}</label>
+                        <input type="text" class="form-control" placeholder="{{ 'master.common.enter' | translate }} {{ 'master.brand.brandname' | translate }}">
+                    </div>
+                </div> -->
+
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.daterange' | translate }}</label>
+                        <!-- <input type="text" [timePicker]="true" [timePickerSeconds]="false" [timePicker24Hour]="true"
+                        ngxDaterangepickerMd [(ngModel)]="dateselected" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                        [showClearButton]="true"
+                        [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" startKey="start"
+                        endKey="end" (datesUpdated)="ondataChange()" (rangeClicked)="rangeClicked($event)"> -->
+                        <!-- <input type="text" ngxDaterangepickerMd startKey="start" endKey="end" [(ngModel)]="dateselected"> -->
+                        <input type="text" name="daterange"
+                        ngxDaterangepickerMd [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" [(ngModel)]="dateselected" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control">
+                            <option>{{ 'master.common.select' | translate }}</option>
+                            <option value="active">Active</option>
+                            <option value="disabled">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchapi()">{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click) = "resetKey()">{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" {{ 'master.liquortype.liquortype' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Liquor Type Code</th>
+                            <th> Liquor Type Name</th>
+                            <!-- <th>Quantity</th>
+                            <th>Brand Name</th> -->
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="liquortypelist?.length != 0">
+                        <tr *ngFor="let data of liquortypelist;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.code}}</td>
+                            <td>{{data.name}}</td>
+                            <!-- <td>{{data.quantity}}</td>
+                            <td>{{data.brandName}}</td> -->
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-danger" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" (click) = "navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary" type="button"
+                                (click) = "navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="liquortypelist?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+

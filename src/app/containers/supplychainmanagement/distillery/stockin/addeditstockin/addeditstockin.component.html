@@ -1,0 +1,334 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.stockin.addstockin(MF5)Details' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Distillery
+    </a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form [formGroup]="stockFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.stockin.enterstockinDetails' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.common.year' | translate }} (1st Nov to 31st Oct)</label>
+                            <input type="text" class="form-control" placeholder="Enter year" formControlName="year"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.common.date' | translate }}</label>
+                            <input type="date" class="form-control" placeholder="Enter Date" formControlName="stockDate">
+                            <div *ngIf="formSubmitted && stockFormGroup.get('stockDate').errors || stockFormGroup.get('stockDate').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('stockDate').errors?.required">
+                                Date is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.productype' | translate }}</label>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="custom-control">
+                                    <input type="radio" id="applicationtype_cane" value="Cane Syrup"
+                                        formControlName="caneSyrup" (click)="clickedevent($event, 'cane')">
+                                    <label for="cane_syrup"> &nbsp; {{ 'sugarmill.stockin.canesyrup' | translate }}</label>
+
+                                </div>
+                                <div class="custom-control">
+                                    <input type="radio" id="applicationtype_juice" value="Cane Juice"
+                                        formControlName="caneSyrup" (click)="clickedevent($event, 'canejuice')">
+                                    <label for="cane_syrup"> &nbsp;  {{ 'sugarmill.stockin.canejuice' | translate }}</label>
+
+                                </div>
+                                <div class="custom-control">
+                                    <input type="radio" id="applicationtype_molasess" value="Molasses"
+                                        formControlName="caneSyrup" (click)="clickedevent($event, 'molasess')">
+                                    <label for="cane_syrup"> &nbsp; {{ 'sugarmill.stockin.molasses' | translate }}</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" >
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.canecrushed(Qtl)' | translate }}</label>
+                            <input type="number" formControlName="caneCrushed" class="form-control"
+                                placeholder="Enter Cane Crushed">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('caneCrushed').value, 'Quintals')}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('caneCrushed').errors || stockFormGroup.get('caneCrushed').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('caneCrushed').errors?.required">
+                                caneCrushed is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Cane Juice'">
+                            <div class="form-group">
+                                <label>Produced Cane Juice</label>
+                                <input type="number" formControlName="caneJuiceDetails" class="form-control"
+                                    placeholder="Enter Cane Juice">
+                                <div class="text-primary">{{inWords(stockFormGroup.get('caneJuiceDetails').value, 'Liters')}}</div>
+                                <!-- <div *ngIf="formSubmitted && stockFormGroup.get('caneJuiceDetails').errors || stockFormGroup.get('caneJuiceDetails').touched "
+                                class="error-msg">
+                                <span *ngIf="stockFormGroup.get('caneJuiceDetails').errors?.required">
+                                    caneJuiceDetails is required
+                                </span>
+                            </div> -->
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Cane Syrup'">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.producedcanesyrup' | translate }}</label>
+                            <input type="number" formControlName="caneSyrupDetails" class="form-control"
+                                placeholder="Enter Cane Syrup">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('caneSyrupDetails').value, 'Liters')}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('caneSyrupDetails').errors || stockFormGroup.get('caneSyrupDetails').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('caneSyrupDetails').errors?.required">
+                                caneSyrupDetails is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses'">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.producedmolasses(Qtl)' | translate }}</label>
+                            <input type="number" (keyup)="calmolasses()" formControlName="producedMolasses"
+                                class="form-control" placeholder="Enter Produced Molasses">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('producedMolasses').value, 'Quintals')}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('producedMolasses').errors || stockFormGroup.get('producedMolasses').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('producedMolasses').errors?.required">
+                                producedMolasses is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses'">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.molassestype' | translate }}</label>
+                            <select class="form-control" formControlName="molassestype"
+                                (change)="molassesTypes($event.target.value)">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option value="b-heavy">B-Heavy</option>
+                                <option value="c-heavy">C-Heavy</option>
+
+                            </select>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('molassestype').errors || stockFormGroup.get('molassestype').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('molassestype').errors?.required">
+                                molassestype is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses' && bheavy">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.b-heavy' | translate }}</label>
+                            <input type="number" formControlName="bmolasses" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.stockin.b-heavy' | translate }}">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('bmolasses').value)}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('bmolasses').errors || stockFormGroup.get('bmolasses').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('bmolasses').errors?.required">
+                                bmolasses is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses' && cheavy">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.c-heavy' | translate }}</label>
+                            <input type="number" formControlName="cmolasses" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.stockin.c-heavy' | translate }}">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('cmolasses').value)}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('cmolasses').errors || stockFormGroup.get('cmolasses').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('cmolasses').errors?.required">
+                                cmolasses is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses' && bruntmolasses">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.c-heavy' | translate }}</label>
+                            <input type="number" formControlName="burntMolasses" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.stockin.c-heavy' | translate }}">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('burntMolasses').value)}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('burntMolasses').errors || stockFormGroup.get('burntMolasses').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('burntMolasses').errors?.required">
+                                burntMolasses is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="stockFormGroup.get('caneSyrup').value === 'Molasses' && gradedmolasses">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.belowgrademolasses' | translate }}</label>
+                            <input type="number" formControlName="belowMolasses" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.stockin.belowgrademolasses' | translate }}">
+                            <div class="text-primary">{{inWords(stockFormGroup.get('belowMolasses').value)}}</div>
+                            <!-- <div *ngIf="formSubmitted && stockFormGroup.get('belowMolasses').errors || stockFormGroup.get('belowMolasses').touched "
+                            class="error-msg">
+                            <span *ngIf="stockFormGroup.get('belowMolasses').errors?.required">
+                                belowMolasses is required
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form [formGroup]="stockFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.stockin.entertankdetails' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'sugarmill.stockin.tankname' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.tankType' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.totaltank' | translate }} <br> {{ 'sugarmill.stockin.capacityqtl' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.totalcapacity' | translate }} <br> {{ 'sugarmill.stockin.totaltank' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.availabletank' | translate }} <br> {{ 'sugarmill.stockin.occupied(Qtl)' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.grade' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.trs (%)' | translate }}</th>
+                                        <th>{{ 'sugarmill.stockin.brix (%)' | translate }}</th>
+                                        <th>{{ 'sugarmill.common.quantity' | translate }}</th>
+                                        <th>{{ 'sugarmill.common.action' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="stockInDetail"
+                                        *ngFor="let pres of stockFormGroup?.get('stockInDetail')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select formControlName="tankId" class="form-control"
+                                                    (change)="tankSelect($event.target.value,pres)"
+                                                    style="width: 100px;">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                                    <option *ngFor="let item of tankList" value="{{item.id}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select formControlName="tankId" class="form-control"
+                                                    (change)="tankSelect($event.target.value,pres)"
+                                                    style="width: 100px;">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                                    <option *ngFor="let item of tankList" value="{{item.id}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                                <input type="number" 
+                                                    formControlName="totalcapacity" class="form-control"
+                                                    placeholder="Tank Capacity">
+                                                    <div class="text-primary">{{inWords(pres.get('totalcapacity').value, 'Liters')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" id="occupiedcapacity" name="occupiedcapacity"
+                                                    formControlName="occupiedCapacity" class="form-control"
+                                                    placeholder="Occupied Tank Capacity">
+                                                    <div class="text-primary">{{inWords(pres.get('occupiedCapacity').value, 'Liters')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" id="availablecapacity" name="bottlegstn"
+                                                    formControlName="availableCapacity" class="form-control"
+                                                    placeholder="Available Tank Capacity">
+                                                    <div class="text-primary">{{inWords(pres.get('availableCapacity').value, 'Liters')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" id="grade" name="grade" formControlName="gradeId"
+                                                    class="form-control" placeholder="Grade">
+                                                    
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" id="trs" name="trs" formControlName="trs"
+                                                    class="form-control" placeholder="TRS (%)">
+                                                    <div class="text-primary">{{inWords(pres.get('trs').value, '%')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" id="brix" name="bricks" formControlName="brix"
+                                                    class="form-control" placeholder="BRIX (%)">
+                                                    <div class="text-primary">{{inWords(pres.get('brix').value, '%')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" (click)="addNewRow(i)" id="quantity"
+                                                    name="quantity" formControlName="quantity" class="form-control"
+                                                    placeholder="Quantity">
+                                                    <div class="text-primary">{{inWords(pres.get('quantity').value, 'Liters')}}</div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <i class="fas fa-trash-alt text-danger" title="Delete"
+                                                    *ngIf="i!==getPresFormLength()-1" (click)="removeSelectedRow(i)"
+                                                    style="cursor: pointer;">
+                                                </i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" (click)="preview(stockFormGroup)" class="btn btn-info ml-2 mb-2">{{ 'sugarmill.common.preview' | translate }}</button>
+        <button type="button" (click)="addstock(stockFormGroup,'Draft')"
+            class="btn btn-warning ml-2 mb-2">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" (click)="addstock(stockFormGroup,'Submitted')"
+            class="btn btn-primary ml-2 mb-2">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/stockin/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+
+</div>

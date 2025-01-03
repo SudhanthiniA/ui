@@ -1,0 +1,152 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'wholesale.dispatchdetails.dispatch' | translate}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Custom Bond</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'wholesale.dispatchdetails.dispatch' | translate}}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Date</label>
+                        <input type="date" [(ngModel)]="dispatchObj.issueDate" name="issueDate" class="form-control" />
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'wholesale.dispatchdetails.transportdate' | translate}}</label>
+                        <input type="date"  [(ngModel)]="dispatchObj.transportDate"
+                        name="transportDate"   class="form-control" />
+                    </div>
+                </div>  -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'wholesale.dispatchdetails.transportpassno' | translate}}</label>
+                        <input type="text" [(ngModel)]="dispatchObj.transportPassNo" name="transportPassNo" class="form-control" placeholder="{{ 'wholesale.dispatchdetails.enter' | translate}} {{ 'wholesale.dispatchdetails.transportpassno' | translate}}" />
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'wholesale.dispatchdetails.unitname' | translate}}</label>
+                        <input type="text" [(ngModel)]="dispatchObj.unitName" name="unitName" class="form-control" placeholder="{{ 'wholesale.dispatchdetails.enter' | translate}} {{ 'wholesale.dispatchdetails.unitname' | translate}}" />
+                    </div>
+                </div>
+                <!--<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label style="visibility: hidden;">Toogle Button</label>
+                    <div class="segment"> <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">ALL</label>
+                        <input type="radio" name="tab" id="tab1" >
+                        <label class="" for="tab1">CB 1</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">CB 2</label>
+                    </div>
+                </div>-->
+
+
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchDispatch()">{{'master.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{'master.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Dispatch List" class="list-panel">
+          <div class="row mb-4">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label></label>
+                    <div class="segment"> <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">ALL</label>
+                        <input type="radio" name="tab" id="tab1" >
+                        <label class="" for="tab1">BIO A</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">BIO B</label>
+                    </div>
+                </div>
+            </div> 
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application Date</th>
+                            <!-- <th>Transport Date</th> -->
+                            <th>Transport Pass No</th>
+                            <th>Unit Name</th>
+                            <th>No of Cases Requested</th>
+                            <th>No of Bottles Requested</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>20-Apr-2021</td>
+                            <!-- <td>22-Apr-2021</td> -->
+                            <td>GP2564365</td>
+                            <td class="text-left">Daurla Distillery</td>
+                            <td class="text-left">100</td>
+                            <td class="text-left">1000</td>
+
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/wholesale/dispatch/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/supplychainmanagement/wholesale/dispatch/edit">
+                                        <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'wholesale.dispatchdetails.dispatchlist' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"   
+                    [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div> -->

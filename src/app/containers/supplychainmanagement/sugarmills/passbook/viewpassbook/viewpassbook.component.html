@@ -1,0 +1,167 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.passbook.passbook' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/passbook/list']">{{ 'sugarmill.passbook.passbook' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'sugarmill.common.view' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.passbook.passbookdetails' | translate }}" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.passbook.date' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.date |  date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.passbook.sugarmillname' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.sugarMillName}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">MF4 {{ 'sugarmill.passbook.passnumber' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.mf4PassNumber}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">MF4 {{ 'sugarmill.passbook.generationdate' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.mf4GenerateDate |  date: 'dd-MMM-yyyy hh:mm a' }}
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+
+    </div>
+
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card
+                cardTitle="{{ 'sugarmill.tankregistration.capacity' | translate }} {{ 'sugarmill.common.details' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.liftedmolassescapacity' | translate }}(Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.liftedMolassesCapacity}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.passbook.distilleryIntake' | translate }}
+                            {{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl) <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.distelleryIntakeCapacity}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.remainingcapacityconsumption' | translate }}(Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.remainingCapacityConsumption}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.allocatedcapacity' | translate }}(Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.allotedCapacity}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.passbook.passbookinspected' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.inspectedby' | translate }}({{ 'sugarmill.common.sugarmill' | translate }})
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{ passbookObj?.inspectionBySugarmillPerson}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.passbook.designation' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.designationSuarmillPerson}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.inspectedby' | translate }}({{ 'sugarmill.passbook.distillery' | translate }})
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.inspectionByDistilleryPerson}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.passbook.designation' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.designationDistilleryPerson}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.inspectedon' | translate }}({{ 'sugarmill.common.sugarmill' | translate }})
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.inspectionOnSugarmill | date: 'yyyy-MM-dd HH:mm:ss'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.passbook.inspectedon' | translate }}({{ 'sugarmill.passbook.distillery' | translate }})
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{passbookObj?.inspectionOnDisterllery | date: 'yyyy-MM-dd HH:mm:ss'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.remarks' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        Approved
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success"
+            *ngIf="addedit !== 'View'">{{ 'sugarmill.common.print' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2" routerLink="/supplychainmanagement/sugarmills/passbook/add"
+            *ngIf="addedit !== 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2"
+            routerLink="/supplychainmanagement/sugarmills/passbook/list"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,468 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'bondWarehouse.orderpickupdetails.orderpickup' | translate}}
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/wholesale/orderpickup/add">
+    <i class="feather icon-plus mr-2"></i>
+    Add Order Pick-Up
+</button> -->
+</h5>
+<ul class="breadcrumb p-0">
+    <!-- <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">bondWarehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Pick-Up</a></li>
+    <li class="breadcrumb-item">List</li> -->
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.orderpickupdetails.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.orderpickupdetails.orderpickup' | translate}}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'bondWarehouse.orderpickupdetails.searchby' | translate}}" class=" search-panel">
+            <form #orderform='ngForm'>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.orderpickupdetails.indentDate' | translate}}</label>
+                            <input type="date" name="indentDate" #indentDate="ngModel" [(ngModel)]="orderPickUpData['indentDate']"
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.orderpickupdetails.indentNo' | translate}}</label>
+                            <input type="text" name='indentNo' #indentNo="ngModel"
+                                [(ngModel)]="orderPickUpData['indentNo']" class="form-control"
+                                placeholder="Enter Indent Number" />
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Date</label>
+                        <input type="date"  class="form-control" 
+                        placeholder="Enter Sub-Indent Number"/>                      
+                    </div>
+                </div>  -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.orderpickupdetails.unitName' | translate}}</label>
+                            <input type="text" name='unitName' #unitName="ngModel"
+                                [(ngModel)]="orderPickUpData['unitName']" class="form-control"
+                                placeholder="Enter Unit Name" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.orderpickupdetails.status' | translate}}</label>
+                            <select name='status' #status="ngModel"  (change)="changestatus(orderPickUpData['status'])" [(ngModel)]="orderPickUpData['status']"
+                                class="form-control">
+                                <option>{{ 'usermanagement.common.select' | translate }}</option>
+                                <option value='pending'>PENDING</option>
+                                <option value='inprogress'>INPROGRESS</option>
+                                <option value='completed'>COMPLETED</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-right">
+                        <button  class="btn btn-primary mr-2" (click)="orderPickUpsearch()">{{'master.common.search' | translate}}</button>
+                        <button  class="btn btn-secondary" (click)="resetKey()">{{'master.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'bondWarehouse.orderpickupdetails.orderpickuplist' | translate}}" class="list-panel">
+            <ngb-tabset #tabSet="ngbTabset" type="pills" class="mb-2">
+                <ngb-tab title="{{ 'bondWarehouse.orderpickupdetails.pending' | translate}}" id="pending">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                 <app-mat-normal-table [columns]="pending" [actionKeys]="actionKeyspen" [dataSource]="dataSourcepending"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondPend" 
+                                    [totalCount]="totalCountPen" [pageSize]="pageSizePen" (paginationEvent)="handlePaginationPending($event)"
+                                    (editAction)="editt($event)" (viewAction)="view($event)">
+                                </app-mat-normal-table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle type="button">{{'bondWarehouse.common.download' | translate}}</button>
+                                    <div ngbDropdownMenu>
+                                        <a class="dropdown-item" href="javascript:">Excel</a>
+                                        <a class="dropdown-item" href="javascript:">PDF</a>
+                                        <a class="dropdown-item" href="javascript:">CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="inprogress">
+                 <ng-template ngbTabTitle>{{ 'bondWarehouse.orderpickupdetails.inprogress' | translate}}</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Indent Date</th>
+                                                <th>Indent Number</th>
+                                                <th>Unit Name</th>
+                                                <th>Requested Cases </th>
+                                                <th>Requested Bottles </th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let records of allDraftorderslist;let i=index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{records?.indentDate | date:'dd-MM-yyyy'}}</td>
+                                                <td>{{records?.indentNo}}</td>
+                                                <td>{{records?.unitName}}</td>
+                                                <td class="text-left">{{records?.totCasesRequested || 0}}</td>
+                                                <td class="text-left">{{records?.totBottlesRequested || 0}}</td>
+                                                <td class="text-center" >
+                                                    <span class="badge badge-light-success"> {{records?.orderPickUpStatus}}</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                       (click)="view(records.indentNo)">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <button class="btn btn-icon btn-secondary ml-2" type="button"  (click)="edit(records.indentNo)">
+                                                        <i class="feather icon-edit-2"></i></button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                                <div class="table-responsive">
+                                    <app-mat-normal-table [columns]="inprogress" [actionKeys]="actionKeysinrro" [dataSource]="dataSourceinpro"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondinpro" 
+                                    [totalCount]="totalCountInpro" [pageSize]="pageSizeInpro" (paginationEvent)="handlePaginationInprogress($event)"
+                                    (editAction)="editInpro($event)" (viewAction)="viewInpro($event)">
+                                </app-mat-normal-table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle type="button">{{'bondWarehouse.common.download' | translate}}</button>
+                                    <div ngbDropdownMenu>
+                                        <a class="dropdown-item" href="javascript:">Excel</a>
+                                        <a class="dropdown-item" href="javascript:">PDF</a>
+                                        <a class="dropdown-item" href="javascript:">CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="completed">
+                    <ng-template ngbTabTitle>{{ 'bondWarehouse.orderpickupdetails.completed' | translate}}</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <app-mat-normal-table [columns]="complete" [actionKeys]="actionKeyscompl" [dataSource]="dataSourcecompleted"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondCompltd" 
+                                    [totalCount]="totalCount" [pageSize]="pageSizeCompl" (paginationEvent)="handlePaginationCompleted($event)"
+                                    (editAction)="edit($event)" (viewAction)="viewCom($event)">
+                                </app-mat-normal-table>
+                                </div>
+                                <!-- <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Indent Date</th>
+                                                <th>Indent Number</th>
+                                                <th>Unit Name</th>
+                                                <th>Requested Cases </th>
+                                                <th>Requested Bottles </th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let records of submittedorderslist;let i=index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{records?.indentDate | date:'dd-MM-yyyy'}}</td>
+                                                <td>{{records?.indentNo}}</td>
+                                                <td>{{records?.unitName}}</td>
+                                                <td class="text-left">{{records?.totCasesRequested || 0}}</td>
+                                                <td class="text-left">{{records?.totBottlesRequested || 0}}</td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-success"> {{records?.orderPickUpStatus}}</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                       (click)="view(records.indentNo)">
+                                                        <i class="feather icon-eye"></i></button>
+                                                  
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle type="button">{{'bondWarehouse.common.download' | translate}}</button>
+                                    <div ngbDropdownMenu>
+                                        <a class="dropdown-item" href="javascript:">Excel</a>
+                                        <a class="dropdown-item" href="javascript:">PDF</a>
+                                        <a class="dropdown-item" href="javascript:">CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </app-card>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h5 class="m-b-10 ng-star-inserted">Order Pick-Up
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Pick-Up</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul> -->
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search by" class=" search-panel">
+            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Date</label>
+                        <input type="date"  class="form-control" name="indentDate"
+                        #indentDate="ngModel" [(ngModel)]="orderPickUpData['indentDate']">                      
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Number</label>
+                        <input type="text"  class="form-control" 
+                        placeholder="Enter Indent Number" name="indentNo"
+                        #indentNo="ngModel" [(ngModel)]="orderPickUpData['indentNo']">                      
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Unit Name</label>
+                        <input type="text"  class="form-control" 
+                        placeholder="Enter Unit Name" name="unitName"
+                        #unitName="ngModel" [(ngModel)]="orderPickUpData['unitName']">                      
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        
+                        <select name='orderPickUpStatus' #orderPickUpStatus="ngModel"  [(ngModel)]="orderPickUpData['orderPickUpStatus']"
+                                class="form-control">
+                                <option>Select</option>
+                                <option value='PENDING'>PENDING</option>
+                                <option value='INPROGRESS'>INPROGRESS</option>
+                                <option value='COMPLETED'>COMPLETED</option>
+
+                            </select>
+                    </div>
+                </div> 
+                
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="getorderpickup()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Order Pick-Up List" class="list-panel">
+            <div class="row">
+                <div class="col-12">                    
+                            
+                    <div class="table-responsive">
+                        <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="orderlist"
+                            [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                            (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                        </app-mat-normal-table>
+                       
+                    </div>
+                                 
+                </div>  
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+        </app-card>   
+     </div>
+ </div> -->
+
+
+  <!-- <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Indent Date</th>
+                                    <th>Indent Number</th>
+                                    
+                                    <th>Unit Name</th>
+                                    
+                                    <th>Requested Cases </th>
+                                    <th>Requested Bottles </th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orderlist;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{order?.indentDate|date:'dd-MM-yyy'}}</td>
+                                    <td class="text-center">
+                                        {{order?.indentNo}}
+                                    </td>
+                                    
+                                    <td class="text-left">
+                                        {{order?.unitName}}
+                                    </td>
+                                    
+                                    <td class="text-left">
+                                        {{order?.totCasesRequested}}
+                                    </td>
+                                    <td class="text-left">
+                                        {{order?.totBottlesRequested}}
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge badge-light-success">{{order?.orderPickUpStatus}}</span>
+                                    </td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button" 
+                                        routerLink="/supplychainmanagement/warehouse/orderpickup/view/{{order?.indentNo}}">
+                                            <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" 
+                                            routerLink="/supplychainmanagement/warehouse/orderpickup/edit/{{order?.indentNo}}">
+                                                <i class="feather icon-edit-2"></i></button>
+                                    </td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table> -->
+ <!-- table -->
+
+ <!-- <table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Indent Date</th>
+            <th>Indent Number</th>
+            <th>Unit Name</th>
+            
+            <th>Requested Cases </th>
+            <th>Requested Bottles </th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>20-Mar-2021</td>
+            <td class="text-center">
+                RE1122
+            </td>
+            <td class="text-left">
+                Daurala Sugar Works
+            </td>
+            
+            <td class="text-left">
+                100
+            </td>
+            <td class="text-left">
+                1000
+            </td>
+            <td class="text-center">
+                <span class="badge badge-light-success">Completed</span>
+            </td>
+            <td class="table-action-column text-center">
+                <button class="btn btn-icon btn-primary" type="button" 
+                routerLink="/supplychainmanagement/warehouse/orderpickup/view">
+                    <i class="feather icon-eye"></i></button>
+                    <button class="btn btn-icon btn-secondary ml-2" type="button" 
+                    routerLink="/supplychainmanagement/warehouse/orderpickup/add">
+                        <i class="feather icon-edit-2"></i></button>
+            </td>
+        </tr>
+        
+       
+    </tbody>
+</table> -->
+
+
+
+
+
+<!-- <td class="text-left">
+                Whiskey
+            </td> -->
+
+            <!-- <td class="text-center">
+                SI1122
+            </td> -->
+            <!-- <th>Brand</th> -->
+            <!-- <th>Dispatched Bottles</th> -->
+            
+            <!-- <th>Indent Date</th> -->

@@ -1,0 +1,94 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.Indentreq.indentrequestlist' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item">
+        <a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">
+            {{ 'sugarmill.Indentreq.sugarmill' | translate }}
+        </a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.Indentreq.indentrequest' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #indentForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.Indentreq.indentid' | translate }}</label>
+                            <input type="text" class="form-control" #id="ngModel" name="id"
+                                [(ngModel)]="indentObj['id']"
+                                placeholder="{{ 'sugarmill.Indentreq.enterindentnumber' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Industry Name</label>
+                            <input type="text" class="form-control" #distillery="ngModel" name="distillery"
+                                [(ngModel)]="indentObj['distillery']"
+                                placeholder="Enter Industry Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Industry Type</label>
+                            <input type="number" class="form-control" #indentquantity="ngModel" name="indentquantity"
+                                [(ngModel)]="indentObj['indentquantity']"
+                                placeholder="Enter Industry Type">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.Indentreq.location' | translate }}</label>
+                            <select id="location" class="form-control"(change)='getindentlist($event.target.value)' #location="ngModel" name="location"
+                                [(ngModel)]="indentObj['location']">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of locationData" value="{{item.locCode}}">{{item.locationName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="getindentlist()"
+                                class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                            <button type="reset" (click)="clearData()"
+                                class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.Indentreq.indentrequestlist' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

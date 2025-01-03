@@ -1,0 +1,128 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'usermanagement.usermanagement.userslist' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/usermanagement/user/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'usermanagement.usermanagement.addusers' | translate }}
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.userprofile' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item">{{ 'usermanagement.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.common.name' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="userObj.userName" name="userName"
+                            #userName="ngModel" placeholder="{{ 'usermanagement.common.entername' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.common.role' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="userObj.role" name="role" #role="ngModel">
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option *ngFor="let item of roledata" value="{{item.id}}"> {{item.roleName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.entity.entitytype' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="userObj.entityTypeId" name=entitytype
+                            #entitytype=ngModel (change)="getEntityById($event.target.value)" required>
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option *ngFor=" let data of entityTypesData" value={{data.id}}>
+                                {{data.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.entity.entityname' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="userObj.entityId" name=entityname #entityname=ngModel
+                            required>
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option *ngFor=" let data of entityMasterData" value={{data.id}}>
+                                {{data.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.usermanagement.designation' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="userObj.designationId" name=designation
+                            #designation=ngModel>
+                            <!-- required -->
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option *ngFor="let designation of designationData" value={{designation.id}}>
+                                {{designation.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="userObj.active" name="active" #active="ngModel">
+                            <option>{{ 'usermanagement.common.select' | translate }}</option>
+                            <option value="true">Active</option>
+                            <option value="false">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Shift Config</label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">Helpdesk user</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">Shift user</label>
+                    </div>
+                </div> 
+                <div class="col-lg-9 col-md-9 col-sm-6 col-12 text-right">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2" (click)=searchUser()>{{
+                                'usermanagement.common.search' |
+                                translate }}</button>
+                            <button type="submit" class="btn btn-secondary">{{ 'usermanagement.common.cancel' |
+                                translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.usermanagement.userlist' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)" [totalCount]="totalCount">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

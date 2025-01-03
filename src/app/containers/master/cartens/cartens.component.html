@@ -1,0 +1,123 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">
+    {{ 'master.Cartons.cartons' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/master/cartons/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'master.Cartons.addcartons' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'master.Cartons.cartons' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.list' | translate }}</li>
+</ul> -->
+
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Cartons.cartoncode' | translate }}</label>
+                        <input type="text" class="form-control" name=code #code= ngModel 
+                        [(ngModel)]="cartonsObj['code']" placeholder="{{ 'master.Cartons.entercartonscode' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Cartons.details' | translate }}</label>
+                        <input type="text" class="form-control"  name=details #details= ngModel 
+                        [(ngModel)]="cartonsObj['details']"
+                        placeholder="{{ 'master.Cartons.enterdetails' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Cartons.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="cartonsObj['active']">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">{{ 'master.common.active' | translate }}</option>
+                            <option value="false">{{ 'master.common.inactive' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchCartons()>{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.Cartons.cartons' | translate }} {{ 'master.common.list' | translate }} " blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table
+                    [columns]="columns" 
+                    [actionKeys]="actionKeys"
+                    [dataSource]="dataSource" 
+                    [pageSize]="pageSize" 
+                    [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<!-- 
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.Cartons.carlist' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'master.Cartons.cartoncode' | translate }}</th>
+                            <th>{{ 'master.Cartons.details' | translate }}</th>
+                            <th>{{ 'master.Cartons.noofbottles' | translate }}</th>
+                            <th>{{ 'master.Cartons.size(ML)' | translate }}</th>
+                            <th>{{ 'master.Cartons.status' | translate }}</th>
+                            <th>{{ 'master.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="cartonsList?.length != 0">
+                        <tr *ngFor="let data of cartonsList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.code}}</td>
+                            <td class="text-left">{{data.details}}</td>
+                            <td class="text-left">{{data.noOfBottles}}</td>
+                            <td class="text-left">{{data.size}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-danger" *ngIf="!data.active">Inactive</span>
+                            </td>
+                             <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="/master/cartons/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/master/cartons/edit/{{data.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="cartonsList?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div> -->
+<!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->

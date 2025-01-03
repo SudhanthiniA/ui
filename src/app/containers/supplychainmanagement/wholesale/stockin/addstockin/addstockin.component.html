@@ -1,0 +1,126 @@
+<h5 class="m-b-10 ng-star-inserted">Add Stock In</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock In</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details" class="list-panel add-panel">
+              <form [formGroup]="transportform">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Entity Type
+                            </label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="distillery" name="customRadioInline1"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="distillery">Distillery</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="brewery" name="customRadioInline1"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="brewery">Brewery</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="withinup" name="customRadioInline1"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="withinup">Ware House</label>
+                                </div>
+                                <!-- <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="outsideup" name="customRadioInline1"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="outsideup">Outside UP</label>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gate Pass Number
+                            </label>
+                            <input type="text" required id="passno" class="form-control" placeholder="Gate Pass Number" formControlName='passnumber'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issue Gate Pass Date
+                            </label>
+                            <input type="date" required id="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="getstockbypassid(transportform.get('passnumber').value)">Get Details</button>
+                        <button type="submit" class="btn btn-secondary">Clear</button>
+                    </div>
+
+
+                    <div class="col-12 mt-4 mb-4">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Brand</th>
+                                        <th>Size</th>
+                                        <th>Batch No</th>
+                                        <th>Receive Box</th>
+                                        <th>Bottles</th>
+                                        <th>Breakage Type</th>
+                                        <th>Breakage</th>
+                                        <th>Total Receive Bottles</th>
+                                        <!-- <th>Received By</th>
+                                        <th>Remarks</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Beer</td>
+                                        <td>750</td>
+                                        <td>FL2_345</td>
+                                        <td>10</td>
+                                        <td>100</td>
+                                        <td>Damaged Seal of Bottle</td>
+                                        <td>10</td>
+                                        <td>110</td>
+                                        <!-- <td>Ram</td>
+                                        <td>Sample text</td> -->
+
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Received By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        Ram
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Remarks<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <input type="text" required id="remakrs" class="form-control">
+                    </div>
+                </div>
+              </form>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/stockin/list">Cancel</button>
+    </div>
+</div>

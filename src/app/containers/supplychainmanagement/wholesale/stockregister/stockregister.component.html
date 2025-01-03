@@ -1,0 +1,121 @@
+<h5 class="m-b-10">
+    Stock Register
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Register</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">FL2</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">FL2B</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">CL2</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock Register List"  blockClass="table-border-style" class="list-panel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive mb-2">
+                        <table class="table table-bordered"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    <th>Date</th>
+                                    <th>Brand Name</th>
+                                    <th>Size</th>
+                                    <th>Total Stocked in Cases</th>
+                                    <th>Total Stocked in Bottles</th>
+                                     <th>Available Cases</th>
+                                    <th>Available Bottles</th>
+                                    <th>Total Cases Dispatched</th>
+                                    <th>Total Bottles Dispatched</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of StockinReportList; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td class="text-center">{{data.Date}}</td>
+                                    <td class="text-center">{{data.brandName}}</td>
+                                    <td class="text-center">{{data.Size}}</td>
+                                    <td class="text-center">{{data.totalStockInCases}}</td>
+                                    <td class="text-center">{{data.totalStockInBottles}}</td>
+                                    <td class="text-center">{{data.availableCases}}</td>
+                                    <td class="text-center">{{data.availableBottles}}</td>
+                                    <td class="text-center">{{data.totalCasesDispatch}}</td>
+                                    <td class="text-center">{{data.totalBottlesDispatch}}</td>
+                                  </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

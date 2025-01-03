@@ -1,0 +1,192 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.common.inspection' | translate }}-
+    {{ 'sugarmill.mf5part3.part3' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.excise' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/mf5-part3/inspectionpart3/list']">{{ 'sugarmill.common.inspection' | translate }}-
+            {{ 'sugarmill.mf5part3.part3' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'sugarmill.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf5part3.details' | translate }}" class="list-panel">
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.date' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.reqdate}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.tanktype' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.tankType}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.openingstockacc' | translate }}
+                            (Qtl)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.openStock}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.mf5part3.recmolassesdate' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.quantity' | translate }} (Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.quantity}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.brix' | translate }} (%)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.brix}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.totalsugar' | translate }} (Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.totalSugar}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.transfertank' | translate }} (Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.transferFromTank}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.total' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.molassesTotal}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.mf5part3.dispmolasses' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.nameofdistillery' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.nameOfDistillery}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.quantitysupplied' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.quantitySuppliedMolasses}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.osshops' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.nameOfOsShops}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.common.quantitysupplied' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.nameofindunits' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.nameOfIndUnits}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.quantitysupplied' | translate }}
+                            (Qtl)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.quantitySupplied}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.soldtotrade' | translate }} (Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.soldtotrade}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.total' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.quantitySuppliedMolasses}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.closingbalance' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.closingBalance}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.mf5part3.molassesanalysis' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part3.layer' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.layer}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.brix' | translate }} (%)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.analyseBrix}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.trs' | translate }} (%)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{this.mf5part2Obj.percentageOfTotalSugar}}
+                    </div>
+                </div>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.remarks' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 remark_textarea">
+                        <app-card [hidHeader]="true" cardClass="position-absolute w-100" *ngIf="showLeble">
+                            <ul class="list-group m-0">
+                                <li *ngFor="let c of displayList" (click)="addValue(c.name)">@{{c.name}}</li>
+                            </ul>
+                        </app-card>
+                        <textarea class="form-control" placeholder="Enter Remarks" rows="1" (keyup)="getLeble($event)"
+                            [(ngModel)]="mf5part2Obj['remarks']" name="remarks" id="remarks"></textarea>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-success mr-2"
+                            (click)="saveData(mf5part2Form)">{{ 'sugarmill.common.verify' | translate }}</button>
+                        <button type="button" class="btn btn-secondary"
+                            routerLink="/supplychainmanagement/sugarmills/mf5-part3/inspectionpart3/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>

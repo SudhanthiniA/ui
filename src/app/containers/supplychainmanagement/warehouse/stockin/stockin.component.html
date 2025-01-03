@@ -1,0 +1,130 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'bondWarehouse.stockin.stockin' | translate}}
+    <button type="submit" class="btn btn-success pull-right"
+    routerLink="/supplychainmanagement/warehouse/stockin/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{'bondWarehouse.stockin.addstockin' | translate}}
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.stockin.stockin' | translate}}</a></li>
+    <li class="breadcrumb-item">{{'bondWarehouse.common.list' | translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="stockForm">
+        <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.stockin.tpnumber' | translate}}</label>
+                        <input type="text" class="form-control"  formControlName="transportationPassNo"  name="indent" 
+                        placeholder="Enter Transport Pass No" />
+                        <!-- <div *ngIf="formSubmitted && stockForm.get('transportationPassNo').errors || stockForm.get('transportationPassNo').touched "
+                        class="error-msg">
+                        <span *ngIf="stockForm.get('transportationPassNo').errors?.required"><i class="fa fa-times"></i>
+                            Transport Pass No is required
+                        </span>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.stockin.tpdate' | translate}}</label>
+                        <input type="date" class="form-control"  formControlName="stockInDate"  name="indent" placeholder="Enter Indent Number" />
+                        <!-- <div *ngIf="formSubmitted && stockForm.get('stockInDate').errors || stockForm.get('stockInDate').touched "
+                        class="error-msg">
+                        <span *ngIf="stockForm.get('stockInDate').errors?.required"><i class="fa fa-times"></i>
+                            Date is required
+                        </span>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click) = "searchStockIn()">{{'bondWarehouse.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.stockin.stockinlist' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+              <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+              </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'bondWarehouse.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+        
+    </div>
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock In List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Transport Pass No.</th>
+                            <th>Total No. of Permit</th>
+                            <th>Total No of Cases Received</th>
+                             <th>Total No of Bottles Received</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>12-05-2021</td>
+                            <td>TP989989</td>
+                            <td class="text-left">50</td>
+                            <td class="text-left">500</td>
+                            <td class="text-left">5000</td>
+                            <td><button class="btn btn-primary" routerLink="/supplychainmanagement/warehouse/stockin/add"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div> -->

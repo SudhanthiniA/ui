@@ -1,0 +1,206 @@
+<h5 class="m-b-10 ng-star-inserted">Added Lables for New brands</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/warehouse/brandlabelrequest/addedlabels/add">Brand Label Request</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Added Lables for New brands</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]='labelregester' autocomplete="off">
+            <app-card cardTitle="Enter Details to Added Lables for New brands" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Unit Name
+                            </label>
+                            <input type="text" class="form-control" formControlName='unitname' readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address
+                            </label>
+                            <input type="text" required class="form-control" formControlName='address' readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Type
+                            </label>
+                            <input type="text" required class="form-control" formControlName='unittype' readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Category
+                            </label>
+                            <select class="form-control" id="liquorcategory" formControlName="liquorcategory"
+                                class="form-control"  required>
+                                <option value=''>Select</option>
+                                <option *ngFor="let liquor of liquortype" value="{{liquor.id}}">{{liquor.name}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type
+                            </label>
+                            <input type="text" required class="form-control" formControlName='licencetype' readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Domain
+                            </label>
+                            <!-- <input type="text" required class="form-control" placeholder=""> -->
+                            <select class="form-control" id="domainId" formControlName="domainId" class="form-control"
+                            required>
+                            <option value=''>Select</option>
+                            <option *ngFor="let d of domainlist" value="{{d.id}}">{{d.name}} </option>
+                        </select>
+                        <!-- <div *ngIf="BrandNewObj.get('domainId').invalid && (BrandNewObj.get('domainId').dirty || BrandNewObj.get('domainId').touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="BrandNewObj.get('domainId')?.errors?.required"><i class="fa fa-times"></i>
+                                For Domain is required
+                            </div>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                        <label>Label Category</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"  formControlName="labelcategory" value="new brands" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">New brands</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" formControlName="labelcategory" value="Brands with new labels" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Brands with New Labels</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]='labelregester' autocomplete="off">
+            <app-card cardTitle="Added Labels for New Brands" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Brand Name</th>
+                                       
+                                        <th>Size</th>
+                                        <th>Domain</th>
+                                        <th>Number of Labels</th>
+                                        <!-- <th>Action</th> -->
+                                        
+                                        <th>{{ 'sugarmill.common.action' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="lebeldetails"
+                                        *ngFor="let pres of labelregester?.get('lebeldetails')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                      
+                                        
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                               <select formControlName="brandRegistrationId" class="form-control" (change)="getbrandsid($event.target.value)">
+                                                <option value="">Select</option>
+                                                <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                                    {{b.brandName}}
+                                                </option>
+                                            </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select class="form-control" name="sizeId{{i}}"  id="sizeId{{i}}"
+                                                    required formControlName='sizeId'>
+                                                    <option value="">Select</option>
+                                                    <option *ngFor="let s of sizelist" value="{{s.id}}">{{s.desc}}
+                                                    </option>
+                                                </select>
+
+
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                
+                                                <!-- <input type="text" required class="form-control" placeholder=""> -->
+                                                <select class="form-control" id="domainIdta" formControlName="domainIdta" class="form-control"
+                                                required>
+                                                <option value=''>Select</option>
+                                                <option *ngFor="let d of domainlist" value="{{d.id}}">{{d.name}} </option>
+                                            </select>
+                                            <!-- <div *ngIf="BrandNewObj.get('domainId').invalid && (BrandNewObj.get('domainId').dirty || BrandNewObj.get('domainId').touched || formSubmitted)"
+                                                class="error-msg">
+                                                <div *ngIf="BrandNewObj.get('domainId')?.errors?.required"><i class="fa fa-times"></i>
+                                                    For Domain is required
+                                                </div>
+                                            </div> -->
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="number" formControlName="numberLables" class="form-control"
+                                            placeholder="Serial Number">
+
+                                        </td>
+                                      
+                                     
+                                      
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <i class="fa fa-plus text-primary" title="Add New Row"
+                                                    (click)="addrow()" style="cursor: pointer;">
+                                                </i>
+                                                
+                                            </div>
+                                            <div class="form-group mb-0">
+
+                                            <i class="fas fa-trash-alt text-danger" *ngIf="i!==getPresFormLength()-1" title="Delete"
+                                                 
+                                                style="cursor: pointer;">
+                                            </i>
+                                        </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/brandlabelrequest/addedlabels/add">Back</button> -->
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addlebel()">Save as Draft</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addlebel(labelregester)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)='labelregester.reset()'>Clear</button>
+
+    </div>
+</div>

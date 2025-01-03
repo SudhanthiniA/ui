@@ -1,0 +1,99 @@
+<h5 class="m-b-10 ng-star-inserted">Wholesale License</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale License</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Online Payment</a></li>
+</ul>
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 mt-4 mb-4">
+        <app-card [hidHeader]="true">
+            <h4 class="box-title mt-2 mb-3">License Details</h4>
+            <div class="row mb-3">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">Application Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{licenseApplicationData?.applicationNumber}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">Applicant Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{licenseApplicationData?.applicantDetails.firstName}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">Application Date & Time<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{licenseApplicationData?.createdDate | date:"dd-MM-yyyy hh:mm a" }}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{licenseApplicationData?.licenseCategoryDesc}} - {{licenseApplicationData?.licenseSubCategoryDesc}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">Address<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{licenseApplicationData?.addressList[0].tahsilDesc }}, {{licenseApplicationData?.addressList[0].districtDesc }}, {{licenseApplicationData?.addressList[0].stateDesc }}
+                </div>
+            </div>
+        </app-card>
+
+        <app-card [hidHeader]="true" *ngIf="licenseApplicationData">
+            <h4 class="box-title mt-2 mb-3">Payment Summary</h4>
+            <div class="row mb-3">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        {{feeText}}
+                    <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{paymentAmount | currency:'INR':'symbol'}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 mt-4">
+        <app-card [hidHeader]="true">
+            <h4 class="box-title">Mode of Payment</h4>
+            <div class="row mb-3">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" checked name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">Online</label>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" disabled id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">Offline</label>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="box-title">Select Payment</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="d-flex flex-row align-content-center" *ngFor="let item of paymentTypeList;let i=index">
+                            <div class="pt-2 pr-2"><input type="radio" [attr.checked]="i == 0 ? '' : null" name="list_name" value="{{item.paramValue}}" (change)="onItemChange(item)"></div>
+                            <div class="rounded d-flex w-100 px-2">
+                                <div class="pt-2"> <p><i class="visa pr-2"></i>{{item.paramValue}}</p></div>
+                                <div class="ml-auto pt-2"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary mb-2 ml-2" (click)="back()">Back</button>
+                            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="onPayment()">Proceed to payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

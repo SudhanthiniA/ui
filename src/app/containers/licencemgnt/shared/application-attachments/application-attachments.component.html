@@ -1,0 +1,131 @@
+<app-card cardTitle="Attachments" class="list-panel view-panel">
+    <div class="row">
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_SOLVENCYCERT) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_SolvCertofPropIssByAuthIncTaxValuText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_SOLVENCYCERT)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="appliAttachments?.solvencyCerticateValidity">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.validitySolvencyCertByPropText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{appliAttachments?.solvencyCerticateValidity}}</div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_AFFADAVAIT) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.affadavaitEligilText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_AFFADAVAIT)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_BOUNDRY) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewTheBoundrieschouhddiText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_BOUNDRY)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_LAY_PLAN) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Layout Plan<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_LAY_PLAN)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_CERT_OF_INCORP) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Certificate of Incorporation<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_CERT_OF_INCORP)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_RESU_OF_AUTH) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Resolution of Authorization<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_RESU_OF_AUTH)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_GSTIN) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View GSTIN<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_GSTIN)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_FIRESAFTEYNOC) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Fire Safety NoC<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_FIRESAFTEYNOC)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_FSSAI_CERT) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Fssai certificate<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_FSSAI_CERT)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_NOC_OF_PREMISES) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View NoC of premises<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_NOC_OF_PREMISES)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_ATTACH_CERT_OF_POLLUT_CNTRL) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Certificate of pollution control<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_ATTACH_CERT_OF_POLLUT_CNTRL)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</app-card>

@@ -1,0 +1,131 @@
+<h5 class="m-b-10 ng-star-inserted">Add Transfer of Distillation </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Transfer of Distillation</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #transferofdistillationForm="ngForm">
+            <app-card cardTitle="Enter Below Details to Add Transfer of Distillation" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Raw Material Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Raw Material Name" [(ngModel)]="transferofdistillationObject.rawMaterialName" name="rawMaterialName" #rawMaterialName="ngModel"
+                                maxlength="50">
+                            <div *ngIf="rawMaterialName.invalid && (rawMaterialName.dirty || rawMaterialName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rawMaterialName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Raw Material Name required
+                                </div>
+                                <div *ngIf="rawMaterialName?.errors?.maxlength && !rawMaterialName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Raw Material Name maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" class="form-control" placeholder="Enter Quantity" [(ngModel)]="transferofdistillationObject.quantity" name="quantity" #quantity="ngModel"
+                                maxlength="10">
+                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantity?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Quantity required
+                                </div>
+                                <div *ngIf="quantity?.errors?.maxlength && !quantity?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Quantity 10 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Measurement</label>
+                            <input type="text" class="form-control" placeholder="Enter Measurement" [(ngModel)]="transferofdistillationObject.measurement" name="measurement" #measurement="ngModel"
+                                maxlength="50">
+                            <div *ngIf="measurement.invalid && (measurement.dirty || measurement.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="measurement?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    measurement required
+                                </div>
+                                <div *ngIf="measurement?.errors?.maxlength && !measurement?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    measurement 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wighbridge Qty</label>
+                            <input type="number" class="form-control" placeholder="Enter Quantity from Wighbridge" [(ngModel)]="transferofdistillationObject.quantityWighbridge" name="quantityWighbridge" #quantityWighbridge="ngModel"
+                                maxlength="50">
+                            <div *ngIf="quantityWighbridge.invalid && (quantityWighbridge.dirty || quantityWighbridge.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantityWighbridge?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Quantity from Wighbridge required
+                                </div>
+                                <div *ngIf="quantityWighbridge?.errors?.maxlength && !quantityWighbridge?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Quantity from Wighbridge 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Tank type </label>
+                            <select class="form-control" [(ngModel)]="transferofdistillationObject.fromTankType" name="fromTankType" #fromTankType="ngModel">
+                                <option value="">select</option>
+                                <option value="From Tank type one">From Tank type one</option>
+                                <option value="From Tank type two">From Tank type two</option>
+                                <option value="From Tank type three">From Tank type three</option>
+                            </select>
+                            <div *ngIf="fromTankType.invalid && (fromTankType.dirty || fromTankType.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="fromTankType?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    From Tank type required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>To Tank type </label>
+                            <select class="form-control" [(ngModel)]="transferofdistillationObject.toTankType" name="toTankType" #toTankType="ngModel">
+                                <option value="">select</option>
+                                <option value="To Tank type one">To Tank type one</option>
+                                <option value="To Tank type two">To Tank type two</option>
+                                <option value="To Tank type three">To Tank type three</option>
+                            </select>
+                            <div *ngIf="toTankType.invalid && (toTankType.dirty || toTankType.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="toTankType?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    To Tank type required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addTransferofdistillationForm(transferofdistillationForm)">Submit</button>
+        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/distillery/transferofdistillation/list">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Transport Pass Acknowldegement
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Transport Pass Acknowldegement</a></li>
+    <li class="breadcrumb-item">list</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form #transitForm="ngForm" autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Applicaton Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass No</label>
+                            <select class="form-control" >
+                                <option value="">Select</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" placeholder="transportpass no"
+                                name="transportNo" > -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status
+                            </label>
+                            <select class="form-control" >
+                                <option value="">Select</option>
+                                <option value="INPROGRESS">INPROGRESS</option>
+                                <option value="COMPLETED">COMPLETED</option>
+                                <option value="CANCELLED">CANCELLED</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-3 col-sm-6 col-12 mt-4 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="search()">{{'wholesale.common.search'| translate}}</button>
+                        <button type="submit" class="btn btn-secondary" (click)="cancel()">{{'wholesale.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Transport Pass Acknowldegement List" blockClass="table-border-style" class="list-panel">
+          
+                        <div class="row">
+                            <div class="col-12 my-2">
+                              
+                                <div class="table-responsive">
+                <table class="table table-bordered text-center mb-0" >
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application Date</th>
+                            <th>Transport Pass No</th>
+                            <th>License Type</th>
+                            <th>Unit Name</th>
+                            <th>No of Received Cases</th>
+                            <th>No of Received Bottles</th>
+                            <!-- <th>Status</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>20-Apr-2021</td>
+                            <td>TP1122</td>
+                            <td class="text-left">FL 2</td>
+                            <td class="text-left">Daurala Sugar Works</td>
+                            <td class="text-left">10</td>
+                            <td class="text-left">100</td>
+                            <!-- <td class="text-center">
+                                <span class="badge badge-light-warning">Pending</span>
+                            </td> -->
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/wholesale/transitgatepass/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                routerLink="/supplychainmanagement/wholesale/transitgatepass/edit">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                              <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle
+                                  type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                  <a class="dropdown-item" href="javascript:">Excel</a>
+                                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div> 
+                 
+        </app-card>
+    </div>
+</div>

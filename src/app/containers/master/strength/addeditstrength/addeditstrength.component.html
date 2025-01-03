@@ -1,0 +1,142 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }} {{
+    'master.strengthMaster.strength' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }} {{
+    'master.strengthMaster.strength' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/strengthlist">{{
+            'master.strengthMaster.strength' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #strengthForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetailstoadd' | translate }} {{ 'master.strengthMaster.strength' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Strength Type Code </label>
+                            <input type="text" disabled  class="form-control" value="SM1122">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Strength Type Name </label>
+                            <input type="text" required  class="form-control" placeholder="Enter Strength Type Name">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.strengthMaster.code' | translate }}</label>
+                            <input type="text" class="form-control" name=code #code=ngModel
+                                [(ngModel)]="strengthObj['code']"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.strengthMaster.code' | translate }}"
+                                minlength="3" maxlength="10" required>
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.code' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.code' | translate }}
+                                    {{ 'master.common.maximum' | translate }} 50
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.code' | translate }}
+                                    {{ 'master.common.minimum' | translate }} 3
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.strengthMaster.strength' | translate }}</label>
+                            <input type="text" class="form-control" [(ngModel)]="strengthObj['strength']" name=strength
+                                #strength="ngModel"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.strengthMaster.strength' | translate }}"
+                                minlength="3" maxlength="10" required>
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="strength?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.strength' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="strength?.errors?.maxlength && !strength?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.strength' | translate }}
+                                    {{ 'master.common.maximum' | translate }} 50
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="strength?.errors?.minlength && !strength?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.strength' | translate }}
+                                    {{ 'master.common.minimum' | translate }} 3
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.strengthMaster.liquorCategory' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="strengthObj['category']" name="category"
+                                #category="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let data of liquorCategoryList" value={{data.id}}>
+                                    {{data.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="category.invalid && (category.dirty || category.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="category?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.strengthMaster.liquorCategory' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.Status.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="strengthObj.isActive" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="strengthObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!strengthObj.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="strengthObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)=saveData(strengthForm)>{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/strength/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,1459 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'wholesale.stockin.addstockin'|translate}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockin.stockin'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.common.add'|translate}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <app-card cardTitle="{{'wholesale.stockin.stockindetails'|translate}}" class="list-panel add-panel">
+
+            <!-- Scan QR Code -->
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>{{'wholesale.stockin.transportpassqrcode'|translate}}</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" [(ngModel)]='barcodescan'
+                            placeholder="{{'wholesale.stockin.entertransportpassqrcode'|translate}}" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" (click)='getindentdetails()' type="button"><i
+                                    class="fas fa-qrcode"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ngb-tabset #tabRef="ngbTabset" type="pills" class="mb-2">
+                <!-- indent -->
+                <ngb-tab title="{{'wholesale.stockin.indentdetails'|translate}}" id="indentdatils" autocomplete="off">
+                    <ng-template ngbTabContent>
+                        <form #stockinformOne="ngForm">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <app-card cardTitle="Transport Pass Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Transport Pass No<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                TRA23922
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Issue Date<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                24-08-2021
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Number of Indents<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                4
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Transport Pass<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+Transport.pdf
+                                                <button type="button" class="btn btn-success"><i
+                                                        class="fas fa-download"></i></button>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-12">
+                                    <app-card cardTitle="Unit Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">License Type<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                BWFL2A
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Unit Name<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                Anheuser
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Unit Address<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                Plot no: 12,xyz nagar,Karnataka,Bangalore,Majestic,500001
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-12">
+                                    <app-card cardTitle="{{'wholesale.stockin.unitdetails'|translate}}" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{'wholesale.damagedproducts.sno'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.indentnumber'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.indentdate'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.totalnoof'|translate}}<br>{{'wholesale.stockin.casesreq'|translate}} </th>
+                                                                <th>{{'wholesale.stockin.totalnoof'|translate}}<br>{{'wholesale.stockin.bottlesreq'|translate}} </th>
+                                                                <th>{{'wholesale.stockin.totalnoof'|translate}}<br>{{'wholesale.stockin.casessup'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.totalnoof'|translate}}<br>{{'wholesale.stockin.bottlessup'|translate}}</th>
+                                                                <th>{{'wholesale.common.action'|translate}}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let ele of stockinObj?.indentOrderPickUpDetailsLst;let i=index">
+                                                                <td>{{i+1}}</td>
+                                                                <td>{{ele.indentNo}}
+                                                                </td>
+                                                                <td>{{ele.indentDate | date:'dd-MMM-yyyy'}}</td>
+                                                                <td class="text-left">
+                                                                    {{ele.noOfCasesRequested}}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ele.noOfBottlesRequested}}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ele.noOfCasesScanned}}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ele.noOfBottlesScanned}}
+                                                                </td>
+                                                                <td class="table-action-column text-center">
+                                                                    <button class="btn btn-icon btn-warning"
+                                                                        (click)="getIndent(ele.indentNo,'nav')"
+                                                                        type="button">
+                                                                        <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-6">
+                                    <app-card cardTitle="{{'wholesale.stockin.damage'|translate}}/{{'wholesale.stockin.missingbottlesdetails'|translate}}" class="list-panel add-panel">
+                                        <div class="row">
+
+                                            <div class="col-12">
+                                                <!-- <label class="d-block">If any damages/missing bottles or cases in Dispatch?</label> -->
+
+                                                <div class="form-group">
+                                                    <label>{{'wholesale.stockin.ifanydamages'|translate}}/{{'wholesale.stockin.missingbottlesorcasesindispatch'|translate}}?</label>
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" name="active"
+                                                            class="custom-control-input" id="switch1"
+                                                            data-toggle="modal" (click)="rejectConfirmation()"
+                                                            [(ngModel)]="ifDamageMissingFlag">
+                                                        <label class="custom-control-label" for="switch1">{{'wholesale.common.yes'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-6">
+                                    <app-card cardTitle="{{'wholesale.stockin.receiveddetails'|translate}}" class="list-panel add-panel">
+                                        <div class="row">
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label>{{'wholesale.stockin.receiveddate'|translate}}</label>
+                                                    <input type="date" name='recievedDate' #recievedDate="ngModel"
+                                                        [(ngModel)]="stockreqObj['recievedDate']" required
+                                                        class="form-control">
+                                                    <div *ngIf="recievedDate.invalid && (recievedDate.dirty || recievedDate.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="recievedDate?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            Recieved is required</div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label>{{'wholesale.stockin.receivedby'|translate}}</label>
+                                                    <input type="text" name='recievedBy' #recievedBy="ngModel"
+                                                        [(ngModel)]="stockreqObj['recievedBy']" required
+                                                        class="form-control" placeholder="{{'wholesale.stockin.enterreceivedby'|translate}}">
+                                                    <div *ngIf="recievedBy.invalid && (recievedBy.dirty || recievedBy.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="recievedBy?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            Recieved is required</div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </app-card>
+                                </div>
+                            </div>
+                        </form>
+
+                    </ng-template>
+
+
+                </ngb-tab>
+                <!-- damage -->
+                <ngb-tab id="damagedetails">
+
+                    <ng-template ngbTabTitle>{{'wholesale.stockin.damage'|translate}}/{{'wholesale.stockin.missingbottlesandcasesdetails'|translate}}</ng-template>
+                    <ng-template ngbTabContent autocomplete="off">
+                        <form #stockinFormTwo="ngForm">
+                            <div class="row mt-2">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'wholesale.stockin.issuetype'|translate}}</label>
+                                        <select class="form-control" name="issueType" #issueType="ngModel"
+                                            [(ngModel)]="BreakageEntryObj['issueType']"
+                                            (change)="issueTypeSelect($event)" required>
+                                            <option value="">{{'wholesale.common.select'|translate}}</option>
+                                            <option value="BOTTLE_MISSING">Bottle Missing</option>
+                                            <option value="BOTTLES_DAMAGED">Bottles Damaged</option>
+                                            <option value="CASES_MISSING">Cases Missing</option>
+                                            <option value="CASES_DAMAGED">Cases Damaged</option>
+                                        </select>
+                                        <div *ngIf="issueType.invalid && (issueType.dirty || issueType.touched || formSubmitted)"
+                                            class="error-msg">
+                                            <div *ngIf="issueType?.errors?.required"><i class="fa fa-times"></i>
+                                                {{'wholesale.stockin.pleaseselectissuetype'|translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label [ngClass]="damageTypeMandatory ? 'mandatory' : '' ">
+                                            {{'wholesale.stockin.damagetype'|translate}}
+                                        </label>
+                                        <select class="form-control" name="damageType" #damageType="ngModel"
+                                            [(ngModel)]="BreakageEntryObj['damageType']"
+                                            (change)="damageTypeSelect($event)" [required]="isDamageType">
+                                            <option value="">{{'wholesale.common.select'|translate}}</option>
+                                            <option value="QR_UNREADABLE" *ngIf="bottleMissing">
+                                                QR Code Unreadable
+                                            </option>
+                                            <option value="QR_READABLE" *ngIf="bottlesDamaged">
+                                                QR Readable
+                                            </option>
+                                            <option value="QR_UNREADABLE" *ngIf="bottlesDamaged">
+                                                QR Unreadable
+                                            </option>
+                                            <option value="BARCODE_UNREADABLE" *ngIf="caseMissing">
+                                                Barcode Unreadable
+                                            </option>
+                                            <option value="BARCODE_READABLE" *ngIf="casesDamaged">
+                                                Barcode Readable
+                                            </option>
+                                            <option value="BARCODE_UNREADABLE" *ngIf="casesDamaged">
+                                                Barcode Unreadable
+                                            </option>
+                                        </select>
+                                        <div *ngIf="isDamageType">
+                                            <div *ngIf="damageType.invalid && (damageType.dirty || damageType.touched || formSubmitted)"
+                                                class="error-msg">
+                                                <div *ngIf="damageType?.errors?.required"><i class="fa fa-times"></i>
+                                                    {{'wholesale.stockin.pleaseselectissuetype'|translate}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="bottleMissing" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'wholesale.stockin.noofmissingbottles'|translate}}</label>
+                                        <input name="noOfBottlesMissing" name="noOfBottlesMissing"
+                                            #noOfBottlesMissing="ngModel" required
+                                            [(ngModel)]="BreakageEntryObj['noOfBottlesMissing']" type="number"
+                                            class="form-control" placeholder="{{'wholesale.stockin.entermissingbottles'|translate}}">
+                                    </div>
+                                    <div *ngIf="noOfBottlesMissing.invalid && (noOfBottlesMissing.dirty || noOfBottlesMissing.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="noOfBottlesMissing?.errors?.required"><i class="fa fa-times"></i>
+                                            {{'wholesale.stockin.pleaseentermissingbottles'|translate}}</div>
+                                    </div>
+                                </div>
+                                <div *ngIf="bottlesDamaged || bottleMissingUnreadable"
+                                    class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'wholesale.stockin.noofdamagedbottles'|translate}}</label>
+                                        <input name="noOfBottlesDamaged" name="noOfBottlesDamaged"
+                                            #noOfBottlesDamaged="ngModel"
+                                            [(ngModel)]="BreakageEntryObj['noOfBottlesDamaged']" type="number" required
+                                            class="form-control" placeholder="{{'wholesale.stockin.enternoofdamagedbottles'|translate}}">
+                                    </div>
+                                    <div *ngIf="noOfBottlesDamaged.invalid && (noOfBottlesDamaged.dirty || noOfBottlesDamaged.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="noOfBottlesDamaged?.errors?.required"><i class="fa fa-times"></i>
+                                            {{'wholesale.stockin.pleaseenterdamagedbottles'|translate}}</div>
+                                    </div>
+                                </div>
+                                <div *ngIf="caseMissing" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'wholesale.stockin.noofmissingcases'|translate}}</label>
+                                        <input name="noOfCasesMissing" #noOfCasesMissing="ngModel"
+                                            [(ngModel)]="BreakageEntryObj['noOfCasesMissing']" type="number" required
+                                            class="form-control" placeholder="{{'wholesale.stockin.enternoofmissingcases'|translate}}">
+                                    </div>
+                                    <div *ngIf="noOfCasesMissing.invalid && (noOfCasesMissing.dirty || noOfCasesMissing.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="noOfCasesMissing?.errors?.required"><i class="fa fa-times"></i>
+                                            {{'wholesale.stockin.pleaseenternoofmissingcases'|translate}}</div>
+                                    </div>
+                                </div>
+                                <div *ngIf="casesDamaged || caseMissingUnreadable"
+                                    class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'wholesale.stockin.noofdamagedcases'|translate}}</label>
+                                        <input name="noOfCasesDamaged" #noOfCasesDamaged="ngModel"
+                                            [(ngModel)]="BreakageEntryObj['noOfCasesDamaged']" type="number" required
+                                            class="form-control" placeholder="{{'wholesale.stockin.enternoofdamagescases'|translate}}">
+                                    </div>
+                                    <div *ngIf="noOfCasesDamaged.invalid && (noOfCasesDamaged.dirty || noOfCasesDamaged.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="noOfCasesDamaged?.errors?.required"><i class="fa fa-times"></i>
+                                            {{'wholesale.stockin.pleaseenternoofdamagescases'|translate}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <ng-container *ngIf="bottleFlag">
+                                    <ng-container *ngIf="bottleMissing || bottleMissingUnreadable">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scanbarcode'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="{{'wholesale.stockin.scanbarcode'|translate}}"
+                                                        aria-label="Scan Barcode" aria-describedby="basic-addon2"
+                                                        [(ngModel)]="BreakageEntryObj['barCode']" name="barCode"
+                                                        required #barCode="ngModel">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="bottleMissingScanBarCode()"><i
+                                                                class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="barCode?.errors?.required"><i class="fa fa-times"></i>
+                                                        {{'wholesale.stockin.pleaseenterbarcode'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!bottleMissingUnreadable">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scantheavailableqrcodes'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" name="qrCode"
+                                                        #qrCode="ngModel" placeholder="{{'wholesale.stockin.scantheavailableqrcodes'|translate}}"
+                                                        [(ngModel)]="BreakageEntryObj['qrCode']" required
+                                                        aria-label="Scan the Available QR Codes"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="bottleMissingScanQRCodes()"><i
+                                                                class="fas fa-qrcode"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div *ngIf="qrCode.invalid && (qrCode.dirty || qrCode.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="qrCode?.errors?.required"><i class="fa fa-times"></i>
+                                                        {{'wholesale.stockin.pleaseenterqrcode'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="bottleMissingUnreadable">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scantheavailableqrcodes'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" name="qrCode"
+                                                        #qrCode="ngModel" placeholder="{{'wholesale.stockin.scantheavailableqrcodes'|translate}}"
+                                                        [(ngModel)]="BreakageEntryObj['qrCode']" required
+                                                        aria-label="Scan the Available QR Codes"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="bottleMissingScanQRUnreadable()"><i
+                                                                class="fas fa-qrcode"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div *ngIf="qrCode.invalid && (qrCode.dirty || qrCode.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="qrCode?.errors?.required"><i class="fa fa-times"></i>
+                                                        {{'wholesale.stockin.pleaseenterqrcode'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="bottlesDamagedReadable || bottlesDamagedUnreadable">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="bottlesDamagedUnreadable">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scanbarcode'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="{{'wholesale.stockin.scanbarcode'|translate}}"
+                                                        aria-label="Scan Barcode" aria-describedby="basic-addon2"
+                                                        [(ngModel)]="BreakageEntryObj['barCode']" name="barCode"
+                                                        required #barCode="ngModel">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="BottleDamScanBarCode()">
+                                                            <i class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                    <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="barCode?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            {{'wholesale.stockin.pleaseenterbarcode'|translate}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="bottlesDamagedUnreadable">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scantheavailableqrcodes'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" name="qrCode"
+                                                        #qrCode="ngModel" placeholder="Scan the Available QR Codes"
+                                                        [(ngModel)]="BreakageEntryObj['qrCode']" required
+                                                        aria-label="Scan the Available QR Codes"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="BottleDamScanQRunRe(BreakageEntryObj.noOfBottlesDamaged)">
+                                                            <i class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                    <div *ngIf="qrCode.invalid && (qrCode.dirty || qrCode.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="qrCode?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            {{'wholesale.stockin.pleaseenterqrcode'|translate}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="bottlesDamagedReadable">
+                                            <div class="form-group">
+                                                <label>{{'wholesale.stockin.scanthedamagedqrcode'|translate}}</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" name="qrCode"
+                                                        #qrCode="ngModel" placeholder="{{'wholesale.stockin.scantheavailableqrcodes'|translate}}"
+                                                        [(ngModel)]="BreakageEntryObj['qrCode']" required
+                                                        aria-label="Scan the Available QR Codes"
+                                                        aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="bottlesDamagedQRReadable(BreakageEntryObj.noOfBottlesDamaged)">
+                                                            <i class="fas fa-qrcode"></i></button>
+                                                    </div>
+                                                    <div *ngIf="qrCode.invalid && (qrCode.dirty || qrCode.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="qrCode?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                           {{'wholesale.stockin.pleaseenterqrcode'|translate}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div *ngIf="bottleMissing || bottlesDamagedReadable || bottlesDamagedUnreadable"
+                                        class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>{{'wholesale.stockin.noofbottlesscanned'|translate}}</label>
+                                            <input name="noOfBottlesScanned" #noOfBottlesScanned="ngModel"
+                                                [(ngModel)]="BreakageEntryObj['noOfBottlesScanned']" type="number"
+                                                readonly class="form-control">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="bottleMissing || bottlesDamagedReadable || bottlesDamagedUnreadable"
+                                        class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>{{'wholesale.stockin.remainingbottlesscanned'|translate}}</label>
+                                            <input name="bottlesToBeScanned" #bottlesToBeScanned="ngModel"
+                                                [(ngModel)]="BreakageEntryObj['bottlesToBeScanned']" type="number"
+                                                readonly class="form-control">
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+                                <ng-container *ngIf="caseFlag">
+                                    <ng-container *ngIf="caseMissing || caseMissingUnreadable">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!caseMissingUnreadable">
+                                            <label>{{'wholesale.stockin.scanallavailablebarcodes'|translate}}</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="{{'wholesale.stockin.scanallavailablebarcodes'|translate}}"
+                                                    name="barCode" #barCode="ngModel"
+                                                    [(ngModel)]="BreakageEntryObj['barCode']"
+                                                    aria-label="Scan All Barcodes" aria-describedby="basic-addon2"
+                                                    required>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button"
+                                                        (click)="scanCaseMissing(BreakageEntryObj.noOfCasesMissing)">
+                                                        <i class="fas fa-qrcode"></i>
+                                                    </button>
+                                                </div>
+                                                <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="barCode?.errors?.required"><i class="fa fa-times"></i>
+                                                        {{'wholesale.stockin.pleaseenterbarcode'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="caseMissingUnreadable">
+                                            <label>{{'wholesale.stockin.scanallavailablebarcodes'|translate}}</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" placeholder="{{'wholesale.stockin.scanallavailablebarcodes'|translate}}"
+                                                    [(ngModel)]="BreakageEntryObj['barCode']" name="barCode"
+                                                    #barCode="ngModel" aria-label="Scan All Barcodes"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button"
+                                                        (click)="caseMissingBarcodeUnreadable(BreakageEntryObj.noOfCasesMissing)">
+                                                        <i class="fas fa-qrcode"></i>
+                                                    </button>
+                                                </div>
+                                                <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="barCode?.errors?.required"><i class="fa fa-times"></i>
+                                                        {{'wholesale.stockin.pleaseenterqrcode'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="casesDamagedReadable">
+                                        <label>{{'wholesale.stockin.scanthedamagedbarcode'|translate}}</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="barCode" #barCode="ngModel"
+                                                placeholder="{{'wholesale.stockin.scanthedamagedbarcode'|translate}}"
+                                                [(ngModel)]="BreakageEntryObj['barCode']"
+                                                aria-label="Scan the Damaaged Barcode" aria-describedby="basic-addon2"
+                                                required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button"
+                                                    (click)="scanDamagedCasesQR(BreakageEntryObj.noOfCasesDamaged)"><i
+                                                        class="fas fa-qrcode"></i></button>
+                                            </div>
+                                            <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                class="error-msg">
+                                                <div *ngIf="barCode?.errors?.required"><i class="fa fa-times"></i>
+                                                    {{'wholesale.stockin.pleaseenterbarcode'|translate}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="casesDamagedUnreadable">
+                                        <label>{{'wholesale.stockin.scanallavailablebarcodes'|translate}}</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="{{'wholesale.stockin.scanallavailablebarcodes'|translate}}"
+                                                [(ngModel)]="BreakageEntryObj['barCode']" aria-label="Scan All Barcodes"
+                                                aria-describedby="basic-addon2" name="barCode" #barCode="ngModel"
+                                                required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button"
+                                                    (click)="scanDamagedCasesQRunRe(BreakageEntryObj.noOfCasesDamaged)"><i
+                                                        class="fas fa-qrcode"></i></button>
+                                            </div>
+                                            <div *ngIf="barCode.invalid && (barCode.dirty || barCode.touched || formSubmitted)"
+                                                class="error-msg">
+                                                <div *ngIf="barCode?.errors?.required"><i class="fa fa-times"></i>
+                                                    {{'wholesale.stockin.pleaseenterbarcode'|translate}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="caseMissing || casesDamagedUnreadable || casesDamagedReadable"
+                                        class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>{{'wholesale.stockin.noofcasesscanned'|translate}}</label>
+                                            <input name="noOfCasesScanned" #noOfCasesScanned="ngModel"
+                                                [(ngModel)]="BreakageEntryObj['noOfCasesScanned']" type="number"
+                                                readonly class="form-control">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="caseMissing || casesDamagedUnreadable || casesDamagedReadable"
+                                        class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>{{'wholesale.stockin.remainingcasesscanned'|translate}}</label>
+                                            <input name="casesToBeScanned" #casesToBeScanned="ngModel"
+                                                [(ngModel)]="BreakageEntryObj['casesToBeScanned']" type="number"
+                                                readonly class="form-control">
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+
+                                <div class="col-12 text-right">
+                                    <div class="mb-2">
+                                        <button type="submit" class="btn btn-primary"
+                                            (click)="addBottleMissing(stockinFormTwo, 1)">{{'wholesale.common.add'|translate}}</button>
+                                        <button type="submit" class="btn btn-secondary ml-2">{{'wholesale.common.clear'|translate}}</button>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{'wholesale.damagedproducts.sno'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.issuetype'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.damage'|translate}}<br>{{'wholesale.stockin.type'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.noofdamaged'|translate}}<br>{{'wholesale.stockin.cases'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.noofmissing'|translate}}<br>{{'wholesale.stockin.cases'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.noofdamaged'|translate}}<br>{{'wholesale.stockin.bottles'|translate}}</th>
+                                                    <th>{{'wholesale.stockin.noofmissing'|translate}}<br>{{'wholesale.stockin.bottles'|translate}}</th>
+                                                    <th>{{'wholesale.common.action'|translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="!breakageListMerged.length"> No Records Found</tbody>
+                                            <tbody *ngIf="breakageListMerged.length">
+                                                <tr *ngFor="let item of breakageListMerged;let i=index">
+                                                    <td>{{i+1}}</td>
+                                                    <td class="text-left">{{item.issueType}}</td>
+                                                    <td>{{item.damageType ? item.damageType : '----'}}</td>
+                                                    <td>{{item.noOfCasesDamaged ? item.noOfCasesDamaged : '----'}}</td>
+                                                    <td>{{item.noOfCasesMissing ? item.noOfCasesMissing : '----' }}</td>
+                                                    <td>{{item.noOfBottlesDamaged ? item.noOfBottlesDamaged : '----'}}
+                                                    </td>
+                                                    <td>{{item.noOfBottlesMissing ? item.noOfBottlesMissing : '----'}}
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                            <i class="feather icon-edit-2"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'wholesale.stockin.totalnoofdamagedcases'|translate}}<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{totalMisssingDamges.totalnoOfCasesDamaged}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'wholesale.stockin.totalnoofmissingcases'|translate}}<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{totalMisssingDamges.totalnoOfCasesMissing}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'wholesale.stockin.totalnoofdamagedbottles'|translate}}<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{totalMisssingDamges.totalnoOfBottlesDamaged}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'wholesale.stockin.totalnoofmissingbottles'|translate}}<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{totalMisssingDamges.totalnoOfBottlesMissing}}
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>{{'wholesale.stockin.receiveddate'|translate}}</label>
+                                        <input type="date" name='recieveddate' #recieveddate=ngModel
+                                            [(ngModel)]="stockinobj['recieveddate']" class="form-control">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>{{'wholesale.stockin.receivedby'|translate}}</label>
+                                        <input type="text" name='recievedby' #recievedby=ngModel
+                                            [(ngModel)]="stockinobj['recievedby']" class="form-control"
+                                            placeholder="{{'wholesale.stockin.enterreceivedby'|translate}}">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+                <ng-container *ngFor='let ele of indentdetails?.indentOrderPickUpDetailsLst'>
+                    <ngb-tab id="{{ele?.indentNo}}">
+                        <ng-template ngbTabTitle>
+                            <div (click)="getIndent(ele.indentNo,'nav')"> Indent No. {{ele.indentNo}}</div>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive mt-2 mb-2">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Brand Name</th>
+                                                    <th>Package Size</th>
+                                                    <th>Package Type</th>
+                                                    <th>No. of Cases<br>Requested</th>
+                                                    <th>No. of Bottles<br>Requested</th>
+                                                    <th>No. of Cases<br>Supplied</th>
+                                                    <th>No. of Bottles<br>Supplied</th>
+                                                    <!-- <th>Amount</th>
+                                    <th>QR Scanned</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor='let elee of indentDetailss;let index=i'>
+                                                    <td>1</td>
+                                                    <td class="text-left">
+                                                        {{elee.parentEtin}}
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.packageSize}}
+
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.packageType}}
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.totCasesRequested}}
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.totBottlesRequested}}
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.totCasesRequested}}
+                                                    </td>
+                                                    <td class="text-left">
+                                                        {{elee.totBottlesRequested}}
+                                                    </td>
+                                                    <!-- <td class="text-right">6000.00</td>
+                                  <td class="text-left">
+                                    50
+                                </td> -->
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          <label class="w-100 view-label">Total No. of Cases Supplied<span class="float-right">:</span></label>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          5000
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          <label class="w-100 view-label">Total No. of Bottles Supplied<span class="float-right">:</span></label>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          500
+                      </div> -->
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Damaged Cases<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    0
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Damaged Bottles<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    0
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Missing Cases<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    0
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Missing Bottles<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    0
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ng-container>
+
+            </ngb-tabset>
+
+        </app-card>
+
+
+    </div>
+
+
+
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/warehouse/stockin/preview">{{'wholesale.stockin.previewreport'|translate}}</button>
+        <div ngbDropdown class="d-inline ">
+            <button class="btn btn-success mb-2 ml-2" ngbDropdownToggle type="button">{{'wholesale.common.download'|translate}}</button>
+            <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">JPG</a>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary mb-2 ml-2" (click)="tabRef.select('damagedetails')">{{'wholesale.common.next'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="tabRef.select('indentdatils')">{{'wholesale.common.back'|translate}}</button>
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">savestockin Save as Draft</button> -->
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/wsstockinnew/view">Submit</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)='savestockin()'>{{'wholesale.common.submit'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/stockin/list">{{'wholesale.common.cancel'|translate}}</button>
+
+    </div>
+</div>
+
+<app-ui-modal #rejectModal dialogClass="modal-dialog-centered">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="rejectModal.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h6 class="text-center text-secondary">If any damages/missing bottles or cases in Dispatch?</h6>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button (click)="isdamagedORnot('yes')" class="btn btn-primary">Yes</button>
+                <button (click)="isdamagedORnot('No')" class="btn btn-secondary ml-2">No</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+
+<app-ui-modal #caseDetails dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottle Missing</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="caseDetails.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Missing Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesMissing}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+        </div>
+        <div class="row">
+            <!-- Scan QR Code -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan Barcode</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan Barcode" aria-label="Scan Barcode"
+                        aria-describedby="basic-addon2" [(ngModel)]="BreakageEntryObj['barCode']">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="bottleMissingScanBarCode()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan the Available QR Codes"
+                        [(ngModel)]="BreakageEntryObj['qrCode']" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="bottleMissingScanQRCodes()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary" (click)="addBottleMissing(caseDetails, 1)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="caseDetails.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #bottleDamagedQR dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottles Damaged - QR Readable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="bottleDamagedQR.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{BreakageEntryObj.issueType}}</div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Damages Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesDamaged}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">2</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="BreakageEntryObj['qrCode']"
+                        placeholder="Scan the Available QR Codes" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="bottlesDamagedQRReadable(BreakageEntryObj.noOfBottlesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Barcode Count<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.barCodeCount}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(bottleDamagedQR, 2)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="bottleDamagedQR.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #bottleDamagedQRun dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottles Damaged - QR Unreadable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="bottleDamagedQRun.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesDamaged}}
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan Barcode </label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan Barcode " aria-label="Scan Barcode "
+                        aria-describedby="basic-addon2" [(ngModel)]="BreakageEntryObj['barCode']">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="BottleDamScanBarCode()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="BreakageEntryObj['qrCode']"
+                        placeholder="Scan the Available QR Codes" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary"
+                            (click)="BottleDamScanQRunRe(BreakageEntryObj.noOfBottlesDamaged)" type="button"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!-- (click)="addtoList(bottleDamagedQRun)" -->
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(bottleDamagedQRun, 2)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="bottleDamagedQRun.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesMissing dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Missing</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesMissing.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Missing Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesMissing}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan All Available Barcodes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan All Barcodes"
+                        [(ngModel)]="BreakageEntryObj['barCode']" aria-label="Scan All Barcodes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanCaseMissing(BreakageEntryObj.noOfCasesMissing)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!--  (click)="addtoList(casesMissing)" -->
+                <button type="submit" class="btn btn-primary" (click)="addBottleMissing(casesMissing, 3)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesMissing.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesDamagedQR dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Damaged - QR Readable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesDamagedQR.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesDamaged}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan All Barcodes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan All Barcodes"
+                        [(ngModel)]="BreakageEntryObj['barCode']" aria-label="Scan All Barcodes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanDamagedCasesQR(BreakageEntryObj.noOfCasesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!--  (click)="addtoList(casesDamagedQR)" -->
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(casesDamagedQR, 3)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesDamagedQR.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesDamagedQRun dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Damaged - QR Unreadable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesDamagedQRun.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesDamaged}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Damaaged Barcode</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan the Damaaged Barcode"
+                        [(ngModel)]="barCodeValue" aria-label="Scan the Damaaged Barcode"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanDamagedCasesQRunRe(BreakageEntryObj.noOfCasesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!-- (click)="addtoList(casesDamagedQRun)" -->
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesDamagedQRun.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #moreBreakage dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Breakage Details</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="caseDetails.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Brand Name<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Rampur Select
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Liquor Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Whishky
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Sub Liquor Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Single Malt
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Package Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Glass Bottle
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Package Size<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                750 ML
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Available Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                100
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Bottle Missing
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Bottles Damaged
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Cases Missing
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Cases Damaged
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                QR Readable
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                QR Unreadable
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Damaged Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Missing Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Damaged Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Missing
+                    Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-secondary ml-2">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>

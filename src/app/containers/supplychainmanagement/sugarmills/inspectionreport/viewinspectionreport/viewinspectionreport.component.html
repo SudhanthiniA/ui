@@ -1,0 +1,128 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.inspectionreport.inspectionreport' | translate }} {{'sugarmill.common.view' | translate }} (MST/IST) 
+  </h5>
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"  [routerLink]="['/supplychainmanagement/sugarmills/inspectionreport/list']">{{ 'sugarmill.inspectionreport.inspectionreport' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'sugarmill.common.view' | translate }}</a></li>
+  </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form  autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.inspectionreport.reportdetails' | translate }}" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.inspectiondate' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.inspectionDate | date: 'dd-MMM-yyyy'}}</span> 
+                           
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.verificationtype' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.verificationTypeResponseDto?.name || inspectionData?.verificationTypeName}}</span> 
+                          
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.tankno' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.tankTypeResponseDto?.name  ||inspectionData?.steelTankNumberId }}</span> 
+                         
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.drydip' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.dryDipMeter}}</span> 
+                           
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.wetdip' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.wetDipMeter}}</span> 
+                          
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.molasses' | translate }} (Ltr)<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.molassesInLiter}}</span> 
+                          
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.molasses' | translate }}(Qtl)<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.molassesInQuintal}}</span> 
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.trs' | translate }}(%)<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.trs}}</span> 
+                          
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.brix' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.brix}}</span> 
+                       
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.openingbal' | translate }}(In QTL)<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.openingBalance}}</span> 
+                          
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.receiptbal' | translate }}(In QTL)<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.recieptBalance}}</span> 
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.total' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{inspectionData?.total}}</span> 
+                      
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12" *ngIf = "addedit == 'View'">
+        <form  autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.inspectionreport.detailsofinspection' | translate }}" class="list-panel view-panel">
+                <div class="row" >
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.testedby' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>User1</span> 
+                           
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.inspectionreport.verifiedby' | translate }}<span class="float-right">:</span></label>
+                    </div> 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>User2</span>                       
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success" (click)="getPrint()">{{ 'sugarmill.common.print' | translate }}</button> &nbsp;
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/sugarmills/inspectionreport/list" *ngIf = "addedit == 'View'">{{ 'sugarmill.common.cancel' | translate }}</button>
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/sugarmills/inspectionreport/add" *ngIf = "addedit != 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+    </div>
+</div>

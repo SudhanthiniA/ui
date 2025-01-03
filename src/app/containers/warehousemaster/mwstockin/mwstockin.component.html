@@ -1,0 +1,92 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock In
+    <button type="submit" class="btn btn-success pull-right"
+    routerLink="/masterwarehouse/mwstockin/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Stock In
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Master Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock In</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass No</label>
+                        <input type="text" class="form-control"  
+                        placeholder="Enter Transport Pass No" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" />
+                       
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock In List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Transport Pass No.</th>
+                            <th>Total No. of Indent</th>
+                            <th>Total No of Cases Received</th>
+                             <th>Total No of Bottles Received</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>20-May-2021 10:00:00 AM</td>
+                            <td class="text-left">6234723922</td>
+                            <td class="text-left">4</td>
+                            <td class="text-left">10</td>
+                            <td class="text-left">100</td>
+                           
+                            <td><button class="btn btn-primary" routerLink="/masterwarehouse/mwstockin/view"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

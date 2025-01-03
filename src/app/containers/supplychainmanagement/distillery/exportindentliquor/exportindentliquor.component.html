@@ -1,0 +1,161 @@
+<app-common-breadcrumb [titleSection]="titleSection" [text]="lastText" [breadcrumbs]="breadcrumbs">
+</app-common-breadcrumb>
+  
+  <!-- <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="text" class="form-control" placeholder="Enter Date" 
+                        [(ngModel)]="exportObj['date']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Brand Name"
+                        [(ngModel)]="exportObj['brandId']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Submitted</option>
+                            <option>Approved</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+               </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Export Indent (Liquor) List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item" href="javascript:">PDF</a>
+                  <a class="dropdown-item" href="javascript:">CSV</a>
+                  </div>
+              </div>
+              </div>
+             
+          </div>
+        </app-card>
+    </div>
+  </div> -->
+  
+  
+
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                        <label>Indent ID</label>
+                        <input type="text" class="form-control" placeholder="Enter Indent ID">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                        <label>Permit Number</label>
+                        <input type="text" class="form-control" placeholder="Enter Permit Number">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" required>
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Export Indent List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Indent ID</th>
+                            <th>Date</th>
+                            <th>Permit Number</th>
+                            <th>Consignor</th>
+                            <th>Spirit Type</th>
+                            <th>Requested Spirit Quantity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-center">OT4567</td>
+                            <td class="text-center">20-Jan-2021 11:45 AM</td>
+                            <td class="text-center">234567</td>
+                            <td class="text-center">Beer</td>
+                            <td class="text-center">Liquied</td>
+                            <td class="text-right">1000</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Verified</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/exportindentliquor/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/distillery/exportindentliquor/add">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

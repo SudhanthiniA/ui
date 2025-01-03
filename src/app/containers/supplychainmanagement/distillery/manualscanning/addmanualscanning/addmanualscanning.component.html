@@ -1,0 +1,285 @@
+<h5 class="m-b-10 ng-star-inserted">Manual Scanning
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> Manual Scanning</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Edit</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-lg-12 ngb_accordion_1">
+        <ngb-accordion [closeOthers]="true" activeIds="static-1" class="next-accordion">
+            <ngb-panel id="static-1">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Manual Scanning Details</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Date of Packaging</label>
+                                <input type="text" disabled required class="form-control" name="requestDate" #requestDate="ngModel"
+                                [(ngModel)]="manualscanObj['requestDate']" 
+                                   >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Bottling Plan ID</label>
+                                <select class="form-control" required>
+                                <option>Select</option>
+                                </select>
+                                <!-- <input type="text"  disabled class="form-control" name="bpplan" #bpplan="ngModel"
+                                [(ngModel)]="manualscanObj['bpplan']" 
+                                    placeholder=""> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Brand Name</label>
+                                <input type="text" disabled  class="form-control" value="Rampur Select">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Package Size</label>
+                                <input type="text" disabled  class="form-control" value="750 ML">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Code Type</label>
+                                <input type="text" disabled  class="form-control" value="Type 1">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No. of Cases/Mono Cartons</label>
+                                <input type="text" disabled class="form-control" value="10">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No of Bottles per Case</label>
+                                <input type="text" disabled required class="form-control" value="100">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No of Bottles</label>
+                                <input type="text" disabled required class="form-control" value="10">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Production Line</label>
+                                <input type="text" disabled required class="form-control" placeholder="" name="productionLine" #productionLine="ngModel"
+                                [(ngModel)]="manualscanObj['productionLine']" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No of QR Codes Printed</label>
+                                <input type="number"  disabled class="form-control" value="150">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No of Barcode Printed</label>
+                                <input type="number"  disabled class="form-control" value="150">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Scanned Cases</label>
+                                <input type="number"  disabled class="form-control" value="150">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Scanning Pending</label>
+                                <input type="number"  class="form-control" disabled value="150">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="text" disabled  class="form-control" value="Verified">
+                            </div>
+                        </div>
+                     
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+</div>
+        <div class="col-12 text-right mb-2 mt-2">
+            <button type="button" class="btn btn-success ml-2 mb-2" (click)="scanBottle()"
+               >Start Scan</button>
+               <button type="button" class="btn btn-danger ml-2 mb-2" (click)="scanBottle()"
+               >Stop Scan</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2"
+                >Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/manualscanning/list" >Cancel</button>
+        </div>
+        <div class="col-12">
+        <ngb-accordion [closeOthers]="true" activeIds="static-2" class="next-accordion">
+            <ngb-panel id="static-2">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Scanning Log</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          16/07/2021 18:56
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            16/07/2021 19:22
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Scanned Cases<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         500
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Scanned Bottled<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            5000
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
+
+
+    <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered success_popup">
+        <div class="app-modal-body text-center">
+            <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+            <img src="assets/images/check.png" />
+            <h3 class="text-success">Application Scan </h3>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Barcode<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6" style="padding-bottom: 20px;">
+                  <input type="text"   class="form-control" placeholder="" name="barcode" #barcode="ngModel"
+                  [(ngModel)]="scanObj['barcode']">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">QRcode<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6" style="padding-bottom: 20px;">
+                  <textarea type="text"   class="form-control" placeholder="" name="qrcode" #qrcode="ngModel"
+                  [(ngModel)]="scanObj['qrcode']" (keyup)="scanDetails()"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-danger ml-2 mb-2" routerLink="/supplychainmanagement/distillery/manualscanning/list">Stop Scan</button>
+
+            </div>
+            <!-- <h6>Start Date and Time is <span class="badge badge-light-success"> {{Obj?.startDatetime}}</span></h6>
+            <h6>End Date and Time is <span class="badge badge-light-success"> {{Obj?.endDatetime}}</span></h6>
+            <h6>Status is <span class="badge badge-light-success"> {{Obj?.Status}}</span></h6> -->
+            <!-- <h6>Barcode is <span class="badge badge-light-success"> {{scanObj.barcode}}</span></h6>
+            <h6>Qrcodes are </h6> <div  style="overflow-y: auto; " *ngFor="let i of qrcodesdata">{{i}}</div>
+            <button type="button" class="btn btn-primary ml-2 mb-2"  (click)="scanDetails()">Start</button> -->
+            <!-- <div> -->
+                
+            <!-- </div> -->
+            
+           <!-- <h6>Progressive Count is <span class="badge badge-light-success"> {{index}}</span></h6>  -->
+        </div>
+        <div class="app-modal-footer">
+           
+        </div>
+        
+    </app-ui-modal>
+
+    <div class="col-lg-12 ngb_accordion_1" *ngIf="logshow.length >0">
+        <ngb-accordion [closeOthers]="true" activeIds="static-5" class="next-accordion">
+            <ngb-panel id="static-1">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Scanning Log Details</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row" *ngFor='let i of logshow'>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          {{i?.scanStartDatetime | date:'dd-MMM-yyyy h:mm:ss'}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{i?.scanStartDatetime | date:'dd-MMM-yyyy hh:mm:ss'}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Scanned Cases<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         {{i?.totalScannedCases}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Scanned Bottled<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{i?.totalScannedBottles}}
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+        <div class="col-lg-12 ngb_accordion_1">
+            <ngb-accordion [closeOthers]="true" activeIds="static-5" class="next-accordion">
+                <ngb-panel id="static-1">
+                    <ng-template ngbPanelTitle>
+                        <h5><a href="javascript:">Scanning Log Details</a></h5>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="row" >
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                              {{i?.scanStartDatetime | date:'dd-MMM-yyyy h:mm:ss'}}
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                {{i?.scanStartDatetime | date:'dd-MMM-yyyy hh:mm:ss'}}
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Scanned Cases<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                             {{i?.totalScannedCases}}
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Scanned Bottled<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{i?.totalScannedBottles}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+    </div>
+
+</div>

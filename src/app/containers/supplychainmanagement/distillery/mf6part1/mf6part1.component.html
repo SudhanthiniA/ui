@@ -1,0 +1,65 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF 6 Part 1
+    <button type="submit" class="btn btn-success custom_add_button pull-right" *ngIf="entityType !='UP_EXCISE'" routerLink="/supplychainmanagement/distillery/mf6-part-one/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add MF 6 Part 1
+    </button>
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Molasses In-Ward At Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">MF 6 Part 1</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label> Date</label>
+                        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="mf6Obj['date']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Gate Pass No</label>
+                        <input type="text" class="form-control" name="gatepassno" #gatepassno="ngModel" [(ngModel)]="mf6Obj['gatepassno']" placeholder="Enter Gate Pass No">
+                    </div>
+                </div>
+               
+               
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2"(click)="searchConData()">Search</button>
+                        <button type="submit" class="btn btn-secondary"(click) = "resetKey()">Cancel</button>
+                    </div>
+               </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="MF 6 Part 1 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+        
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

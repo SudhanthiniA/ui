@@ -1,0 +1,143 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">
+    {{ 'master.fee.fee' | translate }} {{ 'master.common.list' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/master/feemaster/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'master.fee.addfee' | translate }}
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.fee.feemaster' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate }}</li>
+</ul> -->
+
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.fee.feecode' | translate }}</label>
+                        <input type="text" class="form-control" name="code" #code="ngModel" [(ngModel)]="feeObj['code']"
+                            placeholder="{{ 'master.fee.enterfeecode' | translate }}">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.fee.feename' | translate }}</label>
+                        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="feeObj['name']"
+                            placeholder="{{ 'master.fee.enterfeename' | translate }}">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.daterange' | translate }}</label> -->
+                        <!-- <input type="text" [timePicker]="true" [timePickerSeconds]="false" [timePicker24Hour]="true"
+                        ngxDaterangepickerMd [(ngModel)]="dateselected" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                        [showClearButton]="true"
+                        [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" startKey="start"
+                        endKey="end" (datesUpdated)="ondataChange()" (rangeClicked)="rangeClicked($event)"> -->
+                        <!-- <input type="text" ngxDaterangepickerMd startKey="start" endKey="end" [(ngModel)]="dateselected"> -->
+                        <!-- <input type="text" name="daterange" ngxDaterangepickerMd
+                            [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}"
+                            class="form-control" />
+                    </div>
+                </div> -->
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="feeObj['active']">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchFee()">{{ 'master.common.search' |
+                        translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.fee.fee' | translate }} {{ 'master.common.list' | translate }} " blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table
+                    [columns]="columns" 
+                    [actionKeys]="actionKeys"
+                    [dataSource]="dataSource" 
+                    [pageSize]="pageSize" 
+                    [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<!-- 
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.fee.fees' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="10%">{{ 'master.fee.feecode' | translate }}</th>
+                            <th width="30%">{{ 'master.fee.feename' | translate }}</th>
+                            <th width="20%">{{ 'master.fee.frequency' | translate }}</th>
+                            <th width="10%">{{ 'master.fee.amount' | translate }}</th>
+                            <th width="10%">{{ 'master.common.status' | translate }}</th>
+                            <th width="10%">{{ 'master.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody *ngIf="feeslist?.length != 0">
+                        <tr *ngFor="let data of feeslist;let i=index">
+                            <td width="10%">{{i+1}}</td>
+                            <td  width="10%">{{data.code}}</td>
+                            <td  width="30%" class="text-left">{{data.name}}</td>
+                            <td  width="20%" class="text-left">{{data.frequency}}</td>
+                            <td  width="10%">{{data.amount}}</td>
+                            <td  width="10%">
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-danger" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td  width="10%" class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/master/feemaster/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/master/feemaster/edit/{{data.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="feeslist?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">{{ 'master.common.nodatafound' | translate }}!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div> -->

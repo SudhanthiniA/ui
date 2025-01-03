@@ -1,0 +1,254 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Payment Overview
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Payment</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Payment Overview</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <app-card cardTitle="Filter" class="search-panel">
+      <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                  <label>Date Range</label>
+                  <input type="date" class="form-control" value="Year">
+                
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                  <label>License Type</label>
+                
+                  <select class="form-control">
+                      <option>Select</option>
+                  </select>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+                <label>License No</label>
+              
+                <select class="form-control">
+                    <option>Select</option>
+                </select>
+            </div>
+        </div>
+      </div>
+  </app-card>
+</div>
+    <div class="col-md-3 col-xl-3 col-sm-6 dashboard_bg1">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Opening Balance</span>
+            <h3 class="mt-2">100000</h3>
+            <i class="fas fa-file-import"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-3 col-xl-3 col-sm-6 dashboard_bg4">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Deposit Amount</span>
+            <h3 class="mt-2">30000</h3>
+            <i class="fas fa-piggy-bank"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-3 col-xl-3 col-sm-6 dashboard_bg2">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Debited Amount</span>
+            <h3 class="mt-2">20000</h3>
+            <i class="far fa-credit-card"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-3 col-xl-3 col-sm-6 dashboard_bg3">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Total Available Amount</span>
+            <h3 class="mt-2">110000</h3>
+            <i class="fas fa-file-alt"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+   
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Search" class="search-panel">
+        <div class="row">
+        
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+              <label>Fee Type</label>
+              <select class="form-control">
+                <option>Select</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+              <label>Challan Head</label>
+              <select class="form-control">
+                <option>Select</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+              <label>G6</label>
+              <select class="form-control">
+                <option>Select</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 text-right">
+            <div>
+              <button type="submit" class="btn btn-primary mr-2">Search</button>
+              <button type="submit" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+         
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Payment Overview List" blockClass="table-border-style" class="list-panel">
+       <div class="row">
+        <div class="col-12">
+            <ngb-tabset type="pills" #tabSet="ngbTabset" class="mb-2">
+                <ngb-tab title="Advance Duty Register" id="INPROGRESS">
+                    <!-- Pending Request -->
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-12 my-2">
+  
+   <div class="table-responsive">
+          <table class="table table-bordered text-center mb-0">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Fee Type</th>
+                <th>Challan Head</th>
+                <th>G6</th>
+                <th>Total Amount </th>
+                <!-- <th>Status</th> -->
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="text-left">Product Fees</td>
+                <td class="text-center">003900105020000</td>
+                <td class="text-left">06</td>
+                <td class="text-right">5000.00</td>
+                <!-- <td>
+                  <span class="badge m-r-5 badge-light-success">Active</span>
+                </td> -->
+                <td class="table-action-column">
+                  <button class="btn btn-icon btn-primary" type="button"
+                    routerLink="/supplychainmanagement/custombond/manualscanning/view">
+                    <i class="feather icon-eye"></i></button>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+  
+        </div>
+      </div>
+  
+    </div>
+    </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Other Payments" id="INPROGRE">
+        <!-- Pending Request -->
+        <ng-template ngbTabContent>
+            <div class="row">
+                <div class="col-12 my-2">
+
+<div class="table-responsive">
+<table class="table table-bordered text-center mb-0">
+<thead>
+  <tr>
+    <th>S.No</th>
+    <th>Date</th>
+    <th>Application No
+    </th>
+    <th>Challan Head</th>
+    <th>G6</th>
+    <th>Amount </th>
+    <!-- <th>Status</th> -->
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>10-Jan-2021</td>
+    <td>AP501245</td>
+    <td class="text-center">003900800010000</td>
+    <td class="text-left">01</td>
+    <td class="text-right">10000.00</td>
+    <!-- <td>
+      <span class="badge m-r-5 badge-light-success">Active</span>
+    </td> -->
+    <td class="table-action-column">
+      <button class="btn btn-icon btn-primary" type="button"
+        routerLink="/supplychainmanagement/custombond/manualscanning/view">
+        <i class="feather icon-eye"></i></button>
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+</ng-template>
+</ngb-tab>
+    </ngb-tabset>
+       </div>
+       </div>
+            <div class="row">
+              <div class="col-4">
+                <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle
+                    type="button">Download</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item"  href="javascript:">Pdf</a>
+                    <a class="dropdown-item"  href="javascript:">Jpg</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8 text-right p-0">
+                  <img src="assets/images/pagenation.png" />
+              </div>
+          </div> 
+      </app-card>
+    </div>
+  </div>

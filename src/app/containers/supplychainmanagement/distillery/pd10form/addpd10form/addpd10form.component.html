@@ -1,0 +1,240 @@
+<h5 class="m-b-10 ng-star-inserted"> Add PD 10</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">PD 10</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #pd10Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Add PD 10" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF-4 Gate-Pass No</label>
+                            <select class="form-control"
+                            #molassesStockTransferId="ngModel" required name="molassesStockTransferId"
+                            [(ngModel)]="pd10form['molassesStockTransferId']" (change)="selectedautopopulatedata(pd10form['molassesStockTransferId'])">
+                                <option value="">Select</option>
+                                   <option *ngFor="let data of gatedata" value="{{data.id}}">{{data.gatePassNumber}}</option>
+                            </select>
+                            <div *ngIf="molassesStockTransferId.invalid && (molassesStockTransferId.dirty || molassesStockTransferId.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="molassesStockTransferId?.errors?.required"><i class="fa fa-times"></i>
+                                MF-4 Gate-Pass No is required </div>
+                        </div>
+                        </div>
+                    
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF-4 Date
+                            </label>
+                            <input type="date" disabled  class="form-control" placeholder="Enter Date"
+                            #date="ngModel" name="date"
+                            [(ngModel)]="pd10form['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                Date is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Unloading Molasses
+                            </label>
+                            <input type="date" disabled  class="form-control" placeholder="Date"
+                            #unloadingDateTime="ngModel" name="unloadingDateTime"
+                            [(ngModel)]="pd10form['unloadingDateTime']">
+                        </div>
+                    </div>
+            
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Sugar Factory
+                            </label>
+                            <input type="text" disabled  class="form-control" placeholder=""
+                            #sugarmillId="ngModel" name="sugarmillId"
+                            [(ngModel)]="pd10form['sugarmillId']">
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Road Tanker No
+                            </label>
+                            <input type="text" disabled  class="form-control" placeholder=""
+                            #roadtankerno="ngModel"  name="roadtankerno"
+                            [(ngModel)]="pd10form['roadtankerno']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Incoming Time Hrs
+                            </label>
+                            <input type="datetime-local" disabled  class="form-control" placeholder=""
+                            #incomingTime="ngModel" name="incomingTime"
+                            [(ngModel)]="pd10form['incomingTime']">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Despatch A/c" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gr, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #despatchGrossWeight="ngModel"  name="despatchGrossWeight"
+                            [(ngModel)]="pd10form['despatchGrossWeight']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tare, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #despatchTareWeight="ngModel"  name="despatchTareWeight"
+                            [(ngModel)]="pd10form['despatchTareWeight']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Net, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #despatchNetWeight="ngModel" name="despatchNetWeight"
+                            [(ngModel)]="pd10form['despatchNetWeight']">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Receipt A/c" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gr, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #receiptGrossWeight="ngModel"   name="receiptGrossWeight"
+                            [(ngModel)]="pd10form['receiptGrossWeight']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tare, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #receiptTareWeight="ngModel"   name="receiptTareWeight"
+                            [(ngModel)]="pd10form['receiptTareWeight']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Net, Wt. Qt
+                            </label>
+                            <input type="number" disabled  class="form-control" placeholder=""
+                            #receiptNetWeight="ngModel"  name="receiptNetWeight"
+                            [(ngModel)]="pd10form['receiptNetWeight']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Outgoing Time Hrs
+                            </label>
+                            <input type="datetime-local" disabled  class="form-control" placeholder="E"
+                            #outgoingTime="ngModel"  name="outgoingTime"
+                            [(ngModel)]="pd10form['outgoingTime']">
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Tanker Sealed or Unsealed with Excise Seal
+                            </label>
+                            <div class="custom-control custom-switch">
+
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="pd10form['tankerSealed']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="pd10form.active ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!pd10form.tankerSealed">Unsealed</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="pd10form.tankerSealed">Sealed</label>
+
+                            <!-- <input type="text" required class="form-control" placeholder="Enter Tanker Sealed or Unsealed with Excise Seal"
+                            #tankerSealed="ngModel"    name="tankerSealed"
+                            [(ngModel)]="pd10form['tankerSealed']">
+                            <div *ngIf="tankerSealed.invalid && (tankerSealed.dirty || tankerSealed.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="tankerSealed?.errors?.required"><i class="fa fa-times"></i>
+                                Tanker Sealed or Unsealed  is required </div> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Sign. Whose Presence Tanker Un-loaded" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chemist
+                            </label>
+                            <input type="text"  required class="form-control" placeholder="Enter Chemist"
+                            #chemist="ngModel"   name="chemist"
+                            [(ngModel)]="pd10form['chemist']">
+                            <div *ngIf="chemist.invalid && (chemist.dirty || chemist.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="chemist?.errors?.required"><i class="fa fa-times"></i>
+                                Chemist is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Insp/Constable
+                            </label>
+                            <input type="text"  required class="form-control" placeholder="Enter Insp/Constable"
+                            #inspector="ngModel"  name="inspector"
+                            [(ngModel)]="pd10form['inspector']">
+                            <div *ngIf="inspector.invalid && (inspector.dirty || inspector.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="inspector?.errors?.required"><i class="fa fa-times"></i>
+                                Insp/Constable is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Driver 
+                            </label>
+                            <input type="text" disabled  class="form-control" placeholder=""
+                            #driverName="ngModel" name="driverName"
+                            [(ngModel)]="pd10form['driverName']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Watch-Man Name 
+                            </label>
+                            <input type="number" disabled   class="form-control" placeholder=""
+                            #watchmanId="ngModel"   name="watchmanId"
+                            [(ngModel)]="pd10form['watchmanId']">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" (click)="previewPd10(pd10Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(pd10Form,'INITIATED')">Save as Draft</button>
+        <button type="button" [disabled]="!pd10Form.valid" class="btn btn-primary ml-2 mb-2" (click)="saveData(pd10Form,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd10/list">Cancel</button>
+    </div>
+</div>

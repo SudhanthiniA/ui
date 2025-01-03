@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">Tank Details</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Sugar Mill</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Availablility</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Tank Details</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Tank Profile" blockClass="table-border-style" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date of Inspection<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockavailabilityObj?.tankRegistrationDTO?.createdDate | date:"dd/MM/yyyy"}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Tank Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockavailabilityObj?.tankRegistrationDTO?.tankName}}
+                </div>
+            </div>
+           
+            <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Capacity<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         {{stockavailabilityObj?.tankRegistrationDTO?.capacity}} Ltrs
+                        </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Tank Shape<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   Cylinder
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.tankregistration.height' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{stockavailabilityObj?.tankRegistrationDTO?.height}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.tankregistration.width' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{stockavailabilityObj?.tankRegistrationDTO?.width}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label
+                        class="w-100 view-label">{{ 'sugarmill.tankregistration.outerdiameter' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{stockavailabilityObj?.tankRegistrationDTO?.outerDiameter}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label
+                        class="w-100 view-label">{{ 'sugarmill.tankregistration.innerdiameter' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{stockavailabilityObj?.tankRegistrationDTO?.innerDiameter}}</span>
+
+                </div>
+            </div>
+           
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-2 text-right mb-4">
+                <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Activity</button>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item"  [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/tanktransfer',stockavailabilityObj?.tankRegistrationDTO?.id]">Transfer</a>
+                        <a class="dropdown-item" href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/tankconverstion',stockavailabilityObj?.tankRegistrationDTO?.id]">Conversion</a>
+                        <a class="dropdown-item" href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/tankactive',stockavailabilityObj?.tankRegistrationDTO?.id]" >Commence</a>
+                        <a class="dropdown-item" href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/tankmaintain',stockavailabilityObj?.tankRegistrationDTO?.id]">Maintainance</a>
+                        <a class="dropdown-item" href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/removal',stockavailabilityObj?.tankRegistrationDTO?.id]">Dismantle</a>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Activity Details" blockClass="table-border-style" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Date</th>
+                            
+                            <th>Request Type</th>
+                            <th>Approved By</th>
+                            <th>Action Taken</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tankss of stockavailabilityObj?.tankActivityDetailsList; let i = index">
+                            <td>2020-2021</td>
+                            <td>{{tankss.strDate | date: 'd/M/y'}}</td>
+                       
+                        <td>{{tankss.activity}}</td>
+                            <td>Admin</td>
+                            <td>{{tankss.actionTaken}}</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+        
+    </div>
+</div>

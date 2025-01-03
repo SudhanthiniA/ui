@@ -1,0 +1,191 @@
+<h5 class="m-b-10 ng-star-inserted">{{knowledgeid==undefined?'Add':'Edit'}} Knowledge Base
+
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.knowledgebase'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{knowledgeid==undefined?'Add':'Edit'}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="newRegistrationFormGroup" autocomplete="off">
+            <app-card cardTitle="{{'helpdesk.knowledgebase.addknowledgebase'|translate}}" class="list-panel add-panel">
+                <!-- <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.knowledgebase.issuetype'|translate}}</label>
+
+                            <select class="form-control" formControlName="issueid">
+                                <option value="">{{'helpdesk.common.select'|translate}}</option>
+                                <option *ngFor="let sublist of issuedetlist" value="{{sublist.id}}">{{sublist.issueName}}</option>
+                            </select> -->
+                            <!-- <select formControlName="issueid" class="form-control" (focus)="hasFocus = true">
+                                <option value="">Select</option>
+                                <ng-container *ngIf="hasFocus">
+                                  
+                                  <option value="{{item.id}}" *ngFor="let item of issuedetlist">{{item.issueName}}</option>                
+                                </ng-container>
+                             </select> -->
+
+                            <!-- <div *ngIf="formSubmitted && newRegistrationFormGroup.get('issueid').errors || newRegistrationFormGroup.get('issueid').touched " class="error-msg">
+                                <span *ngIf="newRegistrationFormGroup.get('issueid').errors?.required">
+                                    {{'helpdesk.knowledgebase.issuetypereq'|translate}}
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.common.status'|translate}}</label>
+                            <select class="form-control" required formControlName="active">
+                                        <option value="">{{'helpdesk.common.select'|translate}}</option>
+                                        <option value="true">{{'helpdesk.knowledgebase.active'|translate}}</option>
+                                        <option value="false">{{'helpdesk.knowledgebase.inactive'|translate}}</option>
+                                    </select>
+                            <div *ngIf="formSubmitted && newRegistrationFormGroup.get('active').errors || newRegistrationFormGroup.get('active').touched" class="error-msg">
+                                <span *ngIf="newRegistrationFormGroup.get('active').errors?.required">
+                                    {{'helpdesk.knowledgebase.statusreq'|translate}}
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <!-- <div class="row">
+                    <div class="col-xl-12">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>{{'helpdesk.knowledgebase.sno'|translate}}</th>
+                                        <th>{{'helpdesk.knowledgebase.knowledgesolution'|translate}}</th>
+                                        <th>{{'helpdesk.common.status'|translate}}</th>
+                                        <th>{{'helpdesk.common.action'|translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="wareHouseDetails" *ngFor="let pres of newRegistrationFormGroup?.get('wareHouseDetails')['controls']; let i=index" id="row{{i}}">
+                                        <td [formGroupName]="i">{{i+1}}</td>
+                                        <td [formGroupName]="i">
+                                            <input type="text" appInputRestriction required class="form-control" placeholder="" formControlName="answer">
+                                            <div class="error-msg" *ngIf="formSubmitted && !newRegistrationFormGroup.controls.wareHouseDetails.controls[i].controls.answer.value">
+                                                {{'helpdesk.knowledgebase.knowledgesolutionreq'|translate}}
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <select class="form-control" formControlName="answerActive">
+                                                    <option value="">{{'helpdesk.common.select'|translate}}</option>
+                                                    <option value="true">{{'helpdesk.knowledgebase.active'|translate}}</option>
+                                                    <option value="false">{{'helpdesk.knowledgebase.inactive'|translate}}</option>
+                                            </select>
+                                            <div class="error-msg" *ngIf="formSubmitted && !newRegistrationFormGroup.controls.wareHouseDetails.controls[i].controls.answerActive.value">
+                                                {{'helpdesk.knowledgebase.statusreq'|translate}}
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i" class="table-action-column">
+                                            <div class="form-group mb-0">
+                                                <button class="btn btn-icon btn-success mr-2" type="button">
+                                                    <i  class="feather icon-plus" title="Add"
+                                                    (click)="addNewRow(i)"
+                                                        style="cursor: pointer;">
+                                                    </i>
+                                                    </button>
+                                                <button *ngIf="i!==getPresFormLength()-1" class="btn btn-icon btn-danger ml-2" type="button">
+                                                    <i class="feather icon-trash-2" title="Delete"
+                                                     (click)="removeSelectedRow(i)"
+                                                    style="cursor: pointer;">
+                                                </i></button>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div> -->
+                <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Knowledge Base ID</label>
+                        <input type="text" required disabled class="form-control" value="Application Response Slowness">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Sub Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Priority</label>
+                        <select class="form-control" required>
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>SLA</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Issue Details</label>
+                        <input type="text" required class="form-control" placeholder="Enter Issue Details">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Knowledge Solution</label>
+                        <input type="text" class="form-control" placeholder="Enter Knowledge Solution">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Knowledge or Solution Count </label>
+                        <input type="text" required class="form-control" placeholder="Enter Knowledge or Solution Count">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <input type="text" required class="form-control" placeholder="Enter Remarks">
+                    </div>
+                </div>
+            </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2" routerLink="/helpdesk/knowledgebase/view">Save</button> -->
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addRegistration(newRegistrationFormGroup,1)">{{'helpdesk.common.save'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="resetForm();">{{'helpdesk.common.reset'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/helpdesk/knowledgebase/list">{{'helpdesk.common.cancel'|translate}}</button> -->
+        <button type="button" class="btn btn-warning mr-2" routerLink="">Save as Draft </button>
+        <button type="button" class="btn btn-success mr-2" routerLink="">Submit</button>
+        <button type="button" class="btn btn-secondary mr-2" routerLink="">Clear</button>
+        <button type="button" class="btn btn-secondary" routerLink="">Cancel</button>
+    </div>
+</div>

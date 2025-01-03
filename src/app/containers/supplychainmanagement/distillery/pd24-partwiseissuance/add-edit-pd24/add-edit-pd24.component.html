@@ -1,0 +1,178 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} PD-24 (Part-wise Issuance of spirit register )</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a
+            routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/list">Dispatch</a></li>
+    <li class="breadcrumb-item"><a
+            routerLink="/supplychainmanagement/distillery/pd24-partwiseissuance/list">PD-24(Part-wise Issuance of spirit
+            register )</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #Pd24Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details Of PD-24(Part-wise Issuance of spirit register )"
+                class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Sanctioned(In Ltr.)</label>
+                            <input type="number" class="form-control" placeholder="Enter Quantity"
+                                name="quantitySanction" #quantitySanction="ngModel"
+                                [(ngModel)]="addpd24obj['quantitySanction']" required>
+                            <div *ngIf="quantitySanction.invalid && (quantitySanction.dirty || quantitySanction.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantitySanction?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Rectified Spirit(In Ltr.)</label>
+                            <input type="text" class="form-control" name="rectifiedSpirit"
+                                placeholder="Enter Rectified Spirit" #rectifiedSpirit="ngModel"
+                                [(ngModel)]="addpd24obj['rectifiedSpirit']" required>
+                            <div *ngIf="rectifiedSpirit.invalid && (rectifiedSpirit.dirty || rectifiedSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rectifiedSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Rectified Spirit is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Absolute Alcohol(In Ltr.)</label>
+                            <input type="text" class="form-control" name="absoluteAlcohol"
+                                placeholder="Enter Absolute Alcohol" #absoluteAlcohol="ngModel"
+                                [(ngModel)]="addpd24obj['absoluteAlcohol']" required>
+                            <div *ngIf="absoluteAlcohol.invalid && (absoluteAlcohol.dirty || absoluteAlcohol.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="absoluteAlcohol?.errors?.required"><i class="fa fa-times"></i>
+                                    Absolute Alcohol is required </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd24Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Issue Absolute Alcohol" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Passes</label>
+                            <input type="text" class="form-control" name="noOfPasses1" placeholder="Enter No. of Passes"
+                                #noOfPasses1="ngModel" [(ngModel)]="addpd24obj['noOfPasses1']" required>
+                            <div *ngIf="noOfPasses1.invalid && (noOfPasses1.dirty || noOfPasses1.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfPasses1?.errors?.required"><i class="fa fa-times"></i>
+                                    No. of Passes is required </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Date" name="absoluteDate"
+                                #absoluteDate="ngModel" [(ngModel)]="addpd24obj['absoluteDate']" required>
+
+                            <div *ngIf="absoluteDate.invalid && (absoluteDate.dirty || absoluteDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="absoluteDate?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(In Ltr.)</label>
+                            <input type="number" class="form-control" placeholder="Enter Quantity" name="quantityInLtr1"
+                                #quantityInLtr1="ngModel" [(ngModel)]="addpd24obj['quantityInLtr1']" required>
+                            <div *ngIf="quantityInLtr1.invalid && (quantityInLtr1.dirty || quantityInLtr1.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantityInLtr1?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd24Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Issue Rectified Spirit" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Passes</label>
+                            <input type="text" class="form-control" name="noOfPasses2" placeholder="Enter No. of Passes"
+                                #noOfPasses2="ngModel" [(ngModel)]="addpd24obj['noOfPasses2']" required>
+                            <div *ngIf="noOfPasses2.invalid && (noOfPasses2.dirty || noOfPasses2.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfPasses2?.errors?.required"><i class="fa fa-times"></i>
+                                    No. of Passes is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" placeholder="Enter Date" name="rectifiedDate"
+                            #rectifiedDate="ngModel" [(ngModel)]="addpd24obj['rectifiedDate']" required>
+
+                        <div *ngIf="rectifiedDate.invalid && (rectifiedDate.dirty || rectifiedDate.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="rectifiedDate?.errors?.required"><i class="fa fa-times"></i>
+                                Date is required </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(In Ltr.)</label>
+                            <input type="number" class="form-control" placeholder="Enter Quantity" name="quantityInltr2"
+                                #quantityInltr2="ngModel" [(ngModel)]="addpd24obj['quantityInltr2']" required>
+                            <div *ngIf="quantityInltr2.invalid && (quantityInltr2.dirty || quantityInltr2.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantityInltr2?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Institution/Designation</label>
+                            <input type="text" class="form-control" placeholder="Enter Institution/Designation"
+                                name="institutionOrdesignation" #institutionOrdesignation="ngModel" [(ngModel)]="addpd24obj['institutionOrdesignation']" required>
+                            <div *ngIf="institutionOrdesignation.invalid && (institutionOrdesignation.dirty || institutionOrdesignation.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="institutionOrdesignation?.errors?.required"><i class="fa fa-times"></i>
+                                    Institution/Designation is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(Pd24Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="Addpd24record(Pd24Form,false)">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="Addpd24record(Pd24Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd24-partwiseissuance/list">Cancel</button>
+    </div>
+
+</div>

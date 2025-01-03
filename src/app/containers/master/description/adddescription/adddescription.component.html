@@ -1,0 +1,117 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.description.add' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.description.edit' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.description.description' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #descriptionForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.description.description' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.description.code' | translate }}</label>
+                            <input type="text" id="code" name="code" #code="ngModel"
+                                [(ngModel)]="descriptionObj['code']" minlength="3" maxlength="10" class="form-control"
+                                required pattern="{{patternService.codePattern}}"
+                                placeholder="{{ 'master.description.entercode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.description.coderequired' | translate }} </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.description.name' | translate }}</label>
+                            <input type="text" id="name" name="name" #name="ngModel"
+                                [(ngModel)]="descriptionObj['name']" minlength="3" maxlength="100" required
+                                class="form-control" placeholder="{{ 'master.description.entername' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.description.namerequired' | translate }} </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.feetype.feetype' | translate }}</label>
+                            <select id="feetypeid" name="feetypeid" #feetypeid="ngModel"
+                                [(ngModel)]="descriptionObj['feetypeid']" [required]="true" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let item of feeTypeList" value="{{item.id}}">{{item.feeTypeName}}
+                                </option>
+                            </select>
+                            <div *ngIf="feetypeid.invalid && (feetypeid.dirty || feetypeid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="feetypeid?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.description.feetyperequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.headcodeMaster.headcode' | translate }}</label>
+                            <select id="headid" name="headid" #headid="ngModel" [(ngModel)]="descriptionObj['headid']"
+                                [required]="true" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let item of headCodeList" value="{{item.id}}">{{item.headName}}
+                                </option>
+                            </select>
+                            <div *ngIf="headid.invalid && (headid.dirty || headid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="headid?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.description.headcoderequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="descriptionObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="descriptionObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!descriptionObj.isActive">{{
+                                        'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="descriptionObj.isActive">{{
+                                        'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-primary mr-2" (click)="addDescription(descriptionForm)">{{ 'master.common.submit' |
+                        translate }}</button>
+                <button type="button" class="btn btn-secondary" (click)="navigateDescriptionList()">{{ 'master.common.cancel' |
+                        translate }}</button>
+            </div>
+        </form>
+    </div>
+</div>

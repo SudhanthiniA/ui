@@ -1,0 +1,112 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.fee.addfee' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.fee.editfee' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.fee.feemaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.fee.enterbelowdetailstofee' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.fee.feecode' | translate }}</label>
+                            <input type="text" id="code" name="feecode" #feecode="ngModel" maxlength="10" minlength="3"
+                                [(ngModel)]="categoryObj['code']" class="form-control" required
+                                placeholder="{{ 'master.fee.enterfeecode' | translate }}" pattern="{{patternService.codePattern}}">
+                            <div *ngIf="feecode.invalid && (feecode.dirty || feecode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="feecode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.fee.feecode' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="feecode?.errors?.minlength && !feecode?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="feecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.fee.feename' | translate }}</label>
+                            <input type="text" id="Name" name="feename" #feename="ngModel" maxlength="100" minlength="3"
+                                [(ngModel)]="categoryObj['name']" required class="form-control"
+                                placeholder="{{ 'master.fee.enterfeename' | translate }}">
+                            <div *ngIf="feename.invalid && (feename.dirty || feename.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="feename?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.fee.feename' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="feename?.errors?.minlength && !feename?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.fee.frequency' | translate }}</label>
+                            <select id="category" name="frequency" required #frequency="ngModel"
+                                [(ngModel)]="categoryObj['frequency']" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let subcat of quantityarray" value="{{subcat.name}}">{{subcat.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="frequency.invalid && (frequency.dirty || frequency.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="frequency?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.fee.frequency' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.fee.amount' | translate }}</label>
+                            <input type="text" id="Name" name="amount" #amount="ngModel"
+                                [(ngModel)]="categoryObj['amount']" required class="form-control"
+                                placeholder="{{ 'master.fee.enteramount' | translate }}">
+                            <div *ngIf="amount.invalid && (amount.dirty || amount.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="feename?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.fee.amount' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="categoryObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="categoryObj.isActive ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!categoryObj.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="categoryObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addfee(categoryForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/feemaster/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<app-card cardTitle="{{siteDetail?.isCustomer ? 'Applicant':'Officier'}} Site Details" class="add-panel list-panel">
+    <div class="row" *ngIf="siteDetail">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.latituteText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.latitude ? siteDetail.latitude : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.longitudeText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.longitude ? siteDetail.longitude : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.eastText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.east ? siteDetail.east : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.westText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.west ? siteDetail.west : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.northText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.north ? siteDetail.north : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.southText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{siteDetail.south ? siteDetail.south : '-'}}
+        </div>
+    </div>
+</app-card>
+<app-card cardTitle="{{'licenseMgnt.shopPhotosTitle' | translate}}" class="list-panel view-panel">
+    <div class="row" *ngIf="siteDetail.documentList">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>{{'licenseMgnt.sNoText' | translate}}</th>
+                        <th>{{'licenseMgnt.viewPhotosText' | translate}}</th>
+                        <th>{{'licenseMgnt.descriptionText' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let memEle of siteDetail.documentList; let i=index" id="row{{i}}">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <button class="btn btn-icon btn-primary mr-2 ml-2" type="button" (click)="downloadDocument(memEle)">
+                                <i class="feather icon-eye"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <label class="w-100 view-label">{{memEle.description ? memEle.description : '-'}}</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</app-card>

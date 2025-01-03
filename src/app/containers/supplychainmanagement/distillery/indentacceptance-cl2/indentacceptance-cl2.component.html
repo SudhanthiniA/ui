@@ -1,0 +1,530 @@
+<h5 class="m-b-10 ng-star-inserted">Indent Acceptance</h5>
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Indent Acceptance</a></li>
+  <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+  <div class="col-12">
+ <app-card cardTitle="Indent Acceptance Status" class="search-panel">
+   <div class="row">
+   <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+       <div class="form-group">
+           <label>Date Range
+           </label>
+           <input type="date" required class="form-control">
+       </div>
+   </div>
+ </div>
+<div class="row">
+   <div class="col-12">
+   <div class="dashboard-st d-flex justify-content-between">
+       <div class="dashboard_bg1 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Total No of Indents</span>
+           <h3 class="mt-2">1000</h3>
+           <i class="
+           fas fa-file-import"></i>
+           <!-- <small>WWWW</small>    -->
+         </div>  
+       </div>
+     </app-card>
+   </div>
+   <div class="dashboard_bg4 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Accepted Indents</span>
+           <h3 class="mt-2">800</h3>
+           <i class="fas fa-check"></i>
+           <!-- <small>WWW</small> -->
+         </div>
+       </div>
+     </app-card>
+   </div>
+   <div class="dashboard_bg2 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>On Hold Indents</span>
+           <h3 class="mt-2">100</h3>
+           <i class="fas fa-hourglass-half"></i>
+           <!-- <small>WWW</small> -->
+         </div>
+       </div>
+     </app-card>
+   </div>
+   <div class="dashboard_bg3 animate__animated animate__backInUp">
+       <app-card [hidHeader]="true" cardClass="comp-card bg-danger">
+         <div class="row align-items-center">
+           <div class="col">
+             <span>Rejected Indents</span>
+             <h3 class="mt-2">50</h3>
+             <i class="fas fa-thumbs-down text-danger"></i>
+             <!-- <small>WWW</small> -->
+           </div>
+         </div>
+       </app-card>
+     </div>
+   <div class="dashboard_bg5 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Request for Clarfication</span>
+           <h3 class="mt-2">50</h3>
+           <i class="fas fa-file-export "></i>
+          
+           <!-- <small>WWWW</small> -->
+         </div>
+       </div>
+     </app-card>
+   </div>
+ </div>
+   </div>
+</div>
+</app-card>
+</div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+      <app-card cardTitle="Search" class="search-panel">
+       <form [formGroup]="indentForm" autocomplete="off">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                  <label>Date</label>
+                  <input type="date"   class="form-control"/>
+              </div>
+          </div> 
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Indent Number</label>
+                    <input type="text"  class="form-control" placeholder="Enter Indent Number"/>
+                </div>
+            </div> 
+          
+            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Wholesaler Name</label>
+                    <input type="text"  class="form-control" 
+                        placeholder="Enter Wholesaler Name" />
+                </div>
+            </div>   -->
+             <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                 <div class="form-group">
+                     <label>Status
+                     </label>
+                     <select  class="form-control">
+                         <option value="">Select</option>
+                         <option>Active</option>
+                     </select>
+                 </div>
+             </div>
+              <div class="col-12 text-right">
+                  <button type="submit" class="btn btn-primary mr-2">Search</button>
+                  <button type="submit" class="btn btn-secondary">Cancel</button>
+              </div>
+          </div>
+       </form>
+      </app-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <app-card [hidHeader]="true" cardTitle="Indent Acceptance"
+      blockClass="table-border-style" class="list-panel stockavailability_tab">
+      <!-- <div class="row">
+        <div class="col mb-2">
+          <label class="font-weight-bold float-left mt-1 mr-4 text-dark">Unit Type</label>
+          <ul class="nav nav-pills segment float-left">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="pill" href="#home">FL2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#menu1">FL2B</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#menu2">Master Warehouse</a>
+            </li>
+          </ul>
+          </div>
+      </div> -->
+      <ngb-tabset type="pills">
+        <ngb-tab title="Total No of Indents" class="mb-3">
+          <ng-template ngbTabContent>
+            <div class="table-responsive mb-2">
+              <table class="table table-bordered text-center mb-0">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <!-- <th>License Type</th> -->
+                    
+                    <th>Indented Date</th>
+                    <th>Indent No.</th>
+                    <th>Unit Type</th>
+                    <th>Unit Name</th>
+                    <th>Total No. of Cases</th>
+                    <th>Total No. of Bottles</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>20-Apr-2021</td>
+                    <td>CL0001</td>
+                    <!-- <td>FL2</td> -->
+                    <td class="text-left">Distillery</td>
+                    
+                    <td class="text-left">Daurala Sugar Works</td>
+                    <td class="text-left">2000</td>
+                    <td class="text-left">24000</td> 
+                    <td class="text-center">
+                      <span class="badge badge-light-success">Accepted</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-icon btn-primary" type="button"
+                    routerLink="/supplychainmanagement/wholesale/indentacceptance/view"  >
+                    <i class="feather icon-eye"></i></button>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle
+                    type="button">Download</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item"  href="javascript:">Pdf</a>
+                    <a class="dropdown-item"  href="javascript:">Jpg</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8 text-right p-0">
+                  <img src="assets/images/pagenation.png" />
+              </div>
+          </div>  
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Accepted Indents" class="mb-3">
+          <ng-template ngbTabContent>
+            <div class="table-responsive mb-2">
+              <table class="table table-bordered text-center mb-0">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <!-- <th>License Type</th> -->
+                    <th>Indented Date</th>
+                    <th>Indent No.</th>
+                    <th>Unit Type</th>
+                    <th>Unit Name</th>
+                    <th>Total No. of Cases</th>
+                    <th>District</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <!-- <td class="text-left">FL</td> -->
+                    <td>20-Apr-2021</td>
+                    <td>CL0001</td>
+                    <!-- <td>FL2</td> -->
+                    <td class="text-left">Distillery</td>
+                    <td class="text-left">Daurala Sugar Works</td>
+                    <td class="text-left">1500</td>
+                    <td class="text-left">Lucknow</td>
+                    <td class="text-center">
+                      <span class="badge badge-light-success">Accepted</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-icon btn-primary" type="button"
+                    routerLink="/supplychainmanagement/wholesale/indentacceptance/view"  >
+                    <i class="feather icon-eye"></i></button>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle
+                    type="button">Download</button>
+                  <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item"  href="javascript:">Pdf</a>
+                    <a class="dropdown-item"  href="javascript:">Jpg</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8 text-right p-0">
+                  <img src="assets/images/pagenation.png" />
+              </div>
+          </div>  
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="On Hold Indents">
+          <ng-template ngbTabContent>
+            <div class="table-responsive mb-2">
+              <table class="table table-bordered text-center mb-0">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <!-- <th>License Type</th> -->
+                    <th>Indented Date</th>
+                    <th>Indent No.</th>
+                    <th>Unit Type</th>
+                    <th>Unit Name</th>
+                    <th>Total No. of Cases</th>
+                    <th>Total No. of Bottles</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <!-- <td class="text-left">FL</td> -->
+                    <td>20-Apr-2021</td>
+                    <td>CL0001</td>
+                    <!-- <td>FL2</td> -->
+                    <td class="text-left">Distillery</td>
+                    <td class="text-left">Daurala Sugar Works</td>
+                    <td class="text-left">300</td>
+                    <td class="text-left">3600</td> 
+                    <td class="text-center">
+                      <span class="badge badge-light-warning">Hold</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-icon btn-primary" type="button"
+                    routerLink="/supplychainmanagement/wholesale/indentacceptance/view"  >
+                    <i class="feather icon-eye"></i></button>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+                <!-- <div class="row">
+                  <div class="col-xl-12 mt-2 text-right">
+                      <button type="button" 
+                      class="btn btn-info ml-2 mb-2">Print</button>
+    
+                </div>
+                </div> -->
+                <div class="row">
+                  <div class="col-4">
+                    <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle
+                        type="button">Download</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:">Excel</a>
+                        <a class="dropdown-item"  href="javascript:">Pdf</a>
+                        <a class="dropdown-item"  href="javascript:">Jpg</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8 text-right p-0">
+                      <img src="assets/images/pagenation.png" />
+                  </div>
+              </div>  
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Rejected Indents">
+          <ng-template ngbTabContent>
+            <div class="table-responsive mb-2">
+              <table class="table table-bordered text-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <!-- <th>License Type</th> -->
+                        <!-- <th>Transport Pass No</th> -->
+
+                        <th>Indented Date</th>
+                        <th>Indent No.</th>
+                        <th>Unit Type</th>
+                        <th>Unit Name</th>
+                        <th>Total No. of Cases</th>
+                        <th>Total No. of Bottles</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <!-- <td class="text-left">FL</td> -->
+                        <!-- <td>TP1122</td> -->
+                        <td>20-Jan-2021</td>
+                        <td>CL0001</td>
+
+                        <td class="text-left">Distillery</td>
+                        <td class="text-left">WW Industry</td>
+                        <td class="text-left">100</td>
+                        <td class="text-left">1200</td>
+                        <td class="text-center">
+                          <span class="badge badge-light-danger">Rejected</span>
+                      </td>
+                      <td class="text-center">
+                        <button class="btn btn-icon btn-primary   " type="button"
+                        routerLink="/supplychainmanagement/warehouse/indentacceptanceforwholesale/deliveredindent"  >
+                        <i class="feather icon-eye"></i></button>
+                        <!-- <button class="btn btn-icon btn-success" type="button"
+                        routerLink="/supplychainmanagement/warehouse/transportpass/transportpassgeneration/view/:id"  >
+                        <i class="feather icon-package"></i></button> -->
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle
+                        type="button">Download</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:">Excel</a>
+                        <a class="dropdown-item"  href="javascript:">Pdf</a>
+                        <a class="dropdown-item"  href="javascript:">Jpg</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8 text-right p-0">
+                      <img src="assets/images/pagenation.png" />
+                  </div>
+              </div>  
+                <!-- <div class="row">
+                  <div class="col-xl-12 mt-2 text-right">
+                      <button type="button" 
+                      class="btn btn-info ml-2 mb-2">Print</button>
+    
+                </div>
+                </div> -->
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Request for Clarification">
+          <ng-template ngbTabContent>
+            <div class="table-responsive mb-2">
+              <table class="table table-bordered text-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <!-- <th>License Type</th> -->
+                        <th>Indented Date</th>
+                        <th>Indent No.</th>
+                        <th>Unit Type</th>
+                        <th>Unit Name</th>
+                        <th>Total No. of Cases</th>
+                        <th>Total No. of Bottles</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <!-- <td class="text-left">FL</td> -->
+                        <td>20-Jan-2021</td>
+                        <td>CL0001	</td>
+                        <td class="text-left">Distillery</td>
+
+                        <td class="text-left">WW Industry</td>
+                        <td class="text-left">100</td>
+                        <td class="text-left">1200</td>
+                        <td class="text-center">
+                          <span class="badge badge-light-warning">Request for Clarfication</span>
+                      </td>
+                      <td>
+                        <button class="btn btn-icon btn-primary" type="button"
+                        routerLink="/supplychainmanagement/wholesale/indentacceptance/partdeliveredindent"  >
+                        <i class="feather icon-eye"></i></button>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- <div class="row">
+                  <div class="col-xl-12 mt-2 text-right">
+                      <button type="button" 
+                      class="btn btn-info ml-2 mb-2">Print</button>
+    
+                </div>
+                </div> -->
+                <div class="row">
+                  <div class="col-4">
+                    <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle
+                        type="button">Download</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:">Excel</a>
+                        <a class="dropdown-item"  href="javascript:">Pdf</a>
+                        <a class="dropdown-item"  href="javascript:">Jpg</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8 text-right p-0">
+                      <img src="assets/images/pagenation.png" />
+                  </div>
+              </div>  
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </app-card>
+  </div>
+</div>
+<!-- <div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Indent Acceptance"
+        blockClass="table-border-style" class="list-panel stockavailability_tab">
+        <div class="row">
+          <div class="col mb-2">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Indent Number</th>
+                      <th>Indent Date</th>
+                      <th>License Type</th>
+                      <th>Wholesaler Name</th>
+                      <th>Total No. of Cases/Mono-carton requested</th>
+                      <th>Total  No. of Bottles Indented</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>FL0001</td>
+                      <td>20-Apr-2021</td>
+                      <td>FL2</td>
+                      <td class="text-left">Daurala Sugar Works</td>
+                      <td class="text-left">10</td>
+                      <td class="text-left">100</td> 
+                      <td class="text-center">
+                        <span class="badge badge-light-primary">Approved</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-icon btn-primary" type="button"
+                      routerLink="/supplychainmanagement/distillery/indentacceptance/newindents"  >
+                      <i class="feather icon-eye"></i></button>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>  
+            </div>
+        </div>
+      </app-card>
+    </div>
+  </div> -->

@@ -1,0 +1,110 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MST/IST (Finished Goods) 
+    <button class="btn btn-success custom_add_button pull-right"
+        routerLink="/licencemgnt/fl32/permitrequest//add"
+        type="submit">
+        <i class="feather icon-plus mr-2"></i> Add MST/IST (Finished Goods) </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Vintnery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">MST IST (Finished Goods)</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form [formGroup]="transitForm" autocomplete="off">
+                <!--  -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reference NUmber</label>
+                            <input type="text" class="form-control" placeholder="Enter Reference Number" />
+                        </div>
+                    </div>
+                   
+                   
+                    
+                    <div class="col-lg-3 col-12 mt-4">
+                        <!-- <label class="d-block">&nbsp;</label> -->
+                        <button type="submit" class="btn btn-primary mr-2" (click)="search()">{{'bondWarehouse.common.search'| translate}}</button>
+                        <button type="submit" class="btn btn-secondary" (click)="cancel()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 text-right mb-4">
+        <button class="btn btn-info custom_add_button disabled mr-2" type="submit">
+        Edit</button>
+        <button class="btn btn-warning  custom_add_button disabled" type="submit">
+        View </button>
+     </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="MST IST (Finished Goods) List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Month</th>
+                            <th>Year</th>
+                            <th>Reference Number</th>
+                            <th>Inspection Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Feb</td>
+                            <td>2024</td>
+                            <td></td>
+                            <td></td>
+                            <td><span class="badge m-r-5 badge-light-success">Approved</span>
+                            </td>
+                   
+                            <td class="table-action-column text-center">
+                              <input type="radio" class=""/>
+                                <!-- <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="">
+                                    <i class="feather icon-eye"></i></button> -->
+                                    <!-- <button class="btn btn-icon btn-success ml-2" type="button"
+                                    routerLink="">
+                                    <i class="feather icon-download"></i></button> -->
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                  <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                         
+                         
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>
+  </div>

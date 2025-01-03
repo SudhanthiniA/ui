@@ -1,0 +1,136 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Export Permit Transport Pass Acknowledgement
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="">
+    <i class="feather icon-plus mr-2"></i>
+    Add  Export Permit
+</button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Custom Bond</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Export Permit Transport Pass Acknowledgement</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form #searchForm="ngForm">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Application Date" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass No</label>
+                            <input type="text" class="form-control" placeholder="Enter Transport Pass No" />
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of cases requested</label>
+                            <input type="text" class="form-control" placeholder="Enter No. of cases requested" />
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                            <option value="">Select</option>
+
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label style="visibility:hidden">Toggle Button</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked>
+                            <label class="" for="tab1">CB 1</label>
+                            <input type="radio" name="tab" id="tab2">
+                            <label class="" for="tab2">CB 2</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mt-4">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="StockInHandList()">Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)="clear()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Export Permit - List Page" blockClass="table-border-style" class="list-panel">
+            <!-- <div class="row">
+                <div class="col-12 mb-4">
+                    <label></label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">CB 1</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">CB 2</label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Application Date</th>
+                            <th>Transport Pass No</th>
+                            <th>Unit Name</th>
+                            <th>No. of cases requested</th>
+                            <th>No. of Bottles requested</th>
+                            <th>Status</th>
+                            <!-- <th>Export To</th>
+                            <th>Quantity in B.L.</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>06-01-2022</td>
+                            <td>APP001</td>
+                            <td>Unit</td>
+                            <!-- <td>Importer</td>
+                            <td>Export</td> -->
+                            <td>100</td>
+                            <td>100</td>
+                            <td class="text-center"><span class="badge badge-light-success">Success</span></td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary ml-2" type="button" routerLink="">
+                                    <i class="feather icon-edit-2"></i></button>
+                                <button class="btn btn-icon btn-warning ml-2" type="button" routerLink="">
+                                <i class="feather icon-eye"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 text-right">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

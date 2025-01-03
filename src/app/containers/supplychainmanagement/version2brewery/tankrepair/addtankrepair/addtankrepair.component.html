@@ -1,0 +1,128 @@
+<h5 class="m-b-10 ng-star-inserted">Add Tank Repair
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brewery</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li> -->
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/brewery/tankrepair/list">Tank Repair</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Tank Repair" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Request Date</label>
+                            <input type="date" disabled class="form-control"  required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Repair Type</label>
+                            <select class="form-control" name="repairType" required>
+                                <option>Minor</option>
+                                <option>Major</option>
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Name</label>
+                            <select class="form-control" name="tankName" required>
+                                <option>Select</option>
+                            </select>
+                           
+                        </div>
+                    </div>
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <label>Is tank Filled</label>
+                            <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Yes
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">No</label>
+                            </div>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Is tank Filled</label>
+                                <input type="text" disabled class="form-control" required placeholder="Yes">
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Capacity(Qtl)</label>
+                            <input type="number" disabled class="form-control"  >
+                              
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Beer Type</label>
+                            <input type="text" disabled class="form-control"  >
+                              
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reason for Repair</label>
+                            <textarea class="form-control" rows="1" placeholder="Enter Reason for Repair" name="reasonForRepair" required></textarea>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Specification for Repairs</label>
+                            <textarea class="form-control" rows="1"
+                                placeholder="Enter Specification for Repairs" name="specification" required></textarea>
+                              
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Duration of Repair</label>
+                            <input type="number" class="form-control" placeholder="Enter Duration of Repair">
+                           
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc" class="mandatory">Attachments</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/distillery/brewery/tankrepair/view">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="navigatetankPreview(Pd25Form)">Save as Draft</button>
+        <!-- (click)="saveregistration(Pd25Form,'SUBMITTED')" -->
+        <button type="button" class="btn btn-primary ml-2 mb-2" >Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/brewery/tankrepair/list">Cancel</button>
+    </div>
+</div>

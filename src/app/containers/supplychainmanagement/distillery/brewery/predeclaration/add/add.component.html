@@ -1,0 +1,216 @@
+<h5 class="m-b-10 ng-star-inserted">Add Pre Declaration
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brewery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/dipbook/list">
+            Pre Declaration</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #dipbookForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Pre Declaration Details" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>OT Number</label>
+                                <select class="form-control" name="otnumber" #otnumber="ngModel" required
+                                [(ngModel)]="dipbookObj['otnumber']">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of otnumberlist" value="{{item.id}}">{{item.otNumber}}</option>
+                                </select>
+                                <div *ngIf="otnumber.invalid && (otnumber.dirty || otnumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="otnumber?.errors?.required"><i class="fa fa-times"></i>
+                                    Ot Number is required </div>
+                            </div>
+                            </div>
+                        </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Plan Id</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Batch Number
+                                </label>
+                            <input type="text" disabled class="form-control" required value="">
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Number
+                                </label>
+                                <input type="text" disabled class="form-control" required value="TN1122">
+                            </div>
+                        </div> -->
+                </div>
+            </app-card>
+            <app-card cardTitle="Unit Details" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank</label>
+                                <select class="form-control" name="tankId" #tankId="ngModel" required
+                                [(ngModel)]="dipbookObj['tankId']" (change)="changeTankName($event.target.value)">
+                                    <option value="">Select</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.tankRegistrationDetails?.tankName}}</option>
+                                </select>
+                                <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                    Tank is required </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Raw Material</label>
+                                <input type="text" id="fromRawMaterial" name="fromRawMaterial" disabled class="form-control"
+                                    #fromRawMaterial="ngModel" [(ngModel)]="dipbookObj['fromRawMaterial']" required
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Usage</label>
+                                <input type="text" id="fromUsageGroup" name="fromUsageGroup" disabled class="form-control"
+                                    #fromUsageGroup="ngModel" [(ngModel)]="dipbookObj['fromUsageGroup']" required
+                                    placeholder="">
+                            </div>
+                        </div> -->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Number</label>
+                                <select class="form-control" name="tankId" #tankId="ngModel" required
+                                [(ngModel)]="dipbookObj['tankId']">
+                                    <option value="">Select</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.otNumber}}</option>
+                                </select>
+                                <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                    Tank Number is required </div>
+                            </div>
+                            </div>
+                        </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Financial Year</label>
+                            <input type="text" class="form-control" name="dip" disabled required placeholder="Enter ">
+                            
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">License Type</label>
+                            <input type="text" class="form-control" disabled name="-" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">License Number
+                                </label>
+                            <input type="text" class="form-control" disabled placeholder="Enter ">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Tank Details" class="list-panel add-panel">
+                <div class="row">
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank ID</label>
+                            <input type="text" disabled class="form-control" value="">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reference number</label>
+                            <select class="form-control" required >
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Available Quantity</label>
+                            <input type="number" disabled class="form-control" required>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Used Quantity</label>
+                            <input type="text"  class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <div class=" d-inline d-flex align-items-start">
+                                <input type="checkbox" disabled aria-checked="true" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1" checked>
+                                <label class="cr mr-2" for="pd1">Is Empty
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Pre declaration Remarks" class="list-panel add-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remarks
+                                </label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Wastage Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transfer Wastage</label>
+                            <input type="text"  required class="form-control" value="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage in %</label>
+                            <input type="text" disabled required class="form-control" value="140">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Monthly Wastage in %</label>
+                            <input type="text" disabled required class="form-control" value="20">
+                        </div>
+                    </div>
+                   
+                </div>
+            </app-card>
+           
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+     
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addDipbook(dipbookForm, 'INITIATE')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="navigatedipBookLIst()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div>

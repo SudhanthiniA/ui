@@ -1,0 +1,1416 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{addedit}} PD 9A (Raw Material Used & Recovery Summary) 
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd9a-rawmaterial/list">Fermentation and Distillation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd9a-rawmaterial/list"
+            routerLink="/supplychainmanagement/distillery/indentrequest/list">PD 9A (Raw Material Used & Recovery
+            Summary)</a></li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="PD 9A" class="list-panel add-panel">
+            <ngb-tabset type="pills" #tabset="ngbTabset" >
+                <ngb-tab title="Section I" id='sectionI'  #sectionI  class="mb-3 mt-2">
+                    <ng-template ngbTabContent>
+                        <form  #pd9a="ngForm" autocomplete="off">
+                            <app-card cardTitle="Details" class="list-panel add-panel ">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                            <input type="date" required class="form-control" 
+                                            name="pd9adate" class="form-control"
+                                                  #pd9adate="ngModel"
+                                            [(ngModel)]="pd9arawmaterialObj['pd9adate']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Batch No.</label>
+                                            <input type="text" required class="form-control"
+                                                placeholder="Enter Batch No." name="batchno"   #batchno="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['batchno']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12"  >
+                                        <div class="form-group">
+                                            <label>PD9 Reference</label>
+                                            <select class="form-control" name="referenceno"
+                                            #referenceno="ngModel" [(ngModel)]="pd9arawmaterialObj['referenceno']">
+                                                <option value="">Select</option>
+                                                <option *ngFor="let item of refno" value="{{item.id}}">
+                                                    {{item.referenceNumber}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                       
+                                     </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Details of Molasses/Base Used" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Brix Percent</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Brix Percent" name="brixpercent"  #brixpercent="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['brixpercent']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Total Percent Invert Sugar (As Reducing Sugar)</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total Percent Invert Sugar (As Reducing Sugar)"
+                                                name="totalpercentinversugar"  #totalpercentinversugar="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['totalpercentinversugar']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Percent (Fermentable Sugar)</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Percent (Fermentable Sugar)" name="percentfermentable"
+                                                #percentfermentable="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['percentfermentable']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Percent (Unfermentable Sugar)</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Percent (Unfermentable Sugar)"
+                                                name="percentunfermentable"
+                                                #percentunfermentable="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['percentunfermentable']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>P.H.</label>
+                                            <input type="number" required class="form-control" placeholder="Enter P.H."
+                                            name="ph"
+                                            #ph="ngModel"
+                                            [(ngModel)]="pd9arawmaterialObj['ph']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Molasses/Base Used in Yeast Vessels" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Vessel No.</label>
+                                            <select class="form-control"   name="vesselno"
+                                            #vesselno="ngModel"
+                                            [(ngModel)]="pd9arawmaterialObj['vesselno']">
+                                                <option>Select</option>
+                                                <option value='1'>1</option>
+                                            </select>
+                                            <!-- <input type="number" required class="form-control" placeholder="Enter Vessel No."> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity of (In Quintal) of Molasses Base Used</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity of (In Quintal) of Molasses Base Used"
+                                                name="qualityofmolases"
+                                                #qualityofmolases="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['qualityofmolases']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity (In Quintal ) of Fermentable Sugar</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity (In Quintal ) of Fermentable Sugar"
+                                                name="quantityoffermentable"
+                                                #quantityoffermentable="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['quantityoffermentable']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Molasses/Base Used in Prefermenters" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Tank No.</label>
+                                            <select class="form-control"    name="tankno"
+                                            #tankno="ngModel"
+                                            [(ngModel)]="pd9arawmaterialObj['tankno']">
+                                                <option>Select</option>
+                                                <option *ngFor="let data of tanktypeListData" value={{data.id}}>{{data.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity of (In Quintal) of Molasses Base Used</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity of (In Quintal) of Molasses Base Used"
+                                                name="performerquantityofmolasesbasedused"
+                                                #performerquantityofmolasesbasedused="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['performerquantityofmolasesbasedused']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity (In Quintal ) of Fermentable Sugar</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity (In Quintal ) of Fermentable Sugar"
+                                                name="performerquantityoffermentablesugar"
+                                                #performerquantityoffermentablesugar="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['performerquantityoffermentablesugar']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Molasses/Base Used in Main Fermenters" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Tank No.</label>
+                                            <select class="form-control" name="fermenterstankno"
+                                            #fermenterstankno="ngModel"
+                                            [(ngModel)]="pd9arawmaterialObj['fermenterstankno']">
+                                                <option>Select</option>
+                                                <option *ngFor="let data of tanktypeListData" value={{data.id}}>{{data.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity of (In Quintal) of Molasses Base Used</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity of (In Quintal) of Molasses Base Used"
+                                                name="quantityofmolasesbaseused"
+                                                #quantityofmolasesbaseused="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['quantityofmolasesbaseused']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity (In Quintal ) of Fermentable Sugar</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity (In Quintal ) of Fermentable Sugar"
+                                                name="quantityoffermentablesugarinqutl"
+                                                #quantityoffermentablesugarinqutl="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['quantityoffermentablesugarinqutl']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Total Quantity (In Quintal) of Molasses Base Used</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total Quantity (In Quintal) of Molasses Base Used"
+                                                name="totalquantitymolasesbasedused"
+                                                #totalquantitymolasesbasedused="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['totalquantitymolasesbasedused']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Quantity (In Quintal ) of Fermentable Sugar</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Quantity (In Quintal ) of Fermentable Sugar"
+                                                name="quantityoffermentablesugarinquintal"
+                                                #quantityoffermentablesugarinquintal="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['quantityoffermentablesugarinquintal']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Total qunatity of Molasses Base Used </label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total qunatity of Molasses Base Used "
+                                                name="totalqunatityofmolasesbaseused"
+                                                #totalqunatityofmolasesbaseused="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['totalqunatityofmolasesbaseused']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Total qunatity (In qntls) of Fermentable </label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total qunatity (In qntls) of  Fermentable "
+                                                name="totalqunatityoffermentable"
+                                                #totalqunatityoffermentable="ngModel"
+                                                [(ngModel)]="pd9arawmaterialObj['totalqunatityoffermentable']" >
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </app-card>
+                            <div class="row">
+                            <div class="col-12 text-content text-right">
+                                <!-- <button type="button" class="btn btn-primary mb-2">Save &amp; Next</button> -->
+                                   <div class="col-12 text-right mb-4">
+                            <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewPd9a()">Preview</button>
+                            <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData('INITIATED','sectionII')">Save
+                                as draft</button>
+                            <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveData('SUBMITTED','sectionII')">Submit&Next</button>
+                            <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backtoHome()">Cancel</button>
+                         </div>
+                              </div>
+                            </div>
+
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+               
+                <ngb-tab title="Section II"  id='sectionII'  >
+                    <ng-template ngbTabContent>
+                        <form  #pd9ascntwo="ngForm" autocomplete="off">
+                        <app-card cardTitle="When Set Up" class="list-panel add-panel">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date"  class="form-control" placeholder="Enter "
+                                        name="pd9date"   #pd9date="ngModel"
+                                        [(ngModel)]="pd9asectionII['pd9date']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="pd9time"   #pd9time="ngModel"
+                                        [(ngModel)]="pd9asectionII['pd9time']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Batch No.</label>
+                                        <input type="text" required class="form-control" placeholder="Enter Batch No."
+                                        name="batchno"   #batchno="ngModel"
+                                        [(ngModel)]="pd9asectionII['batchno']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Wash Back No.</label>
+                                        <input type="text" required class="form-control"
+                                            placeholder="Enter Wash Back No."
+                                            name="watchbackno"   #watchbackno="ngModel"
+                                            [(ngModel)]="pd9asectionII['watchbackno']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Dip</label>
+                                        <input type="number" required class="form-control" placeholder="Enter Dip"
+                                        name="dip"   #dip="ngModel"
+                                        [(ngModel)]="pd9asectionII['dip']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Quantity in B.L. Wort Token</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Quantity in B.L. Wort Token"
+                                            name="quantityinblworttoken"   #quantityinblworttoken="ngModel"
+                                            [(ngModel)]="pd9asectionII['quantityinblworttoken']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Qunatity in Quintals of Molasses Base Used</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Qunatity in Quintals of Molasses Base Used"
+                                            name="quantityinquintalsofmolasis"   #quantityinquintalsofmolasis="ngModel"
+                                            [(ngModel)]="pd9asectionII['quantityinquintalsofmolasis']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Qunatity in Quintals of Fermentable Sugar</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Qunatity in Quintals of Fermentable Sugar"
+                                            name="quantityinquintalsoffermentablesugar"   #quantityinquintalsoffermentablesugar="ngModel"
+                                            [(ngModel)]="pd9asectionII['quantityinquintalsoffermentablesugar']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>PH of Wort</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter PH of Wort"
+                                            name="phofwort"   #phofwort="ngModel"
+                                            [(ngModel)]="pd9asectionII['phofwort']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Initial Gravity</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Initial Gravity" 
+                                            name="initialgravity"   #initialgravity="ngModel"
+                                            [(ngModel)]="pd9asectionII['initialgravity']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>When Ready</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter When Ready"        name="whenready"   #whenready="ngModel"
+                                            [(ngModel)]="pd9asectionII['whenready']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Date </label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="dateofpd9a"   #dateofpd9a="ngModel"
+                                        [(ngModel)]="pd9asectionII['dateofpd9a']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Time </label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="pd9atime"   #pd9atime="ngModel"
+                                        [(ngModel)]="pd9asectionII['pd9atime']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Quantity in (B.L.) of Wash</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Quantity in (B.L.) of Wash"
+                                            name="quantityinblofwash"   #quantityinblofwash="ngModel"
+                                            [(ngModel)]="pd9asectionII['quantityinblofwash']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Final Gravity</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Final Gravity"
+                                            name="finalgravity"   #finalgravity="ngModel"
+                                            [(ngModel)]="pd9asectionII['finalgravity']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Attenuation figures</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Attenuation figures"
+                                            name="attenuationfigure"   #attenuationfigure="ngModel"
+                                            [(ngModel)]="pd9asectionII['attenuationfigure']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>PH of Wash</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter PH of Wash"
+                                            name="phofwash"   #phofwash="ngModel"
+                                            [(ngModel)]="pd9asectionII['phofwash']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Duration of fermentation</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Duration of fermentation"
+                                            name="durationoffermentation"   #durationoffermentation="ngModel"
+                                            [(ngModel)]="pd9asectionII['durationoffermentation']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol Present In Wash </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol Present In Wash "
+                                            name="alcoholpresentinwash"   #alcoholpresentinwash="ngModel"
+                                            [(ngModel)]="pd9asectionII['alcoholpresentinwash']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol percent in the Wash by (distillation)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol percent in the Wash by (distillation)"
+                                            name="alcoholpercentinwashbydistillation"   #alcoholpercentinwashbydistillation="ngModel"
+                                            [(ngModel)]="pd9asectionII['alcoholpercentinwashbydistillation']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol content (ltr 100 percent)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol content (ltr 100 percent)"
+                                            name="alcoholcontentltr"   #alcoholcontentltr="ngModel"
+                                            [(ngModel)]="pd9asectionII['alcoholcontentltr']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>For each tank separately</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter For each tank separately"
+                                            name="foreachtankseparately"   #foreachtankseparately="ngModel"
+                                            [(ngModel)]="pd9asectionII['foreachtankseparately']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Total of all tanks in the batch</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Total of all tanks in the batch"
+                                            name="totalofalltanksinthebatch"   #totalofalltanksinthebatch="ngModel"
+                                            [(ngModel)]="pd9asectionII['totalofalltanksinthebatch']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Percent unfermented Sugar in Wash</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Percent unfermented Sugar in Wash"
+                                            name="percentunfermentedsugarinwash"   #percentunfermentedsugarinwash="ngModel"
+                                            [(ngModel)]="pd9asectionII['percentunfermentedsugarinwash']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                        <app-card cardTitle="Total unfermented Sugar in Wash (In Quintals)"
+                            class="list-panel add-panel">
+                            <div class="row">
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fermentable Sugar</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fermentable Sugar"
+                                            name="fermentablesugar"   #fermentablesugar="ngModel"
+                                            [(ngModel)]="pd9asectionII['fermentablesugar']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>UnFermentable Sugar</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter UnFermentable Sugar"
+                                            name="unfermentablesugar"   #unfermentablesugar="ngModel"
+                                            [(ngModel)]="pd9asectionII['unfermentablesugar']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Theoretical fermentation yield of alcohol Litnes 100 Percent ( In
+                                            Quintal) Fermentabe invet Sugar 5.2995</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Theoretical fermentation yield of alcohol Litnes 100 Percent ( In Quintal) Fermentabe invet Sugar 5.2995"
+                                            name="theoreticalfermentationyield"   #theoreticalfermentationyield="ngModel"
+                                            [(ngModel)]="pd9asectionII['theoreticalfermentationyield']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Fermatation Loss (Persent inTheoretical Fermitation Yield )</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fermatation Loss (Persent inTheoretical Fermitation Yield )"
+                                            name="fermatationloss"   #fermatationloss="ngModel"
+                                            [(ngModel)]="pd9asectionII['fermatationloss']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Due To UnFermentable Fermentable Sugar in the Wash</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Due To UnFermentable Fermentable  Sugar in the Wash"
+                                            name="duetounfermentablefermentablesugarinwash"   #duetounfermentablefermentablesugarinwash="ngModel"
+                                            [(ngModel)]="pd9asectionII['duetounfermentablefermentablesugarinwash']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Unknown Losses </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Unknown Losses "
+                                            name="unknowlosses"   #unknowlosses="ngModel"
+                                            [(ngModel)]="pd9asectionII['unknowlosses']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Total Losses </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Total Losses "
+                                            name="totallosses"   #totallosses="ngModel"
+                                            [(ngModel)]="pd9asectionII['totallosses']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Total Loss (In BL) Col 2 minus Col 18(b)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Total Loss (In BL) Col 2 minus Col 18(b)"
+                                            name="totallosscolminuscoll"   #totallosscolminuscoll="ngModel"
+                                            [(ngModel)]="pd9asectionII['totallosscolminuscoll']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Fermentation Effiency Percent Col 18*100/Col 2</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fermentation Effiency Percent Col 18*100/Col 2"
+                                            name="fermentationeffiencypercentcol"   #fermentationeffiencypercentcol="ngModel"
+                                            [(ngModel)]="pd9asectionII['fermentationeffiencypercentcol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Sludge Discarded (In BG)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Sludge Discarded (In BG)"
+                                            name="sludgediscarded"   #sludgediscarded="ngModel"
+                                            [(ngModel)]="pd9asectionII['sludgediscarded']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol (Litres In 100 Percent) Loss with Sludge </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol (Litres In 100 Percent) Loss with Sludge "
+                                            name="alcohollosswithsludge"   #alcohollosswithsludge="ngModel"
+                                            [(ngModel)]="pd9asectionII['alcohollosswithsludge']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Wash (In BL) Sent to Stills </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Wash (In BL) Sent to Stills "
+                                            name="washsenttostills"   #washsenttostills="ngModel"
+                                            [(ngModel)]="pd9asectionII['washsenttostills']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                        <div class="row">
+                        <div class="col-12 text-content text-right">
+                            <button type="button" class="btn btn-primary mb-2" (click)="savesectionII('SUBMITTED', 'sectionIII')" >Save &amp; Next</button>
+                            <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button>
+                          </div>
+                        </div>
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Section III"   id='sectionIII'>
+                    <ng-template ngbTabContent>
+                        <form  #pd9ascnthree="ngForm" autocomplete="off">
+                        <app-card cardTitle="Details" class="list-panel add-panel">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Date </label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="sectionthreedate"   #sectionthreedate="ngModel"
+                                        [(ngModel)]="pd9asectionIII['sectionthreedate']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Details of Wash Taken</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Details of Wash Taken"
+                                            name="detailsofwashtaken"   #detailsofwashtaken="ngModel"
+                                            [(ngModel)]="pd9asectionIII['detailsofwashtaken']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Batch No.</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Batch No."
+                                            name="sectionthreebatchno"   #sectionthreebatchno="ngModel"
+                                            [(ngModel)]="pd9asectionIII['sectionthreebatchno']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Wash back No.</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Wash back No."
+                                            name="sectionthreewashbackno"   #sectionthreewashbackno="ngModel"
+                                            [(ngModel)]="pd9asectionIII['sectionthreewashbackno']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Totale Fermentation Yield less alcohol with sludge in ltrs.100 percent
+                                            minus col. 24 and col. 17 of section II</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Totale Fermentation Yield less alcohol with sludge in ltrs.100 percent minus col. 24 and col. 17 of section II"
+                                            name="sectiontherretotalefermentationyields"   #sectiontherretotalefermentationyields="ngModel"
+                                            [(ngModel)]="pd9asectionIII['sectiontherretotalefermentationyields']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Distillation Time</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Distillation Time"
+                                            name="distillationtime"   #distillationtime="ngModel"
+                                            [(ngModel)]="pd9asectionIII['distillationtime']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>From</label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="sectionfrom"   #sectionfrom="ngModel"
+                                        [(ngModel)]="pd9asectionIII['sectionfrom']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>To</label>
+                                        <input type="date" required class="form-control" placeholder="Enter "
+                                        name="sectionto"   #sectionto="ngModel"
+                                        [(ngModel)]="pd9asectionIII['sectionto']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Period hours- Mts</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Period hours- Mts"
+                                            name="periodhoursmts"   #periodhoursmts="ngModel"
+                                            [(ngModel)]="pd9asectionIII['periodhoursmts']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                        <app-card cardTitle="Production" class="list-panel add-panel">
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                    <h6> Dehydrated alcohol</h6>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Quantity In BL</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Quantity In BL"
+                                                    name="quantityinbl"   #quantityinbl="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['quantityinbl']">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Strength</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Strength"
+                                                    name="productionstrength"   #productionstrength="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['productionstrength']">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6> Rectified spirit above 50 O P </h6>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Quantity in B.L.</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Quantity in B.L."
+                                                    name="rectifiedabovequantityinbl"   #rectifiedabovequantityinbl="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['rectifiedabovequantityinbl']">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Strength</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Strength"
+                                                    name="rectifiedspritstrength"   #rectifiedspritstrength="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['rectifiedspritstrength']">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6>Potable spirit below 50 O P </h6>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Quantity in B.L.</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Quantity in B.L."
+                                                    name="potablequantityinbl"   #potablequantityinbl="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['potablequantityinbl']">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Strength</label>
+                                                <input type="number" required class="form-control" placeholder="Enter Strength"
+                                                name="potablestrength"   #potablestrength="ngModel"
+                                                [(ngModel)]="pd9asectionIII['potablestrength']">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6>Other Spirit </h6>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Quantity in B.L.</label>
+                                                <input type="number" required class="form-control"
+                                                    placeholder="Enter Quantity in B.L."
+                                                    name="otherspiritquantitybl"   #otherspiritquantitybl="ngModel"
+                                                    [(ngModel)]="pd9asectionIII['otherspiritquantitybl']">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Strength</label>
+                                                <input type="number" required class="form-control" placeholder="Enter Strength"
+                                                name="otherstrength"   #otherstrength="ngModel"
+                                                [(ngModel)]="pd9asectionIII['otherstrength']">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                               
+                                
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6>Equivalent volume in LP Gells </h6>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Dehydrated alcohol</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Dehydrated alcohol"
+                                            name="equibalentdehydratedalcohol"   #equibalentdehydratedalcohol="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equibalentdehydratedalcohol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Rectified spirit </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Rectified spirit "
+                                            name="rectifiedsprit"   #rectifiedsprit="ngModel"
+                                            [(ngModel)]="pd9asectionIII['rectifiedsprit']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Potable spirit </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Potable spirit  "
+                                            name="equalentpotablesprit"   #equalentpotablesprit="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equalentpotablesprit']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Other spirit</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Other spirit"
+                                            name="equalentotherspirit"   #equalentotherspirit="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equalentotherspirit']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Total</label>
+                                        <input type="number" required class="form-control" placeholder="Enter Total"
+                                        name="productionequalenttotal"   #productionequalenttotal="ngModel"
+                                        [(ngModel)]="pd9asectionIII['productionequalenttotal']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                        <app-card cardTitle="Equivalent volume in Gells in 100 Percent alcohol"
+                            class="list-panel add-panel">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Dehydrated alcohol</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Dehydrated alcohol"
+                                            name="equivalentdeydratedalcohol"   #equivalentdeydratedalcohol="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equivalentdeydratedalcohol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Rectified Alcohol</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Rectified Alcohol"
+                                            name="equvalentrectifiedalocalsectionthree"   #equvalentrectifiedalocalsectionthree="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equvalentrectifiedalocalsectionthree']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Protable Spirtit</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Protable Spirtit"
+                                            name="equvalentprotablespirtit"   #equvalentprotablespirtit="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equvalentprotablespirtit']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Other spirit</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Other spirit"
+                                            name="equvalentvolumeotherspirit"   #equvalentvolumeotherspirit="ngModel"
+                                            [(ngModel)]="pd9asectionIII['equvalentvolumeotherspirit']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Total </label>
+                                        <input type="number" required class="form-control" placeholder="Enter Total "
+                                        name="equvalenttotal"   #equvalenttotal="ngModel"
+                                        [(ngModel)]="pd9asectionIII['equvalenttotal']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fuel Oil (In)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fuel Oil (In)"
+                                            name="fueloilin"   #fueloilin="ngModel"
+                                            [(ngModel)]="pd9asectionIII['fueloilin']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Rate Of Production Alcophol 100 Percent/ Per Hour</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Rate Of Production Alcophol 100 Percent/ Per Hour"
+                                            name="rateofproducationalcopholpercent"   #rateofproducationalcopholpercent="ngModel"
+                                            [(ngModel)]="pd9asectionIII['rateofproducationalcopholpercent']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Recovery Of Alcohol 100 Percent Per Quintals Of Fermentable Sugar</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Recovery Of Alcohol 100 Percent Per Quintals Of Fermentable Sugar"
+                                            name="recoveryofalcoholpercentperquintals"   #recoveryofalcoholpercentperquintals="ngModel"
+                                            [(ngModel)]="pd9asectionIII['recoveryofalcoholpercentperquintals']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Recovery Of Alcohole 100 Percent Per Quintials base </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Recovery Of Alcohole 100 Percent Per Quintials base "
+                                            name="recoveryofalcoholpercentperquintalsbase"   #recoveryofalcoholpercentperquintalsbase="ngModel"
+                                            [(ngModel)]="pd9asectionIII['recoveryofalcoholpercentperquintalsbase']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Distillation Loss (Col 2(c) minus Col 4 (f)(v)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Distillation Loss (Col 2(c) minus Col 4 (f)(v)"
+                                            name="distillationlossminuscol"   #distillationlossminuscol="ngModel"
+                                            [(ngModel)]="pd9asectionIII['distillationlossminuscol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Distillation Efficiency Percent Col 4(f)(V)=100/Col 2(c)</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Distillation Efficiency Percent Col 4(f)(V)=100/Col 2(c)"
+                                            name="distillationefficiencypercentcol"   #distillationefficiencypercentcol="ngModel"
+                                            [(ngModel)]="pd9asectionIII['distillationefficiencypercentcol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Total Loss Fermentation Loss Plus Distillation Loss Col 21 Of Section II
+                                            minus Col 4(f)(v) of Section II</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Total Loss Fermentation Loss Plus Distillation Loss Col 21 Of Section II minus Col 4(f)(v) of Section II"
+                                            name="totallossfermentationlossplus"   #totallossfermentationlossplus="ngModel"
+                                            [(ngModel)]="pd9asectionIII['totallossfermentationlossplus']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                        <app-card cardTitle="Overall Efficiency Percent " class="list-panel add-panel">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Col 4(f)(v) of Section III/ Col 21 of Section II</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Col 4(f)(v) of Section III/ Col 21 of Section II"
+                                            name="colofsectionthreecol"   #colofsectionthreecol="ngModel"
+                                            [(ngModel)]="pd9asectionIII['colofsectionthreecol']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Spent wash Analysis</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Spent wash Analysis"
+                                            name="spenctwashanalysis"   #spenctwashanalysis="ngModel"
+                                            [(ngModel)]="pd9asectionIII['spenctwashanalysis']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol Percent </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol Percent  "
+                                            name="alcoholpercentinsectionthree"   #alcoholpercentinsectionthree="ngModel"
+                                            [(ngModel)]="pd9asectionIII['alcoholpercentinsectionthree']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fuel Oil Percent</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fuel Oil Percent"
+                                            name="fueloilpercent"   #fueloilpercent="ngModel"
+                                            [(ngModel)]="pd9asectionIII['fueloilpercent']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Spent Less Percent </label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Spent Less Percent "
+                                            name="spentlesspercent"   #spentlesspercent="ngModel"
+                                            [(ngModel)]="pd9asectionIII['spentlesspercent']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Alcohol Percent</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Alcohol Percent"
+                                            name="overallallcoholpercent"   #overallallcoholpercent="ngModel"
+                                            [(ngModel)]="pd9asectionIII['overallallcoholpercent']">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Fuel Percen</label>
+                                        <input type="number" required class="form-control"
+                                            placeholder="Enter Fuel Percen"
+                                            name="overallallfuelpercen"   #overallallfuelpercen="ngModel"
+                                            [(ngModel)]="pd9asectionIII['overallallfuelpercen']">
+                                    </div>
+                                </div>
+                            </div>
+                        </app-card>
+                    </form>
+                        <div class="row">
+                        <div class="col-12 text-content text-right">
+                            <button type="button" class="btn btn-primary mb-2" (click)="savesectionIII('SUBMITTED', 'sectionIV')">Save &amp; Next</button>
+                            <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button>
+                          </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Section IV" id='sectionIV' >
+                    <ng-template ngbTabContent>
+                        <form  #pd9ascnfour="ngForm" autocomplete="off">
+                           <app-card cardTitle="Details " class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Permagnate test time (minutes) quality of alcohol produced</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter permagnate test time (minutes) quality of alcohol produced"
+                                                name="permagnatetesttimequalityofalochol"   #permagnatetesttimequalityofalochol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['permagnatetesttimequalityofalochol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Date </label>
+                                            <input type="date" required class="form-control"
+                                                placeholder="Enter Date "
+                                                name="permagnatdatesectionfour"   #permagnatdatesectionfour="ngModel"
+                                                [(ngModel)]="pd9asectionIV['permagnatdatesectionfour']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Batch No</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Batch No"
+                                                name="batchnosectionfour"   #batchnosectionfour="ngModel"
+                                                [(ngModel)]="pd9asectionIV['batchnosectionfour']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Strength of alcohol " class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="strengthofdehydratedalcohol"   #strengthofdehydratedalcohol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['strengthofdehydratedalcohol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="stringthofrectifiedsprit"   #stringthofrectifiedsprit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['stringthofrectifiedsprit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="strengthofpotablespirit"   #strengthofpotablespirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['strengthofpotablespirit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Permagnate reaction time (minutes)" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="permagnatedehydratedalcohol"   #permagnatedehydratedalcohol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['permagnatedehydratedalcohol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="permagnaterectifiedspirit"   #permagnaterectifiedspirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['permagnaterectifiedspirit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="permagnatepotablesporit"   #permagnatepotablesporit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['permagnatepotablesporit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Alcohol 100%" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="alcoholdeyratedalochol"   #alcoholdeyratedalochol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['alcoholdeyratedalochol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="alocholdeydratedalcohol2"   #alocholdeydratedalcohol2="ngModel"
+                                                [(ngModel)]="pd9asectionIV['alocholdeydratedalcohol2']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="alcoholpotablesprit"   #alcoholpotablesprit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['alcoholpotablesprit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Higher alcohol %" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="higheralcoholdehydratedalcohol"   #higheralcoholdehydratedalcohol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['higheralcoholdehydratedalcohol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="higherrectifiedspirit"   #higherrectifiedspirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['higherrectifiedspirit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="higherpotablespirit"   #higherpotablespirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['higherpotablespirit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            
+                            <app-card cardTitle="Acidity/acid" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="aciddehyratedalochol"   #aciddehyratedalochol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['aciddehyratedalochol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="acidrectifiedspirit"   #acidrectifiedspirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['acidrectifiedspirit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="acidpotablespirit"   #acidpotablespirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['acidpotablespirit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Esthers" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="esthersdehyratedalcohol"   #esthersdehyratedalcohol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['esthersdehyratedalcohol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="esthersrectifiedspirit"   #esthersrectifiedspirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['esthersrectifiedspirit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="estierpotablespirit"   #estierpotablespirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['estierpotablespirit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            <app-card cardTitle="Furtural" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Dehydrated alcohol</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Dehydrated alcohol"
+                                                name="furturaldehydratedalcohol"   #furturaldehydratedalcohol="ngModel"
+                                                [(ngModel)]="pd9asectionIV['furturaldehydratedalcohol']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Rectified spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Rectified spirit"
+                                                name="furturalrectifiedspirit"   #furturalrectifiedspirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['furturalrectifiedspirit']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Potable spirit</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Potable spirit"
+                                                name="futuralpotablespirit"   #futuralpotablespirit="ngModel"
+                                                [(ngModel)]="pd9asectionIV['futuralpotablespirit']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            </form>
+                            <div class="row">
+                            <div class="col-12 text-content text-right">
+                                <button type="button" class="btn btn-primary ml-2" (click)="savesectionIV('SUBMITTED', 'sectionV')">Save &amp; Next</button>
+                                <button type="button" class="btn btn-secondary  ml-2 mb-2">Back</button>
+                              </div>
+                            </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Section IV id='sectionV' Production & Loss Account" >
+                    <ng-template ngbTabContent>
+                        <form  #pd9asecfive="ngForm" autocomplete="off">
+                           <app-card cardTitle="Details" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Date </label>
+                                            <input type="date" required class="form-control"
+                                                placeholder="Enter Date "
+                                                name="lossAccountDate"   #lossAccountDate="ngModel"
+                                                [(ngModel)]="pd9asectionV['lossAccountDate']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Batch No</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Batch No"
+                                                name="lossAccountBatchNo"   #lossAccountBatchNo="ngModel"
+                                                [(ngModel)]="pd9asectionV['lossAccountBatchNo']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Fermentation loss %</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Fermentation loss %"
+                                                name="fermentationLoss"   #fermentationLoss="ngModel"
+                                                [(ngModel)]="pd9asectionV['fermentationLoss']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Distillation loss %</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Distillation loss %"
+                                                name="lossAccountDistillationLoss"   #lossAccountDistillationLoss="ngModel"
+                                                [(ngModel)]="pd9asectionV['lossAccountDistillationLoss']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Alcohol loss with sludge % col.24</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Alcohol loss with sludge % col.24"
+                                                name="alcoholLossWithSludge"   #alcoholLossWithSludge="ngModel"
+                                                [(ngModel)]="pd9asectionV['alcoholLossWithSludge']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Total loss %</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total loss %"
+                                                name="totalLoss"   #totalLoss="ngModel"
+                                                [(ngModel)]="pd9asectionV['totalLoss']">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Total efficiency</label>
+                                            <input type="number" required class="form-control"
+                                                placeholder="Enter Total efficiency"
+                                                name="totalEfficiency"   #totalEfficiency="ngModel"
+                                                [(ngModel)]="pd9asectionV['totalEfficiency']">
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                        </form>
+                            <div class="row">
+                            <div class="col-12 text-content text-right mb-0">
+                                <button type="button" class="btn btn-info mb-2">Preview</button>
+                                <button type="button" class="btn btn-primary ml-2 mb-2" (click)="savesectionV('INITIATED', 'sectionIV')">Save</button>
+                                <button type="button" class="btn btn-success ml-2 mb-2" (click)="savesectionV('SUBMITTED', 'sectionIV')">Submit</button>
+                                <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button>
+                                        <button type="button" class="btn btn-secondary ml-2 mb-2">Cancel</button>
+                              </div>
+                            </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+
+    <!-- Enter PD 9A Raw Material Used & Recovery Summary Details -->
+   
+    <!-- <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewPd9a()">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData('INITIATED',sectionname)">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveData('SUBMITTED', sectionname)">Submit&Next</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backtoHome()">Cancel</button>
+    </div> -->
+    <!-- <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered">
+        <div class="app-modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+          <h6 class="text-secondary text-center">Are you sure you want to Submit?</h6>
+        </div>
+        <div class="app-modal-footer">
+          <button type="button" class="btn btn-primary" (click)="saveData(pd9aForm,'SUBMITTED')">Yes</button>
+          <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal" (click)="exampleModalCenter.hide()">No</button>
+        </div>
+      </app-ui-modal> -->
+</div>

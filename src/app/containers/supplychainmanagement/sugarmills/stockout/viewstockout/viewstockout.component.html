@@ -1,0 +1,96 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} Stock Out</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']"
+        >Supply Chain Management</a></li>
+        <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Sugar Mill</a></li>
+        <li class="breadcrumb-item"><a href="javascript:"  [routerLink]="['/supplychainmanagement/sugarmills/stockout/list']"
+        >Stock Out</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Details of Selected Stock Out" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Date<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.date}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Gate Pass No<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.gatepassno}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Tank<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.tank}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Available Quantity<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.availableqty}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Dispatched Quantity<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.dispatchedqty}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Dispatched Mode<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.dispatchmode}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Distillery Name/Internal Transfer<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.distilleryname}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="Details of Stock Out Create" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Created By<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.created_by}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Created On<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.created_on}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Modified By<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.modified_by}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Modified On<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockoutObj.modified_on}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success" *ngIf="addedit !== 'View'">Print</button> &nbsp;
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/sugarmills/stockout/list">Back</button>
+    </div>
+</div>

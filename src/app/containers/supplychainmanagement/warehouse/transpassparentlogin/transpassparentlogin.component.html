@@ -1,0 +1,129 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'bondWarehouse.transportpassgen.transportpassparentlogin' | translate}}
+    <button class="btn btn-success custom_add_button pull-right" 
+    routerLink="/supplychainmanagement/warehouse/transpassparentlogin/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> {{ 'bondWarehouse.transportpassgen.addtransportpass' | translate}}</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.transportpassgen.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.transportpassgen.transportpassparentlogin' | translate}}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.add' | translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Brandreg="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.search' | translate}}" class="search-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.transportpassgen.issuedate' | translate}}</label>
+                            <input type="date"  class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.TransportPassCancellation.transportpassdate' | translate}}</label>
+                            <input type="date"  class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.transportpassgen.transportpassno' | translate}}</label>
+                            <input type="text"  class="form-control" placeholder="{{ 'bondWarehouse.transportpassgen.entertransportpassno' | translate}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate}}</label>
+                            <select class="form-control">
+                                <option>{{ 'master.common.select' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">{{ 'master.common.search' | translate}}</button>
+                        <button type="submit" class="btn btn-secondary">{{ 'master.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row">
+<div class="col-xl-12">
+    <form #boxingForm="ngForm" autocomplete="off">
+        <app-card cardTitle="{{ 'bondWarehouse.bottlingproductionplan.branddetails' | translate}}" class="list-panel add-panel">
+            <div class="row">    
+                <div class="col-12">
+                    <div class="table-responsive mt-2">
+                        <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                            [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                            (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                        </app-mat-normal-table>
+                       <!-- <table class="table table-bordered ">
+                          <thead>
+                             <tr>
+                                <th>#</th>
+                                <th>Issued Date</th>
+                                <th>Transport Pass Date</th>
+                                <th>Transport Pass No</th>
+                                <th>No. of Permits</th>
+                                <th>Total No.of Cases</th>
+                                <th>Total No.of Bottles</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                             </tr>
+                          </thead>
+                          <tbody> 
+                             <tr>
+                                <td>1</td>
+                                <td class="text-center">20-Apr-2021</td>
+                                <td class="text-center">21-Apr-2021</td>
+                                <td class="text-center">TP1122</td>
+                                <td class="text-left">10</td>
+                                <td class="text-left">10</td>
+                                <td class="text-left">100</td>
+                                <td class="text-center">
+                                    <span
+                                        class="badge m-r-5 badge-light-success">Dispatched</span>
+                                </td>
+                               
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" 
+                                    routerLink="/supplychainmanagement/warehouse/transpassparentlogin/view">
+                                        <i class="feather icon-eye"></i></button>
+    
+                                    <button class="btn btn-icon btn-secondary mr-2" type="button" 
+                                    routerLink="/supplychainmanagement/warehouse/transpassparentlogin/add">
+                                            <i class="feather icon-edit-2"></i></button>
+    
+                                </td>
+                             </tr>
+                          </tbody>
+                       </table> -->
+                    </div>
+                 </div>                            
+                
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'master.common.download' | translate}}</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">PDF</a>
+                                <a class="dropdown-item" href="javascript:">JPG</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </app-card>        
+    </form>
+</div>
+</div>

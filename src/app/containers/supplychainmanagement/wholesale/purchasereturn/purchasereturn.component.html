@@ -1,0 +1,132 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Purchase Return
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Purchase Return</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required class="form-control"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Gate Pass No</label>
+                         <input type="text" id="gatepassno" required class="form-control" 
+                         placeholder="Enter Gate Pass No" />
+                     </div>
+                 </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Unit Name</label>
+                        <select id="unitname" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <select id="brand" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Return Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Details of Purchase Return" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive">
+                 <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Indent Number</th>
+                             <th>Gate Pass No</th>
+                             <th>Unit Name</th>
+                             <th>Brand</th>
+                             <th>Size</th>
+                             <th>Reason for Return</th>
+                             <th>Breakage</th>
+                             <th>Damage Type</th>
+                             <th>Expiry Date</th>
+                             <th>Return Status</th>
+                             <!-- <th>Status</th> -->
+                             <th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let data of purchasereturnlist; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.IndentNo}}</td>
+                            <td class="text-left">{{data.GatePassNo}}</td>
+                            <td class="text-left">{{data.UnitName}}</td>
+                            <td class="text-left">{{data.Brand}}</td>
+                            <td class="text-left">{{data.Size}}</td>
+                            <td class="text-left">{{data.ReasonForReturn}}</td>
+                            <td>{{data.Breakage}}</td>
+                            <td class="text-left">{{data.DamageType}}</td>
+                            <td>{{data.ExpDate}}</td>
+                             <td class="text-center">
+                                <span class="badge badge-light-success" *ngIf="!data.status">Approved</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/wholesale/purchasereturn/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                    
+                            </td>
+                        </tr>
+                         
+                     </tbody>
+                 </table>
+             </div>
+             <div class="row mt-4">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 

@@ -1,0 +1,204 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.fortnightlystatement.addfortnightlystatement' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a
+            href="javascript:">{{ 'sugarmill.fortnightlystatement.fortnightlystatement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.add' | translate }}</a></li>
+</ul>
+<div class="row">
+    <form #sampleDetailForm="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.fortnightlystatement.enterdetails' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.date' | translate }}</label>
+                            <input type="date" class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.date' | translate }}" name="date"
+                                #date="ngModel" required [(ngModel)]="mf7regobj['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.date' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.storagetanks' | translate }}</label>
+                            <input type="text" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.storagetanks' | translate }}"
+                                name="noOfStorageTanks" #noOfStorageTanks="ngModel"
+                                [(ngModel)]="mf7regobj['noOfStorageTanks']">
+                            <div *ngIf="noOfStorageTanks.invalid && (noOfStorageTanks.dirty || noOfStorageTanks.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfStorageTanks?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.storagetanks' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }}</label>
+                            <input type="number" required class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }}" name="qtyOfMolassesTanks"
+                                #qtyOfMolassesTanks="ngModel" [(ngModel)]="mf7regobj['qtyOfMolassesTanks']">
+                            <div *ngIf="qtyOfMolassesTanks.invalid && (qtyOfMolassesTanks.dirty || qtyOfMolassesTanks.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="qtyOfMolassesTanks?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.molasstankcms' | translate }}</label>
+                            <input type="number" required class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.molasstankcms' | translate }}" name="depthOfMolassesTanksCms"
+                                #depthOfMolassesTanksCms="ngModel" [(ngModel)]="mf7regobj['depthOfMolassesTanksCms']">
+                            <div *ngIf="depthOfMolassesTanksCms.invalid && (depthOfMolassesTanksCms.dirty || depthOfMolassesTanksCms.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="depthOfMolassesTanksCms?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.molasstankcms' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.dipincms' | translate }}</label>
+                            <input type="number" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.dipincms' | translate }}"
+                                name="dipInCms" #dipInCms="ngModel" [(ngModel)]="mf7regobj['dipInCms']">
+                            <div *ngIf="dipInCms.invalid && (dipInCms.dirty || dipInCms.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dipInCms?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.dipincms' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.fortnightlystatement.details' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.tankno' | translate }}</label>
+                            <input type="text" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.tankno' | translate }}"
+                                name="tankNumber" #tankNumber="ngModel" [(ngModel)]="mf7regobj['tankNumber']">
+                            <div *ngIf="tankNumber.invalid && (tankNumber.dirty || tankNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.tankno' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.brix' | translate }}</label>
+                            <input type="text" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.brix' | translate }}"
+                                name="brixPercentage" #brixPercentage="ngModel"
+                                [(ngModel)]="mf7regobj['brixPercentage']">
+                            <div *ngIf="brixPercentage.invalid && (brixPercentage.dirty || brixPercentage.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brixPercentage?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.brix' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.fortnightlystatement.totalreducing' | translate }} % "
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.toplayer' | translate }}</label>
+                            <input type="number" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.toplayer' | translate }}"
+                                name="ttlReducedSugarTopLayer" #ttlReducedSugarTopLayer="ngModel"
+                                [(ngModel)]="mf7regobj['ttlReducedSugarTopLayer']">
+                            <div *ngIf="ttlReducedSugarTopLayer.invalid && (ttlReducedSugarTopLayer.dirty || ttlReducedSugarTopLayer.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="ttlReducedSugarTopLayer?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.toplayer' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.middlelayer' | translate }}</label>
+                            <input type="number" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.middlelayer' | translate }}"
+                                name="ttlReducedSugarMiddleLayer" #ttlReducedSugarMiddleLayer="ngModel"
+                                [(ngModel)]="mf7regobj['ttlReducedSugarMiddleLayer']">
+                            <div *ngIf="ttlReducedSugarMiddleLayer.invalid && (ttlReducedSugarMiddleLayer.dirty || ttlReducedSugarMiddleLayer.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="ttlReducedSugarMiddleLayer?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.middlelayer' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.bottomlayer' | translate }}</label>
+                            <input type="number" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.bottomlayer' | translate }}"
+                                name="ttlReducedSugarBottomLayer" #ttlReducedSugarBottomLayer="ngModel"
+                                [(ngModel)]="mf7regobj['ttlReducedSugarBottomLayer']">
+                            <div *ngIf="ttlReducedSugarBottomLayer.invalid && (ttlReducedSugarBottomLayer.dirty || ttlReducedSugarBottomLayer.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="ttlReducedSugarBottomLayer?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.bottomlayer' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.fortnightlystatement.analyst' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.analyst' | translate }}</label>
+                            <input type="text" required class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.analyst' | translate }}"
+                                name="nameOfAnalyst" #nameOfAnalyst="ngModel" [(ngModel)]="mf7regobj['nameOfAnalyst']">
+                            <div *ngIf="nameOfAnalyst.invalid && (nameOfAnalyst.dirty || nameOfAnalyst.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfAnalyst?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.fortnightlystatement.analyst' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-12 mt-2">
+                        <div class="form-group mt-4">
+                            <div class="custom-control custom-checkbox">
+                                <div>
+                                    <input class="custom-control-input" id="customChec" type="checkbox"
+                                        name="declaration" #declaration="ngModel"
+                                        [(ngModel)]="mf7regobj['declaration']">
+                                    <label class="custom-control-label"
+                                        for="customChec">{{ 'sugarmill.fortnightlystatement.accept' | translate }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(sampleDetailForm)">{{ 'sugarmill.inspectionreport.preview' | translate }}</button>
+            <button type="submit" class="btn btn-warning ml-2 mb-2"
+                (click)="submitsave(sampleDetailForm, 'Saved as Draft')">{{ 'sugarmill.inspectionreport.saveasdraft' | translate }}</button>
+            <button type="submit" class="btn btn-primary ml-2 mb-2"
+                (click)="submitsave(sampleDetailForm, 'Submitted')">{{ 'sugarmill.common.submit' | translate }}</button>
+            <button type="submit" class="btn btn-secondary ml-2 mb-2"
+                routerLink="/supplychainmanagement/sugarmills/mf7register/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+        </div>
+    </form>
+</div>

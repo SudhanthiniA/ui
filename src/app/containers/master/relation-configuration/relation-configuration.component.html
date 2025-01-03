@@ -1,0 +1,51 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Mapping Configuration
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/master/mappingconfiguration/add"
+        type="submit">
+        <i class="feather icon-plus mr-2"></i> Add
+    </button>
+</h5>
+
+<!-- <div class="row m-b-10">
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/master/mappingconfiguration/add"
+        type="submit">
+        <i class="feather icon-plus mr-2"></i> Add
+    </button>
+</div> -->
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Mapping Configuration</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <input type="text" class="form-control" placeholder="Code / Description"
+                            (keyup)="search($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Mapping Configuration" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" [totalCount]="totalCount"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

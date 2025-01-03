@@ -1,0 +1,111 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} PD-22 (Register of issuance of spirits against advance deposit)</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/list">Dispatch</a></li>
+
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/list">PD-22 (Register of issuance of spirits against advance deposit)</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">PD-22 (Register of issuance of spirits against advance deposit) {{addedit}}</a></li> -->
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #stockForm="ngForm" autocomplete = "off">
+            <app-card cardTitle="{{addedit}} of PD-22 (Register of issuance of spirits against advance deposit)" class="list-panel view-panel">
+                <div class="row">
+                   
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        
+                            <label  class="w-100 view-label">Date <span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                      <span>{{Pd22.date | date:"dd/MM/yyyy"}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       
+                            <label  class="w-100 view-label">District Name<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           
+                                <span>{{Pd22.districtName?.name}}</span>
+                      
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       
+                            <label  class="w-100 view-label">25 % V/V (B.L) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           
+                                <span>{{Pd22.bl1}}</span>
+                       
+                    </div>
+               
+
+                <!-- <h6 class="pb-4 m-0">Molasses Received on date</h6> -->
+                
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">28 % V/V (B.L)<span class="float-right">:</span></label>
+                    </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <span>{{Pd22.bl2}}</span>
+                    </div>
+                 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">36 % V/V (B.L) <span class="float-right">:</span></label>
+                    </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                                <span>{{Pd22.bl3}}</span>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">42.8 % V/V (B.L) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                            <span>{{Pd22.bl4}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Excise Duty <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                      
+                        <span>{{Pd22.exciseDuty}}</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Excise Duty Deposited <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  
+                    <span>{{Pd22.exciseDutyDeposit}}</span>
+            </div>
+            
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label  class="w-100 view-label">Remaining Amount <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+              
+                <span>{{Pd22.remainingAmount}}</span>
+        </div>
+        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label  class="w-100 view-label">Remarks <span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+          
+            <span>{{Pd22.remarks}}</span>
+    </div> -->
+                    </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success mr-2" *ngIf="addedit !== 'View'">Print</button>
+        <button type="button" class="btn btn-secondary"
+        routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/add"
+        *ngIf="addedit !== 'View'">Back</button>
+   
+    <button type="button" class="btn btn-secondary" *ngIf="addedit == 'View'"
+        routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/list">Back</button>
+</div>
+</div>

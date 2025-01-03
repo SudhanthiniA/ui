@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/molassesrecieptandconsumption/list']">{{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesrecieptForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}
+            {{ 'sugarmill.common.details' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.steeltankno' | translate }}</label>
+                            <select id="tank" name="tankId" #tankId="ngModel" [(ngModel)]="molassisrecieptobj['tankId']"
+                                required class="form-control">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                {{ 'sugarmill.molassesreciept.steeltankno' | translate }} {{ 'sugarmill.common.isrequired' | translate }}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.openingbalance' | translate }}(Qtl)</label>
+                            <input type="number" id="openingBalance" name="openingBalance" #openingBalance="ngModel"
+                                [(ngModel)]="molassisrecieptobj['openingBalance']" class="form-control" required
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.openingbalance' | translate }}">
+                                <div class="text-primary">{{inWords(molassisrecieptobj['openingBalance'], 'only')}}</div>
+                            <div *ngIf="openingBalance.invalid && (openingBalance.dirty || openingBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="openingBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesreciept.openingbalance' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.recipetbalance' | translate }}(Qtl)</label>
+                            <input type="number" id="reciptBalance" name="reciptBalance" #reciptBalance="ngModel"
+                                [(ngModel)]="molassisrecieptobj['reciptBalance']" class="form-control" required
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.recipetbalance' | translate }}">
+                                <div class="text-primary">{{inWords(molassisrecieptobj['reciptBalance'], 'only')}}</div>
+                            <div *ngIf="reciptBalance.invalid && (reciptBalance.dirty || reciptBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reciptBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesreciept.recipetbalance' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.consumption' | translate }}(Qtl)</label>
+                            <input type="number" id="consumption" name="consumption" #consumption="ngModel"
+                                [(ngModel)]="molassisrecieptobj['consumption']" class="form-control" required
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.consumption' | translate }}">
+                                <div class="text-primary">{{inWords(molassisrecieptobj['consumption'], 'only')}}</div>
+                            <div *ngIf="consumption.invalid && (consumption.dirty || consumption.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="consumption?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesreciept.consumption' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.bookbalance' | translate }}(Qtl)</label>
+                            <input type="number" id="bookBalance" name="bookBalance" #bookBalance="ngModel"
+                                [(ngModel)]="molassisrecieptobj['bookBalance']" class="form-control" required
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.bookbalance' | translate }}">
+                                <div class="text-primary">{{inWords(molassisrecieptobj['bookBalance'], 'only')}}</div>
+                            <div *ngIf="bookBalance.invalid && (bookBalance.dirty || bookBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="bookBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesreciept.bookbalance' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.actualbalance' | translate }}(Qtl)</label>
+                            <input type="number" id="actualBalance" name="actualBalance" #actualBalance="ngModel"
+                                [(ngModel)]="molassisrecieptobj['actualBalance']" class="form-control" required
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesreciept.actualbalance' | translate }}">
+                                <div class="text-primary">{{inWords(molassisrecieptobj['actualBalance'], 'only')}}</div>
+                            <div *ngIf="actualBalance.invalid && (actualBalance.dirty || actualBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="actualBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesreciept.actualbalance' | translate }} {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2"
+            (click)="previewlicencetype(molassesrecieptForm)">{{ 'sugarmill.common.preview' | translate }}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="addlicencetype(molassesrecieptForm,'draft')">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addlicencetype(molassesrecieptForm,'submit')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            (click)="navigateLicenceTypeList()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+    </div>

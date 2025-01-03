@@ -1,0 +1,659 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">{{'helpdesk.emailrequest.emailrequest'|translate}}
+</h5>
+
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.emailrequest.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.emailrequest.emailrequests'|translate}}</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col dashboard_bg7">
+        <app-card [hidHeader]="true" cardClass="comp-card">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>{{'helpdesk.emailrequest.ticketclosed'|translate}}</span>
+              <h3 class="mt-2">30,00,000</h3>
+              <span>2019-2020</span>
+              <i class="fas fa-glass-whiskey"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    <div class="col dashboard_bg1">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>{{'helpdesk.emailrequest.ticketcreated'|translate}}</span>
+            <h3 class="mt-2">30,00,000</h3>
+            <span>2019-2020</span>
+            <i class="fas fa-glass-whiskey"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col dashboard_bg1">
+        <app-card [hidHeader]="true" cardClass="comp-card">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>{{'helpdesk.emailrequest.ticketesclated'|translate}}</span>
+              <h3 class="mt-2">30,00,000</h3>
+              <span>2019-2020</span>
+              <i class="fas fa-glass-whiskey"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    <div class="col dashboard_bg3">
+      <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>{{'helpdesk.emailrequest.emailpending'|translate}}</span>
+            <h3 class="mt-2">17,00,000</h3>
+            <span>2019-2020</span>
+            <i class="feather icon-corner-up-right"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col dashboard_bg4">
+      <app-card [hidHeader]="true" cardClass="comp-card"
+        routerLink="/supplychainmanagement/sugarmills/stockavailability/list">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>{{'helpdesk.emailrequest.ticketsassigned'|translate}}</span>
+            <h3 class="mt-2">13,00,000</h3>
+            <span>2019-2020</span>
+            <i class="fas fa-coins"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Email Requests" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.emailrequest.fromdate'|translate}}</label>
+                        <input type="date" class="form-control" placeholder="" name="fromdate" #fromdate="ngModel" [(ngModel)]="createObj['fromdate']" autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.emailrequest.todate'|translate}}</label>
+                        <input type="date" class="form-control" placeholder="" name="todate" #todate="ngModel" [(ngModel)]="createObj['todate']" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-12 mt-4 text-md-left text-lg-left text-right">
+                    <div class="form-group">
+                        <button class="btn btn-primary m-r-5" (click)="searchrequest();"> {{'helpdesk.common.search'|translate}}</button>
+                        <button class="btn btn-secondary" (click)="clearfilter();">{{'helpdesk.common.clear'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+</div>
+       
+        <div class="col-xl-12">
+        <form #treasuryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="List Page" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <ngb-tabset type="pills" class="mb-2">
+                            <ngb-tab title="List of Email Requests">
+                                <ng-template ngbTabContent>
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <div class="table-responsive mt-2 mb-2">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Date</th>
+                                                            <th>Sender email ID</th>
+                                                            <th>Subject</th>
+                                                            <th>Email Content </th>
+                                                            <th>Action </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                25-08-2021
+                                                            </td>
+                                                            <td class="text-left">
+                                                                Email ID
+                                                            </td>
+                                                            <td>
+                                                                Subject
+                                                            </td>
+                                                            <td>
+                                                               Content
+                                                            </td>
+                                                            <td>
+                                                              <button class="btn btn-icon btn-primary" type="button"
+                                                              routerLink="">
+                                                              <i class="feather icon-eye"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab title="Created Tickets">
+                                <ng-template ngbTabContent>
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <div class="table-responsive mt-2 mb-2">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Ticket ID</th>
+                                                            <th>Issue from</th>
+                                                            <th>Category Name</th>
+                                                            <th>Sub Category Name</th>
+                                                            <th>License Type</th>
+                                                            <th>License No</th>
+                                                            <th>Priority</th>
+                                                            <th>Created Date</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                              2021141
+                                                            </td>
+                                                            <td class="text-left">
+                                                              Email
+                                                            </td>
+                                                            <td>
+                                                              Incident 
+                                                            </td>
+                                                            <td>
+                                                              Incidentsub
+                                                            </td>
+                                                            <td>
+                                                              FL1
+                                                            </td>
+                                                            <td>
+                                                              WL27679112
+                                                            </td>
+                                                            <td>
+                                                              P1
+                                                            </td>
+                                                            <td>
+                                                              23-07-2021  14:18
+                                                            </td>
+                                                            <td>
+                                                              <span class="badge badge-light-success">Resolved</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                        </ngb-tabset>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    </div> -->
+
+
+<h5 class="m-b-10 ng-star-inserted">User Management
+</h5>
+
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">User Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Department User Report</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Username</label>
+                       <select class="form-control">
+                         <option>Select</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Employee ID</label>
+                       <select class="form-control">
+                         <option>Select</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Role </label>
+                       <select class="form-control">
+                         <option>Select</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Designation </label>
+                       <select class="form-control">
+                         <option>Select</option>
+                       </select>
+                    </div>
+                </div>
+               
+               
+               
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-2 text-right">
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+        <div class="col-xl-12">
+            <form #treasuryForm="ngForm" autocomplete="off">
+                <app-card cardTitle="Department User Report List" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-12">
+                            <ngb-tabset type="pills" class="mb-2">
+                                <ngb-tab title="Department User Role Lists">
+                                    <ng-template ngbTabContent>
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+                                                <div class="table-responsive mt-2 mb-2">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S. No</th>
+                                                                <th>Date</th>
+                                                                <th>Employee ID</th>
+                                                                <th>Username</th>
+                                                                <th>Email</th>
+                                                                <th>Mobile No</th>
+                                                                <th>Role</th>
+                                                                <th>Designation</th>
+                                                                <th>Status</th>
+                                                                <th>Action </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>20-2-21</td>
+                                                                <td class="text-center">
+                                                                    KKH876
+                                                                 </td>
+                                                                <td>Sunil</td>
+                                                               <td>sunil@gmail.com</td>
+                                                               <td>9866223390</td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>20-2-21</td>
+                                                                <td class="text-center">
+                                                                    KKH876
+                                                                 </td>
+                                                                <td>Sunil</td>
+                                                               <td>sunil@gmail.com</td>
+                                                               <td>9866223390</td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>20-2-21</td>
+                                                                <td class="text-center">
+                                                                    KKH876
+                                                                 </td>
+                                                                <td>Sunil</td>
+                                                               <td>sunil@gmail.com</td>
+                                                               <td>9866223390</td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>20-2-21</td>
+                                                                <td class="text-center">
+                                                                    KKH876
+                                                                 </td>
+                                                                <td>Sunil</td>
+                                                               <td>sunil@gmail.com</td>
+                                                               <td>9866223390</td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td>20-2-21</td>
+                                                                <td class="text-center">
+                                                                    KKH876
+                                                                 </td>
+                                                                <td>Sunil</td>
+                                                               <td>sunil@gmail.com</td>
+                                                               <td>9866223390</td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                                 <div class="row">
+               <div class="col-xl-4" >
+                   <div ngbDropdown>
+                   <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                   <div ngbDropdownMenu>
+                     <a class="dropdown-item"
+                     href="javascript:">Excel</a>
+                 <a class="dropdown-item"
+                     href="javascript:">PDF</a>
+                 <a class="dropdown-item"  href="javascript:">CSV</a>
+                   </div>
+               </div>
+               </div>
+              
+           </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-tab>
+                                <ngb-tab title="Backup User Role Lists">
+                                    <ng-template ngbTabContent>
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+                                                <div class="table-responsive mt-2 mb-2">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S. No</th>
+                                                                <th>Date</th>
+                                                                <th>Username</th>
+                                                                <th>Employee ID</th>
+                                                                <th>Backup Role</th>
+                                                                <th>To Whom</th>
+                                                                <th>Start Date & Time</th>
+                                                                <th>End Date & Time</th>
+                                                                <th>Approval Screen Name</th>
+                                                                <!-- <th>Status</th>
+                                                                <th>Action </th> -->
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>20-2-21</td>
+                                                                <td>Sunil</td>
+                                                                <td class="text-center">
+                                                                   KKH876
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    Sudeep Chand
+                                                                 </td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    12/07/2021 12:22
+                                                                </td>
+                                                                <td>
+                                                                    19/07/2021 12:21
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                <!-- </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>20-2-21</td>
+                                                                <td>Sunil</td>
+                                                                <td class="text-center">
+                                                                   KKH876
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    Sudeep Chand
+                                                                 </td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    12/07/2021 12:22
+                                                                </td>
+                                                                <td>
+                                                                    19/07/2021 12:21
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                <!-- </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>20-2-21</td>
+                                                                <td>Sunil</td>
+                                                                <td class="text-center">
+                                                                   KKH876
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    Sudeep Chand
+                                                                 </td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    12/07/2021 12:22
+                                                                </td>
+                                                                <td>
+                                                                    19/07/2021 12:21
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                <!-- </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>20-2-21</td>
+                                                                <td>Sunil</td>
+                                                                <td class="text-center">
+                                                                   KKH876
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    Sudeep Chand
+                                                                 </td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    12/07/2021 12:22
+                                                                </td>
+                                                                <td>
+                                                                    19/07/2021 12:21
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                <!-- </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td> -->
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td>20-2-21</td>
+                                                                <td>Sunil</td>
+                                                                <td class="text-center">
+                                                                   KKH876
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    Sudeep Chand
+                                                                 </td>
+                                                                <td>
+                                                                    AEC, EI
+                                                                </td>
+                                                                <td>
+                                                                    12/07/2021 12:22
+                                                                </td>
+                                                                <td>
+                                                                    19/07/2021 12:21
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                <!-- </td>
+<td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                                                                <td>
+                                                                    <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                                </td> -->
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-4" >
+                                                        <div ngbDropdown>
+                                                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                                                        <div ngbDropdownMenu>
+                                                          <a class="dropdown-item"
+                                                          href="javascript:">Excel</a>
+                                                      <a class="dropdown-item"
+                                                          href="javascript:">PDF</a>
+                                                      <a class="dropdown-item"  href="javascript:">CSV</a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-xl-8 text-right">
+<button class="btn btn-secondary">Back</button>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-tab>
+                            </ngb-tabset>
+                        </div>
+
+                    </div>
+
+                </app-card>
+            </form>
+        </div>
+    </div>
+</div>

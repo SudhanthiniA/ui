@@ -1,0 +1,64 @@
+<app-card cardTitle="{{'licenseMgnt.listofBoardMembersTitle' | translate}}" class="list-panel view-panel">
+    <div class="table-responsive" *ngIf="boardMemberList">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>{{'licenseMgnt.sNoText' | translate}}</th>
+                    <th>{{'licenseMgnt.designationText' | translate}}</th>
+                    <th>{{'licenseMgnt.fullNameText' | translate}}</th>
+                    <th>{{'licenseMgnt.addrText' | translate}} </th>
+                    <th>{{'licenseMgnt.mobileNoText' | translate}}</th>
+                    <th>{{'licenseMgnt.aadhaarNumberText' | translate}}</th>
+                    <th>{{'licenseMgnt.viewAadharText' | translate}}</th>
+                    <th>{{'licenseMgnt.panNumberText' | translate}}</th>
+                    <th>{{'licenseMgnt.viewPANText' | translate}}</th>
+                    <th>{{'licenseMgnt.viewCharacterCertificateText' | translate}}</th>
+                    <th>{{'licenseMgnt.viewAffaidavitText' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let memEle of boardMemberList; let i=index" id="row{{i}}">
+                    <td>{{i+1}}</td>
+                    <td>{{memEle.designation ? memEle.designation : '-'}}</td>
+                    <td>{{memEle.fullName ? memEle.fullName : '-'}}</td>
+                    <td>{{memEle.address ? memEle.address : '-'}}</td>
+                    <td>{{memEle.mobile ? memEle.mobile : '-'}}</td>
+                    <td>{{memEle.aadharNumber ? memEle.aadharNumber : '-'}}</td>
+                    <td>
+                        <ng-container *ngIf="isFileExists(licenseConsts.FN_SM_AADHAR, memEle) as fileObj">
+                            {{fileObj.documentName}}
+                            <button class="btn btn-primary mb-2" (click)="downloadDocument(licenseConsts.FN_SM_AADHAR, memEle)">
+                                <i class="feather icon-eye"></i>
+                            </button>
+                        </ng-container>
+                    </td>
+                    <td>{{memEle.panNumber ? memEle.panNumber : '-'}}</td>
+                    <td>
+                        <ng-container *ngIf="isFileExists(licenseConsts.FN_SM_PAN, memEle) as fileObj">
+                            {{fileObj.documentName}}
+                            <button class="btn btn-primary mb-2" (click)="downloadDocument(licenseConsts.FN_SM_PAN, memEle)">
+                                <i class="feather icon-eye"></i>
+                            </button>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="isFileExists(licenseConsts.FN_SM_CHARAC_CERT, memEle) as fileObj">
+                            {{fileObj.documentName}}
+                            <button class="btn btn-primary mb-2" (click)="downloadDocument(licenseConsts.FN_SM_CHARAC_CERT, memEle)">
+                                <i class="feather icon-eye"></i>
+                            </button>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="isFileExists(licenseConsts.FN_SM_AFFADAVAIT, memEle) as fileObj">
+                            {{fileObj.documentName}}
+                            <button class="btn btn-primary mb-2" (click)="downloadDocument(licenseConsts.FN_SM_AFFADAVAIT, memEle)">
+                                <i class="feather icon-eye"></i>
+                            </button>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</app-card>

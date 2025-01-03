@@ -1,0 +1,171 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.state' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.state' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.state' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #stateForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle=" {{ 'master.common.enterbelowdetails' | translate }}  {{ 'master.common.state' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="andatory">{{ 'master.state.statecode' | translate }}</label>
+                            <input type="text" 
+                                disabled class="form-control" minlength="3" maxlength="10" 
+                                value="SM1122">
+                            
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.shortname' | translate }}</label>
+                            <input type="text" [(ngModel)]="stateObject.shortName" name="shortName" #shortName="ngModel"
+                                required class="form-control" minlength="2" maxlength="15" pattern="^[a-zA-Z]+$"
+                                placeholder=" {{ 'master.common.enter' | translate }}  {{ 'master.common.shortname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="shortName.invalid && (shortName.dirty || shortName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="shortName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }} {{ 'master.common.isrequired' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.minlength && !shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }} {{ 'master.country.isminimum' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Please enter characters only
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.state.statename' | translate }}</label>
+                            <input type="text" [(ngModel)]="stateObject.stateName" name="stateName" #stateName="ngModel"
+                                required class="form-control" minlength="3" maxlength="25"
+                                placeholder=" {{ 'master.common.enter' | translate }}  {{ 'master.state.statename' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="stateName.invalid && (stateName.dirty || stateName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="stateName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.state.statename' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="stateName?.errors?.maxlength && !stateName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.state.statename' | translate }} {{ 'master.common.ismaximum' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="stateName?.errors?.minlength && !stateName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.state.statename' | translate }} {{ 'master.common.isminimum' | translate
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Union Territory</label>
+                            <div class="segment">
+                                <input type="radio" name="tab" id="tab1" checked>
+                                <label class="" for="tab1">Yes</label>
+                                <input type="radio" name="tab" id="tab2">
+                                <label class="" for="tab2">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.country' | translate }}</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Population(In Lakhs)</label>
+                           <input type="number" class="form-control" required placeholder="Enter Population(In Lakhs)">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.country' | translate }}</label>
+                        [class.singleselect]="countryDropDownSettings.singleSelection" 
+                            <ng-multiselect-dropdown [data]="countryData" [placeholder]="'Select'"
+                                [(ngModel)]="stateObject.countryObj" [settings]="countryDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='countryRequired' (onDropDownClose)="onDropDownClose()"
+                                [ngClass]="countryDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!countryRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="stateObject.active" name="active" #active="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="stateObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!stateObject.active">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="stateObject.active">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.state.isunionterretorry' | translate }}</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="unionTerritory" name="unionTerritory"
+                                    #unionTerritory="ngModel" [(ngModel)]="stateObject['unionTerritory']"
+                                    class="custom-control-input" id="customswitch"
+                                    [attr.checked]="stateObject.unionterretorry ? '' : null">
+                                <label class="custom-control-label" for="customswitch"
+                                    *ngIf="!stateObject.unionTerritory">{{ 'master.common.no' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch"
+                                    *ngIf="stateObject.unionTerritory">{{ 'master.common.yes' | translate }}</label>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addstate(stateForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/state/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

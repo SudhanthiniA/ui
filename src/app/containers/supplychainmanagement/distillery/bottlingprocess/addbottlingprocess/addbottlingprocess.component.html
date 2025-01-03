@@ -1,0 +1,280 @@
+<h5 class="m-b-10 ng-star-inserted">Add Bottling Process</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> Bottling Process</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #bottlingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Bottling Process" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="date" name="date" class="form-control" #date="ngModel" disabled
+                                [(ngModel)]="bottlingObj['date']" value={{bottlingObj.date}}>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Production Plan ID </label>
+                            <select class="form-control" id="planId" name="planId" #planId="ngModel"
+                                (click)="getBottlingPlan($event.target.value)" [(ngModel)]="bottlingObj['planId']">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bottlingPlanList" value={{item.id}}>
+                                    {{item.applicationNumber}}</option>
+                            </select>
+                            <!-- <input type="text" id="planId" name="planId" #planId="ngModel"
+                                (keyup)="getBottlingPlan($event.target.value)" [(ngModel)]="bottlingObj['planId']"
+                                required class="form-control" placeholder="Enter Production Plan ID" minlength="6"
+                                pattern="{{pattern.codePattern}}"> -->
+                                <div *ngIf="planId.invalid && (planId.dirty || planId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="planId?.errors?.required"><i class="fa fa-times"></i>
+                                    Production Plan ID is required </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type of Liquor</label>
+                            <input type="text" id="liquorType" name="liquorType" #liquorType="ngModel"
+                                [(ngModel)]="bottlingObj['liquorType']" disabled required class="form-control"
+                                placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Under</label>
+                            <input type="text" id="bottlingUnder" name="bottlingUnder" #bottlingUnder="ngModel"
+                                [(ngModel)]="bottlingObj['bottlingUnder']" disabled class="form-control"
+                                placeholder="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No.</label>
+                            <!-- <select class="form-control" id="licenseNo" name="licenseNo" #licenseNo="ngModel"
+                                [(ngModel)]="bottlingObj['licenseNo']">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of licenseTypes" value={{item.LicenseNumber}}>
+                                    {{item.LicenseNumber}}</option>
+                            </select> -->
+                            <input type="text" id="licenseNo" name="licenseNo" #licenseNo="ngModel"
+                                [(ngModel)]="bottlingObj['licenseNo']" disabled required class="form-control"
+                                placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Vat</label>
+                            <input type="text" id="bottlingVat" name="bottlingVat" #bottlingVat="ngModel"
+                                [(ngModel)]="bottlingObj['bottlingVat']" disabled class="form-control"
+                                placeholder="150">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity of BL</label>
+                            <input type="text" id="quantityBl" name="quantityBl" #quantityBl="ngModel"
+                                [(ngModel)]="bottlingObj['quantityBl']" disabled required class="form-control"
+                                placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength</label>
+                            <input type="text" id="strength" name="strength" #strength="ngModel"
+                                [(ngModel)]="bottlingObj['strength']" disabled required class="form-control"
+                                placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <input type="text" id="brandName" name="brandName" #brandName="ngModel"
+                                [(ngModel)]="bottlingObj['brandName']" disabled required class="form-control"
+                                placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size</label>
+                            <input type="text" id="size" name="size" #size="ngModel" [(ngModel)]="bottlingObj['size']"
+                                disabled required class="form-control" placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Planned Bottles</label>
+                            <input type="text" id="plannedBottles" name="plannedBottles" #plannedBottles="ngModel"
+                                [(ngModel)]="bottlingObj['plannedBottles']" disabled required class="form-control"
+                                placeholder="500">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No.of Cases</label>
+                            <input type="text" id="noOfCases" name="noOfCases" #noOfCases="ngModel"
+                                [(ngModel)]="bottlingObj['noOfCases']" disabled required class="form-control"
+                                placeholder="500">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #bottlingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Bottling Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Scanned Details</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>No of Bottles Filled</th>
+                                        <td>
+                                            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12"> -->
+                                            <div class="form-group">
+                                                <input type="text" class="form-control text-center" id="noOfBottle"
+                                                    name="noOfBottle" #noOfBottle="ngModel" required
+                                                    [(ngModel)]="bottlingObj['noOfBottle']">
+                                                <div *ngIf="noOfBottle.invalid && (noOfBottle.dirty || noOfBottle.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="noOfBottle?.errors?.required"><i
+                                                            class="fa fa-times"></i>
+                                                        No of Bottles Filled is Required </div>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bottled BL</th>
+                                        <td>{{bottlingObj?.quantityBottled}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No of Cases Scanned</th>
+                                        <td>{{bottlingObj?.casesScanned}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No of Bottles Scanned</th>
+                                        <td>{{bottlingObj?.bottledScanned}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles Filled</label>
+                            <input type="text" required class="form-control"
+                                placeholder="Enter the No of Bottles Filled">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottled BL</label>
+                            <input type="text" disabled required class="form-control" placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Cases Scanned</label>
+                            <input type="number" required class="form-control" placeholder="Enter No of Cases Scanned">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles Scanned</label>
+                            <input type="number" required class="form-control" placeholder="Enter No of Bottles Scanned">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage of Bottling BL</label>
+                            <input type="number" id="wastageBottlingBl" name="wastageBottlingBl"
+                                #wastageBottlingBl="ngModel" [(ngModel)]="bottlingObj['wastageBottlingBl']"
+                                class="form-control" (keyup)=calAl() required maxlength="8"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                placeholder="Enter the Wastage of Bottling BL">
+                            <div *ngIf="wastageBottlingBl.invalid && (wastageBottlingBl.dirty || wastageBottlingBl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="wastageBottlingBl?.errors?.required"><i class="fa fa-times"></i>
+                                    Wastage of Bottling BL is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage of bottling AL</label>
+                            <input type="text" id="bottlingAl" name="bottlingAl" #bottlingAl="ngModel"
+                                [(ngModel)]="bottlingObj['bottlingAl']" disabled class="form-control" placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance quantity of Blend</label>
+                            <input type="number" id="balanceBlend" name="balanceBlend" #balanceBlend="ngModel" required
+                                class="form-control" [(ngModel)]="bottlingObj['balanceBlend']" maxlength="8"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <div *ngIf="balanceBlend.invalid && (balanceBlend.dirty || balanceBlend.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="balanceBlend?.errors?.required"><i class="fa fa-times"></i>
+                                    Balance quantity of Blend is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Fee</label>
+                            <input type="text" id="bottlingFee" name="bottlingFee" #bottlingFee="ngModel"
+                                [(ngModel)]="bottlingObj['bottlingFee']" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cowcess + Track N Trace Fee</label>
+                            <input type="text" id="fees" name="fees" #fees="ngModel" [(ngModel)]="bottlingObj['fees']"
+                                disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Calculated Duty</label>
+                            <input type="text" id="calculatedDuty" name="calculatedDuty" #calculatedDuty="ngModel"
+                                [(ngModel)]="bottlingObj['calculatedDuty']" disabled class="form-control"
+                                placeholder="">
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="navigatePreview(bottlingForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addBottling(bottlingForm, 'DRAFT')">Save as
+            Draft</button>
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2">Validate</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addBottling(bottlingForm, 'INITIATE')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="navigateBottlingList()">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.applicationtype.applicanttype' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/applicationtype/list">
+            {{ 'master.applicationtype.applicanttype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #applicanttypeForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Applicant Type" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Applicant Type Code </label>
+                            <input type="text" disabled  class="form-control" value="ATMC001">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Applicant Type Name </label>
+                            <input type="text" required class="form-control" placeholder="Enter Applicant Type Name">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.applicationtype.applicantcode' | translate }}</label>
+                            <input type="text" [(ngModel)]="applicanttypeObj.code" name="code" #code="ngModel"
+                                minlength="3" maxlength="10" required class="form-control"
+                                placeholder="{{ 'master.applicationtype.enterapplicantcode' | translate }}"
+                                (keypress)="removeFirstSpace($event)" pattern="{{patternService.codePattern}}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.applicationtype.applicantcodeisrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.applicationtype.applicanttype' | translate }}</label>
+                            <input type="text" [(ngModel)]="applicanttypeObj.type" name="type" #type="ngModel"
+                                minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.applicationtype.enterapplicanttype' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="type.invalid && (type.dirty || type.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="type?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.applicationtype.applicanttypeisrequired' | translate }}
+                                </div>
+                                <div *ngIf="type?.errors?.minlength && !type?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="applicanttypeObj.isActive" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="applicanttypeObj.isActive ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!applicanttypeObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="applicanttypeObj.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addapplicanttype(applicanttypeForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/applicationtype/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

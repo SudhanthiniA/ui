@@ -1,0 +1,301 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Indent Cattle Feed													
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/retail/indentrequestnew/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add  Indent Cattle Feed
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mills</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Indent Cattle Feed</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<!-- <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>Date Range
+            </label>
+            <input type="date" required class="form-control">
+        </div>
+    </div>
+   
+</div> -->
+<div class="row">
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Total No of Indent Raised</span>
+            <h3 class="mt-2">1000</h3>
+            <i class="fas fa-external-link-alt"></i>
+          </div>  
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockin/list">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Total No of Indent Accepted</span>
+            <h3 class="mt-2">800</h3>
+            <i class="fas fa-check"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Total No of Indent Pending</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card bg-danger" routerLink="/supplychainmanagement/sugarmills/stockavailability">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>Total No of Indent Rejected</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fas fa-thumbs-down text-danger"></i>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date"  class="form-control"   />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Number</label>
+                        <input type="text" class="form-control" 
+                            placeholder="Enter Indent Number" />
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+<app-card cardTitle="Indent Cattle Feed List" blockClass="table-border-style" class="list-panel">
+    <ngb-tabset type="pills" #tabSet="ngbTabset" class="mb-2">
+        <ngb-tab title="Pending Requests" id="pending">
+            <!-- Pending Request -->
+            <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Indented Date </th>
+                                        <th>Indent No</th>
+                                        <!-- <th>Unit Type</th>
+                                        <th>Unit Name</th> -->
+                                        <!-- <th>Total No. of Cases</th>
+                                        <th>Total No. of Bottles</th> -->
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> 1 </td>
+                                        <td>20-Jul-2021</td>
+                                        <td>IN56565656</td>
+                                        <!-- <td class="text-left">Wholeale Type</td>
+                                        <td class="text-left">Daurala Sugar Works</td> -->
+                                        <!-- <td class="text-left">10</td>
+                                        <td class="text-left">12</td> -->
+                                        <td>
+                                            <span class="badge badge-light-warning">Pending</span>
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button"
+                                                routerLink="/supplychainmanagement/distillery/brewery/wholesaleindent/view">
+                                                <i class="feather icon-eye"></i></button>
+                                            <!-- <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                <i class="feather icon-edit-2"></i></button> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">PDF</a>
+                                <a class="dropdown-item" href="javascript:">CSV</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Approved Requests" id="approved">
+            <!-- Pending Request -->
+            <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.NO
+                                       </th>
+                                        <th>Indented Date </th>
+                                        <th>Indent No</th>
+                                        <!-- <th>Unit Type</th>
+                                        <th>Unit Name</th> -->
+                                        <!-- <th>Total No. of Cases</th>
+                                        <th>District</th> -->
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                           1
+                                        </td>
+                                        <td>20-Jul-2021</td>
+                                        <td>IN56565653</td>
+                                        <!-- <td class="text-left">Wholeale Type</td>
+                                        <td class="text-left">Daurala Sugar Works</td> -->
+                                        <!-- <td class="text-left">10</td>
+                                        <td class="text-left">Lucknow</td> -->
+                                        <td>
+                                            <span class="badge badge-light-success">Approved</span>
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button"
+                                                routerLink="/supplychainmanagement/distillery/brewery/wholesaleindent/view">
+                                                <i class="feather icon-eye"></i></button>
+                                            <!-- <button class="btn btn-icon btn-success ml-2" type="button">
+                                                <i class="feather icon-check"></i></button> -->
+                                        </td>
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="d-flex">
+                    
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">PDF</a>
+                                <a class="dropdown-item" href="javascript:">CSV</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Closed Requests" id="closed">
+            <!-- Pending Request -->
+            <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-12 my-2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Indented Date </th>
+                                        <th>Indent No</th>
+                                        <!-- <th>Unit Type</th>
+                                        <th>Unit Name</th> -->
+                                        <!-- <th>Total No. of Cases</th>
+                                        <th>Total No. of Bottles</th> -->
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> 1 </td>
+                                        <td>20-Jul-2021</td>
+                                        <td>IN56565656</td>
+                                        <!-- <td class="text-left">Distillery</td>
+                                        <td class="text-left">Daurala Sugar Works</td> -->
+                                        <!-- <td class="text-left">10</td>
+                                        <td class="text-left">100</td> -->
+                                        <td>
+                                            <span class="badge badge-light-success">Closed</span>
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button"
+                                                routerLink="/supplychainmanagement/distillery/brewery/wholesaleindent/view">
+                                                <i class="feather icon-eye"></i></button>
+                                            <!-- <button class="btn btn-icon btn-success ml-2" type="button">
+                                                <i class="feather icon-check"></i></button> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">PDF</a>
+                                <a class="dropdown-item" href="javascript:">CSV</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</app-card>
+    </div>
+</div>

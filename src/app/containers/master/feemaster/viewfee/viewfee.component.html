@@ -1,0 +1,77 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.fee.viewfee' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.fee.feemaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.fee.detailsofselected' | translate }}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.fee.feecode' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.code}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.fee.feename' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.name}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.fee.frequency' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.frequency}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.fee.amount' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.amount}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.status' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.isActive ? 'Active' : 'In-Active'}}
+                </div>
+            </div>
+            <hr class="mt-2" />
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.createdBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.modifiedBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{categoryObj?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+            </div>
+        </app-card>
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary" routerLink="/master/feemaster/list">{{ 'master.common.back' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

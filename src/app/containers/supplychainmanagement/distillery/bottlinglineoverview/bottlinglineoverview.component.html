@@ -1,0 +1,324 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Bottling Line Overview
+    
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Bottling Line Overview</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+   <div class="col-md-4 col-xl-4 col-sm-6 col-12 dashboard_bg1">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center" routerLink="/supplychainmanagement/distillery/tankoverview/list">
+         <div class="col">
+           <span>Total Lines</span>
+           <h3 class="mt-2">1000</h3>
+           <i class="fas fa-glass-whiskey"></i>
+         </div>
+       </div>
+     </app-card>
+   </div>
+   <div class="col-md-4 col-xl-4 col-sm-6 col-12 dashboard_bg4">
+       <app-card [hidHeader]="true" cardClass="comp-card">
+         <div class="row align-items-center" routerLink="/supplychainmanagement/distillery/tankoverview/list">
+           <div class="col">
+             <span>Active Lines</span>
+             <h3 class="mt-2">150</h3>
+             <i class="fas fa-cubes"></i>
+           </div>
+         </div>
+       </app-card>
+     </div>
+     <div class="col-md-4 col-xl-4 col-sm-6 col-12 dashboard_bg3">
+       <app-card [hidHeader]="true" cardClass="comp-card">
+         <div class="row align-items-center" routerLink="/supplychainmanagement/distillery/tankoverview/list">
+           <div class="col">
+             <span>Inactive Lines</span>
+             <h3 class="mt-2">30</h3>
+             <i class="fas fa-box"></i>
+           </div>
+         </div>
+       </app-card>
+     </div>
+     
+ </div> 
+ 
+   <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Request ID</label>
+                         <input type="text" class="form-control" required placeholder="Enter the Request ID">
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Date</label>
+                         <input type="date" class="form-control" required placeholder="">
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Request Type</label>
+                         <select class="form-control">
+                             <option>Select</option>
+                         </select>
+                     </div>
+                 </div>
+ 
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Clear</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ 
+   
+ <div class="row">
+     <div class="col-xl-12">
+       <app-card cardTitle="Bottling Line Overview List" blockClass="table-border-style" class="list-panel stockavailability_tab">
+   
+         <ngb-tabset type="pills" #tabset="ngbTabset"  (tabChange)="beforeChange($event)">
+           <ngb-tab title="Registration Request"  id="TR"  class="mb-3">
+             <ng-template ngbTabContent>
+                 <div class="row">
+                     <div class="col-12 mb-2">
+
+                 <div class="table-responsive">
+                     <table class="table table-bordered text-center mb-0">
+                         <thead>
+                             <tr>
+                                 <th>S.No</th>
+                                 <th>Line Name</th>
+                                 <th>Product Type</th>
+                                 <th>Supply Type</th>
+                                 <th>Status</th>
+                                 <th>Action</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td>1</td>
+                                 <td class="text-left">Line 1</td>
+                                 <td class="text-left">Type 1</td>
+                                 <td class="text-left">Within UP</td>
+                                 <td>
+                                     <span class="badge m-r-5 badge-light-success">Approved</span>
+                                 </td>
+                                 <td class="table-action-column">
+                                     <button class="btn btn-icon btn-primary" type="button"
+                                         routerLink="/supplychainmanagement/distillery/tankregistration/view/:id">
+                                         <i class="feather icon-eye"></i></button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+                </div>
+            </div>
+                 <div class="row">
+                    <div class="col-4">
+                      <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                          type="button">Download</button>
+                        <div ngbDropdownMenu>
+                          <a class="dropdown-item" href="javascript:">Excel</a>
+                          <a class="dropdown-item"  href="javascript:">Pdf</a>
+                          <a class="dropdown-item"  href="javascript:">Jpg</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 text-right p-0">
+                        <img src="assets/images/pagenation.png" />
+                    </div>
+                </div>
+              
+             </ng-template>
+           </ngb-tab>
+ 
+ 
+           <ngb-tab title="Maintenance Request
+           "  id="TT"   class="mb-3" >
+             <ng-template ngbTabContent >
+                <div class="row">
+                    <div class="col-12 mb-2">
+ <div class="table-responsive">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Line Name</th>
+                                <th>Product Type</th>
+                                <th>Supply Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-left">Line 1</td>
+                                <td class="text-left">Type 1</td>
+                                <td class="text-left">Within UP</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Approved</span>
+                                </td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button"
+                                        routerLink="/supplychainmanagement/distillery/tankregistration/view/:id">
+                                        <i class="feather icon-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                      <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                          type="button">Download</button>
+                        <div ngbDropdownMenu>
+                          <a class="dropdown-item" href="javascript:">Excel</a>
+                          <a class="dropdown-item"  href="javascript:">Pdf</a>
+                          <a class="dropdown-item"  href="javascript:">Jpg</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 text-right p-0">
+                        <img src="assets/images/pagenation.png" />
+                    </div>
+                </div>
+               
+             </ng-template>
+           </ngb-tab>
+ 
+           <ngb-tab title="Repair Request
+           " id="TC" class="mb-3">
+             <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-12 mb-2">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Line Name</th>
+                                <th>Product Type</th>
+                                <th>Supply Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-left">Line 1</td>
+                                <td class="text-left">Type 1</td>
+                                <td class="text-left">Within UP</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Approved</span>
+                                </td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button"
+                                        routerLink="/supplychainmanagement/distillery/tankregistration/view/:id">
+                                        <i class="feather icon-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                      <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                          type="button">Download</button>
+                        <div ngbDropdownMenu>
+                          <a class="dropdown-item" href="javascript:">Excel</a>
+                          <a class="dropdown-item"  href="javascript:">Pdf</a>
+                          <a class="dropdown-item"  href="javascript:">Jpg</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 text-right p-0">
+                        <img src="assets/images/pagenation.png" />
+                    </div>
+                </div>
+               
+               
+             </ng-template>
+           </ngb-tab>
+ 
+           <ngb-tab title="Dismantle Request
+           " id="TM" class="mb-3">
+             <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-12 mb-2">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Line Name</th>
+                                <th>Product Type</th>
+                                <th>Supply Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-left">Line 1</td>
+                                <td class="text-left">Type 1</td>
+                                <td class="text-left">Within UP</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Approved</span>
+                                </td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button"
+                                        routerLink="/supplychainmanagement/distillery/tankregistration/view/:id">
+                                        <i class="feather icon-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="col-4">
+                      <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                          type="button">Download</button>
+                        <div ngbDropdownMenu>
+                          <a class="dropdown-item" href="javascript:">Excel</a>
+                          <a class="dropdown-item"  href="javascript:">Pdf</a>
+                          <a class="dropdown-item"  href="javascript:">Jpg</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 text-right p-0">
+                        <img src="assets/images/pagenation.png" />
+                    </div>
+                </div>
+               
+             </ng-template>
+           </ngb-tab>
+ 
+         </ngb-tabset>
+       </app-card>
+     </div>
+   </div>

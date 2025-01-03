@@ -1,0 +1,103 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }} {{ 'master.liquortype.liquortype' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }} {{ 'master.liquortype.liquortype' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.liquortype.liquortype' | translate }} </a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.liquortype.liquortype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to Add Sub Brand" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.liquortype.liquortypecode' | translate }} </label>
+                            <input type="text" class="form-control" placeholder="{{ 'master.common.enter' | translate }} {{ 'master.liquortype.liquortypecode' | translate }} " id="subbrandcode"
+                                name="code" required #code="ngModel"  minlength="3" maxlength="10"
+                                [(ngModel)]="subBrandObj['code']">
+                                <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypecodereq' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypecodemax10' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypecodemin3' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.liquortype.liquortypename' | translate }}</label>
+                            <input type="text" class="form-control" placeholder="Enter Liquor Type Name" id="name"
+                                name="name" required #name="ngModel"
+                                [(ngModel)]="subBrandObj['name']" minlength="3" maxlength="50">
+                                <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypenameisreq' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.maxlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypenamemax50' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.liquortype.liquortypenamemin3' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.quantity' | translate }}</label>
+                            <input type="text" class="form-control" placeholder="Enter Quantity" id="quantity"
+                                name="quantity" required #quantity="ngModel" [(ngModel)]="subBrandObj['quantity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.brand.brandname' | translate }}</label>
+                            <select id="brandName" name="brandName" required #brandName="ngModel"
+                                [(ngModel)]="subBrandObj['brandName']" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let subcat of brandList" value="{{subcat.brandName}}">
+                                    {{subcat.brandName}}</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="subBrandObj['active']" class="custom-control-input" id="customswitch1"
+                                    [attr.checked]="subBrandObj.active ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!subBrandObj.active">Inactive</label>
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="subBrandObj.active">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+       <div class="col-12 text-right mb-4">
+            <button type="submit" class="btn btn-primary mr-2" (click)="addSubbrand(categoryForm)">Save</button>
+            <button type="submit" class="btn btn-secondary"
+                routerLink="/master/sub-brandmaster/list">{{ 'master.common.back' | translate }}</button>
+        </div>
+</div>

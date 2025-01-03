@@ -1,0 +1,1307 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">EventBar License</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">EventBar License</a></li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form [formGroup]="eventbarForm" autocomplete="off">
+
+            <app-card cardTitle="{{'licenseMgnt.applicationforEventBarLicenseTitle' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.financialYearText' | translate}}</label>
+                            <input type="text" class="form-control" disabled formControlName='financialYear'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicationDateText' | translate}}</label>
+                            <input type="date" class="form-control" disabled formControlName='dateOfApplication'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.licenseTypeText' | translate}}</label>
+                            <input type="text" class="form-control" disabled formControlName='licenseType'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="display: block;">
+                        <div class="form-group">
+                            <button (click)="loadDummyFormData()">{{'licenseMgnt.loadDataBtn' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.applicantDetailsTitle' | translate}}" formGroupName="applicantDetails" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.salutationText' | translate}}</label>
+                            <select class="form-control" formControlName='salutationCode'
+                                (change)="onSalutationChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of salutationList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="Salutation" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('salutationCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.firstNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='firstName'
+                                placeholder="{{'licenseMgnt.enterFirstNamePlacehold' | translate}}" maxlength="50">
+                            <app-show-errors eleName="First Name" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('firstName')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.midNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='middleName'
+                                placeholder="{{'licenseMgnt.enterMiddleNamePlacehold' | translate}}" maxlength="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.lastNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='lastName'
+                                placeholder="{{'licenseMgnt.enterLastNamePlacehold' | translate}}" maxlength="50">
+                            <app-show-errors eleName="Last Name" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('lastName')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.uploadPhotoofApplicant' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='appli_photo_file'
+                                        (change)="onAppliFileChange($event, licConsts.SRC_APPLI_PHOTO, licConsts.FN_APPLI_PHOTO)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Photo of Applicant" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('appli_photo_file')"> </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_PHOTO) as fileObj">
+                                <button
+                                    (click)="downloadDocument(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_PHOTO)">{{fileObj.documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appliMobileText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='mobileNumber'
+                                placeholder="{{'licenseMgnt.enterMobileNumberPlacehold' | translate}}" (keypress)="numberOnly($event)" maxlength="10">
+                            <app-show-errors eleName="Mobile Number" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('mobileNumber')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appliEmailText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='emailId'
+                                placeholder="{{'licenseMgnt.enterEmailIdPlaceHold' | translate}}" maxlength="50">
+                            <app-show-errors eleName="Email Id" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('emailId')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="screenSubType !== licConsts.WHOLESALE_FL2A_SUBCATEGORY">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.appliAadharText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName='aadharNumber'
+                                    placeholder="{{'licenseMgnt.appliAadharPlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="12">
+                                <app-show-errors eleName="Aadhaar Number" [frmSub]="formSubmitted"
+                                    [control]="getAppliFormCntr('aadharNumber')"> </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.uploadAadharText' | translate}}</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='appli_aadhar_file'
+                                            (change)="onAppliFileChange($event, licConsts.SRC_APPLI_AADHAR, licConsts.FN_APPLI_AADHAR)"
+                                            accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                                <app-show-errors eleName="Upload Aadhar" [frmSub]="formSubmitted"
+                                    [control]="getAppliFormCntr('appli_aadhar_file')">
+                                </app-show-errors>
+                                <div class="file-upload"
+                                    *ngIf="isFileExists(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_AADHAR) as fileObj">
+                                    <button
+                                        (click)="downloadDocument(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_AADHAR)">{{fileObj.documentName}}</button>
+                                    <button mat-icon-button color="danger" class="upload-btn float-right">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.genderText' | translate}}</label>
+                            <select class="form-control" formControlName='genderCode'
+                                (change)="onGenderChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of genderList" value="{{item.paramKey}}">{{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Gender" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('genderCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.dobText' | translate}}</label>
+                            <input type="date" class="form-control" formControlName='dob' [min]="minDOBDate" [max]="maxDOBDate">
+                            <app-show-errors eleName="Date of Birth" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('dob')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="screenSubType !== licConsts.WHOLESALE_FL2A_SUBCATEGORY">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.panNoText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName='panNumber'
+                                    placeholder="{{'licenseMgnt.pan_noPlaceHold' | translate}}" maxlength="10">
+                                <app-show-errors eleName="{{'licenseMgnt.panNoText' | translate}}"
+                                    [frmSub]="formSubmitted" [control]="getAppliFormCntr('panNumber')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.upload_panText' | translate}}</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='appli_pan_file'
+                                            (change)="onAppliFileChange($event, licConsts.SRC_APPLI_PAN, licConsts.FN_APPLI_PAN)"
+                                            accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                                <app-show-errors eleName="{{'licenseMgnt.upload_panText' | translate}}"
+                                    [frmSub]="formSubmitted" [control]="getAppliFormCntr('appli_pan_file')">
+                                </app-show-errors>
+                                <div class="file-upload"
+                                    *ngIf="isFileExists(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_PAN) as fileObj">
+                                    <button
+                                        (click)="downloadDocument(licConsts.PROP_APPLI_DET, licConsts.FN_APPLI_PAN)">{{fileObj.documentName}}</button>
+                                    <button mat-icon-button color="danger" class="upload-btn float-right">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.select_itrText' | translate}}</label>
+                                <select class="form-control" formControlName='itrAssesmentYearCode'
+                                    (change)="onITRChange($event.target.value)">
+                                    <option disabled selected value="">Select</option>
+                                    <option *ngFor="let item of ITRList" value="{{item.paramKey}}">{{item.paramValue}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="{{'licenseMgnt.select_itrText' | translate}}"
+                                    [frmSub]="formSubmitted" [control]="getAppliFormCntr('itrAssesmentYearCode')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.reasonIfPrevItrUploadedText' |
+                                    translate}}</label>
+                                <input type="text" class="form-control" formControlName='previousItrNotFiled'
+                                    placeholder="{{'licenseMgnt.reasonIfPrevItrUploadedPlaceHold' | translate}}"
+                                    maxlength="50">
+                                <app-show-errors eleName="{{'licenseMgnt.reasonIfPrevItrUploadedText' | translate}}"
+                                    [frmSub]="formSubmitted" [control]="getAppliFormCntr('previousItrNotFiled')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.applicantAddressTitle' | translate}}" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='country' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='pinCode'
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="6">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('pinCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName='stateCode'
+                                (change)="onStateChange($event.target.value, licConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName='districtCode'
+                                (change)="onDistrictChange($event.target.value, licConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of districtListByState[licConsts.SEC_ADDR_APPLICANT]"
+                                    value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName='tahsilCode'
+                                (change)="onTalukChange($event.target.value, licConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of talukList[licConsts.SEC_ADDR_APPLICANT]"
+                                    value="{{item.id}}">
+                                    {{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName='localityType'
+                                (change)="onLocalityChange($event.target.value, licConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="appliAddrLocality == licConsts.LOCALITY_URBAN">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                                <select class="form-control" formControlName="municipalAreaCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>{{'licenseMgnt.wardText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('ward')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="appliAddrLocality == licConsts.LOCALITY_RURAL">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="village" placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('village')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="policeStationName" placeholder="{{'licenseMgnt.policeStationText' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('policeStationName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}" [readonly]="isReadOnly" maxlength="50">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}"
+                                [readonly]="isReadOnly" maxlength="50">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.eventDetailsTitle' | translate}}" formGroupName="eventBarLicenses" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.organisationIndividualText' | translate}}</label>
+                            <select class="form-control" formControlName='requiredForCode'
+                                (change)="onRequiredForChange($event.target.value)">
+                                <option disabled selected value=''>Select</option>
+                                <option *ngFor="let item of eventOwnerList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="Organisation / Individual" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('requiredForCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.organisationIndividualNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='organizationName'
+                                placeholder="{{'licenseMgnt.enterOrganisationIndividualNamePlacehold' | translate}}" maxlength="50">
+                            <app-show-errors eleName="Organisation / Individual Name" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('organizationName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.purposeofEventText' | translate}}</label>
+                            <select class="form-control" formControlName='eventType'>
+                                <option disabled selected value=''>Select</option>
+                                <option *ngFor="let item of eventTypeList" value="{{item.paramValue}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="Purpose of Event" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('eventType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.dateofEventText' | translate}}</label>
+                            <input type="date" class="form-control" formControlName='eventDate' placeholder="">
+                            <app-show-errors eleName="Date of Event" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('eventDate')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.fromText' | translate}}</label>
+                            <input type="time" class="form-control" formControlName='eventStartTime'>
+                            <app-show-errors eleName="Date of Event" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('eventStartTime')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.toText' | translate}}</label>
+                            <input type="time" class="form-control" formControlName='eventEndTime'>
+                            <app-show-errors eleName="Date of Event" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('eventEndTime')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.approximateParticipantsintheEventText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='eventParticipantCount'
+                                placeholder="{{'licenseMgnt.enterApprxParticipantsEventPlacehold' | translate}}" (keypress)="numberOnly($event)" maxlength="6">
+                            <app-show-errors eleName="Approximate Participants in the Event" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('eventParticipantCount')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.approxQuantityofFLBeerconsumptionText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='approxBottleConsumptionCount'
+                                placeholder="{{'licenseMgnt.enterApproxQuantityconsumptionPlacehold' | translate}}"
+                                (keypress)="numberOnly($event)" (keypress)="numberOnly($event)" maxlength="6">
+                            <app-show-errors eleName="Approximate Quantity of FL/Beer etc (in Bottles) for consumption"
+                                [frmSub]="formSubmitted" [control]="getAttachFormCntr('approxBottleConsumptionCount')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.productDetailsTitle' | translate}}" formGroupName="eventBarLicenses" class="list-panel add-panel">
+                <div class="row">
+                    <table class="table table-bordered" formGroupName="productList">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="20%"><span class="mandatory">{{'licenseMgnt.categoryText' | translate}}</span></th>
+                                <th width="20%"><span class="mandatory">{{'licenseMgnt.nameofBrandText' | translate}}</span></th>
+                                <th width="20%"><span class="mandatory">{{'licenseMgnt.quantityText' | translate}}</span></th>
+                                <th width="20%"><span class="mandatory">{{'licenseMgnt.priceText' | translate}}</span></th>
+                                <th width="15%" *ngIf="!isReadOnly"><span>{{'licenseMgnt.actionText' | translate}}</span></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let firmcompanyCntrl of getProdFrmCntr()['controls']; let i=index"
+                            id="row{{i}}">
+                            <tr [formGroupName]="i">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="category"
+                                        placeholder="Category" maxlength="50">
+                                    <app-show-errors eleName="Category" [frmSub]="formSubmitted"
+                                        [control]="getProdFrmCntrIdx(i, 'category')">
+                                    </app-show-errors>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="brandName"
+                                        placeholder="Brand Name" maxlength="50">
+                                    <app-show-errors eleName="Category" [frmSub]="formSubmitted"
+                                        [control]="getProdFrmCntrIdx(i, 'brandName')">
+                                    </app-show-errors>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" formControlName="quatity"
+                                        placeholder="Quatity" maxlength="6">
+                                    <app-show-errors eleName="Category" [frmSub]="formSubmitted"
+                                        [control]="getProdFrmCntrIdx(i, 'quatity')">
+                                    </app-show-errors>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" formControlName="price"
+                                        placeholder="Price" maxlength="8">
+                                    <app-show-errors eleName="Category" [frmSub]="formSubmitted"
+                                        [control]="getProdFrmCntrIdx(i, 'price')">
+                                    </app-show-errors>
+                                </td>
+                                <td class="table-action-column text-center" *ngIf="!isReadOnly">
+                                    <button class="btn btn-icon btn-success" type="button" (click)="addProductRow()"
+                                        *ngIf="i==(getProductLen()-1)">
+                                        <i class="feather icon-plus"></i></button>
+                                    <button class="btn btn-icon btn-danger" type="button" *ngIf="i!==getProductLen()-1"
+                                        (click)="remProductRow(i)">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.nameofDesiredShopwithinPurviewofcitySectorofapplicantText' | translate}}</label>
+                            <select class="form-control" formControlName='shopCityCode'
+                                (change)="onShopCityChange($event.target.value)">
+                                <option disabled selected value=''>Select</option>
+                                <option *ngFor="let item of retailShopsList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="Name of Desired Shop" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('shopCityCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.sellerNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='sellerName'
+                                placeholder="{{'licenseMgnt.enterSellerNamePlacehold' | translate}}" maxlength="50">
+                            <app-show-errors eleName="Seller Name" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('sellerName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.sellerMobileNumberText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='sellerMobileNumber'
+                                placeholder="{{'licenseMgnt.enterSellerMobileNumberPlacehold' | translate}}" (keypress)="numberOnly($event)" maxlength="10">
+                            <app-show-errors eleName="Seller Mobile Number" [frmSub]="formSubmitted"
+                                [control]="getAttachFormCntr('sellerMobileNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.venueAddressTitle' | translate}}" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="1">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline"
+                                    (change)="onCheckboxChange($event.target.checked)">
+                                <label class="cr mr-2" for="sameAddress">{{'licenseMgnt.clickiftheaddressissameasabove_rbtn' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='country' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='pinCode'
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="6">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('pinCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName='stateCode'
+                                (change)="onStateChange($event.target.value, licConsts.SEC_ADDR_VENUE)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName='districtCode'
+                                (change)="onDistrictChange($event.target.value, licConsts.SEC_ADDR_VENUE)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of districtListByState[licConsts.SEC_ADDR_VENUE]"
+                                    value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName='tahsilCode'
+                                (change)="onTalukChange($event.target.value, licConsts.SEC_ADDR_VENUE)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of talukList[licConsts.SEC_ADDR_VENUE]"
+                                    value="{{item.id}}">
+                                    {{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName='localityType'
+                                (change)="onLocalityChange($event, licConsts.SEC_ADDR_VENUE)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="premisesAddrLocality == licConsts.LOCALITY_URBAN">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                                <select class="form-control" formControlName="municipalAreaCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>{{'licenseMgnt.wardText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('ward')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="premisesAddrLocality == licConsts.LOCALITY_RURAL">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="village" placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('village')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="policeStationName" placeholder="{{'licenseMgnt.policeStationText' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}" [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('policeStationName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}" [readonly]="isReadOnly" maxlength="50">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}"
+                                [readonly]="isReadOnly" maxlength="50">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.appli_bank_cardText' | translate}}" formArrayName="bankList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankAccNumText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="accountNumber"
+                                placeholder="{{'licenseMgnt.bankAccNumPlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="15">
+                            <app-show-errors eleName="Bank Account Number" [control]="getBankFormCntr('accountNumber')"
+                                [frmSub]="formSubmitted"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankIfscText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ifscCode"
+                                placeholder="{{'licenseMgnt.bankIfscPlaceHold' | translate}}" maxlength="15">
+                            <app-show-errors eleName="Bank IFSC" [control]="getBankFormCntr('ifscCode')"
+                                [frmSub]="formSubmitted"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankNameText' | translate}}</label>
+                            <select class="form-control" formControlName="bankCode"
+                                (change)="onBankChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of bankList" value="{{item.paramKey}}">{{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Bank Name" [control]="getBankFormCntr('bankCode')"
+                                [frmSub]="formSubmitted"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.cancelChequeText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='cancel_cheque_file'
+                                        (change)="onBankFileChange($event, licConsts.SRC_BK_CAN_CHEQUE, licConsts.FN_BK_CAN_CHEQUE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.cancelChequeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankFormCntr('cancel_cheque_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licConsts.PROP_BANK_DET, licConsts.FN_BK_CAN_CHEQUE, 0) as fileObj">
+                                <button
+                                    (click)="downloadDocument(licConsts.PROP_BANK_DET, licConsts.FN_BK_CAN_CHEQUE, 0)">{{fileObj.documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.paymentProcessingFeesTitle' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.applicationFeeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="paymentProcessingFee" readonly>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+
+        <app-application-logs 
+            *ngIf="licenseComments.length > 0"
+            [licenseComments]="licenseComments"
+            [checkList]="this.licenseData?.checkList"
+            [isOfficier]="false">
+        </app-application-logs>
+
+        <ng-container *ngIf="isSendBack">
+            <app-card cardTitle="{{'licenseMgnt.remarksText' | translate}}" class="list-panel add-panel">
+                <div class="row" [formGroup]="commentForm">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.remarksText' | translate}}</label>
+                            <textarea class="form-control" formControlName="comments" rows="2"></textarea>
+                            <app-show-errors eleName="Comment" [frmSub]="commandformSub"
+                                [control]="commentForm.controls.comments">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </ng-container>
+
+        <div class="text-content text-right mb-4">
+            <ng-container *ngIf="isActionBtnFor == licConsts.CUSTOMER">
+
+                <ng-container *ngIf="!isSendBack">
+                    <button type="button" class="btn btn-warning mb-2 ml-2" [disabled]="isDraftLoading"
+                        (click)="onSubmit(licConsts.STATUS_DRAFT)">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isDraftLoading, 'fa-check': !isDraftLoading}"></i> {{'licenseMgnt.saveAsDraftText' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-primary mb-2 ml-2" [disabled]="isSubmitLoading"
+                        (click)="onSubmit(licConsts.STATUS_SAVE)">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isSubmitLoading, 'fa-check': !isSubmitLoading}"></i>  {{'licenseMgnt.proceedtoPaymentText' | translate}}
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="isSendBack">
+                    <button type="button" class="btn btn-primary mb-2 ml-2"
+                        (click)="onSubmit(licConsts.STATUS_SENDBACK)">{{'licenseMgnt.submitText' | translate}}</button>
+                </ng-container>
+
+            </ng-container>
+            <button type="button" class="btn btn-secondary mb-2 ml-2" (click)="back()">{{'licenseMgnt.backText' | translate}}</button>
+        </div>
+
+    </div>
+</div> -->
+
+<h5 class="m-b-10 ng-star-inserted">Application for Event Bar FL 11 License</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Application for Event Bar FL 11 License</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">view</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Application for Event Bar FL 11 License" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Financial year<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    2020-2021
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date of Application<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    22/03/2021
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Event Bar FL 11
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Applicant Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Salutation<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Mr.
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">First Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Ram
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Middle Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Kumar
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Last Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Haridas
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">View Photo of Applicant<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Document.jpg <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"> <i class="feather icon-eye"></i>
+                    </button>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Mobile Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    9842658899
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Email ID<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    ram1515@gmail.com
+                </div>
+              
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Aadhar Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    6544 1255 6586
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">View Aadhar<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Document.jpg <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"> <i class="feather icon-eye"></i>
+                    </button>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Gender<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Male
+                </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date of Birth <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    26/11/1999
+                </div>
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Address<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    No:7, Nani Street, Ramapuram, Ayodhya, Uttar Pradesh
+                </div> -->
+
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">PAN Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    RA29308SY
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">View PAN<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Document.jpg <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"> <i class="feather icon-eye"></i>
+                    </button>
+                </div>
+
+
+            </div>
+        </app-card>
+
+        <app-card cardTitle="Applicant Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Country<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   India
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Pincode<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>600 002</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">State<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   Uttar Pradesh
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">District <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   Ayodhya
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Tehsil<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Ramapuram</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Urban/Rural<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Urban</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Municipal Area<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Sahi Nagar</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Ward<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>110</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Block <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>72</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Village<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Ramapuram</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Police Station<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>R3 Police Station</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Locality<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Ayodhya</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Street<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>Nani Street</span>
+                </div>
+
+                
+
+            </div>
+        </app-card>
+        <app-card cardTitle="Event Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Organisation / Individual<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Individual
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Organisation / Individual Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Ram
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Purpose of Event<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Event
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date of Event<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    25/12/2020
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">From<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    10:00AM
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">To<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    12:30PM
+                </div>
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Address<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Lal Street, Ayodhya
+                </div> -->
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Approximate Perticipants in the Event<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    25
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Approximate Quantity of FL/Beer etc (in Bottles) for consumption<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    26
+                </div>
+
+            </div>
+        </app-card>
+
+        <app-card cardTitle="Product Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Liquor Type </th>
+                                    <th>Liquor subtype</th>
+                                    <th>Liquor Detailed Description</th>
+                                    <th>Brand name</th>
+                                    <th>Packaging Size(ML)</th>
+                                    <th>Quantity (A)</th>
+                                    <th>Price (B) </th>
+                                    <th>Sub Total (C)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+
+                                    <td>
+                                        Alcohol
+                                    </td>
+                                    <td>
+                                        Beer
+                                    </td>
+                                    <td>
+                                        Description
+                                    </td>
+                                    <td>
+                                        Kingfisher
+                                    </td>
+                                    <td>
+                                        1000ML
+                                    </td>
+
+
+                                    <td>
+                                        1000
+                                    </td>
+                                    <td>
+                                        10000
+                                    </td>
+                                    <td>
+                                        100000
+                                    </td>
+
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-success" type="button">
+                                        <i class="feather icon-eye"></i></button>
+                                        <!-- <button class="btn btn-icon btn-danger ml-2" type="button">
+                                        <i class="fas fa-trash-alt"></i></button> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Amount<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    100000
+                </div>
+
+
+            </div>
+        </app-card>
+
+        <app-card cardTitle="Shop Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Name of Retail Shop (Within Venue District)</th>
+                                    <th>Seller Name</th>
+                                    <th>Seller Mobile Number</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+
+                                    <td>
+                                        FL 4A
+                                    </td>
+                                    <td>
+                                        Ram
+                                    </td>
+
+
+                                    <td>
+                                        9995646984
+                                    </td>
+
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button">
+                                            <i class="feather icon-eye"></i></button>
+                                        <!-- <button class="btn btn-icon btn-danger ml-2" type="button">
+                                            <i class="fas fa-trash-alt"></i></button> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </app-card>
+
+
+
+
+        <app-card cardTitle="Bank Details" class="list-panel add-panel">
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Bank Account number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    16151646461
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Bank IFSC<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    CDDF14982
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Bank Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Indian Bank
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">View Cancel Cheque<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Document.jpg
+                    <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"> <i class="feather icon-eye"></i>
+                   </button>
+                </div>
+            </div>
+
+        </app-card>
+        <app-card cardTitle="Payment License fees" class="list-panel view-panel">
+            <div class="row">
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">License fees<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    4000
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Payment Status<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Pending
+                </div>
+            </div>
+        </app-card>
+
+    </div>
+
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-secondary mb-2 ml-2">Back</button>
+        <!--     <button type="submit" class="btn btn-secondary mb-2 ml-2" routerLink="/licencemgnt/wholesale/wholesaleapplication/add">Back</button> -->
+    </div>
+</div>

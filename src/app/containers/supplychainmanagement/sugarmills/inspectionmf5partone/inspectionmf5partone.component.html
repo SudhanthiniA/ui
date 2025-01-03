@@ -1,0 +1,92 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.common.inspection' | translate }}- {{ 'sugarmill.mf5part1.part1' | translate }}
+    <!-- <button type="submit" class="btn btn-success pull-right" routerLink="/supplychainmanagement/sugarmills/inspectionmf5/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add MF5 Part 1
+    </button> -->
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.inspection' | translate }}- {{ 'sugarmill.mf5part1.part1' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.common.date' | translate }}</label>
+                        <input type="date" class="form-control" placeholder="Enter Application Id">
+                    </div>
+                </div>
+                <div class=" col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.mf5part1.mf5partlist' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.common.date' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part1.openingstockacc' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part1.totaldispmolasses' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part1.totsugarquan' | translate }}</th>
+                            <th>{{ 'sugarmill.common.status' | translate }}</th>
+                            <th style="text-align: center;width: 100px;">{{ 'sugarmill.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="inspectionmf5partoneList?.length != 0">
+
+                        <tr *ngFor="let item of inspectionmf5partoneList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.requestDate | date:'dd-MMM-yyyy'}}</td>
+                            <td>{{item.openStockByAccount}}</td>
+                            <td>{{item.totalDispatchOfMolasses}}</td>
+                            <td>{{item.totalSugarQuantity}}</td>
+                              <td>
+                              <span class="badge m-r-5 badge-light-success" *ngIf="item.status">Pending</span>
+                              <span class="badge m-r-5 badge-light-warning" *ngIf="!item.status">Verified</span>
+                          </td>
+                            <td class="table-action-column"  style="text-align: left;">
+                                <button class="btn btn-icon btn-primary mr-4" type="button"
+                                    (click)="navigateView(item.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="!item.status" class="btn btn-icon btn-secondary" type="button"
+                              (click) = "navigateEdit(item.id)">
+                                  <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

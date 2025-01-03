@@ -1,0 +1,227 @@
+<h5 class="m-b-10 ng-star-inserted"> {{'bondWarehouse.receivedimportpermit.receivedimportpermit' | translate}}
+</h5>
+<!-- Received Import Permits -->
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.receivedimportpermit.receivedimportpermit' | translate}} </a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.list' | translate}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.receivedimportpermit.importpermitstatus' | translate}}" class="search-panel">
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>{{'bondWarehouse.receivedimportpermit.daterange' | translate}}
+            </label>
+            <input type="date" required class="form-control">
+        </div>
+    </div>
+   
+</div>
+<div class="row">
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No of Permit Received</span>
+            <h3 class="mt-2">1000</h3>
+            <i class="fas fa-external-link-alt"></i>
+            <!-- <small>WWWW</small>    -->
+          </div>  
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No of Permit Accepted</span>
+            <h3 class="mt-2">800</h3>
+            <i class="fas fa-check"></i>
+            <!-- <small>WWW</small> -->
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No of Permit Pending</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fas fa-hourglass-half"></i>
+            <!-- <small>WWW</small> -->
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+      <app-card [hidHeader]="true" cardClass="comp-card bg-danger">
+        <div class="row align-items-center">
+          <div class="col">
+            <span>No of Permit Rejected</span>
+            <h3 class="mt-2">100</h3>
+            <i class="fas fa-thumbs-down text-danger"></i>
+            <!-- <small>WWWW</small> -->
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Permit Date</label>
+                    <input type="text" class="form-control" placeholder="Enter Indent No"    
+                    name="indentNo"  >
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.receivedimportpermit.permitnumber' | translate}}</label>
+                        <input type="text" class="form-control" placeholder="Enter Indent No"    
+                        name="indentNo" #indentNo="ngModel" [(ngModel)]="receviedPermitObj['indentNo']">
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.receivedimportpermit.bottlingtype' | translate}}</label>
+                        <input type="text" class="form-control" 
+                        name="bottlingType" #bottlingType="ngModel" [(ngModel)]="receviedPermitObj['bottlingType']">
+                    </div>
+                </div> -->
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.common.status' | translate}}</label>                       
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click) = "searchReceviedPermit()">{{'bondWarehouse.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.receivedimportpermit.dispatchlist' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+              <!-- <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                 (viewAction)="onView($event)">
+              </app-mat-normal-table> -->
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Permit Date</th>
+                        <th>
+                          Permit Number</th>
+                          <th>
+                            License Type</th>
+                            <th>
+                              Unit Name</th>
+                        <th>
+                          No of Cases Requested</th>
+                        <th>
+                          No of Bottle Requested
+                          </th>
+                        <th>
+                          Status</th>
+                        <th>Action</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+
+
+                        <td class="text-left">12-2-21</td>
+                        <td class="text-left">HVH56</td>
+                        <td class="text-left">Beer</td>
+                        <td class="text-left">Alcohol </td>
+                        <td class="text-left">750</td>
+                        <td class="text-left">10
+                        </td>
+                       
+                                <td class="text-right">Approved
+                                </td>
+                                <td class="table-action-column text-center">
+                                  <button class="btn btn-icon btn-primary" type="button" 
+                                      >
+                                      <i class="feather icon-eye"></i></button>
+                                  <!-- <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                      <i class="feather icon-edit-2"></i></button> -->
+                              </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            </div>
+            
+        </app-card>
+        
+    </div>
+</div>
+
+
+<!-- <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead>
+      <tr>
+          <th>S.No</th>
+          <th>Date</th>
+          <th>Permit No.</th>
+          <th>No of Cases Requested</th>
+          <th>No of Bottle Requested</th>
+          <th>Status</th>
+          <th>Action</th> 
+      </tr>
+  </thead>
+  <tbody *ngIf="receviedData?.length != 0">
+      <tr *ngFor="let data of receviedData; let i = index">
+          <td>{{i+1}}</td> 
+          <td>{{data?.indentDate | date:'MM-dd-yyyy'}}</td>
+          <td>{{data?.indentNo}}</td>
+          <td>{{data?.importPermitIndentDetails?.importPermitProdDetails[0].noOfCases}}</td>
+          <td>{{data?.importPermitIndentDetails?.importPermitProdDetails[0].noOfBottles}}</td>
+          <td>
+              <span class="badge m-r-5 badge-light-success">{{data?.importPermitIndentDetails?.importPermitStatus}}</span>
+          </td>
+          <td class="table-action-column text-center">
+              <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/warehouse/receivedimportpermits/view/{{data.id}}/{{data?.importPermitIndentDetails?.importPermitStatus}}">
+                  <i class="feather icon-eye"></i></button>
+              <button class="btn btn-icon btn-warning ml-2" type="button">
+                      <i class="feather icon-printer"></i></button>
+          </td>
+
+      </tr>
+  </tbody>
+</table> -->
+
+
+
+
+
+
+
+
+

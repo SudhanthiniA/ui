@@ -1,0 +1,95 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} {{ 'master.verificationtype.verificationtype' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.verificationtype.verificationtype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #verificationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.verificationtype.enterbelowdetailstoverificationtype' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.verificationtype.verificationcode' | translate }}</label>
+                            <input type="text" [(ngModel)]="verificationObject.code" name="code"
+                                #code="ngModel" required class="form-control" pattern="{{patternService.codePattern}}"
+                                minlength="3" maxlength="10" placeholder="{{ 'master.verificationtype.enterverificationcode' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.verificationtype.verificationtypecoderequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.verificationtype.verificationname' | translate }}</label>
+                            <input type="text" [(ngModel)]="verificationObject.name" name="name" #name="ngModel" minlength="3"
+                                maxlength="100" required class="form-control" placeholder=" {{ 'master.verificationtype.enterverificationname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.verificationtype.verificationnamerequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.verificationtype.frequency(In Days)' | translate }}</label>
+                            <input type="number" [(ngModel)]="verificationObject.frequencyDays" name="frequencyDays" #frequencyDays="ngModel" required class="form-control" placeholder="Frequency (Days)"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="frequencyDays.invalid && (frequencyDays.dirty || frequencyDays.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="frequencyDays?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.verificationtype.frequencyisrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="verificationObject.isActive" name="active"
+                                    #active="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="verificationObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!verificationObject.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="verificationObject.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addverification(verificationForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/verification-type/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,207 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.village' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.village' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.village' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #villageForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.common.village' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.common.code' | translate }}</label>
+                            <input type="text" disabled minlength="3" maxlength="10" required class="form-control"
+                                value="VM1122">
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.village' | translate }}</label>
+                            <input type="text" [(ngModel)]="villageObject.name" name="villagename"
+                                #villagename="ngModel" minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.villagename' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="villagename.invalid && (villagename.dirty || villagename.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="villagename?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.villagename' | translate }} {{ 'master.common.isrequired' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="villagename?.errors?.maxlength && !villagename?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.villagename' | translate }} {{ 'master.common.ismaximum' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="villagename?.errors?.minlength && !villagename?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.villagename' | translate }} {{ 'master.common.isminimum' |
+                                    translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.country' | translate }}</label>
+                            <!-- <select class="form-control" [(ngModel)]="villageObject.country" name="country_uuid"
+                                #country_uuid="ngModel" required (change)="getState($event.target.value)">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let country of countryData" value="{{country.id}}">
+                                    {{country.countryName}}
+                                </option>
+                            </select>
+                            <div *ngIf="country_uuid.invalid && (country_uuid.dirty || country_uuid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="country_uuid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}
+                                </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="countryData" [placeholder]="'Select'"
+                            [(ngModel)]="villageObject.country" [settings]="countryDropDownSettings"
+                            (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                            [required]='countryRequired' (onDropDownClose)="onDropDownClose()"
+                            [ngClass]="countryDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!countryRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.state' | translate }}</label>
+                            <!-- <select class="form-control" [(ngModel)]="villageObject.state" name="state_uuid"
+                                #state_uuid="ngModel" required (change)="getDistrict($event.target.value)">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let state of stateData" value="{{state.id}}"> {{state.stateName}}
+                                </option>
+                            </select>
+                            <div *ngIf="state_uuid.invalid && (state_uuid.dirty || state_uuid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="state_uuid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="stateData" [placeholder]="'Select'"
+                            [(ngModel)]="villageObject.state" [settings]="stateDropDownSettings"
+                            (onSelect)="onStateSelect($event)" (onDeSelect)="onStateDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeState($event)"
+                            (onDropDownClose)="onDropDownCloseState()" [required]='stateRequired'
+                            [ngClass]="stateDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!stateRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.district' | translate }}</label>
+                            <!-- <select class="form-control" [(ngModel)]="villageObject.districtId" name="district_uuid"
+                                #district_uuid="ngModel" required (change)="getTaulk($event.target.value)">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let district of districtData" value="{{district.id}}"> {{district.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="district_uuid.invalid && (district_uuid.dirty || district_uuid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="district_uuid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.district' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}
+                                </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="districtData" [placeholder]="'Select'"
+                            [(ngModel)]="villageObject.districtId" [settings]="districtDropDownSettings"
+                            (onSelect)="ondistrictSelect($event)" (onDeSelect)="onDistrictDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeDistrict($event)"
+                            (onDropDownClose)="onDropDownCloseDistrict()" [required]='districtRequired'
+                            [ngClass]="districtDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!districtRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.district' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.taulk' | translate }}</label>
+                            <!-- <select class="form-control" [(ngModel)]="villageObject.talukId" name="taulk_uuid"
+                                #taulk_uuid="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let taulk of taulkData" value="{{taulk.id}}"> {{taulk.talukName}} </option>
+                            </select>
+                            <div *ngIf="taulk_uuid.invalid && (taulk_uuid.dirty || taulk_uuid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="taulk_uuid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.taulk' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="taulkData" [placeholder]="'Select'"
+                            [(ngModel)]="villageObject.talukId" [settings]="talukDropDownSettings"
+                            (onSelect)="onTalukSelect($event)" (onDeSelect)="onTalukDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeTaluk($event)"
+                            (onDropDownClose)="onDropDownCloseTaluk()" [required]='talukRequired'
+                            [ngClass]="talukDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!talukRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.taulk' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="villageObject.active" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="villageObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!villageObject.active">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="villageObject.active">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addvillage(villageForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/village/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+<h5 class="m-b-10 ng-star-inserted">
+    PD2
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/distillery/pd2/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add PD2
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">PD2</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Trx No</label>
+                        <input type="text" required class="form-control" placeholder="Enter Trx No" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Opening Balance</label>
+                        <input type="number" required class="form-control" placeholder="Enter Opening Balance" />
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Bulk Litre</label>
+                        <input type="number" required class="form-control" placeholder="Enter Bulk Litre" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Alcohal in Litre</label>
+                        <input type="text" required class="form-control" placeholder="Enter Alcohal in Litre" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Balance Amount</label>
+                        <input type="text" required class="form-control" placeholder="Enter Balance Amount" />
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Details of PD2" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Trx No</th>
+                            <th>Date</th>
+                            <th>Opening Balance</th>
+                            <th>Bulk Litre</th>
+                            <th>Alcohal in Litre</th>
+                            <th>Balance Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of Pd2list; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.TrxNo}}</td>
+                            <td>{{data.Date}}</td>
+                            <td class="text-right">{{data.OpeningBalance}}</td>
+                            <td class="text-right">{{data.BulkInltrOsi}}</td>
+                            <td class="text-right">{{data.AlocohalInLtrOsi}}</td>
+                            <td class="text-right">{{data.BalanceAmount}}</td>
+                            <td>
+                                <span class="badge badge-light-success" *ngIf="data.status">Approved</span>
+                                <span class="badge m-r-5 badge-light-warning" *ngIf="!data.status">Draft</span>
+                            </td>
+
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/pd2/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/distillery/pd2/edit/{{data.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+
+
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <!-- <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')" href="javascript:">{{
+                                'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')" href="javascript:">{{
+                                'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')" href="javascript:">{{
+                                'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </app-card>
+    </div>
+</div>

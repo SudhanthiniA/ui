@@ -1,0 +1,121 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.fortnightlystatement.fortnightlystatement' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/mf7register/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.fortnightlystatement.addfortnightlystatement' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']"><i
+                class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a
+            href="javascript:">{{ 'sugarmill.fortnightlystatement.fortnightlystatement' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #registerForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.tankno' | translate }}</label>
+                            <input type="text" name="tank_number" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.tankno' | translate }}"
+                                #tank_number="ngModel" [(ngModel)]="mf7Obj['tank_number']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }}</label>
+                            <input type="number" name="qty_of_molasses_tanks" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }}"
+                                #qty_of_molasses_tanks="ngModel" [(ngModel)]="mf7Obj['qty_of_molasses_tanks']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.fortnightlystatement.depofmolassestank' | translate }}</label>
+                            <input type="number" name="depth_of_molasses_tanks_cms" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.fortnightlystatement.depofmolassestank' | translate }}"
+                                #depth_of_molasses_tanks_cms="ngModel"
+                                [(ngModel)]="mf7Obj['depth_of_molasses_tanks_cms']">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="getSearchData()"
+                                class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                            <button type="reset" 
+                                class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.fortnightlystatement.sampleentrydetails' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable="ng" [dtOptions]="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.tankno' | translate }}</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.qtlynofmolassestank' | translate }}</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.depofmolassestank' | translate }}</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.brix' | translate }}</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.analyst' | translate }}</th>
+                            <th>{{ 'sugarmill.fortnightlystatement.status' | translate }}</th>
+                            <th>{{ 'sugarmill.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let regester of mf7List;let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{regester.tankNumber}}</td>
+                            <td class="text-right">{{regester.qtyOfMolassesTanks}}</td>
+                            <td class="text-right">{{regester.depthOfMolassesTanksCms}}</td>
+                            <td class="text-right">{{regester.brixPercentage}}</td>
+                            <td class="text-left">{{regester.nameOfAnalyst}}</td>
+                            <td> <span class="badge badge-light-success"
+                                    *ngIf="regester.status == 'Submitted'">Submitted</span>
+                                <span class="badge badge-light-warning" *ngIf="regester.status != 'Submitted'">Draft
+                                    version</span></td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    (click)="navigateView(regester.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    *ngIf="regester.status != 'Submitted'" (click)="navigateEdit(regester.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

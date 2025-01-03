@@ -1,0 +1,112 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock Out List
+    <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/sugarmills/stockout/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Stock Out
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Out</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" style='text-transform:uppercase'>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Gate Pass No</label>
+                        <input type="number" class="form-control" placeholder="Enter Gate Pass No">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Tank</label>
+                        <select id="location" name="location" class="form-control">
+                            <option value="">Select</option>
+                            <option>Tank 1</option>
+                            <option>Tank 2</option>
+                            <option>Tank 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock Out List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Gate Pass No</th>
+                            <th>Tank</th>
+                            <th>Available Quantity(Qtl)</th>
+                            <th>Dispatched Quantity(Qtl)</th>
+                            <th>Dispatched Mode</th>
+                            <th>Distillery Name/Internal Transfer</th>
+                            <!-- <th>Status</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="stockList?.length != 0">
+
+                        <tr *ngFor="let item of stockList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.date | date:"dd-MMM-yyyy"}}</td>
+                            <td>{{item.gatepassno}}</td>
+                            <td>{{item.tank}}</td>
+                            <td>{{item.availableqty}}</td>
+                            <td>{{item.dispatchedqty}}</td>
+                            <td>{{item.dispatchmode}}</td>
+                            <td>{{item.distilleryname}}</td>
+                            <td class="table-action-column" style="text-align: left;">
+                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                    (click)="navigateView(item.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="item.method == 'draft'" class="btn btn-icon btn-secondary" type="button"
+                              (click) = "navigateEdit(item.id)">
+                                  <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

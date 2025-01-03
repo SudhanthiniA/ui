@@ -1,0 +1,165 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.location' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.location' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #locationForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.common.location' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.locationcode' | translate }}</label>
+                            <input type="text" [(ngModel)]="locationObject.locCode" name="locCode" #locCode="ngModel"
+                                required class="form-control" minlength="3" maxlength="10"
+                                pattern="{{patternService.codePattern}}"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.locationcode' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="locCode.invalid && (locCode.dirty || locCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="locCode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.locationcode' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="locCode?.errors?.minlength && !locCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }}
+                                </div>
+                                <div *ngIf="locCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.shortname' | translate }}</label>
+                            <input type="text" [(ngModel)]="locationObject.locationCode" name="locationCode"
+                                #locationCode="ngModel" required class="form-control" minlength="3" maxlength="15"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.shortname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="locationCode.invalid && (locationCode.dirty || locationCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="locationCode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="locationCode?.errors?.maxlength && !locationCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="locationCode?.errors?.minlength && !locationCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.locationname' | translate }} </label>
+                            <input type="text" [(ngModel)]="locationObject.locationName" name="locationName"
+                                #locationName="ngModel" required class="form-control" minlength="3" maxlength="50"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.locationname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="locationName.invalid && (locationName.dirty || locationName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="locationName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.locationname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="locationName?.errors?.maxlength && !locationName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.locationname' | translate }}
+                                    {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="locationName?.errors?.minlength && !locationName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.locationname' | translate }}
+                                    {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.country' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="locationObject.country" name="country"
+                                #country="ngModel" required (change)="getState($event.target.value)">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let country of countryData" value="{{country.id}}">
+                                    {{country.countryName}}
+                                </option>
+                            </select>
+                            <div *ngIf="country.invalid && (country.dirty || country.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="country?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.country' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.state' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="locationObject.state" name="state"
+                                #state="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let state of stateData" value="{{state.stateName}}"> {{state.stateName}}
+                                </option>
+                            </select>
+                            <div *ngIf="state.invalid && (state.dirty || state.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="state?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="locationObject.isActive" name="active"
+                                    #active="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="locationObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!locationObject.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="locationObject.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addlocation(locationForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/location/location/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

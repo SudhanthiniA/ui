@@ -1,0 +1,1454 @@
+<h5 class="m-b-10 ng-star-inserted">Applicant - Application for HBR License</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'licenseMgnt.title' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">HBR License Application</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+
+        <form [formGroup]="HBRForm" autocomplete="off">
+
+            <app-card cardTitle="{{'licenseMgnt.applicationforHBRLicensesTitle' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.financialYear' | translate}}</label>
+                            <input type="text" disabled class="form-control" formControlName="financialYear">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appl_date' | translate}}</label>
+                            <input type="date" disabled class="form-control" formControlName="applicationDate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.licenseTypeText' | translate}}</label>
+                            <input type="text" class="form-control" disabled formControlName='licenseType'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" formGroupName="hbrLicenses">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.entityofFirmText' | translate}}</label>
+                            <select class="form-control" formControlName="entityFirmCode" (change)="onFirmTypeChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of entityFirmList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Entity of Firm" [frmSub]="formSubmitted"
+                                [control]="getHBRFormCntr('entityFirmCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="display: block;">
+                        <div class="form-group">
+                            <button (click)="loadDummyFormData()">{{'licenseMgnt.loadDataBtn' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.applicantDetailsTitle' | translate}}" formGroupName="applicantDetails" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.salutationText' | translate}}</label>
+                            <select class="form-control" formControlName='salutationCode' (change)="onSalutationChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of salutationList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="Salutation" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('salutationCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.firstNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='firstName'
+                                placeholder="{{'licenseMgnt.enterFirstNamePlacehold' | translate}}">
+                            <app-show-errors eleName="First Name" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('firstName')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.midNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='middleName'
+                                placeholder="{{'licenseMgnt.enterMiddleNamePlacehold' | translate}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.lastNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='lastName'
+                                placeholder="{{'licenseMgnt.enterLastNamePlacehold' | translate}}">
+                            <app-show-errors eleName="Last Name" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('lastName')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory" for="uploadpuc">{{'licenseMgnt.uploadPhotoofApplicant' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='appli_photo_file'
+                                        (change)="onAppliFileChange($event, licenseConsts.SRC_APPLI_PHOTO, licenseConsts.FN_APPLI_PHOTO)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Photo of Applicant" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('appli_photo_file')"> </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_PHOTO) as fileObj">
+                                <button
+                                    (click)="downloadDocument(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_PHOTO)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appliMobileText' | translate}}</label>
+                            <input type="text" class="form-control" maxlength="10" formControlName='mobileNumber'
+                                placeholder="{{'licenseMgnt.enterMobileNumberPlacehold' | translate}}" (keypress)="numberOnly($event)">
+                            <app-show-errors eleName="Mobile Number" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('mobileNumber')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appliEmailText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='emailId'
+                                placeholder="{{'licenseMgnt.enterEmailIdPlaceHold' | translate}}">
+                            <app-show-errors eleName="Email Id" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('emailId')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="screenSubType !== licenseConsts.WHOLESALE_FL2A_SUBCATEGORY">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.appliAadharText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName='aadharNumber'
+                                    placeholder="{{'licenseMgnt.appliAadharPlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="12">
+                                <app-show-errors eleName="Aadhaar Number" [frmSub]="formSubmitted"
+                                    [control]="getAppliFormCntr('aadharNumber')"> </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory" for="uploadpuc">{{'licenseMgnt.uploadAadharText' | translate}}</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='appli_aadhar_file'
+                                            (change)="onAppliFileChange($event, licenseConsts.SRC_APPLI_AADHAR, licenseConsts.FN_APPLI_AADHAR)"
+                                            accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                                <app-show-errors eleName="Upload Aadhar" [frmSub]="formSubmitted"
+                                    [control]="getAppliFormCntr('appli_aadhar_file')">
+                                </app-show-errors>
+                                <div class="input-group mt-1 mb-1"
+                                    *ngIf="isFileExists(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_AADHAR) as fileObj">
+                                    <button (click)="downloadDocument(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_AADHAR)">{{fileObj.documentName}}</button>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.genderText' | translate}}</label>
+                            <select class="form-control" formControlName='genderCode' (change)="onGenderChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of genderList" value="{{item.paramKey}}">{{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Gender" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('genderCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.dobText' | translate}}</label>
+                            <input type="date" class="form-control" formControlName='dob' [min]="minDOBDate" [max]="maxDOBDate">
+                            <app-show-errors eleName="Date of Birth" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('dob')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.panNoText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='panNumber' maxlength="12"
+                                placeholder="{{'licenseMgnt.pan_noPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.panNoText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAppliFormCntr('panNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory" for="uploadpuc">{{'licenseMgnt.upload_panText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='appli_pan_file'
+                                        (change)="onAppliFileChange($event, licenseConsts.SRC_APPLI_PAN, licenseConsts.FN_APPLI_PAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.upload_panText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliFormCntr('appli_pan_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_PAN) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_PAN)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.select_itrText' | translate}}</label>
+                            <select class="form-control" formControlName='itrAssesmentYearCode'
+                                (change)="onITRChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of ITRList" value="{{item.paramKey}}">{{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.select_itrText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliFormCntr('itrAssesmentYearCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory" for="uploadpuc">{{'licenseMgnt.upload_itrText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='appli_itr_file'
+                                        (change)="onAppliFileChange($event, licenseConsts.SRC_APPLI_ITR, licenseConsts.FN_APPLI_ITR)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.upload_itrText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliFormCntr('appli_itr_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_ITR) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_APPLI_DET, licenseConsts.FN_APPLI_ITR)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.reasonIfPrevItrUploadedText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='previousItrNotFiled'
+                                placeholder="{{'licenseMgnt.reasonIfPrevItrUploadedPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.reasonIfPrevItrUploadedText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliFormCntr('previousItrNotFiled')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.applicantAddressTitle' | translate}}" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='country' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='pinCode' (keypress)="numberOnly($event)" maxlength="6"
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('pinCode')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName='stateCode'
+                                (change)="onStateChange($event.target.value, licenseConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName='districtCode'
+                                (change)="onDistrictChange($event.target.value, licenseConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of districtListByState[licenseConsts.SEC_ADDR_APPLICANT]"
+                                    value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName='tahsilCode' (change)="onTalukChange($event.target.value, licenseConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of talukList[licenseConsts.SEC_ADDR_APPLICANT]"
+                                    value="{{item.id}}">
+                                    {{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName='localityType'
+                                (change)="onLocalityChange($event.target.value, licenseConsts.SEC_ADDR_APPLICANT)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="appliAddrLocality == licenseConsts.LOCALITY_URBAN">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                                <select class="form-control" formControlName="municipalAreaCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>{{'licenseMgnt.wardText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted"
+                                    [control]="getAppliAddrFormCntr('ward')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="appliAddrLocality == licenseConsts.LOCALITY_RURAL">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="village" placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('village')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="policeStationName" placeholder="{{'licenseMgnt.policeStationText' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('policeStationName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted"
+                                [control]="getAppliAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.premisesDetailsTitle' | translate}}" formGroupName="hbrLicenses" class="list-panel add-panel">
+                <div class="row" formGroupName="hbrPremisesDetails">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.firmNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='firmName'
+                                placeholder="{{'licenseMgnt.enterfirmnamePlacehold' | translate}}">
+                            <app-show-errors eleName="Firm Name"
+                                [frmSub]="formSubmitted" [control]="getHBRPremisesFormCntr('firmName')"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.ownershipTypeText' | translate}}</label>
+                            <select class="form-control" formControlName='ownershipTypeCode'
+                                (change)="onOwnershipTypeChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of ownershipList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="GST Number" [frmSub]="formSubmitted"
+                                [control]="getHBRPremisesFormCntr('ownershipTypeCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">{{'licenseMgnt.upload_OwnershipDocument' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='ownershipDoc_file'
+                                        (change)="onPremisesFileChange($event, licenseConsts.SRC_HBR_PREM_OWNERSHIIP_DOC, licenseConsts.FN_HBR_PREM_OWNERSHIIP_DOC)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload Ownership Document" [frmSub]="formSubmitted"
+                                [control]="getHBRPremisesFormCntr('ownershipDoc_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_PREMISES_HBR, licenseConsts.FN_HBR_PREM_OWNERSHIIP_DOC) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_PREMISES_HBR, licenseConsts.FN_HBR_PREM_OWNERSHIIP_DOC)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.noofRoomsinHotelText' | translate}}</label>
+                            <select class="form-control" formControlName="numberOfRoomsCode" (change)="onNumberOfRoomChange($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of numberOfRoomList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="No. of Rooms in Hotel" [frmSub]="formSubmitted"
+                                [control]="getHBRPremisesFormCntr('numberOfRoomsCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtCategoryText' | translate}}</label>
+                            <select class="form-control" formControlName="districtCategoryCode" (change)="onDistrictCategoryChange($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of districtCategoryList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="District Category" [frmSub]="formSubmitted"
+                                [control]="getHBRPremisesFormCntr('districtCategoryCode')"></app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.listofBoardMembersTitle' | translate}}" formGroupName="hbrLicenses" class="list-panel add-panel">
+                <div class="row" formArrayName="hbrFirmCompanyDetailList">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><span class="mandatory">{{'licenseMgnt.designationText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.fullNameText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.addrText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.mobileNoText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.aadhaarNumberText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.uploadAadharText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.panNoText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.upload_panText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.uploadAffaidavitText' | translate}}</span></th>
+                                        <th><span class="mandatory">{{'licenseMgnt.uploadCharacterCertText' | translate}}</span></th>
+                                        <th *ngIf="!isReadOnly"><span>{{'licenseMgnt.actionText' | translate}}</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    *ngFor="let firmCompDetCntrl of getFirmCompanyDetFormCntr()['controls']; let i=index"
+                                    id="row{{i}}">
+                                    <tr [formGroupName]="i">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-150" formControlName="designation"
+                                                placeholder="Designation">
+                                                <app-show-errors eleName="designation" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'designation')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-150" formControlName="fullName"
+                                                placeholder="Full Name">
+                                                <app-show-errors eleName="fullName" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'fullName')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-250" formControlName="address"
+                                                placeholder="Address">
+                                                <app-show-errors eleName="address" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'address')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-150" formControlName="mobile"
+                                                placeholder="Mobile No"  maxlength="10" (keypress)="numberOnly($event)">
+                                                <app-show-errors eleName="mobile" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'mobile')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-150" formControlName="aadharNumber"
+                                                placeholder="Aadhaar Number"  maxlength="12" (keypress)="numberOnly($event)">
+                                                <app-show-errors eleName="aadharNumber" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'aadharNumber')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth inp-width-250">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_aadhar_file"
+                                                        (change)="onFirmCompanyFileChange($event, i, firmCompDetCntrl, licenseConsts.SRC_SM_AADHAR, licenseConsts.FN_SM_AADHAR)"
+                                                        accept="image/png,image/jpeg">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                            <app-show-errors eleName="aadhar file" [frmSub]="formSubmitted"
+                                            [control]="getProdFrmCntrIdx(i, 'firmcompany_aadhar_file')">
+                                           </app-show-errors>
+                                            <div class="input-group mt-1 mb-1"
+                                                *ngIf="isFileExists(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_AADHAR, i) as fileObj">
+                                                <button (click)="downloadDocument(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_AADHAR, i)">{{fileObj.documentName}}</button>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control inp-width-150" formControlName="panNumber"
+                                                placeholder="PAN No" maxlength="10" (keypress)="alphanumericOnly($event)">
+                                                <app-show-errors eleName="panNumber" [frmSub]="formSubmitted"
+                                                [control]="getProdFrmCntrIdx(i, 'panNumber')">
+                                            </app-show-errors>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth inp-width-250">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_pan_file"
+                                                        (change)="onFirmCompanyFileChange($event, i, firmCompDetCntrl, licenseConsts.SRC_SM_PAN, licenseConsts.FN_SM_PAN)"
+                                                        accept="image/png,image/jpeg">
+                                                  
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                            <app-show-errors eleName="pan file" [frmSub]="formSubmitted"
+                                            [control]="getProdFrmCntrIdx(i, 'firmcompany_pan_file')">
+                                        </app-show-errors>
+                                            <div class="input-group mt-1 mb-1"
+                                                *ngIf="isFileExists(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_PAN, i) as fileObj">
+                                                <button (click)="downloadDocument(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_PAN, i)">{{fileObj.documentName}}</button>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth inp-width-250">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_affadavait_file"
+                                                        (change)="onFirmCompanyFileChange($event, i, firmCompDetCntrl, licenseConsts.SRC_SM_AFFADAVAIT, licenseConsts.FN_SM_AFFADAVAIT)"
+                                                        accept="image/png,image/jpeg">
+                                                   
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                            <app-show-errors eleName="affadavit file" [frmSub]="formSubmitted"
+                                            [control]="getProdFrmCntrIdx(i, 'firmcompany_affadavait_file')">
+                                        </app-show-errors>
+                                            <div class="input-group mt-1 mb-1"
+                                                *ngIf="isFileExists(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_AFFADAVAIT, i) as fileObj">
+                                                <button (click)="downloadDocument(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_AFFADAVAIT, i)">{{fileObj.documentName}}</button>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth inp-width-250">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_character_file"
+                                                        (change)="onFirmCompanyFileChange($event, i, firmCompDetCntrl, licenseConsts.SRC_SM_CHARAC_CERT, licenseConsts.FN_SM_CHARAC_CERT)"
+                                                        accept="image/png,image/jpeg">
+                                                
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                            <app-show-errors eleName="character file" [frmSub]="formSubmitted"
+                                            [control]="getProdFrmCntrIdx(i, 'firmcompany_character_file')">
+                                           </app-show-errors>
+                                            <div class="input-group mt-1 mb-1"
+                                                *ngIf="isFileExists(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_CHARAC_CERT, i) as fileObj">
+                                                <button (click)="downloadDocument(licenseConsts.PROP_FIRM_COMPANY_DET_HBR, licenseConsts.FN_SM_CHARAC_CERT, i)">{{fileObj.documentName}}</button>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table-action-column text-center" *ngIf="!isReadOnly">
+                                            <button class="btn btn-icon btn-success mr-2 ml-2" type="button"
+                                                (click)="addFirmCompanyDetRow()">
+                                                <i class="feather icon-plus"></i></button>
+                                            <!-- <button class="btn btn-icon btn-danger mr-2 ml-2" type="button"
+                                                *ngIf="i!==getFirmCompanyDetLen()-1" (click)="remFirmCompanyDetRow(i)">
+                                                <i class="feather icon-trash"></i></button> -->
+
+                                                <button class="btn btn-icon btn-danger mr-2 ml-2" type="button"
+                                                 (click)="remFirmCompanyDetRow(i)">
+                                                <i class="feather icon-trash"></i></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.premisesAddressTitle' | translate}}" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="1">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" [disabled]="isReadOnly" [checked]="isSameAsAboveAddr[1]" (change)="onCheckboxChange($event.target.checked, licenseConsts.SEC_ADDR_PREMISES)">
+                                <label class="cr mr-2" for="sameAddress">{{'licenseMgnt.clickiftheaddressissameasabove_rbtn' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='country' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName='pinCode' (keypress)="numberOnly($event)" maxlength="6"
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('pinCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName='stateCode'
+                                (change)="onStateChange($event.target.value, licenseConsts.SEC_ADDR_PREMISES)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName='districtCode'
+                                (change)="onDistrictChange($event.target.value, licenseConsts.SEC_ADDR_PREMISES)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of districtListByState[licenseConsts.SEC_ADDR_PREMISES]"
+                                    value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName='tahsilCode' (change)="onTalukChange($event.target.value, licenseConsts.SEC_ADDR_PREMISES)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of talukList[licenseConsts.SEC_ADDR_PREMISES]"
+                                    value="{{item.id}}">
+                                    {{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName='localityType'
+                                (change)="onLocalityChange($event, licenseConsts.SEC_ADDR_PREMISES)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="premisesAddrLocality == licenseConsts.LOCALITY_URBAN">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                                <select class="form-control" formControlName="municipalAreaCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted"
+                                    [control]="getPremisesAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>{{'licenseMgnt.wardText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted"
+                                    [control]="getPremisesAddrFormCntr('ward')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="premisesAddrLocality == licenseConsts.LOCALITY_RURAL">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                                <input type="text" class="form-control" formControlName="village" placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAppliAddrFormCntr('village')"></app-show-errors>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="policeStationName" placeholder="{{'licenseMgnt.policeStationText' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}" [frmSub]="formSubmitted" [control]="getPremisesAddrFormCntr('policeStationName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.attachment_cardText' | translate}}" formGroupName="hbrLicenses"
+                class="list-panel add-panel">
+                <div class="row" formGroupName="hbrAdditionalDetails">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.uploadEligibilityAffidavitLabel' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="affadavait_file" (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_AFFADAVAIT, licenseConsts.FN_ATTACH_AFFADAVAIT)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload Eligibility Affidavit" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('affadavait_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_AFFADAVAIT) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_AFFADAVAIT)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.uploadBoundrieschauhaddiLabel' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="boundries_file" (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_BOUNDRY, licenseConsts.FN_ATTACH_BOUNDRY)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Boundries" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('boundries_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_BOUNDRY) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_BOUNDRY)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.layoutplanText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="layoutPlan_file" (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_LAY_PLAN, licenseConsts.FN_ATTACH_LAY_PLAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Layout plan" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('layoutPlan_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LAY_PLAN) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LAY_PLAN)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.certificationofIncorporationText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificationOfIncorporation_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_CERT_OF_INCORP, licenseConsts.FN_ATTACH_CERT_OF_INCORP)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certification of Incorporation" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificationOfIncorporation_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_INCORP) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_INCORP)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.memorandumofAssociationText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="memorandumOfAssociation_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_MOM_OF_ASSO, licenseConsts.FN_ATTACH_MOM_OF_ASSO)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Memorandum of Association" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('memorandumOfAssociation_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_MOM_OF_ASSO) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_MOM_OF_ASSO)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.upload_ArticleofAssociation' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="articleOfAssociation_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_ART_OF_ASSOC, licenseConsts.FN_ATTACH_ART_OF_ASSOC)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Article of Association" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('articleOfAssociation_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_ART_OF_ASSOC) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_ART_OF_ASSOC)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.upload_ResolutionofAuthorization' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="resolutionOfAuthorization_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_RESU_OF_AUTH, licenseConsts.FN_ATTACH_RESU_OF_AUTH)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Resolution of Authorization" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('resolutionOfAuthorization_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_RESU_OF_AUTH) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_RESU_OF_AUTH)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.companyTANText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="companyTan"
+                                placeholder="{{'licenseMgnt.enterCompanyTANPlacehold' | translate}}">
+                            <app-show-errors eleName="Company TAN" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('companyTan')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.uploadTANDocumentText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="TAN_file" (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_TAN, licenseConsts.FN_ATTACH_TAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="TAN" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('TAN_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_TAN) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_TAN)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.registrationCertificateoffirmText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificateOfFirm_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_CERT_OF_FIRM, licenseConsts.FN_ATTACH_CERT_OF_FIRM)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Registration Certificate of firm" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificateOfFirm_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_FIRM) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_FIRM)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.partnershipdeedText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="partnershipDeed_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_PARTNERSHIPDEED, licenseConsts.FN_ATTACH_PARTNERSHIPDEED)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Partnership deed" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('partnershipDeed_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_PARTNERSHIPDEED) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_PARTNERSHIPDEED)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.firesafteyNoCText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="fireSafteyNoc_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_FIRESAFTEYNOC, licenseConsts.FN_ATTACH_FIRESAFTEYNOC)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Fire saftey NoC" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('fireSafteyNoc_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_FIRESAFTEYNOC) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_FIRESAFTEYNOC)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.listofdirectorspartnerText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="listOfDirectors_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_LISTOFDIRECTORS, licenseConsts.FN_ATTACH_LISTOFDIRECTORS)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="List of directors/partner" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('listOfDirectors_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LISTOFDIRECTORS) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LISTOFDIRECTORS)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.copyofTradeLicenceText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="tradeLicence_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_TRADELICENCE, licenseConsts.FN_ATTACH_TRADELICENCE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Copy of Trade Licence" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('tradeLicence_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_TRADELICENCE) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_TRADELICENCE)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.fssaiCertText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="fssaiCertificate_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_FSSAI_CERT, licenseConsts.FN_ATTACH_FSSAI_CERT)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Fssai Certificate" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('fssaiCertificate_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_FSSAI_CERT) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_FSSAI_CERT)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.certificationofpremisesutilityText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificationOfPremisesUtility_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_CERT_OF_PREMISESUTILITY, licenseConsts.FN_ATTACH_CERT_OF_PREMISESUTILITY)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certification of premises utility" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificationOfPremisesUtility_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_PREMISESUTILITY) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_CERT_OF_PREMISESUTILITY)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.lawOrderText' | translate}} </label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="lawAndOrder_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_LAWANDORDER, licenseConsts.FN_ATTACH_LAWANDORDER)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Law & Order " [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('lawAndOrder_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LAWANDORDER) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_LAWANDORDER)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.proofOfParkingText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="proofOfParkingPlace_file"
+                                        (change)="onAttachFileChange($event, licenseConsts.SRC_ATTACH_PROOFOFPARKINGPLACE, licenseConsts.FN_ATTACH_PROOFOFPARKINGPLACE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Proof Of Parking" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('proofOfParkingPlace_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_PROOFOFPARKINGPLACE) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_ATTACHMENT_HBR, licenseConsts.FN_ATTACH_PROOFOFPARKINGPLACE)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.appli_bank_cardText' | translate}}" formArrayName="bankList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankAccNumText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="accountNumber"
+                                placeholder="{{'licenseMgnt.bankAccNumPlaceHold' | translate}}" (keypress)="numberOnly($event)" maxlength="15">
+                            <app-show-errors eleName="Bank Account Number" [control]="getBankFormCntr('accountNumber')"
+                                [frmSub]="formSubmitted"> </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankIfscText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ifscCode"
+                                placeholder="{{'licenseMgnt.bankIfscPlaceHold' | translate}}" maxlength="15">
+                            <app-show-errors eleName="Bank IFSC" [control]="getBankFormCntr('ifscCode')"
+                                [frmSub]="formSubmitted"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankNameText' | translate}}</label>
+                            <select class="form-control" formControlName="bankCode" (change)="onBankChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of bankList" value="{{item.paramKey}}">{{item.paramValue}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Bank Name" [control]="getBankFormCntr('bankCode')"
+                                [frmSub]="formSubmitted"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory" for="uploadpuc">{{'licenseMgnt.cancelChequeText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='cancel_cheque_file'
+                                        (change)="onBankFileChange($event, licenseConsts.SRC_BK_CAN_CHEQUE, licenseConsts.FN_BK_CAN_CHEQUE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.cancelChequeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankFormCntr('cancel_cheque_file')">
+                            </app-show-errors>
+                            <div class="input-group mt-1 mb-1"
+                                *ngIf="isFileExists(licenseConsts.PROP_BANK_DET, licenseConsts.FN_BK_CAN_CHEQUE, 0) as fileObj">
+                                <button (click)="downloadDocument(licenseConsts.PROP_BANK_DET, licenseConsts.FN_BK_CAN_CHEQUE, 0)">{{fileObj.documentName}}</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.paymentProcessingFeesTitle' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.applicationFeeText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="paymentProcessingFee" readonly>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+
+        <form [formGroup]="HBRSiteDetForm" autocomplete="off">
+
+            <app-card cardTitle="{{'licenseMgnt.applicantSiteDetailsTitle' | translate}}" class="add-panel list-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.latituteText' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="latitude" placeholder="{{'licenseMgnt.110degreeplacehold' | translate}}">
+                            <app-show-errors eleName="Latitute" [control]="getSiteDetFormCntr('latitude')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.longitudeText' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="longitude" placeholder="{{'licenseMgnt.140degreeplacehold' | translate}}">
+                            <app-show-errors eleName="Longitude" [control]="getSiteDetFormCntr('longitude')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.eastText' | translate}}</label>
+                            <textarea type="text" class="form-control" formControlName="east" placeholder="{{'licenseMgnt.onEastsideJawaharJuiceShopPlacehold' | translate}}"></textarea>
+                            <app-show-errors eleName="East" [control]="getSiteDetFormCntr('east')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.westText' | translate}}</label>
+                            <textarea type="text" class="form-control" formControlName="north" placeholder="{{'licenseMgnt.onWestSakthiStationaryShopPlacehold' | translate}}"></textarea>
+                            <app-show-errors eleName="West" [control]="getSiteDetFormCntr('north')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.northText' | translate}}</label>
+                            <textarea type="text" class="form-control" formControlName="south" placeholder="{{'licenseMgnt.towardsNorthBangraMainRoadPlacehold' | translate}}"></textarea>
+                            <app-show-errors eleName="North" [control]="getSiteDetFormCntr('south')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.southText' | translate}}</label>
+                            <textarea type="text" class="form-control" formControlName="west" placeholder="{{'licenseMgnt.onSouthGovernmentSchoolPlacehold' | translate}}"></textarea>
+                            <app-show-errors eleName="South" [control]="getSiteDetFormCntr('west')" [frmSub]="siteDetformSub">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.shopPhotosTitle' | translate}}" formArrayName="documentList" class="list-panel view-panel">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{'licenseMgnt.sNoText' | translate}}</th>
+                                    <th><span class="mandatory">{{'licenseMgnt.uploadPhotoLable' | translate}}</span></th>
+                                    <th><span class="mandatory">{{'licenseMgnt.descriptionText' | translate}}</span></th>
+                                    <th *ngIf="!isReadOnly">{{'licenseMgnt.actionText' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let siteDocumentCntrl of HBRSiteDocumentFormControls; let i=index" id="row{{i}}">
+                                <tr [formGroupName]="i">
+                                    <td>{{i+1}} </td>
+                                    <td>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" formControlName="site_photo_file" (change)="onSiteDocumentFileChange($event, i, siteDocumentCntrl, licenseConsts.SRC_SITE_PHOTO, licenseConsts.FN_SITE_PHOTO)" accept="image/png,image/jpeg">
+                                                <label class="custom-file-label"></label>
+                                            </div>
+                                        </div>
+                                        <app-show-errors eleName="photo file" [frmSub]="formSubmitted"
+                                        [control]="getSitedocCntrIdx(i, 'site_photo_file')">
+                                       </app-show-errors>
+                                        <div class="input-group mt-1 mb-1"
+                                            *ngIf="isSiteDocFileExists(licenseConsts.PROP_SITE_DOCUMENT, i, true) as fileObj">
+                                            <button (click)="downloadSiteDocument(licenseConsts.PROP_SITE_DOCUMENT, i, true)">{{fileObj.documentName}}</button>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-danger rounded-0" type="button"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" formControlName="description" placeholder="Enter Description">
+                                        <app-show-errors eleName="description" [frmSub]="formSubmitted"
+                                        [control]="getSitedocCntrIdx(i, 'description')">
+                                       </app-show-errors>
+                                    </td>
+                                    <td class="table-action-column text-center" *ngIf="!isReadOnly">
+                                        <button class="btn btn-icon btn-success mr-2 ml-2" type="button" (click)="addSiteDocumentRow()">
+                                            <i class="feather icon-plus"></i></button>
+                                        <!-- <button class="btn btn-icon btn-danger mr-2 ml-2" type="button" *ngIf="i!==getSiteDocumentLen()-1"
+                                            (click)="remSiteDocumentRow(i)">
+                                            <i class="feather icon-trash"></i></button> -->
+                                            <button class="btn btn-icon btn-danger mr-2 ml-2" type="button" 
+                                            (click)="remSiteDocumentRow(i)">
+                                            <i class="feather icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+
+        <app-application-logs 
+            *ngIf="licenseComments.length > 0"
+            [licenseComments]="licenseComments"
+            [checkList]="this.licenseData?.checkList"
+            [isOfficier]="false">
+        </app-application-logs>
+        
+        <ng-container *ngIf="isSendBack">
+            <app-card cardTitle="{{'licenseMgnt.remarksText' | translate}}" class="list-panel add-panel">
+                <div class="row" [formGroup]="commentForm">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.remarksText' | translate}}</label>
+                            <textarea class="form-control" formControlName="comments" rows="2"></textarea>
+                            <app-show-errors eleName="{{'licenseMgnt.commentsText' | translate}}" [frmSub]="commandformSub"
+                                [control]="commentForm.controls.comments">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </ng-container>
+
+        <div class="text-content text-right mb-4">
+            <ng-container *ngIf="isActionBtnFor == licenseConsts.CUSTOMER">
+                <ng-container *ngIf="!isSendBack">
+                    <button type="button" class="btn btn-warning mb-2 ml-2" [disabled]="isDraftLoading" (click)="onSubmit(licenseConsts.STATUS_DRAFT)">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isDraftLoading, 'fa-check': !isDraftLoading}"></i> {{'licenseMgnt.saveAsDraftText' | translate}}
+                    </button>
+                    <button type="button" class="btn btn-primary mb-2 ml-2" [disabled]="isSubmitLoading" (click)="onSubmit(licenseConsts.STATUS_SAVE)">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isSubmitLoading, 'fa-check': !isSubmitLoading}"></i> {{'licenseMgnt.proceedtoPaymentText' | translate}}
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="isSendBack">
+                    <button type="button" class="btn btn-primary mb-2 ml-2" (click)="onSubmit(licenseConsts.STATUS_SENDBACK)">{{'licenseMgnt.submitText' | translate}}</button>
+                </ng-container>
+            </ng-container>
+            <button type="button" class="btn btn-secondary mb-2 ml-2" (click)="back()">{{'licenseMgnt.backText' | translate}}</button>
+        </div>
+
+    </div>
+</div>

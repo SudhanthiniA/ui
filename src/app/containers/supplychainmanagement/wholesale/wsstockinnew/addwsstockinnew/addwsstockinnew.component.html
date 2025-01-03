@@ -1,0 +1,1637 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'wholesale.stockin.addstockin'|translate}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockinhand.wholesale'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockin.stockin'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.common.add'|translate}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <app-card cardTitle="{{'wholesale.stockin.stockindetails'|translate}}" class="list-panel add-panel">
+
+            <!-- Scan QR Code -->
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label class="mandatory">{{'wholesale.stockin.transportpassqrcode'|translate}}</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" [(ngModel)]='barcodescan'
+                            placeholder="{{'wholesale.stockin.entertransportpassqrcode'|translate}}" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" (click)='getindentdetails()' type="button"><i
+                                    class="fas fa-qrcode"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ngb-tabset #tabRef="ngbTabset" type="pills" class="mb-2">
+                <!-- indent -->
+                <ngb-tab title="{{'wholesale.stockin.indentdetails'|translate}}" id="indentdatils" autocomplete="off">
+                    <ng-template ngbTabContent>
+                        <form #stockinformOne="ngForm">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <app-card cardTitle="{{'wholesale.stockin.transportpassdetails'|translate}}" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Transport Pass No<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                               TP1122
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Application Date<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            20-Jul-2021
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">{{'wholesale.stockin.numberofindents'|translate}}<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                              2
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">{{'wholesale.stockin.transportpass'|translate}}<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                TP1122.png 
+                                                <button type="button" class="btn btn-success"><i
+                                                        class="fas fa-download"></i></button>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-12">
+                                    <app-card cardTitle="{{'wholesale.stockin.unitdetails'|translate}}" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">{{'wholesale.stockin.licensetype'|translate}}<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                FL
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">{{'wholesale.stockin.unitname'|translate}}<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                Daurala Distillery
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">{{'wholesale.stockin.unitaddress'|translate}}<span
+                                                        class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                Plot No. 12, Near Tripathi Super Store, Madhupuram, Bhitauli Khurd, IIM Road, Lucknow, UP 241001
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-12">
+                                    <app-card cardTitle="Indent Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{'wholesale.damagedproducts.sno'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.indentnumber'|translate}}</th>
+                                                                <th>{{'wholesale.stockin.indentdate'|translate}}</th>
+                                                                <th>Total No. of Cases<br>Requested </th>
+                                                                <th>Total No. of Bottles<br>Requested </th>
+                                                                <th>Total No. of Cases<br>Supplied</th>
+                                                                <th>Total No. of Bottles<br>Supplied</th>
+                                                                <!-- <th>{{'wholesale.common.action'|translate}}</th> -->
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>6234723922</td>
+                                                                <td>20-Mar-2021</td>
+                                                                <td class="text-left">20</td>
+                                                                <td class="text-left">200</td>
+                                                                <td class="text-left">20</td>
+                                                                <td class="text-left">200</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>6234723921</td>
+                                                                <td>20-Jul-2021</td>
+                                                                <td class="text-left">20</td>
+                                                                <td class="text-left">200</td>
+                                                                <td class="text-left">20</td>
+                                                                <td class="text-left">200</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-6">
+                                    <app-card cardTitle="{{'wholesale.stockin.damage'|translate}}/{{'wholesale.stockin.missingbottlesdetails'|translate}}" class="list-panel add-panel">
+                                        <div class="row">
+
+                                            <div class="col-12">
+                                                <label class="d-block">Is there any damaged/Missing bottles or cases in Dispatch?</label>
+
+                                                <!-- <div class="form-group">
+                                                    <label>{{'wholesale.stockin.ifanydamages'|translate}}/{{'wholesale.stockin.missingbottlesorcasesindispatch'|translate}}?</label>
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" name="active"
+                                                            class="custom-control-input" id="switch1"
+                                                            data-toggle="modal" (click)="rejectConfirmation()"
+                                                            [(ngModel)]="ifDamageMissingFlag">
+                                                        <label class="custom-control-label" for="switch1">{{'wholesale.common.yes'|translate}}</label>
+                                                    </div>
+                                                </div> -->
+                                                <div class="segment">
+                                                    <input type="radio" name="tab" id="tab1" checked data-toggle="modal" (click)="rejectConfirmation()">
+                                                    <label class="" for="tab1">Yes</label>
+                                                    <input type="radio" name="tab" id="tab2 " data-toggle="modal" (click)="rejectConfirmation()">
+                                                    <label class="" for="tab2">No</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </app-card>
+                                </div>
+                                <div class="col-xl-6">
+                                    <app-card cardTitle="{{'wholesale.stockin.receiveddetails'|translate}}" class="list-panel add-panel">
+                                        <div class="row">
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label>{{'wholesale.stockin.receiveddate'|translate}}</label>
+                                                    <input type="date" name='recievedDate' #recievedDate="ngModel"
+                                                        [(ngModel)]="stockreqObj['recievedDate']" required
+                                                        class="form-control">
+                                                    <div *ngIf="recievedDate.invalid && (recievedDate.dirty || recievedDate.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="recievedDate?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            Recieved is required</div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label>{{'wholesale.stockin.receivedby'|translate}}</label>
+                                                    <input type="text" name='recievedBy' #recievedBy="ngModel"
+                                                        [(ngModel)]="stockreqObj['recievedBy']" required
+                                                        class="form-control" placeholder="{{'wholesale.stockin.enterreceivedby'|translate}}">
+                                                    <div *ngIf="recievedBy.invalid && (recievedBy.dirty || recievedBy.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="recievedBy?.errors?.required"><i
+                                                                class="fa fa-times"></i>
+                                                            Recieved is required</div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </app-card>
+                                </div>
+                            </div>
+                        </form>
+
+                    </ng-template>
+
+
+                </ngb-tab>
+                <!-- damage -->
+                <ngb-tab id="damagedetails">
+
+                    <ng-template ngbTabTitle>{{'wholesale.stockin.damage'|translate}}/{{'wholesale.stockin.missingbottlesandcasesdetails'|translate}}</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>Issue Type</label>
+                                    <select class="form-control" required>
+                                      <option>Select</option>
+                                      <option value="" data-toggle="modal" 
+                                      (click)="caseModal()">Bottle Missing</option>
+                                      <option >Bottles Damaged</option>
+                                      <option data-toggle="modal" 
+                                      (click)="casesMiss()">Cases Missing</option>
+                                      <option>Cases Damaged</option>
+                                      <option>Bottle Missing & Bottle Damaged</option>
+                                      <option>Case Missing & Case Damaged</option>
+                                      <option>Case Damaged & Bottle Missing</option>
+                                    
+                                                </select>
+                                   
+                                  </div>
+                                </div>
+                              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>Damage Type</label>
+                                    <select class="form-control" required>
+                                        <option>Select</option>
+                                        <option value="" data-toggle="modal" 
+                                      (click)="bottleMissBottQrUn()">QR Code Unreadable</option>
+                                      <option value="" data-toggle="modal" 
+                                      (click)="bottleDamQR()">QR Readable</option>
+                                      <option value="" data-toggle="modal" 
+                                      (click)="bottleDamQRun()">QR Unreadable</option>
+                                      <option value="" data-toggle="modal" 
+                                      (click)="casesMissingCaseBarUn()">Barcode Unreadable</option>
+                                      <option value="" data-toggle="modal" 
+                                      (click)="casesDamQR()">Barcode Readable</option>
+                                     
+                                                   </select>
+                                   
+                                  </div>
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>No. of Damages Cases</label>
+                                    <input type="number"   class="form-control" 
+                                    placeholder="Enter No. of Damages Cases"
+                                       >
+                                      
+                                  </div>
+                                </div> 
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>No. of Damages Bottles</label>
+                                    <input type="number"   class="form-control" 
+                                    placeholder="Enter No. of Damages Bottles">
+                                      
+                                  </div>
+                                </div>-->
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>No. of Missing Cases</label>
+                                    <input type="number"   class="form-control" 
+                                    placeholder="Enter No. of Missing Cases">
+                                      
+                                  </div>
+                                </div>
+                                
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                      <label>No. of Missing Bottles</label>
+                                      <input type="number"   class="form-control" 
+                                      placeholder="Enter No. of Missing Bottles">
+                                        
+                                    </div>
+                                  </div> 
+                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                      <div class="form-group">
+                                        <label>No. of Cases</label>
+                                        <input type="number"   class="form-control" 
+                                        placeholder="Enter No. of Cases">
+                                          
+                                      </div>
+                                    </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <label>Scan Barcodes</label>
+                                  <div class="input-group mb-3">
+                                  <input type="text" class="form-control" placeholder="Scan Barcodes" aria-label="Scan Barcode" aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                  <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                  </div>
+                                  </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label>Scan the Available QR Codes</label>
+                                    <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Scan the Available QR Codes" aria-label="Scan Barcode" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                    </div>
+                                    </div>
+                                    </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                      <label>Scan the Available QR Codes</label>
+                                      <div class="input-group mb-3">
+                                      <input type="text" class="form-control" placeholder="Scan Available QR Codes" aria-label="Scan Barcode" aria-describedby="basic-addon2">
+                                      <div class="input-group-append">
+                                      <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                      </div>
+                                      </div>
+                                      </div>
+                                       <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                          <label>Scan Available Barcodes</label>
+                                          <div class="input-group mb-3">
+                                          <input type="text" class="form-control" placeholder="Scan Available Barcodes" aria-label="Scan Barcode" aria-describedby="basic-addon2">
+                                          <div class="input-group-append">
+                                          <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                          </div>
+                                          </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                              <label>Scan Damaaged Barcodes</label>
+                                              <div class="input-group mb-3">
+                                              <input type="text" class="form-control" placeholder="Scan Damaaged Barcodes" aria-label="Scan Barcode" aria-describedby="basic-addon2">
+                                              <div class="input-group-append">
+                                              <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                                              </div>
+                                              </div>
+                                              </div>
+                                      <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                          <div class="form-group">
+                                            <label>Barcode Count</label>
+                                            <input type="number" required  disabled class="form-control" 
+                                                value="0">
+                                              
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                              <label>No. of  Cases Scanned</label>
+                                              <input type="number"   disabled class="form-control" 
+                                                  value="0">
+                                                
+                                            </div>
+                                          </div>
+                                       
+                                       <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                          <label>No. of  Bottles Scanned</label>
+                                          <input type="number" required  disabled class="form-control" 
+                                              value="0">
+                                            
+                                        </div>
+                                      </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                              <label>Remaining Bottles to be Scanned</label>
+                                              <input type="number"   disabled class="form-control" 
+                                                  value="0">
+                                                
+                                            </div>
+                                          </div>  
+                                       <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                              <div class="form-group">
+                                                <label>No. of  Cases Scanned</label>
+                                                <input type="number"   disabled class="form-control" 
+                                                    value="0">
+                                                  
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                  <label>Remaining Cases to be Scanned</label>
+                                                  <input type="number"   disabled class="form-control" 
+                                                      value="0">
+                                                    
+                                                </div>
+                                              </div>   -->                       
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right mb-2">
+                              <div class="">
+                            <button type="submit" class="btn btn-primary"  data-toggle="modal" 
+                            (click)="caseModal()">Add</button>
+                            <button type="submit" class="btn btn-secondary ml-2">Clear</button>
+                        </div>
+                    </div>   
+                              
+                          <div class="col-12">
+                              <div class="table-responsive mb-2">
+                                  <table class="table table-bordered text-center mb-0">
+                                      <thead>
+                                          <tr>
+                                              <th>#</th>
+                                              <th>Issue<br>Type</th>
+                                              <th>Damage<br>Type</th>
+                                              <th>No. Damaged<br>Cases</th>
+                                              <th>No. Missing<br>Cases</th>
+                                              <th>No. Damaged<br>Bottles</th>
+                                              <th>No. Missing<br>Bottles</th>
+                                              <th>Action</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td>1</td>
+                                              <td class="text-left">Bottle Missing</td>
+                                              <td></td>
+                                              <td class="text-left">
+                                               
+                                              </td>
+                                              <td class="text-left">
+                                                  
+                                              </td>
+                                              <td class="text-left">
+                                                  
+                                               </td>
+                                               <td class="text-left">
+                                            1
+                                               </td>
+                                               <td class="text-center">
+                                                  <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                      <i class="feather icon-edit-2"></i></button>
+                                               </td>
+                                          </tr>
+                                          <tr>
+                                              <td>2</td>
+                                              <td class="text-left">Bottles Damaged</td>
+                                              <td class="text-left">QR Readable</td>
+                                              <td class="text-left">
+                                                  
+                                                 </td>
+                                                 <td class="text-left">
+                                                     
+                                                 </td>
+                                                 <td class="text-left">
+                                                  1
+                                                  </td>
+                                                  <td class="text-left">
+                                                      
+                                                  </td>
+                                                  <td class="text-center">
+                                                      <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                          <i class="feather icon-edit-2"></i></button>
+                                                   </td>
+                                          </tr>
+                                          <tr>
+                                              <td>3</td>
+                                              <td class="text-left">Bottles Damaged</td>
+                                              <td class="text-left">QR Unreadable</td>
+                                              <td class="text-left">
+                                                  
+                                                 </td>
+                                                 <td class="text-left">
+                                                     
+                                                 </td>
+                                                 <td class="text-left">
+                                                   1
+                                                  </td>
+                                                  <td class="text-left">
+                                                      
+                                                  </td>
+                                                  <td class="text-center">
+                                                      <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                          <i class="feather icon-edit-2"></i></button>
+                                                   </td>
+                                          </tr>
+                                          <tr>
+                                              <td>4</td>
+                                              <td class="text-left">Cases Missing</td>
+                                              <td></td>
+                                              <td class="text-left">
+                                               
+                                              </td>
+                                              <td class="text-left">
+                                          1
+                                              </td>
+                                              <td class="text-left">
+                                                  
+                                               </td>
+                                               <td class="text-left">
+                                                   
+                                               </td>
+                                               <td class="text-center">
+                                                  <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                      <i class="feather icon-edit-2"></i></button>
+                                               </td>
+                                               
+                                          </tr>
+                                          <tr>
+                                            <td>5</td>
+                                            <td class="text-left">Cases Damaged</td>
+                                            <td class="text-left">Barcode Unreadable</td>
+                                            <td class="text-left">
+                                         1
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                             </td>
+                                             <td class="text-left">
+                                                 
+                                             </td>
+                                             <td class="text-center">
+                                                <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                    <i class="feather icon-edit-2"></i></button>
+                                             </td>
+                                        </tr>
+                                          <tr>
+                                              <td>6</td>
+                                              <td class="text-left">Cases Damaged</td>
+                                              <td class="text-left">Barcode Readable</td>
+                                              <td class="text-left">
+                                              1
+                                              </td>
+                                              <td class="text-left">
+                                                  
+                                              </td>
+                                              <td class="text-left">
+                                                  
+                                               </td>
+                                               <td class="text-left">
+                                                   
+                                               </td>
+                                               <td class="text-center">
+                                                  <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                      <i class="feather icon-edit-2"></i></button>
+                                               </td>
+                                               
+                                          </tr>
+                                         
+                                          <tr>
+                                            <td>7</td>
+                                            <td class="text-left">Bottle Missing & Bottle Damaged</td>
+                                            <td class="text-left">QR Unreadable</td>
+                                            <td class="text-left">
+                                          
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                             </td>
+                                             <td class="text-left">
+                                                1
+                                             </td>
+                                             <td class="text-center">
+                                                <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                    <i class="feather icon-edit-2"></i></button>
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td class="text-left">Case Missing & Case Damaged</td>
+                                            <td class="text-left">Barcode Unreadable</td>
+                                            <td class="text-left">
+                                           
+                                            </td>
+                                            <td class="text-left">
+                                                1
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                             </td>
+                                             <td class="text-left">
+                                                 
+                                             </td>
+                                             <td class="text-center">
+                                                <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                    <i class="feather icon-edit-2"></i></button>
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td class="text-left">Case Damaged and Bottle Missing</td>
+                                            <td class="text-left">Barcode Unreadable</td>
+                                            <td class="text-left">
+                                      
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                            </td>
+                                            <td class="text-left">
+                                                
+                                             </td>
+                                             <td class="text-left">
+                                                1
+                                             </td>
+                                             <td class="text-center">
+                                                <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                                    <i class="feather icon-edit-2"></i></button>
+                                             </td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                              <label class="w-100 view-label">Total No. of  Damaged Cases<span class="float-right">:</span></label>
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                             2
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                              <label class="w-100 view-label">Total No. of  Missing Cases<span class="float-right">:</span></label>
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                             2
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                              <label class="w-100 view-label">Total No. of  Damaged Bottles<span class="float-right">:</span></label>
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         2
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                              <label class="w-100 view-label">Total No. of  Missing Bottles<span class="float-right">:</span></label>
+                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           2
+                          </div>
+                          </div>
+                          <div class="row">
+                        
+                              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>Received Date</label>
+                                    <input type="date" required  class="form-control">
+                                      
+                                  </div>
+                                </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                  <div class="form-group">
+                                    <label>Received By</label>
+                                    <input type="text" required  class="form-control" 
+                                        placeholder="Enter Received By">
+                                      
+                                  </div>
+                                </div>
+                              
+                          </div>                   
+            </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>Indent No. 6234723922</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                           
+                            <div class="col-12 mb-2">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Brand Name</th>
+                                                <th>Package<br>Size</th>
+                                                 <th>Package<br>Type</th>
+                                                 <th>No of Cases<br>Requested</th>
+                                                <th>No. of Bottles<br>Requested</th>
+                                                <th> No. of Cases<br>Supplied</th>
+                                                <th>No. of Bottles<br>Supplied</th>
+                                                <!-- <th>Duty Fee</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <!-- <td>BN1121</td> -->
+                                                <td class="text-left">
+                                                    Jack Daniels (Black)
+                                                </td>
+                                                <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                  <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                               <td class="text-left">
+                                                    50
+                                                </td>
+                                                <td class="text-left">
+                                                    500
+                                                </td>
+                                                <td class="text-left">
+                                                    50
+                                                </td>
+                                                <td class="text-left">
+                                                    500
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td class="text-left">
+                                                    Rampur Select
+                                                </td>
+                                               <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                                
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td class="text-left">
+                                                    Bacardi Lemon
+                                                </td>
+                                                <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                                
+                                                <td class="text-left">
+                                                    2
+                                                </td>
+                                                <td class="text-left">
+                                                    20
+                                                </td>
+                                                <td class="text-left">
+                                                    2
+                                                </td>
+                                                <td class="text-left">
+                                                    20
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td class="text-left">
+                                                    Signature
+                                                </td>
+                                               <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                              
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row mt-2">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total No. of Cases Supplied<span
+                                        class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                20
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total No. of Bottles Supplied<span
+                                        class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                200
+                            </div>
+                            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total Missing Cases<span
+                                        class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                20
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total Missing Bottles<span
+                                        class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                200
+                            </div> -->
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>Indent No. 6234723923</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                           
+                            <div class="col-12 mb-2">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Brand Name</th>
+                                                <th>Package<br>Size</th>
+                                                 <th>Package<br>Type</th>
+                                                 <th>No of Cases<br>Requested</th>
+                                                <th>No. of Bottles<br>Requested</th>
+                                                <th> No. of Cases<br>Supplied</th>
+                                                <th>No. of Bottles<br>Supplied</th>
+                                                <!-- <th>Duty Fee</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <!-- <td>BN1121</td> -->
+                                                <td class="text-left">
+                                                    Jack Daniels (Black)
+                                                </td>
+                                                <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                  <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                               <td class="text-left">
+                                                    50
+                                                </td>
+                                                <td class="text-left">
+                                                    500
+                                                </td>
+                                                <td class="text-left">
+                                                    50
+                                                </td>
+                                                <td class="text-left">
+                                                    500
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td class="text-left">
+                                                    Rampur Select
+                                                </td>
+                                               <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                                
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td class="text-left">
+                                                    Bacardi Lemon
+                                                </td>
+                                                <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                                
+                                                <td class="text-left">
+                                                    2
+                                                </td>
+                                                <td class="text-left">
+                                                    20
+                                                </td>
+                                                <td class="text-left">
+                                                    2
+                                                </td>
+                                                <td class="text-left">
+                                                    20
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td class="text-left">
+                                                    Signature
+                                                </td>
+                                               <td class="text-left">
+                                                    750 ml
+                                                </td>
+                                                <td class="text-left">
+                                                    Glass Bottle
+                                                </td>
+                                              
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                                <td class="text-left">
+                                                    10
+                                                </td>
+                                                <td class="text-left">
+                                                    100
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row mt-2">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total No. of Cases Supplied<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    20
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total No. of Bottles Supplied<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    200
+                                </div>
+                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Missing Cases<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    20
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Total Missing Bottles<span
+                                            class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    200
+                                </div> -->
+                           
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+
+            </ngb-tabset>
+
+        </app-card>
+
+
+    </div>
+
+
+
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/warehouse/stockin/preview">{{'wholesale.stockin.previewreport'|translate}}</button>
+        <div ngbDropdown class="d-inline ">
+            <button class="btn btn-success mb-2 ml-2" ngbDropdownToggle type="button">{{'wholesale.common.download'|translate}}</button>
+            <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">JPG</a>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary mb-2 ml-2" (click)="tabRef.select('damagedetails')">{{'wholesale.common.next'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="tabRef.select('indentdatils')">{{'wholesale.common.back'|translate}}</button>
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">savestockin Save as Draft</button> -->
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/wsstockinnew/view">Submit</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)='savestockin()'>{{'wholesale.common.submit'|translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/stockin/list">{{'wholesale.common.cancel'|translate}}</button>
+
+    </div>
+</div>
+
+<app-ui-modal #rejectModal dialogClass="modal-dialog-centered">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="rejectModal.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h6 class="text-center text-secondary">If any damages/missing bottles or cases in Dispatch?</h6>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button (click)="isdamagedORnot('yes')" class="btn btn-primary">Yes</button>
+                <button (click)="isdamagedORnot('No')" class="btn btn-secondary ml-2">No</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+
+<app-ui-modal #caseDetails dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottle Missing</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="caseDetails.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Missing Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesMissing}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+        </div>
+        <div class="row">
+            <!-- Scan QR Code -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan Barcode</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan Barcode" aria-label="Scan Barcode"
+                        aria-describedby="basic-addon2" [(ngModel)]="BreakageEntryObj['barCode']">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="bottleMissingScanBarCode()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan the Available QR Codes"
+                        [(ngModel)]="BreakageEntryObj['qrCode']" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="bottleMissingScanQRCodes()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary" (click)="addBottleMissing(caseDetails, 1)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="caseDetails.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #bottleDamagedQR dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottles Damaged - QR Readable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="bottleDamagedQR.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{BreakageEntryObj.issueType}}</div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Damages Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesDamaged}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">2</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="BreakageEntryObj['qrCode']"
+                        placeholder="Scan the Available QR Codes" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="bottlesDamagedQRReadable(BreakageEntryObj.noOfBottlesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Barcode Count<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.barCodeCount}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(bottleDamagedQR, 2)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="bottleDamagedQR.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #bottleDamagedQRun dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Bottles Damaged - QR Unreadable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="bottleDamagedQRun.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesDamaged}}
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan Barcode </label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan Barcode " aria-label="Scan Barcode "
+                        aria-describedby="basic-addon2" [(ngModel)]="BreakageEntryObj['barCode']">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="BottleDamScanBarCode()"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Available QR Codes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="BreakageEntryObj['qrCode']"
+                        placeholder="Scan the Available QR Codes" aria-label="Scan the Available QR Codes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary"
+                            (click)="BottleDamScanQRunRe(BreakageEntryObj.noOfBottlesDamaged)" type="button"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Bottles Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfBottlesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Bottles to be Scanned<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.bottlesToBeScanned}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!-- (click)="addtoList(bottleDamagedQRun)" -->
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(bottleDamagedQRun, 2)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="bottleDamagedQRun.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesMissing dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Missing</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesMissing.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Missing Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesMissing}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan All Available Barcodes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan All Barcodes"
+                        [(ngModel)]="BreakageEntryObj['barCode']" aria-label="Scan All Barcodes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanCaseMissing(BreakageEntryObj.noOfCasesMissing)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!--  (click)="addtoList(casesMissing)" -->
+                <button type="submit" class="btn btn-primary" (click)="addBottleMissing(casesMissing, 3)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesMissing.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesDamagedQR dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Damaged - QR Readable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesDamagedQR.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesDamaged}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan All Barcodes</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan All Barcodes"
+                        [(ngModel)]="BreakageEntryObj['barCode']" aria-label="Scan All Barcodes"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanDamagedCasesQR(BreakageEntryObj.noOfCasesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!--  (click)="addtoList(casesDamagedQR)" -->
+                <button type="submit" class="btn btn-primary"
+                    (click)="addBottleMissing(casesDamagedQR, 3)">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesDamagedQR.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #casesDamagedQRun dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Cases Damaged - QR Unreadable</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="casesDamagedQRun.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.issueType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.damageType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Damages Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesDamaged}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <label>Scan the Damaaged Barcode</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Scan the Damaaged Barcode"
+                        [(ngModel)]="barCodeValue" aria-label="Scan the Damaaged Barcode"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"
+                            (click)="scanDamagedCasesQRunRe(BreakageEntryObj.noOfCasesDamaged)"><i
+                                class="fas fa-qrcode"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. of Cases Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.noOfCasesScanned}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remaining Cases to be Scanned<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{BreakageEntryObj.casesToBeScanned}}
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <!-- (click)="addtoList(casesDamagedQRun)" -->
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2">Reset</button>
+                <button type="submit" class="btn btn-secondary ml-2" (click)="casesDamagedQRun.hide()">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>
+
+<app-ui-modal #moreBreakage dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Breakage Details</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="caseDetails.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Brand Name<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Rampur Select
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Liquor Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Whishky
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Sub Liquor Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Single Malt
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Package Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Glass Bottle
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Package Size<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                750 ML
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Available Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                100
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Bottle Missing
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Bottles Damaged
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Cases Missing
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Cases Damaged
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                QR Readable
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                QR Unreadable
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Damaged Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Missing Cases<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Damaged Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">No. Missing
+                    Bottles<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                2
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-secondary ml-2">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>

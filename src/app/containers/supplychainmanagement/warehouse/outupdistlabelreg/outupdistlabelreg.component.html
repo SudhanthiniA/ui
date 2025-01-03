@@ -1,0 +1,292 @@
+<h5 class="m-b-10 ng-star-inserted">Label Registration
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/add" type="submit" *ngIf = '!workflowobj?.isEditable'>
+    <i class="feather icon-plus mr-2"></i> Add Label</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Label Registration</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Label Request Approved  </span>
+        <h3 class="mt-2">1000</h3>
+        <i class="fas fa-external-link-alt"></i>
+        <!-- <small>WWWW</small>    -->
+      </div>  
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Label request pending</span>
+        <h3 class="mt-2">400</h3>
+        <i class="fas fa-hourglass-half"></i>
+        <!-- <small>WWW</small> -->
+      </div>
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card bg-danger" routerLink="/supplychainmanagement/sugarmills/stockavailability">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Label request rejected  </span>
+        <h3 class="mt-2">400</h3>
+        <i class="fas fa-thumbs-down text-danger"></i>
+        <!-- <small>WWWW</small> -->
+      </div>
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg5 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockin/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>No. of Label expired</span>
+          <h3 class="mt-2">200</h3>
+          <i class="fas fa-calendar-alt"></i>
+          <!-- <small>WWW</small> -->
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <form #Brandreg="ngForm" autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date</label>
+                            <input type="date"  class="form-control"  placeholder="Enter Application Date"
+                            name="createdDate" #createdDate="ngModel" [(ngModel)]="LabelRegObj['createdDate']">
+                            <!-- name="requestDate" #requestDate="ngModel" [(ngModel)]="LabelRegObj['requestDate']" -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application No</label>
+                            <input type="text"  class="form-control" placeholder="Enter Application No"
+                            name="applicationNumber" #applicationNumber="ngModel" [(ngModel)]="LabelRegObj['applicationNumber']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select id="brandCode"  class="form-control" name="brandCode"
+                            #brandCode="ngModel" [(ngModel)]="LabelRegObj['brandCode']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of outUpbrandlist" value="{{data.brandRegistrationDetails?.brandDetails?.brandCode}}">{{data.brandRegistrationDetails?.brandDetails?.brandValue}}</option>
+                            </select>
+                            <!-- <input type="number" class="form-control" placeholder="Enter Brand Name"> -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 text-right">
+                        <label>&nbsp;</label>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary mr-2" (click)="searchLabelRegData()">Search</button>
+                            <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Label Details" class="list-panel add-panel">
+                <div class="row">    
+                    <div class="col-12">
+                        <div class="table-responsive mt-2">
+                          <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource" [actionBtnBasedOnCond] ="actionBtnBasedOnCondSendback"
+                            [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                            (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                          </app-mat-normal-table>
+                        </div>
+                    </div>                            
+                    
+                    </div>
+
+            </app-card>
+            
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Label Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive mt-2">
+                            <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Application Date</th>
+                                        <th>Application No</th>
+                                        <th>Brand Name</th>
+                                        <th>Number of Labels</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let label of alllabels;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{label?.createdDate || label?.modifiedDate  | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{getdata('applnum',label.brandRegistration)}}</td>
+                                        <td>{{getdata('brnadname',label.brandRegistration)}}</td> 
+                                        <td>{{label?.brandRegistration?.applicationNumber}}</td>
+                                        <td>{{label?.brandRegistration?.brandRegistrationDetails?.brandDetails?.brandValue}}</td>
+                                        <td>{{label?.lableRegistrationDetails?.labelDetails[0]?.numberOfLabels}}</td>
+                                        <td> 
+                                            {{label?.status}}
+                                        </td>
+
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary mr-2" type="button" 
+                                                routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/view/{{label.id}}">
+                                                <i class="feather icon-eye"></i></button>
+
+                                            <button class="btn btn-icon btn-secondary mr-2" type="button" *ngIf="label?.status == 'DRAFT'"
+                                                routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/edit/{{label.id}}">
+                                                <i class="feather icon-edit-2"></i></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+
+        </form>
+
+
+    </div>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form #Lagelreg="ngForm" autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Date"
+                            formControlName="exportFee">
+                        </div>
+                    </div>
+
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Registration Number</label>-->
+                            <!-- <select class="form-control" required
+                            (change)="getbranddetails($event.target.value)"
+                            name="applicationNumber"  #applicationNumber="ngModel"
+                            [(ngModel)]="LabelRegObj['applicationNumber']">>
+                            <option value="">Select</option>
+                            <option *ngFor='let appnum of applicatio_num' value="{{appnum.appNumber}}">
+                               {{appnum.appNumber}}</option>
+                            </select> -->
+                        <!--   <input type="text" class="form-control" placeholder="Enter Challan No."
+                            name="applicationNumber"  #applicationNumber="ngModel"
+                            [(ngModel)]="LabelRegObj['applicationNumber']">
+                        </div>
+                    </div>--> 
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of bottles</label>
+                            <input type="number" class="form-control" placeholder="Enter No. of bottles">
+                        </div>
+                    </div> -->
+
+                   <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="searchLabelRegData()">Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Label Details" class="list-panel add-panel">
+                <div class="row">    
+                    <div class="col-12">
+                        <div class="table-responsive mt-2">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Unit Type</th>
+                                    <th>License No</th>
+                                    <th>Unit Name</th>
+                                    <th>Application No</th>
+                                    <th>Parent Code</th>
+                                    <th>Liquor Type</th>
+                                    <th>Domain</th>
+                                    <th>EDP</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr *ngFor='let labl of alllabels; let i=index'>
+                                    <td>{{i+1}}</td>
+                                    <td class="text-left">{{labl?.unitType}}</td>
+                                    <td>{{labl?.licenseType}}</td>
+                                    <td> {{labl?.unitName}}</td>
+                                    <td>{{labl?.applicationNumber}}</td>
+                                    <td class="text-center">{{labl?.unitName}}</td>
+                                    <td>{{labl?.address}}</td>
+                                    <td>{{labl?.domain}}</td>
+                                    <td class="text-right">{{labl?.edp}}</td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary mr-2" type="button" routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/view/{{labl.id}}">
+                                            <i class="feather icon-eye"></i></button>
+        
+                                        <button class="btn btn-icon btn-secondary mr-2" type="button" routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/edit/{{labl.id}}">
+                                                <i class="feather icon-edit-2"></i></button>
+        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>                            
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div> -->

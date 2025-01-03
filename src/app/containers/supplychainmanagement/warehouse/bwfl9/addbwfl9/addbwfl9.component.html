@@ -1,0 +1,172 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 9</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 9</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #bwfl9form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add BWFL 9" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Description of liquor(Whisky, Brandy,Gin, Rum, Beer)
+                            </label>
+                            <input type="text" class="form-control" placeholder="" name='liquorDescription'  #liquorDescription="ngModel" 
+                            [(ngModel)]="Bwfl9Obj['liquorDescription']" required>
+                            <div *ngIf="liquorDescription.invalid && (liquorDescription.dirty || liquorDescription.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquorDescription?.errors?.required"><i class="fa fa-times"></i>
+                                    No. of Bottles is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name
+                            </label>
+                            <select name='brandRegistrationId' #brandRegistrationId="ngModel"  
+                            [(ngModel)]="Bwfl9Obj['brandRegistrationId']" class="form-control" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                    {{b.brandName}}
+                                </option>
+                            </select>
+                            <div *ngIf="brandRegistrationId.invalid && (brandRegistrationId.dirty || brandRegistrationId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandRegistrationId?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" required class="form-control" placeholder="">
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+                <app-card cardTitle="Number of bottles Indian made foreign spirit" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>750ml
+                                </label>
+                                <input type="number" id="noofbottles" required class="form-control" placeholder="250"
+                                name='ml750'  #ml750="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['ml750']">
+                                <div *ngIf="ml750.invalid && (ml750.dirty || ml750.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="ml750?.errors?.required"><i class="fa fa-times"></i>
+                                        ml750 is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>375ml
+                                </label>
+                                <input type="number" required class="form-control" placeholder="180" name='ml375'  #ml375="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['ml375']">
+                                <div *ngIf="ml375.invalid && (ml375.dirty || ml375.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="ml375?.errors?.required"><i class="fa fa-times"></i>
+                                        ml375 is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>180ml
+                                </label>
+                                <input type="number" required class="form-control" placeholder="1000" name='ml180'  #ml180="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['ml180']">
+                                <div *ngIf="ml180.invalid && (ml180.dirty || ml180.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="ml180?.errors?.required"><i class="fa fa-times"></i>
+                                        ml180 is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Beer
+                                </label>
+                                <input type="number" required class="form-control" placeholder="" name='beer'  #beer="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['beer']">
+                                <div *ngIf="beer.invalid && (beer.dirty || beer.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="beer?.errors?.required"><i class="fa fa-times"></i>
+                                        beer is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Quantity in Bulk Litres
+                                </label>
+                                <input type="number" required class="form-control" placeholder="10000" name='quantityInBulkLitres'  #quantityInBulkLitres="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['quantityInBulkLitres']">
+                                <div *ngIf="quantityInBulkLitres.invalid && (quantityInBulkLitres.dirty || quantityInBulkLitres.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="quantityInBulkLitres?.errors?.required"><i class="fa fa-times"></i>
+                                        Quantity  is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Alcohol
+                                </label>
+                                <input type="number" required class="form-control" placeholder="" name='alcohol'  #alcohol="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['alcohol']">
+                                <div *ngIf="alcohol.invalid && (alcohol.dirty || alcohol.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="alcohol?.errors?.required"><i class="fa fa-times"></i>
+                                        Alcohol  is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Total
+                                </label>
+                                <input type="number" required class="form-control" placeholder="150000" name='total'  #total="ngModel" 
+                                [(ngModel)]="Bwfl9Obj['total']">
+                                <div *ngIf="total.invalid && (total.dirty || total.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="total?.errors?.required"><i class="fa fa-times"></i>
+                                        total  is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </app-card>
+           
+        </form>   
+        
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/bwfl9/list">Back</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addBwfl9Details(bwfl9form,'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addBwfl9Details(bwfl9form,'SUBMITTED')">Submit</button>
+        <!--  routerLink="/supplychainmanagement/warehouse/bwfl9/list" -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="bwfl9form.resetForm({})">Clear</button>
+
+    </div>
+</div>

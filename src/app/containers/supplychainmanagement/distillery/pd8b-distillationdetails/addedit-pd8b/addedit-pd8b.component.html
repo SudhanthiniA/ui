@@ -1,0 +1,349 @@
+<h5 class="m-b-10 ng-star-inserted">
+    PD 8B Distillation Details {{addedit}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd8b-distillationdetails/list">Fermentation and
+            Distillation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd8b-distillationdetails/list"
+            routerLink="/supplychainmanagement/distillery/indentrequest/list">PD 8B Distillation Details</a></li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #pd8bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter PD 8B Distillation Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required name="date" class="form-control" placeholder="Enter Date"
+                                #date="ngModel" [(ngModel)]="pd8bDistillationObj['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Date required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control">
+                                <option>OT89895959</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Quantity of Distilled wash Since 8:00 AM (Last day) to 8:00 AM (Till Date)</label>
+                            <input type="text" required disabled  class="form-control" value="1000">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Final Gravitiy of Fermented wash with Temperature Correction</label>
+                            <input type="text" required disabled  class="form-control" value="60">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol % in Fermented wash</label>
+                            <input type="text" required disabled  class="form-control" value="60">
+                        </div>
+                    </div>
+                    <!-- <div *ngIf = "!this.editId" class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD-8A Reference No</label>
+                            <select class="form-control" name="productionPd8Id" #productionPd8Id="ngModel" [(ngModel)]="pd8bDistillationObj['productionPd8Id']" (change)="getpd8autopopulatedata(pd8bDistillationObj['productionPd8Id'])"
+                           required >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of pd8referencelist" value="{{item.id}}">
+                                    {{item.referenceNumber}}
+                                </option>
+                            </select>
+                            <div *ngIf="productionPd8Id.invalid && (productionPd8Id.dirty || productionPd8Id.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="productionPd8Id?.errors?.required"><i class="fa fa-times"></i>
+                                PD8 Reference No is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div  *ngIf = "this.editId"class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference No</label>
+                       
+                       <input type="text" class="form-control" name="referenceNumber" disabled  #referenceNumber="ngModel" [(ngModel)]="pd8bDistillationObj['referenceNumber']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Qty of Distilled Wash</label>
+                            <input type="number" required name="distilledWashQty" class="form-control" minlength="2"
+                                maxlength="50" placeholder="" #distilledWashQty="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['distilledWashQty']" disabled>
+                            <div *ngIf="distilledWashQty.invalid && (distilledWashQty.dirty || distilledWashQty.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distilledWashQty?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Qty of Distilled Wash required
+                                </div>
+                                <div *ngIf="distilledWashQty?.errors?.maxlength && !distilledWashQty?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="distilledWashQty?.errors?.minlength && !distilledWashQty?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Final gravity of fermented wash with temp. correction</label>
+                            <input type="number" required name="finalGravity" class="form-control" minlength="2"
+                                maxlength="50" placeholder="" #finalGravity="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['finalGravity']" disabled>
+                            <div *ngIf="finalGravity.invalid && (finalGravity.dirty || finalGravity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="finalGravity?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Final gravity required
+                                </div>
+                                <div *ngIf="finalGravity?.errors?.maxlength && !finalGravity?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="finalGravity?.errors?.minlength && !finalGravity?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol % in fermented wash</label>
+                            <input type="number" required name="alcohol" class="form-control" placeholder="Enter Alcohol"
+                                minlength="2" maxlength="50" #alcoholPercent="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['alcoholPercent']">
+                            <div *ngIf="alcoholPercent.invalid && (alcoholPercent.dirty || alcoholPercent.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholPercent?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcohol required
+                                </div>
+                                <div *ngIf="alcoholPercent?.errors?.maxlength && !alcoholPercent?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="alcoholPercent?.errors?.minlength && !alcoholPercent?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-xl-12">
+        <form #pd8bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Receiver Details" class="list-panel add-panel">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Receiver No.</th>
+                                <th>Quantity of Alcohol</th>
+                                <th>Temprature of Alcohol</th>
+                                <th>Indication of Alcohol</th>
+                                <th>Strength of Alcohol</th>
+                                <th>Alcohol Production in BL</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td>1</td>
+                                <td>RN689898989</td>
+                                <td>1000</td>
+                                <td>30</td>
+                                <td>60</td>
+                                <td>50</td>
+                                <td>50000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+                <!-- <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receiver No</label>
+                            <input type="text" required name="receiverNum" class="form-control"
+                                placeholder="Enter Receiver No" #receiverNum="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['receiverNum']">
+                            <div *ngIf="receiverNum.invalid && (receiverNum.dirty || receiverNum.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="receiverNum?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Receiver No required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Qty of Alcohol</label>
+                            <input type="number" required name="alcoholQty" class="form-control" maxlength="50"
+                                placeholder="Enter Qty of Alcohol" #alcoholQty="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['alcoholQty']">
+                            <div *ngIf="alcoholQty.invalid && (alcoholQty.dirty || alcoholQty.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholQty?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Qty of Alcohol required
+                                </div>
+                                <div *ngIf="alcoholQty?.errors?.maxlength && !alcoholQty?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temperature of Alcohol</label>
+                            <input type="number" required name="alcoholTemp" class="form-control" maxlength="50"
+                                placeholder="Enter Qty Temperature of Alcohol" #alcoholTemp="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['alcoholTemp']">
+                            <div *ngIf="alcoholTemp.invalid && (alcoholTemp.dirty || alcoholTemp.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholTemp?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Temperature of Alcohol required
+                                </div>
+                                <div *ngIf="alcoholTemp?.errors?.maxlength && !alcoholTemp?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indication of Alcohol</label>
+                            <input type="number" required name="alcoholIndication" class="form-control" maxlength="50"
+                                placeholder="Enter Qty indication of Alcohol" #alcoholIndication="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['alcoholIndication']">
+                            <div *ngIf="alcoholIndication.invalid && (alcoholIndication.dirty || alcoholIndication.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholIndication?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Indication of Alcohol required
+                                </div>
+                                <div
+                                    *ngIf="alcoholIndication?.errors?.maxlength && !alcoholIndication?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Stength of Alcohol</label>
+                            <input type="number" required name="alcoholStength" class="form-control" maxlength="50"
+                                placeholder="Enter Qty Strength of Alcohol" #alcoholStength="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['alcoholStength']">
+                            <div *ngIf="alcoholStength.invalid && (alcoholStength.dirty || alcoholStength.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholStength?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Stength of Alcohol required
+                                </div>
+                                <div *ngIf="alcoholStength?.errors?.maxlength && !alcoholStength?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Verify By (Distillery)</label>
+                            <input type="number" required name="verifyByDistillery" class="form-control" minlength="2"
+                                maxlength="50" placeholder="Enter Verify By Distillery" #verifyByDistillery="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['verifyByDistillery']">
+                            <div *ngIf="verifyByDistillery.invalid && (verifyByDistillery.dirty || verifyByDistillery.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="verifyByDistillery?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Verify By (Distillery) required
+                                </div>
+                                <div
+                                    *ngIf="verifyByDistillery?.errors?.maxlength && !verifyByDistillery?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div
+                                    *ngIf="verifyByDistillery?.errors?.minlength && !verifyByDistillery?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Verify By (Excise)</label>
+                            <input type="number" required name="verifyByExcise" class="form-control" minlength="2"
+                                maxlength="50" placeholder="Enter Verify By Excise" #verifyByExcise="ngModel"
+                                [(ngModel)]="pd8bDistillationObj['verifyByExcise']">
+                            <div *ngIf="verifyByExcise.invalid && (verifyByExcise.dirty || verifyByExcise.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="verifyByExcise?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Verify By (Excise) required
+                                </div>
+                                <div *ngIf="verifyByExcise?.errors?.maxlength && !verifyByExcise?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="verifyByExcise?.errors?.minlength && !verifyByExcise?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewPd8b(pd8bForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(pd8bForm,'INITIATED')">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" [disabled]='!pd8bForm.valid'
+            (click)="saveData(pd8bForm,'SUBMITTED')">Submit</button>
+
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backtoHome()">Cancel</button>
+    </div>
+
+</div>

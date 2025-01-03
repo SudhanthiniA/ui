@@ -1,0 +1,91 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'usermanagement.designationmanagement.designationmanagement' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.designationmanagement.designationmanagement' |
+            translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'usermanagement.common.add' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Enter Below Details to Add Designation Management" class="list-panel add-panel">
+            <form #designationForm="ngForm" autocomplete="off" class="w-100">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.designationmanagement.designationcode' | translate }}</label>
+                            <input type="text" id="Code" name="code" #code="ngModel" minlength="3" maxlength="20"
+                                [(ngModel)]="designationObj['code']" required class="form-control"
+                                placeholder="{{ 'usermanagement.designationmanagement.enterdesignationcode' | translate }}" [attr.disabled]="editId ? '' : null" (change)="checkCode($event.target.value)">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.designationmanagement.designationcode' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.designationmanagement.codeminimumcharacters' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.designationmanagement.codeminimumcharacters' | translate }}
+                                </div>
+                            </div>
+                            <div *ngIf="codeExistsFlag" class="error-msg">
+                                <div><i class="fa fa-times"></i> {{ 'usermanagement.designationmanagement.designationcode' | translate }} already exists </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.designationmanagement.designationname' | translate }}</label>
+                            <input type="text" id="Name" name="name" #name="ngModel" minlength="3" maxlength="100"
+                                [(ngModel)]="designationObj['name']" required class="form-control"
+                                placeholder="{{ 'usermanagement.designationmanagement.enterdesignationname' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.designationmanagement.designationname' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.maxlength && !name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Designation Name is maximum 50 characters
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.designationmanagement.nameminimumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="active" #active="ngModel"
+                                    [(ngModel)]="designationObj['active']" class="custom-control-input"
+                                    id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-primary mr-2" (click)=saveDesignation(designationForm)>{{
+                'usermanagement.common.submit' | translate }}</button>
+            <button type="button" class="btn btn-secondary" routerLink="/usermanagement/designation/list">{{
+                'usermanagement.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</div>

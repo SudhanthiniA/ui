@@ -1,0 +1,660 @@
+<h5 class="m-b-10 ng-star-inserted">Application for License S.T - I</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bhang/Ganja/Opium/Nira/Tadi & Sendhi</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Application for License S.T - I</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form  [formGroup]="STForm" autocomplete="off">
+            <app-card cardTitle="Application Form" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="text" readonly class="form-control" placeholder="2020-2021" formControlName="financialyear">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="applicationDate">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>CL2</option>
+                                 <option>FL2</option>
+                               </select>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control" formControlName="salutationId">
+                                <option value="">Select</option>
+                                <option value="1">MR</option>
+                                <option value="2">MISS</option>
+                            </select>
+                            <div *ngIf="formSubmitted && STForm.get('salutationId').errors || STForm.get('salutationId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('salutationId').errors?.required"><i class="fa fa-times"></i>
+                                    Salutation is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName">
+                            <div *ngIf="formSubmitted && STForm.get('firstName').errors || STForm.get('firstName').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('firstName').errors?.required"><i class="fa fa-times"></i>
+                                    First Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name" formControlName="middleName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName">
+                            <div *ngIf="formSubmitted && STForm.get('lastName').errors || STForm.get('lastName').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('lastName').errors?.required"><i class="fa fa-times"></i>
+                                    Last Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Mobile Number" formControlName="applicantMobileNumber">
+                            <div *ngIf="formSubmitted && STForm.get('applicantMobileNumber').errors || STForm.get('applicantMobileNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('applicantMobileNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Mobile Number of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="text" class="form-control" placeholder="Enter Email Id" formControlName="applicantMailId">
+                            <div *ngIf="formSubmitted && STForm.get('applicantMailId').errors || STForm.get('applicantMailId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('applicantMailId').errors?.required"><i class="fa fa-times"></i>
+                                    Email Id of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Aadhaar Number" formControlName="applicantAadharNo">
+                            <div *ngIf="formSubmitted && STForm.get('applicantAadharNo').errors || STForm.get('applicantAadharNo').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('applicantAadharNo').errors?.required"><i class="fa fa-times"></i>
+                                    Aadhaar Number of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control" formControlName="genderId">
+                                 <option value="">Select</option>
+                                 <option value="1">Male</option>
+                                 <option value="2">Female</option>
+                            </select>
+                            <div *ngIf="formSubmitted && STForm.get('genderId').errors || STForm.get('genderId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('genderId').errors?.required"><i class="fa fa-times"></i>
+                                    Gender is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="dob">
+                            <div *ngIf="formSubmitted && STForm.get('dob').errors || STForm.get('dob').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('dob').errors?.required"><i class="fa fa-times"></i>
+                                    Date of Birth is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text" class="form-control" placeholder="Enter PAN Number" formControlName="panNumber">
+                            <div *ngIf="formSubmitted && STForm.get('panNumber').errors || STForm.get('panNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('panNumber').errors?.required"><i class="fa fa-times"></i>
+                                    PAN Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" readonly formControlName="country" placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control"  placeholder="Enter Pincode" formControlName="pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="stateId">
+                                <option value="">Select</option>
+                                <option value="1">UP</option>
+                            </select>
+                            <div *ngIf="formSubmitted && STForm.get('stateId').errors || STForm.get('stateId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('stateId').errors?.required"><i class="fa fa-times"></i>
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="districtId">
+                              <option value="">Select</option>
+                              <option value="1">Lucnknow</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="tehsilId">
+                               <option value="">Select</option>
+                               <option value="1">Mohanlalganj</option>
+                               <!-- Mohanlalganj -->
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName='urbanOrRural' (change)="show($event)" >
+                                 <option value="">Select</option>
+                                 <option value="1">Urban</option>
+                                 <option value="2">Rural</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('urbanOrRural').errors || STForm.get('urbanOrRural').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('urbanOrRural').errors?.required"><i class="fa fa-times"></i>
+                                    Urban/Rural is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" formControlName="muncipalAreaId">
+                               <option value="">Select</option>
+                               <option value="1">Municipal corporation</option>
+                               <option value="2">Nagar Palika</option>
+                               <option value="3">Other Municipal Area</option>
+                               <!-- Municipal corporation/Nagar Palika/Other Municipal Area/ Cantt. Board -->
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('muncipalAreaId').errors || STForm.get('muncipalAreaId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('muncipalAreaId').errors?.required"><i class="fa fa-times"></i>
+                                    Municipal Area is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control" formControlName="ward" placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="number" class="form-control" formControlName="blockId" placeholder="Enter Block">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="number" class="form-control" formControlName="villageId" placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && STForm.get('villageId').errors || STForm.get('villageId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('villageId').errors?.required"><i class="fa fa-times"></i>
+                                    Village is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStation">
+                               <option value="">Select</option>
+                               <option>Gomti nagar</option>
+                               <!-- Gomti nagar -->
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('policeStation').errors || STForm.get('policeStation').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('policeStation').errors?.required"><i class="fa fa-times"></i>
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="locality" placeholder="Enter Locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="Enter Street">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of the Premises" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1.value"  (change)="checkboxchange($event)">
+                                  
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" readonly formControlName="shopCountry" placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" formControlName="shopPincode" placeholder="Enter Pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="shopStateId">
+                                <option value="">Select</option>
+                                <option value="1">UP</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopStateId').errors || STForm.get('shopStateId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopStateId').errors?.required"><i class="fa fa-times"></i>
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="shopDistrictId">
+                                <option value="">Select</option>
+                                <option value="1">Lucnknow</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopDistrictId').errors || STForm.get('shopDistrictId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopDistrictId').errors?.required"><i class="fa fa-times"></i>
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="shopTehsilId">
+                                <option value="">Select</option>
+                                <option value="1">Mohanlalganj</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopTehsilId').errors || STForm.get('shopTehsilId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopTehsilId').errors?.required"><i class="fa fa-times"></i>
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="shopUrbanRural" (change)="show1($event)">
+                                <option value="">Select</option>
+                                <option value="1">Urban</option>
+                                <option value="2">Rural</option>
+                            </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopUrbanRural').errors || STForm.get('shopUrbanRural').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopUrbanRural').errors?.required"><i class="fa fa-times"></i>
+                                    Urban/Rural is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shopurban == true">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" formControlName="shopMunicipalAreaId">
+                               <option value="">Select</option>
+                               <option value="1">Municipal corporation</option>
+                               <option value="2">Nagar Palika</option>
+                               <option value="3">Other Municipal Area</option>
+                               <!-- Municipal corporation/Nagar Palika/Other Municipal Area/ Cantt. Board -->
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopMunicipalAreaId').errors || STForm.get('shopMunicipalAreaId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopMunicipalAreaId').errors?.required"><i class="fa fa-times"></i>
+                                    Municipal Area is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shopurban == true">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control" formControlName="shopWard" placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shoprural == true">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="number" class="form-control" formControlName="shopBlockId" placeholder="Enter Block">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shoprural == true">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="number" class="form-control" formControlName="shopVillageId" placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && STForm.get('shopVillageId').errors || STForm.get('shopVillageId').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopVillageId').errors?.required"><i class="fa fa-times"></i>
+                                    Village is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="shopPoliceStation">
+                                <option value="">select</option>
+                               <option >Gomti nagar</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('shopPoliceStation').errors || STForm.get('shopPoliceStation').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('shopPoliceStation').errors?.required"><i class="fa fa-times"></i>
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="shopLocality" placeholder="Enter Locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="shopStreet" placeholder="Enter Street">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+           <app-card cardTitle="Particulars of tree which the licence is granted" class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S NO</th>
+                                <th>Village</th>
+                                <th>Pargana</th>
+                                <th>Khasra Number or other definite description of the field in which the tree stand</th>
+                                <th>Owner Name</th>
+                                <th>Number of Tree</th>
+                                <th>Kind of Tree to be tapped</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="scheduleDetailsEntityList"
+                                *ngFor="let pres of STForm?.get('scheduleDetailsEntityList')['controls']; let i=index"
+                                id="row{{i}}">
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0">
+                                        {{i+1}}
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Enter Village" formControlName="villageId">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Pargana" formControlName="pargana" >
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  formControlName="numberOfKhasra"
+                                        placeholder="Khasra Number or other definite description of the field in which the tree stand">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Owner Name" formControlName="ownerName">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Enter Number of Tree" formControlName="numberOfTree">
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Kind of Tree to be tapped" formControlName="kindOfTree">
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light-success">Approved</span>
+                                    <span class="badge badge-light-danger">Failure</span>
+
+                                </td>
+                                <td class="table-action-column">
+
+                                    <button class="btn btn-icon btn-primary" (click)="addrow()">
+                                                <i class="feather icon-plus"></i>
+                                    </button>
+                                    <button *ngIf="i!==getPresFormLength()-1" class="btn btn-icon btn-danger ml-2" (click)="removeSelectedRow(i)">
+                                                    <i class="feather icon-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </app-card> 
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="number" class="form-control" placeholder="Enter Bank Account Number" formControlName="bankAccountNumber">
+                            <div *ngIf="formSubmitted && STForm.get('bankAccountNumber').errors || STForm.get('bankAccountNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('bankAccountNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Account Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text" class="form-control" placeholder="Enter IFSC" formControlName="bankIfsc">
+                            <div *ngIf="formSubmitted && STForm.get('bankIfsc').errors || STForm.get('bankIfsc').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('bankIfsc').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Ifsc is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select class="form-control" formControlName="bankName">
+                                <option value="">Select</option>
+                                <option >HDFC</option>
+                                <option >ICIC</option>
+                             </select>
+                            <div *ngIf="formSubmitted && STForm.get('bankName').errors || STForm.get('bankName').touched "
+                                class="error-msg">
+                                <span *ngIf="STForm.get('bankName').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Payment Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="number" class="form-control" placeholder="Enter Application/Processing Fees" formControlName="applicationFees">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+
+
+        </form>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2" (click)="addCLDetails(STForm)">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2" (click)="preview(STForm)">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="addCLDetails(STForm)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+        </div>
+    </div>
+</div>

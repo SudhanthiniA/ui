@@ -1,0 +1,32 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <input type="text" class="form-control"
+                            placeholder="{{ 'master.entity.entitycode' | translate }} / {{ 'master.entity.entityname' | translate }}"
+                            (keyup)="search($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.entity.entitylist' | translate }}  " blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

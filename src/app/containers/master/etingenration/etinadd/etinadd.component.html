@@ -1,0 +1,168 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Generate ETIN
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Generate ETIN</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="productForm">
+
+            <app-card cardTitle="ETIN Details" blockClass="table-border-style" class="list-panel add-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Type</label>
+                            <select class="form-control" formControlName="module">
+                                <option value="">Select</option>
+                                <option *ngFor="let modu of moduleArr" value={{modu.id}}>
+                                    {{modu.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && (f.module.errors )" class="error-msg">
+                                <div *ngIf="f.module?.errors?.required">
+                                    <i class="fa fa-times"></i> Module Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select class="form-control" formControlName="submodule" (change)="submodbas($event);">
+                                <option value="">Select</option>
+                                <option *ngFor="let d of domainlist" value="{{d.id}}">{{d.name}} </option>
+                            </select>
+                            <div *ngIf="formSubmitted && (f.submodule.errors )" class="error-msg">
+                                <div *ngIf="f.submodule?.errors?.required">
+                                    <i class="fa fa-times"></i> Sub Module Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Count</label>
+                            <input type="text" class="form-control" formControlName="liquortype" >
+                            <div *ngIf="formSubmitted && (f.liquortype.errors )" class="error-msg">
+                                <div *ngIf="f.liquortype?.errors?.required">
+                                    <i class="fa fa-times"></i> Workflow Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="rue" class="mt-1" formControlName="status" >
+                                <label for="Company">&nbsp;&nbsp; Active</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1" formControlName="status" >
+                                <label for="Company">&nbsp;&nbsp; Inactive</label><br>
+                            </div>
+                            
+                            <!-- <select class="form-control" formControlName="name" (change)=getProductById($event)>
+                                <option value="" disabled>Select</option>
+                                <option *ngFor="let data of productList" value={{data.id}}>
+                                    {{data.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && (f.name.errors)" class="error-msg">
+                                <div *ngIf="f.name?.errors?.required">
+                                    <i class="fa fa-times"></i> Product name is required
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Label For</label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="qrcode" class="mt-1" formControlName="qrcode" >
+                                <label for="Company">&nbsp;&nbsp; QR Code</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="barcode" class="mt-1" formControlName="barcode" >
+                                <label for="Company">&nbsp;&nbsp; Bar Code</label><br>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Add Role/Levels" blockClass="table-border-style" class="list-panel view-panel">
+                <div class="row">
+                  
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Source</th>
+                                    <th>Size</th>
+                                   
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr formArrayName="rows" *ngFor="let data of productForm.get('rows')['controls']; let i=index;let last=last;">
+                                    <td [formGroupName]="i">{{i+1}}</td>
+                                    <td [formGroupName]="i">
+                                        <input type="text" class="form-control" placeholder="level {{i}}" value="Level {{i+1}}" formControlName="productName" disabled>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <select class="form-control" formControlName="assignedto" >
+                                            <option value="" disabled>Select Role</option>
+                                            <option  *ngFor="let design of designationData" value="{{design.id}}">{{design.name}}</option>
+                                          
+                                        </select>
+                                        
+                                    </td>
+                                    
+                                    <td [formGroupName]="i">
+                                        <select class="form-control" formControlName="assignedto" >
+                                            <option value="" disabled>Select Role</option>
+                                            <option  *ngFor="let design of designationData" value="{{design.id}}">{{design.name}}</option>
+                                            
+                                        </select>
+                                       
+                                    </td>
+                                   
+                                    <td [formGroupName]="i">
+                                        <div class="d-flex">
+                                        <div class="form-group mb-0">
+                                            <div class="form-group d-inline">
+                                                <input type="checkbox" class="checkbox d-inline" id="sameAddress"
+                                                    (change)="onCheckboxChange($event.target.checked)">
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" (click)="addProduct(productForm)" ><i
+                                            class="fas fa-plus"></i></button> &nbsp;&nbsp;
+                                        <button class="btn btn-danger" (click)="deleteRow(i,data)"><i
+                                                class="fas fa-times"></i></button>
+                                            </div></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button class="btn btn-primary ml-2 mb-2" (click)="save(productForm,'SUBMITTED')">
+                Submit</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/master/workflowconfig/list">
+                Cancel</button>
+        </div>
+    </div>
+</div>

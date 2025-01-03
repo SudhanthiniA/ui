@@ -1,0 +1,61 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Vehicle Code</label>
+                        <input type="text" class="form-control" placeholder="Enter Vehicle Code	">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.vehiclemake.vehiclemake' | translate }}</label>
+                        <input type="text" class="form-control"
+                        name="name" #name="ngModel" [(ngModel)]="vehiclemakeObj.makeModel"
+                            placeholder="{{ 'master.vehiclemake.entervehiclemake' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.daterange' | translate }}</label>
+                        <input type="text" name="daterange" ngxDaterangepickerMd
+                            [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}"
+                            class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="vehiclemakeObj.isActive">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchVehicleMake()">{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.vehiclemake.vehiclemake' | translate }} {{ 'master.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

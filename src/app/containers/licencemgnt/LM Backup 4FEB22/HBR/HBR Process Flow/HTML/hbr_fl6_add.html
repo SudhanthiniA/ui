@@ -1,0 +1,2469 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">Applicant - Application for HBR License</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'licenseMgnt.title' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">HBR License Application</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{screenObj[screenSubType]}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="LMForm" autocomplete="off">
+
+            <app-card cardTitle="Application for HBR Licenses" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.financialYear' | translate}}</label>
+                            <input type="text" disabled class="form-control" formControlName="financialYear">
+                            <app-show-errors eleName="{{'licenseMgnt.financialYear' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getFormCntr('financialYear')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.appl_date' | translate}}</label>
+                            <input type="date" disabled class="form-control" formControlName="applicationDate">
+                            <app-show-errors eleName="{{'licenseMgnt.appl_date' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('applicationDate')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Entity of Firm</label>
+                            <select class="form-control" formControlName="entityFirmCode">
+                                <option value="">select</option>
+                                <option *ngFor="let item of entityOfFirmList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Entity of Firm" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('entityFirmCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No</label>
+                            <input type="text" class="form-control" formControlName="licenseNumber"
+                                placeholder="Enter License No">
+                            <app-show-errors eleName="License No" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('licenseNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="display: block;">
+                        <div class="form-group">
+                            <button (click)="loadDummyFormData()">Load-Data</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Authorize Pernsonnel" formGroupName="hbrAuthorizePerson" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.salutation' | translate}}</label>
+                            <select class="form-control" formControlName="salutation">
+                                <option value="">select</option>
+                                <option *ngFor="let item of salutationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.salutation' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('salutation')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.salutation' | translate}}</label>
+                            <select class="form-control" formControlName="salutation">
+                                <option value="">select</option>
+                                <option *ngFor="let item of salutationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.salutation' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('salutation')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.firstName' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="firstName"
+                                placeholder="{{'licenseMgnt.firstNamePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.firstName' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('firstName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.midName' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="middleName"
+                                placeholder="{{'licenseMgnt.midNamePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.midName' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('middleName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.lastName' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="lastName"
+                                placeholder="{{'licenseMgnt.lastNamePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.lastName' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('lastName')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_photo' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="auth_photo_file"
+                                        (change)="onAuthFileChange($event, FF_AUTH, SRC_AUTH_PHOTO, FN_AUTH_PHOTO)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_photo' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAuthFormCntr('auth_photo_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_AUTH_PER,FN_AUTH_PHOTO)">
+                                <button (click)="downloadDocument(PROP_HBR_AUTH_PER,FN_AUTH_PHOTO)">
+                                    {{isFileExists(PROP_HBR_AUTH_PER,FN_AUTH_PHOTO).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.dob' | translate}}</label>
+                            <input type="date" class="form-control" formControlName="dob">
+                            <app-show-errors eleName="{{'licenseMgnt.dob' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('dob')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.gender' | translate}}</label>
+                            <select class="form-control" formControlName="genderCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of genderList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.gender' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAuthFormCntr('genderCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_mobile' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="mobileNumber"
+                                placeholder="{{'licenseMgnt.applicant_mobilePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_mobile' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAuthFormCntr('mobileNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_email' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="emailId"
+                                placeholder="{{'licenseMgnt.applicant_emailPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_email' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAuthFormCntr('emailId')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Permanent Address" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="country" disabled
+                                placeholder="INDIA">
+                            <app-show-errors eleName="{{'licenseMgnt.countryText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('country')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="pinCode"
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('pinCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName="stateCode"
+                                (change)="onStateChange($event.target.value, SEC_ADDR_APPLICANT)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAddrFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName="districtCode"
+                                (change)="onDistrictChange($event.target.value, SEC_ADDR_APPLICANT)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of districtListByState[SEC_ADDR_APPLICANT]"
+                                    value="{{item.id}}">
+                                    {{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName="tahsilCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of talukList[SEC_ADDR_APPLICANT]" value="{{item.id}}">
+                                    {{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName="localityType">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of urbanRuralArr" value="{{item.key}}">{{item.value}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                            <select class="form-control" formControlName="municipalAreaCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.municipalityText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('municipalAreaCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.wardText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ward"
+                                placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.wardText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAddrFormCntr('ward')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="block"
+                                placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.blockText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAddrFormCntr('block')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="village"
+                                placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.villageText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('village')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <select class="form-control" formControlName="policeStationCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('policeStationCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.localityText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street"
+                                placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.streetText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="self-Attested" formGroupName="hbrSeftAttestation" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_aadhar' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="aadharNumber"
+                                placeholder="{{'licenseMgnt.applicant_aadharPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_aadhar' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getSeftFormCntr('aadharNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.upload_aadhar' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="self_aadhar_file"
+                                        (change)="onSelfFileChange($event, FF_SELF, SRC_SELF_AADHAR, FN_SELF_AADHAR)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.upload_aadhar' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getSeftFormCntr('self_aadhar_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_AADHAR)">
+                                <button (click)="downloadDocument(PROP_HBR_SEFT_ATT,FN_SELF_AADHAR)">
+                                    {{isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_AADHAR).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_mobile' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="mobileNumber"
+                                placeholder="{{'licenseMgnt.applicant_mobilePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_mobile' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getSeftFormCntr('mobileNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.applicant_email' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="emailId"
+                                placeholder="{{'licenseMgnt.applicant_emailPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.applicant_email' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getSeftFormCntr('emailId')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.pan_no' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="panNumber"
+                                placeholder="{{'licenseMgnt.pan_noPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.pan_no' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getSeftFormCntr('panNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.upload_pan' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="self_pan_file"
+                                        (change)="onSelfFileChange($event, FF_SELF, SRC_SELF_PAN, FN_SELF_PAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.upload_pan' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getSeftFormCntr('self_pan_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_PAN)">
+                                <button (click)="downloadDocument(PROP_HBR_SEFT_ATT,FN_SELF_PAN)">
+                                    {{isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_PAN).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.character_cert' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="self_charct_cert_file"
+                                        (change)="onSelfFileChange($event, FF_SELF, SRC_SELF_CHARACTER_CERT, FN_SELF_CHARACTER_CERT)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.character_cert' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getSeftFormCntr('self_charct_cert_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_CHARACTER_CERT)">
+                                <button (click)="downloadDocument(PROP_HBR_SEFT_ATT,FN_SELF_CHARACTER_CERT)">
+                                    {{isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_CHARACTER_CERT).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.upload_itr' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="self_itr_file"
+                                        (change)="onSelfFileChange($event, FF_SELF, SRC_SELF_ITR, FN_SELF_ITR)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.upload_itr' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getSeftFormCntr('self_itr_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_ITR)">
+                                <button (click)="downloadDocument(PROP_HBR_SEFT_ATT,FN_SELF_ITR)">
+                                    {{isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_ITR).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Affaidavit for Eligilibility</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="self_affaidavit_file"
+                                        (change)="onSelfFileChange($event, FF_SELF, SRC_SELF_AFFAIDAVIT, FN_SELF_AFFAIDAVIT)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Affaidavit for Eligilibility" [frmSub]="formSubmitted"
+                                [control]="getSeftFormCntr('self_affaidavit_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_AFFAIDAVIT)">
+                                <button (click)="downloadDocument(PROP_HBR_SEFT_ATT,FN_SELF_AFFAIDAVIT)">
+                                    {{isFileExists(PROP_HBR_SEFT_ATT,FN_SELF_AFFAIDAVIT).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+            <app-card cardTitle="In case of Firm/Comapany/Society/LLP" formArrayName="hbrFirmCompanyDetailList"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><span class="mandatory">Designation</span></th>
+                                        <th><span class="mandatory">Full Name</span></th>
+                                        <th><span class="mandatory">Address</span></th>
+                                        <th><span class="mandatory">Mobile No</span></th>
+                                        <th><span class="mandatory">Aadhaar Number</span></th>
+                                        <th><span class="mandatory">Upload Aadhar</span></th>
+                                        <th><span class="mandatory">PAN No</span></th>
+                                        <th><span class="mandatory">Upload PAN</span></th>
+                                        <th><span class="mandatory">Upload Character Certificate</span></th>
+                                        <th><span class="mandatory">Upload Affaidavit</span></th>
+                                        <th><span>{{'licenseMgnt.actionText' | translate}}</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    *ngFor="let firmcompanyCntrl of getFirmCompanyFormCntr()['controls']; let i=index"
+                                    id="row{{i}}">
+                                    <tr [formGroupName]="i">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="designation"
+                                                placeholder="Designation">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="fullName"
+                                                placeholder="Full Name">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="address"
+                                                placeholder="Address">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" formControlName="mobileNumber"
+                                                placeholder="Mobile No">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" formControlName="aadharNumber"
+                                                placeholder="Aadhaar Number">
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_aadhar_file"
+                                                        (change)="onFirmCompanyFileChange($event, FF_FIRMCOMPANY, i, firmcompanyCntrl, SRC_SM_AADHAR, FN_SM_AADHAR)"
+                                                        accept="image/png,image/jpeg">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="panNumber"
+                                                placeholder="PAN No">
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_pan_file"
+                                                        (change)="onFirmCompanyFileChange($event, FF_FIRMCOMPANY, i, firmcompanyCntrl, SRC_SM_PAN, FN_SM_PAN)"
+                                                        accept="image/png,image/jpeg">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                                <app-show-errors eleName="Upload PAN" [frmSub]="formSubmitted"
+                                                    [control]="getFormCntrl(firmcompanyCntrl,'firmcompany_pan_file')">
+                                                </app-show-errors>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_affadavait_file"
+                                                        (change)="onFirmCompanyFileChange($event, FF_FIRMCOMPANY, i, firmcompanyCntrl, SRC_SM_AFFADAVAIT, FN_SM_AFFADAVAIT)"
+                                                        accept="image/png,image/jpeg">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group cust-file-button uploadinputwidth">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        formControlName="firmcompany_character_file"
+                                                        (change)="onFirmCompanyFileChange($event, FF_FIRMCOMPANY, i, firmcompanyCntrl, SRC_SM_CHARAC_CERT, FN_SM_CHARAC_CERT)"
+                                                        accept="image/png,image/jpeg">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-success" type="button"
+                                                (click)="addFirmCompanyRow()">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button"
+                                                *ngIf="i!==getFirmCompanyLen()-1" (click)="remFirmCompanyRow(i)">
+                                                <i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Premises Address" formArrayName="addressList" class="list-panel add-panel">
+                <div class="row" [formGroupName]="1">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="mandatory">Address Type</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="radio1" formControlName="addressType" value="Own"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="radio1">Own</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="radio2" formControlName="addressType" value="Rent"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="radio2">Rent</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="radio3" formControlName="addressType" value="Lease"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="radio3">Lease</label>
+                            </div>
+                        </div>
+                        <app-show-errors eleName="Address Type" [frmSub]="formSubmitted"
+                            [control]="getPremisesAddressFormCntr('addressType')">
+                        </app-show-errors>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.ownershipDocument' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1"
+                                    checked>
+                                <label class="cr mr-2" for="pd1">Address as mention above</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.countryText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="country" placeholder="INDIA"
+                                disabled>
+                            <app-show-errors eleName="{{'licenseMgnt.countryText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('country')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.pincodeText' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="pinCode"
+                                placeholder="{{'licenseMgnt.pincodePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.pincodeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('pinCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.stateText' | translate}}</label>
+                            <select class="form-control" formControlName="stateCode"
+                                (change)="onStateChange($event.target.value, SEC_ADDR_PREMIS)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.stateText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddressFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.districtText' | translate}}</label>
+                            <select class="form-control" formControlName="districtCode"
+                                (change)="onDistrictChange($event.target.value, SEC_ADDR_PREMIS)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of districtListByState[SEC_ADDR_PREMIS]" value="{{item.id}}">
+                                    {{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.districtText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('districtCode')">
+                            </app-show-errors>
+                        </div>  
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.tehsilText' | translate}}</label>
+                            <select class="form-control" formControlName="tahsilCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of talukList[SEC_ADDR_PREMIS]" value="{{item.id}}">
+                                    {{item.talukName}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.tehsilText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddressFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityTypeText' | translate}}</label>
+                            <select class="form-control" formControlName="localityType">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of urbanRuralArr" value="{{item.key}}">{{item.value}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.localityTypeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('localityType')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.municipalityText' | translate}}</label>
+                            <select class="form-control" formControlName="municipalAreaCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.municipalityText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('municipalAreaCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.wardText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ward"
+                                placeholder="{{'licenseMgnt.wardPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.wardText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddressFormCntr('ward')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.blockText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="block"
+                                placeholder="{{'licenseMgnt.blockPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.blockText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddressFormCntr('block')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.villageText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="village"
+                                placeholder="{{'licenseMgnt.villagePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.villageText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('village')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.policeStationText' | translate}}</label>
+                            <select class="form-control" formControlName="policeStationCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.policeStationText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('policeStationCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.localityText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="locality"
+                                placeholder="{{'licenseMgnt.localityPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.localityText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getPremisesAddressFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.streetText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="street"
+                                placeholder="{{'licenseMgnt.streetPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.streetText' | translate}}" [frmSub]="formSubmitted"
+                                [control]="getPremisesAddressFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.attachment_cardText' | translate}}" formGroupName="hbrAdditionalDetails"
+                class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload Boundries (chauhaddi)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="boundries_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_BOUNDRIES, FN_ATTACH_BOUNDRIES)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Boundries" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('boundries_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_BOUNDRIES)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_BOUNDRIES)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_BOUNDRIES).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Layout plan</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="layoutPlan_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_LAYOUTPLAN, FN_ATTACH_LAYOUTPLAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Layout plan" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('layoutPlan_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAYOUTPLAN)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAYOUTPLAN)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAYOUTPLAN).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Certification of Incorporation</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificationOfIncorporation_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_CERTIFICATIONOFINCORPORATION, FN_ATTACH_CERTIFICATIONOFINCORPORATION)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certification of Incorporation" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificationOfIncorporation_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFINCORPORATION)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFINCORPORATION)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFINCORPORATION).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Memorandum of Association</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="memorandumOfAssociation_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_MEMORANDUMOFASSOCIATION, FN_ATTACH_MEMORANDUMOFASSOCIATION)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Memorandum of Association" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('memorandumOfAssociation_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_MEMORANDUMOFASSOCIATION)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_MEMORANDUMOFASSOCIATION)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_MEMORANDUMOFASSOCIATION).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Article of Association</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="articleOfAssociation_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_ARTICLEOFASSOCIATION, FN_ATTACH_ARTICLEOFASSOCIATION)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Article of Association" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('articleOfAssociation_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_ARTICLEOFASSOCIATION)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_ARTICLEOFASSOCIATION)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_ARTICLEOFASSOCIATION).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Resolution of Authorization</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="resolutionOfAuthorization_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_RESOLUTIONOFAUTHORIZATION, FN_ATTACH_RESOLUTIONOFAUTHORIZATION)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Resolution of Authorization" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('resolutionOfAuthorization_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RESOLUTIONOFAUTHORIZATION)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RESOLUTIONOFAUTHORIZATION)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RESOLUTIONOFAUTHORIZATION).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Company TAN</label>
+                            <input type="text" class="form-control" formControlName="companyTAN"
+                                placeholder="Enter Company TAN">
+                            <app-show-errors eleName="Company TAN" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('companyTAN')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">TAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="TAN_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_TAN, FN_ATTACH_TAN)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="TAN" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('TAN_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TAN)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TAN)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TAN).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Registration Certificate of firm</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificateOfFirm_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_CERTIFICATEOFFIRM, FN_ATTACH_CERTIFICATEOFFIRM)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Registration Certificate of firm" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificateOfFirm_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATEOFFIRM)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATEOFFIRM)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATEOFFIRM).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Partnership deed</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="partnershipDeed_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_PARTNERSHIPDEED, FN_ATTACH_PARTNERSHIPDEED)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Partnership deed" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('partnershipDeed_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PARTNERSHIPDEED)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PARTNERSHIPDEED)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PARTNERSHIPDEED).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">List of directors/partner</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="listOfDirectors_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_LISTOFDIRECTORS, FN_ATTACH_LISTOFDIRECTORS)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="List of directors/partner" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('listOfDirectors_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFDIRECTORS)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFDIRECTORS)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFDIRECTORS).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Copy of Trade Licence</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="tradeLicence_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_TRADELICENCE, FN_ATTACH_TRADELICENCE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Copy of Trade Licence" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('tradeLicence_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TRADELICENCE)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TRADELICENCE)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_TRADELICENCE).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Fire saftey NoC</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="fireSafteyNoc_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_FIRESAFTEYNOC, FN_ATTACH_FIRESAFTEYNOC)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Fire saftey NoC" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('fireSafteyNoc_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FIRESAFTEYNOC)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FIRESAFTEYNOC)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FIRESAFTEYNOC).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Fssai Certificate</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="fssaiCertificate_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_FSSAICERTIFICATE, FN_ATTACH_FSSAICERTIFICATE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Fssai Certificate" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('fssaiCertificate_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FSSAICERTIFICATE)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FSSAICERTIFICATE)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_FSSAICERTIFICATE).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Certification of premises utility</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="certificationOfPremisesUtility_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_CERTIFICATIONOFPREMISESUTILITY, FN_ATTACH_CERTIFICATIONOFPREMISESUTILITY)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certification of premises utility" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('certificationOfPremisesUtility_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFPREMISESUTILITY)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFPREMISESUTILITY)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_CERTIFICATIONOFPREMISESUTILITY).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Law & Order </label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="lawAndOrder_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_LAWANDORDER, FN_ATTACH_LAWANDORDER)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Law & Order " [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('lawAndOrder_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAWANDORDER)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAWANDORDER)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LAWANDORDER).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">List of President and office Bearers</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="listOfPresident_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_LISTOFPRESIDENT, FN_ATTACH_LISTOFPRESIDENT)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="List of President and office Bearers" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('listOfPresident_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFPRESIDENT)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFPRESIDENT)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_LISTOFPRESIDENT).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Copy of Rules of membership</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="rulesOfMembership_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_RULESOFMEMBERSHIP, FN_ATTACH_RULESOFMEMBERSHIP)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Copy of Rules of membership" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('rulesOfMembership_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RULESOFMEMBERSHIP)">
+                                <button (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RULESOFMEMBERSHIP)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_RULESOFMEMBERSHIP).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Proof Of Parking</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName="proofOfParkingPlace_file"
+                                        (change)="onAttachFileChange($event, FF_ATTACHMENTS, SRC_ATTACH_PROOFOFPARKINGPLACE, FN_ATTACH_PROOFOFPARKINGPLACE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Proof Of Parking" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('proofOfParkingPlace_file')">
+                            </app-show-errors>
+                            <div class="file-upload"
+                                *ngIf="isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PROOFOFPARKINGPLACE)">
+                                <button
+                                    (click)="downloadDocument(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PROOFOFPARKINGPLACE)">
+                                    {{isFileExists(PROP_HBR_ADDITONAL_DET,FN_ATTACH_PROOFOFPARKINGPLACE).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">No. of Rooms in Hotel</label>
+                            <select class="form-control" formControlName="noOfRoomsInHotel">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of hotelRoomsList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="No. of Rooms in Hotel" [frmSub]="formSubmitted"
+                                [control]="getAdditionalFormCntr('noOfRoomsInHotel')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'licenseMgnt.appli_bank_cardText' | translate}}" formArrayName="bankList"
+                class="list-panel add-panel">
+                <div class="row" [formGroupName]="0">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankAccNumText' | translate}}</label>
+                            <input type="number" class="form-control" formControlName="accountNumber"
+                                placeholder="{{'licenseMgnt.bankAccNumPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.bankAccNumText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankDetFormCntr('accountNumber')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.bankIfscText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ifscCode"
+                                placeholder="{{'licenseMgnt.bankIfscPlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.bankIfscText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankDetFormCntr('ifscCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.bankNameText' | translate}}</label>
+                            <select class="form-control" formControlName="bankNameCode">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bankList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="{{'licenseMgnt.bankNameText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankDetFormCntr('bankNameCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.branchNameText' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="bankBranch"
+                                placeholder="{{'licenseMgnt.branchNamePlaceHold' | translate}}">
+                            <app-show-errors eleName="{{'licenseMgnt.branchNameText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankDetFormCntr('bankBranch')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MICR</label>
+                            <input type="text" class="form-control" formControlName="micrCode" placeholder="Enter MICR">
+                            <app-show-errors eleName="MICR" [frmSub]="formSubmitted"
+                                [control]="getBankDetFormCntr('micrCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'licenseMgnt.cancelChequeText' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName="cancel_cheque_file"
+                                        (change)="onBankFileChange($event, FF_BANK, SRC_BK_CAN_CHEQUE, FN_BK_CAN_CHEQUE)"
+                                        accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="{{'licenseMgnt.cancelChequeText' | translate}}"
+                                [frmSub]="formSubmitted" [control]="getBankDetFormCntr('cancel_cheque_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isFileExists(PROP_HBR_BANK_DET,FN_BK_CAN_CHEQUE, 0)">
+                                <button (click)="downloadDocument(PROP_HBR_BANK_DET,FN_BK_CAN_CHEQUE, 0)">
+                                    {{isFileExists(PROP_HBR_BANK_DET,FN_BK_CAN_CHEQUE, 0).documentName}}
+                                </button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+
+        <app-card cardTitle="{{'licenseMgnt.comments_log_cardText' | translate}}" class="search-panel"
+            *ngIf="licenseComments.length > 0">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{'licenseMgnt.dateText' | translate}}</th>
+                            <th>{{'licenseMgnt.actPerformedByText' | translate}}</th>
+                            <th>{{'licenseMgnt.designationText' | translate}}</th>
+                            <th>{{'licenseMgnt.actionText' | translate}}</th>
+                            <th>{{'licenseMgnt.commentsText' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let comment of licenseComments;let i=index'>
+                            <td>{{i+1}}</td>
+                            <td>{{comment?.createdDate | date:'dd-MM-yyyy hh:mm'}}</td>
+                            <td>{{comment?.userName}}</td>
+                            <td class="text-right">{{comment?.designation}}</td>
+                            <td class="text-right">{{comment?.action}}</td>
+                            <td class="text-left">{{comment?.comments}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'licenseMgnt.commentsText' | translate}}" class="list-panel add-panel">
+            <div class="row" [formGroup]="commentForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <textarea class="form-control" formControlName="comments" rows="2"></textarea>
+                        <app-show-errors eleName="{{'licenseMgnt.commentsText' | translate}}" [frmSub]="commandformSub"
+                            [control]="commentForm.controls.comments">
+                        </app-show-errors>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+
+        <div class="text-content text-right mb-4" *ngIf="isActionBtnFor == CUSTOMER">
+            <button type="button" class="btn btn-warning mb-2 ml-2"
+                (click)="onSubmit(STATUS_DRAFT)">{{'licenseMgnt.saveAsDraftText' | translate}}</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2"
+                (click)="onSubmit(STATUS_SUBMITTED)">{{'licenseMgnt.submitText' | translate}}</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Reset</button>
+        </div>
+
+        <div class="text-content text-right mb-4" *ngIf="isActionBtnFor == OFFICER">
+            <button type="button" class="btn btn-warning mb-2 ml-2"
+                (click)="onSubmit(STATUS_APPROVED)">{{'licenseMgnt.approveText' | translate}}</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" *ngIf="isRejected"
+                (click)="onSubmit(STATUS_REJECTED)">{{'licenseMgnt.rejectText' | translate}}</button>
+            <ng-container *ngIf="isSendBack">
+                <div class="row" [formGroup]="sendbackForm">
+                    <select class="form-control" class="form-control" formControlName="sendback">
+                        <option value="">Select</option>
+                        <option *ngFor="let item of sendBackList" value="{{item.key}}">{{item.value}}</option>
+                    </select>
+                    <app-show-errors eleName="Send Back" [frmSub]="sendformSub"
+                        [control]="sendbackForm.controls.sendback">
+                    </app-show-errors>
+                    <button type="button" class="btn btn-secondary mb-2 ml-2"
+                        (click)="onSubmit(STATUS_SENDBACK)">{{'licenseMgnt.sendBackText' | translate}}</button>
+                </div>
+            </ng-container>
+            <button type="button" class="btn btn-primary mb-2 ml-2">{{'licenseMgnt.cancelText' | translate}}</button>
+        </div>
+
+    </div>
+</div> -->
+
+
+<h5 class="m-b-10 ng-star-inserted">HBR License</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">HBR License</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Application Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="number" disabled class="form-control" placeholder="2020-2021" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity of Firm</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>Firm</option>
+                                 <option>Company</option>
+                               </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>FL6</option>
+                                 <option>FL7</option>
+                               </select>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Applicant Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>Mr.</option>
+                                <option>Miss.</option>
+                                <option>Mrs.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Mobile Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="text" class="form-control" placeholder="Enter Email Id">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="text" class="form-control" placeholder="Enter Aadhaar Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text" class="form-control" placeholder="Enter PAN Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Select ITR</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>Current Year (2020-2021)</option>
+                                <option>Previous Year (2019-2020) </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload ITR</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason if, Previous Assessment ITR uploaded</label>
+                            <input type="text" class="form-control" placeholder="Enter Reason if, Previous Assessment ITR uploaded">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Applicant Address" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Organization</label>
+                            <input type="text" class="form-control" required placeholder="Enter Name of the Organization">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" required placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" required placeholder="Enter Pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control" required placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text" class="form-control" required placeholder="Enter Block">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text" class="form-control" required placeholder="Enter Village">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <input type="text" class="form-control" required placeholder="Enter Police Station">
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" required placeholder="Enter Locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" required placeholder="Enter Street">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Premises Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Firm Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Firm Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ownership Type</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Ownership Document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Rooms in Hotel</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District Category</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div> 
+
+                </div>
+            </app-card>
+
+         
+
+            <app-card cardTitle="List of Board Members" class="list-panel add-panel">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Designation</th>
+                        <th>Full Name</th>
+                        <th>Address </th>
+                        <th>Mobile No</th>
+                        <th>Aadhaar Number</th>
+                        <th>Upload Aadhar</th>
+                        <th>PAN No</th>
+                        <th>Upload PAN</th>
+                        <th>Upload Character Certificate</th>
+                        <th>Upload Affaidavit</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter Designation">
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter Full Name">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter Address">
+                            </div>
+                        </td>
+
+                        <!-- <td>
+                            <div class="form-group mb-0">
+                                <textarea type="text" class="form-control" placeholder="Mobile No"></textarea>
+                            </div>
+                        </td> -->
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter Mobile No">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter Aadhaar">
+                            </div>
+                        </td>
+
+
+                        <td>
+    
+                            <div class="form-group mb-0">
+                                
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                        </td>
+                        <td>
+                            <div class="form-group mb-0">
+                                <input type="number" class="form-control" placeholder="Enter PAN No">
+                            </div>
+                        </td>
+
+
+                        <td>
+    
+                            <div class="form-group mb-0">
+                                
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                        </td>
+                        <td>
+    
+                            <div class="form-group mb-0">
+                                
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+            </td>
+
+
+                        <td>
+    
+                                        <div class="form-group mb-0">
+                                            
+                                            <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                        </td>
+
+
+                        <td class="table-action-column text-center">
+                            <button class="btn btn-icon btn-success mr-2" type="button">
+                                                    <i class="feather icon-plus"></i></button>
+
+                            <button class="btn btn-icon btn-danger mr-2" type="button">
+                                                        <i class="feather icon-trash"></i></button>
+
+                            <!-- <button class="btn btn-icon btn-warning mr-2" type="button" routerLink="/supplychainmanagement/warehouse/bwfl5/view">
+                                                        <i class="feather icon-download"></i></button> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </app-card>
+      
+            <app-card cardTitle="Premises Address" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1" formControlName="licenseTypeRad" checked>
+                                <!-- (click)="licenseType($event, 'pd1')" -->
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" required placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" required placeholder="Enter Pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control" required placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text" class="form-control" required placeholder="Enter Block">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text" class="form-control" required placeholder="Enter Village">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <input type="text" class="form-control" required placeholder="Enter Police Station">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" required placeholder="Enter Locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" required placeholder="Enter Street">
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+          
+            <app-card cardTitle="Attachments" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Eligibility Affidavit</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload The Boundries (chouhddi)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Layout plan</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Certification of Incorporation</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Memorandum of Association</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Article of Association</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Resolution of Authorization</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Company TAN</label>
+                            <input type="number" class="form-control" required placeholder="Enter Company TAN">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload TAN Document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Registration Certificate of firm</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Partnership deed</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Fire saftey NoC</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload List of directors/partner (In Company's Letterhead)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Copy of Trade Licence(issued by local authority)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload FSSAI Certificate</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Certification of premises utility</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Law & Order (By District SP/SSP)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Proof of parking place</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload NoC of premises by DM (In case of club)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload List of President and office Bearers</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload copy of Rules of membership</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+
+                </div>
+            </app-card>
+            
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="number" class="form-control" placeholder="Enter Bank Account Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="number" class="form-control" placeholder="Enter Bank IFSC">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select class="form-control" required>
+                               <option value="">Select</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Payment- Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Site Details" class="add-panel list-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Latitute</label>
+                            <input type="number" class="form-control" placeholder="110 degree">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="number" class="form-control" placeholder="140 degree">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>East</label>
+                            <textarea type="text" class="form-control" placeholder="On East side Jawahar Juice Shop"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>West</label>
+                            <textarea type="text" class="form-control" placeholder="On West Sakthi Stationary Shop"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>North</label>
+                            <textarea type="text" class="form-control" placeholder="Towards North Bangra Main Road"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>South</label>
+                            <textarea type="text" class="form-control" placeholder="On South Government School"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+    
+          
+            <app-card cardTitle="Shop Photos" class="list-panel view-panel">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <!-- <th>Year</th> -->
+                                    <th>Upload Photo</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                <label class="custom-file-label"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Enter Description">
+                                    </td>
+                                   
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-success mr-2 ml-2" type="button">
+                                                    <i class="feather icon-plus"></i></button>
+                                         <button class="btn btn-icon btn-danger mr-2 ml-2" type="button">
+                                                        <i class="feather icon-trash"></i></button>
+                                    </td>
+    
+                                
+                                </tr>
+    
+                             
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Approval Remarks" class="list-panel view-panel">
+                <div class="row">
+
+ 
+           
+                <div class="col-md-12">
+                   
+                            <div class="remark-timeline remark-timeline--animate remark-timeline--one-column">
+                                <div class="remark-timeline-item remark-timeline-element">
+                                    <div> <span class="remark-timeline-icon bounce-in"> <i class="badge badge-dot badge-dot-xl badge-success"></i> </span>
+                                        <div class="remark-timeline-content bounce-in">
+                                            <h4 class="timeline-title">Excise Commissioner Remarks</h4>
+                                            <p><span class="text-success">Remarks : </span>all check complete </p><span class="circle-timeline"></span> <span class="remark-timeline-date"><b>20-Jan-2021</b>9:30 AM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                               
+                            </div>
+                           
+                          
+                            <textarea class="form-control" placeholder="Justification"></textarea>
+
+                    </div>
+                </div>
+           
+            
+            </app-card>
+
+        </form>
+        <!-- <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2" routerLink="/licencemgnt/hbr/hbrlicenseapplication/view">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+        </div> -->
+        <!-- <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Back</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2">Submit</button>
+            <button type="button" class="btn btn-info mb-2 ml-2">Print</button>
+            <button type="button" class="btn btn-danger mb-2 ml-2">Close</button>
+        </div> -->
+
+        <div _ngcontent-ukk-c14="" class="text-right mb-4" style="
+    /* display: none; */
+"><button _ngcontent-ukk-c14="" class="btn btn-secondary ml-2 mb-2" type="button">Back</button><button _ngcontent-ukk-c14="" class="btn btn-success ml-2 mb-2" type="button" style="
+    display: none;
+">Checklist</button><button _ngcontent-ukk-c14="" class="btn btn-success ml-2 mb-2" type="button">Query</button><button _ngcontent-ukk-c14="" class="btn btn-warning ml-2 mb-2" type="button">Revert</button><button _ngcontent-ukk-c14="" class="btn btn-danger ml-2 mb-2" type="button" style="
+    display: none;
+">Reject</button><button _ngcontent-ukk-c14="" class="btn btn-primary ml-2 mb-2" type="button">Forward</button><button _ngcontent-ukk-c14="" class="btn btn-success ml-2 mb-2" type="button" style="
+    display: none;
+">Approve</button><button _ngcontent-ukk-c14="" class="btn btn-info ml-2 mb-2" type="button">Print</button><button _ngcontent-ukk-c14="" class="btn btn-danger ml-2 mb-2" type="button">Close</button></div>
+    </div>
+</div>

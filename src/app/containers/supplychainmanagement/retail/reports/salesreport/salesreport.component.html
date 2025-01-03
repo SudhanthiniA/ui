@@ -1,0 +1,64 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'retail.salesreport.salesreport' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesreport.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesreport.report' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesreport.salesreport' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'retail.salesreport.salesreport' | translate }}{{'retail.salesreport.list' | translate }}" blockClass="table-border-style" class="list-panel add-panel list-search">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'retail.salesreport.reporttype' | translate }}</label>
+                        <input type="text" class="form-control" placeholder="Enter Report Type">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'retail.salesreport.fromdate' | translate }}</label>
+                        <input type="Date" class="form-control" placeholder="Enter From Date">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'retail.salesreport.todate' | translate }}</label>
+                        <input type="date" class="form-control" placeholder="Enter To Date">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12 text-right">
+                    <label> &nbsp; </label>
+                    <div class="form-group">
+                        <button class="btn btn-primary">{{'retail.salesreport.generatereport' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [dataSource]="dataSource" [pageSize]="pageSize"
+                (paginationEvent)="handlePagination($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'retail.salesreport.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button class="btn btn-success"> {{'retail.salesreport.print' | translate }}</button>
+    </div>
+</div>

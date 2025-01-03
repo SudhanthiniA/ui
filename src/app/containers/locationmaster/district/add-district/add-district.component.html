@@ -1,0 +1,175 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.district' | translate }} </h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.district' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.district' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #districtForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="Add District"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.district.districtcode' | translate }}</label>
+                            <input type="text" disabled
+                                class="form-control" minlength="3" maxlength="10" 
+                                placeholder="DM1122">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Country</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">State</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District Name</label>
+                           <input type="text" class="form-control" required placeholder="Enter District Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District Short Name</label>
+                           <input type="text" class="form-control" required placeholder="Enter District Short Name">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.district' | translate }}
+                                {{ 'master.common.shortname' | translate }}</label>
+                            <input type="text" [(ngModel)]="districtObject.shortName" name="shortName"
+                                #shortName="ngModel" required class="form-control" minlength="3" maxlength="15"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.district.district' | translate }} {{ 'master.common.shortname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="shortName.invalid && (shortName.dirty || shortName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="shortName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.maxlength && !shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.minlength && !shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }}
+                                    {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.district.districtname' | translate }}</label>
+                            <input type="text" [(ngModel)]="districtObject.name" name="name" #name="ngModel" required
+                                class="form-control" minlength="3" maxlength="25"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.district.districtname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.district.districtname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.maxlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.district.districtname' | translate }}
+                                    {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.district.districtname' | translate }}
+                                    {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.country' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="countryData" [placeholder]="'Select'"
+                                [(ngModel)]="districtObject.country_id" [settings]="countryDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='countryRequired' (onDropDownClose)="onDropDownClose()"
+                                [ngClass]="countryDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!countryRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.state' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="stateData" [placeholder]="'Select'"
+                                [(ngModel)]="districtObject.stateId" [settings]="stateDropDownSettings"
+                                (onSelect)="onStateSelect($event)" (onDeSelect)="onStateDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeState($event)"
+                                (onDropDownClose)="onDropDownCloseState()" [required]='stateRequired'
+                                [ngClass]="stateDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!stateRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="districtObject.active" name="active"
+                                    #active="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="districtObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!districtObject.active">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="districtObject.active">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="adddistrict(districtForm)">{{ 'master.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/district/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

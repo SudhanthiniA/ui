@@ -1,0 +1,137 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.producttype.addproducttype' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">
+    {{ 'master.producttype.editproducttype' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.inventory' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.product.product' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #productForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to Add  Product Type" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.code' | translate }}</label>
+                            <input type="text" id="code" required name="code" #code="ngModel" pattern="^[a-zA-Z0-9]+$"
+                                [(ngModel)]="productObj['code']" class="form-control" maxlength="10" minlength="3"
+                                placeholder="{{ 'master.supplytype.entercode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.common.code' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.name' | translate }}</label>
+                            <input type="text" id="Name" required name="name" #name="ngModel"
+                                [(ngModel)]="productObj['name']" class="form-control" maxlength="100" minlength="3"
+                                placeholder="{{ 'master.supplytype.entername' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.common.name' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.category.category' | translate }}</label>
+                            <!-- <select class="form-control" name="categoryId" #categoryId="ngModel"
+                                (change)="getSubCategory()" [(ngModel)]="productObj['categoryId']" [required]="true">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let cat of categoryList" value="{{cat.id}}">{{cat.name}}</option>
+                            </select>
+                            <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="categoryId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.category.category' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="categoryList" [placeholder]="'Select'"
+                                [(ngModel)]="productObj.categoryObj" [settings]="categoryDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='categoryRequired' (onDropDownClose)="onDropDownClose()"
+                                class="singleselect">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!categoryRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.category.category' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.subcategory.subcategory' | translate }}</label>
+                            <select name="subCategoryId" #subCategoryId="ngModel"
+                                [(ngModel)]="productObj['subCategoryId']" [required]="true" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let subcat of subcategoryList" value="{{subcat.id}}">{{subcat.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="subCategoryId.invalid && (subCategoryId.dirty || subCategoryId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="subCategoryId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.subcategory.subcategory' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.description' | translate }}</label>
+                            <input type="text" id="description" name="description" #description="ngModel"
+                                [(ngModel)]="productObj['description']" class="form-control"
+                                placeholder="{{ 'master.common.enterdescription' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="productObj['isActive']" class="custom-control-input"
+                                    id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!productObj.isActive">Inactive</label>
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="productObj.isActive">Active</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addProduct(productForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateProductList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

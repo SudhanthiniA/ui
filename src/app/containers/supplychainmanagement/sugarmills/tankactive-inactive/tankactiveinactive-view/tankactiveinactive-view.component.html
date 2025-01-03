@@ -1,0 +1,159 @@
+<h5 class="m-b-10 ng-star-inserted">Tank Active/Inactive</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/tankconversion/list']">Tank Active/Inactive</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'sugarmill.common.view' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankconvertionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details of Tank Active/Inactive"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankconversion.tank' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.tankTypeResponseDto?.name || tankconverstionObj?.tankId}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.capacity}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankconversion.balance' | translate }}(Qtl)<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.balance}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankconversion.fromgrade' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.molassesTypeResponseDto?.name || tankconverstionObj?.fromGradeId}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankconversion.tograde' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.molassesTypeResponseDto?.name || tankconverstionObj?.toGradeId}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankconversion.Reasonforconversion' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankconverstionObj?.reasonForConvestion}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.remarks' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <input type="text" class="form-control" required name="remarks" #remarks="ngModel"
+                            [(ngModel)]="tankconverstionObj['remarks']">
+                        <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="remarks?.errors?.required"><i class="fa fa-times"></i>
+                                Remarks is Required </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.feedbacktoinitiator' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <input type="text" class="form-control" required name="feedback" #feedback="ngModel"
+                            [(ngModel)]="tankconverstionObj['feedback']">
+                        <div *ngIf="feedback.invalid && (feedback.dirty || feedback.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="feedback?.errors?.required"><i class="fa fa-times"></i>
+                                Feedback is Required </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="Details of tank Active/Inactive"
+            class="list-panel view-panel">
+            <div class="row" *ngIf="addedit == 'View'">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.common.createdby' | translate }} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{tankconverstionObj?.createdBy}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.tankregistration.requestdate' | translate }} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{tankconverstionObj?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.common.Modifiedby' | translate }} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{tankconverstionObj?.modifiedBy}}</span>
+
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'sugarmill.common.Modifiedon' | translate }} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <span>{{tankconverstionObj?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}</span>
+                </div>
+            </div>
+            
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary ml-2 mb-2" (click)="Approvredform(tankconvertionForm,1)"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.approve' | translate }}</button>
+        <button type="submit" class="btn btn-danger ml-2 mb-2" (click)="Approvredform(tankconvertionForm,2)"
+            routerLink="/supplychainmanagement/sugarmills/tankconversion/list"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.reject' | translate }}</button>
+        <button type="submit" class="btn btn-warning ml-2 mb-2" (click)="Approvredform(tankconvertionForm,3)"
+            routerLink="/supplychainmanagement/sugarmills/tankconversion/list"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.additionaldetailsrequired' | translate }}</button>
+        <button type="button" class="btn btn-success ml-2 mb-2">{{ 'sugarmill.common.print' | translate }}</button>
+        
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/tankconversion/list"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/tankconversion/add"
+            *ngIf="addedit !== 'View' && !tankconverstionObj.id ">{{ 'sugarmill.common.back' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/tankconversion/edit/{{tankconverstionObj.id}}"
+            *ngIf="addedit !== 'View' && tankconverstionObj.id">{{ 'sugarmill.common.back' | translate }}</button>
+    </div>
+</div>

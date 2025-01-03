@@ -1,0 +1,734 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Code Wastage
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:" ><i class="feather icon-home"></i></a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" >Code Wastage</a>
+    </li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #wastageForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Code Wastage" class="list-panel add-panel">
+                <div class="row">
+                
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bottling Plan ID</label>
+                            <select class="form-control"  required>
+                                <option value="">FL3/BRA/FL/AGR/JAN24/0000020</option>
+                            </select>
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Packaging</label>
+                            <input type="text"  disabled class="form-control" value="31-01-2024">
+                        </div>
+                        <!-- [(ngModel)]="validateData['date_of_packaging']" -->
+                        <!-- #dateofpackage="ngModel" -->
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <input type="text"  disabled class="form-control" value="Neptune distillery">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Type</label>
+                            <input type="text"  disabled class="form-control" value="FL">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Sub Type</label>
+                            <input type="text"  disabled class="form-control" value="Brandy">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Detailed Description</label>
+                            <input type="text"  disabled
+                                class="form-control" value="Others">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic Strength</label>
+                            <input type="text"  disabled class="form-control" value="42.8">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>EDP Category </label>
+                            <input type="text"  disabled class="form-control" value="Premium">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Packaging Size</label>
+                            <input type="text"  disabled class="form-control" value="750">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Code Type</label>
+                            <input type="text"  disabled class="form-control" value="UnMapped">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Production Line</label>
+                            <input type="text"  disabled class="form-control" value="ALL">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Planned No. of Cases</label>
+                            <input type="text"  disabled class="form-control" value="15">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Planned No of Bottles</label>
+                            <input type="text"  disabled class="form-control" value="90">
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="checkWastageDropDown">
+                        <div class="form-group">
+                            <label class="mandatory">Wastage Type</label>
+                            <select class="form-control"  required>
+                                <option value="">Bar Code Wastage</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 ">
+                        <div class="form-group">
+                            <label class="mandatory">Wastage Type</label>
+                            <select class="form-control"  required>
+                                <option value="">Bar Code Wastage</option>
+                            </select>
+
+                           
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-primary"
+                                (click)="openModal()">Add</button>
+                            <button type="submit" class="btn btn-secondary ml-2"
+                                (click)="clear()">Clear</button>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">No Pending Bottles Without QR Code</label>
+                            <input type="text" [(ngModel)]="wateage.nopendingbolltes" name="nopendingbolltes"
+                                #nopendingbolltes="ngModel" required class="form-control"
+                                placeholder="Enter No Pending Bottles Without QR Code">
+                        </div>
+                        <div *ngIf="nopendingbolltes.invalid && (nopendingbolltes.dirty || nopendingbolltes.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="nopendingbolltes?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                No Pending Bottles Without QR Code required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Request For Additional Barcode for Pending Cases</label>
+                            <input type="text" [(ngModel)]="wateage.requestForAdditionalBarcodeforPendingCases"
+                                name="requestForAdditionalBarcodeforPendingCases"
+                                #requestForAdditionalBarcodeforPendingCases="ngModel" required class="form-control"
+                                placeholder="Enter Request For Additional Barcode for Pending Cases">
+                        </div>
+                        <div *ngIf="requestForAdditionalBarcodeforPendingCases.invalid && (requestForAdditionalBarcodeforPendingCases.dirty || requestForAdditionalBarcodeforPendingCases.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="requestForAdditionalBarcodeforPendingCases?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                Request For Additional Barcode for Pending Cases required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Request for Additional QR Code for Pending Bottles</label>
+                            <input type="text" [(ngModel)]="wateage.requestforAdditionalQRCodeforPendingBottles"
+                                name="requestforAdditionalQRCodeforPendingBottles"
+                                #requestforAdditionalQRCodeforPendingBottles="ngModel" required class="form-control"
+                                placeholder="Enter Request for Additional QR Code for Pending Bottles">
+                        </div>
+                        <div *ngIf="requestforAdditionalQRCodeforPendingBottles.invalid && (requestforAdditionalQRCodeforPendingBottles.dirty || requestforAdditionalQRCodeforPendingBottles.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="requestforAdditionalQRCodeforPendingBottles?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                Request for Additional QR Code for Pending Bottles required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of QR Code Expired</label>
+                            <input type="text" [(ngModel)]="wateage.NoofQRCodeExpired" name="NoofQRCodeExpired"
+                                #NoofQRCodeExpired="ngModel" class="form-control"
+                                placeholder="Enter No of QR Code Expired">
+                        </div> -->
+                    <!-- <div *ngIf="NoofQRCodeExpired.invalid && (NoofQRCodeExpired.dirty || NoofQRCodeExpired.touched || formSubmitted)"
+                        class="error-msg">
+                        <div *ngIf="NoofQRCodeExpired?.errors?.required">
+                            <i class="fa fa-times"></i>
+                            No of QR Code Expired required
+                        </div>
+                        </div> -->
+                    <!-- </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bar Code Expired</label>
+                            <input type="text" [(ngModel)]="wateage.NoofBarCodeExpired" name="NoofBarCodeExpired"
+                                #NoofBarCodeExpired="ngModel" class="form-control"
+                                placeholder="Enter No of Bar Code Expired">
+                        </div> -->
+                    <!-- <div *ngIf="NoofBarCodeExpired.invalid && (NoofBarCodeExpired.dirty || NoofBarCodeExpired.touched || formSubmitted)"
+                        class="error-msg">
+                        <div *ngIf="NoofBarCodeExpired?.errors?.required">
+                            <i class="fa fa-times"></i>
+                            No of Bar Code Expired required
+                        </div>
+                        </div> -->
+                    <!-- </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Date of Demosh of QR Codes/Barcodes</label>
+                            <input type="date" [(ngModel)]="wateage.DateofDemoshofQRCodesBarcodes"
+                                name="DateofDemoshofQRCodesBarcodes" #DateofDemoshofQRCodesBarcodes="ngModel"
+                                class="form-control">
+                        </div> -->
+                    <!-- <div *ngIf="DateofDemoshofQRCodesBarcodes.invalid && (DateofDemoshofQRCodesBarcodes.dirty || DateofDemoshofQRCodesBarcodes.touched || formSubmitted)"
+                        class="error-msg">
+                        <div *ngIf="DateofDemoshofQRCodesBarcodes?.errors?.required">
+                            <i class="fa fa-times"></i>
+                            Date of Demosh of QR Codes/Barcodes required
+                        </div>
+                        </div> -->
+                    <!-- </div> -->
+                </div>
+            </app-card>
+        </form>
+
+    </div>
+
+    <!-- <app-ui-modal #barCodeWastage dialogClass="modal-dialog-centered modal-lg d-none">
+        <div class="app-modal-header">
+            <h5 class="modal-title">{{barcodeval}} Code Damaged</h5>
+            <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+                (click)="barCodeWastage.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+
+            <div class="row">
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Code Type<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{validateData?.code_type_value}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Wastage Type<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{wateage.wasteage}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">No. of Bar Codes<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{validateData?.no_of_cases}}
+
+                </div>
+
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">No. of QR Codes<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{validateData?.no_of_bottles}}
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{damagedcodes}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="text" class="form-control" value="" (change)="watagecount($event.target.value)">
+                </div>
+                
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Codes not printed count<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="text" class="form-control" value="" (change)="codesNotPrint($event.target.value)">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">No of {{barcodeval}} codes Required<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="text" class="form-control" value="" (change)="codeRequired($event.target.value)">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Remarks For the Additional Codes<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="text" class="form-control" value="" maxlength="255"
+                        (change)="remarksFortheAddCode($event.target.value)">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Are you going to submit the Damaged code to Department<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label for="chkYes">
+                        <input type="radio" id="chkYes" name="chkPassPort" (click)="yes()" value="YES"
+                            (change)="clickYes($event.target.value)" />
+                        Yes
+                    </label>
+                    <label for="chkNo">
+                        <input type="radio" id="chkNo" name="chkPassPort" (click)="no()" value="No"
+                            (change)="clickYes($event.target.value)" />
+                        No
+                    </label>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label" *ngIf="radioClick">No. of {{barcodeval}} Code Submitted<span
+                            class="float-right" *ngIf="radioClick">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="number" class="form-control" value="" *ngIf="radioClick"
+                        (change)="barCodeSubmittedValue($event.target.value)">
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Remarks for the Submitting<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <input type="text" class="form-control" value="" maxlength="255" (change)="remarksForSubmit($event.target.value)">
+                </div>
+            </div>
+
+        </div>
+        <div class="app-modal-footer">
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary" (click)="addCases()">Save</button>
+                    <button type="submit" class="btn btn-secondary ml-2" (click)="barCodeWastage.hide()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </app-ui-modal> -->
+    <div class="col-xl-12">
+    <app-card cardTitle="Code Details" class="list-panel view-panel">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Code Type
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                UnMapped
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Wastage Type
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                WTCM001
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> No. of Bar codes
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               15
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> No. of QR codes
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                90
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> No. of Damaged Cases
+                    Monocartons<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                0
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> No. of Barcode Codes Required
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <!-- {{barCodeSubmitted}} -->
+                
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> If any codes Wasted
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Yes
+                
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Remarks for the Additional codes
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <!-- {{productData?.remarks_for_Additional_codes_barcode}} -->
+                
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Are you going to submit the damaged code to Department
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               
+            </div>
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Number of QR Submitted
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{productData?.bottling_plan_id}}
+            </div> -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> No. of code Submitted
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Codes not printed count
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Remarks for the Submitting<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               
+            </div>
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Already Added Bar code Wastage/Damaged
+                    :<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{addlSummaryDtls?.barcode_wastage}}
+            </div> -->
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Are you received the damage code
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                0
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label"> Number of codes received
+                    <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                0
+            </div> -->
+        </div>
+
+    </app-card>
+</div>
+
+    <div class="col-xl-12">
+        <app-card cardTitle="Summary Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        Bottling Plan Id
+                        <span class="float-right">:</span>
+                    </label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    FL3/BRA/FL/AGR/JAN24/0000020
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        Already Added QR code Wastage/Damaged
+                        <span class="float-right">:</span>
+                    </label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    0
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        Already Added Bar code Wastage/Damaged
+                        <span class="float-right">:</span>
+                    </label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  0
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        Currently Added QR code Wastage/Damaged
+                        <span class="float-right">:</span>
+                    </label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    0
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        Currently Added Bar code Wastage/Damaged
+                        <span class="float-right">:</span>
+                    </label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    
+                </div>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="EAL Request Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Required No. of Barcode/cases Code
+                        </label>
+                        <input type="number" disabled class="form-control" value="15">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Required No. of QR/Bottle Code
+                        </label>
+                        <input type="number" disabled class="form-control" value="360">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Barcode/QR Code or Monocartons
+                        </label>
+                        <select class="form-control" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Barcode Printing Type
+                        </label>
+                        <select class="form-control" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">QR Code Printing Type
+                        </label>
+                        <select class="form-control" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+        </app-card>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-info mb-2" routerLink="/brewery/wastageqraddbar/view">Preview</button> -->
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as
+            Draft</button> -->
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2" (click)="submit(wastageForm)">Submit</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2" data-toggle="modal" data-target="#exampleModal"
+            >Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/brewery/wastageqraddbar/list">Cancel</button>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Barcode Damage</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Code Type
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        UnMapped
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Wastage Type
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        WTCM001
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> No. of Bar codes
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       15
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> No. of QR codes
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        90
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> No. of Damaged Cases/
+                            Monocartons<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> No. of Barcode Codes Required
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <input type="text" class="form-control">
+                        
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> If any codes Wasted
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">No</label>
+                            </div>
+                            </div>
+                        
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Remarks for the Additional codes
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <input type="text" class="form-control">
+                        
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Are you going to submit the damaged code to Department
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">No</label>
+                            </div>
+                            </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Number of QR Submitted
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{productData?.bottling_plan_id}}
+                    </div> -->
+                    
+        
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Remarks for the Submitting<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       <input type="text" class="form-control">
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Already Added Bar code Wastage/Damaged
+                            :<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{addlSummaryDtls?.barcode_wastage}}
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Are you received the damage code
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        0
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label"> Number of codes received
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        0
+                    </div> -->
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-right mb-4">
+                        <!-- <button type="button" class="btn btn-info mb-2" routerLink="/brewery/wastageqraddbar/view">Preview</button> -->
+                        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as
+                            Draft</button> -->
+                        <!-- <button type="button" class="btn btn-primary ml-2 mb-2" (click)="submit(wastageForm)">Submit</button> -->
+                        <button type="button" class="btn btn-primary ml-2 mb-2" 
+                            >Save</button>
+                        <button type="button" class="btn btn-secondary ml-2 mb-2"
+                            routerLink="/brewery/wastageqraddbar/list">Cancel</button>
+                    </div>
+                </div>
+        
+            </div>
+           
+
+        </div>
+    </div>
+</div>

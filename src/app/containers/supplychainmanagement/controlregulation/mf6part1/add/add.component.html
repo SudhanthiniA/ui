@@ -1,0 +1,360 @@
+<h5 class="m-b-10 ng-star-inserted">
+  Add  MF 6 Part 1 
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Control Regulation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">MF 6 Part 1</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="mf6partForm" autocomplete="off">
+            <app-card cardTitle="MF 6 Part 1 Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" name="date" disabled class="form-control" placeholder="Enter Date"
+                                formControlName="date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Name
+                            </label>
+                            <input type="text" name="date" class="form-control" disabled placeholder="Daurala Sugarmill"
+                                formControlName="date">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit License Type</label>
+                            <input type="text" name="date" class="form-control" placeholder="FL3" disabled 
+                                formControlName="date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Address</label>
+                            <textarea rows="1" disabled class="form-control">Gomti Nagar, Lucknow - 226010, Vipin Khand</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+
+                        <div class="form-group">
+                            <label>Opening Balance of Molasses
+                            </label>
+                            <input type="number" name="openingBalancesOfMolasses" class="form-control"
+                                placeholder="1000"
+                                formControlName="openingBalancesOfMolasses" disabled>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="mf6partForm" autocomplete="off">
+            <app-card cardTitle="Destpatched From Sugar Factory" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gate Pass No</label>
+                            <input type="text" name="gatePassNo" class="form-control" disabled placeholder="TP1122"
+                               (keyup)="autopopulatedata(mf6partForm.value.gatePassNo)" formControlName="gatePassNo">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Sugar Mill</label>
+                            <input type="text" disabled name="sugarmill" class="form-control"
+                                placeholder="DK Industries" formControlName="sugarmill">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="text" disabled required name="dispatchedDate" class="form-control" formControlName="dispatchedDate" placeholder="12-03-2021" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" disabled name="quantity" class="form-control"
+                                placeholder="5200" formControlName="quantity">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-xl-12">
+        <form [formGroup]="mf6partForm" autocomplete="off">
+            <app-card cardTitle="Molasses Received at Distillery" class="list-panel add-panel">
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                        <div class="form-group">
+                            <label>Quantity (Qtls.) Calculation</label>
+                            <input type="number" disabled name="quantityWeightByMen" class="form-control"
+                                placeholder="2000"
+                                formControlName="quantityWeightByMen">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+
+                            <label class="mandatory">Molasses Type</label>
+
+                            <select id="grade" name="gradeId" formControlName="gradeId"
+                                (click)="molassesTypes(mf6partForm.value.gradeId)" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradelist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Control Test Brix(%)</label>
+                            <input type="number" name="brix" class="form-control" placeholder="Enter Control Test Brix"
+                                formControlName="brix">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Percent Total Sugar(%)</label>
+                            <input type="number" name="percentageTotalSugar" class="form-control"
+                                placeholder="Enter Percent Total Sugar" formControlName="percentageTotalSugar">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transit Losses (%)</label>
+                            <input type="number" name="transitLosses" class="form-control"
+                                placeholder="Enter Transit Losses" required formControlName="transitLosses">
+
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+
+                            <label>Serial No of tank where stored</label>
+
+                            <select id="serialNoOfTankStored" (change)="tankstorechange()" name="serialNoOfTankStored"
+                                #serialNoOfTankStored="ngModel"
+                                [(ngModel)]="mf6partrequestObject['serialNoOfTankStored']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of tankstoredlistlist" value="{{item.name}}">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div> -->
+
+
+                </div>
+
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="mf6partForm" autocomplete="off">
+            <app-card cardTitle="Issue of Molasses" class="list-panel add-panel">
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Control Test Brix</th>
+                                        <th>Percent Total Sugar</th>
+                                        <th>Transit Losses</th>
+                                        <th><span class="mandatory">Name of the Tank Where Stored</span></th>
+                                        <th><span class="mandatory">Quantity Issued</span></th>
+                                        <th><span class="mandatory">Officer In Charge</span></th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="text-left">Brix</td>
+                                        <td class="text-right">50.00</td>
+                                        <td class="text-right">5.00</td>
+                                        <td>
+                                            <div class="form-group mb-0">
+                                                <select id="grade" name="gradeId" formControlName="gradeId" class="form-control">
+                                                    <option value="">Tank1</option>
+                                                    <option value="">Tank2</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mb-0">
+                                                <input type="number" name="transitLosses" class="form-control"
+                                                    placeholder="Enter Quantity Issued" required formControlName="Quantity Issued">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mb-0">
+                                                <input type="text" name="transitLosses" class="form-control"
+                                                    placeholder="Enter Officer In Charge" required formControlName="Officer In Charge">
+                                            </div>
+                                        </td>
+                                        <td class="table-action-column">
+                                            <button class="btn btn-icon btn-success" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                <i class="feather icon-trash-2"></i></button>
+                                          
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                                <!--<tbody>
+                                     <tr formArrayName="stockinDetails"
+                                        *ngFor="let pres of mf6partForm?.get('stockinDetails')['controls']; let i=index"
+                                        id="row{{i}}">
+                                         <td [formGroupName]="i">{{i+1}}</td>
+                                        <td [formGroupName]="i" class="table-action-column">
+                                            <div class="form-group mb-0">
+                                                <select formControlName="tankRegId" class="form-control"
+                                                    (change)="getTankDetails($event.target.value,pres)"
+                                                    style="width: 100px;">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}
+                                                    </option>
+                                                    <option *ngFor="let item of tankList" value="{{item.id}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i"><input type="number" disabled class="form-control" formControlName="availablebalance"
+                                            placeholder="" /></td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control" formControlName="trs"
+                                            placeholder="Enter Trs" /></td>
+                                            <td [formGroupName]="i"><input type="number" class="form-control" formControlName="brix"
+                                                placeholder="Enter Brix" /></td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control" formControlName="quantity" (keyup) ="checkingvalue(pres)" 
+                                                placeholder="Enter Quantity Issued" /></td> -->
+                                        <!-- <td [formGroupName]="i"><input type="text" class="form-control" formControlName="officeincharge"
+                                                placeholder="Enter Officer In Charge" /></td> -->
+
+                                                <!-- <td [formGroupName]="i" class="table-action-column">
+                                                    <div class="form-group mb-0">
+                                                        <select formControlName="inChargeId" class="form-control"
+                                                 
+                                                            style="width: 100px;">
+                                                            <option value="">{{ 'sugarmill.common.select' | translate }}
+                                                            </option>
+                                                            <option *ngFor="let item of userdesignation" value="{{item.designationResponseDto.id}}">{{item.userName}}
+                                                                
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                        
+                                        <td [formGroupName]="i" class="table-action-column">
+                                            <div class="form-group mb-0">
+                                                <button class="btn btn-icon btn-success" type="button">
+                                                    <i class="feather icon-plus" title="Delete" (click)="addNewRow(i)"
+                                                        style="cursor: pointer;">
+                                                    </i>
+                                                </button>
+                                                <button *ngIf="i!==getPresFormLength()-1"
+                                                    class="btn btn-icon btn-danger ml-2" type="button">
+                                                    <i class="feather icon-trash-2" title="Delete"
+                                                        (click)="removeSelectedRow(i+1)" style="cursor: pointer;">
+                                                    </i></button>
+                                            </div>
+                                        </td> -->
+                                        <!-- <td class="table-action-column">
+                                            <button class="btn btn-icon btn-danger" type="button">
+                                                <i class="feather icon-trash-2"></i></button>
+                                            <button class="btn btn-icon btn-success ml-2" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td> 
+                                    </tr>
+                                </tbody> -->
+                            </table>
+                        </div>
+                        <!-- <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Quantity Issued</th>
+                                        <th>Officer In Charge</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" class="form-control"
+                                                placeholder="Enter Quantity Issued" /></td>
+                                        <td class="text-left"><input type="text" class="form-control"
+                                                placeholder="Enter Officer In Charge" /></td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                    </div>
+
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Serial No.of Tank</label>
+                            <input type="text" disabled name="serialNoOfTank" 
+                                class="form-control" placeholder="Enter Serial No.of Tank" 
+                                #serialNoOfTank="ngModel" [(ngModel)]="mf6partrequestObject['serialNoOfTank']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity issued(Qtl)</label>
+                            <input type="number"  name="quantityIsUsed"
+                                class="form-control" placeholder="Enter Quantity issued(Qtl)" 
+                                #quantityIsUsed="ngModel" [(ngModel)]="mf6partrequestObject['quantityIsUsed']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Initials of Distillery Excise Inspector</label>
+                            <input type="text"  name="initalByExciseInspector"
+                                class="form-control" placeholder="Enter Initials of Distillery Excise Inspector" 
+                                #initalByExciseInspector="ngModel" [(ngModel)]="mf6partrequestObject['initalByExciseInspector']">
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(mf6partForm)">
+            Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(mf6partForm,'INITIATED')">Save
+            as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveData(mf6partForm,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/mf6-part-one/list">Cancel</button>
+    </div>
+</div>

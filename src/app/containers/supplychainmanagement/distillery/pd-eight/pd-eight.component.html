@@ -1,0 +1,64 @@
+<h5 class="m-b-10 ng-star-inserted">
+   PD-8A (Wash Collected & Molasses Consumed)
+    <button type="submit"  class="btn btn-success custom_add_button pull-right" *ngIf="entity_type !='UP_EXCISE'" routerLink="/supplychainmanagement/distillery/pd-8/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add  PD-8A
+    </button>
+
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Fermentation and Distillation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> PD-8A (Wash Details)</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="pd8aObj['date']">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Particulars</label>
+                        <input type="text" class="form-control" placeholder="Enter Particular" name="particular" #particular="ngModel" [(ngModel)]="pd8aObj['particular']">
+
+                    </div>
+                </div> -->
+              
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="searchConData()">Search</button>
+                        <button type="submit" class="btn btn-secondary" (click) = "resetKey()">Cancel</button>
+                    </div>
+               </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="PD-8A (Wash Collected & Molasses Consumed) List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+           
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

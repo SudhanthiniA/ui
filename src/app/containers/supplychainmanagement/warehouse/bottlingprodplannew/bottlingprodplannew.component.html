@@ -1,0 +1,127 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'bondWarehouse.bottlingproductionplan.bottlingproductionplan' | translate}}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/warehouse/bottlingprodplannew/add">
+    <i class="feather icon-plus mr-2"></i>
+    {{ 'bondWarehouse.bottlingproductionplan.bottlingproductionplan' | translate}}
+</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.importpermitstatus.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.bottlingproductionplan.bottlingproductionplan' | translate}}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate}}</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'master.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'bondWarehouse.bottlingproductionplan.requesteddate' | translate}}</label>
+                        <input type="date" class="form-control" placeholder="Enter Requested Date"
+                        name ="planDate" #planDate="ngModel"  [(ngModel)]="bottlingObj['planDate']">
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'bondWarehouse.bottlingproductionplan.planid' | translate}}</label>
+                        <input type="text" class="form-control" placeholder="{{ 'bondWarehouse.bottlingproductionplan.enterplanid' | translate}}"
+                        name ="planId" #planId="ngModel"  [(ngModel)]="bottlingObj['planId']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group"> 
+                        <label>{{ 'bondWarehouse.stockinhand.brandname' | translate}}</label>
+                        <select id="brand" name="brandId" required class="form-control" #brandId="ngModel"  [(ngModel)]="bottlingObj['brandId']">
+                            <option value="">{{'master.common.select' | translate}}</option>
+                            <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'master.common.status' | translate}}</label>
+                        <select class="form-control">
+                            <option>{{'master.common.select' | translate}}</option>
+                            <option value="true">Completed</option>
+                            <option value="false">Initiated</option>
+                        </select>
+                        <!-- <select class="form-control" [(ngModel)]="entityObj['active']">
+                            <option value=""></option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select> -->
+                    </div>
+                </div>
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchBottlingData()>{{'master.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'master.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12" >
+        <app-card cardTitle="{{ 'bondWarehouse.bottlingproductionplan.bottlingproductionplanlist' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'master.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<!-- <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Requested Date</th>
+            <th>Plan ID</th>
+            <th>Brand Name</th>
+            <th>Production Line</th>
+            <th>No. of Cases</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of bottlelist; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{data?.planDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{data?.planId}}</td>
+            <td class="text-left">{{data?.brandResponseDto.brandName}}</td>
+            <td>{{data?.productionLine}}</td>
+            <td class="text-left">{{data?.noOfCases}}</td>
+            <td>{{data?.status}}</td>
+            <td class="table-action-column text-center">
+                <button class="btn btn-icon btn-primary" type="button" 
+                routerLink="/supplychainmanagement/warehouse/bottlingprodplannew/view/{{data.id}}">
+                    <i class="feather icon-eye"></i></button>
+                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                routerLink="/supplychainmanagement/warehouse/bottlingprodplannew/edit/{{data.id}}">
+                    <i class="feather icon-edit-2"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table> -->

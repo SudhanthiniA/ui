@@ -1,0 +1,79 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Make payment
+   
+ </h5>
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Make Payment</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+ </ul>
+ 
+ 
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Payment</label>
+                         <input type="text" class="form-control" placeholder="JD">
+                     </div>
+                 </div>
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="New Brand List" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive">
+                 <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Registered Date</th>
+                             <th>Domain Name</th>
+                             <th>Acc Number</th>
+                          
+                             <th>Action</th>
+ 
+ 
+                         </tr>
+                     </thead>
+                     <tbody >
+                         <tr *ngFor='let payment of allpayments;let i=index'>
+                             <td>
+                             {{i+1}}
+                             </td>
+                             <td>
+                                 {{payment.createdDate | date:'dd-MM-yyyy'}}
+ 
+                             </td>
+                             <td>{{payment?.domainResponseDto?.name}}</td>
+                             <td>
+                                {{payment.applicationNumber}}
+ 
+                             </td>
+                            
+                             <td class="table-action-column text-center">
+                                 <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/warehouse/brandlabelrequest/makepayment/add/{{payment.id}}">
+                                     <i class="feather icon-eye"></i></button>
+                                 <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/supplychainmanagement/warehouse/brandlabelrequest/newbrand/edit/{{data.id}}" *ngIf="username != 'whapprover'">
+                                         <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

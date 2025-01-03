@@ -1,0 +1,581 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock Availability
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/wholesale/indentrequest/add">
+    <i class="feather icon-external-link mr-2"></i>
+    Raise Indent
+</button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Custom Bond</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> Stock Availability</a></li>
+    <li class="breadcrumb-item">list</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card hidHeader=[true]>
+            <ngb-tabset type="pills">
+                <ngb-tab title="Custom Bond Warehouse" class="mx-3">
+                    <ng-template ngbTabContent class="mx-3">
+                        <span>&nbsp; </span>
+                        <app-card cardTitle="Search" class="search-panel mt-4">
+                            <form #searchForm="ngForm">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-6 col-12 mb-4">
+            <label>Entity Name</label>
+            <div class="segment">
+                <input type="radio" name="tab3" id="tab3" checked>
+                <label class="" for="tab3">All</label>
+                <input type="radio" name="tab4" id="tab4">
+                <label class="" for="tab4">CB 1</label>
+                <input type="radio" name="tab5" id="tab5">
+                <label class="" for="tab5">CB 2</label>
+            </div>
+        </div>
+                                        <div class="col-lg-4 col-md-3 col-sm-6 col-12 mb-2">
+                                            <label>Search by Unit Name/Brand Name</label>
+                                            <div class="segment">
+                                                <input type="radio" name="tab1" id="tab1" >
+                                                <label class="" for="tab1">Unit Name</label>
+                                                <input type="radio" name="tab2" id="tab2" checked>
+                                                <label class="" for="tab2">Brand Name</label>
+                                            </div>
+                                        </div>
+                                      
+                                   
+
+                                    </div>
+                                    <!-- Unit Name 
+                                <div class="row mt-2">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Name</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Address</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Entity Name</label>
+                                          <input type="text" class="form-control" value="All" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Brand Name</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label class="mt-4">&nbsp;</label>
+                                            <div class="form-group d-inline">
+                                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1">
+                                                <label class="cr mr-2" for="pd1">Include Out of Stock </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </div>-->
+                                <!-- Brand Name -->
+                                <div class="row mt-2">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Sub Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Detailed Description</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Brand Name (Parent ETIN)</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Packaging Size</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Packaging Type
+
+                                            </label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>No. of Bottles per Case</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label class="mt-4">&nbsp;</label>
+                                            <div class="form-group d-inline">
+                                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1">
+                                                <label class="cr mr-2" for="pd1">Include Out of Stock </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                        <!-- <app-card cardTitle="Stock Availability Unit Name Wise List" blockClass="table-border-style" class="list-panel"> -->
+                            <app-card cardTitle="Stock Availability Brand Name Wise List" blockClass="table-border-style" class="list-panel">
+                                <div class="row">
+                                    <!-- <div class="col-4 mb-2">
+                                        <label>Search by Unit Name/Brand Name</label>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">Unit Name</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">Brand Name</label>
+                                        </div>
+                                    </div> -->
+
+                                   
+                                    <!-- <div class="col-4 mb-2">
+                                        <label></label>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">BIO A</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">BIO B</label>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+                                <!-- Unit Name Wise-->
+                            <!-- <div class="table-responsive mb-2">
+                                <table class="table table-bordered mb-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Brand Name(Parent ETIN) </th>
+                                            <th>Liquor Type</th>
+                                            <th>Liquor Sub Type</th>
+                                            <th>Liquor Detailed Description</th>
+                                            <th>Strength</th>
+                                            <th>Packaging Size(ml)</th>
+                                            <th>Packaging Type</th>
+                                            <th>No. of Bottles per Case
+                                            </th>
+                                            <th>Available Cases/Mono Cartons</th>
+                                            <th>Available Bottles
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="text-left">Rampur Select</td>
+                                            <td class="text-left">FL</td>
+                                            <td class="text-left">Whishky</td>
+                                            <td class="text-left">Single Malt</td>
+                                            <td class="text-left">Mild</td>
+                                            <td class="text-left">750 ML</td>
+                                            <td class="text-left">Glass Bottle</td>
+                                            <td class="text-left">10</td>
+                                            <td class="text-left">10</td>
+                                            <td class="text-left">10</td>
+                                        
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div> -->
+                                <!-- Brand Name Wise-->
+                                <div class="table-responsive mb-2">
+                                    <table class="table table-bordered mb-0" >
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>License Type</th>
+                                                <th>Unit Name</th>
+                                                <th>Unit Location</th>
+                                                <th>Brand Name(Parent ETIN) </th>
+                                                <th>Liquor Type</th>
+                                                <th>Liquor Sub Type</th>
+                                                <th>Liquor Detailed Description</th>
+                                                <!-- <th>Strength</th> -->
+                                                <th>Packaging Size</th>
+                                                <th>Packaging Type</th>
+                                                <th>No. of Bottles per Case
+                                                </th>
+                                                <th>Available Cases</th>
+                                                <th>Available Bottles
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td class="text-left">BWFL2</td>
+                                                <td class="text-left">Daurala Distillery</td>
+                                                <td class="text-left">Lucknow</td>
+                                                <td class="text-left">Rampur Select</td>
+                                                <td class="text-left">FL</td>
+                                                <td class="text-left">Whishky</td>
+                                                <td class="text-left">Single Malt</td>
+                                                <!-- <td class="text-left">Mild</td> -->
+                                                <td class="text-left">750 ML</td>
+                                                <td class="text-left">Glass Bottle</td>
+                                                <td class="text-left">10</td>
+                                                <td class="text-left">10</td>
+                                                <td class="text-left">100</td>
+                                            
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                  <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle
+                                      type="button">Download</button>
+                                    <div ngbDropdownMenu>
+                                      <a class="dropdown-item" href="javascript:">Excel</a>
+                                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-8 text-right p-0">
+                                    <img src="assets/images/pagenation.png" />
+                                </div>
+                            </div>  
+                        </app-card>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Bio (Debond Unit)">
+                    <ng-template ngbTabContent class="mx-3">
+                        <span>&nbsp; </span>
+                        <app-card cardTitle="Search" class="search-panel mt-4">
+                            <form #searchForm="ngForm">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-6 col-12 mb-4">
+            <label>Entity Name</label>
+            <div class="segment">
+                <input type="radio" name="tab3" id="tab3" checked>
+                <label class="" for="tab3">BIO A</label>
+                <input type="radio" name="tab4" id="tab4">
+                <label class="" for="tab4">BIO B</label>
+            </div>
+        </div>
+                                        <div class="col-lg-4 col-md-3 col-sm-6 col-12 mb-2">
+                                            <label>Search by Unit Name/Brand Name</label>
+                                            <div class="segment">
+                                                <input type="radio" name="tab1" id="tab1" >
+                                                <label class="" for="tab1">Unit Name</label>
+                                                <input type="radio" name="tab2" id="tab2" checked>
+                                                <label class="" for="tab2">Brand Name</label>
+                                            </div>
+                                        </div>
+                                        
+                                      
+
+                                    </div>
+                                    <!-- Unit Name  
+                                <div class="row mt-2">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Name</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Unit Address</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Entity Name</label>
+                                          <input type="text" class="form-control" value="All" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Brand Name</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label class="mt-4">&nbsp;</label>
+                                            <div class="form-group d-inline">
+                                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1">
+                                                <label class="cr mr-2" for="pd1">Include Out of Stock </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </div> -->
+                                <!-- Brand Name -->
+                                <div class="row mt-2">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Sub Type</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Liquor Detailed Description</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Brand Name (Parent ETIN)</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Packaging Size</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>Packaging Type
+
+                                            </label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label>No. of Bottles per Case</label>
+                                            <select name="liquorType" class="form-control">
+                                            <option value="">Select</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label class="mt-4">&nbsp;</label>
+                                            <div class="form-group d-inline">
+                                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1">
+                                                <label class="cr mr-2" for="pd1">Include Out of Stock </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                                    </div>
+                                </div>  
+                            </form>
+                        </app-card>
+                        <!-- <app-card cardTitle="Stock Availability Unit Name Wise List" blockClass="table-border-style" class="list-panel"> -->
+                            <app-card cardTitle="Stock Availability Brand Name Wise List" blockClass="table-border-style" class="list-panel">
+                                
+                                <!-- Unit Name Wise 
+                            <div class="table-responsive mb-2">
+                                <table class="table table-bordered mb-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Brand Name(Parent ETIN) </th>
+                                            <th>Liquor Type</th>
+                                            <th>Liquor Sub Type</th>
+                                            <th>Liquor Detailed Description</th>
+                                            <th>Strength</th>
+                                            <th>Packaging Size(ml)</th>
+                                            <th>Packaging Type</th>
+                                            <th>No. of Bottles per Case
+                                            </th>
+                                            <th>Available Cases/Mono Cartons</th>
+                                            <th>Available Bottles
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="text-left">Rampur Select</td>
+                                            <td class="text-left">FL</td>
+                                            <td class="text-left">Whishky</td>
+                                            <td class="text-left">Single Malt</td>
+                                            <td class="text-left">Mild</td>
+                                            <td class="text-left">750 ML</td>
+                                            <td class="text-left">Glass Bottle</td>
+                                            <td class="text-left">10</td>
+                                            <td class="text-left">10</td>
+                                            <td class="text-left">10</td>
+                                        
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>-->
+                                <!-- Brand Name Wise -->
+                                <div class="table-responsive mb-2">
+                                    <table class="table table-bordered mb-0" >
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>License Type</th>
+                                                <th>Unit Name</th>
+                                                <th>Unit Location</th>
+                                                <th>Brand Name(Parent ETIN) </th>
+                                                <th>Liquor Type</th>
+                                                <th>Liquor Sub Type</th>
+                                                <th>Liquor Detailed Description</th>
+                                                <th>Packaging Size</th>
+                                                <th>Packaging Type</th>
+                                                <th>No. of Bottles per Case
+                                                </th>
+                                                <th>Available Cases</th>
+                                                <th>Available Bottles
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td class="text-left">BWFL2</td>
+                                                <td class="text-left">Daurala Distillery</td>
+                                                <td class="text-left">Lucknow</td>
+                                                <td class="text-left">Rampur Select</td>
+                                                <td class="text-left">FL</td>
+                                                <td class="text-left">Whishky</td>
+                                                <td class="text-left">Single Malt</td>
+                                                <td class="text-left">750 ML</td>
+                                                <td class="text-left">Glass Bottle</td>
+                                                <td class="text-left">10</td>
+                                                <td class="text-left">10</td>
+                                                <td class="text-left">100</td>
+                                            
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                  <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle
+                                      type="button">Download</button>
+                                    <div ngbDropdownMenu>
+                                      <a class="dropdown-item" href="javascript:">Excel</a>
+                                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-8 text-right p-0">
+                                    <img src="assets/images/pagenation.png" />
+                                </div>
+                            </div>  
+                        </app-card>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+            
+        </app-card>
+
+    </div>
+    <!-- <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mb-2 ml-2" routerLink="/supplychainmanagement/custombond/mappingforoverseasup/add">Print</button>
+        <button type="submit" class="btn btn-secondary mb-2 ml-2">Back</button>
+    </div> -->
+</div>

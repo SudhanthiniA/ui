@@ -1,0 +1,129 @@
+<!-- <app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb> -->
+<h5 class="m-b-10 ng-star-inserted">Etin
+    <button class="btn btn-success custom_add_button pull-right" 
+    routerLink="/master/etingenerate/add" type="submit">
+    <i class="feather icon-plus mr-2"></i>Add Generate Etin</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Generate Etin</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application No</label>
+                        <input type="text" class="form-control" 
+                            placeholder="Enter Application No">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Entity</label>
+                        <input type="text" class="form-control" 
+                            placeholder="Enter Entity">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <input type="text" class="form-control" 
+                            placeholder="Enter License Type">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Year.startmonth' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="yearObj.startMonth" name="startMonth"
+                            #startMonth="ngModel" placeholder="{{ 'master.Year.startmonth' | translate }}">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label> Material</label>
+                        <input type="text" class="form-control" placeholder="Enter Material">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Year.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="yearObj.active">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">{{ 'master.common.active' | translate }}</option>
+                            <option value="false">{{ 'master.common.inactive' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2"
+                        (click)="searchYear()">{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary"
+                        (click)=resetKey()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <!--
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+         -->
+        <app-card cardTitle="Etin List" blockClass="table-border-style"
+        class="list-panel">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Application No</th>
+                        <th>Entity Name</th>
+                        <th>License Type</th>
+                        <th>Name</th>
+                        <th>Start Month</th>
+                        <th>End Month</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            1
+                        </td>
+                        <td class="text-center">AP1122</td>
+                        <td class="text-left">Daurala Distillery</td>
+                        <td class="text-left">FL</td>
+                        <td class="text-center">ETIN1122</td>
+                        <td class="text-center">20-Jul-2020</td>
+                        <td class="text-center">20-Jul-2021</td>
+                        <td class="text-center">
+                            <span class="badge m-r-5 badge-light-success">Completed</span>
+                        </td>
+                        <td class="table-action-column text-center">
+                            <button class="btn btn-icon btn-primary ml-2 mb-2" type="button" 
+                            routerLink="/master/etingenerate/view">
+                                <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2 mb-2" type="button"
+                                routerLink="/master/etingenerate/add">
+                                   <i class="feather icon-edit-2"></i></button>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </app-card>
+    </div>
+</div>

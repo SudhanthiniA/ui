@@ -1,0 +1,184 @@
+
+<!-- <app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb> -->
+<h5 class="m-b-10 ng-star-inserted">Packaging Type
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/master/packagetype/add">
+    <i class="feather icon-plus mr-2"></i>
+    Add Packaging Type
+</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Packaging Type</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.package.packagecode' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="packageObj['code']"
+                            placeholder="{{ 'master.package.enterpackagetypecode' | translate }}">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Packaging Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Measurement Master Name</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.package.packagename' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="packageObj['name']"
+                            placeholder="{{ 'master.package.enterpackagetypename' | translate }}">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.package.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="packageObj['isActive']">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchPackage()>{{ 'master.common.search'
+                        | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{ 'master.common.cancel' |
+                        translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.package.packagetypelist' | translate }}" blockClass="table-border-style" class="list-panel">
+            <!-- <div class="table-responsive">
+                <app-mat-normal-table
+                    [columns]="columns" 
+                    [actionKeys]="actionKeys"
+                    [dataSource]="dataSource" 
+                    [pageSize]="pageSize" 
+                    [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div> -->
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered text-center mb-0" >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Packaging Type</th>
+                            <th>Measurement Master Name</th>
+                            <th>Created By</th>
+                            <th>Created On</th>
+                            <th>Modified By</th>
+                            <th>Modified On</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">Glass Bottle</td>
+                            <td class="text-left">200ml</td>
+                            <td class="text-left">Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-left">Assistant Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-center">
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary " type="button" >
+                                        <i class="feather icon-edit-2"></i></button>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="text-left">Plastic Bottle</td>
+                            <td class="text-left">200ml</td>
+                            <td class="text-left">Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-left">Assistant Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-center">
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary " type="button" >
+                                        <i class="feather icon-edit-2"></i></button>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-left">Pockets</td>
+                            <td class="text-left">200ml</td>
+                            <td class="text-left">Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-left">Assistant Admin</td>
+                            <td class="text-center">01 Nov 2021 & 16:53</td>
+                            <td class="text-center">
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary " type="button" >
+                                        <i class="feather icon-edit-2"></i></button>
+    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+

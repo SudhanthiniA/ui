@@ -1,0 +1,74 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.code' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="storeObj['code']" 
+                        placeholder="{{ 'master.supplytype.entercode' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.name' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="storeObj['name']" 
+                        placeholder="{{ 'master.supplytype.entername' | translate }}">
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.daterange' | translate }}</label>
+                        <input type="text" [timePicker]="true" [timePickerSeconds]="false" [timePicker24Hour]="true"
+                        ngxDaterangepickerMd [(ngModel)]="dateselected" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                        [showClearButton]="true"
+                        [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" startKey="start"
+                        endKey="end" (datesUpdated)="ondataChange()" (rangeClicked)="rangeClicked($event)">
+                        <input type="text" ngxDaterangepickerMd startKey="start" endKey="end" [(ngModel)]="dateselected">
+                        <input type="text" name="daterange" ngxDaterangepickerMd 
+                        [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}"  
+                        class="form-control" [(ngModel)]="storeObj['daterange']" />
+                    </div>
+                </div> -->
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="storeObj['isActive']" >
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">Active</option>
+                            <option value="false">InActive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2"
+                    (click)=searchStore()>{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary"
+                    (click)=resetForm()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.store.storemasterlist' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+

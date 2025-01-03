@@ -1,0 +1,278 @@
+<h5 class="m-b-10 ng-star-inserted">Add DIP Book
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/dipbook/list">
+            DIP Book</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #dipbookForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Dipbook Details" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>OT Number</label>
+                                <select class="form-control" name="otnumber" #otnumber="ngModel" required
+                                [(ngModel)]="dipbookObj['otnumber']">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of otnumberlist" value="{{item.id}}">{{item.otNumber}}</option>
+                                </select>
+                                <div *ngIf="otnumber.invalid && (otnumber.dirty || otnumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="otnumber?.errors?.required"><i class="fa fa-times"></i>
+                                    Ot Number is required </div>
+                            </div>
+                            </div>
+                        </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date & Time</label>
+                            <input type="text" disabled class="form-control" required value="22-Dec-2021">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Type
+                                </label>
+                            <input type="text" disabled class="form-control" required value="Distillery">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <input type="text" disabled class="form-control" required value="FL">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Category</label>
+                            <select class="form-control">
+                                    <option>Select</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Usage
+                                </label>
+                            <select class="form-control">
+                                    <option>Select</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Type</label>
+                            <select class="form-control">
+                                    <option>Select</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank ID</label>
+                            <select class="form-control">
+                                    <option>Select</option>
+                                </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Number
+                                </label>
+                                <input type="text" disabled class="form-control" required value="TN1122">
+                            </div>
+                        </div> -->
+                </div>
+            </app-card>
+            <app-card cardTitle="Initial DIP" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank</label>
+                                <select class="form-control" name="tankId" #tankId="ngModel" required
+                                [(ngModel)]="dipbookObj['tankId']" (change)="changeTankName($event.target.value)">
+                                    <option value="">Select</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.tankRegistrationDetails?.tankName}}</option>
+                                </select>
+                                <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                    Tank is required </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Raw Material</label>
+                                <input type="text" id="fromRawMaterial" name="fromRawMaterial" disabled class="form-control"
+                                    #fromRawMaterial="ngModel" [(ngModel)]="dipbookObj['fromRawMaterial']" required
+                                    placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Usage</label>
+                                <input type="text" id="fromUsageGroup" name="fromUsageGroup" disabled class="form-control"
+                                    #fromUsageGroup="ngModel" [(ngModel)]="dipbookObj['fromUsageGroup']" required
+                                    placeholder="">
+                            </div>
+                        </div> -->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tank Number</label>
+                                <select class="form-control" name="tankId" #tankId="ngModel" required
+                                [(ngModel)]="dipbookObj['tankId']">
+                                    <option value="">Select</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.otNumber}}</option>
+                                </select>
+                                <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                    Tank Number is required </div>
+                            </div>
+                            </div>
+                        </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Dip</label>
+                            <input type="number" class="form-control" name="dip" #dip="ngModel" [(ngModel)]="dipbookObj['dip']" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required placeholder="Enter Dip">
+                            <div *ngIf="dip.invalid && (dip.dirty || dip.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="dip?.errors?.required"><i class="fa fa-times"></i> Dip is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Temperature</label>
+                            <input type="number" class="form-control" name="temperature" #temperature="ngModel" required [(ngModel)]="dipbookObj['temperature']" placeholder="Enter Temperature" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div *ngIf="temperature.invalid && (temperature.dirty || temperature.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="temperature?.errors?.required"><i class="fa fa-times"></i> Temprature is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Indication</label>
+                            <input type="number" class="form-control" name="indication" #indication="ngModel" required [(ngModel)]="dipbookObj['indication']" placeholder="Enter Indication" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <div *ngIf="indication.invalid && (indication.dirty || indication.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="indication?.errors?.required"><i class="fa fa-times"></i> Indication is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Strength</label>
+                            <input type="number" class="form-control" name="strength" #strength="ngModel" required [(ngModel)]="dipbookObj['strength']" placeholder="Enter Strength" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i> Strength is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bulk litres</label>
+                            <input type="number" class="form-control" name="bulkLtr" #bulkLtr="ngModel" required [(ngModel)]="dipbookObj['bulkLtr']" (keyup)=calAl() maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                placeholder="Enter Bulk litres">
+                            <div *ngIf="bulkLtr.invalid && (bulkLtr.dirty || bulkLtr.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bulkLtr?.errors?.required"><i class="fa fa-times"></i> Bulk litres is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">A.L</label>
+                            <input type="number" class="form-control" disabled name="alcohalLtr" #alcohalLtr="ngModel" [(ngModel)]="dipbookObj['alcohalLtr']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remarks
+                                </label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Final Dip" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Dip</label>
+                            <input type="number" class="form-control" name="dip" #dip="ngModel" [(ngModel)]="dipbookObj['dip']" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required placeholder="Enter Dip">
+                            <div *ngIf="dip.invalid && (dip.dirty || dip.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="dip?.errors?.required"><i class="fa fa-times"></i> Dip is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Temperature</label>
+                            <input type="number" class="form-control" name="temperature" #temperature="ngModel" required [(ngModel)]="dipbookObj['temperature']" placeholder="Enter Temperature" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div *ngIf="temperature.invalid && (temperature.dirty || temperature.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="temperature?.errors?.required"><i class="fa fa-times"></i> Temprature is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Indication</label>
+                            <input type="number" class="form-control" name="indication" #indication="ngModel" required [(ngModel)]="dipbookObj['indication']" placeholder="Enter Indication" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <div *ngIf="indication.invalid && (indication.dirty || indication.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="indication?.errors?.required"><i class="fa fa-times"></i> Indication is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Strength</label>
+                            <input type="number" class="form-control" name="strength" #strength="ngModel" required [(ngModel)]="dipbookObj['strength']" placeholder="Enter Strength" maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i> Strength is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bulk litres</label>
+                            <input type="number" class="form-control" name="bulkLtr" #bulkLtr="ngModel" required [(ngModel)]="dipbookObj['bulkLtr']" (keyup)=calAl() maxlength="8" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                placeholder="Enter Bulk litres">
+                            <div *ngIf="bulkLtr.invalid && (bulkLtr.dirty || bulkLtr.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bulkLtr?.errors?.required"><i class="fa fa-times"></i> Bulk litres is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">A.L</label>
+                            <input type="number" class="form-control" disabled name="alcohalLtr" #alcohalLtr="ngModel" [(ngModel)]="dipbookObj['alcohalLtr']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remarks
+                                </label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" (click)="navigateDipbookPreview(dipbookForm)">
+            {{ 'sugarmill.common.preview' | translate }} </button>
+        <button type="button" (click)="addDipbook(dipbookForm, 'DRAFT')" class="btn btn-warning ml-2 mb-2">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addDipbook(dipbookForm, 'INITIATE')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="navigatedipBookLIst()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,292 @@
+<h5 class="m-b-10 ng-star-inserted">{{'master.licenseconfiguration.workflowconfigurationview'|translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.licenseconfiguration.workflowconfiguration'|translate}} </a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'master.licenseconfiguration.licenseconfigurationdetails'|translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.date'|translate}} & {{'master.licenseconfiguration.time'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.dateTime}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.entity'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.entityDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.licensetype'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseTypeDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.status'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{(list?.isActive)? 'Active' : "In-Active"}}
+                </div>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.configurationdetails'|translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.first'|translate}} / {{'master.licenseconfiguration.lastlicense'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.licenseFirstDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.domain'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.domainDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.entitytype'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.entityTypeDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.licensetenure'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.licenseTenureDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.licensefunctionalyear'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.licenseFinancialYearDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.licenseconfiguration.renewaltimeline'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{list?.licenseConfiguration.renewalTimeDesc}}
+                </div>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.prerequisitelicense'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="40%">{{'master.licenseconfiguration.entity'|translate}}</th>
+                            <th width="40%">{{'master.licenseconfiguration.licensetype'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.licensePreRequisiteConfigurationList.length > 0">
+                        <tr *ngFor="let item of list.licensePreRequisiteConfigurationList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.entityDesc}}</td>
+                            <td class="text-left">{{item?.licenseTypeDesc}}</td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="list?.licensePreRequisiteConfigurationList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">No record Found!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.productdetails'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="15%">{{'master.licenseconfiguration.materialtype'|translate}}</th>
+                            <th width="15%">{{'master.licenseconfiguration.typeofgoods'|translate}}</th>
+                            <th width="15%">{{'master.licenseconfiguration.subcategory'|translate}}</th>
+                            <th width="15%">{{'master.licenseconfiguration.item'|translate}}</th>
+                            <th width="15%">{{'master.licenseconfiguration.quotaapplicable'|translate}} </th>
+                            <th width="10%">{{'master.licenseconfiguration.quota'|translate}} </th>
+                            <th width="15%">{{'master.licenseconfiguration.quotatimeline'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.applicationProductList.length > 0">
+                        <tr *ngFor="let item of list.applicationProductList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.materialTypeDesc}}</td>
+                            <td class="text-left">{{item?.goodTypeDesc}}</td>
+                            <td class="text-left">{{item?.subCategoryDesc}}</td>
+                            <td class="text-left">{{item?.itemDesc}}</td>
+                            <td class="text-left">{{(item?.isQuotaapplicable) ? 'Yes' : 'No'}}</td>
+                            <td class="text-left">{{item?.quotaQuantity}}</td>
+                            <td class="text-left">{{item?.quotaTimeLineDesc}}</td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="list?.applicationProductList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.feesdetails'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="40%">{{'master.licenseconfiguration.feestype'|translate}}</th>
+                            <th width="40%">{{'master.licenseconfiguration.amount'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.feeList.length > 0">
+                        <tr *ngFor="let item of list.feeList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.feeTypeDesc}}</td>
+                            <td class="text-left">{{item?.amount}}</td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="list?.feeList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.tankdetails'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="30%">{{'master.licenseconfiguration.applicabletanktype'|translate}}</th>
+                            <th width="30%">{{'master.licenseconfiguration.maximumcapacity'|translate}}</th>
+                            <th width="30%">{{'master.licenseconfiguration.tankdimension'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.tankList.length > 0">
+                        <tr *ngFor="let item of list.tankList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.tankTypeDesc}}</td>
+                            <td class="text-left">{{item?.maxCapacity}}</td>
+                            <td class="text-left">{{item?.tankLength}} X {{item?.tankBreadth}} X {{item?.tankHeight}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="list?.tankList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.licenseconfiguration.checklist'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="40%">{{'master.licenseconfiguration.checklist'|translate}}</th>
+                            <th width="40%">{{'master.licenseconfiguration.description'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.checkListConfigurationList.length > 0">
+                        <tr *ngFor="let item of list.checkListConfigurationList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.checkListDesc}}</td>
+                            <td class="text-left">{{item?.description}}</td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="list?.checkListConfigurationList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="LicenseMapping" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <app-card cardTitle="Indent Accept" class="text-center custom-multiselect-box mapping_accordion">
+                        <ul class="text-left">
+                            <ngb-accordion [closeOthers]="true" activeIds="ACCEPT" class="next-accordion">
+                                <ngb-panel *ngFor="let data of indentAcceptList; let i=index"
+                                    id="{{data.mappingType}}">
+                                    <div *ngIf="data.mappingType == 'ACCEPT'">
+                                        <ng-template ngbPanelTitle>
+                                            <h5><a href="javascript:">{{data.entityDesc}}</a></h5>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                            <ul>
+                                                <li *ngFor="let item of data.entitySubTypeList; let j=index">
+                                                    {{item.entitySubTypeDesc}}
+                                                </li>
+                                            </ul>
+                                        </ng-template>
+                                    </div>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </ul>
+                    </app-card>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <app-card cardTitle="Indent Request" class="text-center custom-multiselect-box mapping_accordion">
+                        <ul class="text-left">
+                            <ngb-accordion [closeOthers]="true" activeIds="INITIATE" class="next-accordion">
+                                <ngb-panel *ngFor="let data of indentRequestList; let i=index"
+                                    id="{{data.mappingType}}">
+                                    <ng-template ngbPanelTitle>
+                                        <h5><a href="javascript:">{{data.entityDesc}}</a></h5>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent>
+                                        <ul>
+                                            <li *ngFor="let item of data.entitySubTypeList; let j=index">
+                                                {{item.entitySubTypeDesc}}
+                                            </li>
+                                        </ul>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </ul>
+                    </app-card>
+                </div>
+            </div>
+        </app-card>
+
+
+
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary" (click)="cancel()">
+                    {{ 'master.common.back' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

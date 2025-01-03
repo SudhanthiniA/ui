@@ -1,0 +1,277 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'usermanagement.usermanagement.addusers' |
+    translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'usermanagement.usermanagement.editusers' |
+    translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.userprofile' | translate
+            }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'usermanagement.common.add'
+        | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{
+        'usermanagement.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #userForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{addedit | translate}}" class="list-panel add-panel">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.usermanagement.salutation' | translate
+                            }}</label>
+                            <select class="form-control" [(ngModel)]="userObj.salutation" required name=salutation
+                                #salutation=ngModel>
+                                <option disabled selected value="">{{ 'usermanagement.common.select' | translate
+                                }}</option>
+                                <option *ngFor="let item of salutationObj" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="salutation.invalid && (salutation.dirty || salutation.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="salutation?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Salutation
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.common.name' | translate
+                            }}</label>
+                            <input type="text" class="form-control" placeholder=" {{ 'usermanagement.common.enter' | translate
+                        }}  {{ 'usermanagement.common.name' | translate }}" #firstname="ngModel"
+                                name="firstname" [(ngModel)]="userObj['firstname']" required>
+                            <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="firstname?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.common.name' | translate
+                            }} {{ 'usermanagement.common.isrequired'
+                                    | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.usermanagement.middlename' | translate
+                            }}</label>
+                            <input type="text" class="form-control" placeholder=" {{ 'usermanagement.common.enter' | translate
+                        }} {{ 'usermanagement.usermanagement.middlename' | translate
+                    }}"
+                                [(ngModel)]="userObj['middlename']" name="middlename">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.usermanagement.lastname' | translate
+                            }}</label>
+                            <input type="text" class="form-control" placeholder=" {{ 'usermanagement.common.enter' | translate
+                        }}  {{ 'usermanagement.usermanagement.lastname'
+                        | translate }}" #lastname="ngModel"
+                                [(ngModel)]="userObj['lastname']" required name="lastname">
+                            <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="lastname?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.lastname'
+                                    | translate }} {{ 'usermanagement.common.isrequired'
+                                    | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.common.enter' | translate }} {{ 'usermanagement.usermanagement.username' | translate
+                            }}</label>
+                            <input type="text" id="Name" name="name" #name="ngModel" [(ngModel)]="userObj['userName']"
+                                required class="form-control" (change)="checkUsername($event.target.value)"
+                                placeholder="{{ 'usermanagement.common.entername' | translate }}"
+                                [attr.disabled]="editId ? '' : null">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.common.name' | translate }} {{ 'usermanagement.common.isrequired'
+                                    | translate }} </div>
+                            </div>
+                            <div *ngIf="userExistsFlag" class="error-msg">
+                                <div><i class="fa fa-times"></i>  {{ 'usermanagement.common.userexist'
+                                    | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.usermanagement.email' | translate }}</label>
+                            <input type="text" id="mail" name="mail" #mail="ngModel"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userObj['emailId']"
+                                required class="form-control" (change)="checkEmail($event.target.value)"
+                                placeholder="{{ 'usermanagement.usermanagement.enteremail' | translate }}"
+                                [attr.disabled]="editId ? '' : null">
+                            <div *ngIf="mail.invalid && (mail.dirty || mail.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="mail?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.email' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }} </div>
+                                <div *ngIf="mail?.errors?.pattern"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.pleaseentervalidemail' | translate }}</div>
+                            </div>
+                            <div *ngIf="emailExistsFlag" class="error-msg">
+                                <div><i class="fa fa-times"></i> {{ 'usermanagement.common.emailexist' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.usermanagement.mobilenumber' | translate
+                                }}</label>
+                            <input type="text" id="mobile" name="mobile" pattern="^[6-9][0-9]*$" #mobile="ngModel"
+                                minlength="10" maxlength="10" [(ngModel)]="userObj['mobileNumber']" class="form-control"
+                                required (change)="checkMobileNumber($event.target.value)"
+                                placeholder="{{ 'usermanagement.usermanagement.entermobilenumber' | translate }}">
+                            <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="mobile?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.mobilenumber' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }} </div>
+                                <div *ngIf="mobile?.errors?.minlength && !mobile?.errors?.pattern">
+                                    <i class="fa fa-times"></i>{{ 'usermanagement.usermanagement.mobilenumberlength' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="mobile?.errors?.pattern"><i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.firstnumbershouldstartfrom' | translate }}
+                                </div>
+                            </div>
+                            <div *ngIf="mobileExistsFlag" class="error-msg">
+                                <div><i class="fa fa-times"></i> {{
+                                    'usermanagement.common.emailexist' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="userObj['status']" class="custom-control-input" id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">{{ 'usermanagement.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-2" />
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.common.role' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="roledata" [placeholder]="'Select'"
+                                [(ngModel)]="userObj.roleIdList" [settings]="roleDropDownSettings"
+                                (onSelect)="onRoleSelect($event)" (onDeSelect)="onRoleDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onRoleFilterChange($event)"
+                                [required]='roleRequired' (onDropDownClose)="onRoleDropDownClose()"
+                                [ngClass]="roleDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!roleRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'usermanagement.common.role' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'usermanagement.usermanagement.designation' | translate
+                                }}</label>
+                            <select class="form-control" [(ngModel)]="userObj.designationId" name=designation
+                                #designation=ngModel required>
+                                <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                                <option *ngFor="let designation of designationData" value={{designation.id}}>
+                                    {{designation.name}}</option>
+                            </select>
+                            <div *ngIf="designation.invalid && (designation.dirty || designation.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="designation?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.usermanagement.designation' | translate }}
+                                    {{ 'usermanagement.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'usermanagement.common.worklocation' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.usermanagement.department' | translate
+                            }}</label>
+                            <input name="department" [(ngModel)]="userObj['department']" type="text"
+                                class="form-control" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.entity.entityname' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="entityTypesData" [placeholder]="'Select'"
+                                [(ngModel)]="userObj.entityTypeId" [settings]="entityDropDownSettings"
+                                (onSelect)="onEntitySelect($event)" (onDeSelect)="onEntityDeselect($event)"
+                                (onFilterChange)="onEntityFilterChange($event)"
+                                (onSelectAll)="onEntitySelectAll($event)" (onDeSelectAll)="onEntityDeSelectAll($event)"
+                                [ngModelOptions]="{standalone: true}" [required]='entityRequired'
+                                (onDropDownClose)="onEntityDropDownClose()"
+                                [ngClass]="roleDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <!-- [ngClass]="'unselectdisable'" -->
+                            <div *ngIf="!entityRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.entity.entityname' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                            <div *ngIf="entityHeadOfficeFlag" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.common.headoffice' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!choosedHeadOffice">
+                        <div class="form-group">
+                            <label>{{ 'master.common.district' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="districtData" [placeholder]="'Select'"
+                                [(ngModel)]="userObj.districtId" [settings]="districtDropDownSettings"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onDistrictFilterChange($event)"
+                                (onSelect)="onDistrictSelect($event)" (onDeSelect)="onDistrictDeselect($event)"
+                                (onDropDownClose)="onDistrictDropDownClose()" (onSelectAll)="onDistrictSelectAll($event)" (onDeSelectAll)="onDistrictDeSelectAll($event)"
+                                [ngClass]="districtDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!choosedHeadOffice">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.usermanagement.allocatedentity' | translate
+                            }}</label>
+                            <ng-multiselect-dropdown [data]="worklocationList" [placeholder]="'Select'"
+                                [(ngModel)]="userObj.userWorklocationIds" [settings]="enitytDropdownSettings"
+                                (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                                [ngModelOptions]="{standalone: true}">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-primary mr-2" (click)=adduser(userForm)>{{
+                'usermanagement.common.submit' | translate }}</button>
+            <button type="button" class="btn btn-secondary" (click)="navigateUserList()">{{
+                'usermanagement.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</div>

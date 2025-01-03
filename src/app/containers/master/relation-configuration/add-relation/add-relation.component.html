@@ -1,0 +1,154 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{isEdit?'Add':'Edit'}} Dropdown Configuration
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Dropdown Configuration</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{isEdit?'Add':'Edit'}} Dropdown Configuration</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="mappingForm">
+
+            <app-card cardTitle="Dropdown Details" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Parent</label>
+
+                            <ng-multiselect-dropdown 
+                                [placeholder]="'Select'"
+                                [settings]="dropdownSettings"
+                                [data]="firstDropDownMasterDatas" 
+                                (onSelect)="onItemSelect($event,'Parent')" 
+                                (onDeSelect)="onItemDeselect($event,'Parent')"
+                                [(ngModel)]="parentSelectedItems"
+                                [ngModelOptions]="{standalone: true}"
+                                [disabled]=isEdit
+                                [ngClass]="dropdownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+
+                            <!-- <select class="form-control" formControlName='filterCode' (change)="onFirstDropDownChange($event)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of firstDropDownMasterDatas" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select> -->
+                            <app-show-errors eleName="Parent" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('filterCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Child</label>
+
+                            <ng-multiselect-dropdown 
+                                [placeholder]="'Select'"
+                                [settings]="dropdownSettings"
+                                [data]="secondDropDownMasterDatas" 
+                                (onSelect)="onItemSelect($event,'Child')" 
+                                (onDeSelect)="onItemDeselect($event,'Child')"
+                                [(ngModel)]="childSelectedItems"
+                                [ngModelOptions]="{standalone: true}"
+                                [disabled]=isEdit
+                                [ngClass]="dropdownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+
+                            <!-- <select class="form-control" formControlName='subFilterCode' (change)="onSecondDropDownChange($event)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of secondDropDownMasterDatas" value="{{item.paramKey}}">
+                                    {{item.paramValue}}</option>
+                            </select> -->
+                            <app-show-errors eleName="Child" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('subFilterCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Add Dependent Values" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-12 text-right">
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" (click)=addValueRow()>Add</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code<span class="text-danger">*</span></th>
+                                    <th>Value<span class="text-danger">*</span></th>
+                                    <th>Additional-1</th>
+                                    <th>Additional-2</th>
+                                    <th>isActive</th>
+                                    <th *ngIf="!isEdit">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr formArrayName="rows" *ngFor="let data of mappingForm.get('rows')['controls']; let i=index;">
+                                    <ng-container [formGroupName]="i">
+
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <div *ngIf="data.get('id').value;else other_content">
+                                                <input type="text" class="form-control" formControlName="paramKey"
+                                                    (change)="checkRowCode($event.target.value, data, i)" disabled="true">
+                                            </div>
+                                            <ng-template #other_content>
+                                                <input type="text" class="form-control" formControlName="paramKey"
+                                                    (change)="checkRowCode($event.target.value, data, i)"
+                                                    [ngClass]="{ 'is-invalid': formSubmitted && getRowFrmCntrIdx(i, 'paramKey').errors?.required}">
+                                            </ng-template>
+                                        
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="paramValue"
+                                                [ngClass]="{ 'is-invalid': formSubmitted && getRowFrmCntrIdx(i, 'paramValue').errors?.required}">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="additionalValue1"
+                                                [ngClass]="{ 'is-invalid': formSubmitted && getRowFrmCntrIdx(i, 'additionalValue1').errors?.required}">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="additionalValue2"
+                                                [ngClass]="{ 'is-invalid': formSubmitted && getRowFrmCntrIdx(i, 'additionalValue2').errors?.required}">
+                                        </td>
+                                        <td>
+                                            <div class="custom-control custom-switch" *ngIf="mappingForm.get('rows').value[i]; let ele">
+                                                <input type="checkbox" formControlName="isActive" class="custom-control-input" [id]=i
+                                                    [attr.checked]="ele.isActive ? true : false">
+                                                <label class="custom-control-label" [for]=i *ngIf="!ele.isActive">{{
+                                                    'master.common.inactive' | translate }}</label>
+                                                <label class="custom-control-label" [for]=i *ngIf="ele.isActive">{{
+                                                    'master.common.active' | translate }}</label>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="!isEdit">
+                                            <div>
+                                                <button *ngIf="i > 0" class="btn btn-danger" (click)="remRowDet(i)" [style.display]="data.get('id').value ? 'none' : 'block'">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button class="btn btn-primary ml-2 mb-2" (click)="saveMapping()">
+                Submit</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/master/mappingconfiguration">
+                Cancel</button>
+        </div>
+    </div>
+</div>

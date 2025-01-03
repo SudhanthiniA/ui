@@ -1,0 +1,176 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.common.edit' | translate}} {{ 'wholesale.orderpickupdetails.orderpickup'
+   | translate}}</h5>
+<ul class="breadcrumb p-0">
+   <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'wholesale.stockinhand.wholesale' | translate}}</a></li>
+   <li class="breadcrumb-item"><a href="javascript:">{{ 'wholesale.orderpickupdetails.orderpickup' | translate}}</a>
+   </li>
+   <li class="breadcrumb-item">{{ 'master.common.edit' | translate}}</li>
+</ul>
+<div class="row">
+   <div class="col-xl-12">
+
+      <app-card
+         cardTitle="{{ 'master.common.edit' | translate}} - {{ 'wholesale.orderpickupdetails.orderpickup' | translate}}"
+         class="list-panel add-panel">
+         <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.orderpickupdate' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <!-- {{todaydate | date:"dd/mm/yyyy"}} -->
+               {{orderdata?.indentDate | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.indentnumber' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               {{orderdata?.indentNo}}
+            </div>
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  <label class="w-100 view-label">Sub-Indent Number<span class="float-right">:</span></label>
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  SI1122
+               </div> -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.indentdate' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               {{orderdata?.indentDate | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.licensetype' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               {{orderdata?.licenseType}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unittype' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               {{orderdata?.unitName}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unitname' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               {{orderdata?.unitName}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <label class="w-100 view-label">{{ 'wholesale.orderpickupdetails.unitaddress' | translate}}<span
+                     class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <!-- Plot No. 12,Shivaji nagar, Karnataka, Bangalore, 500001 -->
+               {{orderdata?.unitAddress}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+               <input type="text" class="form-control" [(ngModel)]='barcode'
+                  placeholder="{{ 'wholesale.orderpickupdetails.barcode' | translate}}"
+                  aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+            </div>
+            <div>
+               <!--  -->
+               <button class="btn btn-primary" type="button" (click)="addbarcodes(barcode)"><i
+                     class="fas fa-qrcode"></i></button>
+            </div>
+            <div class="col-12">
+               <div class="table-responsive">
+                  <form [formGroup]='indentFormGroup'>
+
+                     <table class="table table-bordered text-center">
+                        <thead>
+                           <tr>
+                              <th>{{ 'wholesale.orderpickupdetails.sno' | translate}}</th>
+                              <th>{{ 'wholesale.damagedproducts.brandname' | translate}}<br>({{
+                                 'wholesale.damagedproducts.brandnameparentetn' | translate}})</th>
+                              <th>{{ 'wholesale.damagedproducts.liquor' | translate}}<br>{{
+                                 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.damagedproducts.subliquor' | translate}}<br>{{
+                                 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{
+                                 'wholesale.orderpickupdetails.size' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.package' | translate}}<br>{{
+                                 'wholesale.damagedproducts.type' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.requested' | translate}}<br>{{
+                                 'wholesale.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.requested' | translate}}<br>{{
+                                 'wholesale.orderpickupdetails.bottles' | translate}}</th>
+                              <!-- <th>Bar Code</th> -->
+                              <th>{{ 'wholesale.orderpickupdetails.scanned' | translate}}<br>{{
+                                 'wholesale.orderpickupdetails.cases' | translate}}</th>
+                              <th>{{ 'wholesale.orderpickupdetails.scanned' | translate}}<br>{{
+                                 'wholesale.orderpickupdetails.bottles' | translate}}</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr formArrayName="indentdetails"
+                              *ngFor="let pres of indentFormGroup?.get('indentdetails')['controls']; let i=index"
+                              id="row{{i}}">
+                              <td [formGroupName]="i">{{i+1}}</td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='parentETIN' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='liquorTypeValue' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='subLiquorTypeValue' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='packageSizeValue' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='packageTypeValue' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='totCasesRequested' readonly class="form-control">
+                              </td>
+                              <td class="text-left" [formGroupName]="i">
+                                 <input type="text" formControlName='totBottlesRequested' readonly class="form-control">
+                              </td>
+                              <!-- <td [formGroupName]="i">
+                                 <div class="input-group ">
+                                    <input type="text" class="form-control"formControlName='barCode' placeholder="Bar Code"
+                                       aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                       <button class="btn btn-primary"type="button" (click)="addbarcodes(pres,i)" ><i
+                                             class="fas fa-qrcode"></i></button>
+                                    </div>
+                                 </div>
+                              </td> -->
+                              <td class="text-left" [formGroupName]="i"><input type="text"
+                                    formControlName='totCasesScanned' readonly class="form-control"></td>
+                              <td class="text-left" [formGroupName]="i"><input type="text"
+                                    formControlName='totBottlesScanned' readonly class="form-control"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </app-card>
+
+
+   </div>
+   <div class="col-12 text-right mb-4">
+      <button type="button" class="btn btn-secondary mb-2" (click)="resett()">{{ 'master.common.reset' |
+         translate}}</button>
+      <button type="button" class="btn btn-warning mb-2 ml-2" *ngIf="draftornot"
+         (click)="saveorder(indentFormGroup,'DRAFT')">{{ 'master.common.saveasdraft' | translate}}</button>
+      <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveorder(indentFormGroup,'SUBMITTED')">{{
+         'master.common.submit' | translate}}</button>
+      <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/wholesale/orderpickup/list">{{ 'master.common.cancel' | translate}}</button>
+   </div>
+</div>

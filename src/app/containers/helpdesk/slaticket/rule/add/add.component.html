@@ -1,0 +1,268 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">{{'helpdesk.rulescreen.rules' | translate}}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.helpdesk' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.sla' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.rule' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.add' | translate}}</a></li>
+</ul>
+<div class="row">
+    <form #rulefrom="ngForm" autocomplete="off" (ngSubmit)="saveData(rulefrom)">
+        <div class="col-xl-12">
+            <app-card cardTitle="Add Rule" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.rulename' | translate}}</label>
+                            <input type="text" appInputRestriction required name="rulename" class="form-control" #rulename="ngModel" [(ngModel)]="ruleObj['rulename']" placeholder="{{'helpdesk.rulescreen.rulename' | translate}}">
+                            <div *ngIf="rulename.invalid && (rulename.dirty || rulename.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="rulename?.errors?.required">
+                                    {{'helpdesk.rulescreen.rulename' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.category' | translate}} {{'helpdesk.common.name' | translate}}</label>
+                            <select required name="Category" class="form-control" #Category="ngModel" (change)="getsub($event)" [(ngModel)]="ruleObj['Category']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of cat" value="{{item.id}}">{{item.categoryName}}</option>
+                            </select>
+                            <div *ngIf="Category.invalid && (Category.dirty || Category.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="Category?.errors?.required">
+                                    {{'helpdesk.rulescreen.category' | translate}}
+                                    {{'helpdesk.common.name' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.subcategory' | translate}} {{'helpdesk.common.name' | translate}}</label>
+                            <select required name="subCategory" class="form-control" #subCategory="ngModel" [(ngModel)]="ruleObj['subCategory']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of sub" value="{{item.id}}">{{item.subcategoryName}}</option>
+                            </select>
+                            <div *ngIf="subCategory.invalid && (subCategory.dirty || subCategory.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="subCategory?.errors?.required">
+                                    {{'helpdesk.rulescreen.subcategory' | translate}} 
+                                    {{'helpdesk.common.name' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.ticketstatus' | translate}}</label>
+                            <select required name="ticketstatus" class="form-control" #ticketstatus="ngModel" [(ngModel)]="ruleObj['ticketstatus']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of status" value="{{item.status}}">{{item.status}}</option>
+                            </select>
+                            <div *ngIf="ticketstatus.invalid && (ticketstatus.dirty || ticketstatus.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="ticketstatus?.errors?.required">
+                                    {{'helpdesk.rulescreen.ticketstatus' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.priority' | translate}}</label>
+                            <select required name="Priority" class="form-control" #Priority="ngModel" (change)="getprior($event)" [(ngModel)]="ruleObj['Priority']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of priority1" value="{{item.id}}">{{item.priority}}</option>
+                            </select>
+                            <div *ngIf="Priority.invalid && (Priority.dirty || Priority.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="Priority?.errors?.required">
+                                    {{'helpdesk.rulescreen.priority' | translate}} {{'helpdesk.rulescreen.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.thersholddays' | translate}}</label>
+                            <input type="text" name="Thershold" class="form-control" #Thershold="ngModel" [(ngModel)]="ruleObj['Thershold']" placeholder="{{'helpdesk.rulescreen.thersholddays' | translate}}" disabled>
+                            <div *ngIf="Thershold.invalid && (Thershold.dirty || Thershold.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Thershold?.errors?.required">
+                                Thershold (Min) is required
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Thershold (Sec)</label>
+                            <input type="text" required name="tsec" class="form-control" #tsec="ngModel"
+                            [(ngModel)]="ruleObj['tsec']" placeholder="System Generated">
+                            <div *ngIf="tsec.invalid && (tsec.dirty || tsec.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="tsec?.errors?.required">
+                                Thershold (Sec) is required
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.emailtemplate' | translate}}</label>
+                            <select name="email" [required]="ruleObj['email']==''&&ruleObj['SMS']==''" class="form-control" #email="ngModel" [(ngModel)]="ruleObj['email']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of emailtemp" value="{{item.id}}">{{item.templateName}}</option>
+                            </select>
+                            <div *ngIf="ruleObj['email']==''&&ruleObj['SMS']==''">
+                                <div *ngIf="email.invalid && (email.dirty || email.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="email?.errors?.required">
+                                        {{'helpdesk.rulescreen.emailtemplete' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.rulescreen.smstemplate' | translate}}</label>
+                            <select name="SMS" [required]="ruleObj['email']==''&&ruleObj['SMS']==''" class="form-control" #SMS="ngModel" [(ngModel)]="ruleObj['SMS']">
+                                <option value="">{{'helpdesk.common.select' | translate}}</option>
+                                <option *ngFor="let item of smstemp" value="{{item.id}}">{{item.templateName}}</option>
+                            </select>
+                            <div *ngIf="ruleObj['email']==''&&ruleObj['SMS']==''">
+                                <div *ngIf="SMS.invalid && (SMS.dirty || SMS.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="SMS?.errors?.required">
+                                        {{'helpdesk.rulescreen.smstemplate' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'helpdesk.common.status' | translate}}</label>
+                            <select required name="Status" class="form-control" #Status="ngModel" [(ngModel)]="ruleObj['Status']">
+                                <option value="true">{{'helpdesk.common.active' | translate}}</option>
+                                <option value="false">{{'helpdesk.common.inactive' | translate}}</option>
+                            </select>
+                            <div *ngIf="Status.invalid && (Status.dirty || Status.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="Status?.errors?.required">
+                                    {{'helpdesk.common.statusw' | translate}} {{'helpdesk.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+
+        <div class="col-12 text-right mb-4">
+
+            <button type="submit" class="btn btn-primary ml-2 mb-2">{{'helpdesk.common.submit' | translate}}</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/helpdesk/sla/rule/list">{{'helpdesk.common.cancel' | translate}}</button>
+        </div>
+    </form>
+</div> -->
+<h5 class="m-b-10 ng-star-inserted">Add Rule</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Helpdesk</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sla</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Rule</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <!-- <app-card cardTitle="Add Rule Details" blockClass="table-border-style" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <label class="mandatory">Rule Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Priority, SLA">
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Sub category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">priority</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">SLA</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </app-card> -->
+        <app-card cardTitle="Add Rule Details" blockClass="table-border-style" class="add-panel">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <label class="mandatory">Rule Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Priority, SLA">
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Assign Group</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Assign To</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-md-12 text-right mb-2">
+        <div class="form-group">
+            <button class="btn btn-primary m-r-5">Submit</button>
+            <button class="btn btn-secondary">Clear</button>
+        </div>
+    </div>
+</div>

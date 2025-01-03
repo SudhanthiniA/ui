@@ -1,0 +1,96 @@
+
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<app-card cardTitle="Search" class="search-panel">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+                <label>Licence Type</label>
+                <input type="text" class="form-control" id="code" [(ngModel)]="templateObj.code"
+                 placeholder="Licence Type">
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+                <label>Code</label>
+                <input type="text"  id="name" [(ngModel)]="templateObj.name"
+                 class="form-control" placeholder="Code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Active</label>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" [(ngModel)]="model.status" name="status"
+                    #status="ngModel" class="custom-control-input" id="switch1"
+                    [attr.checked]="model.status ? '' : null">
+                <label class="custom-control-label" for="switch1" *ngIf="!model.status">
+                    In-active
+                </label>
+                <label class="custom-control-label" for="switch1" *ngIf="model.status">
+                    Active
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 text-right">
+            <button type="submit" class="btn btn-primary mr-2" (click)="searchBrandMaster()">{{ 'master.common.search' | translate }}</button>
+            <button type="submit" class="btn btn-secondary">{{ 'master.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</app-card>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="License Template Upload List" blockClass="table-border-style" class="list-panel">
+                <!-- <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>License Type</th>
+                                <th>Created On</th>
+                                <th>Created By</th> -->
+                            <!-- <th>Modified On</th>
+                            <th>Modified By</th> -->
+                            <!-- <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of templates;let i=index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            
+                            <td>{{item.name}}</td>
+                            <td>{{item.createdDate}}</td>
+                            <td class="text-left">{{item.createdBy}}</td> -->
+                            <!-- <td>25/01/2021</td>
+                            <td class="text-left">Kumar</td> -->
+                            <!-- <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                    <i class="feather icon-edit-2"></i></button>
+                                <button class="btn btn-icon btn-warning ml-2" type="button" (click)="getPrint()">
+                                    <i class="feather icon-download"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+            <app-mat-normal-table
+            [columns]="columns" 
+            [actionKeys]="actionKeys"
+            [dataSource]="dataSource" 
+            [pageSize]="pageSize" 
+            [totalCount]="totalCount"
+            (paginationEvent)="handlePagination($event)"
+            (downloadAction)="onDownload($event)"
+            (editAction)="onEdit($event)"
+            (viewAction)="onView($event)">
+        </app-mat-normal-table>
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licensee.licenseecode' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="licenseeObj.code" name="code"
+                        #code="ngModel" placeholder="{{ 'master.licensee.enterlicenseecode' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licensee.licenseename' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="licenseeObj.name" name="name"
+                        #name="ngModel" placeholder="{{ 'master.licensee.enterlicenseename' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licensee.licensename' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="licenseeObj.licenseName">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let license of licenseData" value="{{license.name}}"> {{license.name}}
+                            </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.licensetype' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="licenseeObj.type">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let licensetype of licenseTypeData" value="{{licensetype.name}}"> {{licensetype.name}}
+                            </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="licenseeObj.isActive">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">{{ 'master.licence.active' | translate }}</option>
+                            <option value="false">{{ 'master.common.inactive' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right"> 
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchLicensee()">{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.licensee.licensee' | translate }} {{ 'master.common.list' | translate }} " blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table
+                    [columns]="columns" 
+                    [actionKeys]="actionKeys"
+                    [dataSource]="dataSource" 
+                    [pageSize]="pageSize" 
+                    [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

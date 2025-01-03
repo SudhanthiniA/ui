@@ -1,0 +1,177 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 4</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 4</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #Bwfl4Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add BWFL 4" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>System Generated Date
+                            </label>
+                            <input type="date" required name="bwfl4date" class="form-control" #bwfl4date="ngModel"
+                            [(ngModel)]="Bwfl4Obj['bwfl4date']" >
+                            <div *ngIf="bwfl4date.invalid && (bwfl4date.dirty || bwfl4date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="bwfl4date?.errors?.required"><i class="fa fa-times"></i>
+                                    System Generated Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description of Liquor
+                            </label>
+                            <input type="text" required  class="form-control" name="liquorDescription" class="form-control" #liquorDescription="ngModel"
+                            [(ngModel)]="Bwfl4Obj['liquorDescription']" required 
+                            placeholder="Enter Description of Liquor">
+                            <div *ngIf="liquorDescription.invalid && (liquorDescription.dirty || liquorDescription.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="liquorDescription?.errors?.required"><i class="fa fa-times"></i>
+                                Description of Liquor is required
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <div class="col-xl-12">
+                <app-card cardTitle="Particulars of Place Whence and Pass Under Which Each Consignement of Liquor was Received" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Place</label>
+                                <select class="form-control" id=placeId name="placeId" class="form-control" #placeId="ngModel"
+                                [(ngModel)]="Bwfl4Obj['placeId']" required >
+                                    <option value="">Select</option>
+                                    <option value=1>Chennai</option>
+                                </select>
+                                <div *ngIf="placeId.invalid && (placeId.dirty || placeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="placeId?.errors?.required"><i class="fa fa-times"></i>
+                                    Place is required
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Pass No.
+                                </label>
+                                <input type="text"  name="passNo" class="form-control" #passNo="ngModel"
+                                [(ngModel)]="Bwfl4Obj['passNo']" required placeholder="Enter Pass No.">
+                                <div *ngIf="passNo.invalid && (passNo.dirty || passNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="passNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Pass No. is required
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Date
+                                </label>
+                                <input type="date"  name="liquorRecivedDate" class="form-control" #liquorRecivedDate="ngModel"
+                                [(ngModel)]="Bwfl4Obj['liquorRecivedDate']" required>
+                                <div *ngIf="liquorRecivedDate.invalid && (liquorRecivedDate.dirty || liquorRecivedDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquorRecivedDate?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+        
+            <div class="col-xl-12">
+                <app-card cardTitle="Receipt of Bottled Spirit / Beer to be Entered in Number of Bottles" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No. of Bottles
+                                </label>
+                                <input type="number" id="noOfBottles" name="noOfBottles" class="form-control" #noOfBottles="ngModel"
+                                [(ngModel)]="Bwfl4Obj['noOfBottles']" required
+                                placeholder="Enter No. of Bottles">
+                                <div *ngIf="noOfBottles.invalid && (noOfBottles.dirty || noOfBottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfBottles?.errors?.required"><i class="fa fa-times"></i>
+                                    No. of Bottles is required
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Capacity in Each Bottles
+                                </label>
+                                <input type="number"  name="capacityInEachBottles" class="form-control" #capacityInEachBottles="ngModel"
+                                [(ngModel)]="Bwfl4Obj['capacityInEachBottles']" required
+                                placeholder="Enter Capacity in Each Bottles">
+                                <div *ngIf="capacityInEachBottles.invalid && (capacityInEachBottles.dirty || capacityInEachBottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="capacityInEachBottles?.errors?.required"><i class="fa fa-times"></i>
+                                    Capacity in Each Bottles is required
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Total Bulk Litre
+                                </label>
+                                <input type="number" name="totalBulkLitre" class="form-control" #totalBulkLitre="ngModel"
+                                [(ngModel)]="Bwfl4Obj['totalBulkLitre']" required 
+                                    placeholder="Enter Total Bulk Litre">
+                                    <div *ngIf="totalBulkLitre.invalid && (totalBulkLitre.dirty || totalBulkLitre.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="totalBulkLitre?.errors?.required"><i class="fa fa-times"></i>
+                                        Total Bulk Litre is required
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>strength
+                                </label>
+                                <!-- <input type="number" name='strength'  #strength="ngModel" [(ngModel)]="Bwfl4Obj['strength']" required class="form-control" placeholder=""> -->
+                                <select class="form-control" id=strength  name="strength" class="form-control" #strength="ngModel"
+                                [(ngModel)]="Bwfl4Obj['strength']" required >
+                                    <option value="">Select</option>
+                                    <option value=1>25</option>
+                                </select>
+                                <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i>
+                                        strength is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </app-card>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2" (click)="addBwfl4Details(Bwfl4Form,'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addBwfl4Details(Bwfl4Form,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="Bwfl4Form.resetForm({})">Clear</button>
+        <!-- routerLink="/supplychainmanagement/warehouse/bwfl4/list" -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/bwfl4/list">Cancel</button>
+    </div>
+</div>

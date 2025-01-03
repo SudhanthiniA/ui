@@ -1,0 +1,125 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Registration Request List
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Registration Request</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Treasury Details</label>
+                        <select class="form-control">
+                            <option>select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>SugarMill Name</label>
+                        <select class="form-control">
+                            <option>select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>District</label>
+                        <select class="form-control">
+                            <option>select</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Captive Distilleries</label>
+                        <select class="form-control">
+                            <option>select</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Registration Request List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Treasury Details</th>
+                            <th>Sugar Mill Name</th>
+                            <th>District </th>
+                            <th>Year of Establishment</th>
+                            <th>Molasses</th>
+                            <th>Sugar </th>
+                            <th>Tons/Day </th>
+                            <th>Tons/Season </th>
+                            <th>Does Sugar Mill have any captive Distilleries </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="registrationList?.length != 0">
+
+                        <tr *ngFor="let data of registrationList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td class="text-left">{{data.treasuryDetails}}</td>
+                            <td class="text-left">{{data.sugarMillName}}</td>
+                            <td class="text-left">{{data.district}} </td>
+                            <td>{{data.yearOfEstablishment}}</td>
+                            <td class="text-right">{{data.molassesRecovery}}</td>
+                            <td class="text-right">{{data.sugarRecovery}}</td>
+                            <td class="text-left">{{data.tonsDay }}</td>
+                            <td class="text-left">{{data.tonsSeason }}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success"
+                                    *ngIf="data.sugarMillCaptiveDistilleries">Yes</span>
+                                <span class="badge m-r-5 badge-light-danger"
+                                    *ngIf="!data.sugarMillCaptiveDistilleries">No</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    (click)="navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"  href="javascript:">Excel</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"  href="javascript:">PDF</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"  href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

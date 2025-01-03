@@ -1,0 +1,113 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Monthly Stock
+      <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="">
+    <i class="feather icon-plus mr-2"></i>
+    Add Damage Products
+</button>
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Custom Bond</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Monthly Stock</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <form #searchForm="ngForm">
+            
+             <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Received Date</label>
+                        <input type="date"  class="form-control" 
+                            placeholder="Enter Received Date"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Bill-of-Entry No.</label>
+                         <select  class="form-control" name="Bill-of-Entry No.">
+                            <option value="">Select</option>
+                        </select>
+                      </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Custom Bond Warehouse Name</label>
+                         <select   class="form-control"  name="Custom Bond Warehouse Name" >
+                            <option value="">Select</option>
+
+                        </select>
+                      </div>
+                </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12 mt-4">
+                     <button type="submit" class="btn btn-primary mr-2" (click)="StockInHandList()">Search</button>
+                     <button type="submit" class="btn btn-secondary" (click)="clear()">Cancel</button>
+                 </div>
+             </div>
+            </form>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Monthly Stock List" blockClass="table-border-style" class="list-panel">
+       <!--  <div class="table-responsive">
+               <app-mat-normal-table [columns]="inprogress"  [dataSource]="dataSourceStockInHand"  
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)">
+              </app-mat-normal-table> 
+                 
+             </div>-->
+             <div class="table-responsive mb-2">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Received Date</th>
+                            <th>Bill-of-Entry No</th>
+                            <th>Custom Bondwarehouse Name</th>
+                            <th>Received Cases</th>
+                            <th>Received  Mono-cartons</th>
+                            <th>Received Bottles per Case</th>
+                            <th>Received By</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>06-01-2022</td>
+                            <td>TRA7463</td>
+                            <td>Anheuser Wholesale</td>
+                            <td>560</td>
+                            <td>540</td>
+                            <td>100</td>
+                            <td>Receiver’s Name</td>
+                            <td class="table-action-column text-center">
+                            <button class="btn btn-icon btn-primary" type="button"
+                            routerLink="" >
+                                <i class="feather icon-eye"></i></button>
+                                
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </app-card>
+     </div>
+ </div>

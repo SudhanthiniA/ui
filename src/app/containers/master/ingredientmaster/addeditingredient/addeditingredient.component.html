@@ -1,0 +1,83 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.ingredient.addingredient' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.ingredient.editingredient' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.ingredient.ingredientmaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #ingredientForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Ingredient" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.ingredient.ingredientcode' | translate }}</label>
+                            <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="ingredientObj['code']"
+                                minlength="3" maxlength="10" class="form-control" pattern="^[a-zA-Z0-9]+$" required
+                                placeholder="{{ 'master.ingredient.enteringredientcode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.ingredientcode' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                    <div *ngIf="code?.errors?.pattern">
+                                        <i class="fa fa-times"></i>
+                                      {{ 'master.common.alphanumeric' | translate }}
+                                       </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.ingredient.ingredientname' | translate }}</label>
+                            <input type="text" id="Name" name="name" #name="ngModel" [(ngModel)]="ingredientObj['name']"
+                                minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.ingredient.enteringredientname' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.ingredientname' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="ingredientObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="ingredientObj.active ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!ingredientObj.isActive">{{
+                                    'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="ingredientObj.isActive">{{
+                                    'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addIngredient(ingredientForm)">{{
+            'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateingredientList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

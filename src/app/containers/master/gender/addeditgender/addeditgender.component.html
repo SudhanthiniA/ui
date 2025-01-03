@@ -1,0 +1,91 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.gender.gender' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/gender/list"> {{ 'master.gender.gender' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #genderForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.gender.gender' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.gender.gendercode' | translate }}</label>
+                            <input type="text" disabled class="form-control" value="GM1122">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendercodeisrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendercodemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendercodeminimum3charactor' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.gender.gendername' | translate }}</label>
+                            <input type="text" [(ngModel)]="genderObj.name" name="name"
+                                #name="ngModel" minlength="3" maxlength="15" required class="form-control"
+                                placeholder="{{ 'master.gender.enterapplicantname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendernameisrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.maxlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendernamemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.gender.gendernameminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.gender.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="genderObj.isActive" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="genderObj.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!genderObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="genderObj.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addgender(genderForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/gender/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

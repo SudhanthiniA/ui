@@ -1,0 +1,431 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.sheeranidhiregister.addsheeranidhiregister' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/molassesfundreg/list']">{{ 'sugarmill.sheeranidhiregister.sheeranidhiregister' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'sugarmill.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'sugarmill.common.edit' | translate }}</li>
+</ul>
+<div class="row">
+    <form #molassesfund="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.entersheeranidhiregisterdetails' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.passbook.date' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="date" name="date" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.date' | translate }}" required #date="ngModel"
+                                [(ngModel)]="tankreqObj['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.passbook.date' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.dispatchgradewise' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.aheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dispatchGradeAHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enteraheavy' | translate }} (Qtls)"
+                                required #dispatchGradeAHeavyQtls="ngModel"
+                                [(ngModel)]="tankreqObj['dispatchGradeAHeavyQtls']" (keyup)="caltotal()">
+                                <div class="text-primary">{{inWords(tankreqObj['dispatchGradeAHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dispatchGradeAHeavyQtls.invalid && (dispatchGradeAHeavyQtls.dirty || dispatchGradeAHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchGradeAHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.aheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.bheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dispatchGradeBHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbheavy' | translate }} (Qtls)"
+                                required #dispatchGradeBHeavyQtls="ngModel"
+                                [(ngModel)]="tankreqObj['dispatchGradeBHeavyQtls']" (keyup)="caltotal()">
+                                <div class="text-primary">{{inWords(tankreqObj['dispatchGradeBHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dispatchGradeBHeavyQtls.invalid && (dispatchGradeBHeavyQtls.dirty || dispatchGradeBHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchGradeBHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.bheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dispatchGradeCHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entercheavy' | translate }}" required
+                                #dispatchGradeCHeavyQtls="ngModel" [(ngModel)]="tankreqObj['dispatchGradeCHeavyQtls']"
+                                (keyup)="caltotal()">
+                                <div class="text-primary">{{inWords(tankreqObj['dispatchGradeCHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dispatchGradeCHeavyQtls.invalid && (dispatchGradeCHeavyQtls.dirty || dispatchGradeCHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchGradeCHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.total' | translate }} (Qtl)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" disabled name="totalDispatchMolassesQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entertotal' | translate }} (Qtl)"
+                                required #totalDispatchMolassesQtls="ngModel"
+                                [(ngModel)]="tankreqObj['totalDispatchMolassesQtls']">
+                                <div class="text-primary">{{inWords(tankreqObj['totalDispatchMolassesQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="totalDispatchMolassesQtls.invalid && (totalDispatchMolassesQtls.dirty || totalDispatchMolassesQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="totalDispatchMolassesQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.total' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.rategradewise' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.aheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="rateGradeAHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbheavy' | translate }} (Qtls)"
+                                required #rateGradeAHeavyQtls="ngModel" [(ngModel)]="tankreqObj['rateGradeAHeavyQtls']">
+                                <div class="text-primary">{{inWords(tankreqObj['rateGradeAHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="rateGradeAHeavyQtls.invalid && (rateGradeAHeavyQtls.dirty || rateGradeAHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rateGradeAHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.aheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.bheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="rateGradeBHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbheavy' | translate }} (Qtls)"
+                                required #rateGradeBHeavyQtls="ngModel" [(ngModel)]="tankreqObj['rateGradeBHeavyQtls']">
+                                <div class="text-primary">{{inWords(tankreqObj['rateGradeBHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="rateGradeBHeavyQtls.invalid && (rateGradeBHeavyQtls.dirty || rateGradeBHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rateGradeBHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.bheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="rateGradeCHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entercheavy' | translate }}  (Qtls)"
+                                required #rateGradeCHeavyQtls="ngModel" [(ngModel)]="tankreqObj['rateGradeCHeavyQtls']">
+                                <div class="text-primary">{{inWords(tankreqObj['rateGradeCHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="rateGradeCHeavyQtls.invalid && (rateGradeCHeavyQtls.dirty || rateGradeCHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rateGradeCHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.duegradewise' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.aheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dueGradeAHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbheavy' | translate }} (Qtls)"
+                                required #dueGradeAHeavyQtls="ngModel" [(ngModel)]="tankreqObj['dueGradeAHeavyQtls']"
+                                (keyup)="caltotals()">
+                                <div class="text-primary">{{inWords(tankreqObj['dueGradeAHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dueGradeAHeavyQtls.invalid && (dueGradeAHeavyQtls.dirty || dueGradeAHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dueGradeAHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.aheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.bheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dueGradeBHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbheavy' | translate }} (Qtls)"
+                                required #dueGradeBHeavyQtls="ngModel" [(ngModel)]="tankreqObj['dueGradeBHeavyQtls']"
+                                (keyup)="caltotals()">
+                                <div class="text-primary">{{inWords(tankreqObj['dueGradeBHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dueGradeBHeavyQtls.invalid && (dueGradeBHeavyQtls.dirty || dueGradeBHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dueGradeBHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.bheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }} (Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="dueGradeCHeavyQtls" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entercheavy' | translate }} (Qtls)"
+                                required #dueGradeCHeavyQtls="ngModel" [(ngModel)]="tankreqObj['dueGradeCHeavyQtls']"
+                                (keyup)="caltotals()">
+                                <div class="text-primary">{{inWords(tankreqObj['dueGradeCHeavyQtls'], 'Rupess Only')}}</div>
+                            <div *ngIf="dueGradeCHeavyQtls.invalid && (dueGradeCHeavyQtls.dirty || dueGradeCHeavyQtls.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dueGradeCHeavyQtls?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.cheavy' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.total' | translate }}(Qtl)</label>
+                            <input type="number" name="totaldue" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entertotal' | translate }}(Qtl)" required
+                                #totaldue="ngModel" [(ngModel)]="tankreqObj['totaldue']" disabled>
+                                <div class="text-primary">{{inWords(tankreqObj['totaldue'], 'Rupess Only')}}</div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.progressivedeposits' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.sheeranidhiregister.total' | translate }} </label>
+                            <input type="number" name="totalProgressiveDeposits" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entertotal' | translate }}" required
+                                #totalProgressiveDeposits="ngModel" [(ngModel)]="tankreqObj['totalProgressiveDeposits']"
+                                disabled>
+                                <div class="text-primary">{{inWords(tankreqObj['totalProgressiveDeposits'], 'Rupess Only')}}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.ondate' | translate }} (Rs) 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="progressiveDepositsOnDate" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.sheeranidhiregister.ondate' | translate }}"
+                                required #progressiveDepositsOnDate="ngModel"
+                                [(ngModel)]="tankreqObj['progressiveDepositsOnDate']" (keyup)="calculatetotals()">
+                                <div class="text-primary">{{inWords(tankreqObj['progressiveDepositsOnDate'], 'Rupess Only')}}</div>
+                            <div *ngIf="progressiveDepositsOnDate.invalid && (progressiveDepositsOnDate.dirty || progressiveDepositsOnDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="progressiveDepositsOnDate?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.ondate' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'sugarmill.sheeranidhiregister.totalamount' | translate }}</label>
+                            <input type="number" name="totalamount" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.entertotalamount' | translate }}"
+                                required #totalamount="ngModel" [(ngModel)]="tankreqObj['totalamount']" disabled>
+                                <div class="text-primary">{{inWords(tankreqObj['totalamount'], 'Rupess Only')}}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.sheeranidhiregister.duefordeposit' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.sheeranidhiregister.accountno' | translate }}.
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="accountNumber" class="form-control" required
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enteraccountno' | translate }}" required
+                                #accountNumber="ngModel" [(ngModel)]="tankreqObj['accountNumber']">
+                            <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="accountNumber?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.accountno' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.releaseasperorder' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="releaseEcOrder" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterreleaseasperorder' | translate }}"
+                                required #releaseEcOrder="ngModel" [(ngModel)]="tankreqObj['releaseEcOrder']">
+                                <div class="text-primary">{{inWords(tankreqObj['releaseEcOrder'], 'Rupess Only')}}</div>
+                            <div *ngIf="releaseEcOrder.invalid && (releaseEcOrder.dirty || releaseEcOrder.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="releaseEcOrder?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.releaseasperorder' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Withdrawal (Rs)</label>
+                            <input type="text"  class="form-control" value="Enter remarks">                    
+                            
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.sheeranidhiregister.releaseasperorder' | translate }} 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="withdrawl" class="form-control" required
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterwithdrawal' | translate }}" required
+                                #withdrawl="ngModel" [(ngModel)]="tankreqObj['withdrawl']">
+                                <div class="text-primary">{{inWords(tankreqObj['withdrawl'], 'Rupess Only')}}</div>
+                        </div>
+                        <div *ngIf="withdrawl.invalid && (withdrawl.dirty || withdrawl.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="withdrawl?.errors?.required">
+                                <i class="fa fa-times"></i>
+                                {{ 'sugarmill.sheeranidhiregister.releaseasperorder' | translate }}
+                                {{ 'sugarmill.common.isrequired' | translate }}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'sugarmill.sheeranidhiregister.balanceinaccount' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="balanceInAccount" class="form-control"
+                                placeholder="{{ 'sugarmill.sheeranidhiregister.enterbalanceinaccount' | translate }}"
+                                required #balanceInAccount="ngModel" [(ngModel)]="tankreqObj['balanceInAccount']">
+                                <div class="text-primary">{{inWords(tankreqObj['balanceInAccount'], 'Rupess Only')}}</div>
+                            <div *ngIf="balanceInAccount.invalid && (balanceInAccount.dirty || balanceInAccount.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="balanceInAccount?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.sheeranidhiregister.balanceinaccount' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.molassesadminstration.remarks' | translate }}</label>
+                            <input type="text" name="remarks" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.common.remarks' | translate }}"
+                                required #remarks="ngModel" [(ngModel)]="tankreqObj['remarks']">
+                            <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="remarks?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.remarks' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-info ml-2 mb-2"
+                (click)="Preview(molassesfund)">{{ 'sugarmill.common.preview' | translate }}</button>
+            <button type="button" class="btn btn-warning ml-2 mb-2"
+                (click)="saveregistration(molassesfund,'draft')">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2"
+                (click)="saveregistration(molassesfund,'Submit')">{{ 'sugarmill.common.submit' | translate }}</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2"
+                routerLink="/supplychainmanagement/sugarmills/molassesfundreg/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+        </div>
+    </form>
+</div>

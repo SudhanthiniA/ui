@@ -1,0 +1,112 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Order Verification List
+    <button type="submit" class="btn btn-success pull-right" routerLink="/supplychainmanagement/distillery/orderverification/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Verification
+    </button>
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Verification</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Requition ID</label>
+                        <input type="number" class="form-control" placeholder="Enter Requition ID">
+                    </div>
+                </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Product Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Product Name">
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Grade</label>
+                          <select class="form-control"  name="grade">
+                            <option value="">Select</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+               </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Order Verification List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Requition ID</th>
+                            <th>Product Name</th>
+                            <th>Grade</th>
+                            <th>Requisition Quantity</th>
+                            <th>Quantity from Wighbridge</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="orderverificationlist?.length != 0">
+                     
+                        <tr *ngFor="let item of orderverificationlist;let i=index">
+                          <td>{{i+1}}</td>
+                          <td>{{item.requitionid}}</td>
+                          <td>{{item.productname}}</td>
+                          <td>{{item.grade}}</td>
+                          <td>{{item.requisitionqty}}</td>
+                          <td>{{item.qtywighbridge}}</td>
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary mr-2" (click)="navigateView(item.id)" type="button" >
+                                  <i class="feather icon-eye"></i></button>
+                          </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="orderverificationlist?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item" href="javascript:">PDF</a>
+                  <a class="dropdown-item" href="javascript:">CSV</a>
+                  </div>
+              </div>
+              </div>
+           
+          </div>
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

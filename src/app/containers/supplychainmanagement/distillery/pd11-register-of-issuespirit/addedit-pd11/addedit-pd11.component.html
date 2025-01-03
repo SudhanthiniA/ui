@@ -1,0 +1,259 @@
+<h5 class="m-b-10 ng-star-inserted">PD-11(Register of issue of spirit other than the country spirit)</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Other Registers Used</a></li>
+    <li class="breadcrumb-item"><a
+            routerLink="/supplychainmanagement/distillery/pd11-register-of-issuespirit/list">PD-11(Register of issue of
+            spirit other than the country spirit)</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #Pd11Form="ngForm" autocomplete="off">
+            <app-card cardTitle="PD-11(Register of issue of spirit other than the country spirit)"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issued Pass Number</label>
+                            <input type="number" name="issuedPassNumber" class="form-control" required
+                                #issuedPassNumber="ngModel" [(ngModel)]="Pd11Obj['issuedPassNumber']" maxlength="10"
+                                placeholder="Enter Issued Pass Number">
+                            <div *ngIf="issuedPassNumber.invalid && (issuedPassNumber.dirty || issuedPassNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="issuedPassNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    Issued Pass Number is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issued Date</label>
+
+                            <input type="date" name="issuedDate" class="form-control" #issuedDate="ngModel"
+                                [(ngModel)]="Pd11Obj['issuedDate']" required>
+                            <div *ngIf="issuedDate.invalid && (issuedDate.dirty || issuedDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="issuedDate?.errors?.required"><i class="fa fa-times"></i>
+                                    Issued Date is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Destination, Purpose of Name and address of consignee</label>
+                            <input type="text" name="consignerName" class="form-control" required
+                                placeholder="Enter Destination, Purpose of Name and address of consignee"
+                                #consignerName="ngModel"
+                                [(ngModel)]="Pd11Obj['consignerName']">
+                            <div *ngIf="consignerName.invalid && (consignerName.dirty || consignerName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="consignerName?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Destination, Purpose of Name and address of consignee is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Number of Vessel in Which Issue Made</label>
+                            <input type="number" name="numberVesselMade" class="form-control" required
+                                placeholder="Enter Number of Vessel in which issue Made" #numberVesselMade="ngModel"
+                                [(ngModel)]="Pd11Obj['numberVesselMade']" maxlength="5">
+                            <div *ngIf="numberVesselMade.invalid && (numberVesselMade.dirty || numberVesselMade.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="numberVesselMade?.errors?.required"><i class="fa fa-times"></i>
+                                    Number of Vessel in which issue Made is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #Pd11Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Bulk Litres" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Plain Spirit(including Rectified Spirit)</label>
+                            <input type="number" name="plainAndRectifiedSpirit" class="form-control"
+                                placeholder="Enter Plain Spirit(including Rectified Spirit)" required
+                                #plainAndRectifiedSpirit="ngModel" [(ngModel)]="Pd11Obj['plainAndRectifiedSpirit']"
+                                maxlength="5">
+                            <div *ngIf="plainAndRectifiedSpirit.invalid && (plainAndRectifiedSpirit.dirty || plainAndRectifiedSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="plainAndRectifiedSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Plain Spirit(including Rectified Spirit) is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temperature</label>
+                            <input type="number" name="temperature" class="form-control" placeholder="Enter Temperature"
+                                required #temperature="ngModel" [(ngModel)]="Pd11Obj['temperature']" maxlength="5">
+                            <div *ngIf="temperature.invalid && (temperature.dirty || temperature.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="temperature?.errors?.required"><i class="fa fa-times"></i>
+                                    Temperature is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indication</label>
+                            <input type="number" name="indication" class="form-control" placeholder="Enter Indication"
+                                required #indication="ngModel" [(ngModel)]="Pd11Obj['indication']" maxlength="10">
+                            <div *ngIf="indication.invalid && (indication.dirty || indication.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="indication?.errors?.required"><i class="fa fa-times"></i>
+                                    Indication is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength</label>
+                            <input type="number" name="strength" class="form-control" placeholder="Enter Strength"
+                                required #strength="ngModel" [(ngModel)]="Pd11Obj['strength']" maxlength="5">
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i>
+                                    Strength is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #Pd11Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Alchol Litres" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plain Spirit</label>
+                            <input type="number" name="plainSpirit" class="form-control"
+                                placeholder="Enter Plain Spirit" required #plainSpirit="ngModel"
+                                [(ngModel)]="Pd11Obj['plainSpirit']" maxlength="5">
+                            <div *ngIf="plainSpirit.invalid && (plainSpirit.dirty || plainSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="plainSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Plain Spirit is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Denatured Spirit</label>
+                            <input type="number" name="denaturedSpirit" class="form-control"
+                                placeholder="Enter Denatured Spirit" required #denaturedSpirit="ngModel"
+                                [(ngModel)]="Pd11Obj['denaturedSpirit']" maxlength="5">
+                            <div *ngIf="denaturedSpirit.invalid && (denaturedSpirit.dirty || denaturedSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="denaturedSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Denatured Spirit is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sophisticated Spirit</label>
+                            <input type="number" name="sophisticatedSpirit" class="form-control"
+                                placeholder="Enter Sophisticated Spirit" required #sophisticatedSpirit="ngModel"
+                                [(ngModel)]="Pd11Obj['sophisticatedSpirit']" maxlength="">
+                            <div *ngIf="sophisticatedSpirit.invalid && (sophisticatedSpirit.dirty || sophisticatedSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="sophisticatedSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Sophisticated Spirit is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Rate of Duty(%)</label>
+                            <input type="number" name="rateDuty" class="form-control"
+                                placeholder="Enter Rate of Duty(%)" required #rateDuty="ngModel"
+                                [(ngModel)]="Pd11Obj['rateDuty']" maxlength="5">
+                            <div *ngIf="rateDuty.invalid && (rateDuty.dirty || rateDuty.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rateDuty?.errors?.required"><i class="fa fa-times"></i>
+                                    Rate of Duty(%) is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Amount of duty Realised</label>
+                            <input type="number" name="amountDutyRealised" class="form-control"
+                                placeholder="Enter Amount of duty Realised" required #amountDutyRealised="ngModel"
+                                [(ngModel)]="Pd11Obj['amountDutyRealised']" maxlength="10">
+                            <div *ngIf="amountDutyRealised.invalid && (amountDutyRealised.dirty || amountDutyRealised.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="amountDutyRealised?.errors?.required"><i class="fa fa-times"></i>
+                                    Amount of duty Realised is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Number and date of Treasury Receipt or Note. If Debited aganist advance, Duty free or
+                                bond</label>
+                            <input type="text" name="numberDateTreasury" class="form-control"
+                                placeholder="Enter Number and date of Treasury Receipt or Note. If Debited  aganist advance, Duty free or bond"
+                                required #numberDateTreasury="ngModel" [(ngModel)]="Pd11Obj['numberDateTreasury']">
+                            <div *ngIf="numberDateTreasury.invalid && (numberDateTreasury.dirty || numberDateTreasury.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="numberDateTreasury?.errors?.required"><i class="fa fa-times"></i>
+                                    Number and date of Treasury Receipt or Note. If Debited aganist advance, Duty free
+                                    or bond is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(Pd11Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addPd11Deatils(Pd11Form,false)">Save As Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addPd11Deatils(Pd11Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd11-register-of-issuespirit/list">Cancel</button>
+    </div>
+</div>

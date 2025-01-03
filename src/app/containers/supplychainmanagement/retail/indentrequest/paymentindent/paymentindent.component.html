@@ -1,0 +1,127 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.payment.details' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'retail.indentrequest.list' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'retail.payment.details' | translate }}</a></li>
+</ul>
+<form #paymentForm="ngForm">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-12">
+                    <app-card [hidHeader]="true" class="list-panel">
+                        <p>{{ 'retail.payment.totalcostperindent' | translate}}</p>
+                        <h6>{{totalamount}}</h6>
+                    </app-card>
+                </div>
+                <div class="col-12">
+                    <app-card cardTitle="{{ 'retail.payment.details' | translate }}" class="list-panel add-panel">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ 'retail.payment.amttobepaid' | translate }}</label>
+                                <input type="number" class="form-control" name="paidAmount"
+                                    [(ngModel)]=paymentObj.paidAmount #paidAmount=ngModel (keyup)= keyPress($event)
+                                    placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.payment.amttobepaid' | translate }}" required />
+                                <div *ngIf="paidAmount.invalid && (paidAmount.dirty || paidAmount.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="paidAmount?.errors?.required">
+                                        <i class="fa fa-times"></i>
+                                        {{ 'retail.payment.paidamt' | translate }} {{ 'retail.common.isrequired' | translate }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ 'retail.payment.balamttobepaid' | translate }}</label>
+                                <input type="number" class="form-control" [(ngModel)]=paymentObj.balAmount
+                                    name="balAmount" #balAmount=ngModel  readonly
+                                    placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.payment.balamttobepaid' | translate }}" />
+                                    <!-- <div *ngIf="balAmount.invalid && (balAmount.dirty || balAmount.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="balAmount?.errors?.required">
+                                        <i class="fa fa-times"></i>
+                                        {{ 'retail.payment.balamt' | translate }}  {{ 'retail.common.isrequired' | translate }}
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-12">
+                    <app-card cardTitle="{{ 'retail.payment.paymentmode' | translate }}" class="list-panel add-panel">
+                        <div class="col-12">
+                            <div class="form-group mb-0">
+                                <label>{{ 'retail.payment.selectpayment' | translate }}</label>
+                                <select class="form-control" name="paymentMode" [(ngModel)]=paymentObj.paymentMode
+                                    #paymentMode=ngModel (change)="typeOfPayment($event.target.value)" required>
+                                    <option value="" disabled>Select</option>
+                                    <option *ngFor="let data of paymentModeList" value={{data.id}}>
+                                        {{data.name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="paymentMode.invalid && (paymentMode.dirty || paymentMode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="paymentMode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Payment mode amount is required
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-12">
+                    <app-card cardTitle="{{ 'retail.payment.details' | translate }}" class="list-panel add-panel">
+                        <div class="col-12">
+                            <div class="form-group mb-0">
+                                <label>{{label}}</label>
+                                <input type="number" class="form-control" [(ngModel)]=paymentObj.paymentId
+                                    name="paymentId" #paymentId=ngModel placeholder="Enter {{label}}" required />
+                                    <div *ngIf="paymentId.invalid && (paymentId.dirty || paymentId.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="paymentId?.errors?.required">
+                                        <i class="fa fa-times"></i>
+                                        {{label}} is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" name="accept" [(ngModel)] =paymentObj.accept
+                            #accept=ngModel required>
+                            <label class="form-check-label" for="gridCheck">I agree Payment <a href="">Terms &
+                                    Conditions</a></label>
+                                    <div *ngIf="accept.invalid && (accept.dirty || accept.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="accept?.errors?.required">
+                                        <i class="fa fa-times"></i>
+                                        {{ 'retail.payment.terms' | translate }}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-right mb-4">
+            <!-- <button class="btn btn-warning ml-2 mb-2" (click) ="save('DRAFT')">Save as Draft</button> -->
+            <button class="btn btn-primary ml-2 mb-2" (click)="save(paymentForm)">{{ 'retail.common.submit' | translate }}</button>
+            <button class="btn btn-secondary ml-2 mb-2"
+                routerLink="/supplychainmanagement/retail/indentrequest">{{ 'retail.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</form>

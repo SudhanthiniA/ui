@@ -1,0 +1,88 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'usermanagement.designationmanagement.viewdesignation' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.designationmanagement.designationmanagement' |
+            translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'usermanagement.common.view' | translate }}</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #userForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'usermanagement.designationmanagement.detailsdesignationmanagement' | translate }}"
+                class="list-panel add-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.entity.entitytype' |
+                            translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj.entityTypeName}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.designationmanagement.designationcode' |
+                            translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj.code}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.designationmanagement.designationname' |
+                            translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj.name}}
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.common.status' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj.active ? 'Active' : 'InActive'}}
+                    </div>
+
+                </div>
+                <hr class="mt-2" />
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.common.createdby' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj?.createdBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.common.createdon' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.common.modifiedby' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj?.modifiedBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'usermanagement.common.modifiedon' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{designationObj?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary" routerLink="/usermanagement/designation/list">{{
+            'usermanagement.common.back' | translate }}</button>
+    </div>
+</div>

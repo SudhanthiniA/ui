@@ -1,0 +1,166 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">{{'helpdesk.rulescreen.rules' | translate}}
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/helpdesk/sla/rule/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> {{'helpdesk.rulescreen.addrule' | translate}}</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.helpdesk' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.sla' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.rulescreen.rule' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.list' | translate}}</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'helpdesk.rulescreen.listofrules' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.rulescreen.rulename' | translate}}</label>
+                        <input type="text" appInputRestriction list="staticUserIds" class="form-control" name="rulename" #rulename="ngModel" [(ngModel)]="createObj['rulename']" autocomplete="off" />
+                        <datalist id="staticUserIds">
+                            <option *ngFor="let data of list" [value]="data.ruleName">{{data.ruleName}}</option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12  mt-4 text-md-left text-lg-left text-right">
+                    <div class="form-group">
+                        <button class="btn btn-primary m-r-5" (click)="searchviewticket();">
+                            {{'helpdesk.common.search' | translate}}</button>
+                        <button class="btn btn-secondary" (click)="clearfilter();">
+                            {{'helpdesk.common.clear' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" {{'helpdesk.rulescreen.rulelistdtls' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>{{'helpdeskmaster.common.sno' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.rulename' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.templatetype' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.category' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.subcategory' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.priority' | translate}}</th>
+                            <th>{{'helpdesk.rulescreen.ticketstatus' | translate}}</th>
+                            <th>{{'helpdesk.common.status' | translate}}</th>
+                            <th>{{'helpdesk.common.action' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.length != 0">
+                        <tr *ngFor="let data of list;let i=index">
+                            <td>
+                                {{i+1}}
+                            </td>
+
+                            <td>{{data.ruleName}}</td>
+                            <td>{{data.templateType}}</td>
+                            <td>{{data.categoryName}}</td>
+                            <td>{{data.subcategoryName}}</td>
+                            <td>{{data.priority}}</td>
+                            <td>{{data.status}}</td>
+
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div> -->
+<h5 class="m-b-10 ng-star-inserted">Rule
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Helpdesk</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sla</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Rule</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Rule Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Rule Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mt-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Ticket List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive text-center">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Rule Name</th>
+                  
+                            <th>Category </th>
+                            <th>Sub Category</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td class="text-left">Rule 1</td>
+                           
+                            <td class="text-left">Service Request</td>
+                            <td class="text-left">Network 1</td>
+                            <td>P1</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                routerLink="/helpdesk/sla/rule/view/:id">
+                                <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary" type="button"
+                                    routerLink="/helpdesk/sla/rule/add">
+                                    <i class="feather icon-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

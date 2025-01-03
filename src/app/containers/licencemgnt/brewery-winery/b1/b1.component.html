@@ -1,0 +1,884 @@
+<h5 class="m-b-10 ng-star-inserted">Applicant - Application for License B -1</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brewery Winery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Applicant - Application for License B -1</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="B1Form" autocomplete="off">
+            <app-card cardTitle="Application Form" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="text" readonly  class="form-control" formControlName='financialYear' placeholder="2020-2021" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" readonly class="form-control" formControlName='dateOfApplication' value="{{ post.startDate | date:'yyyy-MM-dd' }}">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>CL2</option>
+                                 <option>FL2</option>
+                               </select>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select  class="form-control" formControlName='saluatation'  (change)="gender1($event)">
+                                         <option value="">Select</option>
+                                         <option>Mr.</option>
+                                         <option>Miss.</option>
+                                         <option>Mrs.</option>
+                                       </select>
+                                       <div *ngIf="formSubmitted && B1Form.get('saluatation').errors || B1Form.get('saluatation').touched "
+                                       class="error-msg">
+                                       <span *ngIf="B1Form.get('saluatation').errors?.required">
+                                        Salutation is required
+                                       </span>
+                                   </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text"  class="form-control" formControlName='firstName' placeholder="Enter First Name">
+                            <div *ngIf="formSubmitted && B1Form.get('firstName').errors || B1Form.get('firstName').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('firstName').errors?.required">
+                                First Name is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text"  class="form-control" formControlName='middleName' placeholder="Enter Middle Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text"  class="form-control" formControlName='lastName' placeholder="Enter Last Name">
+                            <div *ngIf="formSubmitted && B1Form.get('lastName').errors || B1Form.get('lastName').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('lastName').errors?.required">
+                                Last Name is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="text"  class="form-control" formControlName='mobileNumber' placeholder="Enter Mobile Number"
+                            minlength="10" maxlength="10" (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && B1Form.get('mobileNumber').errors || B1Form.get('mobileNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('mobileNumber').errors?.required">
+                                Mobile Number of Applicant is required
+                            </span>
+                            <span *ngIf="B1Form.get('mobileNumber').errors?.minlength">
+                                Please Enter Minimum 10 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="text"  class="form-control" formControlName='emailId' placeholder="Enter Email Id">
+                            <div *ngIf="formSubmitted && B1Form.get('emailId').errors || B1Form.get('emailId').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('emailId').errors?.required">
+                                Email Id of Applicant is required
+                            </span>
+                            <span *ngIf="B1Form.get('emailId').errors?.email">
+                                Email must be a valid email address
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="text"  class="form-control" formControlName='aadhaarNumber' placeholder="Enter Aadhaar Number"
+                            minlength="12" maxlength="12" (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && B1Form.get('aadhaarNumber').errors || B1Form.get('aadhaarNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('aadhaarNumber').errors?.required">
+                                Aadhaar Number of Applican is required
+                            </span>
+                            <span *ngIf="B1Form.get('aadhaarNumber').errors?.minlength">
+                                Please Enter minimum 12 Numbers
+                            </span>
+                            <span *ngIf="B1Form.get('aadhaarNumber').errors?.maxlength">
+                                Please Enter maximum 12 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select  class="form-control" formControlName='gender'>
+                                 <option value="">Select</option>
+                                 <option>Male</option>
+                                 <option>Female</option>
+                               </select>
+                               <div *ngIf="formSubmitted && B1Form.get('gender').errors || B1Form.get('gender').touched "
+                               class="error-msg">
+                               <span *ngIf="B1Form.get('gender').errors?.required">
+                                Gender is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date"  class="form-control" formControlName='dateOfBirth' placeholder="" [max]="maxDate">
+                            <div *ngIf="formSubmitted && B1Form.get('dateOfBirth').errors || B1Form.get('dateOfBirth').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('dateOfBirth').errors?.required">
+                                Date of Birth is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text"  class="form-control" formControlName='panNumber' placeholder="Enter PAN Number"
+                            minlength="10" maxlength="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}">
+                            <div *ngIf="formSubmitted && B1Form.get('panNumber').errors || B1Form.get('panNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('panNumber').errors?.required">
+                                PAN Number is required
+                            </span>
+                            <span *ngIf="B1Form.get('panNumber').errors?.minlength">
+                                Please enter minimum 10 values
+                            </span>
+                            <!-- <span *ngIf="B1Form.get('panNumber').errors?.maxlength">
+                                Please enter maximum 10 values
+                            </span> -->
+                            <span *ngIf="B1Form.get('panNumber').errors?.pattern">
+                                Please Enter Valid PAN Number
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Applicant's Father/Husband</label>
+                            <input type="text"  class="form-control" formControlName='fathersName' placeholder="Enter Aadhaar Number">
+                            <div *ngIf="formSubmitted && B1Form.get('fathersName').errors || B1Form.get('fathersName').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('fathersName').errors?.required">
+                                Name of Applicant's Father/Husband is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Select ITR</label>
+                            <select  class="form-control" formControlName='itr'>
+                                 <option value="">Select</option>
+                                 <option>1. Current Assesment Year 2020-2021 - ITR</option>
+                                 <option> 2. Previous Assesment Year 2019-2020 - ITR</option>
+                               </select>
+                               <div *ngIf="formSubmitted && B1Form.get('itr').errors || B1Form.get('itr').touched "
+                               class="error-msg">
+                               <span *ngIf="B1Form.get('itr').errors?.required">
+                                ITR is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload ITR</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason if, Previous Assessment ITR uploaded</label>
+                            <input type="text"  class="form-control" formControlName='reason' placeholder="Enter Aadhaar Number">
+                            <div *ngIf="formSubmitted && B1Form.get('reason').errors || B1Form.get('reason').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('reason').errors?.required">
+                                Reason is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Character Certificate</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Affaidavit</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <app-card cardTitle="Address of the Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">B1Form
+                            <label>Country</label>
+                            <input type="text"  class="form-control" readonly formControlName='applicantCountry' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"  class="form-control" formControlName='applicantPinCode' placeholder="Enter Pincode"
+                            (keypress)="numberOnly($event)"  minlength="6" maxlength="6">
+                            <div *ngIf="formSubmitted && B1Form.get('applicantPinCode').errors || B1Form.get('applicantPinCode').touched "
+                            class="error-msg">
+                            <!-- <span *ngIf="B1Form.get('applicantPinCode').errors?.pattern">
+                                Please Enter Maximum 6 Numbers
+                            </span> -->
+                            <span *ngIf="B1Form.get('applicantPinCode').errors?.minlength">
+                                Please Enter Minimum 6 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='applicantState' (change)="getdistrict($event)" required>
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of states" value="{{item.id}}">{{item.stateName}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantState').errors || B1Form.get('applicantState').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantState').errors?.required">
+                                    State is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='applicantDistrict' required>
+                                  <option value="">Select</option>
+                                  <option *ngFor="let item of districts" value="{{item.id}}">{{item.name}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantDistrict').errors || B1Form.get('applicantDistrict').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantDistrict').errors?.required">
+                                    District is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='applicantTehsil' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Tehsil1</option>
+                                   <option value=2>Tehsil2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantTehsil').errors || B1Form.get('applicantTehsil').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantTehsil').errors?.required">
+                                    Tehsil is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='applicantUrban'  (change)="urban($event)"  required>
+                                     <option value="">Select</option>
+                                     <option value=1>Urban</option>
+                                     <option value=2>Rural</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantUrban').errors || B1Form.get('applicantUrban').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantUrban').errors?.required">
+                                    Urban/Rural is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headurban == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='applicantMunicipalArea' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Municipal Area1</option>
+                                   <option value=2>Municipal Area2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantMunicipalArea').errors || B1Form.get('applicantMunicipalArea').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantMunicipalArea').errors?.required">
+                                    Municipal Area is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headurban == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"  class="form-control" formControlName='applicantWard' placeholder="Enter Ward" pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && B1Form.get('applicantWard').errors || B1Form.get('applicantWard').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicantWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                    <div *ngIf="headrural == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <!-- <input type="text"  class="form-control" formControlName='applicantBlock'  placeholder="Enter Block"> -->
+                            <input type="text" list="staticUserIds" class="form-control" formControlName='applicantBlock' (change)="test($event)" />
+                            <datalist id="staticUserIds">
+                                <option *ngFor="let data of list"  value="{{data.id}}">{{data.name}}</option>
+                            </datalist>
+                            <div *ngIf="formSubmitted && B1Form.get('applicantBlock').errors || B1Form.get('applicantBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicantBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headrural == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='applicantVillage' placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && B1Form.get('applicantVillage').errors || B1Form.get('applicantVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicantVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='applicantPoliceStation' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Police Station1</option>
+                                   <option value=2>Police Station2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('applicantPoliceStation').errors || B1Form.get('applicantPoliceStation').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('applicantPoliceStation').errors?.required">
+                                    Police Station is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='applicantLocality' required placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && B1Form.get('applicantLocality').errors || B1Form.get('applicantLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicantLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='applicantStreet' required placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && B1Form.get('applicantStreet').errors || B1Form.get('applicantStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicantStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+
+            <app-card cardTitle="Locality of Brewery Unit" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1.value" (change)="checkboxchange($event)">
+                                <!-- (click)="licenseType($event, 'pd1')" -->
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Premises Ownership</label>
+                            <select  class="form-control" formControlName='premisesOwnership'>
+                                 <option value="">Select</option>
+                                 <option>Own</option>
+                                 <option>Rent</option>
+                                 <option>Lease</option>
+                               </select>
+                               <div *ngIf="formSubmitted && B1Form.get('premisesOwnership').errors || B1Form.get('premisesOwnership').touched "
+                               class="error-msg">
+                               <span *ngIf="B1Form.get('premisesOwnership').errors?.required">
+                                Premises Ownership is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Ownership document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"  class="form-control" readonly formControlName='breweryUnitCountry' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitPinCode'  minlength="6" maxlength="6" placeholder="Enter Pincode"
+                            (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitPinCode').errors || B1Form.get('breweryUnitPinCode').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitPinCode').errors?.minlength">
+                                Please Enter Minimum 6 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='breweryUnitState'  (change)="getbreweryUnitDistrict($event)" required>
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of premisestates" value="{{item.id}}">{{item.stateName}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitState').errors || B1Form.get('breweryUnitState').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitState').errors?.required">
+                                    State is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='breweryUnitDistrict' required>
+                                  <option value="">Select</option>
+                                  <option *ngFor="let item of breweryUnitDistricts" value="{{item.id}}">{{item.name}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitDistrict').errors || B1Form.get('breweryUnitDistrict').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitDistrict').errors?.required">
+                                    District is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='breweryUnitTehsil' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Tehsil1</option>
+                                   <option value=2>Tehsil2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitTehsil').errors || B1Form.get('breweryUnitTehsil').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitTehsil').errors?.required">
+                                    Tehsil is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='breweryUnitUrban' (change)="show1($event)" required>
+                                     <option value="">Select</option>
+                                     <option value=1>Urban</option>
+                                     <option value=2>Rural</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitUrban').errors || B1Form.get('breweryUnitUrban').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitUrban').errors?.required">
+                                    Urban/Rural is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="breweryUnitUrban == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='breweryUnitMunicipalArea' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Municipal Area1</option>
+                                   <option value=2>Municipal Area2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitMunicipalArea').errors || B1Form.get('breweryUnitMunicipalArea').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitMunicipalArea').errors?.required">
+                                    Municipal Area is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="breweryUnitUrban == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitWard' placeholder="Enter Ward"  pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitWard').errors || B1Form.get('breweryUnitWard').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="premisesrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitBlock' required placeholder="Enter Block">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitBlock').errors || B1Form.get('breweryUnitBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="premisesrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitVillage' required placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitVillage').errors || B1Form.get('breweryUnitVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='breweryUnitPoliceStation' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Police Station1</option>
+                                   <option value=2>Police Station2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && B1Form.get('breweryUnitPoliceStation').errors || B1Form.get('breweryUnitPoliceStation').touched "
+                                 class="error-msg">
+                                 <span *ngIf="B1Form.get('breweryUnitPoliceStation').errors?.required">
+                                    Police Station is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitLocality' required placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitLocality').errors || B1Form.get('breweryUnitLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='breweryUnitStreet' required placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && B1Form.get('breweryUnitStreet').errors || B1Form.get('breweryUnitStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('breweryUnitStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </app-card>
+            <app-card cardTitle="Attachments" class="list-panel add-panel">
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="uploadpuc">Document depicting flow Diagram of each and every section</label>
+                                    <div class="input-group cust-file-button">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                            <label class="custom-file-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label for="uploadpuc">Document detailing the Land, where Plant is to be installed </label>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                <label class="custom-file-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label for="uploadpuc">Document detailing utility of brewery with blue print </label>
+                                            <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                    <label class="custom-file-label"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label for="uploadpuc">Document for Calculation of capacity of brewery on the basis of Fermentation House</label>
+                                                <div class="input-group cust-file-button">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                        <label class="custom-file-label"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="uploadpuc">Notarized Affidavit declaring that No Government Dues are pending and Not penalised in cognizant offence</label>
+                                                    <div class="input-group cust-file-button">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                            <label class="custom-file-label"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label for="uploadpuc">Building Layout</label>
+                                                        <div class="input-group cust-file-button">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                                <label class="custom-file-label"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            
+                    </div>
+                    </app-card>
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="text"  class="form-control" formControlName='bankAccountNumber' placeholder="Enter Bank Account Number"
+                            (keypress)="numberOnly($event)" minlength="12" maxlength="12">
+                            <div *ngIf="formSubmitted && B1Form.get('bankAccountNumber').errors || B1Form.get('bankAccountNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('bankAccountNumber').errors?.required">
+                                Bank Account Number is required
+                            </span>
+                            <span *ngIf="B1Form.get('bankAccountNumber').errors?.minlength">
+                                Please Enter Minimum 12 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text"  class="form-control" formControlName='bankIFSC' placeholder="Enter IFSC"
+                            minlength="11" maxlength="11"  pattern="^(?=.*?[A-Za-z])(?=.*?[0-9])[A-Za-z0-9]+$">
+                            <div *ngIf="formSubmitted && B1Form.get('bankIFSC').errors || B1Form.get('bankIFSC').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('bankIFSC').errors?.required">
+                                Bank IFSC is required
+                            </span>
+                            <span *ngIf="B1Form.get('bankIFSC').errors?.pattern">
+                                Enter Valid Bank IFSC Code
+                            </span>
+                            <span *ngIf="B1Form.get('bankIFSC').errors?.minlength">
+                                Please Enter Minimum 11 Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select  class="form-control" formControlName='bankName' required>
+                               <option value="">Select</option>
+                               <option value=1>State Bank Of India</option>
+                               <option value=2>Canara Bank</option>
+                             </select>
+                             <div *ngIf="formSubmitted && B1Form.get('bankName').errors || B1Form.get('bankName').touched "
+                             class="error-msg">
+                             <span *ngIf="B1Form.get('bankName').errors?.required">
+                                Bank Name is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <app-card cardTitle="Payment- Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="text"  class="form-control" formControlName='applicationFees' placeholder="Enter Application/Processing Fees"
+                            (keypress)="numberOnly($event)" minlength="10"  maxlength="10">
+                            <div *ngIf="formSubmitted && B1Form.get('applicationFees').errors || B1Form.get('applicationFees').touched "
+                            class="error-msg">
+                            <span *ngIf="B1Form.get('applicationFees').errors?.required">
+                                Application/Processing Fees is required
+                            </span>
+                            <span *ngIf="B1Form.get('applicationFees').errors?.minlength">
+                                Please Enter Minimum 10 Numbers
+                             </span>
+                             <span *ngIf="B1Form.get('applicationFees').errors?.maxlength">
+                                Please Enter Maximum 10 Numbers
+                             </span>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2"(click)="view(B1Form)">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="add(B1Form)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+        </div>
+    </form>
+    </div>
+</div>

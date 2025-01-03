@@ -1,0 +1,487 @@
+<h5 class="m-b-10 ng-star-inserted"> Add Import Permit</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Import Permit</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <form [formGroup]="importpasspermits" autocomplete="off">
+    <div class="col-xl-12">
+            <app-card cardTitle="Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bond Warehouse Name
+                            </label>
+                            <input type="text"  class="form-control" formControlName="BrandWareHouseName" required placeholder="Enter Bond Warehouse Name" readonly>
+                            <div *ngIf="formSubmitted && importpasspermits.get('BrandWareHouseName').errors || importpasspermits.get('BrandWareHouseName').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('BrandWareHouseName').errors?.required">
+                                    Bond Warehouse Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District
+                            </label>
+                            <input type="text"  name="District" class="form-control" formControlName="District" required class="form-control" placeholder="Enter District" readonly>
+                            <div *ngIf="formSubmitted && importpasspermits.get('District').errors || importpasspermits.get('District').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('District').errors?.required">
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No
+                            </label>
+                            <input type="text" 
+                            name="LicenseNo" class="form-control" formControlName="LicenseNo" required placeholder="Enter License No" readonly>
+                            <div *ngIf="formSubmitted && importpasspermits.get('LicenseNo').errors || importpasspermits.get('LicenseNo').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('LicenseNo').errors?.required">
+                                    License No is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Parent Unit Name
+                            </label>
+                            <input type="text" class="form-control" formControlName="ParentUnitName" placeholder="Enter Parent Unit Name" 
+                            name="ParentUnitName" readonly>
+                            <div *ngIf="formSubmitted && importpasspermits.get('ParentUnitName').errors || importpasspermits.get('ParentUnitName').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('ParentUnitName').errors?.required">
+                                    Parent Unit Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Parent Unit State
+                            </label>
+                            <input type="text"  class="form-control" readonly
+                            name="ParentUnitState" formControlName="ParentUnitState" required  placeholder="Enter Parent Unit State">
+                            <div *ngIf="formSubmitted && importpasspermits.get('ParentUnitState').errors || importpasspermits.get('ParentUnitState').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('ParentUnitState').errors?.required">
+                                    Parent Unit State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+    </div>
+    <div class="col-xl-12">
+            <app-card cardTitle="Parent Unit Address" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plot No.
+                            </label>
+                            <input type="number" class="form-control" readonly
+                            name="PlotNo" formControlName="PlotNo" required placeholder="Enter Plot No." required>
+                            <div *ngIf="formSubmitted && importpasspermits.get('PlotNo').errors || importpasspermits.get('PlotNo').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('PlotNo').errors?.required">
+                                    Plot No. is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street Name
+                            </label>
+                            <input type="text" required class="form-control" readonly name="StreetName" formControlName="StreetName" required placeholder="Enter Street Name">
+                            <div *ngIf="formSubmitted && importpasspermits.get('StreetName').errors || importpasspermits.get('StreetName').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('StreetName').errors?.required">
+                                    Street Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Area
+                            </label>
+                            <input type="text" class="form-control" readonly  name="Area" formControlName="Area" required placeholder="Enter Area">
+                            <div *ngIf="formSubmitted && importpasspermits.get('Area').errors || importpasspermits.get('Area').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('Area').errors?.required">
+                                    Area is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>City
+                            </label>
+                            <input type="text" class="form-control" readonly  name="City" formControlName="City" required placeholder="Enter City">
+                            <div *ngIf="formSubmitted && importpasspermits.get('City').errors || importpasspermits.get('City').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('City').errors?.required">
+                                    City is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode
+                            </label>
+                            <input type="number" class="form-control" readonly  name="Pincode" formControlName="Pincode" required placeholder="Enter Pincode">
+                            <div *ngIf="formSubmitted && importpasspermits.get('Pincode').errors || importpasspermits.get('Pincode').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('Pincode').errors?.required">
+                                    Pincode is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District
+                            </label>
+                            <input type="text" class="form-control" readonly  name="District1" formControlName="District1" required placeholder="Enter District">
+                            <div *ngIf="formSubmitted && importpasspermits.get('District1').errors || importpasspermits.get('District1').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('District1').errors?.required">
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State
+                            </label>
+                            <input type="text" class="form-control" readonly name="State" formControlName="State" required placeholder="Enter State">
+                            <div *ngIf="formSubmitted && importpasspermits.get('State').errors || importpasspermits.get('State').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('State').errors?.required">
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+    </div>
+    </form>
+    <div class="col-xl-12">
+        <form [formGroup]="importpasspermits" autocomplete="off">
+            <app-card cardTitle="Permit Required for" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Advance Fee</label>
+                            <input type="number" class="form-control"  name="TotalAdvFee" formControlName="TotalAdvFee" placeholder="Enter Total Advance Fee" required>
+                            <div *ngIf="formSubmitted && importpasspermits.get('TotalAdvFee').errors || importpasspermits.get('TotalAdvFee').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('TotalAdvFee').errors?.required">
+                                    Total Advance Fee is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Advance Special fee</label>
+                            <input type="number"  class="form-control"  name="TotalAdvSpecialFee" formControlName="TotalAdvSpecialFee"  placeholder="Enter Total Advance Special fee" required>
+                            <div *ngIf="formSubmitted && importpasspermits.get('TotalAdvSpecialFee').errors || importpasspermits.get('TotalAdvSpecialFee').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('TotalAdvSpecialFee').errors?.required">
+                                    Total Advance Special fee is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Brand</th>
+                                        <th>Size(ml)</th>
+                                        <th>Quantity</th>
+                                        <th>ETIN no.</th>
+                                        <th>No.of cases</th>
+                                        <th>No. Of Bottle Per Case</th>
+                                        <th>Planned No.Of Bottles</th>
+                                        <th>Special Fee</th>
+                                        <th>Canculated Import Fee</th>
+                                        <th>Total Duty</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr formArrayName="importpasspermitsGenDetailList"
+                                *ngFor="let pres of importpasspermits?.get('importpasspermitsGenDetailList')['controls']; let i=index"
+                                id="row{{i}}">
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0">
+                                        {{i+1}}
+                                    </div>
+                                </td>
+                              
+                                
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+                                            <select formControlName="packtype" class="form-control" >
+                                                    <option value="">Select</option>
+                                                    <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                                        {{b.brandName}}
+                                                    </option>
+                                                </select>
+                                        <!-- <select id="packtype" required class="form-control" formControlName="packtype">
+                                            <option value="">Select</option>
+                                            <option>Active</option>
+                                        </select>                                     --> </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+                                            <select class="form-control" name="sizeId" id="sizeId" required
+                                            formControlName='size'>
+                                            <option value="">Select</option>
+                                            <option *ngFor="let s of sizelist" value="{{s.id}}">{{s.desc}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <input type="number" required  class="form-control" formControlName="quantity"
+                                    placeholder="Enter Quantity">
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+                                    
+                                        <input type="number" required id="specialfee" class="form-control" formControlName="etin"
+                                         placeholder="Enter ETIN No.">
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="importfee" class="form-control" formControlName="noofcases"
+                                        placeholder="Enter No.of Cases">                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="totduty" class="form-control" formControlName="noofbottles"
+                                    (keyup)='calplannedbottles(pres)'    placeholder="Enter No. Of Bottle Per Case">                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="totduty" class="form-control" formControlName="plannednoofbottles"
+                                        placeholder="Enter Planned No.Of Bottles" maxlength=3>                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="quantity" class="form-control" formControlName="specialfee"
+                                        (keyup)='calspecialfee()' placeholder="Enter Special Fee">                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="etin" class="form-control" formControlName="importfee"
+                                        (keyup)='calimportfee()'  placeholder="Enter Canculated Import Fee">                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0 view">
+
+                                        <input type="number" required id="noofcases" class="form-control" formControlName="totduty1"
+                                        (keyup)='caldutyfee()' placeholder="Enter Total Duty">                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group  mb-0">
+                                        <button class="btn btn-icon btn-primary" type="button" (click)="addrow()">
+                                            <i class="feather icon-plus"></i></button> &nbsp;&nbsp;
+
+                                            <button class="btn btn-icon btn-danger" type="button" (click)="deleterow(i)">
+                                                <i class="feather icon-trash"></i></button>  
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                                <!-- <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <select id="packtype" required class="form-control">
+                                                <option value="">Select</option>
+                                                <option>Active</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" required id="noofbottles" class="form-control" formControlName="noofbottles"
+                                                placeholder="Enter Size(ml)"></td>
+                                        <td><input type="number" required id="plannednoofbottles" class="form-control" formControlName="plannednoofbottles"
+                                                placeholder="Enter Quantity"></td>
+                                        <td><input type="number" required id="specialfee" class="form-control" formControlName="specialfee"
+                                                placeholder="Enter ETIN No."></td>
+                                        <td><input type="number" required id="importfee" class="form-control" formControlName="importfee"
+                                                placeholder="Enter No.of Cases"></td>
+                                        <td><input type="number" required id="totduty" class="form-control" formControlName="totduty"
+                                                placeholder="Enter No. Of Bottle Per Case"></td>
+                                        <td><input type="number" required id="totduty" class="form-control" formControlName="totduty"
+                                                    placeholder="Enter Planned No.Of Bottles"></td>
+                                        <td><input type="number" required id="quantity" class="form-control" formControlName="quantity"
+                                                        placeholder="Enter Special Fee"></td>
+                                        <td><input type="number" required id="etin" class="form-control" formControlName="etin"
+                                                        placeholder="Enter Canculated Import Fee"></td>
+                                        <td><input type="number" required id="noofcases" class="form-control" formControlName="noofcases"
+                                                        placeholder="Enter Total Duty"></td>
+                                        <td class="table-action-column">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody> -->
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Duty
+                            </label>
+                            <input type="number" class="form-control"  name="TotalDuty" formControlName="TotalDuty" placeholder="Enter Total Duty" required>
+                            <div *ngIf="formSubmitted && importpasspermits.get('TotalDuty').errors || importpasspermits.get('TotalDuty').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('TotalDuty').errors?.required">
+                                    Total Duty is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Import Fee
+                            </label>
+                            <input type="number" class="form-control"  name="TotalImportFee" formControlName="TotalImportFee" required
+                                placeholder="Enter Total Import Fee">
+                                <div *ngIf="formSubmitted && importpasspermits.get('TotalImportFee').errors || importpasspermits.get('TotalImportFee').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('TotalImportFee').errors?.required">
+                                    Total Import Fee is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Special Fee
+                            </label>
+                            <input type="number" class="form-control"  name="TotalSpecialFee" formControlName="TotalSpecialFee" required
+                                placeholder="Enter Total Special Fee">
+                                <div *ngIf="formSubmitted && importpasspermits.get('TotalSpecialFee').errors || importpasspermits.get('TotalSpecialFee').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('TotalSpecialFee').errors?.required">
+                                    Total Special Fee is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>QR/Barcode Requested as
+                            </label>
+                            <!-- <div class="form-group form-check"> -->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" formControlName="barcode" value="Mapped"
+                                     class="custom-control-input" (click)="barcodeevent($event,'Mapped')">
+                                     <label class="custom-control-label" for="customRadioInline1">Mapped</label>
+                                    </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" formControlName="barcode" value="Un Mapped"
+                                     class="custom-control-input" (click)="barcodeevent($event,'Un Mapped')">
+                                     <label class="custom-control-label" for="customRadioInline2">Un Mapped</label>
+                                    </div>
+                                
+                            <!-- </div> -->
+                            <!-- <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Mapped</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Un Mapped</label>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Route No.
+                            </label>
+                            <input type="number" class="form-control"  name="RouteNo"formControlName="RouteNo" required
+                                placeholder="Enter Route No.">
+                                <div *ngIf="formSubmitted && importpasspermits.get('RouteNo').errors || importpasspermits.get('RouteNo').touched "
+                                class="error-msg">
+                                <span *ngIf="importpasspermits.get('RouteNo').errors?.required">
+                                    Route No. is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Type
+                            </label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline3" formControlName="transport" value="Train"
+                                     class="custom-control-input" (click)="transportevent($event,'Train')">
+                                     <label class="custom-control-label" for="customRadioInline3">
+                                        Train</label>                                    </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline4" formControlName="transport" value="by Road"
+                                     class="custom-control-input" (click)="transportevent($event,'by Road')">
+                                     <label class="custom-control-label" for="customRadioInline4">
+                                        by Road</label>                                    </div>
+                            <!-- <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline3" name="customRadioInline3"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline3">
+                                    Train</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline4" name="customRadioInline3"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline4">
+                                    by Road</label>
+                            </div> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2"  (click)="addimportpermit(importpasspermits,'INITIATED')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addimportpermit(importpasspermits,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/importpermit/list">Cancel</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/importpermit/list">Clear</button>
+    </div>
+</div>

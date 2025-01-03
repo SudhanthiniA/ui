@@ -1,0 +1,151 @@
+<!-- <p>add-mf6-part2 works!</p> -->
+<h5 class="m-b-10 ng-star-inserted">Add Mf 6 Part 2</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/mf6-part-one/list">Molasses In-Ward At Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"  routerLink='/supplychainmanagement/distillery/mf6-part2/list' >Mf 6 Part 2</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <!-- Enter Below Details to Add Stock -->
+    <div class="col-xl-12">
+        <form #mf6part2="ngForm">
+            <app-card cardTitle="Molasses Receiver" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF4 Pass No</label>
+                            <input type="text" disabled  [(ngModel)]="mf6part2obj.date" class="form-control" name ='date' #date='ngModel' placeholder="Enter MF4 Pass No"
+                                >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" disabled  [(ngModel)]="mf6part2obj.date" class="form-control" name ='date' #date='ngModel' placeholder="Enter Date"
+                                >
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Sugar Mill</label>
+                            <select class="form-control" [(ngModel)]="mf6part2obj.sugarmill" name ="sugarmill" #sugarmill="ngModel" >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of sugarmillnamelist" value="{{item.id}}">{{item.sugarMillName}}</option>
+                                <!-- <option value="Mill 2">Mill 2</option>
+                                <option value="Mill 3">mill 3</option> -->
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(qtl)</label>
+                            <input type="number" placeholder="Enter Quantity(qtl)" class="form-control" [(ngModel)]="mf6part2obj.quantity" name ="quantity" 
+                            #quantity="ngModel"   maxlength="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Type</label>
+                            <select class="form-control"  [(ngModel)]="mf6part2obj.grade" name="grade" #grade="ngModel"
+                                >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradelist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        
+                        </div>
+                    </div>
+                     
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #mf6part2="ngForm">
+            <app-card cardTitle="Price Payable at Sugar Factory" class="list-panel add-panel">
+                <div class="row"> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control"  [(ngModel)]="mf6part2obj.dateOfprice" name="dateOfprice" #dateOfprice="ngModel" placeholder="Enter Date"
+                                >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(Qtl)</label>
+                            <input type="number" class="form-control" [(ngModel)]="mf6part2obj.quantityqtl" 
+                            name="quantityqtl" #quantityqtl="ngModel" placeholder="Enter Quantity(Qtl)"  >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Price for Molasses Received on date(Per Qtl)</label>
+                            <input type="number" class="form-control" placeholder="Enter Price for Molasses Received on date(Per Qtl)" [(ngModel)]="mf6part2obj.pricebheavyrecdqtl" name="pricebheavyrecdqtl"
+                             #pricebheavyrecdqtl="ngModel"  >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Total Price of Molasses Received on date</label>
+                            <input type="number" class="form-control" placeholder="Enter Total Price of Molasses Received on date" [(ngModel)]="mf6part2obj.totalpricebheavyrecdqtl" 
+                            name="totalpricebheavyrecdqtl" #totalpricebheavyrecdqtl="ngModel" >
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-xl-12">
+        <form #mf6part2="ngForm">
+            <app-card cardTitle="Payment of Sugar Factory" class="list-panel add-panel">
+                
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Price Paid on Date</label>
+                            <input type="number" class="form-control" placeholder="Enter Price paid on date" [(ngModel)]="mf6part2obj.pricepaiedondate" name="pricepaiedondate" #pricepaiedondate="ngModel" placeholder="Enter Stock Name"  >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Price Paid up to Date</label>
+                            <input type="number" class="form-control" [(ngModel)]="mf6part2obj.pricepaieduptodate" name="pricepaieduptodate" 
+                            #pricepaieduptodate="ngModel" placeholder="Enter Price paid up to date" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks" [(ngModel)]="mf6part2obj.remarks" name="remarks" #remarks="ngModel"
+                             >
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-primary mr-2"(click)="submitform(mf6part2)" >Submit</button>
+        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/distillery/mf6-part2/list">Cancel</button> -->
+
+            <button type="button" class="btn btn-info ml-2 mb-2"(click)="previewData(mf6part2)"> Preview</button>
+            <button type="button" class="btn btn-warning ml-2 mb-2" (click)="submitform(mf6part2,1)">Save
+                as draft</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2"
+                (click)="submitform(mf6part2,2)">Submit</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2"
+                routerLink="/supplychainmanagement/distillery/mf6-part2/list">Cancel</button>
+    </div>
+</div>

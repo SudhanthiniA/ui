@@ -1,0 +1,46 @@
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
+export const environment = {
+  name: 'dev',
+  production: false,
+  authToken: '24d14de9-8237-3ff9-805a-c212281d6e90',
+  tokenURL: 'https://devapigateway.upexciseonline.co/token',
+  consumerKey: 'wm8ZarwKn2UZ8tZQpqDCarzXUnwa',
+  consumerSecret: 'v4AOZnFxUH492bG9TOHOnuqRZOAa',
+  tokenUsername: 'admin', 
+  tokenPassword: 'Adm9jsd32',
+  baseURLMaster: 'https://devapigateway.upexciseonline.co/master/v1.0.0/',
+  baseURL: 'https://devapigateway.upexciseonline.co/sugarmill/v1.0.0/',
+  jsonBaseURL: 'https://json.upexciseonline.co/',
+  //baseURLUser: 'https://devapigateway.upexciseonline.co/user-managment/v1.0.0/',
+  baseURLUser: 'https://devapigateway.upexciseonline.co/user-managment/v1.0.0/',
+
+  sugarmillBaseURL: 'https://devapigateway.upexciseonline.co/sugarmill/v1.0.0/',
+  // distilleryBaseURL: 'https://devapigateway.upexciseonline.co/distillery/v1.0.0/',
+  localDBUrl: 'http://localhost:3000/',
+  // licencemanagementURL: 'http://65.0.150.210:3505/licenseManagement/',
+  licencemanagementURL: 'https://devapigateway.upexciseonline.co/licensemanagementnew/v1.0.0/',
+  wholesaleURL: 'http://65.0.150.210:3509/wholesale/',
+  wholesaledevURL: 'https://devapigateway.upexciseonline.co/wholesale/1.0.0/',
+  warehouseURL: 'https://devapigateway.upexciseonline.co/warehouse/1.0.0/',
+  warehouseurl: 'https://devapigateway.upexciseonline.co/warehouse/1.0.0/',
+  distilleryBaseURL: 'http://65.0.150.210:3504/distillery/',
+  helpdeskURL: 'https://devapigateway.upexciseonline.co/helpdesk/v1.0.0/',
+  indentrequsetURL: 'http://65.0.150.210:3509/',
+  baseURLRetail: 'https://devapigateway.upexciseonline.co/retailpos/v1.0.0/',
+  workflowconfig:'https://devapigateway.upexciseonline.co/workflow/v1.0.0/',
+  // devesion in warehouse ()
+  devisionUrl:'http://65.0.150.210:3503/masterData/',
+  documentUrl: 'https://devapigateway.upexciseonline.co/docManagement/v1.0.0/',
+  documentIPUrl: 'http://65.0.150.210:3517/docManagement/',
+  licencemanagementIPURL: 'http://65.0.150.210:3505/licenseManagement/',
+  userManagerUrl: 'https://devapigateway.upexciseonline.co/user-managment/v1.0.0/',
+  worflowIPURL: 'http://65.0.150.210:3516/workflow/',
+  parentUnit: 'https://devapigateway.upexciseonline.co/parentUnit/1.0/',
+  // parentunit:"http://65.0.150.210:3519/parentunit/",
+  helpdesk:'http://65.0.150.210:3506/helpdesk/',
+  parentunit: "http://65.0.150.210:3519/parentunit/",
+  notificationURL: 'http://65.0.150.210:3515/notification/',
+};

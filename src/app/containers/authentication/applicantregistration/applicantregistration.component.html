@@ -1,0 +1,392 @@
+<div class="col-md-12 bg-primary mb-3 pl-0">
+    <img alt="" class="logo ng-star-inserted py-2 bg-white px-3" id="main-logo" src="assets/images/logo-d-dark.png">
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+            <h5 class="pt-2"><b>Cutomer Registration</b></h5>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-12 text-right">
+            <button type="button" class="btn btn-primary mb-3 ml-2" [routerLink]="['/']">Back to Cutomer Login</button>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <app-card cardTitle="Citizen Register" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <!-- <div class="form-group">
+                                        <label for="gender">Gender:</label>
+                                        <div>
+                                            <input id="male" type="radio" value="male" name="gender"
+                                                (change)="changeGender($event)">
+                                            <label for="male">Male</label>
+                                        </div>
+                                    
+                                        <div>
+                                            <input id="female" type="radio" value="female" name="gender"
+                                                (change)="changeGender($event)">
+                                            <label for="female">Female</label>
+                                        </div>
+                                    
+                                        <div *ngIf="f.gender.touched && f.gender.invalid" class="alert alert-danger">
+                                            <div *ngIf="f.gender.errors.required">Name is required.</div>
+                                        </div>
+                                    </div> -->
+                        <div class="form-group">
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="male" name="gender" value="male" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">Login Using with Nivesh
+                                        Mitra</label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" checked id="female" name="gender" value="female" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline2">Login Using without
+                                        Nivesh Mitra</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="regType == 'loginWithNiveshMitra'">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Nivesh Mitra Reference Number</label>
+                                <input type="number" class="form-control" placeholder="Reference Number" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="number" class="form-control" placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <label>We are</label>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadioInline1">Principal</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadioInline2">Subsidiary Importing unit</label>
+                                            </div>
+                                            </div>
+                                    </div> -->
+
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Importing Unit for</label>
+                                            <select class="form-control">
+                                                <option>Select</option>
+                                                <option>CIVIL</option>
+                                                <option>CSD</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+
+                        <div class="col-12 text-right mb-4">
+                            <button type="button" class="btn btn-primary mb-2 ml-2">Get Details</button>
+                        </div>
+                    </ng-container>
+
+
+                    <div class="col-12 text-right mb-4" style="display: none;">
+                        <div class="form-group">
+                            <button (click)="loadCusRegFormData()">Load-Data</button>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </div>
+        <form [formGroup]="cusRegForm" autocomplete="off">
+            <div class="col-md-12">
+                <app-card cardTitle="Details of Applicant" class="list-panel add-panel" formGroupName="applicantDetail">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Salutation</label>
+                                <select class="form-control" formControlName="salutation">
+                                    <option value="">Select</option>
+                                    <option value="1">Dr.</option>
+                                    <option value="2">Mr.</option>
+                                    <option value="3">Mrs.</option>
+                                    <option value="4">Miss.</option>
+                                </select>
+                                <app-show-errors eleName="Salutation" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('salutation')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName">
+                                <app-show-errors eleName="First Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('firstName')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Middle Name" formControlName="middleName">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName">
+                                <app-show-errors eleName="Last Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('lastName')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="Enter User Name" formControlName="userName" (blur)="onUsernameCheck($event.target.value)">
+                                <app-show-errors eleName="User Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('userName')">
+                                </app-show-errors>
+                                <div class="error-msg" *ngIf="isUserExisted">
+                                    <span> Username already existed </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="uploadpuc">Upload Photo of Applicant</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='applicant_photo_file' (change)="onFileChange($event, 'applicant_photo_file_source')" accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Mobile Number of Applicant</label>
+                                <input type="number" class="form-control" placeholder="Enter Mobile Number" formControlName="mobileNumber" (blur)="onMobileCheck($event.target.value)">
+                                <app-show-errors eleName="Mobile Number" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('mobileNumber')"></app-show-errors>
+                                <div class="error-msg" *ngIf="isMobileExisted">
+                                    <span> Mobile already existed </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Email Id of Applicant</label>
+                                <input type="text" class="form-control" placeholder="Enter Email Id" formControlName="email" (blur)="onEmailCheck($event.target.value)">
+                                <app-show-errors eleName="Email Id" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('email')"></app-show-errors>
+                                <div class="error-msg" *ngIf="isMailExisted">
+                                    <span> Email already existed </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Aadhaar Number</label>
+                                <input type="text" class="form-control" placeholder="Enter Aadhaar Number" formControlName="aadharNumber" (blur)="onAadharCheck($event.target.value)">
+                                <app-show-errors eleName="Aadhaar Number" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('aadharNumber')"></app-show-errors>
+                                <div class="error-msg" *ngIf="isAadharExisted">
+                                    <span> Aadhar number already existed </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="uploadpuc">Upload Aadhar</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='aadhar_file' (change)="onFileChange($event, 'aadhar_file_source')" accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select class="form-control" formControlName="genderCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of genderObj" value={{item.id}}>{{item.name}}
+                                </select>
+                                <app-show-errors eleName="Gender" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('genderCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" formControlName="dob" [min]="minDOBDate" [max]="maxDOBDate">
+                                <app-show-errors eleName="Date of Birth" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('dob')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>PAN Number</label>
+                                <input type="text" class="form-control" placeholder="Enter PAN Number" formControlName="panNumber" (blur)="onPanCheck($event.target.value)">
+                                <app-show-errors eleName="PAN Number" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('panNumber')"></app-show-errors>
+                                <div class="error-msg" *ngIf="isPanExisted">
+                                    <span> Pan number already existed </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="uploadpuc">Upload PAN</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" formControlName='pan_file' (change)="onFileChange($event, 'pan_file_source')" accept="image/png,image/jpeg">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Father/Husband Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Father/Husband Name" formControlName="fatherHusbandName">
+                                <app-show-errors eleName="Father/Husband Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('fatherHusbandName')"></app-show-errors>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+            <div class="col-md-12">
+                <app-card cardTitle="Address of Applicant" class="list-panel add-panel" formGroupName="applicantAddress">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" placeholder="INDIA" formControlName="country" readonly>
+                                <app-show-errors eleName="Country" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('country')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input type="number" class="form-control" placeholder="Enter Pincode" formControlName="pinCode">
+                                <app-show-errors eleName="Pincode" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('pinCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>State</label>
+                                <select class="form-control" formControlName="stateCode" (change)="onStateChange($event.target.value)">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                                </select>
+                                <app-show-errors eleName="State" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('stateCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>District</label>
+                                <select class="form-control" formControlName="districtCode" (change)="onDistrictChange($event.target.value)">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of districtListByState" value={{item.id}}>{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="District" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('districtCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Tehsil</label>
+                                <select class="form-control" formControlName="tahsilCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of talukList" value={{item.id}}>{{item.talukName}}</option>
+                                </select>
+                                <app-show-errors eleName="Tehsil" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('tahsilCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Urban/Rural</label>
+                                <select class="form-control" formControlName="localityType" (change)="onLocalityChange($event,cusRegForm)">
+                                    <option value="">Select</option>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Rural">Rural</option>
+                                </select>
+                                <app-show-errors eleName="Urban/Rural" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('localityType')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="localityType == 'urban'">
+                            <div class="form-group">
+                                <label>Municipal Area</label>
+                                <select class="form-control" formControlName="municipalAreaCode">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}
+                                    </option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="localityType == 'urban'">
+                            <div class="form-group">
+                                <label>Ward</label>
+                                <input type="text" class="form-control" placeholder="Enter Ward" formControlName="ward">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('ward')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="localityType == 'rural'">
+                            <div class="form-group">
+                                <label>Block</label>
+                                <input type="text" class="form-control" placeholder="Enter Block" formControlName="block">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="localityType == 'rural'">
+                            <div class="form-group">
+                                <label>Village</label>
+                                <input type="text" class="form-control" placeholder="Enter Village" formControlName="village">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('village')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Police Station</label>
+                                <select class="form-control" formControlName="policeStationCode">
+                                    <option value="">Select</option>
+                                    <option>gomtinagar</option>
+                                </select>
+                                <app-show-errors eleName="Police Station" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('policeStationCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Locality</label>
+                                <input type="text" class="form-control" placeholder="Enter Locality" formControlName="locality">
+                                <app-show-errors eleName="Locality" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('locality')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Street</label>
+                                <input type="text" class="form-control" placeholder="Enter Street" formControlName="street">
+                                <app-show-errors eleName="Street" [frmSub]="formSubmitted" [control]="getApplAddrFormCntr('street')"></app-show-errors>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-primary mb-2 ml-2" (click)="onCusRegister()">Submit</button>
+                <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="row bg-light">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-black mb-3 pt-3">
+            Copyright &copy; 2020 Uttar Pradesh Excise Department. India | All Rights Reserved.</div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-black text-right mb-3">
+            Powered By <img src="assets/images/poweredby-icon.png" alt="OASYS Cybernetics Pvt Ltd"><br />
+        </div>
+    </div>
+</div>

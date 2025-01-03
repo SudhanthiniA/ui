@@ -1,0 +1,318 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{addEdit | translate}} {{'workflowconfig.allscreen.workflowdtls' | translate}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'workflowconfig.allscreen.master' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'workflowconfig.allscreen.workflowconfigration' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{addEdit | translate}} {{'workflowconfig.allscreen.workflowdtls' | translate}}</a>
+    </li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="productForm">
+
+            <app-card cardTitle="{{'workflowconfig.allscreen.workflowdtls' | translate}}" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.modulename' | translate}}<span class="error-msg">*</span></label>
+                            <select class="form-control" formControlName="module"
+                                (change)="onChangeModule($event.target.value)"
+                                [attr.disabled]='moduleNameCode ? true:null'>
+                                <option value="">{{'workflowconfig.common.select' | translate}}</option>
+                                <option *ngFor="let modu of moduleArr" value={{modu.code}}>
+                                    {{modu.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && (f.module.errors )" class="error-msg">
+                                <div *ngIf="f.module?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'workflowconfig.allscreen.modulename' | translate}} {{'workflowconfig.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.submodulename' | translate}}<span class="error-msg">*</span></label>
+                            <select class="form-control" formControlName="submodule" (change)="submodbas($event);"
+                                [attr.disabled]='moduleNameCode ? true:null'>
+                                <option value="">{{'workflowconfig.common.select' | translate}}</option>
+                                <option *ngFor="let subModu of subModules" value={{subModu.screenName}}>
+                                    {{subModu.screenName}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && (f.submodule.errors )" class="error-msg">
+                                <div *ngIf="f.submodule?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'workflowconfig.allscreen.submodulename' | translate}} {{'workflowconfig.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.workflowname' | translate}} <span class="error-msg">*</span></label>
+                            <input type="text" class="form-control" formControlName="liquortype" disabled>
+                            <div *ngIf="formSubmitted && (f.liquortype.errors )" class="error-msg">
+                                <div *ngIf="f.liquortype?.errors?.required">
+                                    <i class="fa fa-times"></i> {{'workflowconfig.allscreen.workflowname' | translate}} {{'workflowconfig.common.isrequired' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.common.status' | translate}} <span class="error-msg">*</span></label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" formControlName="status">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.active' | translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1" formControlName="status">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.inactive' | translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.description' | translate}} <span class="error-msg">*</span></label>
+                            <textarea name="" id="" cols="30" rows="2" class="form-control"
+                                formControlName="discription"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="margin-top: 50px;">
+                        <div class="form-group">
+                            <input type="checkbox" class="mt-6" formControlName="isSendBackSeq"
+                                style="width:20px ;height: 20px;">
+                            <label for="isSendBackSeq" style="font-size: 18px;">&nbsp;&nbsp; {{'workflowconfig.allscreen.issendback' | translate}} </label>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Fee Details" blockClass="table-border-style" class="list-panel"
+                *ngIf='siteVisitSectionFlag'>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.processfee' | translate}} <span class="error-msg">*</span></label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" formControlName="isProcessingFeeRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.yes' | translate}} </label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1"
+                                    formControlName="isProcessingFeeRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}} </label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.licensefee' | translate}} <span class="error-msg">*</span></label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" formControlName="isLicenseFeeRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.yes' | translate}} </label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1" formControlName="isLicenseFeeRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}} </label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Site Visit Details" blockClass="table-border-style" class="list-panel"
+                *ngIf='siteVisitSectionFlag'>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.sitevisitreq' | translate}} ? <span class="error-msg">*</span></label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" formControlName="isSiteVisitNeeded"
+                                    (change)="onChangeSiteVisit($event.target.value)">
+                                <label>&nbsp;&nbsp;  {{'workflowconfig.common.yes' | translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1" formControlName="isSiteVisitNeeded"
+                                    (change)="onChangeSiteVisit($event.target.value)">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf='siteVisitFlag'>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.beforeappapprooval' | translate}}</label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1"
+                                    formControlName="isSiteVisitBeforeApplicationApproval">
+                                <label>&nbsp;&nbsp;  {{'workflowconfig.common.yes' | translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1"
+                                    formControlName="isSiteVisitBeforeApplicationApproval">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.customersitevisitreq' | translate}}</label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1"
+                                    formControlName="isCustomerSiteInformationRequired">
+                                <label>&nbsp;&nbsp;  {{'workflowconfig.common.yes' | translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1"
+                                    formControlName="isCustomerSiteInformationRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.deptsitevisitreq' | translate}}</label>
+                            <div class="row">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" formControlName="isDeptSiteVisitRequired">
+                                <label>&nbsp;&nbsp;  {{'workflowconfig.common.yes' | translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1"
+                                    formControlName="isDeptSiteVisitRequired">
+                                <label>&nbsp;&nbsp; {{'workflowconfig.common.no' | translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'workflowconfig.allscreen.sitevisitofficerassigner' | translate}}</label>
+                            <select class="form-control" formControlName="siteVisitAssignerDesignationCode" (change)='onSiteVisitAssignerChange($event.target.value)'>
+                                <option value="">{{'workflowconfig.common.selectrole' | translate}}</option>
+                                <option *ngFor="let design of upDesignationData" value="{{design.code}}">
+                                    {{design.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="{{'workflowconfig.allscreen.addlevels' | translate}}" blockClass="table-border-style" class="list-panel">
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" (click)=addProduct(productForm)>
+                                {{'workflowconfig.allscreen.addlevel' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'workflowconfig.allscreen.level' | translate}} </th>
+                                    <th>{{'workflowconfig.allscreen.assignedto' | translate}}  <span class="error-msg">*</span></th>
+                                    <th>{{'workflowconfig.allscreen.isreject' | translate}} </th>
+                                    <th>{{'workflowconfig.allscreen.sendback' | translate}} </th>
+                                    <th>{{'workflowconfig.allscreen.isactive' | translate}} </th>
+                                    <th>{{'workflowconfig.allscreen.isfinished' | translate}} </th>
+                                    <th>{{'workflowconfig.allscreen.isdigitalsigned' | translate}} </th>
+                                    <th *ngIf='siteVisitSectionFlag'>{{'workflowconfig.allscreen.fwdwithoutapproval' | translate}}</th>
+                                    <th *ngIf='siteVisitSectionFlag'>{{'workflowconfig.allscreen.sitevisitofficer' | translate}}</th>
+                                    <th>{{'workflowconfig.common.action' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr formArrayName="rows"
+                                    *ngFor="let data of productForm.get('rows')['controls']; let i=index;">
+                                    <td [formGroupName]="i">{{i+1}}</td>
+                                    <td [formGroupName]="i">
+                                        <input type="text" class="form-control inp-width-150" value="Level{{i+1}}"
+                                            formControlName="productName" disabled>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div *ngIf='i==0'>
+                                            <select class="form-control inp-width-150" formControlName="assignedto"
+                                                required (change)='checkduplicate($event.target.value, data, i)'>
+                                                <option value="">{{'workflowconfig.common.selectrole' | translate}}</option>
+                                                <option *ngFor="let design of designationData" value="{{design.name}}">
+                                                    {{design.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf='i!=0'>
+                                            <select class="form-control inp-width-150" formControlName="assignedto"
+                                                required (change)='checkduplicate($event.target.value, data, i)'>
+                                                <option value="" disabled>{{'workflowconfig.common.selectrole' | translate}}</option>
+                                                <option *ngFor="let design of upDesignationData"
+                                                    value="{{design.name}}">
+                                                    {{design.name}}</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="true"
+                                                formControlName="isreject" [attr.disabled]='i==0 ? true:null'>
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="true"
+                                                formControlName="is_sendback" [attr.disabled]='i==0 ? true:null'>
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" formControlName="isactive"
+                                                [attr.disabled]="(i==0 || i==(this.getlength() - 1)) ? true:null">
+                                            <!-- [checked]="(i==0 || i==(this.getlength() - 1)) ? true:null" -->
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" disabled
+                                                formControlName="isfinished">
+                                            <!-- [checked]="i==(this.getlength() - 1) ? true:null" -->
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                formControlName="isDigitalSignature"
+                                                (click)="checkdisable(i, 'isDigitalSignature')"
+                                                [attr.disabled]='i==0 ? true:null'>
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i" *ngIf='siteVisitSectionFlag'>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                formControlName="isForwardWithOutApproval"
+                                                [attr.disabled]="(i==0 || i==(this.getlength() - 1)) ? true:null">
+                                        </div>
+                                    </td>
+                                    <td [formGroupName]="i" *ngIf='siteVisitSectionFlag'>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                formControlName="isSiteVisitOfficer"
+                                                (click)="checkdisable(i, 'isSiteVisitOfficer')"
+                                                [attr.disabled]='i==0 ? true:null'>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div *ngIf='i>1'>
+                                            <button class="btn btn-danger" (click)="deleteRow(i,data)"
+                                                *ngIf="data.value.id == 0"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button class="btn btn-primary ml-2 mb-2" (click)="saveWorkFlow()">
+                {{'workflowconfig.common.submit' | translate}}</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/master/workflowconfig/list">
+                {{'workflowconfig.common.cancel' | translate}}</button>
+        </div>
+    </div>
+</div>

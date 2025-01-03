@@ -1,0 +1,156 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Mapping - Master Warehouse to BWH, Distillery
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/masterwarehouse/mwhmapping/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Sub-warehouse mapping
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master Warhouse Mapping</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <select class="form-control">
+                            <option>BWFL2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Unit (Dis/Brew/BW) Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Unit Name" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Master Warhouse Mapping List" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>License Type</th>
+                            <th>Application Date</th>
+                            <th>Application No</th>
+                            <th>License No</th>
+                            <th>Unit (Dis/Brew/BW) Name</th>
+                            <th>License Status</th>
+                            <th>Address - District</th>
+                            <!-- <th>Map Entity</th> -->
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">FL1</td>
+                            <td>16-09-2021</td>
+                            <td>001</td>
+                            <td>L001</td>
+                            <td class="text-left">Daurala Distillery</td>
+                            <td class="text-center"> <span class="badge badge-light-success">Valid</span></td>
+                            <td class="text-left">Lucknow</td>
+                            <!-- <td class="text-left">BWFL2</td> -->
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Mapped</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/masterwarehouse/mwhmapping/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" 
+                                    routerLink="/masterwarehouse/mwhmapping/add" type="button">
+                                       <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="text-left">BWFL2</td>
+                            <td>16-09-2021</td>
+                            <td>001</td>
+                            <td>L001</td>
+                            <td class="text-left">DQ Distillery</td>
+                            <td class="text-center"> <span class="badge badge-light-success">Valid</span></td>
+                            <td class="text-left">Lucknow</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-warning">Pending</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/masterwarehouse/mwhmapping/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" 
+                                    routerLink="/masterwarehouse/mwhmapping/add" type="button">
+                                       <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-left">FL1A</td>
+                            <td>16-09-2021</td>
+                            <td>001</td>
+                            <td>L001</td>
+                            <td class="text-left">DQ Distillery</td>
+                            <td class="text-center"> <span class="badge badge-light-danger">Invalid</span></td>
+                            <td class="text-left">Lucknow</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-danger">Rejected</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/masterwarehouse/mwhmapping/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" 
+                                    routerLink="/masterwarehouse/mwhmapping/add" type="button">
+                                       <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

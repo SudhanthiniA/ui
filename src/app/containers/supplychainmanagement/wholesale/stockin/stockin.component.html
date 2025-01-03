@@ -1,0 +1,142 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock In
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/wholesale/stockin/add">
+    <i class="feather icon-plus mr-2"></i>
+    Add Stock In
+</button>
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Stock In</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Pass No</label>
+                        <input type="text" required class="form-control" 
+                            placeholder="Enter Pass No"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text" required class="form-control" placeholder="Enter Indent No"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Created Date</label>
+                         <input type="date" id="entitytype" required class="form-control" />
+                     </div>
+                 </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" id="brand" required class="form-control" 
+                            placeholder="Enter Brand" />
+
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Breakage Type</label>
+                        <input type="text" id="breakagetype" required class="form-control" 
+                            placeholder="Enter Breakage Type" />
+
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Details of Stock In" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive">
+                 <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Pass No</th>
+                             <th>Indent No</th>
+                             <th>Created Date</th>
+                             <th>Brand</th>
+                             <th>Bottles</th>
+                             <th>Breakage Type</th>
+                             <th>Breakage</th>
+                             <th>Total Receive Bottles</th>
+                             <th>Status</th>
+                             <th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let data of stockinlist; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.PassNo}}</td>
+                            <td>{{data.IndentNo}}</td>
+                            <td>{{data.CreatedDate}}</td>
+                            <td class="text-left">{{data.Brand}}</td>
+                            <td class="text-left">{{data.Bottles}}</td>
+                            <td class="text-left">{{data.BreakageType}}</td>
+                            <td class="text-left">{{data.Breakage}}</td>
+                            <td class="text-left">{{data.TotalRecieveBottles}}</td>
+                             <td class="text-center">
+                                <span class="badge badge-light-success" *ngIf="!data.status">Approved</span>
+                                <span class="badge badge-light-success" *ngIf="data.status">Draft</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/wholesale/stockin/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                       <i class="feather icon-edit-2"></i></button>
+                                
+                                
+                            </td>
+                        </tr>
+                         
+                     </tbody>
+                 </table>
+             </div>
+             <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 

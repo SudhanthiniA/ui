@@ -1,0 +1,73 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.transaction.detail' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.transaction.detail' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.common.transactionid' | translate }}</p>
+            <h5 class="m-0">6234723922</h5>
+        </app-card>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.transaction.licenseno' | translate }}</p>
+            <h5 class="m-0">UPE213442</h5>
+        </app-card>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.common.dateofpurchase' | translate }}</p>
+            <h5 class="m-0">12 Jan 2021 14:34:42</h5>
+        </app-card>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.transaction.paymentstatus' | translate }}</p>
+            <h6 class="m-0 text-success">Success</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.transaction.transactiondetails' | translate }}" class="list-panel add-panel">
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'retail.stockavailability.productname' | translate }}</th>
+                            <th>{{ 'retail.common.size' | translate }}</th>
+                            <th>{{ 'retail.common.quantity' | translate }}</th>
+                            <th>{{ 'retail.common.price' | translate }}</th>
+                            <th>{{ 'retail.common.amount' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let transaction of transactionDetails">
+                        <tr>
+                            <td>{{transaction.id}}</td>
+                            <td>{{transaction.productName}}</td>
+                            <td>{{transaction.size}}</td>
+                            <td>{{transaction.quantity}}</td>
+                            <td>{{transaction.price}}</td>
+                            <td>{{transaction.amount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-4">
+        <p class="mt-2 mb-0">{{ 'retail.transaction.totalpaid' | translate }}</p>
+        <h4 class="mb-0">9,600.00</h4>
+    </div>
+    <div class="col-12 text-right mt-2 mb-4">
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/retail/transactionlist">{{ 'retail.common.back' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Receiver
+    <button type="submit" class="btn btn-success pull-right mr-2 custom_add_button"
+        routerLink="/supplychainmanagement/distillery/receiver/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Receiver
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Receiver</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                        <label>Status</label>
+                        <select class="form-control" name="status" #status="ngModel"
+                        [(ngModel)]="reciverobj['status']">
+                            <option>Select</option>
+                            <option value="INITIATED">INITIATED</option>
+                            <option value="SUBMITTED">SUBMITTED</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12  text-right mt-4">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchConData()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="cleardata()">Clear</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="List of Receiver Details" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+                <!-- <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table> -->
+            </div>
+        </app-card>
+    </div>
+</div>

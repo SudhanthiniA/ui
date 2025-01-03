@@ -1,0 +1,549 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Transport Pass 
+    <button class="btn btn-success custom_add_button pull-right"  type="submit">
+    <i class="feather icon-plus mr-2"></i> Add Transport Pass</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bond Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Transport Pass </a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+</ul>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+            <form [formGroup]="transitForm" autocomplete="off">
+                <!--  -->
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.transportpassgen.issuedate' | translate}}</label>
+                            <input type="date" class="form-control" formControlName="issueDate" />
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass No</label>
+                            <input type="text" class="form-control" placeholder="Enter Transport Pass No"
+                                />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent No</label>
+                            <input type="text" class="form-control" placeholder="Enter Indent No"
+                                />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status
+                            </label>
+                            <select id="status" class="form-control"  >
+                          
+                                <option value="">Select</option>
+                                <option value="INPROGRESS">INPROGRESS</option>
+                                <option value="COMPLETED">COMPLETED</option>
+                                <option value="CANCELLED">CANCELLED</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status
+                            </label>
+                            <select id="status" class="form-control"  name='transportPassStatus' #transportPassStatus="ngModel"   [(ngModel)]="tpGeneration['transportPassStatus']" 
+                            (change)="changePrimesType(tpGeneration['transportPassStatus'])"
+                           >
+                                <option value="">Select</option>
+                                <option value="INPROGRESS">INPROGRESS</option>
+                                <option value="COMPLETED">COMPLETED</option>
+                                <option value="CANCELLED">CANCELLED</option>
+                               
+                            </select>
+                        </div>
+                    </div> -->
+                     <!-- <option value="PENDING">PENDING REQUEST</option>
+                                <option value="APPROVED">APPROVED REQUEST</option>
+                                <option value="CANCELLED">CANCELLED</option> (change)="changestatus($event.target.value)"    formControlName="transportPassStatus"-->
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="search()">{{'bondWarehouse.common.search'| translate}}</button>
+                        <button type="submit" class="btn btn-secondary" (click)="cancel()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Transport Pass List" class="list-panel">
+            <ngb-tabset #tabSet="ngbTabset" type="pills" class="mb-2" (tabChange)="tabClick($event)">
+                <ngb-tab title="Pending Request" id="INPROGRESS">
+                    <!-- Pending Request -->
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                            <div class="col-12 mb-0">
+                                <!-- <div class="table-responsive">
+                                    <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys"
+                                        [dataSource]="dataSource" [totalCount]="totalCount" [pageSize]="pageSize"
+                                        (paginationEvent)="handlePagination1($event)" (editAction)="onEdit($event)"
+                                        (viewAction)="onView($event)">
+                                    </app-mat-normal-table>
+                                    
+                                </div> -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+												<th>Application Date</th>
+                                                <th>Transport Pass No</th>
+                                                <th>Unit Name</th>
+                                                
+                                                <th>Total No. of Monocartons Requested</th>
+                                                <th>No. of Bottles Requested</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>20-Apr-2021</td>
+                                                <td>AP1122</td>
+                                                <td>BWFL-FL36</td>
+                                                <!-- <td>84-2020-21-FL36-3764</td> -->
+                                                <td class="text-left">100</td>
+                                                <td class="text-left">1000</td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-warning">Pending</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        routerLink="/supplychainmanagement/wholesale/transitgatepass/cancelmodify">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                        <i class="feather icon-edit-2"></i></button>
+                                                </td>
+                                            </tr>
+                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                              <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle
+                                  type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                  <a class="dropdown-item" href="javascript:">Excel</a>
+                                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="COMPLETED">
+                    <ng-template ngbTabTitle>Approved Request</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                            <div class="col-12 mb-0">
+                                <!-- <div class="table-responsive">
+                                    <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys1"
+                                        [dataSource]="dataSource1" [totalCount]="totalCount1" [pageSize]="pageSize"
+                                        (paginationEvent)="handlePagination2($event)" (editAction)="onEdit($event)"
+                                        (viewAction)="onView($event)">
+                                    </app-mat-normal-table>
+                                    
+                                </div> -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+												<th>Application Date</th>
+                                                <th>Transport Pass No</th>
+                                                <th>Unit Name</th>
+                                                
+                                                <th>Total No. of Monocartons Requested</th>
+                                                <th>No. of Bottles Requested</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>20-Apr-2021</td>
+                                                <td>AP1122</td>
+                                                <td>BWFL-FL36</td>
+                                                <!-- <td>84-2020-21-FL36-3764</td> -->
+                                                <td class="text-left">100</td>
+                                                <td class="text-left">1000</td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-success">Approved</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        routerLink="/supplychainmanagement/wholesale/transitgatepass/cancelmodify">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                        <i class="feather icon-edit-2"></i></button>
+                                                </td>
+                                            </tr>
+                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                              <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle
+                                  type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                  <a class="dropdown-item" href="javascript:">Excel</a>
+                                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="CANCELLED">
+                    <ng-template ngbTabTitle>Cancelled/Modified</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="row mt-2">
+                            <div class="col-12 mb-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+												<th>Application Date</th>
+                                                <!-- <th>Application No</th> -->
+                                                <!-- <th>Transport Pass Type</th> -->
+                                                <th>Transport Pass No</th>
+                                                <th>Request Type</th>
+                                                <th>Unit Name</th>
+                        <th>                        Total No. of Bottles Requested</th>
+<th>No. of Bottles Requested</th>
+                                                <!-- <th>Transport Pass  No</th>
+                                                
+                                                <th>Premises Type</th>
+                                                <th>Request Type</th> -->
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>20-Apr-2021</td>
+                                                <!-- <td>AP1122</td> -->
+                                                <!-- <td>BWFL-FL36</td> -->
+                                                <td>84-2020-21-FL36-3764</td>
+                                                <td class="text-left">Within Premises</td>
+                                                <td class="text-left">BF Shop</td>
+                                                <td class="text-left">100</td>
+                                                <td class="text-left">1000</td>
+                                                <!-- <td class="text-left">Cancellation</td> -->
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-danger">Cancelled</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        routerLink="/supplychainmanagement/wholesale/transitgatepass/cancelmodify">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                        <i class="feather icon-edit-2"></i></button>
+                                                </td>
+                                            </tr>
+                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                              <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle
+                                  type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                  <a class="dropdown-item" href="javascript:">Excel</a>
+                                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </app-card>
+    </div>
+</div>
+<!-- <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Pass No</label>
+                        <input type="text" required class="form-control" 
+                            placeholder="Enter Pass No"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text" required class="form-control" placeholder="Enter Indent No"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Created Date</label>
+                         <input type="date" id="entitytype" required class="form-control" />
+                     </div>
+                 </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" id="brand" required class="form-control" 
+                            placeholder="Enter Brand" />
+
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Breakage Type</label>
+                        <input type="text" id="breakagetype" required class="form-control" 
+                            placeholder="Enter Breakage Type" />
+
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Transport Pass Generation List" class="list-panel">
+             <div class="table-responsive">
+                 <table class="table table-bordered text-center" >
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Indent No.</th>
+                             <th>License No.</th>
+                             <th>Issue Date</th>
+                             <th>Gate Pass No.</th>
+                             <th>Total Cases</th>
+                             <th>Total Bottles</th>
+                             <th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>IN5656565</td>
+                            <td>LN2564365</td>
+                            <td>13/12/2021</td>
+                            <td>GP4879454</td>
+                            <td>500</td>
+                            <td>24,000</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/wholesale/transpassgenerationnew/view">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                       <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                         
+                     </tbody>
+                 </table>
+             </div>
+             <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+         </app-card>
+     </div>
+ </div>
+  -->
+
+
+
+  <!-- <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Application ID</th>
+                    <th>Transport Pass Type</th>
+                    <th>Transport Pass  Number</th>
+                    <th>Application Date</th>
+                    <th>Premises Type</th>
+                    <th>Request Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>AP1122</td>
+                    <td>BWFL-FL36</td>
+                    <td>84-2020-21-FL36-3764</td>
+                    <td>20-Apr-2021</td>
+                    <td>Within Premises</td>
+                    <td>Cancellation</td>
+                    <td class="text-center">
+                        <span class="badge badge-light-success">Cancelled</span>
+                    </td>
+                    <td class="table-action-column text-center">
+                        <button class="btn btn-icon btn-primary" type="button"
+                        routerLink="/supplychainmanagement/warehouse/transportpass/transpassgenerationnew/cancelmodify">
+                            <i class="feather icon-eye"></i></button>
+                        <button class="btn btn-icon btn-secondary ml-2" type="button">
+                            <i class="feather icon-edit-2"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table> -->
+
+
+        <!-- <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Issue Date</th>
+                    <th>Transport Date</th>
+                    <th>Transport Pass No</th>
+                    <th>Unit Name</th>
+                    <th>No of Cases Requested</th>
+                    <th>No of Bottles Requested</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>20-Apr-2021</td>
+                    <td>20-Apr-2021</td>
+                    <td>GP4879454</td>
+                    <td class="text-left">Daurla Distillery</td>
+                    <td class="text-left">50</td>
+                    <td class="text-left">500</td>
+                    <td class="text-center">
+                        <span class="badge badge-light-success">Approved</span>
+                    </td>
+                    <td class="table-action-column text-center">
+                        <button class="btn btn-icon btn-primary" type="button"
+                        routerLink="/supplychainmanagement/warehouse/transportpass/transpassgenerationnew/view">
+                            <i class="feather icon-eye"></i></button>
+                        <button class="btn btn-icon btn-secondary ml-2" type="button">
+                            <i class="feather icon-edit-2"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table> -->
+
+
+
+        <!-- <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Issue Date</th>
+                            <th>Transport Date</th>
+                            <th>Transport Pass No</th>
+                            <th>Unit Name</th>
+                            <th>No of Cases Requested</th>
+                            <th>No of Bottles Requested</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>20-Apr-2021</td>
+                            <td>20-Apr-2021</td>
+                            <td>GP4879454</td>
+                            <td class="text-left">Daurla Distillery</td>
+                            <td class="text-left">50</td>
+                            <td class="text-left">500</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Pending</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/warehouse/transportpass/transpassgenerationnew/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table> -->

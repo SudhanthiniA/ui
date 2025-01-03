@@ -1,0 +1,193 @@
+<h5 class="m-b-10 ng-star-inserted">
+    New Shop
+     <button type="submit" class="btn btn-success pull-right custom_add_button">
+     <i class="feather icon-plus mr-2"></i>
+     Add New Shops
+ </button>
+ </h5>
+ 
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">License Management</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">New Shop</a></li>
+     <li class="breadcrumb-item active">List</li>
+ </ul>
+ <div class="row">
+    <div class="col-xl-12">
+        <form #treasuryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="New Shop Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date </label>
+                            <input type="date" class="form-control" disabled placeholder="Enter District">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Financial Year</label>
+                            <select class="form-control">
+                               <option>2022-2023</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Status </label>
+                            <select class="form-control">
+                               <option>2022-2023</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc" class="mandatory">Upload Option</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" data-toggle="modal" (click)="breakageDetails()">Submit </button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </div>
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>District</label>
+                         <input type="text" class="form-control" disabled placeholder="Agra">
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>License Type</label>
+                         <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Shop ID</label>
+                         <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>&nbsp;</label>
+                         <div>
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+ 
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="New Shop List" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive mb-2">
+                 <table class="table table-bordered mb-0">
+                     <thead>
+                         <tr>
+                            <th>Select All<br>
+                                <input type="checkbox" class="checkbox">
+                            </th>
+                             <th>#</th>
+                             <th>District</th>
+                             <th>License Type</th>
+                             <th>Shop ID</th>
+                             <th>User Name</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                            <td class="text-center"><input type="checkbox" class="checkbox"></td>
+                             <td>1
+                             </td>
+ 
+                             <td>Lucknow</td>
+                             <td>FL2</td>
+                             <td class="text-center">SH1122</td>
+                             <td>Admin</td>
+                         </tr>
+                         
+                         <tr>
+                            <td class="text-center"><input type="checkbox" class="checkbox"></td>
+                             <td>2
+                             </td>
+ 
+                             <td>Lucknow</td>
+                             <td>FL2</td>
+                             <td class="text-center">SH1120</td>                             <td>Admin</td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+             <div class="row">
+                <div class="col-4">
+                    <div class="d-flex">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                  <button class="btn btn-icon btn-primary ml-2" type="button" >
+                    Renewal</button>
+                </div>
+            </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>  
+         </app-card>
+     </div>
+ </div>
+ 
+<app-ui-modal #moreBreakage dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Shops Uploaded Details</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            ><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                <label class="w-100 view-label">Total No. of Shops Uploaded<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+               200
+            </div>
+            
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+               <button type="submit" class="btn btn-secondary ml-2">Back</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>

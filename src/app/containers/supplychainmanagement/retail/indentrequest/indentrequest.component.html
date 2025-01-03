@@ -1,0 +1,55 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.indentrequest.number' | translate }}</label>
+                        <input type="text" class="form-control" name="indentNo" #indentNo="ngModel"
+                            [(ngModel)]="indentReqObj.indentNumber"
+                            placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.indentrequest.number' | translate }}" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.indentrequest.wholesalename' | translate }}</label>
+                        <input type="text" class="form-control" name="wholesaleName" #wholesaleName="ngModel"
+                            [(ngModel)]="indentReqObj.wholesaleName"
+                            placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.indentrequest.wholesalename' | translate }}" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.indentrequest.requestdate' | translate }}</label>
+                        <input type="date" class="form-control" name="indentDate" #indentDate="ngModel"
+                            [(ngModel)]="indentReqObj.indentDate"
+                            placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.indentrequest.requestdate' | translate }}" />
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchIndent()">
+                        {{ 'retail.common.search' | translate }}
+                    </button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetForm()">
+                        {{ 'retail.common.cancel' | translate }}
+                    </button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.indentrequest.returnlist' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

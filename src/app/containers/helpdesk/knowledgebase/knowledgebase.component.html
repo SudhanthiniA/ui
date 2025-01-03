@@ -1,0 +1,199 @@
+<h5 class="m-b-10 ng-star-inserted">{{'helpdesk.knowledgebase.knowledgebase'|translate}}
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/helpdesk/knowledgebase/add" type="submit">
+        <i class="feather icon-plus mr-2"></i>{{'helpdesk.knowledgebase.addknowledgebase'|translate}}</button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.knowledgebase'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.list'|translate}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-12">
+        <app-card cardTitle="{{'helpdesk.knowledgebase.knowledgebasestatus'|translate}}" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.knowledgebase.date'|translate}}</label>
+                        <input type="date" required class="form-control">
+                    </div>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>{{'helpdesk.knowledgebase.kbcreated'|translate}}</span>
+                                <h3 class="mt-2">1000</h3>
+                                <i class="fas fa-thumbs-up"></i>
+                                <!-- <small>WWWW</small>    -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card"
+                        routerLink="/supplychainmanagement/sugarmills/stockin/list">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>{{'helpdesk.knowledgebase.kbpending'|translate}}</span>
+                                <h3 class="mt-2">800</h3>
+                                <i class="fas fa-hourglass-half"></i>
+                                <!-- <small>WWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card "
+                        routerLink="/supplychainmanagement/sugarmills/stockavailability">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>{{'helpdesk.knowledgebase.kbactive'|translate}}</span>
+                                <h3 class="mt-2">100</h3>
+                                <i class="fas fa-window-close"></i>
+                                <!-- <small>WWWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card bg-danger"
+                        routerLink="/supplychainmanagement/sugarmills/stockout/list">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>{{'helpdesk.knowledgebase.kbinactive'|translate}}</span>
+                                <h3 class="mt-2">100</h3>
+                                <i class="fas fa-thumbs-down text-danger"></i>
+                                <!-- <small>WWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'helpdesk.common.search'|translate}}" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.knowledgebase.issuetype'|translate}}</label>
+                        <input type="text" appInputRestriction class="form-control" placeholder="{{'helpdesk.knowledgebase.ennterissuetype'|translate}}">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Sub Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Issue Details</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter the Issue Details">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'helpdesk.common.status'|translate}}</label>
+                        <select class="form-control">
+                            <option>{{'helpdesk.common.select'|translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 col-12 col-12 mt-4 text-md-left text-lg-left text-right">
+                    <div class="form-group float-right">
+                        <button class="btn btn-primary m-r-5">{{'helpdesk.common.search'|translate}}</button>
+                        <button class="btn btn-secondary">{{'helpdesk.common.clear'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'helpdesk.knowledgebase.listofknowledgebasedetails'|translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive text-center">
+                <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>{{'helpdesk.knowledgebase.sno'|translate}}</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
+                            <th>Priority</th>
+                            <th>SLA</th>
+                            <th>{{'helpdesk.knowledgebase.issuedetails'|translate}}</th>
+                            <th>{{'helpdesk.knowledgebase.knowledgesolutioncount'|translate}}</th>
+                            <th>Remarks</th>
+                            <th>{{'helpdesk.common.status'|translate}}</th>
+                            <th>{{'helpdesk.common.action'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list?.length != 0">
+                        <tr *ngFor="let data of list;let i=index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                           <td class="text-left">Incident</td>
+                           <td class="text-left">network2</td>
+                           <td class="text-left">Priority
+                           </td>
+                           <td class="text-left">SLA</td>
+                            <td class="text-left">{{data.issueName}}</td>
+                            <td class="text-right">{{data.answercount}}</td>
+                            <td class="text-left">-</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary " type="button"
+                                    routerLink="">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-primary" type="button"
+                                    (click)="navigateView(data.issueid,'view')">
+                                    <i class="feather icon-eye"></i></button> -->
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    (click)="navigateView(data.issueid,'edit')">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+<div class="row">
+    <div class="col-xl-4 mt-3">
+        <div ngbDropdown>
+            <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+            <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">CSV</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+        </app-card>
+    </div>
+</div>

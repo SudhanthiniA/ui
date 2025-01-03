@@ -1,0 +1,336 @@
+<h5 class="m-b-10 ng-star-inserted">Add Officer User</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   
+    <li class="breadcrumb-item"><a href="javascript:">User Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Officer User</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Add User" class="list-panel add-panel">
+            <form #designationForm="ngForm" autocomplete="off" class="w-100">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">First Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter First Name">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Middle Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter Middle Name">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Last Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter Last Name">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">User Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter User Name">
+
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Email</label>
+                            <input type="text" class="form-control" required placeholder="Enter Email">
+
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 input-icon-inside">
+                        <label class="mandatory">Email</label>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter Email ID" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                        <button class="btn btn-primary btn-icon bg-primary text-white" type="button" data-toggle="modal" (click)="rejectConfirmation()"><i class="fas fa-check"></i></button>
+                        </div>
+                        </div>
+                        </div>
+                       
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 input-icon-inside">
+                        <label class="mandatory">Mobile Number</label>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter Mobile Number" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                        <button class="btn btn-primary btn-icon bg-primary text-white" type="button" data-toggle="modal" (click)="rejectConfirmation()"><i class="fas fa-check"></i></button>
+                        </div>
+                        </div>
+                        </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Employee ID</label>
+                            <input type="number" class="form-control" disabled value="EM11">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Employment Status</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">ID Card Type</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">ID No</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group mb-0 mt-4">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="sameAddress"
+                                    (change)="onCheckboxChange($event.target.checked)">
+                                    Is Department Asset Applicable?
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Device ID</label>
+                            <input type="text" class="form-control"  value="Search Device ID">
+
+                        </div>
+                    </div>
+                    </div>
+                    </form>
+        </app-card>
+        <app-card cardTitle="Work Location" class="list-panel add-panel">
+            <form #designationForm="ngForm" autocomplete="off" class="w-100">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Department/Entity</label>
+                            <div class="segment">
+                                <input type="radio" name="tab" id="tab1" checked>
+                                <label class="" for="tab1">Department</label>
+                                <input type="radio" name="tab" id="tab2">
+                                <label class="" for="tab2">Entity</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Role</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Designation</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Department</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Entity Name</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Division/Zone</label>
+                            <div class="segment">
+                                <input type="radio" name="tab" id="tab1" checked>
+                                <label class="" for="tab1">Division</label>
+                                <input type="radio" name="tab" id="tab2">
+                                <label class="" for="tab2">Zone</label>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Division</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Zone</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason for Update</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Allocated Entity</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Add</button>
+                        <button type="submit" class="btn btn-secondary">Delete</button>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Backup User</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    </div>
+            </form>
+            </app-card>
+            <app-card cardTitle="Backup User Details" class="list-panel add-panel">
+                <form #designationForm="ngForm" autocomplete="off" class="w-100">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Start Date & Time</label>
+                                <input class="form-control"  type="date" placeholder="Enter Employee ID">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Employee ID</label>
+                                <input class="form-control"  type="date" placeholder="Enter Employee ID">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Role</label>
+                                <select class="form-control" required>
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Designation</label>
+                                <select class="form-control" required>
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="mandatory">Backup User</label>
+                                <select class="form-control" required>
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                       
+                        </div>
+                </form>
+                </app-card>
+        </div>       
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-primary mr-2">Submit</button>
+            <button type="button" class="btn btn-secondary" routerLink="/usermanagement/officeruser/list">Cancel</button>
+        </div>
+    
+</div>
+
+<app-ui-modal #rejectModal dialogClass="modal-dialog-centered">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Verify OTP</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="rejectModal.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+            <div class="col-xl-12">
+               
+                <p class="mb-4 f-w-400">OTP sent to Email</p>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="feather icon-mail"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="Enter OTP" formControlName="otp">
+                    
+                  </div>
+            </div>
+            <div class="col-xl-12">
+               
+                <p class="mb-4 f-w-400">OTP sent to Mobile Number</p>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="feather icon-phone"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="Enter OTP" formControlName="otp">
+                    
+                  </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button class="btn btn-warning " >Resend</button>
+
+                <button class="btn  btn-primary ml-2">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</app-ui-modal>

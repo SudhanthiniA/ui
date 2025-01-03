@@ -1,0 +1,531 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.mf4transportpass.mf4transport' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'sugarmill.mf4transportpass.mf4transport' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.mf-4passgene' | translate }} " class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group new_datepicker">
+                            <label>{{ 'sugarmill.mf4transportpass.passgenerationdate' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" formControlName="passGenerationDate" [min]="minDate" [max]="maxDate" class="form-control" [owlDateTimeTrigger]="dtPicker20" [owlDateTime]="dtPicker20" id="bussinessin">
+                            <i class="trigger" [owlDateTimeTrigger]="dtPicker20" class="fas fa-calendar-alt prefix"></i>
+                            <owl-date-time #dtPicker20></owl-date-time>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('passGenerationDate').errors || transportpassFormGroup.get('passGenerationDate').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('passGenerationDate').errors?.required">
+                                    Pass Generation Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.season' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" value="" disabled class="form-control" formControlName="season" placeholder="">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('season').errors || transportpassFormGroup.get('season').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('season').errors?.required">
+                                    Season is required
+                                </span>
+                            </div>
+                            <!-- <input type="text" value="" disabled class="form-control" formControlName="season" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.season' | translate }}">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('season').errors || transportpassFormGroup.get('season').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('season').errors?.required">
+                                    Season is required
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.supplytype' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select class="form-control" formControlName="supplyTypeId" (change)="getIndent($event.target.value)">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of supplyType" value="{{item.name}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('supplyTypeId').errors || transportpassFormGroup.get('supplyTypeId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('supplyTypeId').errors?.required">
+                                    Supply Type is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Transaction Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option></option>
+                                 <option></option>
+                               </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.transactiontype' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select class="form-control" formControlName="transactionTypeId" (change)="getIndent($event.target.value)">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of transactionType" value="{{item.name}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('transactionTypeId').errors || transportpassFormGroup.get('transactionTypeId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('transactionTypeId').errors?.required">
+                                    Transaction Type is required
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.indentno' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select class="form-control" formControlName="orderId" (change)="getOnwardIndent($event.target.value)">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of sugarmillNameList" value="{{item.id}}">
+                                    {{item.indentNumber}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('orderId').errors || transportpassFormGroup.get('orderId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('orderId').errors?.required">
+                                    Indent Id is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.sugarmillname' | translate }}</label>
+                            <input type="text" class="form-control" disabled formControlName="sugarmillName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.addressline1' | translate }}</label>
+                            <input type="text" disabled class="form-control" value="" formControlName="sugarmillAddrs1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.addressline2' | translate }}</label>
+                            <input type="text" disabled class="form-control" value="" formControlName="sugarmillAddrs2">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.country' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="sugarmillCountry">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.state' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="sugarmillState">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.district' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="sugarmillDistrict">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.pincode' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="sugarmillPincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Grade</label>
+                            <input type="text" class="form-control" disabled formControlName="grade">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Indent Quantity(Qtls)</label>
+                            <input type="text" class="form-control" disabled formControlName="indentQuantity">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remaining Indent Quantity(Qtls)</label>
+                            <input type="text" class="form-control" disabled formControlName="balanceIndentQuantity">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.deliverydetails' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.domain' | translate }}</label>
+                            <select disabled class="form-control" formControlName="domainId">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of deliveredList" value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.indentdate' | translate }}</label>
+                            <input type="date" disabled class="form-control" formControlName="indentDate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.distilleryname' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distName" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.distilleryname' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.addressline1' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distAddrs1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.addressline2' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distAddrs2">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.country' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distCountry">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.state' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distState">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.district' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distDistrict">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.pincode' | translate }}</label>
+                            <input type="text" class="form-control" value="" disabled formControlName="distPincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.modeoftransport' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select class="form-control" formControlName="modeOfTransportId" (change)="getTransportData($event.target.value)">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of deliveredList2" value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('modeOfTransportId').errors || transportpassFormGroup.get('modeOfTransportId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('modeOfTransportId').errors?.required">
+                                    Mode Of Transport is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12" *ngIf="transportpassFormGroup.value.modeOfTransportId !='7'">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.vehicledesc' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.vehiclenum' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" class="form-control" placeholder="Enter Vehicle Number" formControlName="vechicleNumber" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.vehiclenum' | translate }}">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('vechicleNumber').errors || transportpassFormGroup.get('vechicleNumber').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('vechicleNumber').errors?.required">
+                                    Vehicle Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.drivername' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" class="form-control" placeholder="Enter Driver Name" formControlName="driverName" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.drivername' | translate }}">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('driverName').errors || transportpassFormGroup.get('driverName').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('driverName').errors?.required">
+                                    Driver Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.route' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select class="form-control" formControlName="routeId">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of routeList" value="{{item.id}}">
+                                    {{item.routeName}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('routeId').errors || transportpassFormGroup.get('routeId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('routeId').errors?.required">
+                                    Route is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.gpsdeviceid' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" class="form-control" placeholder="Enter GPD Device Id" formControlName="gpsId" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.gpsdeviceid' | translate }}">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('gpsId').errors || transportpassFormGroup.get('gpsId').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('gpsId').errors?.required">
+                                    GPS Device ID is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Trs(%)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" class="form-control" placeholder="Enter Trs Value" formControlName="trs">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('trs').errors || transportpassFormGroup.get('trs').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('trs').errors?.required">
+                                    Trs is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brix(%)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" class="form-control" placeholder="Enter Brix Value" formControlName="brix">
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('brix').errors || transportpassFormGroup.get('brix').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('brix').errors?.required">
+                                    Brix is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.grossweight' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.grossweight' | translate }}" formControlName="tankwiseGross" (keyup)="calculateNet()">
+                            <div class="text-primary">
+                                {{inWords(transportpassFormGroup.get('tankwiseGross').value, 'Gross weight')}}</div>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('tankwiseGross').errors || transportpassFormGroup.get('tankwiseGross').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('tankwiseGross').errors?.required">
+                                    Gross Weight is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.tareweight' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" class="form-control" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.tareweight' | translate }}" formControlName="tankwiseTare" (keyup)="calculateNet()">
+                            <div class="text-primary">
+                                {{inWords(transportpassFormGroup.get('tankwiseTare').value, 'tare weight')}}</div>
+                            <div *ngIf="formSubmitted && transportpassFormGroup.get('tankwiseTare').errors || transportpassFormGroup.get('tankwiseTare').touched " class="error-msg">
+                                <span *ngIf="transportpassFormGroup.get('tankwiseTare').errors?.required">
+                                    Tare Weight is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.mf4transportpass.netweight' | translate }}</label>
+                            <input type="number" class="form-control" disabled placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.netweight' | translate }}" formControlName="tankwiseNet">
+                            <div class="text-primary">
+                                {{inWords(transportpassFormGroup.get('tankwiseNet').value, 'netweight')}}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.transportdetails' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-inverse table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="3%">#</th>
+                                        <th width="18%">{{ 'sugarmill.mf4transportpass.tank' | translate }}
+                                            <label class="error-msg">*</label>
+                                        </th>
+                                        <th width="18%">{{ 'sugarmill.mf4transportpass.grade' | translate }} <label class="error-msg">*</label></th>
+                                        <th width="18%">{{ 'sugarmill.mf4transportpass.trs' | translate }} <label class="error-msg">*</label></th>
+                                        <th width="18%">{{ 'sugarmill.mf4transportpass.brix' | translate }} <label class="error-msg">*</label></th>
+                                        <th width="18%">Current Stock <label class="error-msg">*</label></th>
+                                        <th width="18%">{{ 'sugarmill.mf4transportpass.quantity' | translate }}
+                                            <label class="error-msg">*</label>
+                                        </th>
+                                        <th width="7%">{{ 'master.common.action' | translate }} <label class="error-msg">*</label></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="tankDetail" *ngFor="let pres of transportpassFormGroup.get('tankDetail')['controls']; let i=index" id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select formControlName="tankRegid" class="form-control" (change)="getTankDetails($event.target.value,pres)">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}
+                                                    </option>
+                                                    <option *ngFor="let item of tankList" value="{{item.tankRegid}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" disabled formControlName="gradeName" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" formControlName="trs" class="form-control" disabled>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName="brix" class="form-control" disabled>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" formControlName="tankCapacity" class="form-control" disabled>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" formControlName="quantity" class="form-control" (focusout)="checkQuantityRules($event, i, pres)" placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.quantity' | translate }}">
+                                                <div *ngIf="formSubmitted && pres.get('quantity').errors || pres.get('quantity').touched " class="error-msg">
+                                                    <span *ngIf="pres.get('quantity').errors?.required">
+                                                        Quantity is required
+                                                    </span>
+                                                </div>
+                                                <div *ngIf="qtyErr[i]" class="error-msg">
+                                                    <span *ngIf="qtyErrTag[i] == 'first'">
+                                                        Quantity Exceed CurrentStock
+                                                    </span>
+                                                    <span *ngIf="qtyErrTag[i] == 'second'">
+                                                        Entered Quantity should be less then indentQty
+                                                    </span>
+                                                    <span *ngIf="qtyErrTag[i] == 'third'">
+                                                       Sum Entered Quantity should be less then indentQty
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <i class="fas fa-trash-alt text-danger" title="Delete" *ngIf="i!==getPresFormLength()-1" (click)="removeSelectedRow(i)" style="cursor: pointer;">
+                                                </i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" (click)="previewdata()" class="btn btn-info ml-2 mb-2">
+            {{ 'master.common.preview' | translate }}</button>
+        <button type="button" (click)="Adddispatchlist('INITIATED')" class="btn btn-warning ml-2 mb-2">{{
+            'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="submit" class="btn btn-primary ml-2 mb-2" (click)="Adddispatchlist('SUBMITTED')">{{
+            'sugarmill.mf4transportpass.mf-4passgene' | translate }}
+        </button>
+        <button type="submit" class="btn btn-secondary ml-2 mb-2" [routerLink]="['/supplychainmanagement/sugarmills/transportgeneration/list']">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>
+
+<!-- <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered">
+    <div class="app-modal-header">
+        <h5 class="modal-title">{{ 'sugarmill.mf4transportpass.vehicalconfirmation' | translate }}</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body text-center">
+        <h3>{{ 'sugarmill.mf4transportpass.pleaseconfirmvehicalno' | translate }}</h3>
+        <div class="row">
+            <div
+                class="col-lx-4 col-lg-4 col-md-4 col-sm-4 col-6 offset-lx-4 offset-lg-4 offset-md-4 offset-sm-4 offset-3">
+                <div class="form-group m-auto">
+                    <h5>{{vehiclenum}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-primary"
+            (click)="Adddispatchlist();exampleModalCenter.hide()">{{ 'sugarmill.mf4transportpass.confirm' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal"
+            (click)="exampleModalCenter.hide()">Close</button>
+    </div>
+</app-ui-modal>
+
+-->

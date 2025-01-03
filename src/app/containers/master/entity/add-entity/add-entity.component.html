@@ -1,0 +1,110 @@
+<h5 class="m-b-10 ng-star-inserted"> {{ 'master.common.entity' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/entity/list">{{ 'master.entity.entitytype' |
+            translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #entityForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} State" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.entity.entitycode' | translate }}</label>
+                            <input type="text" [(ngModel)]="entityObject.code" name="entitycode" #entitycode="ngModel"
+                                required class="form-control" minlength="3" maxlength="10" pattern="^[a-zA-Z0-9]+$"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.entity.entitycode' | translate }}"
+                                (change)="checkCode($event.target.value)" (keypress)="removeFirstSpace($event)"
+                                [attr.disabled]="id ? '' : null">
+                            <div *ngIf="entitycode.invalid && (entitycode.dirty || entitycode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="entitycode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entitycode' | translate }} {{ 'master.common.required' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="entitycode?.errors?.maxlength && !entitycode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entitycode' | translate }} {{ 'master.common.maximum' | translate
+                                    }} 50 {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="entitycode?.errors?.minlength && !entitycode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entitycode' | translate }} {{ 'master.common.minimum' | translate
+                                    }} 3 {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="entitycode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                            <div *ngIf="codeExistsFlag" class="error-msg">
+                                <div>
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entitycode' | translate }} already
+                                    exists
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.entity.entityname' | translate }}</label>
+                            <input type="text" [(ngModel)]="entityObject.name" name="entityname" #entityname="ngModel"
+                                required class="form-control" minlength="3" maxlength="25"
+                                (keypress)="removeFirstSpace($event)"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.entity.entityname' | translate }}">
+                            <div *ngIf="entityname.invalid && (entityname.dirty || entityname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="entityname?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entityname' | translate }} {{ 'master.common.required' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="entityname?.errors?.maxlength && !entityname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entityname' | translate }} {{ 'master.common.maximum' | translate
+                                    }} 50 {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="entityname?.errors?.minlength && !entityname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.entity.entityname' | translate }} {{ 'master.common.minimum' | translate
+                                    }} 3 {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="entityObject.active" name="active" #active="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="entityObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!entityObject.active">Inactive</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="entityObject.active">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addentity(entityForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/entity/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

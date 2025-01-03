@@ -1,0 +1,212 @@
+<h5 class="m-b-10 ng-star-inserted">Event and Alarm
+    <!-- <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="">
+        <i class="feather icon-plus mr-2"></i>
+        Add Event and Alarm
+    </button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">CCTV</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Event and Alarm</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Event Name</label>
+                        <input type="text" required class="form-control" placeholder="Enter Event Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Alarm Prority</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Alarm Source</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Triggering Event</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Area</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" required class="form-control" placeholder="Enter Color">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ignore Recurred Event/Alarm</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked data-toggle="modal"
+                                (click)="rejectConfirmation()">
+                            <label class="" for="tab1">ON</label>
+                            <input type="radio" name="tab" id="tab2 " data-toggle="modal"
+                                (click)="rejectConfirmation()">
+                            <label class="" for="tab2">OFF</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Actions</label>
+                        <input type="text" required class="form-control" placeholder="Enter Actions">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Receiving Schedule Template</label>
+                        <input type="text" required class="form-control"
+                            placeholder="Enter Receiving Schedule Template">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Trigger Alarm</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked data-toggle="modal"
+                                (click)="rejectConfirmation()">
+                            <label class="" for="tab1">ON</label>
+                            <input type="radio" name="tab" id="tab2 " data-toggle="modal"
+                                (click)="rejectConfirmation()">
+                            <label class="" for="tab2">OFF</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Enabled or Not</label>
+                        <div class="form-group mb-0">
+                            <div class="form-group d-inline">
+                                <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                    (change)="onCheckboxChange($event.target.checked)">Enabled
+                            </div>
+                            <div class="form-group d-inline">
+                                <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                    (change)="onCheckboxChange($event.target.checked)">Not
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" required class="form-control" placeholder="Enter Description">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<app-card cardTitle="Event and Alarm List" class="list-panel">
+    <div class="row">
+        <div class="col-12 mb-2">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Event Name</th>
+                            <th>Alarm Prority</th>
+                            <th>Alarm Source</th>
+                            <th>Triggering Event</th>
+                            <th>Area</th>
+                            <th>Color</th>
+                            <th>Ignore Recurred Event/Alarm</th>
+                            <th>Actions</th>
+                            <th>Receiving Schedule Template</th>
+                            <th>Trigger Alarm</th>
+                            <th>Enabled or Not</th>
+                            <th>Description</th>
+                            <th>Acknowledgement</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">
+                                Product Expo
+                            </td>
+                            <td class="text-left">High</td>
+                            <td> -</td>
+                            <td class="text-left">Motion Detection</td>
+                            <td class="text-left">GK Hotel</td>
+                            <td class="text-left">Red</td>
+                            <td class="text-left">On</td>
+                            <td class="text-left">Trigger Recording</td>
+                            <td class="text-left">Schedule Template</td>
+                            <td class="text-left">On</td>
+                            <td class="text-left">Enabled</td>
+                            <td>-</td>
+                            <td class="text-left">Acknowledged</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Approved</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-icon btn-primary mr-2" type="button" routerLink="">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary" type="button" routerLink="">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item" href="javascript:">Pdf</a>
+                    <a class="dropdown-item" href="javascript:">Jpg</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-8 text-right p-0">
+            <img src="assets/images/pagenation.png" />
+        </div>
+    </div>
+</app-card>

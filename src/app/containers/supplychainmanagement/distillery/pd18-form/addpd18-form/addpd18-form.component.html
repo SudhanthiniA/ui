@@ -1,0 +1,606 @@
+<h5 class="m-b-10 ng-star-inserted">Add PD-18</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">PD-18</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="PD-18 Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date"  name="Date" class="form-control" #Date="ngModel"
+                            [(ngModel)]="Pd18Obj['Date']" required>
+                                <div *ngIf="Date.invalid && (Date.dirty || Date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Number
+                            </label>
+                            <input type="text" name="PermitNumber" class="form-control" #PermitNumber="ngModel"
+                            [(ngModel)]="Pd18Obj['PermitNumber']" required
+                                placeholder="Enter Permit Number">
+                                <div *ngIf="PermitNumber.invalid && (PermitNumber.dirty || PermitNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="PermitNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    Permit Number is required </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Indent Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent Number</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type of Spirit</label>
+                            <input type="text"  class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity of Spirit</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(BL)</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(AL)</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignee</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignee Address</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consigner Name</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consigner Address</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Number</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Permit Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Number</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Type</label>
+                            <select class="form-control">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permitted Quantity</label>
+                            <input type="text"  class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Amount(Bond Value)</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Storage VAT(No)</label>
+                           <select class="form-control">
+                               <option></option>
+                           </select>
+                        </div>
+                    </div>
+                   
+                    </div>
+                    </app-card>
+
+            <!-- <app-card cardTitle="List of PD-18 Details" blockClass="table-border-style" class="list-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center text-center">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Storage VAT(No)</th>
+                                <th>B.L</th>
+                                <th>Strength</th>
+                                <th>AL</th>
+                                <th>Temprature</th>
+                                <th>Indication</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>                          
+                                      <input type="text"  class="form-control" required placeholder="Enter the Storage VAT(No)">
+                                </td>
+                                <td>                          
+                                    <input type="text"  class="form-control" required placeholder="Enter the B.L">
+                              </td>
+                              <td> 
+                                  Medium                         
+                          </td>
+                  
+                          <td> 
+                              50                         
+                      </td>
+              
+                      <td>                          
+                        <input type="text"  class="form-control" required placeholder="Enter the Temprature">
+                  </td>
+          
+                  <td>                          
+                    <input type="text"  class="form-control" required placeholder="Enter the Indication">
+              </td>
+      
+                                
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-success" type="button"
+                                        routerLink="/supplychainmanagement/distillery/pd18-form/view">
+                                        <i class="feather icon-plus"></i></button>
+                                        <button class="btn btn-icon btn-danger ml-2" type="button"
+                                        routerLink="/supplychainmanagement/distillerypd18-form/add">
+                                        <i class="feather icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card> -->
+
+            <app-card cardTitle="Vehicle Details" class="list-panel add-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vehicle Agency Name</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vehicle No</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Route</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                  
+                    
+                  
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Major Districts</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distance(KM)</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Valid Upto</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div> 
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <!-- <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Permit Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Truck No
+                            </label>
+                            <input type="text" name="TruckNo" class="form-control" #TruckNo="ngModel"
+                            [(ngModel)]="Pd18Obj['TruckNo']" required
+                                placeholder="Enter Truck No">
+                                <div *ngIf="TruckNo.invalid && (TruckNo.dirty || TruckNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="TruckNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Truck No is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L
+                            </label>
+                            <input type="number"  name="BL" class="form-control" #BL="ngModel"
+                            [(ngModel)]="Pd18Obj['BL']" required placeholder="Enter B.L">
+                            <div *ngIf="BL.invalid && (BL.dirty || BL.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="BL?.errors?.required"><i class="fa fa-times"></i>
+                                B.L. is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>A.L
+                            </label>
+                            <input type="number" required name="AL" class="form-control" #AL="ngModel"
+                            [(ngModel)]="Pd18Obj['AL']" required placeholder="Enter A.L"
+                                placeholder="Enter A.L">
+                                <div *ngIf="AL.invalid && (AL.dirty || AL.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="AL?.errors?.required"><i class="fa fa-times"></i>
+                                    A.L. is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type of Spirit
+                            </label>
+                            <select id="TypeOfScript" name="TypeOfScript" class="form-control" #TypeOfScript="ngModel"
+                            [(ngModel)]="Pd18Obj['TypeOfScript']" required>
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                            <div *ngIf="TypeOfScript.invalid && (TypeOfScript.dirty || TypeOfScript.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="TypeOfScript?.errors?.required"><i class="fa fa-times"></i>
+                                Type of Spirit is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength
+                            </label>
+                            <input type="number" name="Strength" class="form-control" #Strength="ngModel"
+                            [(ngModel)]="Pd18Obj['Strength']" required
+                                placeholder="Enter Strength">
+                                <div *ngIf="Strength.invalid && (Strength.dirty || Strength.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Strength?.errors?.required"><i class="fa fa-times"></i>
+                                Strength is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Entity Name
+                            </label>
+                            <select id="EntityName" name="EntityName" class="form-control" #EntityName="ngModel"
+                            [(ngModel)]="Pd18Obj['EntityName']" required>
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                            <div *ngIf="EntityName.invalid && (EntityName.dirty || EntityName.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="EntityName?.errors?.required"><i class="fa fa-times"></i>
+                                Entity Name is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Amount
+                            </label>
+                            <input type="number"  name="Amount" class="form-control" #Amount="ngModel"
+                            [(ngModel)]="Pd18Obj['Amount']" required placeholder="Enter Amount">
+                        </div>
+                        <div *ngIf="Amount.invalid && (Amount.dirty || Amount.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Amount?.errors?.required"><i class="fa fa-times"></i> Amount is required </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand
+                            </label>
+                            <select id="Brand"  name="Brand" class="form-control" #Brand="ngModel"
+                            [(ngModel)]="Pd18Obj['Brand']" required>
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                            <div *ngIf="Brand.invalid && (Brand.dirty || Brand.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Brand?.errors?.required"><i class="fa fa-times"></i> Brand is required </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="750 ML" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Case
+                            </label>
+                            <input type="number"  name="Case750" class="form-control" #Case750="ngModel"
+                            [(ngModel)]="Pd18Obj['Case750']" required 
+                                placeholder="Enter Case">
+                                <div *ngIf="Case750.invalid && (Case750.dirty || Case750.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Case750?.errors?.required"><i class="fa fa-times"></i> Case is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No Of Bottles</label>
+                            <input type="number"  name="NoOfBottles750" class="form-control" #NoOfBottles750="ngModel"
+                            [(ngModel)]="Pd18Obj['NoOfBottles750']" required 
+                                placeholder="Enter No Of Bottles">
+                                <div *ngIf="NoOfBottles750.invalid && (NoOfBottles750.dirty || NoOfBottles750.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NoOfBottles750?.errors?.required"><i class="fa fa-times"></i> No Of Bottles is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="375 ML" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Case
+                            </label>
+                            <input type="number" name="Case375" class="form-control" #Case375="ngModel"
+                            [(ngModel)]="Pd18Obj['Case375']" required  placeholder="Enter Case">
+                            <div *ngIf="Case375.invalid && (Case375.dirty || Case375.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Case375?.errors?.required"><i class="fa fa-times"></i> Case is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No Of Bottles</label>
+                            <input type="number" name="NoOfBottles375" class="form-control" #NoOfBottles375="ngModel"
+                            [(ngModel)]="Pd18Obj['NoOfBottles375']" required  placeholder="Enter No Of Bottles"
+                                placeholder="Enter No Of Bottles">
+                                <div *ngIf="NoOfBottles375.invalid && (NoOfBottles375.dirty || NoOfBottles375.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NoOfBottles375?.errors?.required"><i class="fa fa-times"></i> No Of Bottles is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="180 ML" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Case
+                            </label>
+                            <input type="number"  name="Case180" class="form-control" #Case180="ngModel"
+                            [(ngModel)]="Pd18Obj['Case180']" required  placeholder="Enter Case"
+                                placeholder="Enter Case">
+                                <div *ngIf="Case180.invalid && (Case180.dirty || Case180.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Case180?.errors?.required"><i class="fa fa-times"></i> Case is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No Of Bottles</label>
+                            <input type="number" name="NoOfBottles180" class="form-control" #NoOfBottles180="ngModel"
+                            [(ngModel)]="Pd18Obj['NoOfBottles180']" required
+                                placeholder="Enter No Of Bottles">
+                                <div *ngIf="NoOfBottles180.invalid && (NoOfBottles180.dirty || NoOfBottles180.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NoOfBottles180?.errors?.required"><i class="fa fa-times"></i> No Of Bottles is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd18Form="ngForm" autocomplete="off">
+            <app-card cardTitle="90 ML" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Case
+                            </label>
+                            <input type="number"  name="Case90" class="form-control" #Case90="ngModel"
+                            [(ngModel)]="Pd18Obj['Case90']" required
+                                placeholder="Enter Case">
+                                <div *ngIf="Case90.invalid && (Case90.dirty || Case90.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Case90?.errors?.required"><i class="fa fa-times"></i> Case is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No Of Bottles</label>
+                            <input type="number" name="NoOfBottles90" class="form-control" #NoOfBottles90="ngModel"
+                            [(ngModel)]="Pd18Obj['NoOfBottles90']" required
+                                placeholder="Enter No Of Bottles">
+                                <div *ngIf="NoOfBottles90.invalid && (NoOfBottles90.dirty || NoOfBottles90.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NoOfBottles90?.errors?.required"><i class="fa fa-times"></i> No Of Bottles is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L</label>
+                            <input type="number"  name="BL90" class="form-control" #BL90="ngModel"
+                            [(ngModel)]="Pd18Obj['BL90']" required
+                                placeholder="Enter B.L">
+                                <div *ngIf="BL90.invalid && (BL90.dirty || BL90.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BL90?.errors?.required"><i class="fa fa-times"></i>B.L. is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>A.L</label>
+                            <input type="number"  name="AL90" class="form-control" #AL90="ngModel"
+                            [(ngModel)]="Pd18Obj['AL90']" required
+                                placeholder="Enter A.L">
+                                <div *ngIf="AL90.invalid && (AL90.dirty || AL90.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="AL90?.errors?.required"><i class="fa fa-times"></i>A.L. is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total</label>
+                            <input type="number" name="Total" class="form-control" #Total="ngModel"
+                            [(ngModel)]="Pd18Obj['Total']" required
+                                placeholder="Enter Total">
+                                <div *ngIf="Total.invalid && (Total.dirty || Total.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Total?.errors?.required"><i class="fa fa-times"></i>Total is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div> -->
+   
+    
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" routerLink="/supplychainmanagement/distillery/pd18-form/view/:id">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addPd18Details(Pd18Form,false)">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addPd18Details(Pd18Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd18-form/list">Cancel</button>
+    </div>
+</div>

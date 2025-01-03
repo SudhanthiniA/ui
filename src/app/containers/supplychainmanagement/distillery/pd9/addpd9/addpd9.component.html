@@ -1,0 +1,302 @@
+<h5 class="m-b-10 ng-star-inserted">
+    PD 9
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/pd9">PD 9</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #pd9="ngForm" autocomplete="off">
+            <app-card cardTitle="PD8 Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Batch No </label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Materials used (Wash)" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div *ngIf ="!this.editId" class="col-lg-3 col-md-3 col-sm-6 col-12"  >
+                        <div class="form-group">
+                            <label>PD8 Reference</label>
+                            <select class="form-control" name="referenceno"
+                            #referenceno="ngModel" [(ngModel)]="pd9data['referenceno']"  (click)="getautopopulate(referenceno)" >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of refdata" value="{{item.id}}">
+                                    {{item.referenceNumber}}
+                                </option>
+                            </select>
+                        </div>
+                    </div> -->
+                        <!-- <div class="form-group">
+                            <label>PD8 Reference</label>
+                            <select class="form-control" name="referenceno"  [disabled]= desibleflag #referenceno="ngModel"  [(ngModel)]="pd9data['referenceno']" (click)="getautopopulate(referenceno)">
+                                <option value="">Select</option>
+                                <option *ngFor ="let data of refdata" value={{data.id}}>{{data.referenceNumber}}<option>
+                            </select>
+                        </div> -->
+                    
+
+                     <!-- <div *ngIf ="this.editId" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference</label>
+                            <input type="text" name='pd9date' disabled  class="form-control" placeholder=""
+                            #referenceNumber="ngModel"  [(ngModel)]="pd9data['referenceNumber']">
+                         
+                        </div>
+                     </div> -->
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date when set up</label>
+                            <input type="date" name='pd9date' class="form-control" placeholder=""
+                            #pd9date="ngModel"  [(ngModel)]="pd9data['pd9date']">
+                         
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date when to still</label>
+                            <input type="date"   class="form-control"  placeholder="l"
+                            name ='datewhentostill'  #datewhentostill="ngModel"  [(ngModel)]="pd9data['datewhentostill']">
+                          
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wash back no</label>
+                            <input type="text"   class="form-control"  placeholder="Enter the Wash back no"
+                            name ='washbackno'  #washbackno="ngModel"  [(ngModel)]="pd9data['washbackno']">
+                         
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bulk litres of wash in each wash back</label>
+                            <input type="number"   class="form-control"  placeholder="Enter the Bulk litres of wash in each wash back"
+                            name ='bulklitterofwashback'  #bulklitterofwashback="ngModel"  [(ngModel)]="pd9data['bulklitterofwashback']">
+                       
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Initial gravity </label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='initialgravity'  #initialgravity="ngModel"  [(ngModel)]="pd9data['initialgravity']">
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Final Gravity</label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='finalgravity'  #finalgravity="ngModel"  [(ngModel)]="pd9data['finalgravity']">
+                        
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Degree of attenuation</label>
+                            <input type="number"   class="form-control"  disabled placeholder=""
+                            name ='degreeofautonation'  #degreeofautonation="ngModel"  [(ngModel)]="pd9data['degreeofautonation']">
+                         
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Impure spirit alcoholic litres</label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='improvespritofalcohal'  #improvespritofalcohal="ngModel"  [(ngModel)]="pd9data['improvespritofalcohal']">
+                          
+                        </div>
+                     </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Out turn" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receiver no</label>
+                            <input type="text"   class="form-control" disabled placeholder=""
+                            name ='reciverno'  #reciverno="ngModel"  [(ngModel)]="pd9data['reciverno']">
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dip </label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='dip'  #dip="ngModel"  [(ngModel)]="pd9data['dip']">
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temperature</label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='temperature'  #temperature="ngModel"  [(ngModel)]="pd9data['temperature']">
+                         
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indication</label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='indication'  #indication="ngModel"  [(ngModel)]="pd9data['indication']">
+                    
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength</label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='strength'  #strength="ngModel"  [(ngModel)]="pd9data['strength']">
+                      
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bulk litres </label>
+                            <input type="number"   class="form-control" disabled placeholder=""
+                            name ='bulklitters'  #bulklitters="ngModel"  [(ngModel)]="pd9data['bulklitters']">
+                        
+                        </div>
+                     </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Alcoholic Litres" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic litres of impure spirit</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Alcoholic litres of impure spirit"
+                            name ='alcoholiclitresofimpurespirit'  #alcoholiclitresofimpurespirit="ngModel"  [(ngModel)]="pd9data['alcoholiclitresofimpurespirit']">
+                            <div *ngIf="alcoholiclitresofimpurespirit.invalid && (alcoholiclitresofimpurespirit.dirty || alcoholiclitresofimpurespirit.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="alcoholiclitresofimpurespirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Alcoholic litres of impure spirit is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic litres of finished spirit passed into store</label>
+                            <input type="number" required  class="form-control" placeholder="EnterAlcoholic litres of finished spirit passed into store"
+                            name ='Alcoholiclitresoffinishedspiritpassedintostore'  #Alcoholiclitresoffinishedspiritpassedintostore="ngModel"  [(ngModel)]="pd9data['Alcoholiclitresoffinishedspiritpassedintostore']">
+                            <div *ngIf="Alcoholiclitresoffinishedspiritpassedintostore.invalid && (Alcoholiclitresoffinishedspiritpassedintostore.dirty || Alcoholiclitresoffinishedspiritpassedintostore.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Alcoholiclitresoffinishedspiritpassedintostore?.errors?.required"><i class="fa fa-times"></i>
+                                    Alcoholic litres of finished spirit passed into store is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date when passed</label>
+                            <input type="date" required  class="form-control" placeholder="Enter Date when passed"
+                            name ='Datewhenpassed'  #Datewhenpassed="ngModel"  [(ngModel)]="pd9data['Datewhenpassed']">
+                            <div *ngIf="Datewhenpassed.invalid && (Datewhenpassed.dirty || Datewhenpassed.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Datewhenpassed?.errors?.required"><i class="fa fa-times"></i>
+                                    Date when passed is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Total produced of distillation (A.L.) (Column 15 & 16)</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Total produced of distillation (A.L.) (Column 15 & 16)"
+                            name ='Totalproducedofdistillation'  #Totalproducedofdistillation="ngModel"  [(ngModel)]="pd9data['Totalproducedofdistillation']">
+                            <div *ngIf="Totalproducedofdistillation.invalid && (Totalproducedofdistillation.dirty || Totalproducedofdistillation.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Totalproducedofdistillation?.errors?.required"><i class="fa fa-times"></i>
+                                    Total produced of distillation is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Percentage of out turn of alcoholic litres</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Percentage of out turn of alcoholic litres"
+                            name ='Percentage_ofoutturnof_alcoholic_litres'  #Percentage_ofoutturnof_alcoholic_litres="ngModel"  [(ngModel)]="pd9data['Percentage_ofoutturnof_alcoholic_litres']">
+                            <div *ngIf="Percentage_ofoutturnof_alcoholic_litres.invalid && (Percentage_ofoutturnof_alcoholic_litres.dirty || Percentage_ofoutturnof_alcoholic_litres.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="percentageofallier?.errors?.required"><i class="fa fa-times"></i>
+                                    Percentage of out turn of alcoholic litres is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Degree of attenuation for each A.L. per 100 litres of wash</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Degree of attenuation for each A.L. per 100 litres of wash"
+                            name ='Degree_of_attenuation_for_each_per_litres_of_wash'  #Degree_of_attenuation_for_each_per_litres_of_wash="ngModel"  [(ngModel)]="pd9data['Degree_of_attenuation_for_each_per_litres_of_wash']">
+                            <div *ngIf="Degree_of_attenuation_for_each_per_litres_of_wash.invalid && (Degree_of_attenuation_for_each_per_litres_of_wash.dirty || Degree_of_attenuation_for_each_per_litres_of_wash.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Degree_of_attenuation_for_each_per_litres_of_wash?.errors?.required"><i class="fa fa-times"></i>
+                                    Degree of attenuation is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity of Molasses</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Quantity of Molasses"
+                            name ='Quantity_of_Molasses'  #Quantity_of_Molasses="ngModel"  [(ngModel)]="pd9data['Quantity_of_Molasses']">
+                            <div *ngIf="Quantity_of_Molasses.invalid && (Quantity_of_Molasses.dirty || Quantity_of_Molasses.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Quantity_of_Molasses?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity of Molasses is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Yield Al/Qtl</label>
+                            <input type="number" required  class="form-control" placeholder="Enter Yield Al/Qtl"
+                            name ='Yield_AlQtl'  #Yield_AlQtl="ngModel"  [(ngModel)]="pd9data['Yield_AlQtl']">
+                            <div *ngIf="Yield_AlQtl.invalid && (Yield_AlQtl.dirty || Yield_AlQtl.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="Yield_AlQtl?.errors?.required"><i class="fa fa-times"></i>
+                                    Yield Al/Qtl is required </div>
+
+                        </div>
+                        </div>
+                     </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewPd9()">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="pd9save(pd9,'INITIATED')">Save
+            as draft</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2" (click)="pd9save(pd9,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)='cancle()'>Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.wholesale.list' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'retail.indentrequest.list' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.wholesale.list' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.wholesaletype' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">Select</option>
+                            <option value="1">FL2</option>
+                            <option value="2">BWFL2C</option>
+                            <option value="3">BWFL2D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.wholesalename' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">Select</option>
+                            <option value="1">Open Door Liquor Store</option>
+                            <option value="2">Streetlights Liquor Shop</option>
+                            <option value="3">Cheers Wine and Spirits</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.wholesale.productname' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">Product1</option>
+                            <option value="">Product2</option>
+                            <option value="">Product3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'retail.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'retail.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.wholesale.list' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'retail.wholesale.star' | translate }}</th>
+                            <th>{{ 'retail.common.wholesaletype' | translate }}</th>
+                            <th>{{ 'retail.common.wholesalename' | translate }}</th>
+                            <th>{{ 'retail.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let data of wholesaleData; let i=index'>
+                            <td>{{i+1}}</td>
+                            <td><i class={{data.star}}></i></td>
+                            <td>{{data.wholesaleType}}</td>
+                            <td>{{data.wholesaleName}}</td>
+                            <td><button class="btn btn-primary"
+                                    routerLink="/supplychainmanagement/retail/indentrequest/product/{{data.id}}"><i
+                                        class="fas fa-chevron-right"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/retail/indentrequest">
+            {{ 'retail.common.back' | translate }}
+        </button>
+    </div>
+</div>

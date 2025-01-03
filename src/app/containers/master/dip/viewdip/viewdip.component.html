@@ -1,0 +1,66 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.common.view' | translate }} {{ 'master.common.dip' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.dip' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.detailsofselected' | translate }} {{ 'master.common.dip' | translate }}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.dip.code' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{dipObj?.code}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.name' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{dipObj?.name}}
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.status' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{dipObj?.active ? 'Active' : 'In-Active'}}
+                </div>
+            </div>
+            <hr class="mt-2" />
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{dipObj?.createdBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'master.common.createdon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{dipObj?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf =isModified>
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf =isModified>
+                    {{dipObj?.modifiedBy}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf =isModified>
+                    <label class="w-100 view-label">{{ 'master.common.Modifiedon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf =isModified>
+                    {{dipObj?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                </div>
+            </div>
+        </app-card>
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary" routerLink="/master/dip/list">{{ 'master.common.back' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

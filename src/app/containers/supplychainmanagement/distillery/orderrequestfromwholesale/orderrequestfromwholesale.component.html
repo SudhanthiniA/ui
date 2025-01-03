@@ -1,0 +1,107 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Order Request From Wholesale List
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Request From Wholesale</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12" >
+                      <div class="form-group">
+                          <label>Order ID</label>
+                          <input type="text" class="form-control" placeholder="Enter Order ID">
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Wholesaler Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Wholesaler Name">
+                      </div>
+                  </div>
+  
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Location</label>
+                          <select id="location"  name="location" class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let item of locationlist" value="{{item.name}}">{{item.name}}</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Stock Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Warehouse Name">
+                      </div>
+                    </div>
+                  <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                  </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Order Request From Wholesale List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Wholesaler Name</th>
+                            <th>Location </th>
+                            <th>Stock Name</th>
+                            <th>Grade</th>
+                            <th>Quantity </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf = "orderrequestwholesaleList?.length != 0">
+                        <tr *ngFor="let data of orderrequestwholesaleList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.orderid}}</td>
+                            <td>{{data.wholesalename}}</td>
+                            <td>{{data.location}}</td>
+                            <td>{{data.stockName}}</td>
+                            <td>{{data.grade}}</td>
+                            <td>{{data.quantity}}</td>
+                          <td>
+                            <button class="btn btn-icon btn-primary mr-2" type="button" (click) = "navigateView(data.id)">
+                                <i class="feather icon-eye"></i></button>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item" href="javascript:">PDF</a>
+                  <a class="dropdown-item" href="javascript:">CSV</a>
+                  </div>
+              </div>
+              </div>
+           
+          </div>
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

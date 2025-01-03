@@ -1,0 +1,120 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'usermanagement.workflow.viewworkflowmanagement' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+    }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'usermanagement.workflow.workflowmanagement' | translate
+    }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'usermanagement.common.view' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.workflow.detailsof' | translate" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.workflow.modulename' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{workFlowObj.moduleName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.workflow.submodulename' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{workFlowObj.screenName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.workflow.levelofapproval' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Level {{workFlowObj.levelId}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.workflow.leveldetails' | translate }}" class="list-panel view-panel">
+            <div class="row" *ngFor="let data of levelArr; let i=index">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">
+                        {{ 'usermanagement.workflow.level' | translate }} {{i+1}} {{
+                            'usermanagement.usermanagement.designation' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{data}}
+                </div>
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Level 2 Designation<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Excise HQ
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Level 3 Designation<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    DEC License
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Level 4 Designation<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    JT. Comm. (HQ)
+                </div> -->
+                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{workFlowObj.active ? "Active" : "InActive"}}
+                </div> -->
+            </div>
+            <div class=row>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.common.status' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{workFlowObj.active ? "Active" : "InActive"}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.workflow.workflowcreate' | translate }}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.common.createdby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    User1
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.common.createdon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    12/13/2020
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.common.modifiedby' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    User2
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'usermanagement.common.modifiedon' | translate }}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    13/12/2020
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/usermanagement/workflowmanagement/list">{{ 'usermanagement.common.back' | translate }}</button>
+    </div>
+</div>

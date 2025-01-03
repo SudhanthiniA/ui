@@ -1,0 +1,131 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.licensee.addlicensee' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.licensee.editlicensee' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.licensee.licensee' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #licenseeForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.licensee.enterbelowdetailstoaddlicensee' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licensee.licenseecode' | translate }}</label>
+                            <input type="text" [(ngModel)]="licenseeObject.code" name="licenseecode"
+                                #licenseecode="ngModel" minlength="3" maxlength="10" required class="form-control"
+                                placeholder="{{ 'master.licensee.enterlicenseecode' | translate }}"
+                                (keypress)="removeFirstSpace($event)" pattern="{{patternService.codePattern}}">
+                            <div *ngIf="licenseecode.invalid && (licenseecode.dirty || licenseecode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licenseecode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.licensee.licenseecode' | translate }} {{ 'master.common.required' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="licenseecode?.errors?.minlength && !licenseecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }}
+                                </div>
+                                <div *ngIf="licenseecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licensee.licenseename' | translate }}</label>
+                            <input type="text" [(ngModel)]="licenseeObject.name" name="licenseename"
+                                #licenseename="ngModel" minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.licensee.enterlicenseename' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="licenseename.invalid && (licenseename.dirty || licenseename.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licenseename?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.licensee.licenseename' | translate }} {{ 'master.common.required' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="licenseename?.errors?.minlength && !licenseename?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licence.licensetype' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="licenseeObject.type" name="licencetype"
+                                #licencetype="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let licencetype of licencetypeData" value="{{licencetype.name}}">
+                                    {{licencetype.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="licencetype.invalid && (licencetype.dirty || licencetype.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licencetype?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.licence.licensetype' | translate }} {{ 'master.common.required' |
+                                    translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licensee.licensename' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="licenseeObject.licenseName" name="licencename"
+                                #licencename="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let licencename of licencenameData" value="{{licencename.name}}">
+                                    {{licencename.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="licencename.invalid && (licencename.dirty || licencename.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licencename?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.licensee.licensename' | translate }} {{ 'master.common.required' |
+                                    translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="licenseeObject.isActive" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="licenseeObject.isActive ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!licenseeObject.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="licenseeObject.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addlicensee(licenseeForm)">{{ 'master.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/licensee/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

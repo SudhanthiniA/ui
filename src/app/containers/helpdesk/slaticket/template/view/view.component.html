@@ -1,0 +1,89 @@
+<h5 class="m-b-10 ng-star-inserted">{{'helpdesk.template.template'|translate}}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.sla'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.template.template'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.view'|translate}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'helpdesk.template.viewemaildetails'|translate}}" class="list-panel view-panel" *ngIf="registrationobj?.templateType=='EMAIL'||registrationobj?.templateType=='Email'||registrationobj?.templateType=='Both'">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.templatetype'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.templateType}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.templatename'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.templateName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.subject'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.subject}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.toaddress'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.fromAddress}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.ccaddress'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.ccAddress}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.description'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.description}}
+                </div>
+
+            </div>
+        </app-card>
+        <app-card cardTitle="View SMS Details" class="list-panel view-panel" *ngIf="registrationobj?.templateType=='SMS'||registrationobj?.templateType=='Sms'||registrationobj?.templateType=='Both'">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.templatetype'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.templateType}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.templatename'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.templateName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.mobilenumber'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.mobileNumber}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'helpdesk.template.message'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{registrationobj?.message}}
+                </div>
+
+
+            </div>
+        </app-card>
+    </div>
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-secondary mb-2 ml-2" routerLink="/helpdesk/sla/template/list">{{'helpdesk.common.back'|translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Import Permit  Acceptance BIO 1
+    <!-- <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/supplychainmanagement/distillery/importpermit/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Import Permit Request
+    </button> -->
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Import Unit</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Import Permit  Acceptance BIO 1</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Details</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Import permit No </label>
+                          <input type="text" class="form-control" name="permitNo" >
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Indent date </label>
+                         <input type="date" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                 
+                  <div class="col-12 text-right">
+                      <div>
+                          <button type="submit" class="btn btn-primary mr-2"  (click)="searchapi()">Search</button>
+                          <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                      </div>
+                 </div>
+                </div>
+            </app-card>
+        </div>
+    </div>
+<div class="row">
+  <div class="col-xl-12">
+      <app-card cardTitle="Import Permit List" blockClass="table-border-style" class="list-panel">
+          <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Import permit Number </th>
+                          <th>Import Permit Date</th>
+                          <th>Unit Type</th>
+                          <th>Unit name </th>
+                          <th>Total No. of Cases/Monocartons</th>
+                          <th>Total No. of Bottles </th>
+                         
+                          <th>Status</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>APPBIO3-20240415122915276</td>
+                          <td class="text-left">15/04/2024</td>
+                          <td class="text-left">BIO</td>
+                          <td class="text-left">SHIVA TRADERS</td>
+                          <td class="text-left">456</td>
+                          <td class="text-left">456</td>    
+                          <td>
+                              <span class="badge m-r-5 badge-light-success">TP Acknowleged</span>
+                              <!-- <span class="badge m-r-5 badge-light-warning">Draft</span> -->
+                          </td>
+                 
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary" type="button"
+                                  routerLink="">
+                                  <i class="feather icon-eye"></i></button>
+                            
+                          </td>
+                       
+                       
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="row">
+            <div class="col-xl-4" >
+                <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:" (click)="getPdfData1('downloadExcel')">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">CSV</a>
+                </div>
+            </div>
+            </div>
+           
+        </div>
+      </app-card>
+  </div>
+</div>

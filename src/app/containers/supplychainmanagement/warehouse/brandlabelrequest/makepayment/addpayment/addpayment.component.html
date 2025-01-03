@@ -1,0 +1,234 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Make Payment
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brand Label Request</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Make Payment</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">   
+        <div class="row">
+            <div class="col-xl-12">
+                <form [formGroup]='labelregester'>
+                    <app-card cardTitle="Make Payment" blockClass="table-border-style" class="list-panel add-panel">
+                        <ngb-tabset type="pills">
+                            <ngb-tab title="Pending Payment" class="mb-3">
+                                <ng-template ngbTabContent>
+                                    <!-- <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Category Name</th>
+                                                <th>Number Of Tickets</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Service Request</td>
+                                                <td>108</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                                    <div class="row mt-2">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Application Id</label>
+                                                <input type="text" name="applicationIdd" value="{{labeldata?.applicationNumber}}"
+                                                     class="form-control" readonly>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>App Date</label>
+                                                <input type="text" name="appdate" value="{{labeldata?.createdDate | date:'dd-MM-yyyy'}}"
+                                                     class="form-control" readonly>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Liquor Category</label>
+                                                <input type="text" class="form-control" value="{{labeldata?.liquorCategory}}" readonly>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>License Type</label>
+                                                <input type="text" class="form-control" value="{{labeldata?.licenseType}}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Domain</label>
+                                            <input type="text" class="form-control" value="{{labeldata?.domainResponseDto?.name}}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Total No. of Label</label>
+                                                <input type="text" class="form-control" value="{{labeldata?.requestLabelDetlist[0]?.numberLables}}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Brand Fees</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Label Fees</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <h5 class="pb-2">Map Challan For Brand</h5>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Map Challan For Brand </th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr  formArrayName="lablepayment"
+                                                        *ngFor="let pres of labelregester?.get('lablepayment')['controls']; let i=index"
+                                                        id="row{{i}}">
+                                                            <td [formGroupName]="i"> {{i+1}}</td>
+                                                            <td [formGroupName]="i">
+                                                                <input type="text" formControlName="mapChallanForBrand"></td>
+                                                            <td [formGroupName]="i" class="table-action-column text-center">
+                                                                <div class="form-group mb-0">
+                                                                    <i class="fa fa-plus text-primary" title="Add New Row"
+                                                                         style="cursor: pointer;" (click)="addrow()">
+                                                                    </i>
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-xl-12">
+                                            <h5 class="pb-2">Map Challan For Label</h5>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Map Challan For Label </th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr formArrayName="brandpayment"
+                                                        *ngFor="let pres of labelregester?.get('brandpayment')['controls']; let i=index"
+                                                        id="row{{i}}">
+                                                            <td [formGroupName]='i'>{{i+1}}</td>
+                                                            <td [formGroupName]='i'><input type="text"  formControlName="mapChallanForLabel"></td>
+                                                            <td [formGroupName]="i" class="table-action-column text-center">
+                                                                <div class="form-group mb-0">
+                                                                    <i class="fa fa-plus text-primary" title="Add New Row"
+                                                                        style="cursor: pointer;" (click)="addrow1()">
+                                                                    </i>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-12 form-group  text-right">
+
+                                        <button class="btn btn-primary m-r-5" (click)='addlabelpayment()'
+                                            routerLink="/supplychainmanagement/warehouse/brandlabelrequest/makepayment/view">
+                                            <!-- <i class="fa fa-eraser m-r-5" aria-hidden="true"></i> -->
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-secondary m-r-5"
+                                            routerLink="/supplychainmanagement/warehouse/brandlabelrequest/makepayment/list">
+                                            <!-- <i class="fa fa-search m-r-5" aria-hidden="true"></i> -->
+                                            Clear
+                                        </button>
+                                        <button class="btn btn-secondary"
+                                            routerLink="/supplychainmanagement/warehouse/brandlabelrequest/makepayment/list">
+                                            <!-- <i class="fa fa-search m-r-5" aria-hidden="true"></i> -->
+                                            Back
+                                        </button>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab title="Application Payment">
+                                <ng-template ngbTabContent>
+                                    <div class="row mt-2">
+                                        <div class="col-xl-12">
+                                            <h5 class="pb-2">Map Challan For Label</h5>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Map Challan For Label </th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Service Request</td>
+                                                            <td class="table-action-column text-center">
+                                                                <button class="btn btn-icon btn-primary" type="button"
+                                                                    routerLink="/supplychainmanagement/warehouse/brandlabelrequest/makepayment/view">
+                                                                    <i class="feather icon-eye"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </ng-template>
+
+
+
+                            </ngb-tab>
+                        </ngb-tabset>
+
+
+
+
+
+                    </app-card>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>

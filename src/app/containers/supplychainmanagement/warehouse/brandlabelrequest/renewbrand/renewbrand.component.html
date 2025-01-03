@@ -1,0 +1,104 @@
+<h5 class="m-b-10 ng-star-inserted">Renew Brand
+
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Renew Brand</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand Name</label>
+                        <!-- <input type="text" class="form-control" placeholder="Whisky"> -->
+                        <select name='brandRegistrationId' #brandRegistrationId="ngModel"  
+                        [(ngModel)]="reNewBrandObj['brandRegistrationId']" class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                {{b.brandName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <!-- <input type="text" class="form-control" placeholder="FL"> -->
+                        <select id="licencetype" name="licencetype" required class="form-control" 
+                         #licencetype="ngModel"  [(ngModel)]="reNewBrandObj['licencetype']" >
+                            <option value="">Select</option>
+                            <option *ngFor="let data of licenceTypeList" value ="{{data.id}}">{{data.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" class="form-control" placeholder="Premium"
+                        name='categoryName' #categoryName="ngModel"  
+                        [(ngModel)]="reNewBrandObj['categoryName']">
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchReNewBrand()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">Back</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Renew Brand List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Brand Name</th>
+                            <th>License Type</th>
+                            <th>Category</th>
+                            <th>Strength</th>
+                            <th>Reason</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>Whisky</td>
+                            <td>FL</td>
+                            <td>Premium</td>
+                            <td>-</td>
+                            <td>Request for Renewal</td>
+
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/warehouse/brandlabelrequest/renewbrand/view">
+                                    <i class="feather icon-eye"></i></button>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

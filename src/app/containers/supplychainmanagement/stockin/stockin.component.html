@@ -1,0 +1,124 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock In List
+    <button type="submit" class="btn btn-success pull-right" routerLink="/supplychainmanagement/stockin/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Stock
+    </button>
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock In</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ingrediant Code</label>
+                        <input type="text" class="form-control" placeholder="Enter Ingrediant Code">
+                    </div>
+                </div>
+                
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ingrediant Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Ingrediant Name">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <!-- <input type="text" [timePicker]="true" [timePickerSeconds]="false" [timePicker24Hour]="true"
+                        ngxDaterangepickerMd [(ngModel)]="dateselected" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                        [showClearButton]="true"
+                        [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" startKey="start"
+                        endKey="end" (datesUpdated)="ondataChange()" (rangeClicked)="rangeClicked($event)"> -->
+                        <!-- <input type="text" ngxDaterangepickerMd startKey="start" endKey="end" [(ngModel)]="dateselected"> -->
+                        <input 
+                            type="text" 
+                            name="daterange"
+                            ngxDaterangepickerMd 
+                            [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" 
+                            class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>select</option>
+                            <option value="active">Active</option>
+                            <option value="disabled">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2">Search</button>
+                            <button type="submit" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock In List" blockClass="table-border-style">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Stock Name</th>
+                            <th>Quantity</th>
+                            <th>Grade </th>
+                            <th>Received Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Molasses</td>
+                            <td>500</td>
+                            <td>B</td>
+                            <td>10-9-2020 18:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item" href="javascript:">PDF</a>
+                    <a class="dropdown-item" href="javascript:">JPG</a>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xl-8" >
+                    <ngb-pagination [collectionSize]="120" [(page)]="advancePage" [maxSize]="5" [boundaryLinks]="true" class="float-right"></ngb-pagination>
+                </div>
+            </div>
+        </app-card>
+    </div>
+  </div>
+
+  
+  
+  

@@ -1,0 +1,230 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Payment Transaction
+    <!-- Indent Request(Molasses) List -->
+    <button type="submit" class="btn btn-success pull-right custom_add_button"
+        routerLink="/supplychainmanagement/distillery/indentrequest/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Payment Transaction
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+
+    <li class="breadcrumb-item"><a href="javascript:">Billing</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Payment Transaction</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Indent Request(Molasses)</a></li> -->
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text"  class="form-control"  placeholder="Enter Indent No" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Unit Name 
+                        </label>
+                        <input type="text"  class="form-control"  placeholder="Enter Unit Name" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div> -->
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Product Type</label>
+                        <select id="productType" name="productType" #productType="ngModel" [(ngModel)]="indentrequestObj['productType']"
+                        required class="form-control">
+                        <option value="">Select</option>
+                        <option *ngFor="let item of producttypelist" value="{{item.id}}">{{item.name}}</option>
+                    </select>
+                    </div>
+                </div> -->
+
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <ngb-tabset type="pills" class="mb-2">
+            <ngb-tab title="Indent Request List">
+                <ng-template ngbTabContent>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <app-card cardTitle="Indent Request List" blockClass="table-border-style"
+                                class="list-panel">
+                                <div class="row">    
+                                    <div class="col-12 mb-2">
+                               
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Indent No</th>
+                                                <th>Indent Date</th>
+                                                <th>Unit Type</th>
+                                                <!-- <th>License Type</th> -->
+
+                                                <!-- <th>Distillery Name</th> -->
+                                                <th>Unit Name</th>
+                                                <!-- <th>Brand Name</th>
+                                                <th>Package Size</th> -->
+                                                <th>Total No.of Cases</th>
+                                                <th>Total No.of Bottles</th>
+                                                <th>Total Amount</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>33396-20230907110837710 </td>
+                                                <td>11-Sep-2023 </td>
+                                                <td>Wholesale
+                                                </td>
+                                                <!-- <td class="text-left">FL2
+                                                </td> -->
+                                                <td class="text-left">Ashok Jaiswal </td>
+                                                <!-- <td class="text-left">Kingfisher </td>
+                                                <td>650 ML </td> -->
+                                                <td>50</td>
+                                                <td>600</td>
+                                                <td class="text-right">1200.00</td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-primary">In progress </span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        routerLink="/supplychainmanagement/distillery/indentrequest/view">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                        <i class="feather icon-edit-2"></i></button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                      <div ngbDropdown>
+                                        <button class="btn btn-success" ngbDropdownToggle
+                                          type="button">Download</button>
+                                        <div ngbDropdownMenu>
+                                          <a class="dropdown-item" href="javascript:">Excel</a>
+                                          <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                          <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-8 text-right p-0">
+                                        <img src="assets/images/pagenation.png" />
+                                    </div>
+                                </div> 
+                            </app-card>
+                        </div>
+                    </div>
+
+                </ng-template>
+            </ngb-tab>
+        <ngb-tab>
+            <ng-template ngbTabTitle>Payment Details </ng-template>
+            <ng-template ngbTabContent>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <app-card cardTitle="Payment Details" blockClass="table-border-style" class="list-panel">
+                            <!-- <div class="table-responsive mb-2">
+                    <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                        [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                        (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                    </app-mat-normal-table>
+               
+             
+            </div> -->
+            <div class="row">
+                <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Total Amount </th>
+                                            <th>Select Payment Type </th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="text-right">120000.00
+                                                                            </td>
+                                            <td>NEFT/RTGS/Cash/Cheque                                            </td>
+                                            
+                                            <td class="table-action-column text-center">
+                                                <button class="btn btn-icon btn-primary" type="button"
+                                                    routerLink="/supplychainmanagement/distillery/indentrequest/view">
+                                                    <i class="feather icon-download"></i></button>
+                                                
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div> 
+                        </app-card>
+                    </div>
+                </div>
+            </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'usermanagement.roles.addroles' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'usermanagement.roles.editroles' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.roles.rolemanagement' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'usermanagement.common.add'
+        | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{
+        'usermanagement.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <form #userForm="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Role" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 border-right menu_list">
+                        <label>{{ 'usermanagement.roles.menuslist' | translate }}</label>
+
+                        <div id='treeparent'>
+                            <ejs-treeview #treeview="" id='treeelement' [fields]='field' [showCheckBox]='showCheckBox'
+                                [checkedNodes]="checkedNodes" (nodeChecked)='nodeChecked($event)'></ejs-treeview>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label class="mandatory">{{ 'usermanagement.roles.rolecode' | translate }}</label>
+                                    <input type="text" id="Name" name="code" #code="ngModel"
+                                        [(ngModel)]="roleObj['roleCode']" required class="form-control"
+                                        placeholder="{{ 'usermanagement.roles.entercode' | translate }}"
+                                        [attr.disabled]="editId ? '' : null" (change)="checkCode($event.target.value)">
+                                    <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                            {{ 'usermanagement.roles.rolecode' | translate }} {{
+                                            'usermanagement.common.isrequired' | translate }} </div>
+
+                                    </div>
+                                    <div *ngIf="codeExistsFlag" class="error-msg">
+                                        <div><i class="fa fa-times"></i> {{ 'usermanagement.roles.rolecode' | translate
+                                            }} already
+                                            exists </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label class="mandatory">{{ 'usermanagement.roles.rolename' | translate }}</label>
+                                    <input type="text" id="Name" name="name" #name="ngModel"
+                                        [(ngModel)]="roleObj['roleName']" required class="form-control"
+                                        placeholder="{{ 'usermanagement.roles.enterrolename' | translate }}">
+                                    <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                            {{ 'usermanagement.roles.rolename' | translate }} {{
+                                            'usermanagement.common.isrequired' | translate }} </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label class="mandatory">{{ 'usermanagement.roles.landingscreen' | translate
+                                        }}</label>
+                                    <select class="form-control" [(ngModel)]="roleObj.landingScreen" name="landing"
+                                        #landing="ngModel" required>
+                                        <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                                        <option *ngFor="let item of checkedlist" value={{item.id}}>
+                                            {{item.text ? item.text : item.name}}</option>
+                                    </select>
+                                    <div *ngIf="landing.invalid && (landing.dirty || landing.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="landing?.errors?.required"><i class="fa fa-times"></i>
+                                            {{ 'usermanagement.roles.landingscreen' | translate }} {{
+                                            'usermanagement.common.isrequired' | translate }} </div>
+
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'usermanagement.common.status' | translate }}</label>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" id="active" name="active" #active="ngModel"
+                                            [(ngModel)]="roleObj['active']" class="custom-control-input"
+                                            id="customswitch1">
+                                        <label class="custom-control-label" for="customswitch1">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </div>
+    </form>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="adduser(userForm)">{{ 'usermanagement.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigaterolelist()">{{ 'usermanagement.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.penalty.addpenalty' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.penalty.editpenalty' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.penalty.penaltymaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #penaltyForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.penalty.penalty' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.penalty.penaltycode' | translate }}</label>
+                            <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="penaltyObj['code']"
+                                minlength="3" maxlength="10"  pattern="^[a-zA-Z0-9]+$" class="form-control" required
+                                placeholder="{{ 'master.penalty.enterpenaltycode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.penalty.penaltycode' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                    <div *ngIf="code?.errors?.pattern">
+                                        <i class="fa fa-times"></i>
+                                      {{ 'master.common.alphanumeric' | translate }}
+                                       </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.penalty.penaltyname' | translate }}</label>
+                            <input type="text" id="Name" name="name" #name="ngModel" [(ngModel)]="penaltyObj['name']"
+                                minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.penalty.enterpenaltyname' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.penalty.penaltyname' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.penalty.duedate' | translate }}</label>
+                            <select id="duedate" name="duedate" #duedate="ngModel"
+                                [(ngModel)]="penaltyObj['dueDateName']" [required]="true" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let item of duedatelist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="duedate.invalid && (duedate.dirty || duedate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="duedate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.penalty.duedate' | translate }} {{ 'master.common.isrequired' | translate
+                                    }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="penaltyObj['isActive']" class="custom-control-input" id="customswitch1"
+                                    [attr.checked]="penaltyObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!penaltyObj.isActive">{{
+                                    'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="penaltyObj.isActive">{{
+                                    'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addPenalty(penaltyForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigatepenaltyList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<h5 class="m-b-10 ng-star-inserted">
+    CLB 10 
+    <button type="submit" class="btn btn-success pull-right mr-2 custom_add_button"
+        routerLink="/supplychainmanagement/distillery/clb10/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add CLB 10
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <!-- Country Liquor Production and Bottling 10 -->
+    <li class="breadcrumb-item"><a href="javascript:">CLB 10</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date of Application</label>
+                        <input type="date" class="form-control"  placeholder="">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 text-right mt-4">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Clear</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="CLB 10 List" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application No</th>
+                            <th>Date of Application</th>
+                            <!-- <th>Consignee Name</th> -->
+                            <th>Name Of Distillery</th>
+                            <th>Description of Countery Liqour</th>
+                            <th>Quantity in BL</th>
+                            <th>Consideration Fee</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                123456
+                            </td>
+
+                            <td>
+                                10-Jul-2021
+                            </td>
+                            <td class="text-left">
+                                Daurala Distillery
+                            </td>
+                            <td class="text-left">
+                                Good
+                            </td>
+                            <td class="text-left">
+                                1000
+                            </td>
+                            <td class="text-right">
+                                100.00
+                            </td>
+                            <td>
+                                <span class="badge badge-light-success">Approved</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/clb10/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/distillery/clb4/add">
+                                    <i class="feather icon-edit-2"></i></button>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

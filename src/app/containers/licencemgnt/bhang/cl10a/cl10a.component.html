@@ -1,0 +1,677 @@
+<h5 class="m-b-10 ng-star-inserted">Application for License C.L - 10 A</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bhang/Ganja/Opium/Nira/Tadi & Sendhi</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Application for License C.L - 10 A</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="ClForm" autocomplete="off">
+            <app-card cardTitle="Application Form" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="text"  class="form-control" readonly placeholder="2020-2021" formControlName="financialyear">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="applicationDate">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>CL2</option>
+                                 <option>FL2</option>
+                               </select>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control" formControlName="salutationId">
+                              <option value="">Select</option>
+                              <option value="1">Salutation Master</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('salutationId').errors || ClForm.get('salutationId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('salutationId').errors?.required"><i class="fa fa-times"></i>
+                                    Salutation is required
+                                </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName">
+                            <div *ngIf="formSubmitted && ClForm.get('firstName').errors || ClForm.get('firstName').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('firstName').errors?.required"><i class="fa fa-times"></i>
+                                    First Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name" formControlName="middleName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName">
+                            <div *ngIf="formSubmitted && ClForm.get('lastName').errors || ClForm.get('lastName').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('lastName').errors?.required"><i class="fa fa-times"></i>
+                                    Last Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Mobile Number" formControlName="applicantMobileNumber">
+                            <div *ngIf="formSubmitted && ClForm.get('applicantMobileNumber').errors || ClForm.get('applicantMobileNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('applicantMobileNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Applicant Mobile Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="text" class="form-control" placeholder="Enter Email Id" formControlName="applicantMailId">
+                            <div *ngIf="formSubmitted && ClForm.get('applicantMailId').errors || ClForm.get('applicantMailId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('applicantMailId').errors?.required"><i class="fa fa-times"></i>
+                                    Email Id of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="number" class="form-control" placeholder="Enter Aadhaar Number" formControlName="applicantAadharNo">
+                            <div *ngIf="formSubmitted && ClForm.get('applicantAadharNo').errors || ClForm.get('applicantAadharNo').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('applicantAadharNo').errors?.required"><i class="fa fa-times"></i>
+                                    Aadhaar Number of Applicant is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control" formControlName="genderId">
+                                 <option value="">Select</option>
+                                 <option value="1">Male</option>
+                                 <option value="2">Female</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('genderId').errors || ClForm.get('genderId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('genderId').errors?.required"><i class="fa fa-times"></i>
+                                    Gender is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" placeholder="" formControlName="dob">
+                        </div>
+                        <div *ngIf="formSubmitted && ClForm.get('dob').errors || ClForm.get('dob').touched "
+                            class="error-msg">
+                            <span *ngIf="ClForm.get('dob').errors?.required"><i class="fa fa-times"></i>
+                                Date of Birth is required
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text" class="form-control" placeholder="Enter PAN Number" formControlName="panNumber">
+                            <div *ngIf="formSubmitted && ClForm.get('panNumber').errors || ClForm.get('panNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('panNumber').errors?.required"><i class="fa fa-times"></i>
+                                    PAN Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control"  placeholder="INDIA" formControlName="country" readonly>
+                            <div *ngIf="formSubmitted && ClForm.get('country').errors || ClForm.get('country').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('country').errors?.required"><i class="fa fa-times"></i>
+                                    Country is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control"  placeholder="Enter Pincode" formControlName="pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="stateId">
+                                <option value="">Select</option>
+                                <option value="1">UP</option>
+                             </select>
+                            <div *ngIf="formSubmitted && ClForm.get('stateId').errors || ClForm.get('stateId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('stateId').errors?.required"><i class="fa fa-times"></i>
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="districtId">
+                              <option value="">Select</option>
+                              <option value="1">Lucknow</option>
+                             </select>
+                            <div *ngIf="formSubmitted && ClForm.get('districtId').errors || ClForm.get('districtId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('districtId').errors?.required"><i class="fa fa-times"></i>
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="tehsilId">
+                               <option value="">Select</option>
+                               <option value="1">Mohanlalganj</option>
+                             </select>
+                            <div *ngIf="formSubmitted && ClForm.get('tehsilId').errors || ClForm.get('tehsilId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('tehsilId').errors?.required"><i class="fa fa-times"></i>
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="urbanOrRural" (change)="show1($event)">
+                                 <option value="">Select</option>
+                                 <option value="1">Urban</option>
+                                 <option value="2">Rural</option>
+                             </select>
+                             <div *ngIf="formSubmitted && ClForm.get('urbanOrRural').errors || ClForm.get('urbanOrRural').touched "
+                             class="error-msg">
+                             <span *ngIf="ClForm.get('urbanOrRural').errors?.required"><i class="fa fa-times"></i>
+                                Urban/Rural is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shopurban == true">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" formControlName="muncipalAreaId">
+                               <option value="">Select</option>
+                               <option value="1">Municipal corporation</option>
+                               <option value="2">Nagar Palika</option>
+                               <option value="3">Other Municipal Area</option>
+                             </select>
+                             <!-- Cantt. Board -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shopurban == true">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control"  placeholder="Enter Ward" formControlName="ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shoprural == true">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="number" class="form-control"  placeholder="Enter Block" formControlName="blockId">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="shoprural == true">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="number" class="form-control" required placeholder="Enter Village" formControlName="villageId">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStation">
+                               <option value="">Select</option>
+                             </select>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" >
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStation">
+                               <option value="">Select</option>
+                               <option >Gottimar</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('policeStation').errors || ClForm.get('policeStation').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('policeStation').errors?.required"><i class="fa fa-times"></i>
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Stattion</label>
+                            <input type="text" class="form-control"  placeholder="Enter Locality"  formControlName="policeStation">
+                            <div *ngIf="formSubmitted && ClForm.get('policeStation').errors || ClForm.get('policeStation').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('policeStation').errors?.required"><i class="fa fa-times"></i>
+                                    policeStation is required
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control"  placeholder="Enter Locality" formControlName="locality">
+                            <div *ngIf="formSubmitted && ClForm.get('locality').errors || ClForm.get('locality').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('locality').errors?.required"><i class="fa fa-times"></i>
+                                    Locality is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control"  placeholder="Enter Street" formControlName="street">
+                            <div *ngIf="formSubmitted && ClForm.get('street').errors || ClForm.get('street').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('street').errors?.required"><i class="fa fa-times"></i>
+                                    Street is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of the Shop" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1.value"  (change)="checkboxchange($event)">
+                              
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                      <!-- (click)="licenseType($event, 'pd1')" - - formControlName="licenseTypeRad"-->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control"  placeholder="INDIA" formControlName="shopCountry" readonly>
+                            <div *ngIf="formSubmitted && ClForm.get('shopCountry').errors || ClForm.get('shopCountry').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('shopCountry').errors?.required"><i class="fa fa-times"></i>
+                                    Country is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control"  placeholder="Enter Pincode" formControlName="shopPincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="shopStateId">
+                                <option value="">Select</option>
+                                <option value="1">UP</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('shopStateId').errors || ClForm.get('shopStateId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('shopStateId').errors?.required"><i class="fa fa-times"></i>
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="shopDistrictId">
+                              <option value="">Select</option>
+                              <option value="1">Lucknow</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('shopDistrictId').errors || ClForm.get('shopDistrictId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('shopDistrictId').errors?.required"><i class="fa fa-times"></i>
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="shopTehsilId">
+                               <option value="">Select</option>
+                               <option value="1">Mohanlalganj</option>
+                               <!-- Mohanlalganj -->
+                             </select>
+                            <div *ngIf="formSubmitted && ClForm.get('shopTehsilId').errors || ClForm.get('shopTehsilId').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('shopTehsilId').errors?.required"><i class="fa fa-times"></i>
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="shopUrbanRural" (change)="show($event)">
+                                 <option value="">Select</option>
+                                 <option value="1">Urban</option>
+                                 <option value="2">Rural</option>
+                             </select>
+                             <div *ngIf="formSubmitted && ClForm.get('shopUrbanRural').errors || ClForm.get('shopUrbanRural').touched "
+                             class="error-msg">
+                             <span *ngIf="ClForm.get('shopUrbanRural').errors?.required"><i class="fa fa-times"></i>
+                                Urban/Rural is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select class="form-control" formControlName="shopMunicipalAreaId">
+                               <option value="">Select</option>
+                               <option value="1">Municipal corporation</option>
+                               <option value="2">Nagar Palika</option>
+                               <option value="3">Other Municipal Area</option>
+                               <option value="4"> Cantt. Board</option>
+                               <!-- Municipal corporation/Nagar Palika/Other Municipal Area/ Cantt. Board -->
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urban == true">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text" class="form-control" formControlName="shopWard" placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="number" class="form-control" formControlName="shopBlockId" placeholder="Enter Block">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="rural == true">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="number" class="form-control" formControlName="shopVillageId" placeholder="Enter Village">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" >
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="shopPoliceStation">
+                               <option value="">Select</option>
+                               <option >Gottimar</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('shopPoliceStation').errors || ClForm.get('shopPoliceStation').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('shopPoliceStation').errors?.required"><i class="fa fa-times"></i>
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="shopLocality" placeholder="Enter Locality">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="shopStreet" placeholder="Enter Street">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Salesman Details" class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="salesManDetailsEntityList"
+                                *ngFor="let pres of ClForm?.get('salesManDetailsEntityList')['controls']; let i=index"
+                                id="row{{i}}">
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group  mb-0">
+                                        {{i+1}}
+                                    </div>
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" placeholder="Enter FullName" formControlName="fullName">
+                                    </div>
+
+                                </td>
+                                <td class="text-center" [formGroupName]="i">
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" placeholder="Enter Address" formControlName="address">
+                                    </div>
+                                </td>
+
+
+                                <!-- <td>
+
+                                    <div class="form-group mb-0">
+                                        
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                                <label class="custom-file-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </td> -->
+
+
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-success mr-2" type="button" (click)="addrow()">
+                                                <i class="feather icon-plus"></i></button>
+
+                                    <button class="btn btn-icon btn-danger mr-2" type="button" (click)="removeSelectedRow(i)">
+                                                    <i class="feather icon-trash"></i></button>
+
+                                    <!-- <button class="btn btn-icon btn-warning mr-2" type="button" routerLink="/supplychainmanagement/warehouse/bwfl5/view">
+                                                    <i class="feather icon-download"></i></button> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="number" class="form-control" placeholder="Enter Bank Account Number" formControlName="bankAccountNumber">
+                            <div *ngIf="formSubmitted && ClForm.get('bankAccountNumber').errors || ClForm.get('bankAccountNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('bankAccountNumber').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Account Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text" class="form-control" placeholder="Enter IFSC" formControlName="bankIfsc">
+                            <div *ngIf="formSubmitted && ClForm.get('bankIfsc').errors || ClForm.get('bankIfsc').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('bankIfsc').errors?.required"><i class="fa fa-times"></i>
+                                    Bank IFSC is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select class="form-control" formControlName="bankName">
+                               <option value="">Select</option>
+                               <option >ICIC</option>
+                               <option >HDFC</option>
+                            </select>
+                            <div *ngIf="formSubmitted && ClForm.get('bankName').errors || ClForm.get('bankName').touched "
+                                class="error-msg">
+                                <span *ngIf="ClForm.get('bankName').errors?.required"><i class="fa fa-times"></i>
+                                    Bank Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" disabled name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Payment Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="number" class="form-control" placeholder="Enter Application/Processing Fees" formControlName="applicationFees">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2" (click)="addCLDetails(ClForm)">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2" (click)="preview(ClForm)">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="addCLDetails(ClForm)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2" routerLink="/licencemgnt/bhang/cl10a/view">Cancel</button>
+        </div>
+    </div>
+</div>

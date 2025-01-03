@@ -1,0 +1,82 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'bondWarehouse.importpermitstatus.importpermitstatus' | translate}}
+    <!-- <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/importpermitstatus/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> Add Import Permit Status</button> -->
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.importpermitstatus.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.importpermitstatus.importpermitstatus' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.list' | translate}}</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'master.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'bondWarehouse.importpermitstatus.applicationnumber' | translate}}</label>
+                        <input type="text" class="form-control" placeholder="Enter Application Number"
+                        name="permitNumber" #permitNumber="ngModel" [(ngModel)]="importPermtObj['permitNumber']">
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Issued Pass Date</label>
+                        <input type="date" class="form-control" placeholder="">
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'bondWarehouse.importpermitstatus.bottlingtype' | translate}}</label>
+                        <input type="text" class="form-control" placeholder="-">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>No. of Cases</label>
+                        <input type="number" class="form-control" placeholder="Enter No. of Cases">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>In Bulk</label>
+                        <input type="number" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Strength A.L</label>
+                        <input type="number" class="form-control" placeholder="">
+                    </div>
+                </div> -->
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchImportPer()">{{'master.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'master.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.importpermitstatus.importpermitlist'| translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

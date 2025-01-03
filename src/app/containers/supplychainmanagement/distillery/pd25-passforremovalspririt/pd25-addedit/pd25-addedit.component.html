@@ -1,0 +1,483 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} PD-25 (Pass for removal of spirit, (Bond or Under bond))
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd22-registerofissuance/list">Dispatch</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd25-passforremovalspirit/list">PD-25
+            (Pass for removal of spirit, (Bond or Under bond))
+        </a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details Of PD-25 (Pass for removal of spirit, (Bond or Under bond))" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label class="mandatory">Search or Scan Indent Number</label>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Indent Number" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-qrcode"></i></button>
+                        </div>
+                        </div>
+                        </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD25 Pass No</label>
+                            <input type="text"  class="form-control" required placeholder="Indent Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit No</label>
+                            <input type="text"  class="form-control" required placeholder="Indent Number">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Date</label>
+                            <input disabled type="date" class="form-control" name="permitDate" placeholder="Enter Permit Date" #permitDate="ngModel" [(ngModel)]="addpd25obj['permitDate']" required>
+                            <div *ngIf="permitDate.invalid && (permitDate.dirty || permitDate.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="permitDate?.errors?.required"><i class="fa fa-times"></i> Permit Date is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date</label>
+                            <input disabled type="date" class="form-control" required placeholder="Application Date">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issue Date</label>
+                            <input type="date"  class="form-control" required placeholder="Indent Number">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gate Pass No.</label>
+                            <input type="text" class="form-control" name="gatePassNo" placeholder="Enter Gate Pass No."
+                                #gatePassNo="ngModel" [(ngModel)]="addpd25obj['gatePassNo']" required maxlength="100">
+                            <div *ngIf="gatePassNo.invalid && (gatePassNo.dirty || gatePassNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gatePassNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Gate Pass No. is required </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Validity</label>
+                            <input disabled type="date" class="form-control" name="validity" placeholder="Enter Validity" #validity="ngModel" [(ngModel)]="addpd25obj['validity']" required>
+                            <div *ngIf="validity.invalid && (validity.dirty || validity.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="validity?.errors?.required"><i class="fa fa-times"></i> Validity is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Consignor</label>
+                            <input disabled type="text" class="form-control" name="nameOfConsignor" placeholder="Sunil" #nameOfConsignor="ngModel" [(ngModel)]="addpd25obj['nameOfConsignor']" required maxlength="100">
+                            <div *ngIf="nameOfConsignor.invalid && (nameOfConsignor.dirty || nameOfConsignor.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="nameOfConsignor?.errors?.required"><i class="fa fa-times"></i> Name of Consignor is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Consignee</label>
+                            <select disabled class="form-control" name="nameOfConsignee" #nameOfConsignee="ngModel" [(ngModel)]="addpd25obj['nameOfConsignee']" required>
+                                <option value="M/S Radico NV Distilleries Maharashtra Ltd.">M/S Radico NV Distilleries
+                                    Maharashtra Ltd.</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Jarkhand">Jarkhand</option>
+                            </select>
+                            <div *ngIf="nameOfConsignee.invalid && (nameOfConsignee.dirty || nameOfConsignee.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="nameOfConsignee?.errors?.required"><i class="fa fa-times"></i>Name of Consignee is required </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of place to which</label>
+                            <input disabled type="text" class="form-control" name="nameOfPlace" placeholder="Lucknow" #nameOfPlace="ngModel" [(ngModel)]="addpd25obj['nameOfPlace']" required maxlength="100">
+                            <div *ngIf="nameOfPlace.invalid && (nameOfPlace.dirty || nameOfPlace.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="nameOfPlace?.errors?.required"><i class="fa fa-times"></i> Name of place to which is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type</label>
+                            <input type="text" disabled class="form-control" required placeholder="Type1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description of spirit</label>
+                            <select disabled  class="form-control" name="descriptionOfSpirit" #descriptionOfSpirit="ngModel" [(ngModel)]="addpd25obj['descriptionOfSpirit']" required>
+                                <!-- <option value="">Select</option> -->
+                                <option value="Matured malt spirit">Matured malt spirit</option>
+                                <option value="Malt">Malt</option>
+                                <option value="Molasses">Molasses</option>
+                            </select>
+
+                            <div *ngIf="descriptionOfSpirit.invalid && (descriptionOfSpirit.dirty || descriptionOfSpirit.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="descriptionOfSpirit?.errors?.required"><i class="fa fa-times"></i> Description of spirit is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit No.</label>
+                            <input type="text" class="form-control" name="permitNo" placeholder="Enter Permit No."
+                                #permitNo="ngModel" [(ngModel)]="addpd25obj['permitNo']" required maxlength="100">
+                            <div *ngIf="permitNo.invalid && (permitNo.dirty || permitNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="permitNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Permit No. is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Duty Paid</label>
+                            <input disabled type="number" class="form-control" name="dutyPaid" placeholder="200" #dutyPaid="ngModel" [(ngModel)]="addpd25obj['dutyPaid']" required maxlength="10">
+                            <div *ngIf="dutyPaid.invalid && (dutyPaid.dirty || dutyPaid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="dutyPaid?.errors?.required"><i class="fa fa-times"></i> Duty Paid is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Denaturing Fees</label>
+                            <input disabled type="number" class="form-control" name="denautringFee" placeholder="300" #denautringFee="ngModel" [(ngModel)]="addpd25obj['denautringFee']" required maxlength="10">
+                            <div *ngIf="denautringFee.invalid && (denautringFee.dirty || denautringFee.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="denautringFee?.errors?.required"><i class="fa fa-times"></i> Denaturing Fees is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>In Bond</label>
+                            <select class="form-control" name="inBond" #inBond="ngModel"
+                                [(ngModel)]="addpd25obj['inBond']" required>
+                                <option value="">Select</option>
+                                <option value="Under Bond">Under Bond</option>
+                                <option value="Not Under Bond">Not Under Bond</option>
+
+                            </select>
+                            <div *ngIf="inBond.invalid && (inBond.dirty || inBond.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="inBond?.errors?.required"><i class="fa fa-times"></i>
+                                    In Bond is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Agency Name</label>
+                            <input disabled type="text" class="form-control" placeholder="New Agency" required>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input disabled type="text" class="form-control" required placeholder="Mari">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vehicle No.</label>
+                            <input disabled type="text" class="form-control" name="vehicleNo" placeholder="KNJ676" #vehicleNo="ngModel" [(ngModel)]="addpd25obj['vehicleNo']" required maxlength="10">
+                            <div *ngIf="vehicleNo.invalid && (vehicleNo.dirty || vehicleNo.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="vehicleNo?.errors?.required"><i class="fa fa-times"></i> Vehicle No. is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Route detail</label>
+                            <input disabled type="text" class="form-control" name="routeDetail" placeholder="Lucknow" #routeDetail="ngModel" [(ngModel)]="addpd25obj['routeDetail']" required maxlength="100">
+                            <div *ngIf="routeDetail.invalid && (routeDetail.dirty || routeDetail.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="routeDetail?.errors?.required"><i class="fa fa-times"></i> Route detail is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Provision To Add Multiple Column" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Chamber No./Casks</th>
+                                        <th>Dip</th>
+                                        <th>AL</th>
+                                        <th>BL</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="text" name="chamberno" class="form-control" placeholder="Enter Chamber No./Casks" /></td>
+                                        <td class="text-left"><input type="number" class="form-control" placeholder="Enter Dip" /></td>
+                                        <td class="text-right"><input type="number" class="form-control" placeholder="Enter AL" /></td>
+                                        <td class="text-left"><input type="number" class="form-control" placeholder="Enter BL" /></td>
+
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                    <i class="feather icon-trash"></i></button>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="number" class="form-control" name="serialNo" placeholder="Enter Serial Number"
+                                #serialNo="ngModel" [(ngModel)]="addpd25obj['serialNo']" required maxlength="10">
+                            <div *ngIf="serialNo.invalid && (serialNo.dirty || serialNo.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="serialNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Serial Number is required </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chamber no./ Casks</label>
+                            <input type="text" class="form-control" name="chamberNoOrCasks"
+                                placeholder="Enter Chamber no./ Casks" #chamberNoOrCasks="ngModel"
+                                [(ngModel)]="addpd25obj['chamberNoOrCasks']" required maxlength="100">
+                            <div *ngIf="chamberNoOrCasks.invalid && (chamberNoOrCasks.dirty || chamberNoOrCasks.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="chamberNoOrCasks?.errors?.required"><i class="fa fa-times"></i>
+                                    Chamber no./ Casks is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>DIP</label>
+                            <input type="number" class="form-control" name="dip" placeholder="Enter DIP" #dip="ngModel"
+                                [(ngModel)]="addpd25obj['dip']" required maxlength="10">
+                            <div *ngIf="dip.invalid && (dip.dirty || dip.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="dip?.errors?.required"><i class="fa fa-times"></i>
+                                    DIP is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>A.L</label>
+                            <input type="number" class="form-control" name="al" placeholder="Enter A.L" #al="ngModel"
+                                [(ngModel)]="addpd25obj['al']" required maxlength="10">
+                            <div *ngIf="al.invalid && (al.dirty || al.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="al?.errors?.required"><i class="fa fa-times"></i>
+                                    A.L is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L</label>
+                            <input type="number" class="form-control" name="bl" placeholder="Enter B.L" #bl="ngModel"
+                                [(ngModel)]="addpd25obj['bl']" required maxlength="10">
+                            <div *ngIf="bl.invalid && (bl.dirty || bl.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bl?.errors?.required"><i class="fa fa-times"></i>
+                                    B.L is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Alcohol Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength</label>
+                            <input disabled type="number" class="form-control" name="strength" placeholder="Enter Strength" #strength="ngModel" [(ngModel)]="addpd25obj['strength']" required maxlength="10">
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i> Strength is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temperature </label>
+                            <input type="number" class="form-control" name="temparature" placeholder="Enter Temperature" #temparature="ngModel" [(ngModel)]="addpd25obj['temparature']" required maxlength="10">
+                            <div *ngIf="temparature.invalid && (temparature.dirty || temparature.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="temparature?.errors?.required"><i class="fa fa-times"></i> Temperature is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indicator </label>
+                            <input type="number" class="form-control" name="indicator" placeholder="Enter Indicator" #indicator="ngModel" [(ngModel)]="addpd25obj['indicator']" required maxlength="10">
+                            <div *ngIf="indicator.invalid && (indicator.dirty || indicator.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="indicator?.errors?.required"><i class="fa fa-times"></i> Indicator is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Weight Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gross weight </label>
+                            <input type="number" class="form-control" name="grossWeight" placeholder="Enter Gross weight" #grossWeight="ngModel" [(ngModel)]="addpd25obj['grossWeight']" required maxlength="10">
+                            <div *ngIf="grossWeight.invalid && (grossWeight.dirty || grossWeight.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="grossWeight?.errors?.required"><i class="fa fa-times"></i> Gross weight is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tare weight </label>
+                            <input type="number" class="form-control" name="tareWeight" placeholder="Enter Tare weight" #tareWeight="ngModel" [(ngModel)]="addpd25obj['tareWeight']" required maxlength="10">
+                            <div *ngIf="tareWeight.invalid && (tareWeight.dirty || tareWeight.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="tareWeight?.errors?.required"><i class="fa fa-times"></i> Tare weight is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Net weight </label>
+                            <input type="number" class="form-control" name="netWeight" placeholder="Enter Net weight" #netWeight="ngModel" [(ngModel)]="addpd25obj['netWeight']" required maxlength="10">
+                            <div *ngIf="netWeight.invalid && (netWeight.dirty || netWeight.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="netWeight?.errors?.required"><i class="fa fa-times"></i> Net weight is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Dispatched Spirit In Bulk" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L</label>
+                            <input type="number" class="form-control" name="bl2" placeholder="Enter B.L" #bl2="ngModel" [(ngModel)]="addpd25obj['bl2']" required maxlength="10">
+                            <div *ngIf="bl2.invalid && (bl2.dirty || bl2.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bl2?.errors?.required"><i class="fa fa-times"></i> B.L is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>A.L</label>
+                            <input type="number" class="form-control" name="al2" placeholder="Enter A.L" #al2="ngModel" [(ngModel)]="addpd25obj['al2']" required maxlength="10">
+                            <div *ngIf="al2.invalid && (al2.dirty || al2.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="al2?.errors?.required"><i class="fa fa-times"></i> A.L is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <!-- <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Received Spirit In Bulk" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L</label>
+                            <input type="number" class="form-control" name="bl3" placeholder="Enter B.L" #bl3="ngModel"
+                                [(ngModel)]="addpd25obj['bl3']" required maxlength="10">
+                            <div *ngIf="bl3.invalid && (bl3.dirty || bl3.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bl3?.errors?.required"><i class="fa fa-times"></i>
+                                    B.L is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>A.L</label>
+                            <input type="number" class="form-control" name="al3" placeholder="Enter A.L" #al3="ngModel"
+                                [(ngModel)]="addpd25obj['al3']" required maxlength="10">
+                            <div *ngIf="al3.invalid && (al3.dirty || al3.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="al3?.errors?.required"><i class="fa fa-times"></i>
+                                    A.L is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Inspector Name</label>
+                            <input type="text" class="form-control" name="inspectorName"
+                                placeholder="Enter Inspector Name" #inspectorName="ngModel"
+                                [(ngModel)]="addpd25obj['inspectorName']" required maxlength="100">
+                            <div *ngIf="inspectorName.invalid && (inspectorName.dirty || inspectorName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="inspectorName?.errors?.required"><i class="fa fa-times"></i>
+                                    Inspector Name is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Verified on</label>
+                            <input type="date" class="form-control" name="verifiedOn" #verifiedOn="ngModel"
+                                [(ngModel)]="addpd25obj['verifiedOn']" required>
+                            <div *ngIf="verifiedOn.invalid && (verifiedOn.dirty || verifiedOn.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="verifiedOn?.errors?.required"><i class="fa fa-times"></i>
+                                    Verified on is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+        </form>
+    </div> -->
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(Pd25Form)">Officer In Charge Distillery</button>
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(Pd25Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addapi(Pd25Form,false)">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addapi(Pd25Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/pd25-passforremovalspirit/list">Cancel</button>
+    </div>
+</div>

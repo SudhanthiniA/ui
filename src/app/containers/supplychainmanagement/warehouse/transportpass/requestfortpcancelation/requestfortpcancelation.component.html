@@ -1,0 +1,235 @@
+<h5 class="m-b-10 ng-star-inserted">{{'bondWarehouse.TransportPassCancellation.requestfortpcancellation' | translate}}
+    <!-- Request for TP Cancellation -->
+    <button class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/warehouse/transportpass/requestfortpcancelation/add" type="submit">
+        <i class="feather icon-plus mr-2"></i> {{'bondWarehouse.TransportPassCancellation.addrequestfortpcancellation' | translate}}
+        <!-- Add Request for TP Cancellation -->
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.transportpassgen.transportpass' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.TransportPassCancellation.requestfortpcancellation' | translate}}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{'bondWarehouse.common.list' | translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Number
+                                <!-- Application Id -->
+                            </label>
+                            <input type="text" class="form-control" placeholder="Enter Application Number" 
+                            name="applicationNumber" #applicationNumber="ngModel" [(ngModel)]="transportCalcelList['applicationNumber']">
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport pass Type  </label>
+                            <select class="form-control">
+                                <option>select</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date
+                                <!-- Application Date -->
+                            </label>
+                            <input type="date" class="form-control" placeholder="Enter Application Date"
+                            name="applicationDate" #applicationDate="ngModel" [(ngModel)]="transportCalcelList['applicationDate']" >
+                            <!-- name="createdDate" #createdDate="ngModel" [(ngModel)]="BrandRegObj['createdDate']" -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Premises Type
+                                <!-- Premises Type -->
+                            </label>
+                            <select class="form-control" name='premisesTypeValue' #premisesTypeValue="ngModel"  (change)="changePrimesType(transportCalcelList['premisesTypeValue'])" [(ngModel)]="transportCalcelList['premisesTypeValue']">
+                                <option value="">Select</option>
+                                <option>Within the Premises</option>
+                                <option>Outside the Premises</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Type
+                                <!-- Request Type -->
+                            </label>
+                            <select class="form-control"  name='requestType' #requestType="ngModel"   [(ngModel)]="transportCalcelList['requestType']" (change)="changeRequestType(transportCalcelList['requestType'])">
+                                <option value="">Select</option>
+                                <option>MODIFICATION</option>
+                                <option>CANCELLATION</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-primary mr-2" (click)="searchTransCancel()">{{'bondWarehouse.common.search'| translate}}</button>
+                        <button type="button" class="btn btn-secondary" (click)="cancel()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <app-card cardTitle="{{'bondWarehouse.transportpassgen.transportpssgeneration' | translate}}" class="list-panel">
+                <ngb-tabset type="pills" (tabChange)="tabClick($event)">
+                    <ngb-tab id="IN_PROGRESS" title="{{'bondWarehouse.TransportPassCancellation.pendingforapproval' | translate}}" class="mb-3">
+                      <ng-template ngbTabContent>
+                <div class="table-responsive">
+                    <app-mat-normal-table [columns]="columnsPending" [actionKeys]="actionKeysInprogrss" [dataSource]="dataSourcePending" [actionBtnBasedOnCond] ="actionBtnBasedOnCondInprogress"
+                        [totalCount]="totalPending" [pageSize]="pageSizeInprogress" (paginationEvent)="handlePagination($event)"
+                        (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                    </app-mat-normal-table>
+                   
+                </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="{{'bondWarehouse.TransportPassCancellation.approved' | translate}}" id="APPROVED">
+                        <ng-template ngbTabContent>
+                            <div class="table-responsive">
+                                <app-mat-normal-table [columns]="columnsAprove" [actionKeys]="actionKeysAproved" [dataSource]="dataSourceApprove" [actionBtnBasedOnCond] ="actionBtnBasedOnCondApproved"
+                                    [totalCount]="totalCountApproved" [pageSize]="pageSizeApproved" (paginationEvent)="handlePaginationApproved($event)"
+                                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                                </app-mat-normal-table>
+                                
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="{{'bondWarehouse.TransportPassCancellation.revertback' | translate}}" id="SENDBACK">
+                        <ng-template ngbTabContent>
+                            <div class="table-responsive">
+                                <app-mat-normal-table [columns]="columnsRevertBack" [actionKeys]="actionKeysSendback" [dataSource]="dataSourceRevertBack"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondSendback"
+                                    [totalCount]="totalCountSendback" [pageSize]="pageSizeSendback" (paginationEvent)="handlePaginationRevertBack($event)"
+                                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                                </app-mat-normal-table>
+                       
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+
+ <!-- <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Application ID</th>
+                                <th>Transport Pass Type</th>
+                                <th>Transport Pass  Number</th>
+                                <th>Application Date</th>
+                                <th>Premises Type</th>
+                                <th>Request Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>245</td>
+                                <td>BWFL-FL36</td>
+                                <td>84-2020-21-FL36-3764</td>
+                                <td>20-Apr-2021</td>
+                                <td>Within Premises</td>
+                                <td>Cancellation</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Approved By Excise-DEO-Lucknow</span>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button"
+                                        routerLink="/supplychainmanagement/warehouse/transportpass/requestfortpcancelation/view">
+                                        <i class="feather icon-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+
+<!-- <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Application ID</th>
+                                            <th>Transport Pass Type</th>
+                                            <th>Transport Pass  Number</th>
+                                            <th>Application Date</th>
+                                            <th>Premises Type</th>
+                                            <th>Request Type</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>245</td>
+                                            <td>BWFL-FL36</td>
+                                            <td>84-2020-21-FL36-3764</td>
+                                            <td>20-Apr-2021</td>
+                                            <td>Within Premises</td>
+                                            <td>Cancellation</td>
+                                            <td>
+                                                <span class="badge m-r-5 badge-light-success">Approved By Excise-DEO-Lucknow</span>
+                                            </td>
+                                            <td class="table-action-column text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                    routerLink="/supplychainmanagement/warehouse/transportpass/requestfortpcancelation/view">
+                                                    <i class="feather icon-eye"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+
+
+
+
+
+         <!-- <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Application ID</th>
+                                            <th>Transport Pass Type</th>
+                                            <th>Transport Pass  Number</th>
+                                            <th>Application Date</th>
+                                            <th>Premises Type</th>
+                                            <th>Request Type</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>245</td>
+                                            <td>BWFL-FL36</td>
+                                            <td>84-2020-21-FL36-3764</td>
+                                            <td>20-Apr-2021</td>
+                                            <td>Within Premises</td>
+                                            <td>Cancellation</td>
+                                            <td>
+                                                <span class="badge m-r-5 badge-light-success">Approved By Excise-DEO-Lucknow</span>
+                                            </td>
+                                            <td class="table-action-column text-center">
+                                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                                    routerLink="/supplychainmanagement/warehouse/transportpass/requestfortpcancelation/view">
+                                                    <i class="feather icon-eye"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->

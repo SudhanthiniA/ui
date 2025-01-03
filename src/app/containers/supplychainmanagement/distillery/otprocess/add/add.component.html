@@ -1,0 +1,890 @@
+<h5 class="m-b-10 ng-star-inserted">Add Fermentation - Batch
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/otprocess/list">
+        Fermentation - Batch</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+<div class="row">
+    <div class="col-lg-12">
+        <app-card cardTitle="Fermentation Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-12">
+                    <ngb-tabset type="pills" class="mb-2">
+                        <ngb-tab title="Fermentation Details">
+                            <ng-template ngbTabContent>
+                                <div class="row mt-2">
+                                    <div class="col-xl-12">
+                                        <form [formGroup]="fermentationForm" autocomplete="off">
+                                            <app-card cardTitle="Unit Details" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">License Type </label>
+                                                            <select class="form-control">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="mandatory">License Number</label>
+                                                            <select class="form-control">
+                                                                <option value="">Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Distillery Name </label>
+                                                            <input type="text" disabled class="form-control"
+                                                                value="Shri gang Distillery ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date of Application </label>
+                                                            <input type="text" class="form-control" value="13-Sep-2023">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </app-card>
+                                            <app-card cardTitle="Raw Materials" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="mb-0 table table-bordered text-center text-center">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Raw Material Type </th>
+                                                                        <th>Molasses Type </th>
+                                                                        <th>Raw Material Tank </th>
+                                                                        <th>Available Quantity </th>
+                                                                        <!-- <th>Total Quantity </th> -->
+                                                                        <th>Estimated Quantity </th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <!-- <td class="text-left">Molasses Based</td> -->
+                                                                        <!-- <td class="text-left">Molasses</td> -->
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Select</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Select</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Select</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="text-left">100</td>
+                                                                        <!-- <td><input type="text" class="form-control"
+                                                                                placeholder="Enter Total Quantity ">
+                                                                        </td> -->
+                                                                        <td><input type="text" class="form-control"
+                                                                                placeholder="Enter Estimated Quantity ">
+                                                                        </td>
+
+                                                                        <td class="table-action-column">
+                                                                            <button class="btn btn-icon btn-success"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/view">
+                                                                                <i
+                                                                                    class="feather icon-plus"></i></button>
+                                                                            <button class="btn btn-icon btn-danger ml-2"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/add">
+                                                                                <i
+                                                                                    class="feather icon-trash"></i></button>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </app-card>
+                                            <!-- <app-card cardTitle="Raw materials" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Raw material Type</label>
+                                                            <select class="form-control">
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Molasses Type</label>
+                                                            <select class="form-control">
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Raw material Tank </label>
+                                                            <select class="form-control">
+                                                                <option>Select</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Total Quantity </label>
+                                                            <input type="text" class="form-control" disabled
+                                                                placeholder="Enter Total Quantity">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Estimated Quantity </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Estimated Quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </app-card> -->
+                                            <app-card cardTitle="Yeast Process" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date & Time of Yeast Vessels Setup</label>
+                                                            <input type="date" class="form-control"
+                                                                placeholder="Enter Date & Time of Yeast Vessels Setup">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date & Time of Completion </label>
+                                                            <input type="date" class="form-control"
+                                                                placeholder="Enter Date & Time of  Completion ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>No.of yeast vessel used </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter No.of yeast vessel used ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Molasses Quantity(Qtls)</label>
+                                                            <input type="text" class="form-control" disabled
+                                                                placeholder="Enter Molasses Quantity(Qtls)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Qty of Fermented Sugar(In. Qts)</label>
+                                                            <input type="text" class="form-control" disabled
+                                                                placeholder="Enter Qty of Fermented Sugar(In. Qts)">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </app-card>
+                                            <app-card cardTitle="Pre Fermentation process "
+                                                class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date & Time of Setup </label>
+                                                            <input type="date" disabled class="form-control"
+                                                                placeholder="Enter Date & Time of Setup">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Date & Time of Completion </label>
+                                                            <input type="date" disabled class="form-control"
+                                                                placeholder="Enter Date & Time of Completion">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>No.of prefermenter used </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter No.of prefermenter used ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Quantity of Broth prepared </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Quantity of Broth prepared ">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </app-card>
+
+                                            <app-card cardTitle="Add Fermentation Details" class="list-panel add-panel">
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="mb-0 table table-bordered text-center text-center">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Fermentation Start Date and Time<span
+                                                                                class="mandatory"></span> </th>
+                                                                        <th>Fermenter Name<span
+                                                                                class="mandatory"></span></th>
+                                                                        <th>Raw Material Type </th>
+                                                                        <!-- <th>Raw Material Name </th> -->
+                                                                        <th>Molasses Type </th>
+                                                                        <th>Molasses Tank Name </th>
+                                                                        <th>Quantity of Grains/Molasses</th>
+                                                                        <th>Initial Gravity </th>
+                                                                        <th>Fermenter Dry DIP</th>
+                                                                        <!-- <th>Both Quantity Received<span
+                                                                                class="mandatory"></span></th> -->
+                                                                        <th>Quantity of Wash Prepared</th>
+
+                                                                        <!-- <th>Tank name </th> -->
+                                                                        <!-- <th>Initial Dip Count</th> -->
+                                                                        <!-- <th>Final Dip Count</th> -->
+                                                                        <!-- <th>Action</th> -->
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="13-Sep-2023 10:00:00 AM"></td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">FERMENTER TANK01
+                                                                                    (PDI/PD2/ST/PRO/885699)
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Grain</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <!-- <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">MST 1</option>
+                                                                            </select>
+                                                                        </td> -->
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">C Heavy Molasses</option>
+                                                                            </select>
+                                                                            
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">C Heavy T1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="1080">
+                                                                        </td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="9.9"></td>
+                                                                                <td><input type="text" class="form-control"
+                                                                                        value="12.7"></td>
+                                                                        <!-- <td><input type="text" class="form-control"
+                                                                                value="100"></td> -->
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="1000"></td>
+                                                                        
+                                                                       
+                                                                        <!-- <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="0">
+                                                                        </td> -->
+                                                                        <!-- <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="165">
+                                                                        </td> -->
+                                                                      
+                                                                        <!-- <td class="table-action-column">
+                                                                            <button class="btn btn-icon btn-success"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/view">
+                                                                                <i
+                                                                                    class="feather icon-plus"></i></button>
+                                                                            <button class="btn btn-icon btn-danger ml-2"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/add">
+                                                                                <i
+                                                                                    class="feather icon-trash"></i></button>
+
+                                                                        </td> -->
+                                                                    </tr>
+                                                                    <!-- <tr>
+                                                                        <td>2</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="03-Oct-2023"></td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">FERMENTER TANK02
+                                                                                    (PDI/PD2/ST/PRO/885700)
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="80"></td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="2000"></td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="20.5"></td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                value="25"></td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Grain Based</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">MST 1</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">Grain Based</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">MST 1</option>
+                                                                            </select>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            C Heavy Molasses
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="form-control">
+                                                                                <option value="">C Heavy T2</option>
+                                                                            </select>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="0">
+                                                                        </td> 
+                                                                         <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="165">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" class="form-control"
+                                                                                value="2100">
+                                                                        </td>
+                                                                        <td class="table-action-column">
+                                                                            <button n class="btn btn-icon btn-success"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/view">
+                                                                                <i
+                                                                                    class="feather icon-plus"></i></button>
+                                                                            <button class="btn btn-icon btn-danger ml-2"
+                                                                                type="button"
+                                                                                routerLink="/supplychainmanagement/distillery/fermentation/add">
+                                                                                <i
+                                                                                    class="feather icon-trash"></i></button>
+
+                                                                        </td>
+                                                                    </tr> -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <label>Remarks </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Remarks ">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </app-card>
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Fermenter Results">
+                            <ng-template ngbTabContent>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <app-card cardTitle="Details" class="list-panel add-panel">
+                                            <!-- <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered text-center text-center">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>Fermentation Start Date and Time </th>
+                                                                <th>Fermenter Name </th>
+                                                                <th>Both quantity Received </th>
+                                                                <th>Initial Gravity </th>
+                                                                <th>Raw material Type </th>
+                                                                <th>Raw materail name</th>
+                                                                <th>Tank name </th>
+                                                                <th>Molasses Type </th>
+                                                                <th>Initial Dip Count (CMS)</th>
+                                                                <th>Final Dip Count (CMS)</th>
+                                                                <th>Quantity of Molasses/Grain(Qtl) </th>
+                                                                <th>Start date</th>
+                                                                <th>End date</th>
+                                                                <th>Number of Days</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td><input type="date" class="form-control"></td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td><input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td><input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="">
+                                                                </td> -->
+                                            <!-- <td class="table-action-column">
+                                                                    <button class="btn btn-icon btn-success" type="button"
+                                                                        routerLink="/supplychainmanagement/distillery/fermentation/view">
+                                                                        <i class="feather icon-plus"></i></button>
+                                                                    <button class="btn btn-icon btn-danger ml-2" type="button"
+                                                                        routerLink="/supplychainmanagement/distillery/fermentation/add">
+                                                                        <i class="feather icon-trash"></i></button>
+
+                                                                </td> -->
+                                            <!-- </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                            <div class="row">
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Fermentation Start Date and Time
+                                                        <span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>13-Sep-2023 10:00:00 AM</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Fermenter Name <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>FERMENTER TANK01 (PDI/PD2/ST/PRO/885699)</span>
+                                                </div>
+                                                
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Raw Material Type <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>Grain</span>
+                                                </div>
+                                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Raw Material Name<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>MST1</span>
+                                                </div> -->
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Molasses Type <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>C Heavy Molasses</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Molasses Tank Name  <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>C Heavy T1</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Quantity of Grains/Molasses<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>1080</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Initial Gravity <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>9.9</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Fermenter Dry DIP <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>12.7</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Quantity of Wash Prepared <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>100</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Status <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>Approved</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Fermentation End Date and Time  <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>15-Sep-2023 10:00:00 AM</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Duration of Fermentation  <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>13-Sep-2023 - 15-Sep-2023</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Final Wash Quantity  <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>100</span>
+                                                </div>
+                                                </div>
+                                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Prefermenter Name<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div> -->
+                                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Both quantity Received(Ltrs)<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div> -->
+                                                
+                                                <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Tank name <span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div>
+                                               
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Initial Dip Count(CMS)<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Final Dip Count(CMS)<span
+                                                            class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                    <span>-</span>
+                                                </div> -->
+                                               
+                                                <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Status</label>
+                                                        <input type="text" class="form-control" disabled>
+                                                    </div>
+                                                </div> -->
+                                                <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Final Gravity </label>
+                                                        <input type="text" class="form-control" placeholder="Enter Final Gravity ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Temperature </label>
+                                                        <input type="text" class="form-control" placeholder="Enter Temperature ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>P.H of Wash </label>
+                                                        <input type="text" class="form-control" placeholder="Enter P.H of Wash ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Alcohol Percentage in Wash </label>
+                                                        <input type="text" class="form-control" placeholder="Enter Alcohol Percentage in Wash">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Duration of fermentation</label>
+                                                        <input type="text" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Fermenter dry DIP</label>
+                                                        <input type="text" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Final Wash Quantity</label>
+                                                        <input type="text" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Final Gravity</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Temperature</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>P.H of Wash</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Alcohol percentage in wash</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </app-card>
+                                    </div>
+                                    <div class="col-12">
+                                        <app-card cardTitle="Alcohol Content (ltr 100 Percent) "
+                                            class="list-panel add-panel">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>For Each Tank </label>
+                                                        <input type="text" class="form-control" placeholder="10 " disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Total No of Tanks in the Batch </label>
+                                                        <input type="text" disabled class="form-control"
+                                                            placeholder="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Percent Unfermented Sugar in Wash </label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="10%" disabled>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </app-card>
+                                    </div>
+                                    <div class="col-12">
+                                        <app-card cardTitle="Total Unfermented Sugar In Wash "
+                                            class="list-panel add-panel">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Fermantable Sugar(In Qtl)</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="20" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Unfermantable Sugar</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="10" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Aldehyde Percentage in Wash</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="10" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Theoratical Fermentation Yield of Fermentable Invert
+                                                            Sugar</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="30" disabled>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </app-card>
+                                    </div>
+                                    <div class="col-12">
+                                        <app-card cardTitle="Fermentation Loss " class="list-panel add-panel">
+
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Due to Unfermented Fermentable Sugar in the
+                                                            Wash</label>
+                                                        <input type="text" disabled
+                                                            placeholder="20"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Unknown Losses</label>
+                                                        <input type="number" placeholder="10" disabled 
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Total Losses Fermentation</label>
+                                                        <input type="number" dirname="" value="0" disabled
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Total Losses</label>
+                                                        <input type="number" value="100" class="form-control">
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Fermentation Efficiency Percent </label>
+                                                        <input type="number" value="100" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Sludge Discarded</label>
+                                                        <input type="number" value="100" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Alcohol Percentage Lost With Sludge</label>
+                                                        <input type="number" value="100" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Wash Sent to Stills</label>
+                                                        <input type="number" value="100" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="">Attenuation Figures</label>
+                                                        <input type="number" disabled value="100" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </app-card>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-primary mb-2">Next</button> -->
+        <button type="button" class="btn btn-secondary mb-2 ml-2">Back</button>
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2">Update Result</button> -->
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>  -->
+        <button type="button" class="btn btn-success ml-2 mb-2">Submit</button>
+        <!-- <button type="button" class="btn btn-success ml-2 mb-2"
+                    routerLink="/supplychainmanagement/distillery/fermentation/list">Declare OT </button> -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/fermentation/list">Cancel</button>
+    </div>
+</div>

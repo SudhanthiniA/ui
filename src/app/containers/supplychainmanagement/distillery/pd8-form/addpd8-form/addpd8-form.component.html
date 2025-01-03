@@ -1,0 +1,288 @@
+<h5 class="m-b-10 ng-star-inserted">Add PD8 - Distiller's Declaration of Wash
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pamr2/list">PD8</a></li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="pd8Form" autocomplete="off">
+            <app-card cardTitle="PD8 Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Batch No </label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Period From" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date and Time </label>
+                            <input type="datetime-local" class="form-control" name="from" formControlName="from">
+                            <div *ngIf="formSubmitted && pd8Form.get('from').errors || pd8Form.get('from').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('from').errors?.required">
+                                    Date and Time is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Time </label>
+                            <input type="time" class="form-control" name="starttime" formControlName="starttime">
+                            
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+            <app-card cardTitle="Period To " class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date and Time </label>
+                            <input type="datetime-local" class="form-control" name="to" formControlName="to">
+                            <div *ngIf="formSubmitted && pd8Form.get('to').errors || pd8Form.get('to').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('to').errors?.required">
+                                    Date and time is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Time </label>
+                            <input type="time" class="form-control" name="endtime" formControlName="endtime">
+                          
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+            <app-card cardTitle="Molasses Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select name="gradeId" formControlName="gradeId" (click)="molassesTypes(pd8Form.value.gradeId)"
+                                class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of tankGradeList" value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && pd8Form.get('gradeId').errors || pd8Form.get('gradeId').touched "
+                                class="error-msg">
+                                <div *ngIf="pd8Form.get('gradeId').errors?.required"><i class="fa fa-times"></i>
+                                    Grade is required </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Opening Balance</label>
+                            <input type="number" class="form-control" name="openbalance" formControlName="openbalance"
+                                placeholder="" disabled>
+
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Tank No</label>
+                            <select class="form-control" name="tankId" formControlName="tankId"
+                                (change)="getTankDetails($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of tankList" value="{{item.id}}">
+                                    {{item.tankName}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && pd8Form.get('tankId').errors || pd8Form.get('tankId').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('tankId').errors?.required">
+                                    Molasses Tank No is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Initial Count</label>
+                            <input type="number" class="form-control" name="initialCount" formControlName="initialCount"
+                                placeholder="Enter Initial Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('initialCount').errors || pd8Form.get('initialCount').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('initialCount').errors?.required">
+                                    Initial Count is required
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Final Count</label>
+                            <input type="number" class="form-control" name="finalCount" formControlName="finalCount"
+                                placeholder="Enter Final Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('finalCount').errors || pd8Form.get('finalCount').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('finalCount').errors?.required">
+                                    Final Count is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Used In Qlts. Time </label>
+                            <input type="number" class="form-control" name="molassesUsed" formControlName="molassesUsed"
+                                (keyup)="checkingvalue(pd8Form.value.molassesUsed)"
+                                placeholder="Enter Molasses Used in Qlts. Time ">
+                            <div *ngIf="formSubmitted && pd8Form.get('molassesUsed').errors || pd8Form.get('molassesUsed').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('molassesUsed').errors?.required">
+                                    Molasses Used In Qlts. Time is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Wash Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temprature</label>
+
+                            <input type="text" class="form-control" name="temperature" formControlName="temperature"
+                                placeholder="Enter Initial Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('temperature').errors || pd8Form.get('temperature').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('temperature').errors?.required">
+                                    Temprature is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wash/Back No</label>
+
+                            <input type="text" class="form-control" name="washNumber" formControlName="washNumber"
+                                placeholder="Enter Initial Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('washNumber').errors || pd8Form.get('washNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('washNumber').errors?.required">
+                                    Wash/Back No is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Qty Of wash Prepared Ltrs</label>
+
+                            <input type="text" class="form-control" name="washPrepared" formControlName="washPrepared"
+                                placeholder="Enter Initial Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('washPrepared').errors || pd8Form.get('washPrepared').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('washPrepared').errors?.required">
+                                    Qty Of wash Prepared Ltrs is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Initial SP. Gr.</label>
+                            <input type="text" class="form-control" name="initialSpGravity"
+                                formControlName="initialSpGravity" placeholder="Enter Initial Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('initialSpGravity').errors || pd8Form.get('initialSpGravity').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('initialSpGravity').errors?.required">
+                                    Initial SP. Gr is required
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Final Sp. Gr.</label>
+                            <input type="text" class="form-control" name="finalSpGravity"
+                                formControlName="finalSpGravity" placeholder="Enter Final Count">
+                            <div *ngIf="formSubmitted && pd8Form.get('finalSpGravity').errors || pd8Form.get('finalSpGravity').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('finalSpGravity').errors?.required">
+                                    Final Sp. Gr is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Qty Of wash Distillery Ltrs</label>
+                            <input type="text" class="form-control" placeholder="Enter Molasses Used in Qlts. Time "
+                                name="washDistillery" formControlName="washDistillery">
+                            <div *ngIf="formSubmitted && pd8Form.get('washDistillery').errors || pd8Form.get('washDistillery').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('washDistillery').errors?.required">
+                                    Qty Of wash Distillery Ltrs is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks" name="remarks"
+                                formControlName="remarks">
+                            <div *ngIf="formSubmitted && pd8Form.get('remarks').errors || pd8Form.get('remarks').touched "
+                                class="error-msg">
+                                <span *ngIf="pd8Form.get('remarks').errors?.required">
+                                    Remarks is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" (click)="previewPd8b(pd8Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(pd8Form,'INITIATED')">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" [disabled]="!pd8Form.valid"
+            (click)="saveData(pd8Form,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd8-form/list">Cancel</button>
+    </div>
+
+</div>

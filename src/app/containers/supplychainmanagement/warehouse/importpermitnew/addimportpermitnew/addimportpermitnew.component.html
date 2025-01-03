@@ -1,0 +1,367 @@
+<h5 class="m-b-10 ng-star-inserted"> {{'bondWarehouse.importPermitRequest.addimport' | translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.importPermitRequest.importpermit' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.add' | translate}}</a></li>
+</ul>
+<form [formGroup]="importPermitForm" autocomplete="off">
+
+<div class="row">
+
+       <div class="col-xl-6">
+            <app-card cardTitle="{{'bondWarehouse.importPermitRequest.warehousedetails' | translate}}" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.licensetype' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        BWFL2C
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.entityname' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Daurl Distillery
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.entityaddress' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Plot No. 12,xyz nagar, Karnataka, Bangalore, Bangalore, Shivaji nagar, Majestic, 500001
+                    </div>
+
+
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-6">
+            <app-card cardTitle="{{'bondWarehouse.importPermitRequest.parentunitdetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.licensetype' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <select class="form-control" formControlName="licenseType" (change)="getlicensedata($event.target.value)">
+                            <option value="">Select</option>
+                            <option *ngFor="let item of licenseTypes" value={{item.LicenseType}}>
+                                {{item.LicenseType}}</option>
+                        
+                        </select>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.parentunitname' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <input class="form-control" type="text" formControlName="licenseNo" disabled>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.parentunitaddress' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                       <textarea class="form-control" name="unitAddress" id="" cols="30" rows="2" formControlName="unitAddress"></textarea>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+
+    
+    <div class="col-xl-12">
+            <app-card cardTitle="{{'bondWarehouse.importPermitRequest.importdetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.date' | translate}}</label> 
+                            <input type="date"  class="form-control" disabled formControlName="date">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>countries</label>
+                        <ng-autocomplete
+                        [data]="countries"
+                        [searchKeyword]="keyword"
+                        placeholder="Enter the Country Name"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                        historyIdentifier="countries"
+                        [itemTemplate]="itemTemplate"
+                        [notFoundTemplate]="notFoundTemplate">
+                      </ng-autocomplete>
+                    
+                      <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.name"></a>
+                      </ng-template>
+                    
+                      <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                      </div>
+                     </div>    -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.liquortype' | translate}}</label>
+                            <select class="form-control" formControlName="liquorTypeId" 
+                            (change)=getSubLiquorType($event.target.value)>
+                                <option value="">Select</option>
+                                <option *ngFor="let data of liquorType" value="{{data.liquorTypeCode}}">{{data.liquorTypeValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.subliquortype' | translate}}</label>
+                            <select class="form-control" formControlName="subLiquorTypeName"
+                             (change)=getBrandname($event.target.value)>
+                                <option value="">Select</option>
+                                <option *ngFor="let data of subliquortype" value="{{data.subLiquorTypeCode}}">{{data.subLiquorTypeValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{'bondWarehouse.importPermitRequest.brandname' | translate}} 
+                            </label>
+                            <select class="form-control" formControlName="brandId" (change)="getCategory($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of brandlists" value="{{data.brandCode}}">{{data.brandValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.category' | translate}} </label>
+                            <select class="form-control" formControlName="categoryId" (change)="getStrength($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of categoryList" value="{{data.categoryCode}}">{{data.categoryValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.strength' | translate}} </label>
+                            <select class="form-control" formControlName="strengthName"
+                            (change)="getEDP($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of strengthList" value="{{data.brandStrength}}">{{data.brandStrength}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.edp' | translate}} </label>
+                            <select class="form-control" formControlName="edp"
+                            (change)="getETIN($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of edpList"value="{{data.edp}}">{{data.edp}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.parentetin' | translate}} </label>
+                            <select class="form-control" formControlName="parentEtin" 
+                            (change)="getBrandId($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of etinList" value="{{data.parentEtin}}">{{data.parentEtin}}</option>
+                            </select>
+                            <!-- <input type="text"  class="form-control" formControlName="parentEtin"
+                            placeholder=""> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.packagesize' | translate}} 
+                            </label>
+                            <select class="form-control" formControlName="packageSizeId" 
+                            (change)='getPackagetype($event.target.value)'>
+                                <option value="">Select</option>
+                                <option *ngFor="let data of packageSizeList" value="{{data.packageSizeCode}}">
+                                    {{data.packageSizeName}}-{{data.packageUnit}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.packagetype' | translate}}
+                            </label>
+                            <!-- <select id="packageTypeId" name="packageTypeId" required class="form-control" #packageTypeId="ngModel"  [(ngModel)]="importpermitNew['packageTypeId']">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of packagetypeData" value="{{data.id}}">{{data.name}}</option>
+                            </select> -->
+                            <select class="form-control" formControlName="packageTypeId" 
+                            (change)="getGtin($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of packagetypeData" value="{{data.packagingTypeCode}}">
+                                    {{data.packagingTypeName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.gtin' | translate}}
+                            </label>
+                            <input type="text" disabled formControlName="gtin" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.noofperbottelpercase' | translate}}</label>
+                            <input type="text" disabled class="form-control" formControlName="bottlesPerCases">
+                        </div>
+                    </div>
+        
+                   
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="mt-4" [hidden]="workflowobj?.isEditable==true">
+                         <button class="btn btn-icon btn-success" type="button"  
+                         (click)=addRow(importPermitForm)>{{'bondWarehouse.common.add' | translate}}</button>
+                         <button class="btn btn-icon btn-secondary ml-2"
+                         (click)="resetForm()">{{'bondWarehouse.importPermitRequest.clear' | translate}}</button>
+                      </div>
+                     </div>
+                    <div class="col-12">
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>{{'bondWarehouse.TransportPassCancellation.sno'| translate}}</th>
+                                        <th>{{'bondWarehouse.TransportPassCancellation.brandname'| translate}}</th>
+                                        <!-- <br>(Parent ETIN) -->
+                                        <th>{{'bondWarehouse.TransportPassCancellation.packagetype'| translate}}</th>
+                                        <th>{{'bondWarehouse.TransportPassCancellation.packagesize'| translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.availablecases' | translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.availablebottles' | translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.noofcase' | translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.noofbottles' | translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.specialfee' | translate}}</th>
+                                        <th>{{'bondWarehouse.importPermitRequest.importedfee' | translate}}</th> 
+                                        <th>{{'bondWarehouse.importPermitRequest.totalduty' | translate}}</th>
+                                        <th [hidden]="workflowobj?.isEditable==true">{{'bondWarehouse.common.action' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="products"
+                                    *ngFor="let data of importPermitForm.get('products')['controls']; let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td [formGroupName]="i">{{data.value.productLibrary.brandNameValue}}</td>
+                                        <td [formGroupName]="i">{{data.value.productLibrary.packageSizeValue}}</td>
+                                        <td [formGroupName]="i">{{data.value.productLibrary.packageTypeValue}}</td>
+                                        <td [formGroupName]="i">100</td>
+                                        <td [formGroupName]="i">243</td>
+                                        <td [formGroupName]="i">
+                                            <input type= "number" class="form-control" formControlName="noOfCases" (keyup)="keypress($event,data)"
+                                            [ngClass]="{ 'is-invalid':  formSubmitted && importPermitForm.get('products')['controls'][i].get('noOfCases').errors?.required}">
+                                        </td>
+                                        <td [formGroupName]="i">{{data.value.noOfBottles}}</td>
+                                        <td [formGroupName]="i">{{data.value.specialFee}}</td>
+                                        <td [formGroupName]="i">{{data.value.calculatedImportFee}}</td>
+                                        <td [formGroupName]="i">{{data.value.totalDuty}}</td>
+                                        <td [hidden]="workflowobj?.isEditable==true">
+                                            <button class="btn btn-icon btn-danger" type="button"
+                                           (click)=deleteRow(i,data) ><i class="feather icon-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.noofcase' | translate}}</label>
+                            <input type="number" disabled class="form-control" 
+                            placeholder="Enter Total No. of Cases" formControlName="totalNoOfCases">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.noofbottles' | translate}}</label>
+                            <input type="number" disabled class="form-control" formControlName="totalNoOfBottles" 
+                                placeholder="Enter Total No. of Bottles" >
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.importPermitRequest.totalbullLitres' | translate}}Total Bulk Litres</label>
+                            <input type="number" disabled class="form-control" formControlName="totBulkLitres" 
+                                placeholder="Enter Total Bulk Litres" >
+
+                        </div>
+                    </div>
+                   </div>
+
+              
+            </app-card>
+    </div>
+
+
+    <div class="col-12">
+        <app-card cardTitle="{{'bondWarehouse.transportpassgen.duty' | translate}}" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.advanceimportfee' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    2000.00
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.advancespecialfee' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    1000.00
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.totalduty' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{totalduty}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.totalimportfee' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{importfee}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'bondWarehouse.importPermitRequest.totalspecialfee' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{splfee}}
+                </div>
+               
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" *ngIf='(!workflowobj?.isEditable)'
+        routerLink="/supplychainmanagement/warehouse/importpermitnew/view" 
+         >{{'bondWarehouse.common.preview'| translate}}</button>
+        <button type="button" class="btn btn-warning mb-2 ml-2" *ngIf='(!workflowobj?.isEditable)'
+        (click)="save(importPermitForm, 'DRAFT')">{{'bondWarehouse.common.saveasdraft'| translate}}</button>
+        <button type="button" 
+        *ngIf='(!workflowobj?.isEditable)'
+        class="btn btn-primary ml-2 mb-2" (click)="save(importPermitForm, 'SUBMITTED')">{{'bondWarehouse.common.submit'| translate}}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="save(importPermitForm,'APPROVED')"
+        *ngIf='responseData?.isShowButtons && (workflowobj?.isEditable) '>{{'bondWarehouse.common.approved'| translate}}</button>
+        <button type="button" class="btn btn-danger ml-2 mb-2" (click)="save(importPermitForm,'REJECTED')"
+        *ngIf='responseData?.isShowButtons && workflowobj?.isRejected'>{{'bondWarehouse.common.reject'| translate}}</button>
+        <select class="col-lg-2 col-md-2 col-sm-3 col-3" formControlName="rejectid"
+        *ngIf='responseData?.isShowButtons && workflowobj?.isSendBack'>
+            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+            <option value="{{ sebd.key}}" *ngFor='let sebd of workflowobj?.sendBackList'>{{ sebd.value}}</option>
+        </select>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="save(importPermitForm,'SENDBACK')"
+        *ngIf='responseData?.isShowButtons && workflowobj?.isSendBack'>{{'bondWarehouse.common.clarificationneed'| translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/importpermitnew/list">{{'bondWarehouse.common.cancel'| translate}}</button>
+    </div>
+</div>
+</form>

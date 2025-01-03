@@ -1,0 +1,67 @@
+<h5 class="m-b-10 ng-star-inserted">Add Consignment Receipt </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Consignment Receipt</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form  #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to Add Consignment Receipt" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent Number</label>
+                            <input type="text" class="form-control" placeholder="Enter Indent Number" name ="indentnumber"
+                             #indentnumber = "ngModel" [(ngModel)]="indent['indentnumber']">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receipt ID</label>
+                            <input type="number" class="form-control" placeholder="Enter Receipt ID"
+                            #recieptnumber = "ngModel" [(ngModel)]="indent['recieptnumber']" name ="recieptnumber">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Product Name"
+                            #productname = "ngModel" [(ngModel)]="indent['productname']" name ="productname">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Consignment Received</label>
+                            <input type="number" class="form-control" placeholder="Enter No of Consignment Received"
+                            #consigment = "ngModel" [(ngModel)]="indent['consigment']" name ="consigment">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date and Time </label>
+                            <input type="date" class="form-control" placeholder="Enter 2020-09-17 16:34:13"
+                            #date = "ngModel" [(ngModel)]="indent['date']" name ="date">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of consignment in TP</label>
+                            <input type="number" class="form-control" placeholder="Enter No. of consignment in TP"
+                            #consigmenttype = "ngModel" [(ngModel)]="indent['consigmenttype']" name ="consigmenttype">
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="save()">Submit</button>
+        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/bonds/consignmentreceipt/list">Cancel</button>
+    </div>
+</div>

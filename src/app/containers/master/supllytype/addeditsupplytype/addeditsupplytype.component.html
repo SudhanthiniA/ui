@@ -1,0 +1,98 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.supplytype.addsupplytype' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.supplytype.editsupplytype' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.supplytype.supplytype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #subBrandForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to Add Supply Type" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.supplytype.supplytypecode' | translate }}</label>
+                            <input type="text" id="supplyType" name="supplyType" #supplyType="ngModel" maxlength="10"
+                                minlength="3" [(ngModel)]="subBrandObj['supplyType']" class="form-control" required
+                                placeholder="{{ 'master.supplytype.entersupplytypecode' | translate }}"
+                                pattern="{{patternService.codePattern}}">
+                            <div *ngIf="supplyType.invalid && (supplyType.dirty || supplyType.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="supplyType?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.supplytype.supplytypecode' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+                                <div *ngIf="supplyType?.errors?.minlength && !supplyType?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="supplyType?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.name' | translate }}</label>
+                            <input type="text" id="name" name="name" #name="ngModel" [(ngModel)]="subBrandObj['name']"
+                                required class="form-control" minlength="3" maxlength="100"
+                                placeholder="{{ 'master.supplytype.entername' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.common.name' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.supplytype.percentage' | translate }}</label>
+                            <input type="text" id="precentage" name="precentage" #precentage="ngModel"
+                                [(ngModel)]="subBrandObj['percentage']" required class="form-control"
+                                placeholder="{{ 'master.supplytype.enterpercentage' | translate }}">
+                            <div *ngIf="precentage.invalid && (precentage.dirty || precentage.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="precentage?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.supplytype.percentage' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="subBrandObj.isActive" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="subBrandObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!subBrandObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="subBrandObj.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addSubbrand(subBrandForm)">{{ 'master.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateliquorList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

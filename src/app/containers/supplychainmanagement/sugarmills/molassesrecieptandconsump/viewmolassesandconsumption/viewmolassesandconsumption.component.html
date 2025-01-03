@@ -1,0 +1,94 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }} 
+  </h5>
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/molassesrecieptandconsumption/list']">{{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'View'">{{ 'master.common.view' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Preview'">{{ 'master.common.preview' | translate }}</li>
+  </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesrecieptForm="ngForm" autocomplete="off">
+            <app-card cardTitle= "{{ 'sugarmill.common.detail' | translate }} {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }} " class="list-panel view-panel">
+                <div class="row mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.steeltankno' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.tankName || molassisrecieptobj?.tankTypeResponseDto?.name}}</span> 
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.openingbalance' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.openingBalance}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.recipetbalance' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.reciptBalance}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.consumption' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.consumption}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.bookbalance' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.bookBalance}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.molassesreciept.actualbalance' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{molassisrecieptobj?.actualBalance}}</span>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #molassesrecieptForm="ngForm" autocomplete="off">
+            <app-card cardTitle= "{{ 'sugarmill.common.detail' | translate }} {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }} " *ngIf = "addedit == 'View'" class="list-panel view-panel">
+                <div class="row mb-2 pb-2">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'master.common.createdon' | translate }} <span class="float-right">:</span> </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <span>{{molassisrecieptobj?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'master.common.createdby' | translate }} <span class="float-right">:</span> </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <span>{{molassisrecieptobj?.createdBy}}</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'master.common.updatedon' | translate }} <span class="float-right">:</span> </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <span>{{molassisrecieptobj?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'master.common.updatedby' | translate }} <span class="float-right">:</span> </label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "addedit == 'View'">
+                        <span>{{molassisrecieptobj?.modifiedBy}}</span>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button (click)="getPrint()"  type="button" class="btn btn-success">{{'master.common.print' | translate}}</button> &nbsp;
+        <button type="button" class="btn btn-secondary" (click)="navigateLicenceTypeList()">{{ 'master.common.back' | translate }}</button>
+    </div>
+</div>

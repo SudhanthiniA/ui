@@ -1,0 +1,124 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb> 
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.indentno' | translate }}</label>
+                        <input type="number" class="form-control" name="indent" 
+                        placeholder="{{ 'retail.common.enter' | translate }} {{ 'retail.common.indentno' | translate }}" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.returns.returndate' | translate }}</label>
+                        <input type="date" class="form-control" name="indent" placeholder="Enter Return Date" />
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">
+                        {{ 'retail.common.search' | translate }}
+                    </button>
+                    <button type="submit" class="btn btn-secondary">
+                        {{ 'retail.common.cancel' | translate }}
+                    </button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.returns.list' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" 
+                (viewAction)="onView($event)">
+                <!-- (paginationEvent)="handlePagination($event)" -->
+            </app-mat-normal-table>
+                <!-- <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Transaction Date</th>
+                            <th>Transport Pass No.</th>
+                            <th>Total No. of Items</th>
+                            <th>Refundable Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let x of workFlowList; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{x.transactionDate}}</td>
+                            <td>{{x.transportPassNo}}</td>
+                            <td>{{x.totalNoofItems}}</td>
+                            <td>{{x.refundableAmount}}</td>
+                            <td class="text-success"><span class="badge badge-light-success">{{x.status}}</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr> -->
+                        <!--
+                            <th>Transaction Date</th>
+                            <th>Transport Pass No.</th>
+                            <th>Total No. of Items</th>
+                            <th>Refundable Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            
+                            
+                            <tr>
+                            <td>1</td>
+                            <td>13 Jan 2021</td>
+                            <td>TRA23922</td>
+                            <td>50</td>
+                            <td>₹5,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>12 Jan 2021</td>
+                            <td>TRA23923</td>
+                            <td>23</td>
+                            <td>₹2,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>11 Jan 2021</td>
+                            <td>TRA23924</td>
+                            <td>34</td>
+                            <td>₹3,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>10 Jan 2021</td>
+                            <td>TRA23925</td>
+                            <td>64</td>
+                            <td>₹6,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>09 Jan 2021</td>
+                            <td>TRA23926</td>
+                            <td>23</td>
+                            <td>₹3,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td>
+                            <td><button class="btn btn-primary"><i class="far fa-eye"></i></button></td>
+                        </tr> -->
+                    <!-- </tbody>
+                </table> -->
+            </div>
+        </app-card>
+    </div>
+</div>

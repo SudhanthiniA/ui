@@ -1,0 +1,101 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Consignment Receipt List
+    <button type="submit" class="btn btn-success pull-right"
+        routerLink="/supplychainmanagement/bonds/consignmentreceipt/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Consignment
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0 mt-5">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Consignment Receipt</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Indent Number">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Receipt ID</label>
+                        <input type="number" class="form-control" placeholder="Enter Receipt ID">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Product Name">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Consignment Receipt List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Indent Number</th>
+                            <th>Receipt ID</th>
+                            <th>Product Name</th>
+                            <th>No of Consignment Received</th>
+                            <th>Date and Time </th>
+                            <th>No. of consignment in TP</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let consigs of consignments; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{consigs.indentnumber}}</td>
+                            <td>{{consigs.recieptnumber}}</td>
+                            <td>{{consigs.productname}}</td>
+                            <td>{{consigs.consigment}}</td>
+                            <td>{{consigs.date}}</td>
+                            <td>{{consigs.consigmenttype}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary mr-2" type="button"
+                                   (click)="navigate(consigs.id)">
+                                    <i class="feather icon-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

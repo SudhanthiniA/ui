@@ -1,0 +1,96 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF-4 Transport Pass Status
+   
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">
+            {{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> MF-4 Transport Pass Status</a>
+    </li>
+   
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #transportForm="ngForm" autocomplete="off">
+            <app-card cardTitle="MF-4 Transport Pass Status" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass Id</label>
+                            <input type="text" name="transportId" #transportId="ngModel"
+                                [(ngModel)]="transportObj['transportId']" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} Transport Id">
+                        </div>
+                    </div>
+                   
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" 
+                                class="btn btn-primary mr-2">{{ 'master.common.search' | translate }}</button>
+                            <button type="reset" 
+                                class="btn btn-secondary">{{ 'master.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card
+            cardTitle="{{ 'sugarmill.mf4transportpass.mf4transport' | translate }} {{ 'master.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.mf4transportpass.gatepassno' | translate }}</th>
+                            <th>{{ 'sugarmill.mf4transportpass.passgenerationdate' | translate }}</th>
+                            <th>{{ 'sugarmill.mf4transportpass.indentno' | translate }}</th>
+                            <th>{{ 'sugarmill.mf4transportpass.indentdate' | translate }}</th>
+                            <th>{{ 'sugarmill.mf4transportpass.distilleryname' | translate }}</th>
+                            <th>{{ 'master.common.status' | translate }}</th>
+                            <th>{{ 'master.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="transportGenList?.length != 0">
+                        <tr *ngFor="let data of transportGenList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.id}}</td>
+                            <td>{{data.mf4Date | date: 'dd-MMM-yyyy' }}</td>
+                            <td>{{data.orderId}}</td>
+                            <td>{{data.orderNoDate | date: 'dd-MMM-yyyy'}}</td>
+                            <td class="text-left">{{data.distilleryName}}</td>
+                            <td class="table-action-column text-center">
+                                <button
+                                    [routerLink]="['/supplychainmanagement/sugarmills/transportgeneration/acknowledged',data.id]"
+                                    class="btn btn-icon btn-success"
+                                    type="button">{{ 'sugarmill.mf4transportpass.acknowledge' | translate }}</button>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="data.method == 'Draft'" class="btn btn-icon btn-secondary ml-2"
+                                    type="button" >
+                                    <i class="feather icon-edit-2"></i></button>
+                                <a class="btn btn-icon btn-warning ml-2" href="assets/MF-4 Gate Pass.pdf" download>
+                                    <i class="feather icon-download"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="transportGenList?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">Add G6 Code
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/headcodelist">G6 Code</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #headcodeForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="Add G6 Code"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>G6 master code</label>
+                            <input type="text" disabled  class="form-control" value="HCMC001">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Challan Head code</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">G6 Code</label>
+                            <input type="text" required  class="form-control" placeholder="Enter Code" >
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <div>
+                                <button type="button" class="btn btn-primary mr-2" (click)=saveData(headcodeForm)>Add</button>
+                    </div>
+                </div>
+    
+                    </div> -->
+                  
+                   <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">One Time/Recurring
+
+                            </label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Recurring</label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Status</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" checked id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Active</label>
+                              </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.headcodeMaster.code' | translate }}</label>
+                            <input type="text" class="form-control" name=code #code=ngModel
+                                [(ngModel)]="headcodeObj['headCode']" pattern="^[a-zA-Z0-9]+$"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.headcodeMaster.code' | translate }}"
+                                minlength="3" maxlength="10" required>
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.headcodeMaster.code' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                    class="fa fa-times"></i>
+                                {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.headcodeMaster.name' | translate }}</label>
+                            <input type="text" class="form-control" [(ngModel)]="headcodeObj['headName']" name=headcode
+                                #headcode="ngModel"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.headcodeMaster.name' | translate }}"
+                                minlength="3" maxlength="10" required>
+                            <div *ngIf="headcode.invalid && (headcode.dirty || headcode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="headcode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.headcodeMaster.name' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="headcode?.errors?.maxlength && !headcode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.headcodeMaster.headcode' | translate }}
+                                    {{ 'master.common.maximum' | translate }} 50
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                                <div *ngIf="headcode?.errors?.minlength && !headcode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.headcodeMaster.headcode' | translate }}
+                                    {{ 'master.common.minimum' | translate }} 3
+                                    {{ 'master.common.character' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.headcodeMaster.feeType' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="headcodeObj['feeid']" name="category"
+                                #category="ngModel" required>
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let data of feeTypeData" value={{data.id}}>
+                                    {{data.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="category.invalid && (category.dirty || category.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="category?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.headcodeMaster.feeType' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div> 
+                            <ng-multiselect-dropdown [data]="feeTypeData" [placeholder]="'Select'"
+                                [(ngModel)]="headcodeObj.feetypeObj" [settings]="feetypeDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='feetypeRequired' (onDropDownClose)="onDropDownClose()"
+                                class="singleselect">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!feetypeRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.headcodeMaster.feeType' | translate }}
+                                {{ 'master.common.isrequired' | translate }}
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.Status.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="headcodeObj.isActive" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="headcodeObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!headcodeObj.active">{{
+                                    'master.common.active' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="headcodeObj.active">{{
+                                    'master.common.inactive' | translate }}</label>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)=saveData(headcodeForm)>{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/headcode/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

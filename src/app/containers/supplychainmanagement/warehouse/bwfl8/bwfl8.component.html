@@ -1,0 +1,99 @@
+<h5 class="m-b-10 ng-star-inserted">BWFL 8
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/bwfl8/add"
+        type="submit">
+        <i class="feather icon-plus mr-2"></i> Add BWFL 8</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 8</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Grassi" name="employeeName"
+                            #employeeName="ngModel" [(ngModel)]="bwfl8Obj['employeeName']">
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Issued Pass Date</label>
+                        <input type="date" class="form-control" placeholder="">
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <input type="text" class="form-control" placeholder="Associate" name="employeeDesignation"
+                            #employeeDesignation="ngModel" [(ngModel)]="bwfl8Obj['employeeDesignation']">
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchBwfl8()>Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="BWFL8 Add" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Employee Address</th>
+                            <th>Date of Appointment in Bond Warehouse</th>
+                            <th>Reference to the order of the Deputy/Assistant Excise Commissioner approving the of the
+                                person employment of the person</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of bwfl8Data; let i = index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td class="text-center">{{data.employeeName }}</td>
+                            <td class="text-center">{{data.employeeDesignation }}</td>
+                            <td class="text-center">{{data.employeeAddress }}</td>
+                            <td class="text-center">{{data.appointmentDate | date: 'dd-MMM-yyyy'}}</td>
+                            <td class="text-center">{{data.referenceDeputy }}</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/warehouse/bwfl8/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/warehouse/bwfl8/edit/{{data.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                                <button class="btn btn-icon btn-warning ml-2" type="button" routerLink="">
+                                    <i class="feather icon-download"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,627 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.tankregistration.addtankregistration' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.tankregistration.tankregistration' | translate
+            }}</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+<div class="row">
+    <form #tankregistrationForm="ngForm" autocomplete="off">
+
+        <div class="col-xl-12">
+            <app-card cardTitle="New Tank Registration"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.requestdate' | translate }}</label>
+                            <input type="date" name="requestDate" class="form-control" disabled
+                                placeholder="{{ 'sugarmill.tankregistration.enterrequestdate' | translate }}" required
+                                #requestDate="ngModel" [(ngModel)]="tankreqObj['requestDate']" required>
+                            <div *ngIf="requestDate.invalid && (requestDate.dirty || requestDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="requestDate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.requestdate' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter Tank Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Product Type</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Nature of Tank
+                                Material </label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Shape of Tank </label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Type</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank
+                                Covered/Uncovered </label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+         
+        </div>
+
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'sugarmill.tankregistration.dimension' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Height(Mtr) </label>
+                            <input type="number" class="form-control" required 
+                            placeholder="Enter Height(Mtr)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Width(Mtr)</label>
+                            <input type="number" class="form-control" required 
+                            placeholder="Enter Width(Mtr)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Outer Diameter(Mtr)</label>
+                            <input type="number" class="form-control" required 
+                            placeholder="Enter Outer Diameter(Mtr)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Inner Diameter(Mtr)</label>
+                            <input type="number" class="form-control" required 
+                            placeholder="Enter Inner Diameter(Mtr)">
+                        </div>
+                    </div>
+                    </div>
+            </app-card>
+            <app-card cardTitle="Capacity" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Total Capacity(Qtl)</label>
+                            <input type="number" class="form-control" required  placeholder="Enter Total Capacity(Qtl)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Specification</label>
+                            <input type="number" class="form-control" required  
+                            placeholder="Enter Tank Specification">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Comments</label>
+                            <input type="number" class="form-control" required  
+                            placeholder="Enter Comments">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Document </label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <!-- </form> -->
+        </div>
+    </form>
+   
+   <!-- <div class="col-xl-12">
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Upload" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc"  class="mandatory">Drawings (Including Height, Diameter)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc"  class="mandatory">Blue Print of Tank</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc" class="mandatory">Flow Diagram</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc"  class="mandatory">Elevation Plan</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>  -->
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" 
+        (click)="previewregistration(tankregistrationForm)">{{
+            'sugarmill.common.preview' | translate }}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="saveregistration(tankregistrationForm,'DRAFT')">{{ 'sugarmill.common.saveasdraft' | translate
+            }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="saveregistration(tankregistrationForm,'INITIATE')">{{ 'sugarmill.common.submit' | translate
+            }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/tankregistration/list">{{ 'sugarmill.common.cancel' |
+            translate }}</button>
+    </div>
+</div>
+<!-- <h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.tankregistration.addtankregistration' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/tankregistration/list']">{{ 'sugarmill.tankregistration.tankregistration' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'sugarmill.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'sugarmill.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankregistration.tankregistration' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.requestdate' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="date" name="requestDate" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterrequestdate' | translate }}" required
+                                #requestDate="ngModel" [(ngModel)]="tankreqObj['requestDate']" required
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div *ngIf="requestDate.invalid && (requestDate.dirty || requestDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="requestDate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.requestdate' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.tankname' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" name="tankName" class="form-control" required #tankName="ngModel"
+                                [(ngModel)]="tankreqObj['tankName']"
+                                placeholder="{{ 'sugarmill.tankregistration.tankname' | translate }}"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                          
+                            <div *ngIf="tankName.invalid && (tankName.dirty || tankName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankName?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.tankname' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Type
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="tanktype" name="tankProductTypeId" class="form-control" required
+                                #tankProductTypeId="ngModel" [(ngModel)]="tankreqObj['tankProductTypeId']"
+                                (change)="tanksgrdesss(tankreqObj['tankProductTypeId'])"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tank of tankProductypelist" value="{{tank.id}}">
+                                    {{tank.name}}</option>
+                            </select>
+                            <div *ngIf="tankProductTypeId.invalid && (tankProductTypeId.dirty || tankProductTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankProductTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.material' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="tanksgrdes">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.grade' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="gradeCode" name="gradeCode" class="form-control" #gradeCode="ngModel"
+                                [(ngModel)]="tankreqObj['gradeCode']" (change)="findTankGradeById($event.target.value)"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tankGrade of tankGradeList" value="{{tankGrade.code}}">
+                                    {{tankGrade.name}}</option>
+                            </select>
+                            <div *ngIf="gradeCode.invalid && (gradeCode.dirty || gradeCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gradeCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.grade' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.natureoftankmaterial' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="materialCode" name="materialCode" class="form-control" required
+                                #materialCode="ngModel" [(ngModel)]="tankreqObj['materialCode']"
+                                (change)="findTankMaterial($event.target.value)"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                               
+                                <option *ngFor="let tankGrade of materialType" value="{{tankGrade.paramKey}}">
+                                    {{tankGrade.paramValue}}</option>
+                            </select>
+                            <div *ngIf="materialCode.invalid && (materialCode.dirty || materialCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="materialCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.material' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Shape of Tank
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="shapeid" name="tankShapeCode" class="form-control" required #tankShapeCode="ngModel"
+                                [(ngModel)]="tankreqObj['tankShapeCode']" (change)="findTankShape($event.target.value)"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                
+                                <option *ngFor="let shape of tankshapes" value="{{shape.paramKey}}">
+                                    {{shape.paramValue}}</option>
+                            </select>
+                            <div *ngIf="tankShapeCode.invalid && (tankShapeCode.dirty || tankShapeCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankShapeCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.material' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank type
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="tanktype" name="tankTypeCode" class="form-control" required #tankTypeCode="ngModel"
+                                [(ngModel)]="tankreqObj['tankTypeCode']" (change)="findTankType($event.target.value)"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                
+                                <option *ngFor="let tank of tanks" value="{{tank.paramKey}}">
+                                    {{tank.paramValue}}</option>
+                            </select>
+                            <div *ngIf="tankTypeCode.invalid && (tankTypeCode.dirty || tankTypeCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankTypeCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.material' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Covererd/Uncovered
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select id="tanktype" name="tankCoverCode" class="form-control" required
+                                #tankCoverCode="ngModel" [(ngModel)]="tankreqObj['tankCoverCode']"
+                                (change)="findTankCover($event.target.value)"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                               
+                                <option *ngFor="let tank of tankCovererlist" value="{{tank.paramKey}}">
+                                    {{tank.paramValue}}</option>
+                            </select>
+                            <div *ngIf="tankCoverCode.invalid && (tankCoverCode.dirty || tankCoverCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankCoverCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.material' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankregistration.dimension' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.height' | translate }}(Mtr)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="height" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterheight' | translate }}(Mtr)" required
+                                #height="ngModel" [(ngModel)]="tankreqObj['height']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div class="text-primary">{{inWords(tankreqObj['height'], 'Mtr')}}</div>
+                            <div *ngIf="height.invalid && (height.dirty || height.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="height?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.height' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.width' | translate }}(Mtr)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="width" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterwidth' | translate }}(Mtr)" required
+                                #width="ngModel" [(ngModel)]="tankreqObj['width']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div class="text-primary">{{inWords(tankreqObj['width'], 'Mtr')}}</div>
+                            <div *ngIf="width.invalid && (width.dirty || width.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="width?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.width' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.outerdiameter' | translate }}(Mtr)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="outerDiameter" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterouterdiameter' | translate }}(Mtr)"
+                                required #outerDiameter="ngModel" [(ngModel)]="tankreqObj['outerDiameter']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div class="text-primary">{{inWords(tankreqObj['outerDiameter'], 'Mtr')}}</div>
+                            <div *ngIf="outerDiameter.invalid && (outerDiameter.dirty || outerDiameter.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="outerDiameter?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.outerdiameter' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.innerdiameter' | translate }}(Mtr)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="innerDiameter" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterinnerdiameter' | translate }}(Mtr)"
+                                required #innerDiameter="ngModel" [(ngModel)]="tankreqObj['innerDiameter']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div class="text-primary">{{inWords(tankreqObj['innerDiameter'], 'Mtr')}}</div>
+                            <div *ngIf="innerDiameter.invalid && (innerDiameter.dirty || innerDiameter.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="innerDiameter?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.innerdiameter' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankregistration.capacity' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.totalcapacity' | translate }}(Qtl)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="capacity" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.entertotalcapacity' | translate }}(Qtl)"
+                                required #capacity="ngModel" [(ngModel)]="tankreqObj['capacity']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+                            <div class="text-primary">{{inWords(tankreqObj['capacity'], 'Quintals')}}</div>
+                            <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="capacity?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.capacity' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.tankspecification' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" name="specification" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.entertankspecification' | translate }}"
+                                required #specification="ngModel" [(ngModel)]="tankreqObj['specification']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'>
+
+                            <div *ngIf="specification.invalid && (specification.dirty || specification.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="specification?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.tankspecification' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf='workflowobj?.isEditable'>
+                        <div class="form-group">
+                            <label>Stage Description
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" name="stagedesc" class="form-control" required #stagedesc="ngModel"
+                                [(ngModel)]="tankreqObj['stageDesc']" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea type="text" name="comments" class="form-control" #comments="ngModel"
+                                [(ngModel)]="tankreqObj['comments']"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label>{{ 'sugarmill.common.uploaddocument' | translate }}</label>
+                        <div class="custom-file">
+                            <input type="file" name=filedata class="custom-file-input" id="validatedCustomFile"
+                                #filedata="ngModel" [(ngModel)]="tankreqObj['filedata']"
+                                [disabled]='workflowobj?.isEditable?"Disabled":null'
+                                (change)="onFileChange($event, 'tankDocument_file_source', tankregistrationForm)">
+                            <label class="custom-file-label"
+                                for="validatedCustomFile">{{tankreqObj.filedata}}...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12" *ngIf="logactive">
+        <app-card cardTitle="Logs" blockClass="table-border-style" class="search-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Action Performed By</th>
+                            <th>Designation</th>
+                          
+                            <th>Action</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let logs of logshow;let i=index'>
+                            <td>{{i+1}}</td>
+                            <td>{{logs?.actionTime | date:'dd-MM-yyyy hh:mm'}}</td>
+                            <td>{{logs?.actionPerformedBy}}</td>
+                            <td class="text-right">{{logs?.designation}}</td>
+                            <td class="text-right">{{logs?.action}}</td>
+                            <td class="text-left">{{logs?.comments}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </app-card>
+    </div>
+    <div class=" col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewregistration(tankregistrationForm)"
+            *ngIf='(!workflowobj?.isEditable)'>{{ 'sugarmill.common.preview' | translate }}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="approveregistration(tankregistrationForm,'DRAFT')"
+            *ngIf='(!workflowobj?.isEditable)'>{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="approveregistration(tankregistrationForm,'SUBMITTED')"
+            *ngIf='(!workflowobj?.isEditable)'>{{ 'sugarmill.common.submit' | translate }}</button>
+
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="approveregistration(tankregistrationForm,'APPROVED')"
+            *ngIf='(workflowobj?.isEditable) && (tankreqObj?.isShowButtons)'>Approve</button>
+
+        <button type="button" class="btn btn-danger ml-2 mb-2"
+            (click)="approveregistration(tankregistrationForm,'REJECTED')"
+            *ngIf='(tankreqObj?.isShowButtons) && workflowobj?.isRejected'>Reject</button>
+
+        <select class="col-lg-2 col-md-2 col-sm-3 col-3" [(ngModel)]='rejectid'
+            *ngIf='(tankreqObj?.isShowButtons) && workflowobj?.isSendBack'>
+            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+            <option value="{{ sebd.key}}" *ngFor='let sebd of workflowobj?.sendBackList'>{{ sebd.value}}</option>
+        </select>
+
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="sendback(tankregistrationForm,'SENDBACK')"
+            *ngIf='(tankreqObj?.isShowButtons) && workflowobj?.isSendBack'>Clarification Needed</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/tankregistration/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div> -->

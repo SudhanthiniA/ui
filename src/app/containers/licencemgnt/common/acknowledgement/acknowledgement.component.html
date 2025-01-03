@@ -1,0 +1,38 @@
+<div class="auth-wrapper maintenance">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center">
+                    <h1 class="fa fa-check-circle text-success"></h1>
+                    <h3 class="text-success">{{ headingText }}</h3>
+                </div>
+                <app-card [hidHeader]="true" class="list-panel text-center">
+                    <h5 class="mb-3">Your Application Number is</h5>
+                    <h4><span class="badge badge-success mb-3">{{licenseApplicationData?.applicationNumber}}</span></h4>
+                    <h5 class="mb-3" *ngIf="showPaymentInfo">Processing fees/Application Fees Submitted Successfully</h5>
+                </app-card>
+                <br>
+                <app-card [hidHeader]="true" class="list-panel text-center" *ngIf="showPaymentInfo">
+                    <h5 class="mb-3">Payment Transaction Number is</h5>
+                    <h5><span class="badge badge-success mb-3">654515154151 </span></h5>
+                    <h5 class="mb-3">Payment Instrument: Netbanking - SBI</h5>
+                    <h5 class="mb-3">Date & Time of Payment: 21-12-2020 12:40PM</h5>
+                </app-card>
+                <br>
+                <app-card [hidHeader]="true" class="list-panel text-center">
+                    <div class="mt-3">
+                        <ng-container *ngIf="showPaymentInfo">
+                            <button class="btn waves-effect waves-light btn-warning ml-2">
+                                Download Application
+                            </button>
+                            <button class="btn waves-effect waves-light btn-info ml-2">
+                                Payment Receipt
+                            </button>
+                        </ng-container>
+                        <button class="btn waves-effect waves-light btn-primary ml-2" (click)="onOk()">Ok</button>
+                    </div>
+                </app-card>
+            </div>
+        </div>
+    </div>
+</div>

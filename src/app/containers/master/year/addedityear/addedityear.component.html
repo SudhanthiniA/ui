@@ -1,0 +1,107 @@
+<h5 class="m-b-10 ng-star-inserted"> {{ 'master.Year.year' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/master/year/list">{{ 'master.Year.year' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #yearForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Year" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.name' | translate }}</label>
+                            <input type="text" [(ngModel)]="yearObj.name" name="name" #name="ngModel" minlength="3"
+                                maxlength="100" required class="form-control" placeholder="Enter Name"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Year.nameisrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.Year.startmonth' | translate }}</label>
+                            <input type="number" [(ngModel)]="yearObj.startMonth" name="startmonth"
+                                #startmonth="ngModel" required class="form-control" placeholder="Enter Start Month"
+                                maxlength="2"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="startmonth.invalid && (startmonth.dirty || startmonth.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="startmonth?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Year.startmonthisrequired' | translate }}
+                                </div>
+                                <!-- <div *ngIf="startmonth?.errors?.minlength && !startmonth?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.Year.endmonth' | translate }}</label>
+                            <input type="number" [(ngModel)]="yearObj.endMonth" name="endmonth" #endmonth="ngModel"
+                                required class="form-control" placeholder="Enter End Month" maxlength="2"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="endmonth.invalid && (endmonth.dirty || endmonth.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="endmonth?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Year.endmonthisrequired' | translate }}
+                                </div>
+                                <!-- <div *ngIf="endmonth?.errors?.minlength && !endmonth?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="yearObj.isActive" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="yearObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!yearObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="yearObj.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addyear(yearForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/year/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

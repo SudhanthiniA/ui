@@ -1,0 +1,198 @@
+<p>tankremovelview works!</p>
+<h5 class="m-b-10 ng-star-inserted">
+     Tank Removel View
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/tankregistration/list']">{{ 'sugarmill.tankregistration.tankregistration' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.view' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #regviewform='ngForm' autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankregistration.detailsoftankregistration' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.registrationid' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="this.addedit == 'View'">
+                        <span>{{tankregobj?.id}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankregistration.tankname' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.tankMaterialResponseDto?.name || tankregobj?.tankName}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankregistration.grade' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.gradeResponseDto?.name || tankregobj?.gradeName}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.natureoftankmaterial' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.tankMaterialResponseDto?.name || tankregobj?.materialName}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankregistration.height' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.height}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankregistration.width' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.width}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.outerdiameter' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.diameter}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.innerdiameter' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.innerDiameter}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.totalcapacity' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.capacity}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.tankspecification' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.specification}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.remarks' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <input type="text" class="form-control" required name="remarks" #remarks="ngModel"
+                            [(ngModel)]="tankregobj['remarks']">
+                        <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="remarks?.errors?.required"><i class="fa fa-times"></i>
+                                Remarks is Required </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.tankregistration.feedbacktoinitiator' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <input type="text" class="form-control" required name="feedback" #feedback="ngModel"
+                            [(ngModel)]="tankregobj['feedback']">
+                        <div *ngIf="feedback.invalid && (feedback.dirty || feedback.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="feedback?.errors?.required"><i class="fa fa-times"></i>
+                                Feedback is Required </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #regviewform='ngForm' autocomplete="off">
+        <app-card cardTitle="Details of Tank Registration Create"
+            class="list-panel view-panel">
+            
+                <div class="row" *ngIf="addedit == 'View'">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.createdby' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.createdBy}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.tankregistration.requestdate' | translate }}
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.createdOn}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.Modifiedon' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.modifiedOn}}</span>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.Modifiedby' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{tankregobj?.modifiedBy}}</span>
+                    </div>
+                </div>
+               
+            </app-card>
+       </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mr-2" (click)="feedback('1',regviewform)"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.approve' | translate }}</button>
+        <button type="submit" class="btn btn-danger mr-2" (click)="feedback('2',regviewform)"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.reject' | translate }}</button>
+        <button type="submit" class="btn btn-success mr-2"
+            (click)="feedback('3',regviewform)"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.additionaldetailsrequired' | translate }}</button>
+        <button type="button" (click)="getPrint()" class="btn btn-success"
+            *ngIf="addedit !== 'View'">{{ 'sugarmill.common.print' | translate }}</button>
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/sugarmills/tankregistration/list"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/sugarmills/tankremovel/list"
+            *ngIf="addedit !== 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+    </div>
+</div>

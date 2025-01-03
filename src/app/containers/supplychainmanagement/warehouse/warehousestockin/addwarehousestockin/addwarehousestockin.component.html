@@ -1,0 +1,194 @@
+<h5 class="m-b-10 ng-star-inserted"> Add Stock In</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock In</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <!-- <div class="col-xl-12">
+        <form #stockinForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add Stock In" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <label>Entity Type</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">FL2</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">CL2</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass Number
+                            </label>
+                            <input type="text" #transportPassNo="ngModel" [(ngModel)]="WarehouseStockObj['transportPassNo']"
+                            name='transportPassNo' required class="form-control" placeholder="FL-2021-05">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issue Transport Pass Date
+                            </label>
+                            <input type="date" #issueTransportPassDate="ngModel" [(ngModel)]="WarehouseStockObj['issueTransportPassDate']"
+                            name='issueTransportPassDate' required class="form-control" placeholder="05/01/2021">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right">
+        <button type="button" (click)='searchstockin(stockinForm)' class="btn btn-primary ml-2 mb-2">Get Details</button>
+    </div> -->
+
+    <div class="col-xl-12">
+        <form #stockinFormm="ngForm" autocomplete="off">
+            <app-card cardTitle="Stock In Details" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text"  #serialNo="ngModel" [(ngModel)]="WarehouseStockObj['serialNo']"name='serialNo'class="form-control" placeholder="1">
+                            
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand
+                            </label>
+                            <input type="text"  #brandName="ngModel" [(ngModel)]="WarehouseStockObj['brandName']"
+                            name='brandName'required class="form-control" placeholder="Beer">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size
+                            </label>
+                            <input type="number" #size="ngModel" [(ngModel)]="WarehouseStockObj['size']"
+                             name='size' required class="form-control" placeholder="750">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Batch Number
+                            </label>
+                            <input type="number" #batchNo="ngModel" [(ngModel)]="WarehouseStockObj['batchNo']"
+                            name='batchNo' required class="form-control" placeholder="FL2_345">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receieve Box
+                            </label>
+                            <input type="number" #receivedBox="ngModel" [(ngModel)]="WarehouseStockObj['receivedBox']"
+                             name='receivedBox' required class="form-control" placeholder="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>plannedbottles                                
+                            </label>
+                            <input type="number" #plannedbottles="ngModel" [(ngModel)]="WarehouseStockObj['plannedbottles']"
+                            name='plannedbottles' required class="form-control" placeholder="100">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Breakage Type</label>
+                            <input type="text" #breakageType="ngModel" [(ngModel)]="WarehouseStockObj['breakageType']" 
+                            name='breakageType'  class="form-control" >
+                            <!-- <select id="category" #breakagetype="ngModel" [(ngModel)]="WarehouseStockObj['breakagetype']"name='breakageTypeId'class="form-control">
+                                <option></option>
+                            </select> -->
+                            <!-- Category Type is required -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Breakage TypeId
+                            </label>
+                            <input type="number" #breakageTypeId="ngModel" [(ngModel)]="WarehouseStockObj['breakageTypeId']"
+                            name='breakageTypeId' required class="form-control" placeholder="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Breakage
+                            </label>
+                            <input type="number" #breakage="ngModel" [(ngModel)]="WarehouseStockObj['breakage']"
+                            name='breakage' required class="form-control" placeholder="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Receieve plannedbottles
+                            </label>
+                            <input type="number" #totalRecievedBottels="ngModel" [(ngModel)]="WarehouseStockObj['totalRecievedBottels']"
+                            name='totalRecievedBottels'required class="form-control" placeholder="110">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent umber
+                            </label>
+                            <input type="number" #indentNumber="ngModel" [(ngModel)]="WarehouseStockObj['indentNumber']"
+                            name='indentNumber'required class="form-control" placeholder="110">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receieve By
+                            </label>
+                            <input type="text" #receivedBy="ngModel" [(ngModel)]="WarehouseStockObj['receivedBy']"
+                             name='receivedBy'required class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>remarks
+                            </label>
+                            <input type="text"#remarks="ngModel" [(ngModel)]="WarehouseStockObj['remarks']"
+                            name='remarks' required class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <!-- new field -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass Number
+                            </label>
+                            <input type="text" #transportPassNo="ngModel" [(ngModel)]="WarehouseStockObj['transportPassNo']"
+                            name='transportPassNo' required class="form-control" placeholder="FL-2021-05">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Issue Transport Pass Date
+                            </label>
+                            <input type="date" #issueTransportPassDate="ngModel" [(ngModel)]="WarehouseStockObj['issueTransportPassDate']"
+                            name='issueTransportPassDate' required class="form-control" placeholder="05/01/2021">
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" (click)='addstockin(stockinFormm,"INITIATED")' class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+        <button type="button" (click)='addstockin(stockinFormm,"Submitted")'class="btn btn-primary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/warehousestockin/list">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/warehousestockin/list">Cancel</button>
+
+    </div>
+</div>

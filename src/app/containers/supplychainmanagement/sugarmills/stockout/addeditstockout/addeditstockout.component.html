@@ -1,0 +1,128 @@
+<h5 class="m-b-10 ng-star-inserted">Add Stock Out Details</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:"  [routerLink]="['/supplychainmanagement/dashboard']"
+        >Supply Chain Management</a></li> -->
+        <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Sugar Mill</a></li>
+        <li class="breadcrumb-item"><a href="javascript:"  [routerLink]="['/supplychainmanagement/sugarmills/stockout/list']">Stock Out</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Stock Out Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="date" name="date" #date="ngModel"
+                                [(ngModel)]="categoryObj['date']" class="form-control"
+                                style='text-transform:uppercase'>
+                        </div>
+                        <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                date is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gate Pass No</label>
+                            <input type="text" id="gatepassno" name="gatepassno" #gatepassno="ngModel"
+                                [(ngModel)]="categoryObj['gatepassno']" class="form-control"
+                                placeholder="Enter Gate Pass No">
+                        </div>
+                        <div *ngIf="gatepassno.invalid && (gatepassno.dirty || gatepassno.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="gatepassno?.errors?.required"><i class="fa fa-times"></i>
+                                GatePass No is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank</label>
+                            <select id="tank" name="tank" required #tank="ngModel"
+                                [(ngModel)]="categoryObj['tank']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of tanktypes" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="tank.invalid && (tank.dirty || tank.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="tank?.errors?.required"><i class="fa fa-times"></i>
+                                Tank is required </div>
+
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity (Qtl)</label>
+                            <input type="number" id="availableqty" name="availableqty" #availableqty="ngModel"
+                                [(ngModel)]="categoryObj['availableqty']" class="form-control" placeholder="Enter Available Qty">
+                        </div>
+                        <div *ngIf="availableqty.invalid && (availableqty.dirty || availableqty.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="availableqty?.errors?.required"><i class="fa fa-times"></i>
+                                Avail Qty is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dispatched Quantity (Qtl)</label>
+                            <input type="number" id="dispatchedqty" name="dispatchedqty" #dispatchedqty="ngModel"
+                                [(ngModel)]="categoryObj['dispatchedqty']" class="form-control" placeholder="Enter Dispatched Qty">
+                        </div>
+                        <div *ngIf="dispatchedqty.invalid && (dispatchedqty.dirty || dispatchedqty.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="dispatchedqty?.errors?.required"><i class="fa fa-times"></i>
+                                Dispatched Qty is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dispatched Mode</label>
+                            <select id="dispatchmode" name="dispatchmode" required #dispatchmode="ngModel" [(ngModel)]="categoryObj['dispatchmode']"
+                                class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of modelist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="dispatchmode.invalid && (dispatchmode.dirty || dispatchmode.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="dispatchmode?.errors?.required"><i class="fa fa-times"></i>
+                                    Dispatch Mode is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillery Name</label>
+                            <select id="distilleryname" name="distilleryname" required #distilleryname="ngModel" [(ngModel)]="categoryObj['distilleryname']"
+                                class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of distillerylist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="distilleryname.invalid && (distilleryname.dirty || distilleryname.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="distilleryname?.errors?.required"><i class="fa fa-times"></i>
+                                    Dispatch Mode is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+            
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" 
+        (click)="previewcategory(categoryForm)">Preview</button>
+    <button type="button" class="btn btn-warning ml-2 mb-2" 
+        (click)="addcategory(categoryForm,'draft')">Save as Draft</button>
+    <button type="button" class="btn btn-primary ml-2 mb-2"
+        (click)="addcategory(categoryForm,'submit')">Submit</button>
+    <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="navigateCategoryList()">Cancel</button>
+</div>
+</div>

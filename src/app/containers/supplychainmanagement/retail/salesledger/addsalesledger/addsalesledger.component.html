@@ -1,0 +1,471 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Sales Ledger
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sales Ledger</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="salesLedgerForm" autocomplete="off">
+            <app-card cardTitle="Add Sales Ledger" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" formControlName='date'>
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('date').errors || salesLedgerForm.get('date').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('date').errors?.required">
+                                    Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="table-responsive new_table">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Liquor Type</th>
+                                        <th>Brand Name</th>
+                                        <th>Package Size</th>
+                                        <th>Package Type</th>
+                                        <th>Opening Balance</th>
+                                        <th>New Purchase</th>
+                                        <th>Total Stock</th>
+                                        <th>Sales</th>
+                                        <th>Closing Balance</th>
+                                        <th>Total Purchases</th>
+                                        <th>Total Stocks</th>
+                                        <th>Total Sales</th>
+                                        <th>Total Closing Balance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <select class="form-control mb-0">
+                                                <option>Strong</option>
+                                            </select>
+                                        </td>
+                                        <td><select class="form-control mb-0">
+                                            <option>Jonny Walker</option>
+                                        </select></td>
+                                        <td><select class="form-control mb-0">
+                                            <option>650ml</option>
+                                        </select></td>
+                                        <td><select class="form-control mb-0">
+                                            <option>Glass Bottle</option>
+                                        </select></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Opening Balance	"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter New Purchase"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Total Stock"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Sales"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Closing Balance"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Total Purchases"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Total Stocks"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Total Sales"></td>
+                                        <td><input type="number" class="form-control mb-0" placeholder="Enter Total Closing Balance"></td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-primary" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <!-- <app-card cardTitle="Opening Balance" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>650 ML</label>
+                            <input type="number" class="form-control" formControlName='openingBalance650'
+                                placeholder="Enter 650 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalance650').errors || salesLedgerForm.get('openingBalance650').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalance650').errors?.required">
+                                    650 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>500 ML</label>
+                            <input type="number" class="form-control" formControlName='openingBalance500'
+                                placeholder="Enter 500 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalance500').errors || salesLedgerForm.get('openingBalance500').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalance500').errors?.required">
+                                    500 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>355 ML</label>
+                            <input type="number" class="form-control" formControlName='openingBalance355'
+                                placeholder="Enter 355 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalance355').errors || salesLedgerForm.get('openingBalance355').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalance355').errors?.required">
+                                    355 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>330 ML</label>
+                            <input type="number" class="form-control" formControlName='openingBalance330'
+                                placeholder="Enter 330 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalance330').errors || salesLedgerForm.get('openingBalance330').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalance330').errors?.required">
+                                    330 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>275 ML</label>
+                            <input type="number" class="form-control" formControlName='openingBalance275'
+                                placeholder="Enter 275 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalance275').errors || salesLedgerForm.get('openingBalance275').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalance275').errors?.required">
+                                    275 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wine</label>
+                            <input type="number" class="form-control" formControlName='openingBalanceWine'
+                                placeholder="Enter Wine">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('openingBalanceWine').errors || salesLedgerForm.get('openingBalanceWine').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('openingBalanceWine').errors?.required">
+                                    Wine is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="New Purchase" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>650 ML</label>
+                            <input type="number" class="form-control" formControlName='newPurchase650'
+                                placeholder="Enter 650 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchase650').errors || salesLedgerForm.get('newPurchase650').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchase650').errors?.required">
+                                    650 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>500 ML</label>
+                            <input type="number" class="form-control" formControlName='newPurchase500'
+                                placeholder="Enter 500 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchase500').errors || salesLedgerForm.get('newPurchase500').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchase500').errors?.required">
+                                    500 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>355 ML</label>
+                            <input type="number" class="form-control" formControlName='newPurchase355'
+                                placeholder="Enter 355 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchase355').errors || salesLedgerForm.get('newPurchase355').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchase355').errors?.required">
+                                    355 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>330 ML</label>
+                            <input type="number" class="form-control" formControlName='newPurchase330'
+                                placeholder="Enter 330 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchase330').errors || salesLedgerForm.get('newPurchase330').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchase330').errors?.required">
+                                    330 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>275 ML</label>
+                            <input type="number" class="form-control" formControlName='newPurchase275'
+                                placeholder="Enter 275 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchase275').errors || salesLedgerForm.get('newPurchase275').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchase275').errors?.required">
+                                    275 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wine</label>
+                            <input type="number" class="form-control" formControlName='newPurchaseWine'
+                                placeholder="Enter Wine">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('newPurchaseWine').errors || salesLedgerForm.get('newPurchaseWine').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('newPurchaseWine').errors?.required">
+                                    Wine is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Total Stock" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>650 ML</label>
+                            <input type="number" class="form-control" formControlName='totalStock650'
+                                placeholder="Enter 650 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStock650').errors || salesLedgerForm.get('totalStock650').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStock650').errors?.required">
+                                    650 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>500 ML</label>
+                            <input type="number" class="form-control" formControlName='totalStock500'
+                                placeholder="Enter 500 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStock500').errors || salesLedgerForm.get('totalStock500').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStock500').errors?.required">
+                                    500 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>355 ML</label>
+                            <input type="number" class="form-control" formControlName='totalStock355'
+                                placeholder="Enter 355 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStock355').errors || salesLedgerForm.get('totalStock355').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStock355').errors?.required">
+                                    355 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>330 ML</label>
+                            <input type="number" class="form-control" formControlName='totalStock330'
+                                placeholder="Enter 330 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStock330').errors || salesLedgerForm.get('totalStock330').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStock330').errors?.required">
+                                    330 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>275 ML</label>
+                            <input type="number" class="form-control" formControlName='totalStock275'
+                                placeholder="Enter 275 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStock275').errors || salesLedgerForm.get('totalStock275').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStock275').errors?.required">
+                                    275 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wine</label>
+                            <input type="number" class="form-control" formControlName='totalStockWine'
+                                placeholder="Enter Wine">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('totalStockWine').errors || salesLedgerForm.get('totalStockWine').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('totalStockWine').errors?.required">
+                                    Wine is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Sales" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>650 ML</label>
+                            <input type="number" class="form-control" formControlName='sales650'
+                                placeholder="Enter 650 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('sales650').errors || salesLedgerForm.get('sales650').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('sales650').errors?.required">
+                                    650 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>500 ML</label>
+                            <input type="number" class="form-control" formControlName='sales500'
+                                placeholder="Enter 500 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('sales500').errors || salesLedgerForm.get('sales500').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('sales500').errors?.required">
+                                    500 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>355 ML</label>
+                            <input type="number" class="form-control" formControlName='sales355'
+                                placeholder="Enter 355 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('sales355').errors || salesLedgerForm.get('sales355').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('sales355').errors?.required">
+                                    355 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>330 ML</label>
+                            <input type="number" class="form-control" formControlName='sales330'
+                                placeholder="Enter 330 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('sales330').errors || salesLedgerForm.get('sales330').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('sales330').errors?.required">
+                                    330 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>275 ML</label>
+                            <input type="number" class="form-control" formControlName='sales275'
+                                placeholder="Enter 275 ML">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('sales275').errors || salesLedgerForm.get('sales275').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('sales275').errors?.required">
+                                    275 ML is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wine</label>
+                            <input type="number" class="form-control" formControlName='salesWine'
+                                placeholder="Enter Wine">
+                            <div *ngIf="formSubmitted && salesLedgerForm.get('salesWine').errors || salesLedgerForm.get('salesWine').touched "
+                                class="error-msg">
+                                <span *ngIf="salesLedgerForm.get('salesWine').errors?.required">
+                                    Wine is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Closing Balance" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>650 ML</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter 650 ML">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>500 ML</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter 500 ML">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>355 ML</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter 355 ML">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>330 ML</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter 330 ML">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>275 ML</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter 275 ML">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wine</label>
+                            <input type="number" disabled class="form-control" placeholder="Enter Wine">
+                        </div>
+                    </div>
+                </div>
+            </app-card> -->
+
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info mb-2"
+                    routerLink="/supplychainmanagement/retail/salesledger/view">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2"
+                    (click)="addSalesLedger(salesLedgerForm)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/retail/salesledger/list">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

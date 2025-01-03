@@ -1,0 +1,114 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'wholesale.stockin.stockin'|translate}}
+    <button type="submit" class="btn btn-success pull-right"
+    routerLink="/supplychainmanagement/wholesale/wsstockinnew/add">
+        <i class="feather icon-plus mr-2"></i>
+       {{'wholesale.stockin.addstockin' | translate}}
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockinhand.wholesale'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockin.stockin'|translate}}</a></li>
+    <li class="breadcrumb-item">{{'wholesale.common.list'|translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #stockInform="ngForm" autocomplete="off">
+        <app-card cardTitle="{{'wholesale.common.search'|translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.stockin.transportpassnumber'|translate}}</label>
+                        <input type="text" class="form-control" name="transportNo" #transportNo="ngModel" [(ngModel)]="stockInObj['transportNo']" 
+                        placeholder="{{'wholesale.stockin.entertransportpassnumber'|translate}}" />
+                        <!-- <div *ngIf="formSubmitted && stockForm.get('transportationPassNo').errors || stockForm.get('transportationPassNo').touched "
+                        class="error-msg">
+                        <span *ngIf="stockForm.get('transportationPassNo').errors?.required"><i class="fa fa-times"></i>
+                            Transport Pass No is required
+                        </span>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.stockin.date'|translate}}</label>
+                        <input type="date" class="form-control"  name="stockInDate" #stockInDate="ngModel" [(ngModel)]="stockInObj.stockInDate">
+                        <!-- <div *ngIf="formSubmitted && stockForm.get('stockInDate').errors || stockForm.get('stockInDate').touched "
+                        class="error-msg">
+                        <span *ngIf="stockForm.get('stockInDate').errors?.required"><i class="fa fa-times"></i>
+                            Date is required
+                        </span>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchStockIn()">{{'wholesale.common.search'|translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="cancel()">{{'wholesale.common.cancel'|translate}}</button>
+                </div>
+            </div>
+        </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'wholesale.stockin.stockinlist'|translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+             <app-mat-normal-table [columns]="inprogress" [actionKeys]="actionKeysInprogrss" [dataSource]="dataSourceInprogress"   
+                 [totalCount]="totalCount"   [pageSize]="pageSize" (paginationEvent)="handlePagination1($event)"
+                 (viewAction)="view($event)">
+             </app-mat-normal-table>
+                <!-- <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Date</th>
+                            <th>Transport Pass No.</th>
+                            <th>Total No. of Indent</th>
+                            <th>Total No of Cases Received</th>
+                             <th>Total No of Bottles Received</th> -->
+                            <!-- <th>Total Amount</th>
+                            <th>Payment Status</th> -->
+                            <!-- <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let res of stockinlist;let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{res.stockInDate | date:'dd/mm/yyyy'}}</td>
+                            <td>{{res.transportationPassNo}}</td>
+                            <td class="text-left">{{res.totalNoOfIndents}}</td>
+                            <td class="text-left">{{res.totalReceivedCases}}</td>
+                            <td class="text-left">{{res.totalReceivedBottles}}</td> -->
+                            <!-- <td class="text-left">5,000</td> -->
+                            <!-- <td class="text-right">50,000.00</td>
+                            <td class="text-success"><span class="badge badge-light-success">Success</span></td> -->
+                            <!-- <td>
+                                <button class="btn btn-primary" (click)="view(res.id)"><i class="far fa-eye"></i></button> -->
+                            <!-- <button class="btn btn-secondary ml-2" (click)="edit(res.id)"><i class="feather icon-edit"></i></button></td> -->
+                            <!-- </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download'|translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

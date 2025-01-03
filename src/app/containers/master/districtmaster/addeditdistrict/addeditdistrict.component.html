@@ -1,0 +1,106 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.district.adddistrict' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.district.editdistrict' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.district.districtmaster' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.district.district' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #districtForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{addedithead}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.district.districtcode' | translate }}</label>
+
+                            <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="districtObj['code']"
+                                class="form-control" required
+                                placeholder="{{ 'master.district.enterdistrictcode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.district.districtcode' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Country</label>
+                           <select class="form-control">
+                               <option>Select</option>
+                           </select>               
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">State</label>
+                           <select class="form-control">
+                               <option>Select</option>
+                           </select>               
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Zone</label>
+                           <select class="form-control">
+                               <option>Select</option>
+                           </select>               
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.district.districtname' | translate }}</label>
+
+                            <input type="text" id="Name" name="name" #name="ngModel" [(ngModel)]="districtObj['name']"
+                                required class="form-control"
+                                placeholder="{{ 'master.district.enterdistrictname' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.district.districtname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }} </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District Short Name</label>
+                            <input type="text" class="form-control">     
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="districtObj['active']" class="custom-control-input" id="customswitch1"
+                                    [attr.checked]="districtObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!districtObj.active">{{ 'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="districtObj.active">{{ 'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="adddistrict(districtForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            (click)="navigatedistrictList()">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

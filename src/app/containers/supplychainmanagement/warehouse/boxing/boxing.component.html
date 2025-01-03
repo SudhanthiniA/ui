@@ -1,0 +1,116 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'bondWarehouse.boxing.boxing' | translate}}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/warehouse/boxing/add">
+    <i class="feather icon-plus mr-2"></i>
+    {{'bondWarehouse.boxing.addboxing' | translate}}
+</button> 
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.boxing.bottling' | translate}}</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.boxing.boxing' | translate}}</a></li>
+     <li class="breadcrumb-item">{{'bondWarehouse.common.list' | translate}}</li>
+ </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.boxing.year' | translate}}</label>
+                        <input type="text" class="form-control" placeholder="Enter Year"
+                        name="year" #year="ngModel" [(ngModel)]="boxingbottlingSearchObj['year']">
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.boxing.date' | translate}}</label>
+                        <input type="date" required id="date" name="date" class="form-control"
+                        placeholder="Enter Date" #date="ngModel" 
+                        [(ngModel)]="boxingbottlingSearchObj['date']">
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.boxing.liqourtype' | translate}}</label>
+                        <select id="liquiorType"  class="form-control" name="typeOfLiquorId"
+                            #typeOfLiquorId="ngModel" [(ngModel)]="boxingbottlingSearchObj['typeOfLiquorId']">
+                            <option value="">Select</option>
+                            <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.boxing.planeid' | translate}}.</label>
+                        <input type="number"   class="form-control" placeholder="Enter Plan Id."
+                        name="plannoId"  #plannoId="ngModel"
+                        [(ngModel)]="boxingbottlingSearchObj['plannoId']">
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.boxing.brandname' | translate}}</label>
+                        <select id="brandId"  class="form-control" name="brandId"
+                        #brandId="ngModel" [(ngModel)]="boxingbottlingSearchObj['brandId']">
+                            <option value="">Select</option>
+                            <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                        </select>
+                        <!-- <input type="text" required  class="form-control" placeholder="Enter Brand Name"/> -->
+                    </div>
+                </div>   
+            
+            
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select class="form-control" [(ngModel)]="boxingbottlingSearchObj['status']">
+                            <option value=""></option>
+                            <option value="true">SUBMITTED</option>
+                            <option value="false">INITIATE</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click) = "searchapi()">{{'bondWarehouse.common.search' | translate}}</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="{{'bondWarehouse.boxing.detailsofboxing' | translate}}" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+             </div>
+             <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">{{'bondWarehouse.common.download' | translate}}</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                      href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                  <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                      href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                  <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                      href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 

@@ -1,0 +1,719 @@
+<h5 class="m-b-10 ng-star-inserted">{{'bondWarehouse.TransportPassCancellation.addrequestfortpcancellation' | translate}}</h5>
+<!-- Add Request for TP Cancellation  -->
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.transportpassgen.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.transportpassgen.transportpass' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.TransportPassCancellation.requestfortpcancellation' | translate}}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{'bondWarehouse.common.add' | translate}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #TransportCancellationform="ngForm" autocomplete="off">
+        <app-card cardTitle="{{'bondWarehouse.TransportPassCancellation.addrequestfortpcancellation' | translate}}" class="list-panel add-panel"> 
+            <div class="row mt-2">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <label>Search or Scan QR Transport Pass No</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control"
+                            placeholder="Search or Scan QR Transport Pass No" name='transportPassNumber'
+                            #transportPassNumber=ngModel [(ngModel)]="TransitpassCancelobj['transportPassNumber']"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <!-- <input type="text" class="form-control" formControlName="transportPassNumber"
+                            placeholder="Search or Scan QR Transport Pass No"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="getTpCaancellDetails()"><i
+                                    class="fas fa-qrcode"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Request Type</label>
+                    <div class="segment">
+                        
+                        <input type="radio" name="tab2" id="tab2" checked>
+                        <label class="" for="tab2">Cancellation</label>
+                        <input type="radio" name="tab" id="tab1" >
+                        <label class="" for="tab1">Modification</label>
+                    </div>
+                  
+                </div>
+                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Date</label>
+                        
+                        <input type="date" disabled class="form-control" name='applicationDate'
+                            #applicationDate=ngModel [(ngModel)]="TransitpassCancelobj['applicationDate']"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                          <!--   formControlName="applicationDate" > -->
+                      
+                    </div>
+                </div>
+               
+                
+                
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.TransportPassCancellation.transportpassno' | translate}}</label>
+                        <input type="text" class="form-control" disabled  name='transportPassNo'
+                        #transportPassNo=ngModel [(ngModel)]="TransitpassCancelobj['transportPassNo']"  
+                        value=" 84-2020-21-FL36-3764">
+                        <!-- <div *ngIf="formSubmitted && TransportCancelForm.get('transportPassNumber').errors || TransportCancelForm.get('transportPassNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="TransportCancelForm.get('transportPassNumber').errors?.required">
+                                Transport Pass No. is required  formControlName="transportPassNo"
+                            </span>
+                        </div> -->
+                       
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.TransportPassCancellation.transportpassdate' | translate}}</label>
+                        <input type="date"  class="form-control" disabled name='transportPassDate'
+                        #transportPassDate=ngModel [(ngModel)]="TransitpassCancelobj['transportPassDate']" >
+                        <!-- formControlName="transportPassDate" -->
+                       
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass Type</label>
+                        <select class="form-control" name='transportPassType'
+                        #transportPassType=ngModel [(ngModel)]="TransitpassCancelobj['transportPassType']">
+                            <option value="">select</option>
+                            <option value="FL36">FL36</option>
+                            <option value="BWFL-FL36">BWFL-FL36</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total No. of Indents
+                        </label>
+                        <input type="number"  disabled class="form-control" 
+                        value="4">
+                    </div>
+                </div> -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>{{'bondWarehouse.TransportPassCancellation.reasonforcancellation' | translate}}</label>
+                        <textarea class="form-control" name='Reason'
+                            #Reason=ngModel [(ngModel)]="TransitpassCancelobj['Reason']"  rows="1" placeholder="Enter Reason for Cancellation/Modification" >
+                        </textarea>
+                        <!--  formControlName="Reason" -->
+                        <!-- <div *ngIf="formSubmitted && transportPassCancelForm.get('Reason').errors || transportPassCancelForm.get('Reason').touched "
+                                class="error-msg">
+                                <span *ngIf="transportPassCancelForm.get('Reason').errors?.required">
+                                    Reason for Cancellation/Modification is required
+                                </span>
+                            </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Premises Type</label>
+                        <!-- <input type="text" class="form-control" name='premisesType'
+                        #premisesType=ngModel [(ngModel)]="TransitpassCancelobj['premisesType']"> -->
+                        <select class="form-control" name='premisesType' #premisesType=ngModel 
+                        [(ngModel)]="TransitpassCancelobj['premisesType']" >
+                           <option>Select</option>
+                            <option value="Within the Premises">Within the Premises</option>
+                            <option value="Outside the Premises">Outside the Premises</option>
+                        </select>
+                         <!-- formControlName="premisesType" -(change)="barcodeevent($event.target.value)"-->
+                        <!-- <div *ngIf="formSubmitted && transportPassCancelForm.get('premisesType').errors || transportPassCancelForm.get('premisesType').touched "
+                                class="error-msg">
+                                <span *ngIf="transportPassCancelForm.get('premisesType').errors?.required">
+                                    Reason for Cancellation/Modification is required
+                                </span>
+                            </div> -->
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <ngb-tabset type="pills" #tabSet="ngbTabset" class="mb-2">
+                    <ngb-tab title="{{'bondWarehouse.TransportPassCancellation.transportpassdetails' | translate}}">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <!-- <h6 class="my-2">Transport Pass Details</h6> -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!-- <h6 class="my-2">Transport Pass Details</h6> -->
+                                            
+                                            <app-card cardTitle="Details" class="list-panel view-panel"> 
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                        <div class="row">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.issuedate' | translate}}<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                  20-Apr-2021
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.transportdate' | translate}}<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    25-Apr-2021
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Total No. of Indents<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    1
+                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                        <div class="row">
+                                                        <div class="col-12">
+                                                        <div class="text-center">
+                                                            <img src="assets/images/qr-scan.png" class="qr-img"/>
+                                                            <p class="mb-0 pt-1 font-weight-bold">12XVCCN1122</p>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                                    </div>
+                                                </div>
+                                            </app-card>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12">
+                                        <app-card cardTitle="{{'bondWarehouse.TransportPassCancellation.unitdetails' | translate}}" class="list-panel view-panel mt-4">
+                                          
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.licensetype' | translate}}<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                          {{TransitpassCancelobj?.unitLicenseType}}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.entityname' | translate}}<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            {{TransitpassCancelobj?.unitName}}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.entityaddress' | translate}}<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            {{TransitpassCancelobj?.unitAddress}}                                        </div>
+                                        
+                                            </div>
+                                        </app-card>
+                                    </div> -->
+                                   
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                        <app-card cardTitle="Unit Details" class="list-panel add-panel">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                  BWFL2A
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Unit Name<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    BLUE OCEAN BEVERAGES PRIVATE LIMITED
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Unit Address<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    F-123, PHASE-02, TRANSPORT NAGAR, KANPUR ROAD, LUCKNOW
+                                                </div>
+                                           
+                                            </div>
+                                        </app-card>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                        <app-card cardTitle="Wholesale Shop Details" class="list-panel add-panel">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                  FL4A
+                                                </div>
+                                               
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Wholesale Name<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    Danteshwari Home Buildtech Private Limited
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    <label class="w-100 view-label">Wholesale Address<span class="float-right">:</span></label>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                                    Near G.D. Goenka Public School, Jansath-Muzaffarnagar Road, Muzaffarnagar.
+                                                </div>
+                                           
+                                            </div>
+                                        </app-card>
+                                        </div>
+                                    <div class="col-12">
+                                        <app-card cardTitle="{{'bondWarehouse.TransportPassCancellation.transportationdetails' | translate}}" class="list-panel view-panel">
+                                          
+                                  
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Transporter's Name<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            PIKUP MAX
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Vehicle No.<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            UP32 AN 7647
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Vehicle Driver Name<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            KARAN
+                                        </div>
+                                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Route Type<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Within District
+                                        </div> -->
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Route Type<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Outside District
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Route Details<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Jalaun
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Major Route<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Jalaun
+                                        </div>
+                                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Via<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Via Lucknow
+                                        </div> -->
+                                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Major District<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            Lucknow
+                                        </div> -->
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Distance (Kms)<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            100
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Valid Upto<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            20-Apr-2021
+                                        </div>
+                                        
+                                        
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Gross Weight<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           8500.00
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Tare Weight<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           3500.00
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">Net Weight<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           5000.00
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <label class="w-100 view-label">GPS ID<span class="float-right">:</span></label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                            1122ww11
+                                        </div>
+                                    </div>
+                                   
+                                        </app-card>
+                                    </div>
+                                    <div class="col-12">
+                                        <app-card cardTitle="{{'bondWarehouse.TransportPassCancellation.indentdetails' | translate}}" class="list-panel view-panel">
+                                          
+                                  
+                                    <div class="row">
+                                   
+                                        <div class="col-12">
+                             
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered text-center mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Indent No</th>
+                                                            <th>Indent Date</th>
+                                                            <!-- <th>ETIN No.</th> -->
+                                                            <th>No.of Case Requested</th>
+                                                            <th>No.of Bottles Requested</th>
+                                                            <th>No.of Case Dispatch</th>
+                                                            <th>No.of Bottles Dispatch</th>
+                                                        <th>Bulk Litres</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>6234723922</td>
+                                                            <td>20-Mar-2021</td>
+                                                            <!-- <td>ETTIN1234</td> -->
+                                                            <td class="text-left">100</td>
+                                                            <td class="text-left">1000</td>
+                                                            <td class="text-left">100</td>
+                                                            <td class="text-left">1000</td> 
+                                                            <td class="text-right">1000.00</td>
+                                                        </tr>
+                                                       
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totalnoofcasesrequested'| translate}}<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{TransitpassCancelobj?.noOfCasesRequested}}
+                                        <!-- 0 -->
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totalnoofbottlesrequested'| translate}}<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{TransitpassCancelobj?.noOfBottlesRequested}}
+                                        <!-- 0 -->
+                                    </div>
+                                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No of Cases Pending<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2
+                                    </div> -->
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totalbullLitres'| translate}}<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{TransitpassCancelobj?.noOfBulkLitres}}
+                                        <!-- 0 -->
+                                    </div>
+                                    </div>
+                                    </app-card>
+                                    <app-card cardTitle="{{'bondWarehouse.transportpassgen.duty' | translate}}" class="list-panel add-panel">
+                                     <div class="row">
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.advanceconsiderationfee'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                          1000.00
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.advancescanningfee'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                         800.00
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.advanceduty'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           200.00
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totalduty'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           1200.00
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totaladditionalduty'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                           1000.00
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                             <label class="w-100 view-label">{{'bondWarehouse.TransportPassCancellation.totalspecialadditionalduty'| translate}}<span class="float-right">:</span></label>
+                                         </div>
+                                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                         1500.00
+                                         </div>
+                                     </div>
+                                 </app-card>
+                                    </div>
+
+                               
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ng-container >
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>Indent No. 6234723922</ng-template>
+                            <ng-template ngbTabContent>
+
+                                <div class="row mt-2">
+
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Indent Date<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        20-Mar-2021
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered text-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Brand Name<br>(Parent ETIN)</th>
+                                                        <th>Liquor Type</th>
+                                                        <th>Liquor Sub Type</th>
+                                                        <th>Liquor Detailed<br>Description</th>
+                                                        <th>Strength</th>
+                                                        <th>Packaging<br>Size</th>
+                                                        <th>Packaging<br>Type</th>
+                                                        <th>No. of Cases<br>Requested</th>
+                                                        <th>No. of Bottles<br>Requested</th>
+                                                        <!-- <th>No. of Cases<br>Dispatch</th>
+                                                        <th>No. of Bottles<br>Dispatch</th> -->
+                                                        <th>Duty Fee</th>
+                                                        <th>Additional<br>Duty Fee</th>
+                                                        <th>Special Additional<br>Duty Fee</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <!-- <td>BN1121</td> -->
+                                                        <td class="text-left">
+                                                            Jack Daniels (Black)
+                                                        </td>
+                                                        <td class="text-left">
+                                                            FL
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Whishky
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Single Malt
+                                                        </td>
+                                                        <td class="text-left">
+                                                            0.5%
+                                                        </td>
+                                                        <td class="text-left">
+                                                            750 ml
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Glass Bottle
+                                                        </td>
+                                                       
+                                                        <td class="text-left">
+                                                            50
+                                                        </td>
+                                                        <td class="text-left">
+                                                            500
+                                                        </td>
+                                                        <!-- <td class="text-left">
+                                                            50
+                                                        </td>
+                                                        <td class="text-left">
+                                                            500
+                                                        </td> -->
+                                                        <td class="text-right">
+                                                            500.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            300.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            200.00
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td class="text-left">
+                                                            Rampur Select
+                                                        </td>
+                                                        <td class="text-left">
+                                                            FL
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Whishky
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Single Malt
+                                                        </td>
+                                                        <td class="text-left">
+                                                            0.5%
+                                                        </td>
+                                                       <td class="text-left">
+                                                            750 ml
+                                                        </td>
+                                                        <td class="text-left">
+                                                            Glass Bottle
+                                                        </td>
+                                                        
+                                                        <td class="text-left">
+                                                            10
+                                                        </td>
+                                                        <td class="text-left">
+                                                            100
+                                                        </td>
+                                                        <!-- <td class="text-left">
+                                                            10
+                                                        </td>
+                                                        <td class="text-left">
+                                                            100
+                                                        </td> -->
+                                                        <td class="text-right">
+                                                            500.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            100.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            200.00
+                                                        </td>
+                                                    </tr>
+                                                 
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No. of Cases Requested<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        20
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No. of Bottles Requested<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        200
+                                    </div> -->
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No. of Cases Dispatch<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        20
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No. of Bottles Dispatch<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        200
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total Bulk Litres<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total Duty Fee<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total Additional Duty<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total Special Additional Duty<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div>
+                                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No. of Mono cartons<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Total No.of Bottles<span
+                                                class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        2000.00
+                                    </div> -->
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ng-container>
+             
+                   
+                      
+                  </ngb-tabset>
+                </div>
+
+            </div>
+        </app-card>
+    </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mb-2">{{'bondWarehouse.common.next'| translate}}</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">{{'bondWarehouse.common.back'| translate}}</button>
+        <button type="button" class="btn btn-info mb-2 ml-2" (click)="preview()">{{'bondWarehouse.common.preview'| translate}}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="submitForm(TransportCancellationform,'IN_PROGRESS')">{{'bondWarehouse.common.saveasdraft'| translate}}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="submitForm(TransportCancellationform,'APPROVED')">{{'bondWarehouse.common.submit'| translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/transportpass/requestfortpcancelation">{{'bondWarehouse.common.cancel'| translate}}</button>
+    </div>
+</div>

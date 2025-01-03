@@ -1,0 +1,79 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Import Permit 
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/supplychainmanagement/distillery/importpermit/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Import Permit
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Import Permit</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+  <div class="col-xl-12">
+      <app-card cardTitle="Import Permit List" blockClass="table-border-style" class="list-panel">
+          <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Date of Application</th>
+                          <th>Order Number</th>
+                          <th>Permit Number</th>
+                          <th>Exporter Name </th>
+                          <th>Spirit Type</th>
+                          <th>Requested Quantity(BL)</th>
+                          <th>Strength</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>20/07/2020</td>
+                          <td class="text-left">101</td>
+                          <td class="text-left">p001</td>
+                          <td class="text-left">Arjun</td>
+                          <td class="text-left">-</td>
+                          <td class="text-left">100</td>    
+                          <td class="text-left">5%</td>    
+                          <td>
+                              <span class="badge m-r-5 badge-light-success">Submitted</span>
+                              <!-- <span class="badge m-r-5 badge-light-warning">Draft</span> -->
+                          </td>
+                 
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary" type="button"
+                                  routerLink="">
+                                  <i class="feather icon-eye"></i></button>
+                              <!-- <button *ngIf="!data.status" class="btn btn-icon btn-secondary ml-2" type="button"
+                              routerLink="/supplychainmanagement/distillery/importrequest/edit/{{data.id}}">
+                                <i class="feather icon-edit-2"></i></button> -->
+                          </td>
+                       
+                       
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="row">
+            <div class="col-xl-4" >
+                <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:" (click)="getPdfData1('downloadExcel')">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">CSV</a>
+                </div>
+            </div>
+            </div>
+           
+        </div>
+      </app-card>
+  </div>
+</div>

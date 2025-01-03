@@ -1,0 +1,310 @@
+<h5 class="m-b-10 ng-star-inserted">Add Receiver
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/receiver/list">Receiver</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="receiverForm" autocomplete="off">
+            <app-card cardTitle="Receiver Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control" formControlName="otnumber" (click)="getotdata($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor ="let data of otnumber" value="{{data.id}}">{{data.otNumber}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && receiverForm.get('otnumber').errors || receiverForm.get('otnumber').touched "
+                            class="error-msg">
+                            <span *ngIf="receiverForm.get('otnumber').errors?.required"><i class="fa fa-times"></i>
+                                OT Number is required
+                            </span>
+                        </div>
+                         
+                        </div>
+                    </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>OT Start Date</label>
+                                <input type="text" disabled class="form-control" formControlName="otstartdate">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Sprint Name</label>
+                                <select class="form-control" formControlName="sprintname">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let data of sprintdata" value="{{data.id}}">{{data.type}}</option>
+                                    <!-- <option value="2">sprit2</option> -->
+                                </select>
+                                <div *ngIf="formSubmitted && receiverForm.get('sprintname').errors || receiverForm.get('sprintname').touched "
+                            class="error-msg">
+                            <span *ngIf="receiverForm.get('sprintname').errors?.required"><i class="fa fa-times"></i>
+                                Sprint Name is required
+                            </span>
+                        </div>
+                             
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Receiver Tank</label>
+                                <select class="form-control" formControlName="receivertank" (change)="getTankDetails($event.target.value)">
+                                    <option value="">Select</option>
+                                    <option *ngFor ="let data of revtank" value="{{data.id}}">{{data.tankName}}</option>
+                                </select>
+                                <div *ngIf="formSubmitted && receiverForm.get('receivertank').errors || receiverForm.get('receivertank').touched "
+                            class="error-msg">
+                            <span *ngIf="receiverForm.get('receivertank').errors?.required"><i class="fa fa-times"></i>
+                                Receiver Tank is required
+                            </span>
+                        </div>
+                             
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Available Capacity</label>
+                                <input type="text" disabled class="form-control" formControlName="Availavlecapacity">
+                            </div>
+                        </div>
+                    </div>
+                
+            </app-card>
+            <app-card cardTitle="Receiver Inward Details" class="list-panel add-panel">
+                <form #reciveform="ngForm" autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fermentation Reference No</label>
+                            <select class="form-control"  name="fermentationrefno" #fermentationrefno="ngModel"
+                            [(ngModel)]="reciverobj['fermentationrefno']" (click)="getautofillvalues(reciverobj['fermentationrefno'])">
+                                <option value="">Select</option>
+                                <option *ngFor ="let data of refnumber" value="{{data.id}}">{{data.referenceNumber}}</option>
+                            </select>
+                         
+                        </div>
+                    </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation Vessel No</label>
+                                <input type="text" disabled class="form-control"  name="fermentationvesselno" #fermentationvesselno="ngModel"
+                                [(ngModel)]="reciverobj['fermentationvesselno']">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation Available Quantity</label>
+                                <input type="text" disabled class="form-control"  name="fermentationavailquantity" #fermentationavailquantity="ngModel"
+                                [(ngModel)]="reciverobj['fermentationavailquantity']">                             
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Fermentation Quantity of wash</label>
+                                <input type="number"  class="form-control" name="fermentationofwash" #fermentationofwash="ngModel"
+                                [(ngModel)]="reciverobj['fermentationofwash']">
+                             
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>OT start date and Time</label>
+                                <input type="text" disabled class="form-control"  name="otstartdateandtime" #otstartdateandtime="ngModel"
+                                [(ngModel)]="reciverobj['otstartdateandtime']" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Inistial Gravity</label>
+                                <input type="text" disabled class="form-control"  name="Inistialgravity" #Inistialgravity="ngModel"
+                                [(ngModel)]="reciverobj['Inistialgravity']" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>final gravity</label>
+                                <input type="text" disabled class="form-control"  name="finalgravity" #finalgravity="ngModel"
+                                [(ngModel)]="reciverobj['finalgravity']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Alcohol Percentage in wash</label>
+                                <input type="text" disabled class="form-control"  name="alcoholpercentageinwash" #alcoholpercentageinwash="ngModel"
+                                [(ngModel)]="reciverobj['alcoholpercentageinwash']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>strength</label>
+                                <input type="number"  class="form-control"  name="strength" #strength="ngModel"
+                                [(ngModel)]="reciverobj['strength']">
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                    <div class="col-12 text-right mb-4">
+                        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="getformdata(reciveform)"  >Add</button>
+                        <button type="button" class="btn btn-info ml-2 mb-2" (click)="clearform()" >Clear</button>
+    
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Fermentation Reference No</th>
+                                                <th>Fermentation Quantity of wash</th>
+                                                <th>OT start date and Time</th>
+                                                <th>Strength</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                       <tr *ngFor="let data of receivetabledata ; let i =index">
+                                           <td>{{i+1}}</td>
+                                           <td>{{data.fermentationrefno.referenceNumber}}</td>
+                                           <td>{{data.fermentationofwash}}</td>
+                                           <td>{{data.otstartdateandtime}}</td>
+                                           <td>{{data.strength}}</td>
+                                            <td class="text-center  "><i class="fas fa-pen text-primary pointer"
+                                                (click)='bindelements(i,data)' ></i><i class="fas fa-trash-alt pointer  text-danger"
+                                                (click)="removeSelectedRows(i,data)"  ></i></td>
+                                       </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </app-card>
+
+            <!-- <app-card cardTitle="Receiver Details " class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Fermenter Filling Serial No</th>
+                                        <th>OT Start Date and Time </th>
+                                        <th>Quantity of Wash</th>
+                                        <th>Initial Gravity</th>
+                                        <th>Final Gravity</th>
+                                        <th>Alcohol Percentage in Wash</th>
+                                        <th>Receiver Number</th>
+                                        <th>Spirit Name</th>
+                                        <th>Quantity(In. B.L.)</th>
+                                        <th>Strength</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="receiverDetails"
+                                        *ngFor="let pres of receiverForm?.get('receiverDetails')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td [formGroupName]="i">{{i+1}}</td>
+                                        <td [formGroupName]="i" >
+                                            <div class="form-group mb-0">
+                                                <select formControlName="fermenterVessalId" class="form-control"
+                                                    (change)="getTankDetails($event.target.value,pres)"
+                                                    style="width: 100px;">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}
+                                                    </option>
+                                                    <option *ngFor="let item of tankList" value="{{item.id}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i"><input type="number" disabled class="form-control"
+                                                formControlName="otstartdateandtime" placeholder="" /></td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control"
+                                                formControlName="washquantity" placeholder="Enter Quantity Wash" /></td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control"
+                                                formControlName="initialgravity" placeholder="Enter Initial Gravity" />
+                                        </td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control"
+                                                formControlName="finalgravity" placeholder="Enter Final Gravity" /></td>
+                                                <td [formGroupName]="i"><input type="number" class="form-control"
+                                                    formControlName="alcoholpercentagewash" placeholder="Enter Alcohol %" /></td>
+                                        <td [formGroupName]="i" class="table-action-column">
+                                            <div class="form-group mb-0">
+                                                <select formControlName="receiverId" class="form-control"
+                                                    (change)="getTankDetails($event.target.value,pres)"
+                                                    style="width: 100px;">
+                                                    <option value="">{{ 'sugarmill.common.select' | translate }}
+                                                    </option>
+                                                    <option *ngFor="let item of tankList" value="{{item.id}}">
+                                                        {{item.tankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+
+                                        <td [formGroupName]="i"><input type="text" class="form-control"
+                                                formControlName="spiritname" placeholder="Enter Spirit Name" /></td>
+                                        <td [formGroupName]="i"><input type="number" class="form-control"
+                                                formControlName="quantity" (keyup)="checkingvalue(pres)"
+                                                placeholder="Enter Quantity" /></td>
+
+                                        <td [formGroupName]="i"><input type="number" class="form-control"
+                                                formControlName="strength" placeholder="Enter Strength" /></td>
+
+
+
+
+                                        <td [formGroupName]="i" class="table-action-column">
+                                            <div class="form-group mb-0">
+                                                <button class="btn btn-icon btn-success" type="button">
+                                                    <i class="feather icon-plus" title="Delete" (click)="addNewRow(i)"
+                                                        style="cursor: pointer;">
+                                                    </i>
+                                                </button>
+                                                <button *ngIf="i!==getPresFormLength()-1"
+                                                    class="btn btn-icon btn-danger ml-2" type="button">
+                                                    <i class="feather icon-trash-2" title="Delete"
+                                                        (click)="removeSelectedRow(i+1)" style="cursor: pointer;">
+                                                    </i></button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card> -->
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2"
+           (click)="reciverpriview(receiverForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(receiverForm,'INITIATED')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+           (click)="saveData(receiverForm,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"  (click)="cancle()">Cancel</button>
+    </div>
+</div>

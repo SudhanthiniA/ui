@@ -1,0 +1,145 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'usermanagement.workflow.addworkflowmanagement' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate
+            }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'usermanagement.workflow.workflowmanagement' | translate
+            }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'usermanagement.common.add' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #documenttypeForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'usermanagement.workflow.enterbelowdetails' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.workflow.modulename' | translate }}</label>
+                            <select class="form-control" name="moduleid" required (change)="getModuleByScreens($event)"
+                                #moduleid="ngModel" [(ngModel)]="workFlowObj['moduleId']">
+                                <option value="">Select</option>
+                                <option *ngFor="let modu of moduleArr" value={{modu.id}}>
+                                    {{modu.moduleName}}</option>
+                            </select>
+                            <div *ngIf="moduleid.invalid && (moduleid.dirty || moduleid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="moduleid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.workflow.modulename' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.workflow.submodulename' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="workFlowObj['screenId']"
+                                (change)="getScreens($event)" name="screen_Id" #screen_Id="ngModel" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let subModu of subModules" value={{subModu.id}}>
+                                    {{subModu.screenName}}</option>
+                            </select>
+                            <div *ngIf="screen_Id.invalid && (screen_Id.dirty || screen_Id.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="moduleid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.workflow.submodulename' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.workflow.levelofapproval' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="workFlowObj['levelId']" name="level_Id"
+                                #level_Id="ngModel" (change)="getLevel($event.target.value)" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let lev of approvalLavelArr" value={{lev.id}}>
+                                    {{lev.type}}
+                                </option>
+                            </select>
+                            <div *ngIf="level_Id.invalid && (level_Id.dirty || level_Id.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="level_Id?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'usermanagement.workflow.level' | translate }} {{
+                                    'usermanagement.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'usermanagement.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="workFlowObj.active" name="active" #active="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="workFlowObj.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!workFlowObj.active">Inactive</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="workFlowObj.active">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form>
+            <app-card cardTitle="{{ 'usermanagement.workflow.leveldetails' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div *ngIf="editFlag;else other_content" class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12"
+                                *ngFor="let in of workFlowObj.level; let i = index">
+                                <div class="form-group">
+                                    <label>{{ 'usermanagement.workflow.level' | translate }} {{i+1}} {{
+                                        'usermanagement.usermanagement.designation' | translate }}</label>
+                                    <select class="form-control" [(ngModel)]="workFlowObj.level[i].id" name="level"
+                                        #level="ngModel">
+                                        <option value=""> Select</option>
+                                        <option *ngFor="let x of designation" value="{{x.id}}">
+                                            {{x.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ng-template #other_content>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngFor="let in of counter() ; let i = index">
+                            <div class="form-group">
+                                <label>{{ 'usermanagement.workflow.level' | translate }} {{i+1}} {{
+                                    'usermanagement.usermanagement.designation' | translate }}</label>
+                                <select class="form-control" [(ngModel)]="workFlowObj.level[i]" name="level"
+                                    #level="ngModel">
+                                    <option value=""> Select</option>
+                                    <option *ngFor="let x of designation" value="{{x.id}}">
+                                        {{x.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)=saveData(documenttypeForm)>{{
+            'usermanagement.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/usermanagement/workflowmanagement/list">{{
+            'usermanagement.common.cancel' | translate }}</button>
+    </div>
+</div>

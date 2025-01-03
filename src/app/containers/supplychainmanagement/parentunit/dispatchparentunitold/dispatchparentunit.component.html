@@ -1,0 +1,116 @@
+<h5 class="m-b-10 ng-star-inserted">Dispatch (Parent Unit)
+    <button class="btn btn-success custom_add_button pull-right" 
+    routerLink="/supplychainmanagement/warehouse/dispatchparentunit/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> Add Dispatch</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Parent Unit</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Dispatch (Parent Unit)</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Brandreg="ngForm" autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date</label>
+                            <input type="date"  class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass Number</label>
+                            <input type="text"  class="form-control" placeholder="Enter Transport Pass Number" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                                <option>Approved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row">
+<div class="col-xl-12">
+    <form #boxingForm="ngForm" autocomplete="off">
+        <app-card cardTitle="Dispatch (Parent Unit) List" class="list-panel add-panel">
+            <div class="row">    
+                <div class="col-12">
+                    <div class="table-responsive mt-2">
+                      <table class="table table-bordered ">
+                          <thead>
+                             <tr>
+                                <th>#</th>
+                                <th>Application Date</th>
+                                <th>Transport Pass Number</th>
+                                <th>Number of Permits</th>
+                                <th>Total No.of Cases</th>
+                                <th>Total No.of Bottles</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                             </tr>
+                          </thead>
+                          <tbody> 
+                             <tr>
+                                <td>1</td>
+                                <td class="text-center">20-Apr-2021</td>
+                                <td class="text-center">4</td>
+                                <td class="text-left">2</td>
+                                <td class="text-left">200</td>
+                                <td class="text-left">20</td>
+                                <td class="text-center">
+                                    <span
+                                        class="badge m-r-5 badge-light-success">Approved</span>
+                                </td>
+                               
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" 
+                                    routerLink="/supplychainmanagement/warehouse/transportpassparentunit/view">
+                                        <i class="feather icon-eye"></i></button>
+    
+                                    <button class="btn btn-icon btn-secondary mr-2" type="button" 
+                                    routerLink="/supplychainmanagement/warehouse/transportpassparentunit/add">
+                                            <i class="feather icon-edit-2"></i></button>
+    
+                                </td>
+                             </tr>
+                          </tbody>
+                       </table> 
+                    </div>
+                 </div>                            
+                
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'master.common.download' | translate}}</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">PDF</a>
+                                <a class="dropdown-item" href="javascript:">JPG</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </app-card>        
+    </form>
+</div>
+</div>

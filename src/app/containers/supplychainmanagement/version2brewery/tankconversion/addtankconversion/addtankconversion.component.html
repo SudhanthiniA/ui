@@ -1,0 +1,106 @@
+<h5 class="m-b-10 ng-star-inserted">Add Tank Conversion
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">Tank Conversion</a>
+</li>
+    <li aria-current="page" class="breadcrumb-item active">
+        Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankconversion.tankconversion' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" name="requestDate" disabled
+                                value="{{ post.startDate | date:'yyyy-MM-dd' }}" required
+                                placeholder="{{ 'sugarmill.tankregistration.enterrequestdate' | translate }}"
+                                #requestDate="ngModel" [(ngModel)]="tankConversionObj['requestDate']"
+                                class="form-control">
+                            <div *ngIf="requestDate.invalid && (requestDate.dirty || requestDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="requestDate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankregistration.requestdate' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank ID</label>
+                            <select class="form-control"  >
+                                <option value="">Select</option>
+                                
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Designated Material</label>
+                            <input type="text"  disabled class="form-control" required
+                                value="B-heavy Molasses">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Convert to</label>
+                            <select class="form-control"  >
+                                <option value="">Select</option>
+                                
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Empty or Not</label>
+                            <select class="form-control"  >
+                                <option value="">Select</option>
+                                
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance Capacity</label>
+                            <input type="text" disabled   class="form-control" required
+                                value="100">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reason for Conversion</label>
+                            <input type="text"   class="form-control" required
+                                placeholder="Enter Reason for Conversion">
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </app-card>
+
+        </form>
+    </div>
+    
+
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-info mb-2" (click)="navigatePreview(tankForm)">
+            {{ 'sugarmill.common.preview' | translate }} </button> -->
+        <button type="button" (click)="addTankConversion(tankForm, 'DRAFT')"
+            class="btn btn-warning ml-2 mb-2">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addTankConversion(tankForm, 'INITIATE')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            (click)="navigatetankconverstionList()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,410 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'bondWarehouse.bottlingproductionplan.addbottlingproductionplan' | translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.importpermitstatus.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'bondWarehouse.bottlingproductionplan.bottlingproductionplan' | translate}}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.add' | translate}}</li>
+</ul>
+<div class="row">
+    <form #bottlingForm="ngForm" autocomplete="off">
+    <div class="col-xl-12">
+         <!-- <form #bottlingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="{{ 'bondWarehouse.importPermitRequest.parentunitdetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'retail.transaction.datetime' | translate}}
+                            </label>
+                            <input type="text"  class="form-control" disabled required value="12-04-2021 18:55">
+                            <!-- <div *ngIf="parentUnitName.invalid && (parentUnitName.dirty || parentUnitName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="parentUnitName?.errors?.required"><i class="fa fa-times"></i>
+                                    parent UnitName is required
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.distillerytype' | translate}}</label>
+                            <input type="text"  class="form-control" disabled required value="Bottling">                    
+                            <!-- <div *ngIf="parentUnitName.invalid && (parentUnitName.dirty || parentUnitName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="parentUnitName?.errors?.required"><i class="fa fa-times"></i>
+                                    parent UnitName is required
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.licenceno' | translate}}</label>
+                            <input type="text"  class="form-control" disabled required value="LN856654556524"
+                            name="licenceNumber" #licenceNumber="ngModel"  [(ngModel)]="bottlingprodplan['licenceNumber']">
+                            <div *ngIf="licenceNumber.invalid && (licenceNumber.dirty || licenceNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licenceNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    licence Number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.parentunitname' | translate}}</label>
+                            <input type="text" disabled value="BLUE OCEAN BEVERAGES PRIVATE LIMITED" class="form-control" required
+                            name="parentUnitName" #parentUnitName="ngModel"  [(ngModel)]="bottlingprodplan['parentUnitName']">
+                            <div *ngIf="parentUnitName.invalid && (parentUnitName.dirty || parentUnitName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="parentUnitName?.errors?.required"><i class="fa fa-times"></i>
+                                    parent UnitName is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.indentacceptance.unitaddress' | translate}}</label>
+                            <textarea class="form-control" rows="1" disabled
+                            required>Plot No. 12,xyz nagar, Karnataka, Bangalore, Bangalore, Shivaji nagar, Majestic, 500001</textarea>
+                            <!-- <div *ngIf="parentUnitName.invalid && (parentUnitName.dirty || parentUnitName.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="parentUnitName?.errors?.required"><i class="fa fa-times"></i>
+                                    parent UnitName is required
+                                </div>
+                            </div> -->
+                                            
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        <!-- </form> -->
+    </div>
+    <div class="col-xl-12">
+        <!-- <form #bottlingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="{{ 'bondWarehouse.bottlingproductionplan.branddetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.liquortype' | translate}}</label>
+                            <select id="liquorTypeId" name="liquorTypeId" required class="form-control" #liquorTypeId="ngModel"  [(ngModel)]="bottlingprodplan['liquorTypeId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="liquorTypeId.invalid && (liquorTypeId.dirty || liquorTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquorTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    liquorType is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.subliquortype' | translate}} </label>
+                            <!-- <select  required class="form-control">
+                                <option value="">Select</option>
+                            </select> -->
+                            <select id="liquorSubTypeId" name="liquorSubTypeId" required class="form-control" #liquorSubTypeId="ngModel"  [(ngModel)]="bottlingprodplan['liquorSubTypeId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option *ngFor = "let data of subliquortype" value="{{data.id}}">{{data.name}}</option>
+                            </select> 
+                            <div *ngIf="liquorSubTypeId.invalid && (liquorSubTypeId.dirty || liquorSubTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquorSubTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    liquor SubType is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.brandname' | translate}}
+                            </label>
+                            <select id="brandId" name="brandId" required class="form-control" #brandId="ngModel"  [(ngModel)]="bottlingprodplan['brandId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                            </select>
+                            <div *ngIf="brandId.invalid && (brandId.dirty || brandId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandId?.errors?.required"><i class="fa fa-times"></i>
+                                    brand is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.packagesize' | translate}}
+                            </label>
+                            <select class="form-control" name="sizeId" id="sizeId" required
+                            class="form-control" #sizeId="ngModel"  [(ngModel)]="bottlingprodplan['sizeId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option *ngFor="let s of sizelist" value="{{s.id}}">{{s.desc}}
+                                </option>
+                            </select>
+                            <div *ngIf="sizeId.invalid && (sizeId.dirty || sizeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="sizeId?.errors?.required"><i class="fa fa-times"></i>
+                                    size is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.packagetype' | translate}}
+                            </label>
+                            <select id="packageTypeId" name="packageTypeId" required class="form-control" #packageTypeId="ngModel"  [(ngModel)]="bottlingprodplan['packageTypeId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option *ngFor = "let data of packagetypeData" value="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <!-- <select  required class="form-control">
+                                <option value="">Select</option>
+                            </select>   -->
+                            <div *ngIf="packageTypeId.invalid && (packageTypeId.dirty || packageTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="packageTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    packageType is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.noofperbottelpercase' | translate}}</label>
+                            <input type="number" disabled value="5000" class="form-control" required 
+                            name="noOfBottlePerCase" #noOfBottlePerCase="ngModel"  [(ngModel)]="bottlingprodplan['noOfBottlePerCase']">
+                            <div *ngIf="noOfBottlePerCase.invalid && (noOfBottlePerCase.dirty || noOfBottlePerCase.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfBottlePerCase?.errors?.required"><i class="fa fa-times"></i>
+                                    noOf Bottle PerCase is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.domain' | translate}}</label>
+                            <input type="number" disabled value="Within UP" class="form-control" required
+                            name="domaidID" #domaidID="ngModel"  [(ngModel)]="bottlingprodplan['domaidID']">
+                        </div>
+                        <div *ngIf="domaidID.invalid && (domaidID.dirty || domaidID.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="domaidID?.errors?.required"><i class="fa fa-times"></i>
+                                Domain is required
+                            </div>
+                        </div>
+                        <!-- need to check datatype -->
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.supplytype' | translate}}</label>
+                            <input type="number" disabled value="CIVIL" class="form-control" required
+                            name="supplyTypeID" #supplyTypeID="ngModel"  [(ngModel)]="bottlingprodplan['supplyTypeID']">
+                            <div *ngIf="supplyTypeID.invalid && (supplyTypeID.dirty || supplyTypeID.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="supplyTypeID?.errors?.required"><i class="fa fa-times"></i>
+                                    supply Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.strength' | translate}}</label>
+                            <input type="text" disabled value="200" class="form-control" required
+                            name="strength" #strength="ngModel"  [(ngModel)]="bottlingprodplan['strength']">
+                            <div *ngIf="strength.invalid && (strength.dirty || strength.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="strength?.errors?.required"><i class="fa fa-times"></i>
+                                    strength is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.edp' | translate}}</label>
+                            <input type="text" disabled value="50" class="form-control" required 
+                            name="edp" #edp="ngModel"  [(ngModel)]="bottlingprodplan['edp']">
+                            <div *ngIf="edp.invalid && (edp.dirty || edp.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="edp?.errors?.required"><i class="fa fa-times"></i>
+                                    edp is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>ETIN
+                            </label>
+                            <input type="text" disabled value="1234176267562" class="form-control" required
+                            name="etin" #etin="ngModel"  [(ngModel)]="bottlingprodplan['etin']">
+                            <div *ngIf="etin.invalid && (etin.dirty || etin.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="etin?.errors?.required"><i class="fa fa-times"></i>
+                                    etin is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.gtin' | translate}}
+                            </label>
+                            <input type="text" disabled value="564262654" class="form-control" required
+                            name="gtin" #gtin="ngModel"  [(ngModel)]="bottlingprodplan['gtin']">
+                            <div *ngIf="gtin.invalid && (gtin.dirty || gtin.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gtin?.errors?.required"><i class="fa fa-times"></i>
+                                    gtin is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                </div>
+            </app-card>
+            <app-card cardTitle="{{ 'bondWarehouse.bottlingproductionplan.productiondetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockin.tankname' | translate }}</label>
+                            <input type="text"  placeholder="{{ 'bondWarehouse.bottlingproductionplan.entertankname' | translate}}" class="form-control" required
+                            name="tankName" #tankName="ngModel"  [(ngModel)]="bottlingprodplan['tankName']">
+                            <div *ngIf="tankName.invalid && (tankName.dirty || tankName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankName?.errors?.required"><i class="fa fa-times"></i>
+                                    tankName is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.tankregistrationno' | translate}}</label>
+                            <input type="text"  placeholder="{{ 'bondWarehouse.bottlingproductionplan.entertankregistrationno' | translate}}" class="form-control" required
+                            name="tankRegistration" #tankRegistration="ngModel"  [(ngModel)]="bottlingprodplan['tankRegistration']">
+                            <div *ngIf="tankRegistration.invalid && (tankRegistration.dirty || tankRegistration.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankRegistration?.errors?.required"><i class="fa fa-times"></i>
+                                    tank Registration is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.productionline' | translate}}</label>
+                            <input type="text"  placeholder="{{ 'bondWarehouse.bottlingproductionplan.enterproductionline' | translate}}" class="form-control" required
+                            name="productionLine" #productionLine="ngModel"  [(ngModel)]="bottlingprodplan['productionLine']">
+                            <div *ngIf="productionLine.invalid && (productionLine.dirty || productionLine.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="productionLine?.errors?.required"><i class="fa fa-times"></i>
+                                    production Line is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.Bottlingtype' | translate}} </label>
+                            <select  required class="form-control"  name="mapId" #mapId="ngModel"  [(ngModel)]="bottlingprodplan['mapId']">
+                                <option value="">{{ 'master.common.select' | translate}}</option>
+                                <option value=1>Mapped</option>
+                                <option value=2>Un-Mapped</option>
+                            </select>  
+                            <div *ngIf="mapId.invalid && (mapId.dirty || mapId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="mapId?.errors?.required"><i class="fa fa-times"></i>
+                                    Bottling type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="{{ 'bondWarehouse.bottlingproductionplan.plandetails' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.requesteddate' | translate}}</label>
+                            <input type="date" value="0" class="form-control" required
+                            name="planDate" #planDate="ngModel"  [(ngModel)]="bottlingprodplan['planDate']">
+                            <div *ngIf="planDate.invalid && (planDate.dirty || planDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="planDate?.errors?.required"><i class="fa fa-times"></i>
+                                  Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.importPermitRequest.noofbottles' | translate}}</label>
+                            <input type="number" placeholder="{{ 'bondWarehouse.bottlingproductionplan.enternoofbottles' | translate}}" class="form-control" required
+                            name="noOfBottles" #noOfBottles="ngModel"  [(ngModel)]="bottlingprodplan['noOfBottles']">
+                            <div *ngIf="noOfBottles.invalid && (noOfBottles.dirty || noOfBottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfBottles?.errors?.required"><i class="fa fa-times"></i>
+                                    noOf Bottles is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.noofcases' | translate}} </label>
+                            <input type="number" disabled value="500" class="form-control" required
+                            name="noOfCases" #noOfCases="ngModel"  [(ngModel)]="bottlingprodplan['noOfCases']">
+                            <div *ngIf="noOfCases.invalid && (noOfCases.dirty || noOfCases.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfCases?.errors?.required"><i class="fa fa-times"></i>
+                                    noOf Cases is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.quantity(B.L)' | translate}}</label>
+                            <input type="number" disabled value="4500" class="form-control" required
+                            name="quantityBL" #quantityBL="ngModel"  [(ngModel)]="bottlingprodplan['quantityBL']">
+                            <div *ngIf="quantityBL.invalid && (quantityBL.dirty || quantityBL.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantityBL?.errors?.required"><i class="fa fa-times"></i>
+                                    quantity BL is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'bondWarehouse.bottlingproductionplan.quantity(A.L)' | translate}}</label>
+                            <input type="number" disabled value="400" class="form-control" required
+                            name="quantityAL" #quantityAL="ngModel"  [(ngModel)]="bottlingprodplan['quantityAL']">
+                            <div *ngIf="quantityAL.invalid && (quantityAL.dirty || quantityAL.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantityAL?.errors?.required"><i class="fa fa-times"></i>
+                                    quantity AL is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </app-card>
+        <!-- </form> -->
+    </div>
+    </form>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/bottlingprodplannew/view">{{ 'master.common.preview' | translate}}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(bottlingForm,'INTIATED')">{{ 'master.common.saveasdraft' | translate}}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="saveData(bottlingForm,'SUBMITTED')">{{ 'master.common.submit' | translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/warehouse/bottlingprodplannew/list">{{ 'master.common.cancel' | translate}}</button>
+    </div>
+</div>

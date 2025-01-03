@@ -1,0 +1,152 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Bottling Production Plan
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/warehouse/bottling/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Bottling Production Plan
+    </button>
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Bottling Production Plan</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Requested Date</label>
+                    <input type="date" required  class="form-control" placeholder="Enter Requested Date" 
+                    name ="noOfCases" >
+                    </div>
+                </div>
+
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Mapped/Un-Mapped</label>
+                        <select id="mapId" name="mapId" required class="form-control"  #mapId="ngModel" 
+                         [(ngModel)]="bottlingObj['mapId']">
+                            <!-- <option value="">Select</option>
+                            <option value=1>Mapped</option>
+                            <option value=2>Un-Mapped</option> -->
+                            <option value="">Select</option>
+                            <option *ngFor = "let data of qrcodemappinglists" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                        <!-- <input type="text" required class="form-control" placeholder="Enter Mapped/Un-Mapped"
+                        name ="mapName" #mapName="ngModel"  [(ngModel)]="bottlingObj['mapName']"> -->
+                    </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label>Liquor Type</label>
+                        <select id="liquortype" name="liquorTypeId" required class="form-control" #liquorTypeId="ngModel"  
+                            [(ngModel)]="bottlingObj['liquorTypeId']" >
+                            <option value="">Select</option>
+                            <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                     </div>
+                 </div>
+                 <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                     <label>Plan ID</label>
+                     <input type="text" required  class="form-control" placeholder="Enter Plan ID"  
+                        name ="planId" #planId="ngModel"  [(ngModel)]="bottlingObj['planId']">
+                     </div>
+                 </div> -->
+                 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                     <label>Brand</label>
+                    <select id="brand" name="brandId" required class="form-control" #brandId="ngModel"  [(ngModel)]="bottlingObj['brandId']">
+                        <option value="">Select</option>
+                        <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                    </select>
+                     <!-- <input type="text"  required class="form-control" placeholder="Enter Brand"
+                     name ="botteldate" #botteldate="ngModel"  [(ngModel)]="bottlingObj['botteldate']"> -->
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                     <label>No. of Cases</label>
+                     <input type="number" required  class="form-control" placeholder="Enter No. of Cases" 
+                     name ="noOfCases" #noOfCases="ngModel"  [(ngModel)]="bottlingObj['noOfCases']">
+                     </div>
+                 </div>
+                 <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Status
+                         </label>
+                         <select id="supplytype" name="supplytype" required class="form-control">
+                             <option value="">Select</option>
+                             <option>Active</option>
+                         </select>
+                     </div>
+                 </div> -->
+                 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12 text-right">
+                    <label>&nbsp;</label>
+                     <div class="form-group">
+                        <button type="submit" class="btn btn-primary mr-2" (click)=searchBottlingData()>Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                    </div>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Details of Bottling Production Plan" blockClass="table-border-style" class="list-panel">
+             <div class="table-responsive">
+                 <table class="table table-bordered">
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Requested Date</th>
+                             <th>Plan Id</th>
+                             <th>Mapped/Un-Mapped</th>
+                             <th>Liquor Type</th>
+                             <th>Licence Type</th>
+                             <th>Licence No.</th>
+                             <th>Brand</th>
+                             <th>No. of Cases</th>
+                             <th>Status</th>
+                             <th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr *ngFor="let data of bottlelist; let i = index">
+                             <td>{{i+1}}</td>
+                             <td>{{data?.planDate | date:'dd-MM-yyyy'}}</td>
+                             <td>{{data?.planId}}</td>
+                             <td>{{data?.qrCodeMappingResponseDto.name}}</td>
+                             <td class="text-left">{{data?.liquorTypeResponseDto.name}}</td>
+                             <td class="text-left">{{data?.licenseTypeResponseDto.name}}</td>
+                             <td class="text-left">{{data?.licenceNumber}}</td>
+                             <td class="text-left">{{data?.brandResponseDto.brandName}}</td>
+                             <td class="text-left">{{data?.noOfCases}}</td>
+                              <td>
+                                 <span class="badge badge-light-success">{{data?.status}}</span>
+                             </td>
+                             <td class="table-action-column">
+                                 <button class="btn btn-icon btn-primary ml-2 mb-2" type="button" 
+                                 routerLink="/supplychainmanagement/warehouse/bottling/view/{{data.id}}">
+                                     <i class="feather icon-eye"></i></button>
+                                     <button class="btn btn-icon btn-secondary ml-2 mb-2" type="button" routerLink="/supplychainmanagement/warehouse/bottling/edit/{{data.id}}">
+                                        <i class="feather icon-edit-2"></i></button>
+                                 
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 

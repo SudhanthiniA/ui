@@ -1,0 +1,23 @@
+
+<div class="row mb-3" *ngIf="isCustomerBWFLParentExist">
+    <div class="col-xl-12">
+        <button type="submit" class="btn btn-success custom_add_button pull-right"
+            routerLink="/licencemgnt/authorizebwfl/person">
+            <i class="feather icon-plus mr-2"></i>
+            Add Authorize Person
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="License {{ 'master.common.list' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

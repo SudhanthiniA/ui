@@ -1,0 +1,63 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Declaration of COT
+    <button type="submit" class="btn btn-success pull-right mr-2 custom_add_button" 
+    routerLink="/supplychainmanagement/distillery/declarationofcot/add">
+        <i class="feather icon-plus mr-2"></i>
+        Declaration of COT
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Declaration of COT</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Production Plan ID</label>
+                        <input type="text" class="form-control" required placeholder="Enter Production Plan ID">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>OT Number</label>
+                        <input type="text"  placeholder="Enter OT Number" class="form-control" required >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Declaration of COT List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+           
+        </app-card>
+    </div>
+</div>
+
+

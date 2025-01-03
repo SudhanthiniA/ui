@@ -1,0 +1,162 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Sample Details Entry View
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mills</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sample Details Entry</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">View</a></li>
+  </ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #sampleDetailForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details view of Selected Sample Details Entry" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.date}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Tank<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.tank}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Send to Whom<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.sendtowhom}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Report Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.reportdate}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">TRS<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.trs}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Grade<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{sampledetailObj.grade}}
+                    </div>
+                    </div>
+                    </app-card>
+                    </form>
+    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="date" required name="date"  #date="ngModel" disabled [(ngModel)]="sampledetailObj['date']" class="form-control" placeholder="Enter The Date">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                Date is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank</label>
+                            <input type="number" id="tank" required name="tank"  #tank="ngModel" disabled [(ngModel)]="sampledetailObj['tank']" class="form-control" placeholder="Enter Tank">
+                            <div *ngIf="tank.invalid && (tank.dirty || tank.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="tank?.errors?.required"><i class="fa fa-times"></i>
+                                Tank is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Send to Whom</label>
+                            <input type="text" id="sendtowhom" required name="sendtowhom" disabled  #sendtowhom="ngModel" [(ngModel)]="sampledetailObj['sendtowhom']" class="form-control" placeholder="Enter The Send To Whom">
+                            <div *ngIf="sendtowhom.invalid && (sendtowhom.dirty || sendtowhom.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="sendtowhom?.errors?.required"><i class="fa fa-times"></i>
+                                Send To Whom is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Report Date</label>
+                            <input type="date" id="reportdate" required name="reportdate" disabled  #reportdate="ngModel" [(ngModel)]="sampledetailObj['reportdate']" class="form-control" placeholder="Enter Report Date">
+                            <div *ngIf="reportdate.invalid && (reportdate.dirty || reportdate.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="reportdate?.errors?.required"><i class="fa fa-times"></i>
+                                    Report date is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>TRS</label>
+                            <input type="number" id="trs"  name="trs"  #trs="ngModel" disabled [(ngModel)]="sampledetailObj['trs']" class="form-control"placeholder="Enter The TRS">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select id="grade"  name="grade"  #grade="ngModel" disabled [(ngModel)]="sampledetailObj['grade']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradeList" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="grade.invalid && (grade.dirty || grade.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="grade?.errors?.required"><i class="fa fa-times"></i>
+                                Grade is required </div>
+    
+                        </div>
+                    </div> -->
+               
+                    <div class="col-xl-12">
+                        <form #sampleDetailForm="ngForm" autocomplete="off">
+                            <app-card cardTitle="Details view of Selected Sample Details Entry Create" class="list-panel view-panel">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Created On<span class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{sampledetailObj.created_on}}
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Created By<span class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{sampledetailObj.created_by}}
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Updated on<span class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{sampledetailObj.modified_on}}
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <label class="w-100 view-label">Updated by<span class="float-right">:</span></label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        {{sampledetailObj.modified_by}}
+                                    </div>
+            </div>
+            </app-card>
+
+        </form>
+       
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/sampledetailsentry/list">Approve</button>
+        <button type="submit" class="btn btn-danger ml-2 mb-2" routerLink="/supplychainmanagement/distillery/sampledetailsentry/list">Reject</button>
+        <button type="submit" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/sampledetailsentry/list">Back</button>
+    </div>
+</div>

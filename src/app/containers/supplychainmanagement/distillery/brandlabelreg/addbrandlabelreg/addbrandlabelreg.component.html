@@ -1,0 +1,1011 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{addedit}} Brand Label Registration
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brand Label Registration</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{addedit}}</a></li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <app-card cardTitle="Bottling Unit Details" class="list-panel add-panel">
+            <form [formGroup]="brandform" autocomplete="off">
+                <!-- Scan QR Code -->
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{myDate}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Name of the Brand Registrant <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{bottlingUnitAddress?.unitName}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <select class="form-control" formControlName="licensetype"
+                            (change)="getlicensenumber($event.target.value)">
+                            <option value="">Select</option>
+
+                            <option *ngFor="let tank of bottlingdetaildetails" value="{{tank.licenseSubCategory}}">
+                                {{tank.licenseSubCategory}}</option>
+                        </select>
+                        <div *ngIf="formSubmitted && brandform.get('licensetype').errors || brandform.get('licensetype').touched"
+                            class="error-msg">
+                            <span *ngIf="brandform.get('licensetype').errors?.required">
+                                License Type is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">License Number<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <!-- {{bottlingdetaildetails?.licenseNumber}} -->
+                        <select class="form-control" formControlName="licenseno"
+                            (change)="getaddress($event.target.value)">
+                            <option value="">Select</option>
+                            <option *ngFor="let tank of licensenodata" value="{{tank.licenseno}}">
+                                {{tank.licenseno}}</option>
+                        </select>
+                        <div *ngIf="formSubmitted && brandform.get('licenseno').errors || brandform.get('licenseno').touched"
+                            class="error-msg">
+                            <span *ngIf="brandform.get('licenseno').errors?.required">
+                                License Number is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Address of the Registrant <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{bottlingUnitAddress?.address}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">City<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{bottlingUnitAddress?.districtDesc}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">State<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{bottlingUnitAddress?.stateDesc}}
+                    </div>
+                </div>
+
+                <ngb-tabset #tabSet="ngbTabset" type="pills" class="mb-2" [destroyOnHide]="false" (tabChange)="beforeChange($event)">
+                    <ngb-tab title="Brand Details" id="branddetails">
+                        <ng-template ngbTabContent>
+
+                            <div class="row mt-2">
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">New/Existing</label>
+                                        <select class="form-control" formControlName="newExist"
+                                            (change)="Select($event.target.value)">
+                                            <option value="">Select</option>
+
+                                            <option *ngFor="let tank of newExiting" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('newExist').errors || brandform.get('newExist').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('newExist').errors?.required">
+                                                New/Existing is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Registration for </label>
+                                        <select class="form-control" formControlName="regForValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of registration" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Origin</label>
+                                        <select class="form-control" formControlName="originValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of domin" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('originValue').errors || brandform.get('originValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('originValue').errors?.required">
+                                                Origin is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">Brand Name
+                                        </label>
+                                        <input type="text" class="form-control" formControlName="brandValue"
+                                            placeholder="Enter Brand Name">
+                                        <div *ngIf="formSubmitted && brandform.get('brandValue').errors || brandform.get('brandValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandValue').errors?.required">
+                                                Brand Name is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Brand Name
+                                        </label>
+                                        <select class="form-control" formControlName="brandValue"
+                                            (change)=getLiquorType($event.target.value) placeholder="Enter Brand Name">
+                                            <option value="">Select</option>
+
+                                            <option *ngFor="let data of brandLabelExistingData"
+                                                value="{{data.brandCode}}">
+                                                {{data.brandValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('brandValue').errors || brandform.get('brandValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandValue').errors?.required">
+                                                Brand Name is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Trademark Name</label>
+                                        <select class="form-control" formControlName="trademarkNameValue">
+
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of tradeMark" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('trademarkNameValue').errors || brandform.get('trademarkNameValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('trademarkNameValue').errors?.required">
+                                                Trademark Name is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Liquor Type</label>
+                                        <select class="form-control" (change)=getExistSubLiquorType($event.target.value)
+                                            formControlName="liquorTypeValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of liqour" value="{{tank.liquorTypeCode}}">
+                                                {{tank.liquorTypeValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('liquorTypeValue').errors || brandform.get('liquorTypeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('liquorTypeValue').errors?.required">
+                                                Liquor Type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">Liquor Type</label>
+                                        <select class="form-control" formControlName="liquorTypeValue"
+                                            (change)="getSubLiquorType($event.target.value)">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of liqour" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('liquorTypeValue').errors || brandform.get('liquorTypeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('liquorTypeValue').errors?.required">
+                                                Liquor Type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Sub Liquor Type</label>
+                                        <select class="form-control" (change)=getLiquorDetailDesc($event.target.value)
+                                            formControlName="subLiquorTypeValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of subliqourlist"
+                                                value="{{tank.subLiquorTypeCode}}">
+                                                {{tank.subLiquorTypeCode}}</option>
+
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('subLiquorTypeValue').errors || brandform.get('subLiquorTypeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('subLiquorTypeValue').errors?.required">
+                                                Sub Liquor Type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">Sub Liquor Type</label>
+                                        <select class="form-control" formControlName="subLiquorTypeValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of subliqourlist" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('subLiquorTypeValue').errors || brandform.get('subLiquorTypeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('subLiquorTypeValue').errors?.required">
+                                                Sub Liquor Type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Liquor Detailed Description</label>
+                                        <select class="form-control" formControlName="liquorDetailedDescValue"
+                                            (change)=getEdpCategory($event.target.value)>
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of liqourDetailed"
+                                                value="{{tank.liquorDetailedDescCode}}">
+                                                {{tank.liquorDetailedDescValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('liquorDetailedDescValue').errors || brandform.get('liquorDetailedDescValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('liquorDetailedDescValue').errors?.required">
+                                                Liquor Detailed Description is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">Liquor Detailed Description</label>
+                                        <select class="form-control" formControlName="liquorDetailedDescValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of liqourDetailed" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('liquorDetailedDescValue').errors || brandform.get('liquorDetailedDescValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('liquorDetailedDescValue').errors?.required">
+                                                Liquor Detailed Description is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Brand Strength
+                                        </label>
+                                        <input disabled type="number" class="form-control"
+                                            placeholder="Enter Brand Strength" formControlName="brandStrength">
+                                        <div *ngIf="formSubmitted && brandform.get('brandStrength').errors || brandform.get('brandStrength').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandStrength').errors?.required">
+                                                Brand Strength is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">Brand Strength
+                                        </label>
+                                        <input type="number" class="form-control" placeholder="Enter Brand Strength"
+                                            formControlName="brandStrength">
+                                        <div *ngIf="formSubmitted && brandform.get('brandStrength').errors || brandform.get('brandStrength').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandStrength').errors?.required">
+                                                Brand Strength is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Supply Type</label>
+                                        <select class="form-control" formControlName="brandSupplyTypeValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of suppyType" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('brandSupplyTypeValue').errors || brandform.get('brandSupplyTypeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandSupplyTypeValue').errors?.required">
+                                                Supply Type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Domain</label>
+                                        <select class="form-control" formControlName="brandDomainValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of domin" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('brandDomainValue').errors || brandform.get('brandDomainValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandDomainValue').errors?.required">
+                                                Domain is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">EDP</label>
+                                        <input type="text" class="form-control" formControlName="edp" required disabled>
+                                        <div *ngIf="formSubmitted && brandform.get('edp').errors || brandform.get('edp').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('edp').errors?.required">
+                                                EDP is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">EDP Categorys</label>
+                                        <select class="form-control" formControlName="edpCategoryValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of edp" value="{{tank.edpCategoryCode}}">
+                                                {{tank.edpCategoryValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('edpCategoryValue').errors || brandform.get('edpCategoryValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('edpCategoryValue').errors?.required">
+                                                EDP Category is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeName">
+                                    <div class="form-group">
+                                        <label class="mandatory">EDP Category</label>
+                                        <select class="form-control" formControlName="edpCategoryValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of edp" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('edpCategoryValue').errors || brandform.get('edpCategoryValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('edpCategoryValue').errors?.required">
+                                                EDP Category is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="isShelf;else elseBlock">
+                                    <div class="form-group">
+                                        <label class="mandatory">Shelf Life</label>
+                                        <select class="form-control" formControlName="shelfLifeValue">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of shelf" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('shelfLifeValue').errors || brandform.get('shelfLifeValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('shelfLifeValue').errors?.required">
+                                                Shelf Life is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ng-template #elseBlock></ng-template>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="brandeNameSelect">
+                                    <div class="form-group">
+                                        <label class="mandatory">Parent ETIN</label>
+                                        <input type="text" class="form-control" formControlName="parentEtin" disabled>
+                                        <div *ngIf="formSubmitted && brandform.get('parentEtin').errors || brandform.get('parentEtin').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('parentEtin').errors?.required">
+                                                Parent ETIN is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Registration for No of Years</label>
+                                        <select class="form-control" formControlName="regNoOfYearsValue"
+                                            (change)=registrationYear($event)>
+                                            <option value="">Select</option>
+                                            <option *ngFor="let tank of years" value="{{tank.paramKey}}">
+                                                {{tank.paramValue}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && brandform.get('regNoOfYearsValue').errors || brandform.get('regNoOfYearsValue').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('regNoOfYearsValue').errors?.required">
+                                                Registration for No of Years is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Validity of Registration</label>
+                                        <input type="number" class="form-control" formControlName="validityOfReg"
+                                            required disabled value="2022">
+                                        <div *ngIf="formSubmitted && brandform.get('validityOfReg').errors || brandform.get('validityOfReg').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('validityOfReg').errors?.required">
+                                                Validity of Registration is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Brand Registration Fees</label>
+                                        <input type="number" class="form-control" formControlName="brandRegFees">
+                                        <div *ngIf="formSubmitted && brandform.get('brandRegFees').errors || brandform.get('brandRegFees').touched"
+                                            class="error-msg">
+                                            <span *ngIf="brandform.get('brandRegFees').errors?.required">
+                                                Brand Registration Fees is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Upload TradeMark Registration</label>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" id="customFilessss" class="custom-file-input"
+                                                    formControlName='trademarkUpload' accept="image/png,image/jpeg"
+                                                    (change)="onFileChange($event, 'trademarkUploadFiles', brandform)">
+                                                <label class="custom-file-label"></label>
+                                                <label class="custom-file-label" for="customFilessss"></label>
+                                            </div>
+                                        </div>
+                                        <div>{{getDocumentName('Upload TradeMark Registration')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Upload Brand Ownership Certificate</label>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" id="customFilessss" class="custom-file-input"
+                                                    formControlName='brandownershipCertificate'
+                                                    accept="image/png,image/jpeg"
+                                                    (change)="onFileChange($event, 'brandownershipCertificateFiles', brandform)">
+                                                <label class="custom-file-label"></label>
+                                                <label class="custom-file-label" for="customFilessss"></label>
+                                            </div>
+                                        </div>
+                                        <div>{{getDocumentName('Upload Brand Ownership Certificate')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Upload Affidavit</label>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" id="customFilessss" class="custom-file-input"
+                                                    formControlName='affidavitUpload' accept="image/png,image/jpeg"
+                                                    (change)="onFileChange($event, 'affidavitUploadFiles', brandform)">
+                                                <label class="custom-file-label"></label>
+                                                <label class="custom-file-label" for="customFilessss"></label>
+                                            </div>
+                                        </div>
+                                        <div>{{getDocumentName('Upload Affidavit')}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Self Expiry Document</label>
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" id="customFilessss" class="custom-file-input"
+                                                    formControlName='selfExpiryDoc' accept="image/png,image/jpeg"
+                                                    (change)="onFileChange($event, 'selfExpiryDocFiles', brandform)">
+                                                <label class="custom-file-label"></label>
+                                                <label class="custom-file-label" for="customFilessss"></label>
+                                            </div>
+                                        </div>
+                                        <div>{{getDocumentName('Self Expiry Document')}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab id="raw">
+                        <ng-template ngbTabTitle>Raw Material Details
+                        </ng-template>
+                        <ng-template ngbTabContent>
+
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Raw Material Name<span class="mandatory"></span></th>
+                                                    <th>Unit of Measurement <span class="mandatory"></span></th>
+                                                    <th>Quantity<span class="mandatory"></span></th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr formArrayName="productList"
+                                                    *ngFor="let pres of brandform?.get('productList')['controls']; let i=index"
+                                                    id="row{{i}}">
+                                                    <td>{{i+1}}</td>
+
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control"
+                                                            formControlName="rawMaterialNameValue">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of material"
+                                                                value="{{tank.paramKey}}">
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !brandform.controls.productList.controls[i].controls.rawMaterialNameValue.value">
+                                                            Raw material is required
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control"
+                                                            formControlName="rawMaterialDescValue">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of measurement"
+                                                                value="{{tank.paramKey}}">
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !brandform.controls.productList.controls[i].controls.rawMaterialDescValue.value">
+                                                            UnitMeasurement is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Quantity" formControlName="quantity" />
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !brandform.controls.productList.controls[i].controls.quantity.value">
+                                                            Quantity is required
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="table-action-column text-center">
+                                                        <button class="btn btn-icon btn-primary" type="button"
+                                                            (click)='addgroup()'
+                                                            *ngIf="i==brandform.controls.productList.length-1">
+                                                            <i class="feather icon-plus"></i></button>
+                                                        <button class="btn btn-icon btn-danger ml-2"
+                                                            *ngIf="i!==getPresFormLength()-1" type="button"
+                                                            (click)='deleterow(i)'>
+                                                            <i class="fas fa-trash-alt"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab id="label2">
+                        <ng-template ngbTabTitle>Document Details</ng-template>
+                        <ng-template ngbTabContent>
+                        <app-card cardTitle="Document details" class="list-panel view-panel">
+                            <div class="table-responsive">
+                              <table class="table table-bordered text-center">
+                                <thead>
+                                  <tr>
+                                    <th>Sl.no</th>
+                                    <th>Upload Description </th>
+                                    <th>Upload Document </th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td><input type="text" class="form-control"></td>
+                                    <td><div class="input-group cust-file-button">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="uploadpuc"
+                                                id="uploadpuc">
+                                            <label class="custom-file-label"></label>
+                                        </div>
+                                    </div></td>
+                                    <td><button class="btn btn-icon btn-primary mr-2" type="button">
+                                        <i class=" fa fa-plus"></i></button>
+                    
+                    
+                                      <button class="btn btn-icon btn-success mr-2" type="button">
+                                        <i class="fa fa-trash-alt"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </app-card>
+                          </ng-template>
+                          </ngb-tab>
+
+
+                    <ngb-tab id="label">
+                        <ng-template ngbTabTitle>Label Details</ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive mt-2 mb-2">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Packaging Size<span class="mandatory"></span></th>
+                                                    <th>Packaging Type<span class="mandatory"></span></th>
+                                                    <th>Supply Type<span class="mandatory"></span></th>
+                                                    <th>Domain<span class="mandatory"></span></th>
+                                                    <th>GTIN<span class="mandatory"></span></th>
+                                                    <th>Carton Size/Mono-Carton<span class="mandatory"></span></th>
+                                                    <th>Number of Labels<span class="mandatory"></span></th>
+                                                    <th>Upload Labels<span class="mandatory"></span></th>
+                                                    <th>Label Fees<span class="mandatory"></span></th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr formArrayName="labelList"
+                                                    *ngFor="let pres of labelDetails; let i=index" id="row{{i}}">
+                                                    <td>{{i+1}}</td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control"
+                                                            formControlName="packagingSizeValue"
+                                                            (change)=selLabelPckSize($event)>
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of package"
+                                                                value={{tank.paramKey}}>
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.packagingSizeValue.value">
+                                                            Packaging Size is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control"
+                                                            formControlName="packagingTypeValue">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of packageType"
+                                                                value={{tank.paramKey}}>
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.packagingTypeValue.value">
+                                                            Packaging Type is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control width_135"
+                                                            formControlName="supplyTypeValue">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of suppyType"
+                                                                value={{tank.paramKey}}>
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.supplyTypeValue.value">
+                                                            Supply Type is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control  width_150"
+                                                            formControlName="domainValue">
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let tank of domin"
+                                                                value="{{tank.paramKey}}">
+                                                                {{tank.paramValue}}</option>
+                                                        </select>
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.domainValue.value">
+                                                            Domain is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <input type="text" class="form-control width_100"
+                                                            formControlName="gtin" placeholder="Enter GTIN"
+                                                            value="GTIN1122">
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.gtin.value">
+                                                            GTIN is required
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <span *ngIf="isCarton; else elseBlock">
+                                                            <input type="number" class="form-control"
+                                                                formControlName="cartonSize"
+                                                                placeholder="Enter Carton Size">
+                                                        </span>
+                                                        <ng-template #elseBlock>
+                                                            <input type="number" class="form-control"
+                                                                formControlName="cartonSize" [attr.readonly]="isCarton"
+                                                                placeholder="Enter Carton Size">
+                                                        </ng-template>
+
+                                                        <div *ngIf="formSubmitted && labelDetails[i].get('cartonSize').errors"
+                                                            class="error-msg">
+                                                            <span
+                                                                *ngIf="labelDetails[i].get('cartonSize').errors?.required">
+                                                                Carton Size is required
+                                                            </span>
+                                                            <span
+                                                                *ngIf="labelDetails[i].get('cartonSize').errors?.pattern">
+                                                                Accepts only numerics
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <input type="number" class="form-control"
+                                                            formControlName="noOfLabels"
+                                                            (blur)="addUploaLabeldRows(i, pres.get('noOfLabels').value)"
+                                                            placeholder="Enter Number Of Labels"
+                                                            oninput="if(!this.value.match('^[1-9][0-9]*$'))this.value='';">
+                                                        <div *ngIf="formSubmitted && labelDetails[i].get('noOfLabels').errors"
+                                                            class="error-msg">
+                                                            <span
+                                                                *ngIf="labelDetails[i].get('noOfLabels').errors?.required">
+                                                                No Of Labels is required
+                                                            </span>
+                                                            <span
+                                                                *ngIf="labelDetails[i].get('noOfLabels').errors?.pattern">
+                                                                Accepts only numerics
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" [formGroupName]='i'>
+                                                        <button type="button" class="btn btn-primary"
+                                                            data-toggle="modal" (click)="indenxno(i)">
+                                                            <i class="fas fa-upload"></i>
+                                                        </button>
+
+                                                        <div class="modal fade" id={{i}}>
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+
+                                                                    <!-- Modal Header -->
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Upload Details</h5>
+                                                                        <button type="button" class="close basic-close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close"><span
+                                                                                aria-hidden="true">&times;</span></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-12">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-bordered">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>#</th>
+                                                                                                <th>Label Description
+                                                                                                </th>
+                                                                                                <th>Upload Images</th>
+                                                                                                <th>Action</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr formArrayName="uploadLabelList"
+                                                                                                *ngFor="let data of uploadLabels(i).controls; let j=index">
+                                                                                                <td [formGroupName]=j>
+                                                                                                    {{j+1}}</td>
+                                                                                                <td [formGroupName]=j>
+                                                                                                    <input type="text"
+                                                                                                        formControlName="description"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Please Enter Description">
+                                                                                                </td>
+                                                                                                <td class="text-left"
+                                                                                                    [formGroupName]=j>
+                                                                                                    <div
+                                                                                                        class="form-group">
+                                                                                                        <div
+                                                                                                            class="input-group cust-file-button">
+                                                                                                            <div
+                                                                                                                class="custom-file">
+                                                                                                                <input
+                                                                                                                    type="file"
+                                                                                                                    formControlName="fileone"
+                                                                                                                    (change)="onFirmCompanyFileChange($event, i, data, 'fileoneSource', 'FileOne')"
+                                                                                                                    accept="image/png,image/jpeg">
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    class="table-action-column text-center">
+                                                                                                    <button class="btn btn-icon btn-warning ml-2" type="button"
+                                                                                                    (click)=clearRow(i,j)>Clear </button>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <p>Note: The maximum file size for file
+                                                                                    upload
+                                                                                    is 2.0 MB and format must be
+                                                                                    JPG/JPEG/PNG
+                                                                                    and
+                                                                                    PDF</p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <!-- Modal footer -->
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" id="close-modal"
+                                                                            data-dismiss="modal"
+                                                                            style="display: none">Close</button>
+                                                                        <button type="submit" class="btn btn-primary"
+                                                                            data-dismiss="modal">Save</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-secondary ml-2"
+                                                                            data-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="text-right" [formGroupName]='i'>
+                                                        <input type="text" class="form-control  width_80"
+                                                            (blur)="totallabelfee()" formControlName="labelFees"
+                                                            placeholder="Enter Label Fee">
+                                                        <div class="error-msg"
+                                                            *ngIf="formSubmitted && !labelDetails[i].controls.labelFees.value">
+                                                            Label Fee is required
+                                                        </div>
+
+                                                    </td>
+                                                    <td class="table-action-column text-center" [formGroupName]='i'>
+                                                        <button class="btn btn-icon btn-primary" type="button"
+                                                            *ngIf="i==brandform.controls.labelList.length-1"
+                                                            (click)='addlabelgroup()'>
+                                                            <i class="feather icon-plus"></i></button>
+                                                        <button class="btn btn-icon btn-danger ml-2"
+                                                            *ngIf="i!==getlabelFormLength()-1" type="button"
+                                                            (click)='deletelabelrow(i)'>
+                                                            <i class="fas fa-trash-alt"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="9" class="text-right">Total Label Fees</td>
+                                                    <td class="text-right">{{totallabelfees}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ng-template>
+                    </ngb-tab>
+
+                </ngb-tabset>
+            </form>
+        </app-card>
+    </div>
+
+
+
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-primary ml-2 mb-2" >Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addbrandDetails(brandform,'DRAFT')">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary mb-2 ml-2" (click)="nexttoraw('raw')" *ngIf="isNext">Save &
+            Next</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backtoraw()" *ngIf="isBack">Back</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)=" addbrandDetails(brandform, 'SUBMITTED')" *ngIf="isSubmit">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/brandlabelreg/list">Cancel</button>
+
+    </div>
+</div>
+
+<app-ui-modal #rejectModal dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Upload Details</h5>
+        <button type="button" class="close basic-close" aria-label="Close" (click)="this.rejectModal.hide('true')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="app-modal-body">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Label Description</th>
+                                <th>Upload Images</th>
+                                <th>View</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <select class="form-control" required>
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+                                <td class="text-left">
+                                    <div class="form-group">
+                                        <!-- <label for="uploadpuc">Upload Images</label> -->
+                                        <div class="input-group cust-file-button">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="uploadpuc"
+                                                    id="uploadpuc">
+                                                <label class="custom-file-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><img src="assets/images/img.png" height="75px" width="75px" />
+                                    <p class="mb-0 pt-1"><a>labelfront1.png</a></p>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-danger ml-2" type="button">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Note: The maximum file size for file upload is 2.0 MB and format must be JPG/JPEG/PNG and
+                    PDF</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-modal-footer">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-secondary ml-2"
+                    routerLink="/supplychainmanagement/distillery/brandlabelreg/list">Cancel</button>
+            </div>
+        </div>
+    </div>
+</app-ui-modal>

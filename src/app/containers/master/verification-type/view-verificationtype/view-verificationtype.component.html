@@ -1,0 +1,73 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} {{ 'master.verificationtype.verificationtype' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.verificationtype.verificationtype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.detailsofselected' | translate }} {{ 'master.verificationtype.verificationtype' | translate }}" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.verificationtype.verificationcode' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.code}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.verificationtype.verificationname' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.name}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.verificationtype.frequency(In Days)' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.frequencyDays}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.common.status' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.isActive}}
+                    </div>
+                </div>
+                <hr class="mt-2" />
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.common.createdby' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.createdBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.common.createdon' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.common.Modifiedby' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.modifiedBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'master.common.Modifiedon' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{verificationObject?.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                </div>
+            </app-card>
+            <div class="row">
+                <div class="col-12 mb-3 text-right">
+                    <button type="button" class="btn btn-secondary" routerLink="/master/verification-type/list">{{ 'master.common.back' | translate }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

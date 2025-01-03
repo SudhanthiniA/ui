@@ -1,0 +1,277 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Tank Registration
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/tankregistration/add" >
+        <i class="feather icon-plus mr-2"></i> Add Tank Registration
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Vintnery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Tank Registration
+            </a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-12">
+        <app-card cardTitle="" class="search-panel">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="dashboard-st d-flex justify-content-between">
+                        <div class="col-lg-4">
+                        <div class="dashboard_bg1 animate__animated animate__backInUp">
+                            <app-card [hidHeader]="true" cardClass="comp-card">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <span>Approved</span>
+                                        <h3 class="mt-2">1000</h3>
+                                        <i class="
+             fas fa-file-import"></i>
+                                        <!-- <small>WWWW</small>    -->
+                                    </div>
+                                </div>
+                            </app-card>
+                        </div>
+                    </div> 
+                    <div class="col-lg-4">
+                        <div class="dashboard_bg2 animate__animated animate__backInUp">
+                            <app-card [hidHeader]="true" cardClass="comp-card">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <span>Request Pending </span>
+                                        <h3 class="mt-2">100</h3>
+                                        <i class="fas fa-hourglass-half"></i>
+                                        <!-- <small>WWW</small> -->
+                                    </div>
+                                </div>
+                            </app-card>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashboard_bg3 animate__animated animate__backInUp">
+                            <app-card [hidHeader]="true" cardClass="comp-card bg-danger">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <span>Request Rejected </span>
+                                        <h3 class="mt-2">50</h3>
+                                        <i class="fas fa-thumbs-down text-danger"></i>
+                                        <!-- <small>WWW</small> -->
+                                    </div>
+                                </div>
+                            </app-card>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12"> 
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application No.</label>
+                        <input type="text"  class="form-control"  
+                        placeholder="Enter">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Tank ID</label>
+                        <input type="text"  class="form-control"  
+                        placeholder="Enter">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Tank Name</label>
+                        <input type="text"  class="form-control"  
+                        placeholder="Enter">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Tank Category</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                  
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2" (click)="getalltanks()">Search</button>
+                            <button type="reset" (click)="clearData()" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Tank Registration List" blockClass="table-border-style" class="list-panel">
+            <div class="row">
+                <div class="col-xl-12 mb-2">
+                        <div class="table-responsive">
+                <table class="table table-bordered text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application No</th>
+                            <th>Request Date</th>
+                            <th>Tank ID</th>
+                            <th>Tank Name</th>
+                            <th>Tank Usage Type</th>
+                            <th>Total Capacity (BL/Qtls)</th>
+                            <th>Currently With</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>AP12345</td>
+                            <td>20-Jul-2024</td>
+                            <td class="text-left">Tank 1</td>
+                            <td class="text-left">-</td>
+                            <td class="text-left">Type 1</td>
+                            <td class="text-left">800</td>
+                            <td></td>
+
+                            <td>
+                                <span class="badge m-r-5 badge-light-success">Approved</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/sugarmills/tankregistration/view">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button  class="btn btn-icon btn-secondary ml-2"
+                                    type="button" routerLink="/supplychainmanagement/sugarmills/tankregistration/add">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<!-- <h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.tankregistration.tankregistrationlist' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/tankregistration/add" *ngIf='!workflowobj?.isEditable'>
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.tankregistration.addtankregistration' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a
+            href="javascript:">{{ 'sugarmill.tankregistration.tankregistration' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankregistrationForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.tankname' | translate }}</label>
+                            <select id="tank" name="tank" class="form-control" required #tank="ngModel"
+                                [(ngModel)]="tankreqObj['tank']">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tanks of tanks" value="{{tanks.id}}">{{tanks.tankName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.totalcapacity' | translate }}</label>
+                            <input type="number" class="form-control" name="totalcapacity" #totalcapacity="ngModel"
+                                [(ngModel)]=tankreqObj.total_capacity
+                                placeholder="{{ 'sugarmill.tankregistration.entertotalcapacity' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2"
+                                (click)="getalltanks()">{{ 'sugarmill.common.search' | translate }}</button>
+                            <button type="reset" (click)="clearData()"
+                                class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.tankregistration.tankregistrationlist' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                [actionBtnBasedOnCond]="actionBtnBasedOnCond" (editAction)="onEdit($event)" (viewAction)="onView($event)"   [actionBtnBasedOnCond]="actionBtnBasedOnCond">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div> -->

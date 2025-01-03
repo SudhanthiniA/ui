@@ -1,0 +1,219 @@
+<h5 class="m-b-10 ng-star-inserted">
+  MF 5 Part 3
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/mf5-part3/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.mf5part3.add' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }} </a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.mf5part3.previousyear' | translate }} </a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }} </li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #mf5Part3Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }} " class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Application No
+                            </label>
+                            <input type="text"  class="form-control" placeholder="Enter Application No">
+                        </div>
+                    </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                          <label>Tank Type </label>
+                          <select class="form-control">
+                            <option>Select</option>
+                            <option>Samsung</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                          <label>Quantity </label>
+                          <select class="form-control">
+                            <option>Select</option>
+                            <option>Samsung 16 cm</option>
+                          </select>
+                        </div>
+                      </div>
+                     
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mt-4">
+                      <div class="form-group">
+                          <!-- <label>&nbsp;</label> -->
+                          <div>
+                              <button type="submit" class="btn btn-primary mr-2">Search</button>
+                              <button type="submit" class="btn btn-secondary">Cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf5part3.serialnooftank' | translate }} </label>
+                            <input type="number" name="serial_no_of_tank" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }}  {{ 'sugarmill.mf5part3.serialnooftank' | translate }}"
+                                #serial_no_of_tank="ngModel" [(ngModel)]="mf5Part3Obj['serial_no_of_tank']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf5part3.tanktype' | translate }}</label>
+                            <input type="text" name="tank_type" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf5part3.tanktype' | translate }}"
+                                #tank_type="ngModel" [(ngModel)]="mf5Part3Obj['tank_type']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf5part3.openningstock' | translate }}(Qtl)</label>
+                            <input type="number" name="open_stock" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.mf5part3.openningstock' | translate }}"
+                                #open_stock="ngModel" [(ngModel)]="mf5Part3Obj['open_stock']">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="searchMf5Part3()"
+                                class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                            <button type="reset" 
+                                class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="MF 5 -Part-3 List" class="list-panel">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Application No</th>
+                      <th>Tank ID </th>
+                      <th>Tank Type  </th>
+                      <th>Capacity of Molasses </th>
+                      <th>Quantity </th>
+                      <th>Brix(%)</th>
+                      <th>TRS(%) </th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>APP001</td>
+                      <td>T001</td>
+                      <td class="text-left">Molasses</td>
+                      <td class="text-left">10</td>
+                      <td class="text-left">10</td>
+                      <td class="text-right">100</td>
+                      <td class="text-right">100</td>
+                      <td class="text-center">
+                        <span class="badge badge-light-success">Active</span>
+                    </td>
+                      <td>
+                        <button class="btn btn-icon btn-primary" type="button"
+                          routerLink="">
+                          <i class="feather icon-eye"></i></button>
+                         <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/helpdesk/shiftconfiguration/add">
+                            <i class="feather icon-edit-2"></i></button>-->
+
+                      </td>
+                    </tr>
+     
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+      </app-card>
+    </div>
+  </div>
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.mf5part3.list' | translate }}" blockClass="table-border-style"
+            class="list-panel ">
+            <div class="table-responsive"> -->
+                <!-- <table class="table table-bordered" datatable="ng" [dtOptions]="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>{{ 'sugarmill.mf5part3.nooftank' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part3.tanktype' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part3.openingstockacc' | translate }} (Qtl)</th>
+                            <th>{{ 'sugarmill.mf5part3.totmolasrecdate' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part3.nameofdistillery' | translate }}</th>
+                            <th>{{ 'sugarmill.mf5part3.totalquansupplied' | translate }} (Qtl)</th>
+                            <th>{{ 'sugarmill.common.status' | translate }} </th>
+                            <th>{{ 'sugarmill.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="mf5part2list?.length != 0">
+                        <tr *ngFor="let data of mf5part2list;let i=index">
+                            <td>{{i+1}}</td>
+                            <td class="text-left">{{data.serialNoOfTank}}</td>
+                            <td>{{data.tankType}} </td>
+                            <td class="text-right">{{data.openStock}}</td>
+                            <td class="text-right">{{data.molassesTotal}}</td>
+                            <td class="text-left">{{data.nameOfDistillery}}</td>
+                            <td class="text-right">{{data.quantitySuppliedMolasses}}</td>
+                            <td>{{data.status}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="data.status == 'Draft'" class="btn btn-icon btn-secondary ml-2"
+                                    type="button" (click)="navigateEdit(data.id)">
+                                    <i class="feather icon-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <!-- <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)"  [actionBtnBasedOnCond]="actionBtnBasedOnCond">
+            </app-mat-normal-table> -->
+            <!-- </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div> -->

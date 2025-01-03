@@ -1,0 +1,383 @@
+<h5 class="m-b-10 ng-star-inserted">Add Pre Fermentation
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/prefermentation/list">Pre
+            Fermentation</a>
+    </li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        
+            <app-card cardTitle="Add Pre Fermentation Details" class="list-panel add-panel">
+                <form #prefermentorForm="ngForm" autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control" name="otProductionPlanId" #otProductionPlanId="ngModel" [disabled]='otfieldflag'
+                            [(ngModel)]="prefermentorobj['otProductionPlanId']" (change)="getotdetails(prefermentorobj['otProductionPlanId'])" required>
+                                <option value = "">Select</option>
+                                <option *ngFor="let item of otnumberlist" value="{{item.id}}"> {{item.otNumber}}</option>
+                              
+                            </select>     
+                            <div *ngIf="otProductionPlanId.invalid && (otProductionPlanId.dirty || otProductionPlanId.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="otProductionPlanId?.errors?.required"><i class="fa fa-times"></i>
+                                OT Number is required </div>
+                        </div>                  
+                          </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Yeast Vessels</label>
+                            <input type="number" disabled class="form-control" name="yeastVesselsCount" #yeastVesselsCount="ngModel"
+                            [(ngModel)]="prefermentorobj['yeastVesselsCount']" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Pre-Fermenter Require</label>
+                            <input type="number" disabled class="form-control" name="preFermenterCount" #preFermenterCount="ngModel"
+                            [(ngModel)]="prefermentorobj['preFermenterCount']">
+                        </div>
+                    </div>
+                    
+                </div>
+                </form>
+            </app-card>
+
+            <app-card cardTitle="Pre-Fermentor Details " class="list-panel add-panel">
+                <form #prefermentorForm="ngForm" autocomplete="off">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Yeast Details</h6>
+                                </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Yeast Reference No</label>
+                                    <select class="form-control" name="otYeastProcessId" #otYeastProcessId="ngModel"
+                                    [(ngModel)]="prefermentorobj['otYeastProcessId']" (change)="getYeastvesaal(prefermentorobj['otYeastProcessId'])" required>
+                                        <option value = "">Select</option>
+                                        <option *ngFor="let item of vessalreferencenolist" value="{{item.id}}"> {{item.yeastSerialNo}}</option>                     
+                                    </select>
+                                    <div *ngIf="otYeastProcessId.invalid && (otYeastProcessId.dirty || otYeastProcessId.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="otYeastProcessId?.errors?.required"><i class="fa fa-times"></i>
+                                        Yeast Reference No is required </div>
+                                </div>                      
+                                  </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Yeast Vessal No</label>
+                                    <input type="text"  name="yeastvessalname"   #yeastvessalname="ngModel"
+                                    [(ngModel)]="prefermentorobj['yeastvessalname']" disabled  class="form-control" placeholder="">
+                                                       
+                                  </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Yeast Available Quantity</label>
+                                    <input type="text"  name="yeastAvailableCapacity"   #yeastAvailableCapacity="ngModel"
+                                    [(ngModel)]="prefermentorobj['yeastAvailableCapacity']" disabled  class="form-control" placeholder=""
+                                    >
+                                 
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Yeast Quantity</label>
+                                    <input type="text" name="yeastQty" class="form-control" required placeholder="" (keyup) ="checkingyeastquantityvalue(prefermentorobj['yeastQty'])"
+                                     #yeastQty="ngModel"
+                                    [(ngModel)]="prefermentorobj['yeastQty']" required>
+                                    <div *ngIf="yeastQty.invalid && (yeastQty.dirty || yeastQty.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="yeastQty?.errors?.required"><i class="fa fa-times"></i>
+                                        Quantity of Molasses is required </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <h6>Molasses Details</h6>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Raw Material Type</label>
+                                        <select class="form-control" name="molassesTypeId" #molassesTypeId="ngModel"
+                                        [(ngModel)]="prefermentorobj['molassesTypeId']" (click)="molassesTypes(molassesTypeId)" required>
+                                            <option value="">Select</option>
+                                            <!-- <option *ngFor="let user of gradelist" [ngValue]="{id: user.id, name: user.name}"> {{user.name}}</option> -->
+                                       <option *ngFor="let user of gradelist" value="{{user.id}}"> {{user.name}}</option>
+            
+                                        </select>
+                                        <div *ngIf="molassesTypeId.invalid && (molassesTypeId.dirty || molassesTypeId.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="molassesTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                            Raw Material Type is required </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Raw Material Tank</label>
+                                        <select name="molassesTankId" #molassesTankId="ngModel" required
+                                        [(ngModel)]="prefermentorobj['molassesTankId']"  (change)="getTankDetails(molassesTankId)" class="form-control"
+                                        required >
+                                        <option value="">{{ 'sugarmill.common.select' | translate }}
+                                        </option>
+                                        <!-- <option *ngFor="let item of tankList" [ngValue]="{id: item.id, name: item.tankName}">
+                                            {{item.tankName}}
+                                        </option> -->
+                                        <option *ngFor="let item of tankList" value="{{item.id}}">
+                                            {{item.tankName}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="molassesTankId.invalid && (molassesTankId.dirty || molassesTankId.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="molassesTankId?.errors?.required"><i class="fa fa-times"></i>
+                                        Raw Material Tank is required </div>
+                                </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Molasses Available Quantity</label>
+                                        <input type="text"  name="availableCapacity"   #availableCapacity="ngModel"
+                                        [(ngModel)]="prefermentorobj['availableCapacity']" disabled  class="form-control" placeholder=""
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Quantity of Molasses</label>
+                                        <input type="text" name="molassesQty" class="form-control" required placeholder="" (keyup) ="checkingmolassesquantityvalue(prefermentorobj['molassesQty'])"
+                                         #molassesQty="ngModel"
+                                        [(ngModel)]="prefermentorobj['molassesQty']" required>
+                                        <div *ngIf="molassesQty.invalid && (molassesQty.dirty || molassesQty.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="molassesQty?.errors?.required"><i class="fa fa-times"></i>
+                                            Quantity of Molasses is required </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <div class="col-12">
+                                <h6>Prefermentor Details</h6>
+
+                            </div>
+             
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Pre-Fermenter Filling Serial No</label>
+                                    <select class="form-control" name="prefermentationTankId" #prefermentationTankId="ngModel"
+                                    [(ngModel)]="prefermentorobj['prefermentationTankId']" (click)="getvessalcapacity(prefermentorobj['prefermentationTankId'])"  required>
+                                        <option value="">Select</option>
+                                        <!-- <option *ngFor="let user of gradelist" [ngValue]="{id: user.id, name: user.name}"> {{user.name}}</option> -->
+                                   <option *ngFor="let item of prefermentorvessalist" value="{{item.id}}"> {{item.tankName}}</option>
+        
+                                    </select>
+                                    <div *ngIf="prefermentationTankId.invalid && (prefermentationTankId.dirty || prefermentationTankId.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="prefermentationTankId?.errors?.required"><i class="fa fa-times"></i>
+                                        Pre-Fermenter Filling Serial Nois required </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Pre-fermentor Vessal Capacity</label>
+                                    <input type="text"  class="form-control" name="prefermentvessalcapacity" #prefermentvessalcapacity="ngModel" disabled
+                                    [(ngModel)]="prefermentorobj['prefermentvessalcapacity']" >
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Date and Time of Setup</label>
+                                    <input type="datetime-local"  class="form-control" name="setupDateTime" #setupDateTime="ngModel" required
+                                    [(ngModel)]="prefermentorobj['setupDateTime']" >
+                                    <div *ngIf="setupDateTime.invalid && (setupDateTime.dirty || setupDateTime.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="setupDateTime?.errors?.required"><i class="fa fa-times"></i>
+                                        Date and Time of Setup is required </div>
+                                </div>
+                                </div>
+                            </div>
+                         
+                           
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Quantity of Broth Prepared</label>
+                                    <input type="text" name="preparedBrothQty" class="form-control" required placeholder="Quantity of Broth Prepared" 
+                                     #preparedBrothQty="ngModel"
+                                    [(ngModel)]="prefermentorobj['preparedBrothQty']" (keyup)="checkQuantity(prefermentorobj['preparedBrothQty'])" required >
+                                    <div *ngIf="preparedBrothQty.invalid && (preparedBrothQty.dirty || preparedBrothQty.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="preparedBrothQty?.errors?.required"><i class="fa fa-times"></i>
+                                        Quantity of Broth Prepared is required </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                  
+                        <div class="col-12 text-right mb-4">
+                            <button type="button"  class="btn btn-success ml-2 mb-2" (click)="saveprefermenation(prefermentorForm,'SUBMITTED')" >Submit</button>
+                            <button type="button" class="btn btn-info ml-2 mb-2" (click)="clear(prefermentorForm)" >Clear</button>
+        
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Pre-Frementer Number</th> 
+                                                    <th>Pre-Fermenter Filling Serial No</th>
+                                                    <th>Date and Time of Setup</th>   
+                                                    <th>Raw Material Type</th>
+                                                    <th>Molasses Tank No</th>
+                                                    <!-- <th>Molasses Type</th> -->
+                                                    <th>Quantity of Molasses</th>
+                                                    <th>Quantity of Broth Prepared</th>
+                                                    <!-- <th>Action</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf ="prefermentorobjlist.length > 0">
+                                           <tr *ngFor="let data of prefermentorobjlist; let i=index">
+                                               <td>{{i+1}}</td>
+                                               <td>{{data.preFerRefNo}}</td>
+                                               <td>{{data.prefermentationTankName}}</td>
+                                               <td>{{data.setupDateTime | date:'dd-MMM-yy'}}</td>
+                                               <td>{{data.tankRegistrationEntity.specification}}</td>
+                                               <td>{{data.tankRegistrationEntity.tankName}}</td>
+                                               <td>{{data.molassesQty}}</td>
+                                               <td>{{data.preparedBrothQty}}</td>
+                                                <!-- <td class="text-center  "><i class="fas fa-pen text-primary pointer"
+                                                    (click)='bindelements(i,data)'></i><i class="fas fa-trash-alt pointer  text-danger"
+                                                    (click)="removeSelectedRows(i,data)"></i></td> -->
+                                           </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Pre-Fermenter Filling Serial No</th>
+                                        <th>Pre-Frementer Number</th> 
+                                        <th>Date and Time of Setup</th>   
+                                        <th>Raw Material Type</th>
+                                        <th>Molasses Serial No</th>
+                                        <th>Molasses Type</th>
+                                        <th>Quantity of Molasses</th>
+                                        <th>Quantity of Broth Prepared</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="prefermentationdata"
+                                    *ngFor="let pres of prefermentation?.get('prefermentationdata')['controls']; let i=index"
+                                    id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName="PreFermenterFillingSerialNo" required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" formControlName="PreFrementerNumber" required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="date" formControlName="DateandTimeofSetup" required class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select class="form-control uploadinputwidth" formControlName="RawMaterialType">
+                                                    <option>Select</option>
+                                                    <option value='sample'>sample</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                      
+                                            <td [formGroupName]="i">
+                                                <div class="form-group mb-0">
+                                                    <select class="form-control uploadinputwidth" formControlName="molasisserialno">
+                                                        <option>Select</option>
+                                                        <option value='1'>1</option>
+                                                        <option value='2'>2</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName="molasystype" required class="form-control" placeholder="">
+                                            </div>
+                                        </td>  
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select class="form-control uploadinputwidth" formControlName="quantityofmolasis">
+                                                    <option>Select</option>
+                                                    <option value='100'>100</option>
+                                                    <option value='50'>50</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" formControlName="brothprepared" required class="form-control" placeholder="">
+                                            </div>
+                                        </td>                   
+                                        
+                                        <td>
+                                            <button type="button" class="btn btn-primary mr-2"
+                                            (click)="savedata(prefermentation)">Submit</button>
+                                           
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                    </div>
+                </div>
+                </form>
+            </app-card>
+
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/distillery/prefermentation/view">Preview</button> -->
+        <!-- <button type="button" class="btn btn-warning ml-2 mb-2" (click)="savedata(prefermentation)">Save as Draft</button> -->
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2"
+           (click)="savedata(prefermentation)">Submit</button> -->
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/prefermentation/list">Back</button>
+    </div>
+</div>

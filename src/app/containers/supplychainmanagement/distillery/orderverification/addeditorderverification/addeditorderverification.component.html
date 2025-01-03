@@ -1,0 +1,60 @@
+<h5 class="m-b-10 ng-star-inserted">Add Order Verification </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Verification</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #orderForm="ngForm">
+            <app-card cardTitle="Enter Below Details to Add Order Verification" class="list-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requition ID</label>
+                            <input type="text" name="id" #id="ngModel" [(ngModel)]="orderObj['id']" class="form-control"  required
+                            placeholder="Example 1 & 2 & 3" (ngModelChange)="getDetails()">
+                        </div>
+                        <div *ngIf="id.invalid && (id.dirty || id.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="id?.errors?.required"><i class="fa fa-times"></i>
+                                Requition ID is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" disabled="disabled" name="productname"  [(ngModel)]="orderObj['productname']" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <input type="text" name="grade" disabled="disabled" class="form-control" [(ngModel)]="orderObj['grade']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requisition Quantity</label>
+                            <input type="number" name="requisitionqty" disabled="disabled" class="form-control" [(ngModel)]="orderObj['requisitionqty']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity from Wighbridge</label>
+                            <input type="number" name="qtywighbridge" disabled="disabled" class="form-control" [(ngModel)]="orderObj['qtywighbridge']" >
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-primary mr-2" (click)="orderVerification(orderForm)" routerLink="/supplychainmanagement/distillery/orderverification/list">Submit</button>
+                        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/distillery/orderverification/list">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>

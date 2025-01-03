@@ -1,0 +1,512 @@
+<h5 class="m-b-10 ng-star-inserted">Add Send to Still
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Production</a></li> -->
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/sendtostill/list">
+        Send to Still</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form *ngIf ="senttostillForm" [formGroup]="senttostillForm" autocomplete="off">
+            <app-card cardTitle="Send to Still" class="list-panel add-panel">
+                <ngb-tabset type="pills" #tabSet="ngbTabset" class="mb-2">
+                    <ngb-tab title="Send to Still Details" id="prefermentation">
+                        <!-- Pending Request -->
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">OT Number 1</label>
+                                        <select class="form-control"  formControlName="otProductionPlanId" (click)="getfermentveeselrefNo($event.target.value)">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let item of otnumberlist" value="{{item.id}}">{{item.otNumber}}</option>
+                                        </select>
+                                        <div *ngIf="formSubmitted && senttostillForm.get('otProductionPlanId').errors || senttostillForm.get('otProductionPlanId').touched "
+                                        class="error-msg">
+                                        <span *ngIf="senttostillForm.get('otProductionPlanId').errors?.required"><i class="fa fa-times"></i>
+                                            OT Number is required
+                                        </span>
+                                    </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>No of Fermenter Require</label>
+                                        <input type="text" disabled class="form-control" value="10">
+                                    </div>
+                                </div>
+            
+                                <div  class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>OT Start Date and Time</label>
+                                        <input type="text" disabled class="form-control" value="10-Jul-2021 10:00:00 AM">
+                                        
+                                    </div>
+                                </div>
+                                <div  class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>OT End Date and Time</label>
+                                        <input type="text" disabled class="form-control" value="20-Jul-2021 10:00:00 AM">
+                                        
+                                    </div>
+                                </div>
+                                <div  class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>OT Completion Time</label>
+                                        <input type="text" disabled class="form-control" value="10:00:00 AM">
+                                        
+                                    </div>
+                                </div>
+                                <div  class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>OT Status</label>
+                                        <input type="text" disabled class="form-control" value="Approved">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 text-right mb-4">
+                                    <button type="button" class="btn btn-primary mb-2">Sent To Still</button>
+                                    <button type="button" class="btn btn-warning ml-2 mb-2">End Sent To Still</button>
+                                    </div>
+                                    <div class="col-12">
+                                    <app-card cardTitle="Summary" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Fermenter Name<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>Fermenter 1</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Quantity of Wash<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>20-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Duration<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10 Days</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>Approved</span>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                    </div>
+                                    <div class="col-12">
+                                    <app-card cardTitle="Add Fermenter Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mb-2">
+                                                    <table class="table table-bordered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Fermenter Name<span class="mandatory"></span></th>
+                                                                <th>Quantity of Wash<span class="mandatory"></span></th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>
+                                                                    <select class="form-control" required>
+                                                                        <option>Select</option>
+                                                                    </select>
+                                                                </td>
+                        
+                                                                <td class="text-left">10
+                                                                </td>
+                                                                <td class="table-action-column text-center">
+                                                                    <button class="btn btn-icon btn-success" type="button">
+                                                                        <i class="feather icon-plus"></i></button>
+                                                                    <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                                        <i class="fas fa-trash-alt"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </app-card>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Fermenter 1" id="tab1">
+                        <!-- Pending Request -->
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-12">
+                                    <app-card cardTitle="Fermenter Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Fermenter Name<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>Fermenter 1</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Quantity of Wash<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>20-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Duration<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10 Days</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Initial Gravity<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Final Gravity<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Alcohol Percentage in Wash<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>100</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <select class="form-control" >
+                                                    <option>Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                            <button type="button" class="btn btn-warning mb-2">Under Maintainance</button>
+                                            <button type="button" class="btn btn-primary ml-2 mb-2" >Maintainance Completed</button>
+                                        </div>
+                                        </div>
+                                    </app-card>
+                                    <app-card cardTitle="Maintainance Details" class="list-panel add-panel">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Duration of Maintainance</label>
+                                                    <input type="number"  class="form-control" 
+                                                    placeholder="Enter Duration of Maintainance">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Reason of Maintainance</label>
+                                                    <input type="text"  class="form-control" 
+                                                    placeholder="Enter Reason of Maintainance">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                    <app-card cardTitle="Receiver Details" class="list-panel add-panel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mb-2">
+                                                    <table class="table table-bordered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Receiver Number<span class="mandatory"></span></th>
+                                                                <th>Spirit Name<span class="mandatory"></span></th>
+                                                                <th>Quantity(In. B.L.)<span class="mandatory"></span></th>
+                                                                <th>Strength<span class="mandatory"></span></th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>
+                                                                    <select class="form-control" required>
+                                                                        <option>Select</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" required>
+                                                                        <option>Select</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" class="form-control" 
+                                                                    placeholder="Enter Quantity(In. B.L.)">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" class="form-control" 
+                                                                    placeholder="Enter Strength">
+                                                                </td>
+                                                                <td class="table-action-column text-center">
+                                                                    <button class="btn btn-icon btn-success" type="button">
+                                                                        <i class="feather icon-plus"></i></button>
+                                                                    <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                                        <i class="fas fa-trash-alt"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Fermenter 2" id="tab2">
+                        <!-- Pending Request -->
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-12">
+                                    <app-card cardTitle="Fermenter Details" class="list-panel view-panel">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Fermenter Name<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>Fermenter 1</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Quantity of Wash<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Start Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">End Date and Time<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>20-Jul-2021 10:00:00 AM</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Duration<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10 Days</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Initial Gravity<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Final Gravity<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>10</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Alcohol Percentage in Wash<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <span>100</span>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                                <select class="form-control" >
+                                                    <option>Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                                <button type="button" class="btn btn-warning mb-2">Under Maintainance</button>
+                                                <button type="button" class="btn btn-primary ml-2 mb-2" >Maintainance Completed</button>
+                                            </div>
+                                         </div>
+                                    </app-card>
+                                    <app-card cardTitle="Maintainance Details" class="list-panel add-panel">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Duration of Maintainance</label>
+                                                    <input type="number"  class="form-control" 
+                                                    placeholder="Enter Duration of Maintainance">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Reason of Maintainance</label>
+                                                    <input type="text"  class="form-control" 
+                                                    placeholder="Enter Reason of Maintainance">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                    <app-card cardTitle="Receiver Details" class="list-panel add-panel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive mb-2">
+                                                    <table class="table table-bordered mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Receiver Number<span class="mandatory"></span></th>
+                                                                <th>Spirit Name<span class="mandatory"></span></th>
+                                                                <th>Quantity(In. B.L.)<span class="mandatory"></span></th>
+                                                                <th>Strength<span class="mandatory"></span></th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>
+                                                                    <select class="form-control" required>
+                                                                        <option>Select</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" required>
+                                                                        <option>Select</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" class="form-control" 
+                                                                    placeholder="Enter Quantity(In. B.L.)">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" class="form-control" 
+                                                                    placeholder="Enter Strength">
+                                                                </td>
+                                                                <td class="table-action-column text-center">
+                                                                    <button class="btn btn-icon btn-success" type="button">
+                                                                        <i class="feather icon-plus"></i></button>
+                                                                    <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                                        <i class="fas fa-trash-alt"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </app-card>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Receiver Summary" id="tab3">
+                        <!-- Pending Request -->
+                        <ng-template ngbTabContent>
+                            <div class="row"> 
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">OT Number<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <span>OT1122</span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">OT Status<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <span>Approved</span>
+                            </div>
+                            <div class="col-12">
+                            <app-card cardTitle="Receiver Details" class="list-panel add-panel">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive mb-2">
+                                            <table class="table table-bordered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Spirit Name</th>
+                                                        <th>Quantity(In. B.L.)</th>
+                                                        <th>Strength</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td class="text-left">Beer
+                                                        </td>
+                                                        <td class="text-left">100
+                                                        </td>
+                                                        <td class="text-left">100
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-card>
+                            </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+                
+            </app-card>
+
+            
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mb-2">Next</button>
+        <button type="button" class="btn btn-secondary mb-2 ml-2">Back</button>
+        <button type="button" class="btn btn-info mb-2 ml-2">Preview</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/sendtostill/list">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.vehiclemake.addvehiclemake' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.vehiclemake.editvehiclemake' | translate
+    }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/master/vehiclemake/list">{{ 'master.vehiclemake.vehiclemaster' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/master/vehiclemake/list">{{ 'master.vehiclemake.vehiclemake' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #vehicleForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{addedithead}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.vehiclemake.vehiclecode' | translate }}</label>
+                            <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="vehicleObj['code']"
+                                maxlength="10" minlength="3" class="form-control" required
+                                pattern="{{patternService.codePattern}}"
+                                placeholder="{{ 'master.vehiclemake.entervehiclecode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.vehiclemake.vehiclecode' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.vehiclemake.vehiclemake' | translate }}</label>
+                            <input type="text" id="Name" name="name" #name="ngModel" minlength="3" maxlength="100"
+                                [(ngModel)]="vehicleObj['makeModel']" required class="form-control"
+                                placeholder="{{ 'master.vehiclemake.entervehiclemake' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.vehiclemake.vehiclename' | translate }} {{ 'master.common.isrequired' |
+                                    translate }} </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="vehicleObj['isActive']" class="custom-control-input" id="customswitch1"
+                                    [attr.checked]="vehicleObj.isActive ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!vehicleObj.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="vehicleObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addvehicle(vehicleForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigatevehicleList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

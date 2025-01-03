@@ -1,0 +1,83 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Indent Request Add
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bonds</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Indent Request </a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #indentRequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details of Selected Indent Request Add" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent Number</label>
+                            <input type="text" class="form-control" placeholder="Indent Number"
+                            #recieptnumber = "ngModel" [(ngModel)]="indent['recieptnumber']" name ="recieptnumber">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Request Date" 
+                            #date = "ngModel" [(ngModel)]="indent['date']" name ="date">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <select class="form-control"  #productname = "ngModel" [(ngModel)]="indent['productname']" name ="productname">
+                                <option value="">Select</option>
+                                <option value="Product 1">Product 1</option>
+                                <option value="Product 2">Product 2</option>
+                                <option value="Product 3">Product 3</option>
+                                <option value="Product 4">Product 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select class="form-control" #grade = "ngModel" [(ngModel)]="indent['grade']" name ="grade">
+                                <option value="">Select</option>
+                                <option value="Grade 1">Grade 1</option>
+                                <option value="Grade 2">Grade 2</option>
+                                <option value="Grade 3">Grade 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requisition Quantity</label>
+                            <input type="number" class="form-control" placeholder="Enter Requisition Quantity"
+                            #requestion = "ngModel" [(ngModel)]="indent['requestion']" name ="requestion">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Measurement</label>
+                            <select class="form-control" 
+                            #measurement = "ngModel" [(ngModel)]="indent['measurement']" name ="measurement">
+                                <option value="">select</option>
+                                <option value="Measurement 1">Measurement  1</option>
+                                <option value="Measurement 2">Measurement 2</option>
+                                <option value="Measurement 3">Measurement 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mr-2" (click)="saveindent()">Submit</button>
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/bonds/indentrequest/list">Cancel</button>
+    </div>
+</div>

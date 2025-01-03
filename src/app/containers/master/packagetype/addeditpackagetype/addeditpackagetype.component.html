@@ -1,0 +1,150 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">  {{ 'master.package.addpackagetype' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+   
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/packagetype/list"> {{ 'master.package.addpackagetype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul> -->
+<h5 class="m-b-10 ng-star-inserted">Add Packaging Type
+    
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Packaging Type</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #packagetypeForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Packaging Type Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Packaging Type Master Code</label>
+                            <input type="text" disabled  class="form-control"  value="PT1122">
+                         
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Packaging Type</label>
+                            <input type="text"  class="form-control" required placeholder="Enter Packaging Type">               
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Measurement Master Name</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>Beer</option>
+                            </select>                
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.package.packagecode' | translate }}</label>
+                            <input type="text" [(ngModel)]="packagetypeObject.code" name="packagetypecode"
+                                #packagetypecode="ngModel"  required class="form-control"
+                                minlength="3" maxlength="10" pattern="^[a-zA-Z0-9]+$" placeholder="Enter Package Type Code"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="packagetypecode.invalid && (packagetypecode.dirty || packagetypecode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="packagetypecode?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypecoderequired' | translate }}
+                                </div>
+                                <div *ngIf="packagetypecode?.errors?.maxlength && !packagetypecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypecodemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="packagetypecode?.errors?.minlength && !packagetypecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypecodeminimum3charactor' | translate }}
+                                </div>
+                                <div *ngIf="packagetypecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.package.packagename' | translate }}</label>
+                            <input type="text" [(ngModel)]="packagetypeObject.name" name="packagetypename" #packagetypename="ngModel" minlength="3"
+                                minlength="50" required class="form-control" minlength="3" maxlength="100" placeholder="Enter Package Type Name"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="packagetypename.invalid && (packagetypename.dirty || packagetypename.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="packagetypename?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypenamerequired' | translate }}
+                                </div>
+                                <div *ngIf="packagetypename?.errors?.maxlength && !packagetypename?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypenamemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="packagetypename?.errors?.minlength && !packagetypename?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.package.packagetypenameminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.quantity' | translate }}</label>
+                            <input type="number" [(ngModel)]="packagetypeObject.quantity" name="quantity" #quantity="ngModel" minlength="3"
+                                minlength="50" required class="form-control" minlength="3" maxlength="50" placeholder="Enter quantity"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="quantity?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.quantity' | translate }}  {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="quantity?.errors?.maxlength && !quantity?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.quantity' | translate }} {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="quantity?.errors?.minlength && !quantity?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.quantity' | translate }} {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.package.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="packagetypeObject.isActive" name="active"
+                                    #active="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="packagetypeObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!packagetypeObject.isActive">{{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="packagetypeObject.isActive">{{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addpackagetype(packagetypeForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/packagetype/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+    <!-- <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addpackagetype(packagetypeForm)">Submit</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/packagetype/list">Cancel</button>
+    </div> -->
+</div>

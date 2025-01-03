@@ -1,0 +1,258 @@
+<h5 class="m-b-10 ng-star-inserted">Add PD20 - Application for Issue of Spirit against Advance- Rule 790							</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">PD20</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd20Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Application for Issue of Spirit against Advance- Rule 790 Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" name="date" class="form-control" #date="ngModel"
+                            [(ngModel)]="Pd20Obj['date']" required>
+                                <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Indent No
+                            </label>
+                            <input type="number" name="IndentNo" class="form-control" #IndentNo="ngModel"
+                            [(ngModel)]="Pd20Obj['IndentNo']"  required
+                                placeholder="Enter Indent No">
+                                <div *ngIf="IndentNo.invalid && (IndentNo.dirty || IndentNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="IndentNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Indent No is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Type</label>
+                            <input type="text" disabled class="form-control" required placeholder="Type1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit No</label>
+                            <input type="text" disabled class="form-control" required placeholder="123456">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Purchase Name</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requested Quantity</label>
+                            <input type="text" disabled class="form-control" required placeholder="50">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Duty Paid</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Denaturing Fees</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Drum Nos
+                            </label>
+                            <input type="number"  name="DrumNo" class="form-control" #DrumNo="ngModel"
+                            [(ngModel)]="Pd20Obj['DrumNo']"  required
+                                placeholder="Enter Drum Nos">
+                                <div *ngIf="DrumNo.invalid && (DrumNo.dirty || DrumNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="DrumNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Drum No is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>VAT No
+                            </label>
+                            <input type="number" name="VatNo" class="form-control" #VatNo="ngModel"
+                            [(ngModel)]="Pd20Obj['VatNo']"  required
+                                placeholder="Enter VAT No">
+                                <div *ngIf="VatNo.invalid && (VatNo.dirty || VatNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="VatNo?.errors?.required"><i class="fa fa-times"></i>
+                                    VAT No is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Consignee
+                            </label>
+                            <input type="text" name="ConsigneeName" class="form-control" #ConsigneeName="ngModel"
+                            [(ngModel)]="Pd20Obj['ConsigneeName']"  required
+                                placeholder="Enter Name of Consinee">
+                                <div *ngIf="ConsigneeName.invalid && (ConsigneeName.dirty || ConsigneeName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="ConsigneeName?.errors?.required"><i class="fa fa-times"></i>
+                                    Consignee Name is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description of Spirit
+                            </label>
+                            <input type="text" name="DescriptionSpirit" class="form-control" #DescriptionSpirit="ngModel"
+                            [(ngModel)]="Pd20Obj['DescriptionSpirit']"  required
+                                placeholder="Enter Description of Spirit">
+                                <div *ngIf="DescriptionSpirit.invalid && (DescriptionSpirit.dirty || DescriptionSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="DescriptionSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Description Of Spirit is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Number of Case
+                            </label>
+                            <input type="number" name="NumberOfCase" class="form-control" #NumberOfCase="ngModel"
+                            [(ngModel)]="Pd20Obj['NumberOfCase']"  required
+                                placeholder="Enter Number of Case">
+                                <div *ngIf="NumberOfCase.invalid && (NumberOfCase.dirty || NumberOfCase.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NumberOfCase?.errors?.required"><i class="fa fa-times"></i>
+                                    Number of Case is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles
+                            </label>
+                            <input type="number" name="NoOfBottles" class="form-control" #NoOfBottles="ngModel"
+                            [(ngModel)]="Pd20Obj['NoOfBottles']"  required
+                                placeholder="Enter No of Bottles">
+                                <div *ngIf="NoOfBottles.invalid && (NoOfBottles.dirty || NoOfBottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="NoOfBottles?.errors?.required"><i class="fa fa-times"></i>
+                                    No Of Bottles is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity
+                            </label>
+                            <input type="number" name="Quantity" class="form-control" #Quantity="ngModel"
+                            [(ngModel)]="Pd20Obj['Quantity']"  required
+                                placeholder="Enter Quantity">
+                                <div *ngIf="Quantity.invalid && (Quantity.dirty || Quantity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="Quantity?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Remark
+                            </label>
+                            <input type="text"  id="remark" class="form-control"
+                                placeholder="Enter Remark">
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Transport Details" class="list-panel add-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Agency Name</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Route detail</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Truck No</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Truck No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Driver Name">
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Via District</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Range (Km)</label>
+                            <input type="text" class="form-control" required placeholder="50">
+                        </div>
+                    </div> 
+                </div>
+            </app-card>
+        </form>
+    </div>
+    
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" routerLink="/supplychainmanagement/distillery/pd20-form/view/:id">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addPd20Details(Pd20Form,false)">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addPd20Details(Pd20Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd20-form/list">Cancel</button>
+    </div>
+</div>

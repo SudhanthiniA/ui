@@ -1,0 +1,289 @@
+<h5 class="m-b-10 ng-star-inserted">Import Permit Request
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li> 
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/importpermit-outside-up/list">Import
+            Permit Request</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #addimportForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details Of Import Permit Outsite UP, Outside Country(ENA,GENA,+21 Spirits)
+            " class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Export Type</label>
+                            <div class="d-flex">
+                                <div>
+                                    <input type="radio" id="status1" name="status1" #status1="ngModel"
+                                        [(ngModel)]="addimportobj['exportType']" value="Other State Of India">&nbsp;
+                                    <label for="Other State Of India" class="px-1">Other State Of India</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="status2" name="status1" #status2="ngModel"
+                                        [(ngModel)]="addimportobj['exportType']" value="Other Country">&nbsp;
+                                    <label for="Other Country" class="pl-1">Other Country</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State Name /Country Name</label>
+                            <select class="form-control" name="stateName" #stateName="ngModel"
+                                [(ngModel)]="addimportobj['stateName']" required>
+                                <option value="">Select</option>
+                                <option value="Daman">Daman</option>
+                                <option value="Diu">Diu</option>
+                            </select>
+                            <div *ngIf="stateName.invalid && (stateName.dirty || stateName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="stateName?.errors?.required"><i class="fa fa-times"></i>State is required
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Exporting Distillery</label>
+                            <input type="text" class="form-control" placeholder="Enter Name of Exporting Distillery"
+                                name="nameOfExpDistillery" #nameOfExpDistillery="ngModel" required
+                                [(ngModel)]="addimportobj['nameOfExpDistillery']">
+                            <div *ngIf="nameOfExpDistillery.invalid && (nameOfExpDistillery.dirty || nameOfExpDistillery.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfExpDistillery?.errors?.required"><i class="fa fa-times"></i>
+                                    Name of Exporting Distillery is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address of Exporting Distillery</label>
+                            <input type="text" class="form-control" placeholder="Enter Address of Exporting Distillery"
+                                name="addrOfExpDistillery" #addrOfExpDistillery="ngModel" required
+                                [(ngModel)]="addimportobj['addrOfExpDistillery']">
+                            <div *ngIf="addrOfExpDistillery.invalid && (addrOfExpDistillery.dirty || addrOfExpDistillery.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="addrOfExpDistillery?.errors?.required"><i class="fa fa-times"></i>
+                                    Address of Exporting Distillery is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type</label>
+                            <select class="form-control" name="spiritType" #spiritType="ngModel"
+                                [(ngModel)]="addimportobj['spiritType']" required>
+                                <option value="">Select</option>
+                                <option value="ENA">ENA</option>
+                            </select>
+                            <div *ngIf="spiritType.invalid && (spiritType.dirty || spiritType.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="spiritType?.errors?.required"><i class="fa fa-times"></i>Spirit Type is
+                                    required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Exporting Distillery Capacity</label>
+                            <input type="text" class="form-control" placeholder="Enter Exporting Distillery Capacity"
+                                name="expDistCapacity" #expDistCapacity="ngModel" required
+                                [(ngModel)]="addimportobj['expDistCapacity']">
+                            <div *ngIf="expDistCapacity.invalid && (expDistCapacity.dirty || expDistCapacity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="expDistCapacity?.errors?.required"><i class="fa fa-times"></i>
+                                    Exporting Distillery Capacity is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requested Spirit Qty</label>
+                            <input type="text" class="form-control" name="reqSpirit"
+                                placeholder="Enter Requested Spirit" #reqSpirit="ngModel"
+                                [(ngModel)]="addimportobj['reqSpirit']" required>
+                            <div *ngIf="reqSpirit.invalid && (reqSpirit.dirty || reqSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reqSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Requested Spirit is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <div class="d-flex">
+                                <div>
+                                    <input type="radio" id="purpose1" name="purpose1" #purpose1="ngModel"
+                                        [(ngModel)]="addimportobj['purpose']" value="CL">&nbsp;
+                                    <label for="CL" class="px-1">For CL</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="purpose2" name="purpose1" #purpose2="ngModel"
+                                        [(ngModel)]="addimportobj['purpose']" value="FL">&nbsp;
+                                    <label for="FL" class="pl-1">For FL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Installed Capacity of Distillery(in BL) Portable</label>
+                            <input type="text" class="form-control" name="insCtyOfDistInBLPortable"
+                                placeholder="Enter Installed Capacity of Distillery(in BL) Portable"
+                                #insCtyOfDistInBLPortable="ngModel"
+                                [(ngModel)]="addimportobj['insCtyOfDistInBLPortable']" required>
+                            <div *ngIf="insCtyOfDistInBLPortable.invalid && (insCtyOfDistInBLPortable.dirty || insCtyOfDistInBLPortable.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="insCtyOfDistInBLPortable?.errors?.required"><i class="fa fa-times"></i>
+                                    Installed Capacity of Distillery(in BL) Portable Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Installed Capacity of Distillery(in BL) Industrial</label>
+                            <input type="text" class="form-control" name="insCtyOfDistInBLIndustrial"
+                                placeholder="Enter Installed Capacity of Distillery(in BL) Industrial"
+                                #insCtyOfDistInBLIndustrial="ngModel"
+                                [(ngModel)]="addimportobj['insCtyOfDistInBLIndustrial']" required>
+                            <div *ngIf="insCtyOfDistInBLIndustrial.invalid && (insCtyOfDistInBLIndustrial.dirty || insCtyOfDistInBLIndustrial.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="insCtyOfDistInBLIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                    Installed Capacity of Distillery(in BL) Industrial Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Production Quantity(in BL) Portable</label>
+                            <input type="text" class="form-control" name="prodQtyInBLPortable"
+                                placeholder="Enter Production Quantity(in BL) Portable" #prodQtyInBLPortable="ngModel"
+                                [(ngModel)]="addimportobj['prodQtyInBLPortable']" required>
+                            <div *ngIf="prodQtyInBLPortable.invalid && (prodQtyInBLPortable.dirty || prodQtyInBLPortable.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="prodQtyInBLPortable?.errors?.required"><i class="fa fa-times"></i>
+                                    Production Quantity(in BL) Portable Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Production Quantity(in BL)Industrial</label>
+                            <input type="text" class="form-control" name="prodQtyInBLIndustrial"
+                                placeholder="Enter Production Quantity(in BL)Industrial"
+                                #prodQtyInBLIndustrial="ngModel" [(ngModel)]="addimportobj['prodQtyInBLIndustrial']"
+                                required>
+                            <div *ngIf="prodQtyInBLIndustrial.invalid && (prodQtyInBLIndustrial.dirty || prodQtyInBLIndustrial.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="prodQtyInBLIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                    Production Quantity(in BL)Industrial Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Purchase / Import Quantity(in BL)Portable</label>
+                            <input type="text" class="form-control" name="purhOrImpQtyInBLPortable"
+                                placeholder="Enter Purchase / Import Quantity(in BL)Portable"
+                                #purhOrImpQtyInBLPortable="ngModel"
+                                [(ngModel)]="addimportobj['purhOrImpQtyInBLPortable']" required>
+                            <div *ngIf="purhOrImpQtyInBLPortable.invalid && (purhOrImpQtyInBLPortable.dirty || purhOrImpQtyInBLPortable.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="purhOrImpQtyInBLPortable?.errors?.required"><i class="fa fa-times"></i>
+                                    Purchase / Import Quantity(in BL)Portable Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Purchase / Import Quantity(in BL)Industrial</label>
+                            <input type="text" class="form-control" name="purhOrImpQtyInBLIndustrial"
+                                placeholder="Enter Purchase / Import Quantity(in BL)Industrial"
+                                #purhOrImpQtyInBLIndustrial="ngModel"
+                                [(ngModel)]="addimportobj['purhOrImpQtyInBLIndustrial']" required>
+                            <div *ngIf="purhOrImpQtyInBLIndustrial.invalid && (purhOrImpQtyInBLIndustrial.dirty || purhOrImpQtyInBLIndustrial.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="purhOrImpQtyInBLIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                    Purchase / Import Quantity(in BL)Industrial Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Consent letter No of Exporting Distillery</label>
+                            <input type="text" class="form-control" name="conLetterOfExpDistillery"
+                                placeholder="Enter Consent letter No of Exporting Distillery"
+                                #conLetterOfExpDistillery="ngModel"
+                                [(ngModel)]="addimportobj['conLetterOfExpDistillery']" required>
+                            <div *ngIf="conLetterOfExpDistillery.invalid && (conLetterOfExpDistillery.dirty || conLetterOfExpDistillery.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="conLetterOfExpDistillery?.errors?.required"><i class="fa fa-times"></i>
+                                    Consent letter No of Exporting Distillery Is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" name="date" #date="ngModel"
+                                [(ngModel)]="addimportobj['date']" required>
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date Is Required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadconsent">Upload Consent letter (pdf only with max size of 200kb)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadconsent" id="uploadconsent"
+                                        #uploadconsent="ngModel" [(ngModel)]="addimportobj['uploadconsent']"
+                                        accept="application/pdf,application/vnd.ms-excel">
+                                    <label class="custom-file-label"> </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(addimportForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addapi(addimportForm,false)">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="ShowPOpUp(addimportForm,true)">Submit</button>
+        <!-- (click)="addapi(addimportForm,true)" -->
+        <button #buttonForPop type="button" class="btn btn-primary ml-2 mb-2" hidden
+            (click)="exampleModalCenter.show()">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/importpermit-outside-up/list">Cancel</button>
+    </div>
+    <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered">
+        <div class="app-modal-header">
+            <h5 class="modal-title">Confirmation</h5>
+            <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+                (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+            <h6 class="text-secondary text-center">Are you sure you want to Submit?</h6>
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-primary" (click)="addapi(addimportForm,true)">Yes</button>
+            <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal"
+                (click)="exampleModalCenter.hide()">No</button>
+        </div>
+    </app-ui-modal>
+</div>

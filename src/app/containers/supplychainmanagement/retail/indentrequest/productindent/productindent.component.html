@@ -1,0 +1,307 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.product.details' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'retail.indentrequest.list' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.product.details' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="productForm">
+            <app-card blockClass="table-border-style" [hidHeader]="true" class="list-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label>{{ 'retail.stockavailability.wholesaletype' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="wholesaleTypeList" [placeholder]="'Select'"
+                                [settings]="dropdownSettings">
+                            </ng-multiselect-dropdown>
+                            <a href="javascript:" data-toggle="modal" (click)="recentlist.show()"><i
+                                    class="feather icon-clock"></i> Recent Wholesale list</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label>{{ 'retail.common.wholesalename' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="wholesaleList" [placeholder]="'Select'"
+                                [settings]="dropdownSettings">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group">
+                            <label>{{ 'retail.product.name' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="productList" [placeholder]="'Select'"
+                                [settings]="dropdownSettings" (onSelect)="getProductById($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <div class="form-group">
+                            <label>&nbsp; &nbsp; &nbsp; </label><br>
+                            <button type="submit" class="btn btn-primary" (click)=addProduct(productForm)>
+                                <i _ngcontent-cfr-c13="" class="fas fa-plus"></i>
+                                {{ 'retail.product.add' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div style="overflow-y: scroll; max-height: 200px;">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'retail.wholesale.star' | translate }}</th>
+                                        <th>{{ 'retail.common.wholesaletype' | translate }}</th>
+                                        <th>{{ 'retail.common.wholesalename' | translate }}</th>
+                                        <th>{{ 'retail.common.action' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let data of wholesaleData; let i=index'>
+                                        <td><i class={{data.star}}></i></td>
+                                        <td>{{data.wholesaleType}}</td>
+                                        <td>{{data.wholesaleName}}</td>
+                                        <td>
+                                            <div class="form-group d-inline">
+                                                <div class="radio radio-primary d-inline">
+                                                    <input type="radio" name="radio-p-1" id="radio-p-{{i}}">
+                                                    <label for="radio-p-{{i}}" class="cr"></label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <div class="form-group">
+                                    <label>{{ 'retail.product.liquortype' | translate }}</label>
+                                    <ng-multiselect-dropdown formControlName="liquortype" [data]="liquorType"
+                                        [placeholder]="'Select'" [settings]="dropdownSettingsLiquortype">
+                                    </ng-multiselect-dropdown>
+                                    <div *ngIf="formSubmitted && (f.liquortype.errors )" class="error-msg">
+                                        <div *ngIf="f.liquortype?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            {{ 'retail.common.liquortype' | translate }} {{ 'retail.common.isrequired' |
+                                            translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <div class="form-group">
+                                    <label>{{ 'retail.product.name' | translate }}</label>
+                                    <ng-multiselect-dropdown formControlName="name" [data]="productList"
+                                        [placeholder]="'Select'" [settings]="dropdownSettings" (onSelect)="getProductById($event)">
+                                    </ng-multiselect-dropdown>
+                                    <div *ngIf="formSubmitted && (f.name.errors)" class="error-msg">
+                                        <div *ngIf="f.name?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            {{ 'retail.product.name' | translate }} {{ 'retail.common.isrequired' |
+                                            translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <div class="form-group">
+                                    <label>{{ 'retail.product.liquorsubtype' | translate }}</label>
+                                    <ng-multiselect-dropdown [data]="liquorSubType" [placeholder]="'Select'"
+                                        [settings]="dropdownSettings">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <div class="form-group">
+                                    <label>&nbsp; &nbsp; &nbsp; </label><br>
+                                    <button type="submit" class="btn btn-primary" (click)=addProduct(productForm)>
+                                        <i _ngcontent-cfr-c13="" class="fas fa-plus"></i>
+                                        {{ 'retail.product.add' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="clear"></div><br>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">#</th>
+                                <th rowspan="2">{{ 'retail.product.code' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.product.name' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.common.packagetype' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.common.packagesize' | translate }} </th>
+                                <th>{{ 'retail.product.availableQty' | translate }} </th>
+                                <th width="150px;">{{ 'retail.product.requestQty' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.common.price' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.common.amount' | translate }} </th>
+                                <th rowspan="2">{{ 'retail.common.action' | translate }} </th>
+                            </tr>
+                            <tr>
+                                <th>{{ 'retail.product.cases/bottles' | translate }} </th>
+                                <th>{{ 'retail.product.cases/bottles' | translate }} </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="rows"
+                                *ngFor="let data of productForm.get('rows')['controls']; let i=index">
+                                <td [formGroupName]="i">{{i+1}}</td>
+                                <td class="text-left" [formGroupName]="i"> {{data.value.productCode}}</td>
+                                <td class="text-left"> {{data.value.productName}}</td>
+                                <td [formGroupName]="i">
+                                    <select class="form-control" formControlName="size">
+                                        <option value="" disabled>Select</option>
+                                        <option *ngFor="let data of packageTypeList" value={{data.id}}>
+                                            {{data.name}}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <select class="form-control" formControlName="size">
+                                        <option value="" disabled>Select</option>
+                                        <option *ngFor="let data of brandSizes" value={{data.size}}>
+                                            {{data.size}}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td [formGroupName]="i">{{data.value.avlQty}}</td>
+                                <td [formGroupName]="i">
+                                    <input type="text" formControlName="reqQty" (keypress)=keypress($event)
+                                        class="form-control width_70 float-left mr-2" name="indent"
+                                        placeholder="Enter Indent Number" (change)="totalPrice($event, i)"
+                                        [ngClass]="{ 'is-invalid':  formSubmitted && rows.controls[i].get('reqQty').errors?.required}">
+                                    <span class="float-left mt-2">/10</span> <span class="float-left mt-2">
+                                        {{data.reqQty}}</span>
+                                    <div style="clear:both"></div>
+                                    <div *ngIf="formSubmitted && (rows.controls[i].get('reqQty').errors)"
+                                        class="error-msg">
+                                        <div *ngIf="rows.controls[i].get('reqQty').errors.required">
+                                            <i class="fa fa-times"></i>
+                                            Quantity is required
+                                        </div>
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">{{data.value.price}}</td>
+                                <td [formGroupName]="i">
+                                    <input type="text" class="form-control width_100" formControlName=amount
+                                        placeholder="Amount" readonly>
+                                    <!-- {{data.value.amount}} -->
+                                </td>
+                                <td [formGroupName]="i"><button class="btn btn-danger" (click)="deleteRow(i)"><i
+                                            class="fas fa-times"></i></button></td>
+                            </tr>
+                            <!-- <tr>
+                            <td>2</td>
+                            <td class="text-left">Jhonny Walker (White)</td>
+                            <td>750 ml</td>
+                            <td>123/1230</td>
+                            <td><input type="number" class="form-control width_70 float-left mr-2" name="indent"
+                                    placeholder="Enter Indent Number" /> <span class="float-left mt-2">/</span> <span
+                                    class="float-left mt-2"> 10</span></td>
+                            <td>3,500.00</td>
+                            <td>35,000.00</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-left">Bacardi Lemon</td>
+                            <td>750 ml</td>
+                            <td>234/2340</td>
+                            <td><input type="number" class="form-control width_70 float-left mr-2" name="indent"
+                                    placeholder="Enter Indent Number" /> <span class="float-left mt-2">/</span> <span
+                                    class="float-left mt-2"> 10</span></td>
+                            <td>800.00</td>
+                            <td>8,000.00</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="text-left">Signature</td>
+                            <td>750 ml</td>
+                            <td>211/2110</td>
+                            <td><input type="number" class="form-control width_70 float-left mr-2" name="indent"
+                                    placeholder="Enter Indent Number" /> <span class="float-left mt-2">/</span> <span
+                                    class="float-left mt-2"> 10</span></td>
+                            <td>800.00</td>
+                            <td>8,000.00</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="text-left">Kingfisher (Strong)</td>
+                            <td>650 ml</td>
+                            <td>345/3450</td>
+                            <td><input type="number" class="form-control width_70 float-left mr-2" name="indent"
+                                    placeholder="Enter Indent Number" /> <span class="float-left mt-2">/</span> <span
+                                    class="float-left mt-2"> 10</span></td>
+                            <td>200.00</td>
+                            <td>2,000.00</td>
+                            <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <p class="mt-2 mb-0">{{ 'retail.product.refundAmt' | translate }}</p>
+                        <h4 class="mb-0" *ngIf=isShow>{{totalAmount}}</h4>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button class="btn btn-warning ml-2 mb-2" (click)="save(productForm,'DRAFT')">
+                {{ 'retail.common.saveasdraft' | translate }}</button>
+            <button class="btn btn-primary ml-2 mb-2" (click)="save(productForm,'SUBMITTED')">
+                {{ 'retail.common.submit' | translate }}</button>
+            <button class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/retail/indentrequest">
+                {{ 'retail.common.cancel' | translate }}</button>
+        </div>
+    </div>
+</div>
+
+<app-ui-modal #recentlist dialogClass="modal-dialog-centered">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Recent Wholesale List</h5>
+        <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+            (click)="recentlist.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="app-modal-body">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>{{ 'retail.wholesale.star' | translate }}</th>
+                    <th>{{ 'retail.common.wholesaletype' | translate }}</th>
+                    <th>{{ 'retail.common.wholesalename' | translate }}</th>
+                    <th>{{ 'retail.common.action' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let data of wholesaleData; let i=index'>
+                    <td><i class={{data.star}}></i></td>
+                    <td>{{data.wholesaleType}}</td>
+                    <td>{{data.wholesaleName}}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="recentlist.hide()"
+                            routerLink="/supplychainmanagement/retail/indentrequest/product/{{data.id}}">
+                            <i class="fas fa-chevron-right" ></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</app-ui-modal>

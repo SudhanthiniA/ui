@@ -1,0 +1,157 @@
+<h5 class="m-b-10 ng-star-inserted">PD-6</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" >Other Registers Used</a></li>
+    <li class="breadcrumb-item"><a
+            routerLink="/supplychainmanagement/distillery/pd11-register-of-issuespirit/list">PD-6</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #Pd6Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Gauge Register of receivers and Vats"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+
+                            <input type="date" name="date" class="form-control" #date="ngModel"
+                                [(ngModel)]="Pd6Obj['date']" disabled required>
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Receiver/Vat Name</label>
+                            <select class="form-control">
+                                <option>Tank Registration</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Height</label>
+                            <input type="number" class="form-control" required placeholder="Enter Height">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Weidth</label>
+                            <input type="number" class="form-control" required placeholder="Enter Weidth">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Length</label>
+                            <input type="number" class="form-control" required placeholder="Enter Length">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Table Of Dimensions</label>
+                            <input type="number" name="tableOfDimention" class="form-control" required
+                                #tableOfDimention="ngModel" [(ngModel)]="Pd6Obj['tableOfDimention']" maxlength="10"
+                                placeholder="Enter Issued Pass Number">
+                            <div *ngIf="tableOfDimention.invalid && (tableOfDimention.dirty || tableOfDimention.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tableOfDimention?.errors?.required"><i class="fa fa-times"></i>
+                                    Issued Pass Number is required </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                   
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wet Inches</label>
+                            <input type="number" name="wetInches" class="form-control" required
+                                placeholder="Enter Number of Vessel in which issue Made" #wetInches="ngModel"
+                                [(ngModel)]="Pd6Obj['wetInches']" maxlength="5">
+                            <div *ngIf="wetInches.invalid && (wetInches.dirty || wetInches.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="wetInches?.errors?.required"><i class="fa fa-times"></i>
+                                    Wet Inches is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #Pd6Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Litres" class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" >
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Tenths of a inch</th>
+                                <th>Litres</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <input type="number" name="tenthsOfInch" class="form-control"
+                                placeholder="Enter Tenths of a inch" required
+                                #tenthsOfInch="ngModel" [(ngModel)]="Pd6Obj['tenthsOfInch']"
+                                maxlength="5">
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" required placeholder="Enter Litres">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tenths of a inch</label>
+                            <input type="number" name="tenthsOfInch" class="form-control"
+                                placeholder="Enter Plain Spirit(including Rectified Spirit)" required
+                                #tenthsOfInch="ngModel" [(ngModel)]="Pd6Obj['tenthsOfInch']"
+                                maxlength="5">
+                            <div *ngIf="tenthsOfInch.invalid && (tenthsOfInch.dirty || tenthsOfInch.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tenthsOfInch?.errors?.required"><i class="fa fa-times"></i>
+                                    Tenths of a inch is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                 
+                </div> -->
+            </app-card>
+        </form>
+    </div>
+
+ 
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewpd6(Pd6Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addPd6Details(Pd6Form,false)">Save As Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addPd6Details(Pd6Form,true)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/pd6/list">Cancel</button>
+    </div>
+</div>

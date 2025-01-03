@@ -1,0 +1,151 @@
+<h5 class="m-b-10 ng-star-inserted">Stock In EAL Approval DEO</h5>
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Bond Warehouse</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Stock In EAL Approval DEO</a></li>
+  <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+  <div class="col-4">
+       <div class="dashboard_bg4 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Approve</span>
+           <h3 class="mt-2">1000</h3>
+           <i class="fas fa-thumbs-up"></i>
+           <!-- <small>WWWW</small>    -->
+         </div>  
+       </div>
+     </app-card>
+   </div>
+   </div>
+   
+  <div class="col-4">
+   <div class="dashboard_bg7 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Reject</span>
+           <h3 class="mt-2">800</h3>
+           <i class="fas fa-thumbs-down"></i>
+           <!-- <small>WWW</small> -->
+         </div>
+       </div>
+     </app-card>
+   </div>
+   </div>
+   
+  <div class="col-4">
+   <div class="dashboard_bg2 animate__animated animate__backInUp">
+     <app-card [hidHeader]="true" cardClass="comp-card">
+       <div class="row align-items-center">
+         <div class="col">
+           <span>Pending</span>
+           <h3 class="mt-2">100</h3>
+           <i class="fas fa-hourglass-half"></i>
+           <!-- <small>WWW</small> -->
+         </div>
+       </div>
+     </app-card>
+   </div>
+   </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+      <app-card cardTitle="Search" class="search-panel">
+       <form [formGroup]="indentForm" autocomplete="off">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Stock-in Application Number</label>
+                    <input type="text"  class="form-control" placeholder="Enter Stock-in Application Number"/>
+                </div>
+            </div> 
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Stock-in Date & Time</label>
+                    <input type="date"   class="form-control"/>
+                </div>
+            </div> 
+             <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                 <div class="form-group">
+                     <label>Status
+                     </label>
+                     <select  class="form-control">
+                         <option value="">Select</option>
+                         <option>Active</option>
+                     </select>
+                 </div>
+             </div> -->
+              <div class="col-12 text-right">
+                  <button type="submit" class="btn btn-primary mr-2">Search</button>
+                  <button type="submit" class="btn btn-secondary">Cancel</button>
+              </div>
+          </div>
+       </form>
+      </app-card>
+  </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+      <app-card cardTitle="Stock In EAL Approval DEO List"
+        blockClass="table-border-style" class="list-panel stockavailability_tab">
+        <div class="row">
+          <div class="col mb-2">
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered text-center mb-0">
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Stock-in Date & Time</th>
+                      <th>Stock-in Application No</th>
+                      <th>Code Type</th>
+                        <th>Total No of Cases Received</th>
+                            <th>Total No of QRcode Received</th>
+                                <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>13-May-2024 16:05:12</td>
+                      <td>STIN-778583</td>
+                      <td>MAPPED</td>
+                      <td class="text-left">250</td>
+                      <td class="text-left">6000</td> 
+                      <td class="text-center">
+                        <span class="badge badge-light-success">Approved</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-icon btn-primary" type="button"
+                      routerLink="/supplychainmanagement/distillery/indentacceptance/newindents"  >
+                      <i class="feather icon-eye"></i></button>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+              <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle
+                  type="button">Download</button>
+                <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 text-right p-0">
+                <img src="assets/images/pagenation.png" />
+            </div>
+        </div>  
+      </app-card>
+    </div>
+  </div>

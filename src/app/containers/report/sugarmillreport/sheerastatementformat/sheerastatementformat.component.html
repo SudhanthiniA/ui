@@ -1,0 +1,195 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Sheera Statement Format for Portal
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" >Report</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mills</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sheera Statement Format for Portal</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <input type="date" class="form-control" placeholder="Enter Order ID">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+              </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Sheera Statement Format for Portal List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table id ='excel_data'class="table table-striped table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th rowspan="2"></th>
+                            <th colspan="2">Year 2018-2019</th>
+                            <th colspan="2">Year 2019-2020</th>
+                            <th colspan="2">Year 2020-2021</th>
+                        </tr>
+                        <tr>
+                            <th>B-Heavy</th>
+                            <th>C-Heavy</th>
+                            <th>B-Heavy</th>
+                            <th>C-Heavy</th>
+                            <th>B-Heavy</th>
+                            <th>C-Heavy</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor = "let data of sheerastatement">
+                        <tr >
+                            <th class="text-right disable bg-light">Opening Balance</th>
+                            <td>{{data?.first?.bheavy?.openingbalance}}</td>
+                            <td>{{data?.first?.cheavy?.openingbalance}}</td>
+                            <td>{{data?.second?.bheavy?.openingbalance}}</td>
+                            <td>{{data?.second?.cheavy?.openingbalance}}</td>
+                            <td>{{data?.third?.bheavy?.openingbalance}}</td>
+                            <td>{{data?.third?.cheavy?.openingbalance}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Production</th>
+                            <td>{{data?.first?.bheavy?.production}}</td>
+                            <td>{{data?.first?.cheavy?.production}}</td>
+                            <td>{{data?.second?.bheavy?.production}}</td>
+                            <td>{{data?.second?.cheavy?.production}}</td>
+                            <td>{{data?.third?.bheavy?.production}}</td>
+                            <td>{{data?.third?.cheavy?.production}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Total</th>
+                            <td>{{data?.first?.bheavy?.total}}</td>
+                            <td>{{data?.first?.cheavy?.total}}</td>
+                            <td>{{data?.second?.bheavy?.total}}</td>
+                            <td>{{data?.second?.cheavy?.total}}</td>
+                            <td>{{data?.third?.bheavy?.total}}</td>
+                            <td>{{data?.third?.cheavy?.total}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Captive Supply</th>
+                            <td>{{data?.first?.bheavy?.creativesupply}}</td>
+                            <td>{{data?.first?.cheavy?.creativesupply}}</td>
+                            <td>{{data?.second?.bheavy?.creativesupply}}</td>
+                            <td>{{data?.second?.cheavy?.creativesupply}}</td>
+                            <td>{{data?.third?.bheavy?.creativesupply}}</td>
+                            <td>{{data?.third?.cheavy?.creativesupply}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Reserve Supply</th>
+                            <td>{{data?.first?.bheavy?.reservesupply}}</td>
+                            <td>{{data?.first?.cheavy?.reservesupply}}</td>
+                            <td>{{data?.second?.bheavy?.reservesupply}}</td>
+                            <td>{{data?.second?.cheavy?.reservesupply}}</td>
+                            <td>{{data?.third?.bheavy?.reservesupply}}</td>
+                            <td>{{data?.third?.cheavy?.reservesupply}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Unreserve Supply (UP)</th>
+                            <td>{{data?.first?.bheavy?.unreservesupply}}</td>
+                            <td>{{data?.first?.cheavy?.unreservesupply}}</td>
+                            <td>{{data?.second?.bheavy?.unreservesupply}}</td>
+                            <td>{{data?.second?.cheavy?.unreservesupply}}</td>
+                            <td>{{data?.third?.bheavy?.unreservesupply}}</td>
+                            <td>{{data?.third?.cheavy?.unreservesupply}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Export (OUP)</th>
+                            <td>{{data?.first?.bheavy?.exportoup}}</td>
+                            <td>{{data?.first?.cheavy?.exportoup}}</td>
+                            <td>{{data?.second?.bheavy?.exportoup}}</td>
+                            <td>{{data?.second?.cheavy?.exportoup}}</td>
+                            <td>{{data?.third?.bheavy?.exportoup}}</td>
+                            <td>{{data?.third?.cheavy?.exportoup}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Export (OI)</th>
+                            <td>{{data?.first?.bheavy?.exportoi}}</td>
+                            <td>{{data?.first?.cheavy?.exportoi}}</td>
+                            <td>{{data?.second?.bheavy?.exportoi}}</td>
+                            <td>{{data?.second?.cheavy?.exportoi}}</td>
+                            <td>{{data?.third?.bheavy?.exportoi}}</td>
+                            <td>{{data?.third?.cheavy?.exportoi}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Wastage</th>
+                            <td>{{data?.first?.bheavy?.wastage}}</td>
+                            <td>{{data?.first?.cheavy?.wastage}}</td>
+                            <td>{{data?.second?.bheavy?.wastage}}</td>
+                            <td>{{data?.second?.cheavy?.wastage}}</td>
+                            <td>{{data?.third?.bheavy?.wastage}}</td>
+                            <td>{{data?.third?.cheavy?.wastage}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Total</th>
+                            <td>{{data?.first?.bheavy?.supplytotal}}</td>
+                            <td>{{data?.first?.cheavy?.supplytotal}}</td>
+                            <td>{{data?.second?.bheavy?.supplytotal}}</td>
+                            <td>{{data?.second?.cheavy?.supplytotal}}</td>
+                            <td>{{data?.third?.bheavy?.supplytotal}}</td>
+                            <td>{{data?.third?.cheavy?.supplytotal}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Relict</th>
+                            <td>{{data?.first?.bheavy?.relict}}</td>
+                            <td>{{data?.first?.cheavy?.relict}}</td>
+                            <td>{{data?.second?.bheavy?.relict}}</td>
+                            <td>{{data?.second?.cheavy?.relict}}</td>
+                            <td>{{data?.third?.bheavy?.relict}}</td>
+                            <td>{{data?.third?.cheavy?.relict}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Below Grade</th>
+                            <td>{{data?.first?.bheavy?.belowgrade}}</td>
+                            <td>{{data?.first?.cheavy?.belowgrade}}</td>
+                            <td>{{data?.second?.bheavy?.belowgrade}}</td>
+                            <td>{{data?.second?.cheavy?.belowgrade}}</td>
+                            <td>{{data?.third?.bheavy?.belowgrade}}</td>
+                            <td>{{data?.third?.cheavy?.belowgrade}}</td>
+                        </tr>
+                        <tr >
+                            <th class="text-right disable bg-light">Grade Relict</th>
+                            <td>{{data?.first?.bheavy?.graderelict}}</td>
+                            <td>{{data?.first?.cheavy?.graderelict}}</td>
+                            <td>{{data?.second?.bheavy?.graderelict}}</td>
+                            <td>{{data?.second?.cheavy?.graderelict}}</td>
+                            <td>{{data?.third?.bheavy?.graderelict}}</td>
+                            <td>{{data?.third?.cheavy?.graderelict}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:" (click)="generateXls()">Excel</a>
+                  <a class="dropdown-item" href="javascript:" (click)="generatePdf()">PDF</a>
+                  <a class="dropdown-item" href="javascript:">JPG</a>
+                  </div>
+              </div>
+              </div>
+             
+          </div>
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

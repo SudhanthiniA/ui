@@ -1,0 +1,44 @@
+<h5 class="m-b-10 ng-star-inserted">
+   {{'master.licenseconfiguration.licenseconfiguration'|translate}}
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/licencemgnt/configuration/add"
+        type="submit">
+        <i class="feather icon-plus mr-2"></i> {{'master.common.add'|translate}}
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.licenseconfiguration.master'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.licenseconfiguration.licenseconfiguration'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.common.list'|translate}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <input type="text" class="form-control" placeholder="{{'master.licenseconfiguration.code'|translate}} / {{'master.licenseconfiguration.description'|translate}}"
+                            (keyup)="search($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'master.licenseconfiguration.licenseconfiguration'|translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" [totalCount]="totalCount"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

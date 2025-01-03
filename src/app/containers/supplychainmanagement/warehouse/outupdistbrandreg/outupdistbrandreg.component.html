@@ -1,0 +1,144 @@
+<h5 class="m-b-10 ng-star-inserted">Brand Registration
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/outupdistbrandreg/add" type="submit" *ngIf = '!workflowobj?.isEditable'>
+    <i class="feather icon-plus mr-2"></i> Add Brand</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brand Registration</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Brands Approved </span>
+        <h3 class="mt-2">1000</h3>
+        <i class="fas fa-external-link-alt"></i>
+        <!-- <small>WWWW</small>    -->
+      </div>  
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Brands request pending</span>
+        <h3 class="mt-2">400</h3>
+        <i class="fas fa-hourglass-half"></i>
+        <!-- <small>WWW</small> -->
+      </div>
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+  <app-card [hidHeader]="true" cardClass="comp-card bg-danger" routerLink="/supplychainmanagement/sugarmills/stockavailability">
+    <div class="row align-items-center">
+      <div class="col">
+        <span>No. of Brands request rejected </span>
+        <h3 class="mt-2">400</h3>
+        <i class="fas fa-thumbs-down text-danger"></i>
+        <!-- <small>WWWW</small> -->
+      </div>
+    </div>
+  </app-card>
+</div>
+<div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg5 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockin/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>No. of Brands expired</span>
+          <h3 class="mt-2">200</h3>
+          <i class="fas fa-calendar-alt"></i>
+          <!-- <small>WWW</small> -->
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Brandreg="ngForm" autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Date</label>
+                            <input type="date"  class="form-control"  placeholder="Enter Application Date"
+                            name="createdDate" #createdDate="ngModel" [(ngModel)]="BrandRegObj['createdDate']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application No</label>
+                            <input type="text"  class="form-control" placeholder="Enter Application No"
+                            name="applicationNumber" #applicationNumber="ngModel" [(ngModel)]="BrandRegObj['applicationNumber']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Registration Year </label>
+                            <!-- <select class="form-control"  name='regYear' #regYear="ngModel" [(ngModel)]="BrandRegObj['regYear']">
+                              <option value="">select</option>
+                            <option *ngFor ='let year of financeyear' value="{{year.id}}">{{year.code}}</option>
+                            </select> -->
+                            <input type="date"  class="form-control" 
+                             name="regYear" #regYear="ngModel" [(ngModel)]="BrandRegObj['regYear']">
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select name='brandCode' #brandCode="ngModel"  
+                            [(ngModel)]="BrandRegObj['brandCode']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let b of allbrands" value="{{b.brandRegistrationDetails?.brandDetails?.brandCode}}">
+                                    {{b.brandRegistrationDetails?.brandDetails?.brandValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)=searchBrandData()>Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)=resetKey()>Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                <div class="row">    
+                    <div class="col-12">
+                        <div class="table-responsive mt-2">
+                          <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource" [actionBtnBasedOnCond] ="actionBtnBasedOnCondSendback" 
+                            [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                            (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                          </app-mat-normal-table>
+                        </div>
+                    </div>                            
+                    
+                    </div>
+
+            </app-card>
+            
+        </form>
+
+
+    </div>
+</div>
+
+
+

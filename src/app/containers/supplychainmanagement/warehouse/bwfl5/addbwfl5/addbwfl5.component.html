@@ -1,0 +1,159 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 5</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 5</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #Bwfl5Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add BWFL 5" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" required class="form-control" name="bwfl5Date"  #bwfl5Date="ngModel"
+                            [(ngModel)]="Bwfl5Obj['bwfl5Date']" >
+                            <div *ngIf="bwfl5Date.invalid && (bwfl5Date.dirty || bwfl5Date.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="bwfl5Date?.errors?.required"><i class="fa fa-times"></i>
+                                Date is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Treasuary Challan Number
+                            </label>
+                            <input type="text" required class="form-control"  name="treasuryChallanNo"  #treasuryChallanNo="ngModel"
+                            [(ngModel)]="Bwfl5Obj['treasuryChallanNo']" placeholder="Please Enter Treasuary Challan Number">
+                            <div *ngIf="treasuryChallanNo.invalid && (treasuryChallanNo.dirty || treasuryChallanNo.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="treasuryChallanNo?.errors?.required"><i class="fa fa-times"></i>
+                                Treasuary Challan Number is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wholesale Vendor
+                            </label>
+                            <input type="text" required class="form-control" name="wholesaleVendor"  #wholesaleVendor="ngModel"
+                            [(ngModel)]="Bwfl5Obj['wholesaleVendor']" placeholder="Enter your Wholesale Vendor">
+                            <div *ngIf="wholesaleVendor.invalid && (wholesaleVendor.dirty || wholesaleVendor.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="wholesaleVendor?.errors?.required"><i class="fa fa-times"></i>
+                                Wholesale Vendor is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Consignee</label>
+                            <input type="text" class="form-control"  name="consigneeName"  #consigneeName="ngModel"
+                            [(ngModel)]="Bwfl5Obj['consigneeName']" placeholder="Please Enter Consignee Name" required>
+                            <div *ngIf="consigneeName.invalid && (consigneeName.dirty || consigneeName.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="consigneeName?.errors?.required"><i class="fa fa-times"></i>
+                                Name of the Consignee is required
+                            </div>
+                         </div>
+                            <!-- <select class="form-control">
+                                <option>Select</option>
+                            </select> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description of foreign liquor 
+                            </label>
+                            <input type="text" required class="form-control"  name="foreignLiquorDescription"  #foreignLiquorDescription="ngModel"
+                            [(ngModel)]="Bwfl5Obj['foreignLiquorDescription']" placeholder="Please Enter Description of liquor">
+                            <div *ngIf="foreignLiquorDescription.invalid && (foreignLiquorDescription.dirty || foreignLiquorDescription.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="foreignLiquorDescription?.errors?.required"><i class="fa fa-times"></i>
+                                Description of foreign liquor  is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity in B.L
+                            </label>
+                            <input type="number" required class="form-control"  name="quantityInBl"  #quantityInBl="ngModel"
+                            [(ngModel)]="Bwfl5Obj['quantityInBl']" placeholder="Please Enter Quantity in B.L">
+                            <div *ngIf="quantityInBl.invalid && (quantityInBl.dirty || quantityInBl.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="quantityInBl?.errors?.required"><i class="fa fa-times"></i>
+                                Quantity in B.L is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity in A.L
+                            </label>
+                            <input type="number" required class="form-control"  name="quantityInAl"  #quantityInAl="ngModel"
+                            [(ngModel)]="Bwfl5Obj['quantityInAl']" placeholder="Please Enter Quantity in A.L">
+                            <div *ngIf="quantityInAl.invalid && (quantityInAl.dirty || quantityInAl.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="quantityInAl?.errors?.required"><i class="fa fa-times"></i>
+                                Quantity in A.L is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Duty Fee
+                            </label>
+                            <input type="number" required class="form-control" name="dutyFee"  #dutyFee="ngModel"
+                            [(ngModel)]="Bwfl5Obj['dutyFee']" placeholder="Please Enter Duty Fee">
+                            <div *ngIf="dutyFee.invalid && (dutyFee.dirty || dutyFee.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="dutyFee?.errors?.required"><i class="fa fa-times"></i>
+                                Duty Fee is required
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <!-- <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details" class="list-panel add-panel">
+                <div class="row">
+
+                </div>
+            </app-card>
+        </form>
+    </div> -->
+
+
+
+
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2" (click)="addBwfl5Details(Bwfl5Form,'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addBwfl5Details(Bwfl5Form,'DRAFT')">Submit</button>
+        <!-- routerLink="/supplychainmanagement/warehouse/bwfl5/list" " -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="Bwfl5Form.resetForm({})">Clear</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/warehouse/bwfl5/list">Cancel</button>
+    </div>
+</div>

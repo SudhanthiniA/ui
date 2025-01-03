@@ -1,0 +1,521 @@
+<h5 class="m-b-10 ng-star-inserted"> Add New Brand</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">New Brand</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="BrandNewObj" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add New Brand" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Unit Name
+                            </label>
+                            <input type="text" id="unitName" formControlName="unitName" class="form-control"
+                                placeholder="Please Enter Unit Name" required disabled>
+                            <div *ngIf="BrandNewObj.get('unitName').invalid && (BrandNewObj.get('unitName').dirty || BrandNewObj.get('unitName').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('unitName')?.errors?.required"><i class="fa fa-times"></i>
+                                    Unit Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type
+                            </label>
+                            <input type="text" id="licenseType" formControlName="licenseType" value='123'class="form-control"disabled
+                                placeholder="Please Enter License Type" >
+                            <!-- <div *ngIf="licenseType.invalid && (licenseType.dirty || licenseType.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="licenseType?.errors?.required"><i class="fa fa-times"></i>
+                                License Type is required
+                            </div>
+                         </div> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>For Domain
+                            </label>
+                            <!-- <input type="text" required class="form-control" placeholder=""> -->
+                            <select class="form-control" id="domainId" formControlName="domainId" class="form-control"
+                            (change)="getOriginlistbyDomainId($event.target.value)" required>
+                                <option value=''>Select</option>
+                                <option *ngFor="let d of domainlist" value="{{d.id}}">{{d.name}} </option>
+                            </select>
+                            <div *ngIf="BrandNewObj.get('domainId').invalid && (BrandNewObj.get('domainId').dirty || BrandNewObj.get('domainId').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('domainId')?.errors?.required"><i class="fa fa-times"></i>
+                                    For Domain is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+
+                        <div class="form-group">
+                            <label>Origin
+                            </label>
+                            <!-- <input type="text" required class="form-control" placeholder=""> -->
+                            <select class="form-control" id="originId" formControlName="originId" class="form-control"
+                                required>
+                                <option value=''>State master</option>
+                                <option *ngFor="let s of statelist" value="{{s.id}}">{{s.name || s.stateName || s.countryName}} </option>
+                            </select>
+                            <div *ngIf="BrandNewObj.get('originId').invalid && (BrandNewObj.get('originId').dirty || BrandNewObj.get('originId').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('originId')?.errors?.required"><i class="fa fa-times"></i>
+                                    Origin is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Type
+                            </label>
+                            <select class="form-control" id="liquorTypeId" formControlName="liquorTypeId"
+                                class="form-control" required>
+                                <option value=''>Select</option>
+                                <option *ngFor="let l of liqourlist" value="{{l.id}}">{{l.name}} </option>
+                            </select>
+                            <div *ngIf="BrandNewObj.get('liquorTypeId').invalid && (BrandNewObj.get('liquorTypeId').dirty || BrandNewObj.get('liquorTypeId').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('liquorTypeId')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Liquor Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sub Category Type
+                            </label>
+                            <select type="text" class="form-control" placeholder="Please Enter Sub Category Type"
+                                formControlName="subcategoryTypeId" required>
+                                <option value=''>Select</option>
+                                <option *ngFor="let s of subcatlist" value="{{s.category.id}}">{{s.category.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="BrandNewObj.get('subcategoryTypeId').invalid && (BrandNewObj.get('subcategoryTypeId').dirty || BrandNewObj.get('subcategoryTypeId').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('subcategoryTypeId')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Sub Category Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Requested Date
+                            </label>
+                            <input type="date" class="form-control" formControlName="createdDate" required disabled>
+                            <div *ngIf="BrandNewObj.get('createdDate').invalid && (BrandNewObj.get('createdDate').dirty || BrandNewObj.get('createdDate').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('createdDate')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Requested Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Do you have this Brand already registered for 2019-20 and label is to be changed ?
+                            </label>
+                            <div class="custom-control pl-0">
+
+                                <div *ngFor="let list of brandreglist; let i=index;" class="fleft">
+                                    <input type="radio" id="brandreglist_{{i}}"
+                                        formControlName="brandAlreadyRegisterForYearorlabel"
+                                        value="{{list.name}}">
+                                    <label for="brandname" class="pl-2">{{list.name}}</label><br>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Is Brand already register 2020-21 ?
+                            </label>
+
+                            <div *ngFor="let list of brandreg; let i=index;" class="fleft">
+                                <input type="radio" id="brandreg_{{i}}" formControlName="brandAlreadyRegister"
+                                    value="{{list.selectedvalue}}">
+                                <label for="brandreg" class="pl-2">{{list.name}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>GS 1 Standard
+                            </label>
+                            <input type="text" class="form-control" formControlName="gs1_Standard"
+                                placeholder="Please Enter GS 1 Standard" 
+                                required>
+                            <div *ngIf="BrandNewObj.get('gs1_Standard').invalid && (BrandNewObj.get('gs1_Standard').dirty || BrandNewObj.get('gs1_Standard').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('gs1_Standard')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    GS 1 Standard is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Carton Type
+                            </label>
+                            <select class="form-control" formControlName="carton_Type_id" id="carton_Type_id"
+                             required>
+                                <option value="">Select</option>
+                                <option *ngFor="let c of cartlist" value="{{c.id}}">{{c.details}} </option>
+                            </select>
+                            <div *ngIf="BrandNewObj.get('carton_Type_id').invalid && (BrandNewObj.get('carton_Type_id').dirty || BrandNewObj.get('carton_Type_id').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('carton_Type_id')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Carton Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottle Per Case
+                            </label>
+                            <input type="text" class="form-control" formControlName="bottoles_per_case"
+                                placeholder="Please Enter Bottle Per Case" required>
+                            <div *ngIf="BrandNewObj.get('bottoles_per_case').invalid && (BrandNewObj.get('bottoles_per_case').dirty || BrandNewObj.get('bottoles_per_case').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('bottoles_per_case')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Bottle Per Case is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name
+                            </label>
+                          <select class="form-control" (change)='getbrandname($event.target.value)'>
+                              <option value="">Select</option>
+                          <option *ngFor ='let brnd of brandresp' value="{{brnd.brandName}}">{{brnd.brandName}}</option>
+                          <option value="Others">Others</option>
+                          </select>
+                            <div *ngIf="BrandNewObj.get('brandName').invalid && (BrandNewObj.get('brandName').dirty || BrandNewObj.get('brandName').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('brandName')?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf='others'>
+                        <div class="form-group">
+                            <label>Brand Name
+                            </label>
+                            <input type="text" class="form-control" formControlName="brandName"
+                                placeholder="Please Enter Brand Name" required>
+                            <div *ngIf="BrandNewObj.get('brandName').invalid && (BrandNewObj.get('brandName').dirty || BrandNewObj.get('brandName').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('brandName')?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Strength
+                            </label>
+                            <input type="text" class="form-control" formControlName="brandStrength"
+                                placeholder="Please Enter Brand Strength" required>
+                            <div *ngIf="BrandNewObj.get('brandStrength').invalid && (BrandNewObj.get('brandStrength').dirty || BrandNewObj.get('brandStrength').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('brandStrength')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Brand Strength is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Regestration Number
+                            </label>
+                            <input type="text" class="form-control" formControlName="registerNo"
+                                placeholder="Please Enter Regestration No" required>
+                            <div *ngIf="BrandNewObj.get('registerNo').invalid && (BrandNewObj.get('registerNo').dirty || BrandNewObj.get('brandStrength').touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BrandNewObj.get('registerNo')?.errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Brand Regestration Number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Is Brand  registration for ?
+                            </label>
+
+                            <div *ngFor="let list of brandregfor; let i=index;" >
+                                <input type="radio" id="brandreg_{{i}}" formControlName="brandRegisterfor"
+                                    value="{{list.id}}">
+                                <label for="brandregfor" class="pl-2">{{list.name}}</label>
+                            </div>
+                        </div>
+                    </div> -->
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address
+                            </label>
+                                <input type="text" class="form-control" id="Addresss"placeholder="Please Enter Address" formControlName="address"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State
+                            </label>
+                                <input type="text" class="form-control" id="state"placeholder="Please Enter State" formControlName="state"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>City
+                            </label>
+                                <input type="text" class="form-control" id="cityname"placeholder="Please Enter City" formControlName="city"
+                                readonly  >
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]='BrandNewObj' autocomplete="off">
+            <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Shelf Life</th>
+                                        <th>GS1 Standard</th>
+                                        <th>Size</th>
+                                        <th>Package Type</th>
+                                        <th>Carton Type</th>
+                                        <th>Bottle Per Case</th>
+                                        <th>EDP</th>
+                                        <th>Consideration fees</th>
+                                        <th>Wholesaler Margin</th>
+                                        <th>Retailer Margin</th>
+                                        <th>MRP rounder off</th>
+                                        <th>Additional Consideration fees</th>
+                                        <th>Total</th>
+                                      
+                                        <th>Remarks</th>
+
+                                        <th>{{ 'sugarmill.common.action' | translate }}</th>
+                                    </tr>
+                                </thead>  
+                                <tbody>
+                                    <tr formArrayName="requestBrandDetlist"
+                                        *ngFor="let pres of BrandNewObj?.get('requestBrandDetlist')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                {{i+1}}
+                                            </div>
+                                        </td>
+                                       
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                                <input type="text" class="form-control" 
+                                                    placeholder="Please Enter Shelf life" >
+                                            </div>
+                                               
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                                <input type="text" class="form-control" formControlName="gs1Standard"
+                                                    placeholder="Please Enter GS 1 Standard" required>
+                                            </div>
+                                                <!-- <div *ngIf="BrandNewObj.get('gs1_Standard').invalid && (BrandNewObj.get('gs1_Standard').dirty || BrandNewObj.get('gs1_Standard').touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="BrandNewObj.get('gs1_Standard')?.errors?.required"><i
+                                                            class="fa fa-times"></i>
+                                                        GS 1 Standard is required
+                                                    </div>
+                                                </div> -->
+                                          
+                                            <!-- <div class="form-group mb-0">
+
+                                                <input type="number" formControlName="serialNumber" class="form-control"
+                                                    placeholder="Serial Number">
+                                            </div> -->
+                                        </td>
+                                        <td [formGroupName]="i">
+                                           
+                                            <select class="form-control" name="sizeId" id="sizeId" required
+                                                formControlName='sizeId'>
+                                                <option value="">Select</option>
+                                                <option *ngFor="let s of sizelist" value="{{s.id}}">{{s.desc}}
+                                                </option>
+                                            </select>
+
+
+                                        
+                                    </td>
+                                    <td [formGroupName]="i">
+                                        <select class="form-control" class="form-control" id="packageTypeId"
+                                           class="form-control" required
+                                            formControlName='packageTypeId'>
+                                            <option value="">Select</option>
+                                            <option *ngFor="let p of packagelist" value="{{p.id}}">{{p.name}}
+                                            </option>
+                                        </select>
+
+                                    </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                            <select class="form-control" formControlName="cartonTypeId"
+                                                id="carton_Type_id" required>
+                                                <option value="">Select</option>
+                                                <option *ngFor="let c of cartlist" value="{{c.id}}">{{c.details}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control" formControlName="bottoleperCase"
+                                                placeholder="Please Enter Bottle Per Case" required>
+
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control"(keyup)="caltotal()" formControlName="edp"
+                                                placeholder="Please Enter EDP" required>
+
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control"(keyup)="caltotal()" formControlName="considerationFees"
+                                                placeholder="Please Enter ConsiderationFees" required>
+                                                
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control"(keyup)="caltotal()" formControlName="wholesalerMargin"
+                                                placeholder="Please Enter wholesalemargin" required>
+                                                
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control"(keyup)="caltotal()" formControlName="retailerMargin"
+                                                placeholder="Please Enter retailermargin" required>
+                                                
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control" (keyup)="caltotal()"formControlName="mrpRoundedOff"
+                                                placeholder="Please Enter mrrproundedoff" required>
+                                                
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control" formControlName="additionalConsiderationFees"
+                                                placeholder="Please Enter adtnl fees" required (keyup)='caltotal(pres)'>
+                                                
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="number" class="form-control" formControlName="total"
+                                                placeholder="Please Enter total" required>
+                                                
+                                            </div>
+                                        </td>
+                                      
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+
+                                                <input type="text" id="grade{{i}}" name="grade{{i}}"
+                                                    formControlName="remarks" class="form-control"
+                                                    placeholder="Remarks">
+
+                                            </div>
+                                        </td>
+
+
+
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <i class="fa fa-plus text-primary" title="Add New Row"
+                                                    (click)="addrow()" style="cursor: pointer;">
+                                                </i>
+                                               
+                                            </div>
+                                            <div class="form-group mb-0">
+
+                                                <i class="fas fa-trash-alt text-danger" *ngIf="i!==getPresFormLength()-1" title="Delete"
+                                                     (click)="removeSelectedRow(i)"
+                                                    style="cursor: pointer;">
+                                                </i>
+                                            </div>
+    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary  mb-2"
+            routerLink="/supplychainmanagement/warehouse/brandlabelrequest/newbrand/list">Back</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addBrandDetails(BrandNewObj,'DRAFT')">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addBrandDetails(BrandNewObj,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/brandlabelrequest/newbrand/list">Cancel</button>
+
+    </div>
+</div>

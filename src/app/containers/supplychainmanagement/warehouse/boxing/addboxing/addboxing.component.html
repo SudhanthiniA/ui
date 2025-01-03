@@ -1,0 +1,280 @@
+<h5 class="m-b-10 ng-star-inserted">{{'bondWarehouse.boxing.addboxing' | translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.boxing.bottling' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.boxing.boxing' | translate}}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{'bondWarehouse.boxing.add' | translate}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #boxingForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{'bondWarehouse.boxing.boxing2021' | translate}}" class="list-panel add-panel"> 
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.year' | translate}}
+                            </label>
+                            <input type="text" required id="year" name="year" class="form-control" #year="ngModel"
+                                disabled [(ngModel)]="boxingbottlingObj['year']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.date' | translate}}
+                            </label>
+                            <input type="date" required id="date" name="date" class="form-control"
+                                placeholder="Enter Date" #date="ngModel" disabled
+                                [(ngModel)]="boxingbottlingObj['date']">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.liqourtype' | translate}}</label>
+                            <select id="liquiorType" required class="form-control" name="liquiorType"
+                                #liquiorType="ngModel" [(ngModel)]="boxingbottlingObj['liquiorType']">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="liquiorType.invalid && (liquiorType.dirty || liquiorType.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquiorType?.errors?.required"><i class="fa fa-times"></i>
+                                    Type Of liquior is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label>{{'bondWarehouse.boxing.underbottling' | translate}}</label>
+                        <div>
+                            <input type="text" required id="bottlingunder" name="bottlingunder" class="form-control"
+                            placeholder="Enter Bottling under" #licenceType="ngModel" disabled
+                            [(ngModel)]="boxingbottlingObj['licenceType']">
+
+                        </div>
+                   
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.liceno' | translate}}</label>
+                            <select id="licencetype"  required class="form-control" name="licenceNo"
+                            #licenceNo="ngModel" [(ngModel)]="boxingbottlingObj['licenceNo']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of licenseeData" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="licenceNo.invalid && (licenceNo.dirty || licenceNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licenceNo?.errors?.required"><i class="fa fa-times"></i>
+                                    License No is required 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.planeno' | translate}}
+                            </label>
+                            <!-- <input required type="text" id="planno" class="form-control" placeholder="Enter Plan No" name="planNo"
+                            #planNo="ngModel" [(ngModel)]="boxingbottlingObj['planNo']"> -->
+                            <select id="licencetype"  required class="form-control" name="planNo"
+                            #planNo="ngModel" [(ngModel)]="boxingbottlingObj['planNo']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of planids" value ="{{data.id}}">{{data.planId}}</option>
+                            </select>
+                            <div *ngIf="planNo.invalid && (planNo.dirty || planNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="planNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Plan No is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.srno' | translate}}
+                            </label>
+                            <input type="text" id="srno" class="form-control" required placeholder="Enter Sr No" name="serialNO"
+                            #serialNO="ngModel" [(ngModel)]="boxingbottlingObj['serialNO']">
+                            <div *ngIf="serialNO.invalid && (serialNO.dirty || serialNO.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="serialNO?.errors?.required"><i class="fa fa-times"></i>
+                                    Sr No is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+       
+            <app-card cardTitle="{{'bondWarehouse.boxing.bottled' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.brand' | translate}}
+                            </label>
+                            <select id="brand" required class="form-control" name="brand"
+                            #brand="ngModel" [(ngModel)]="boxingbottlingObj['brand']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                            </select>
+                            <div *ngIf="brand.invalid && (brand.dirty || brand.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brand?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.size' | translate}}
+                            </label>
+                            <select id="size" required class="form-control" name="size"
+                            #size="ngModel" [(ngModel)]="boxingbottlingObj['size']">
+                                <option value="">Select</option>
+                                <option *ngFor="let s of sizelist" value="{{s.id}}">{{s.desc}}
+                                </option>
+                            </select>
+                            <div *ngIf="size.invalid && (size.dirty || size.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="size?.errors?.required"><i class="fa fa-times"></i>
+                                    Size is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.noofbottle' | translate}}
+                            </label>
+                            <input type="text" required id="noofbottle" class="form-control"
+                                placeholder="Enter No. Of Bottle" name="noOfBottle"
+                                #noOfBottle="ngModel" [(ngModel)]="boxingbottlingObj['noOfBottle']">
+                            <div *ngIf="noOfBottle.invalid && (noOfBottle.dirty || noOfBottle.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noOfBottle?.errors?.required"><i class="fa fa-times"></i>
+                                    No Of Bottle is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="{{'bondWarehouse.boxing.boxing' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.noofbox' | translate}}
+                            </label>
+                            <input type="text" required id="boxingNoOfBox" class="form-control"
+                            placeholder="Enter No. Of Box" name="boxingNoOfBox"
+                            #boxingNoOfBox="ngModel" [(ngModel)]="boxingbottlingObj['boxingNoOfBox']">
+                            <div *ngIf="boxingNoOfBox.invalid && (boxingNoOfBox.dirty || boxingNoOfBox.touched || formSubmitted)"
+                                 class="error-msg">
+                                <div *ngIf="boxingNoOfBox?.errors?.required"><i class="fa fa-times"></i>
+                                    No Of Box is required 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.noofbottle' | translate}}
+                            </label>
+                            <input type="text" required id="boxingNooOfBottle" class="form-control"
+                            placeholder="Enter No. Of Bottle" name="boxingNooOfBottle"
+                            #boxingNooOfBottle="ngModel" [(ngModel)]="boxingbottlingObj['boxingNooOfBottle']"
+                            >
+                            <div *ngIf="boxingNooOfBottle.invalid && (boxingNooOfBottle.dirty || boxingNooOfBottle.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="boxingNooOfBottle?.errors?.required"><i class="fa fa-times"></i>
+                                    No Of Bottle is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label>{{'bondWarehouse.boxing.status' | translate}}</label>
+                        <div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <div *ngFor="let list of statuslist; let i=index;" class="fleft">
+                                    <input type="radio" id="statuslist_{{i}}" class="custom-control-input"
+                                        name="boxingStatus" #licenceType="ngModel"
+                                        [(ngModel)]="boxingbottlingObj['boxingStatus']" value="{{list.name}}">
+                                    <label class="custom-control-label" for="statuslist_{{i}}">{{list.name}}</label><br>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div>
+                            <div class="custom-control custom-radio custom-control-inline ">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Boxing Done</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Pending Boxing</label>
+                            </div>
+
+                        </div> -->
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.boxing.etin' | translate}}</label>
+                            <input type="text" required id="etinNo" class="form-control" placeholder="Enter ETIN NO" name="etinNo"
+                            #etinNo="ngModel" [(ngModel)]="boxingbottlingObj['etinNo']">
+                            <div *ngIf="etinNo.invalid && (etinNo.dirty || etinNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="etinNo?.errors?.required"><i class="fa fa-times"></i>
+                                    ETIN No is required 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">{{'bondWarehouse.boxing.upload' | translate}}</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" disabled class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2" (click) ="saveData(boxingForm,'DRAFT')">{{'bondWarehouse.common.saveasdraft' | translate}}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"(click) ="saveData(boxingForm,'SUBMITTED')">{{'bondWarehouse.common.submit' | translate}}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/boxing/list">{{'bondWarehouse.common.cancel' | translate}}</button>
+    </div>
+</div>
+<!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+    <label>Does Sugar Mill have any Captive Distilleries</label>
+    <div class="form-group">
+        <div class="form-group d-inline">
+            <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Yes" formControlName="capacityDistillery" (click)="barcodeevent($event,'Yes')">
+            <label class="cr mr-2" for="pd1">Yes
+             </label>
+        </div>
+        <div class="form-group d-inline">
+            <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd2" value="No" formControlName="capacityDistillery" (click)="barcodeevent($event,'No')">
+            <label class="cr mr-2" for="pd2">No
+             </label>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,108 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.licence.addlicence' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'"> {{ 'master.licence.editlicence' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.licence.licencemaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.licence.enterbelowdetailstolicence' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.licence.licencecode' | translate }}</label>
+                            <input type="text" id="code" name="licencecode" #licencecode="ngModel" maxlength="10"
+                                minlength="3" [(ngModel)]="categoryObj['code']" class="form-control" required
+                                placeholder="{{ 'master.licence.enterlicencecode' | translate }}"
+                                pattern="{{patternService.codePattern}}">
+                            <div *ngIf="licencecode.invalid && (licencecode.dirty || licencecode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licencecode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.licence.licencecodeisrequired' | translate }} </div>
+                                <div *ngIf="licencecode?.errors?.minlength && !licencecode?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="licencecode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licence.licencename' | translate }}</label>
+                            <input type="text" id="Name" name="licencename" #licencename="ngModel" maxlength="100"
+                                minlength="3" [(ngModel)]="categoryObj['name']" required class="form-control"
+                                placeholder="{{ 'master.licence.enterlicencename' | translate }}">
+                            <div *ngIf="licencename.invalid && (licencename.dirty || licencename.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licencename?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.licence.licencenameisrequired' | translate }} </div>
+                                <div *ngIf="licencename?.errors?.minlength && !licencename?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.licence.licensetype' | translate }}</label>
+                            <!-- <select id="category" name="licencetype" required #licencetype="ngModel"
+                                [(ngModel)]="categoryObj['type']" class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let subcat of licence_type" value="{{subcat.name}}">{{subcat.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="licencetype.invalid && (licencetype.dirty || licencetype.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="licencetype?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.licence.licencetypeisrequired' | translate }} </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="licence_type" [placeholder]="'Select'"
+                                [(ngModel)]="categoryObj.licenseTypeObj" [settings]="licenseTypeDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='licenseTypeRequired' (onDropDownClose)="onDropDownClose()"
+                                class="singleselect">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!licenseTypeRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.licence.licencetypeisrequired' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="categoryObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="categoryObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!categoryObj.isActive"> {{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="categoryObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addlicence(categoryForm)">{{ 'master.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/licencemaster/list">{{
+            'master.common.cancel' | translate }}</button>
+    </div>
+</div>

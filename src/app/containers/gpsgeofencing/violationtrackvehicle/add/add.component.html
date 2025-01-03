@@ -1,0 +1,161 @@
+<h5 class="m-b-10 ng-star-inserted">Edit Vehicle Route Violation</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">GPS</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Vehicle Route Violation</a></li>
+    <li class="breadcrumb-item">Edit</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #treasuryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Edit Vehicle Route Violation" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Transport Pass No</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control"  [(ngModel)]='barcodescan'
+                                    placeholder="TP98765WHN44" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" (click)='getindentdetails()' type="button"><i
+                                            class="fas fa-qrcode"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Vehicle No</label>
+                            <input type="text"  class="form-control" value="UP32HF9999">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">GPS ID</label>
+                            <input type="text"  class="form-control" value="UXV653287unh">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Source</label>
+                            <input type="text" disabled class="form-control" value="">
+                        </div>
+                    </div>   
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Destination</label>
+                            <select class="form-control" required disabled>
+                               <option>Select</option>
+                           </select>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Route</label>
+                            <input type="text"  class="form-control" placeholder="ALG-DR-PNB">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Route Details</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Lattitude</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Longitude</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reference location</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Despatch from Source Date Time</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Received at Destination Date Time</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">TP Valid Upto</label>
+                            <input type="text" disabled class="form-control" placeholder="">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Transport Date</label>
+                            <input type="text"  class="form-control" placeholder="1/17/2022">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">GPS Availability</label>
+                            <input type="text"  class="form-control" placeholder="Active">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Route Violation Alert</label>
+                            <input type="text"  class="form-control" placeholder="Yes">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Route Violation Details</label>
+                            <input type="text"  class="form-control" placeholder="Deviated from assigned route">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Route Violation Acknowledgement</label>
+                            <input type="text"  class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Coordinates</label>
+                            <input type="date" disabled class="form-control" placeholder="">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" checked id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Active</label>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mr-2">Back</button>
+        <button type="button" class="btn btn-primary mr-2">Submit</button>
+        <button type="button" class="btn btn-secondary">Close</button>
+    </div>
+</div>

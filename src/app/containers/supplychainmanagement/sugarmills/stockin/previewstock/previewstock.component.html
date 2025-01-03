@@ -1,0 +1,142 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.stockin.viewstockin(MF5)' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}
+        </a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/stockin/list']">{{ 'sugarmill.stockin.stockin(MF5)' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">Preview</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="stockFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.stockin.detailsofstockin(MF5)' | translate }} "
+                class="list-panel view-panel">
+                <div class="row mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stocinobj?.stockDate | date: 'dd-MMM-yyyy'}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.year' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stocinobj?.year}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.stockin.productype' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stocinobj?.productType}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.stockin.canecrushed(Qtl)' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stocinobj?.caneCrushed}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="stocinobj?.productType == 'Molasses'">
+                        <label class="w-100 view-label">{{ 'sugarmill.stockin.producedmolasses(Qtl)' | translate }}
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6"
+                        *ngIf="stocinobj?.productType == 'CANESYRUP'">
+                        <label class="w-100 view-label">Produced CaneSyrup
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6"
+                        *ngIf="stocinobj?.productType == 'CANEJUICE'">
+                        <label class="w-100 view-label">Produced CaneJuice
+                            <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stocinobj?.producedMolasses}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="stocinobj?.productType == 'Molasses'">
+                        <label class="w-100 view-label">Molasses Type <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="stocinobj?.productType == 'Molasses'">
+                        {{molasesid?.name}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="stockFormGroup" autocomplete="off">
+            <app-card cardTitle="Tank Details " class="list-panel view-panel">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tank Name</th>
+                                <th>{{ 'sugarmill.stockin.totaltank' | translate }} <br>
+                                    {{ 'sugarmill.stockin.capacityqtl' | translate }}</th>
+                                <th>Current Filled Capacity</th>
+                                <th>Current Available Quantity</th>
+                                <th>{{ 'sugarmill.stockin.grade' | translate }}</th>
+                                <th>{{ 'sugarmill.stockin.trs (%)' | translate }}</th>
+                                <th>{{ 'sugarmill.stockin.brix (%)' | translate }}</th>
+                                <th>{{ 'sugarmill.common.quantity' | translate }}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="stockInDetail"
+                                *ngFor="let pres of stocinobj?.stockInDetail; let i=index" id="row{{i}}">
+                                <td>
+                                    <div class="form-group">
+                                        {{i+1}}
+                                    </div>
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.tankId}}
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.totalcapacity}}
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.occupiedCapacity}}
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.quantity}}
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.gradeId}}
+                                </td>
+                                <td class="text-right">
+                                    {{pres?.trs}}
+                                </td>
+                                <td class="text-right">
+                                    {{pres?.brix}}
+                                </td>
+                                <td class="text-left">
+                                    {{pres?.quantity}}
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <div class="col-12 text-right mb-4">
+            <button type="button" (click)="getPrint()"
+                class="btn btn-success">{{ 'sugarmill.common.print' | translate }}</button> &nbsp;
+            <button type="button" class="btn btn-secondary"
+                routerLink="/supplychainmanagement/sugarmills/stockin/add">{{ 'sugarmill.common.back' | translate }}</button>
+        </div>
+    </div>
+</div>

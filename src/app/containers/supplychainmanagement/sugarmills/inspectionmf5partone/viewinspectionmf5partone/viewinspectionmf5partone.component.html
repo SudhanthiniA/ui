@@ -1,0 +1,262 @@
+<h5 class="m-b-10 ng-star-inserted"> {{ 'sugarmill.common.inspection' | translate }}- {{ 'sugarmill.mf5part1.part1' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/inspectionmf5/list']"> {{ 'sugarmill.common.inspection' | translate }}- {{ 'sugarmill.mf5part1.part1' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'sugarmill.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #dispatchForm="ngForm" autocomplete = "off">
+            <app-card cardTitle="{{ 'sugarmill.mf5part1.detailsmf5part1' | translate }}" class="list-panel">
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.date' | translate }}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.requestDate}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.openingstockacc' | translate }} (In Lakh qtl.) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.openStockByAccount}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.receivedondate' | translate }} (In Qtl.) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.molassesRecivedOnNewsesson}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.total' | translate }} (In lakh qtl.) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.total}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.mf5part1.dispmolassesdate' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.distillery' | translate }}(In Qtl) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.dispatchMolassesOnDistellerys}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.Osshops' | translate }}(In Qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                      {{mffpartoneObj.dispatchMolassesOnOsShops}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.industrialunits' | translate }}(In Qtl.) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.dispatchMolassesOnIndustrialUnits}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.tradeafterrelease' | translate }}(In Qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.tradeAfterRelease}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.total' | translate }} (In lakh qtl.) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.totalDispatchOfMolasses}}
+                    </div>
+                </div>
+                <h6>{{ 'sugarmill.mf5part1.clsbalmolasses' | translate }}</h6>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.totsugarquan' | translate }} <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.totalSugarQuantity}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.quantitylevy' | translate }}(Qtls) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.quantityLevy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.mf5part1.quantityfree' | translate }}(Qtls) <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{mffpartoneObj.quantityFree}}
+                    </div>
+                </div>
+                <div class="row border-bottom mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 text-primary">{{ 'sugarmill.common.remarks' | translate }} <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 remark_textarea">
+                        <app-card [hidHeader]="true" cardClass="position-absolute w-100" *ngIf="showLeble">
+                            <ul class="list-group m-0">
+                                <li *ngFor="let c of displayList" (click)="addValue(c.name)" >@{{c.name}}</li>
+                            </ul>
+                        </app-card>
+                        <textarea class="form-control" placeholder="Enter Remarks" rows="1" (keyup)="getLeble($event)" [(ngModel)]="mffpartoneObj['remarks']" name="remarks" id="remarks"></textarea>
+                    
+                    </div> 
+                </div>
+                <div class="row">
+                  
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn btn-primary mr-2" (click)="saveData(dispatchForm,2)">{{ 'sugarmill.common.verify' | translate }}</button>
+                        <button type="button" class="btn btn-secondary" *ngIf="addedit == 'View'"
+                            routerLink="/supplychainmanagement/sugarmills/inspectionmf5/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+       
+    </div>
+</div>
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form #inspectionmf5partoneForm="ngForm" autocomplete="off">
+            <app-card cardTitle=" Detail of MF5 Part 1" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" disabled name="date" class="form-control" required
+                                #date="ngModel" [(ngModel)]="mffpartoneObj['date']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Opening Stock by account (In Lakh qtl.)</label>
+                            <input type="number" disabled name="openstockbyaccount" class="form-control"
+                                required #openstockbyaccount="ngModel"
+                                [(ngModel)]="mffpartoneObj['openstockbyaccount']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses on new season received on date (In Qtl.)</label>
+                            <input type="number" disabled name="molassesrecivedonnewsesson" class="form-control"
+                                required #molassesrecivedonnewsesson="ngModel" [(ngModel)]="mffpartoneObj['molassesrecivedonnewsesson']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total (In lakh qtl.)</label>
+                            <input type="number" disabled name="total" class="form-control" required #total="ngModel"
+                                [(ngModel)]="mffpartoneObj['total']">
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="pb-4 m-0">Dispatches of molasses on date </h6>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillery(In Qtl)</label>
+                            <input type="number" disabled name="dispatchmolassesondistellerys" class="form-control" required
+                                #dispatchmolassesondistellerys="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesondistellerys']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>O.S Shops(In Qtl.)</label>
+                            <input type="number" disabled name="dispatchmolassesonosshops" class="form-control" required
+                                #dispatchmolassesonosshops="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesonosshops']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Industrial Units(In Qtl.)</label>
+                            <input type="number" disabled name="dispatchmolassesonindustrialunits" class="form-control" required
+                                #dispatchmolassesonindustrialunits="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesonindustrialunits']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Trade after Release(In Qtl.) </label>
+                            <input type="number" disabled name="tradeafterrelease" class="form-control" required
+                                #tradeafterrelease="ngModel" [(ngModel)]="mffpartoneObj['tradeafterrelease']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total (In lakh qtl.)</label>
+                            <input type="number" disabled name="totaldispatchofmolasses" class="form-control"
+                                required #totaldispatchofmolasses="ngModel" [(ngModel)]="mffpartoneObj['totaldispatchofmolasses']">
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="pb-4 m-0">Closing Balance of molasses</h6>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Sugar Quantity</label>
+                            <input type="number" disabled name="totalsugarquantity" class="form-control"
+                                required #totalsugarquantity="ngModel" [(ngModel)]="mffpartoneObj['totalsugarquantity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Levy(Qtls)</label>
+                            <input type="number" disabled name="quantitylevy" class="form-control"
+                                required #quantitylevy="ngModel"
+                                [(ngModel)]="mffpartoneObj['quantitylevy']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Free(Qtls)</label>
+                            <input type="text" disabled name="quantityfree" class="form-control"
+                                required #quantityfree="ngModel"
+                                [(ngModel)]="mffpartoneObj['quantityfree']">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <datalist id="codes" *ngIf="showLeble">
+                                <option *ngFor="let c of lebleList">@{{c.name}}&nbsp;</option>
+                            </datalist>
+                            <input type="text" name="remarksnew" class="form-control" placeholder="Enter Remarks"
+                                list="codes" #remarks="ngModel" [(ngModel)]="mffpartoneObj['remarks']" (keyup)="getLeble($event)" (change)="addValue($event)">
+                            (keyup)="getLeble($event)" (change)="addValue($event)"
+                            
+                            <div>
+                                <ul>
+                                    <li>Option 1</li>
+                                    <li>Option 2</li>
+                                    <li>Option 3</li>
+                                </ul>
+                            </div>
+
+                            <textarea cols="30" rows="1" placeholder="Enter Remarks" class="form-control" name="remarks"
+                                required #remarks="ngModel" [(ngModel)]="mffpartoneObj['remarks']" list="codes" (keyup)="getFilterLeble($event)"
+                                (change)="addValue($event)"></textarea>
+                                
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                 
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn btn-primary mr-2" >Verify</button>
+                        <button type="button" class="btn btn-secondary" *ngIf="addedit == 'View'"
+                            routerLink="/supplychainmanagement/sugarmills/inspectionmf5/list">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div> -->

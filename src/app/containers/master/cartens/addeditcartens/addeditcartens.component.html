@@ -1,0 +1,140 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.Cartons.cartons' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/cartons/list"> {{ 'master.Cartons.cartons' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #cartonsForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.Cartons.cartons' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.Cartons.cartoncode' | translate }}</label>
+                            <input type="text" [(ngModel)]=cartonsObj.code name="code"
+                                #code="ngModel" minlength="3" maxlength="10" required class="form-control"
+                                placeholder="{{ 'master.Cartons.enterapplicantcode' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.cartonscodeisrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.cartonscodemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.cartonscodeminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.Cartons.details' | translate }}</label>
+                            <input type="text" [(ngModel)]="cartonsObj.details" name="details"
+                                #details="ngModel" minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.Cartons.enterapplicantdetails' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="details.invalid && (details.dirty || details.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="details?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.deatilsisrequired' | translate }}
+                                </div>
+                                <div *ngIf="details?.errors?.maxlength && !details?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.deatilmaximum5charactor' | translate }}
+                                </div>
+                                <div *ngIf="details?.errors?.minlength && !details?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.deatilsminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.Cartons.noofbottles' | translate }}</label>
+                            <input type="number" [(ngModel)]="cartonsObj.noOfBottles" name="noofbottles"
+                                #noofbottles="ngModel" minlength="1" maxlength="50" required class="form-control"
+                                placeholder="{{ 'master.Cartons.enterapplicantnoofbottles' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="noofbottles.invalid && (noofbottles.dirty || noofbottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="noofbottles?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.noOfbottlesisrequired' | translate }}
+                                </div>
+                                <div *ngIf="noofbottles?.errors?.maxlength && !noofbottles?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.noofbottlemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="noofbottles?.errors?.minlength && !noofbottles?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.noOfbottlesminimum1charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.Cartons.size(ML)' | translate }}</label>
+                            <input type="number" [(ngModel)]="cartonsObj.size" name="size"
+                                #size="ngModel" minlength="3" minlength="50" required class="form-control"
+                                minlength="3" maxlength="50" placeholder="{{ 'master.Cartons.entersizes(ML)' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="size.invalid && (size.dirty || size.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="size?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.sizesisrequired' | translate }}
+                                </div>
+                                <div *ngIf="size?.errors?.maxlength && !size?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.sizesmaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="size?.errors?.minlength && !size?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.Cartons.sizesminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>  {{ 'master.Cartons.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="cartonsObj.isActive" name="status"
+                                    #status="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="cartonsObj.status ? '' : null">
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="cartonsObj.isActive">{{ 'master.common.active' | translate }}</label>
+                                <label class="custom-control-label" for="switch1"
+                                    *ngIf="!cartonsObj.isActive">{{ 'master.common.inactive' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addartons(cartonsForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/cartons/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+<h5 class="m-b-10 ng-star-inserted">Inspection- MF 5 Part 1</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/inspectionmf5/list']">Inspection- MF 5 Part 1</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #inspectionmf5partoneForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Inspection- MF 5 Part 1 Details" class="list-panel">
+                <h6 class="pb-4 m-0">MF5 Part1</h6>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="date" name="date" class="form-control" placeholder="Enter Date" required
+                                #date="ngModel" [(ngModel)]="mffpartoneObj['date']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Opening Stock by account
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)='caltotalmolasses()' name="openstockbyaccount" class="form-control"
+                                placeholder="Enter Opening Stock by account" required #openstockbyaccount="ngModel"
+                                [(ngModel)]="mffpartoneObj['openstockbyaccount']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses on new season received on date
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)='caltotalmolasses()' name="molassesrecivedonnewsesson" class="form-control" placeholder="Enter Molasses on new season received on Date"
+                                required #molassesrecivedonnewsesson="ngModel" [(ngModel)]="mffpartoneObj['molassesrecivedonnewsesson']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" disabled name="total" class="form-control" required #total="ngModel"
+                                [(ngModel)]="mffpartoneObj['total']">
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="pb-4 m-0">Dispatches of molasses on date </h6>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillery
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)="calculatedispatchofmolasses()" name="dispatchmolassesondistellerys" class="form-control" placeholder="Enter Distillery" required
+                                #dispatchmolassesondistellerys="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesondistellerys']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>O.S Shops
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)="calculatedispatchofmolasses()" name="dispatchmolassesonosshops" class="form-control" placeholder="Enter O.S Shops" required
+                                #dispatchmolassesonosshops="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesonosshops']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Industrial Units
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)="calculatedispatchofmolasses()" name="dispatchmolassesonindustrialunits" class="form-control" placeholder="Enter Industrial Units" required
+                                #dispatchmolassesonindustrialunits="ngModel" [(ngModel)]="mffpartoneObj['dispatchmolassesonindustrialunits']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Trade after Release 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" (keyup)="calculatedispatchofmolasses()" name="tradeafterrelease" class="form-control" placeholder="Enter Trade after Release" required
+                                #tradeafterrelease="ngModel" [(ngModel)]="mffpartoneObj['tradeafterrelease']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total</label>
+                            <input type="number" disabled name="totaldispatchofmolasses" class="form-control" placeholder="Enter Total"
+                                required #totaldispatchofmolasses="ngModel" [(ngModel)]="mffpartoneObj['totaldispatchofmolasses']">
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="pb-4 m-0">Closing Balance of molasses</h6>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Sugar Quantity
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="totalsugarquantity" class="form-control" placeholder="Enter Total Sugar Quantity"
+                                required #totalsugarquantity="ngModel" [(ngModel)]="mffpartoneObj['totalsugarquantity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Levy(Qtls) 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="quantitylevy" class="form-control"
+                                placeholder="Enter Quantity Levy(Qtls)" required #quantitylevy="ngModel"
+                                [(ngModel)]="mffpartoneObj['quantitylevy']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Free(Qtls)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" name="quantityfree" class="form-control" placeholder="Enter Quantity Free(Qtls)"
+                                required #quantityfree="ngModel"
+                                [(ngModel)]="mffpartoneObj['quantityfree']">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks"
+                                required #remarks="ngModel" [(ngModel)]="mffpartoneObj['remarks']">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-info mr-2" 
+                        (click)="previewcategory(inspectionmf5partoneForm)"> <i
+                        class="fa fa-eye"></i> &nbsp;Preview</button>
+                        <button type="button" class="btn btn-primary mr-2"
+                            (click)="saveData(inspectionmf5partoneForm,1)">Save as draft</button>
+                        <button type="button" class="btn btn-success mr-2"
+                            (click)="saveData(inspectionmf5partoneForm,2)">Submit</button>
+                        <button type="button" class="btn btn-secondary"
+                            routerLink="/supplychainmanagement/sugarmills/inspectionmf5/list">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>

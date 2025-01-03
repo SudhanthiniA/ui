@@ -1,0 +1,799 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.stockin.previewstockin(MF5)' | translate }}
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.stockin.previewstockin(MF5)' | translate }}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.stockin.previewstockin' | translate }}" class="list-panel add-panel">
+            <ngb-tabset type="pills">
+                <ngb-tab title="{{ 'sugarmill.stockin.stockin(MF5)' | translate }}" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <form [formGroup]="stockFormGroup" autocomplete="off">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.common.year' | translate }}</label>
+                                        <!-- <select class="form-control" formControlName="year">
+                                    <option default value="2019-2020">2019-2020</option>
+                                    <option value="2019-2018">2018-2019</option>
+                                    <option value="2017-2018">2017-2018</option>
+                                    <option value="2017-2018">2017-2028</option>
+                                </select> -->
+                                        <input type="text" class="form-control" placeholder="Enter year"
+                                            formControlName="year" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.common.year' | translate }}</label>
+                                        <input type="text" class="form-control" placeholder="Enter Date"
+                                            value="{{stocinobj.date}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.productype' | translate }}</label>
+                                        <div class="row">
+                                            <div class="custom-control">
+                                                <input type="radio" id="applicationtype_cane" value=true
+                                                    formControlName="canesyrup" disabled>
+                                                <label for="cane_syrup">
+                                                    &nbsp;{{ 'sugarmill.stockin.canesyrup' | translate }}</label>
+
+                                            </div>
+                                            <div class="custom-control">
+                                                <input type="radio" id="applicationtype_molasess" value=false
+                                                    formControlName="canesyrup" disabled>
+                                                <label for="cane_syrup"> &nbsp;
+                                                    {{ 'sugarmill.stockin.molasses' | translate }}</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.canecrushed(Qtl)' | translate }}</label>
+                                        <input type="number" formControlName="canecrushed" class="form-control"
+                                            placeholder="Enter Cane Crushed" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.producedcanesyrup' | translate }}</label>
+                                        <input type="number" formControlName="canesyrupdetails" class="form-control"
+                                            placeholder="Enter Cane Syrup" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.producedmolasses(Qtl)' | translate }}</label>
+                                        <input type="number" formControlName="producedmolasses" class="form-control"
+                                            placeholder="Enter Produced Molasses" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.b-heavy' | translate }}</label>
+                                        <input type="number" formControlName="bmolasses" class="form-control"
+                                            placeholder="Enter B-Heavy Molasses" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.c-heavy' | translate }}</label>
+                                        <input type="number" formControlName="cmolasses" class="form-control"
+                                            placeholder="Enter C-Heavy Molasses" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.burntmolasses(Qtl)' | translate }}</label>
+                                        <input type="number" formControlName="burntmolasses" class="form-control"
+                                            placeholder="Enter Burnt molesses(Qtl)" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.belowgrademolasses' | translate }}</label>
+                                        <input type="number" formControlName="belowmolasses" class="form-control"
+                                            placeholder="Enter Below grade Molasses(Qtl)" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.unreservedmolasses' | translate }}</label>
+                                        <input type="number" formControlName="freeleavymolasses" class="form-control"
+                                            placeholder="Enter Un-Reserved Molasses(Qtl)" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.reservedmolasses(Qtl)' | translate }}</label>
+                                        <input type="number" formControlName="reservedmolasses" class="form-control"
+                                            placeholder="Enter Reserved Molasses(Qtl)" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.inspectedby' | translate }}</label>
+                                        <input type="text" formControlName="inspectedby" class="form-control" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.designation' | translate }}</label>
+                                        <input type="text" formControlName="designation" class="form-control" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.stockin.inspectedon' | translate }}</label>
+                                        <input type="text" formControlName="inspectedon" class="form-control" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="!canesyrup">
+                                    <div class="form-group">
+                                        <label>{{ 'sugarmill.common.remarks' | translate }}</label>
+                                        <input type="text" formControlName="remarks" class="form-control" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ 'sugarmill.common.tank' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.totaltank' | translate }} <br>
+                                                    {{ 'sugarmill.stockin.capacityqtl' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.totalcapacity' | translate }} <br>
+                                                    {{ 'sugarmill.stockin.totaltank' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.availabletank' | translate }} <br>
+                                                    {{ 'sugarmill.stockin.occupied(Qtl)' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.grade' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.trs (%)' | translate }}</th>
+                                                <th>{{ 'sugarmill.stockin.brix (%)' | translate }}</th>
+                                                <th>{{ 'sugarmill.common.quantity' | translate }}</th>
+                                                <th>{{ 'sugarmill.common.action' | translate }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr formArrayName="stockindetails"
+                                                *ngFor="let pres of stockFormGroup.get('stockindetails')['controls']; let i=index"
+                                                id="row{{i}}">
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        {{i+1}}
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <select formControlName="tank" class="form-control"
+                                                            style="width: 100px;" (change)="addNewRow(i)" disabled>
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let item of totalTankList"
+                                                                value="{{item.name}}">
+                                                                {{item.name}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+
+                                                        <input type="number" id="totalcapacity" name="totalcapacity"
+                                                            formControlName="totalcapacity" class="form-control"
+                                                            placeholder="Tank Capacity" disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <input type="number" id="occupiedcapacity"
+                                                            name="occupiedcapacity" formControlName="occupiedcapacity"
+                                                            class="form-control" placeholder="Occupied Tank Capacity"
+                                                            disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <input type="text" id="availablecapacity" name="bottlegstn"
+                                                            formControlName="availablecapacity" class="form-control"
+                                                            placeholder="Available Tank Capacity" disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <select formControlName="grade" class="form-control"
+                                                            style="width: 110px;" disabled>
+                                                            <option value="">Select</option>
+                                                            <option value="A-Heavy">A-Heavy</option>
+                                                            <option value="C-Heavy">C-Heavy</option>
+                                                            <option value="B-Heavy">B-Heavy</option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <input type="number" id="trs" name="trs" formControlName="trs"
+                                                            class="form-control" placeholder="TRS" disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <input type="number" id="brix" name="bricks"
+                                                            formControlName="bricks" class="form-control"
+                                                            placeholder="BRIX" disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <input type="number" id="quantity" name="quantity"
+                                                            formControlName="quantity" class="form-control"
+                                                            placeholder="Quantity" disabled>
+                                                    </div>
+                                                </td>
+                                                <td [formGroupName]="i">
+                                                    <div class="form-group">
+                                                        <i class="fas fa-trash-alt text-danger" title="Delete"
+                                                            *ngIf="i!==getPresFormLength()-1"
+                                                            (click)="removeSelectedRow(i)" style="cursor: pointer;"
+                                                            disabled>
+                                                        </i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 text-right">
+                                    <button type="button" class="btn btn-success">
+                                        {{ 'sugarmill.common.print' | translate }}</button> &nbsp;
+                                    <button type="button" class="btn btn-secondary"
+                                        routerLink="/supplychainmanagement/sugarmills/stockin/add">{{ 'sugarmill.common.print' | translate }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ 'sugarmill.common.mf5part1' | translate }}">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.date' | translate }}</label>
+                                    <input type="date" disabled name="date" class="form-control"
+                                        placeholder="Enter Date" required #date="ngModel"
+                                        [(ngModel)]="mffpartoneObj['date']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.openinstockbyaccount' | translate }}</label>
+                                    <input type="number" disabled name="openstockbyaccount" class="form-control"
+                                        placeholder="Enter Opening Stock by account" required
+                                        #openstockbyaccount="ngModel" [(ngModel)]="mffpartoneObj['openstockbyaccount']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.molassesonewseasonreceivedondate' | translate }}</label>
+                                    <input type="number" disabled name="molassesrecivedonnewsesson" class="form-control"
+                                        placeholder="Enter Molasses on new season received on Date" required
+                                        #molassesrecivedonnewsesson="ngModel"
+                                        [(ngModel)]="mffpartoneObj['molassesrecivedonnewsesson']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.total' | translate }}</label>
+                                    <input type="number" disabled name="total" class="form-control" required
+                                        #total="ngModel" [(ngModel)]="mffpartoneObj['total']">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.common.total' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.distillery' | translate }}</label>
+                                    <input type="number" disabled name="dispatchmolassesondistellerys"
+                                        class="form-control" placeholder="Enter Distillery" required
+                                        #dispatchmolassesondistellerys="ngModel"
+                                        [(ngModel)]="mffpartoneObj['dispatchmolassesondistellerys']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.o.sshops' | translate }}</label>
+                                    <input type="number" disabled name="dispatchmolassesonosshops" class="form-control"
+                                        placeholder="{{ 'sugarmill.stockin.enterO.Sshops' | translate }}" required
+                                        #dispatchmolassesonosshops="ngModel"
+                                        [(ngModel)]="mffpartoneObj['dispatchmolassesonosshops']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.industrialunits' | translate }} </label>
+                                    <input type="number" disabled name="dispatchmolassesonindustrialunits"
+                                        class="form-control" placeholder="Enter Industrial Units" required
+                                        #dispatchmolassesonindustrialunits="ngModel"
+                                        [(ngModel)]="mffpartoneObj['dispatchmolassesonindustrialunits']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.tradeafterrelease' | translate }} </label>
+                                    <input type="number" disabled name="tradeafterrelease" class="form-control"
+                                        placeholder="Enter Trade after Release" required #tradeafterrelease="ngModel"
+                                        [(ngModel)]="mffpartoneObj['tradeafterrelease']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.total' | translate }} </label>
+                                    <input type="number" disabled name="totaldispatchofmolasses" class="form-control"
+                                        placeholder="Enter Total" required #totaldispatchofmolasses="ngModel"
+                                        [(ngModel)]="mffpartoneObj['totaldispatchofmolasses']">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.stockin.clsbalmolasses' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.totalsugarquantity' | translate }} </label>
+                                    <input type="number" disabled name="totalsugarquantity" class="form-control"
+                                        placeholder="Enter Total Sugar Quantity" required #totalsugarquantity="ngModel"
+                                        [(ngModel)]="mffpartoneObj['totalsugarquantity']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.quantitylevy(Qtls)' | translate }} </label>
+                                    <input type="number" disabled name="quantitylevy" class="form-control"
+                                        placeholder="Enter Quantity Levy(Qtls)" required #quantitylevy="ngModel"
+                                        [(ngModel)]="mffpartoneObj['quantitylevy']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.quantityfree(Qtls)' | translate }} </label>
+                                    <input type="text" name="quantityfree" disabled class="form-control"
+                                        placeholder="Enter Quantity Free(Qtls)" required #quantityfree="ngModel"
+                                        [(ngModel)]="mffpartoneObj['quantityfree']">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.remarks' | translate }} </label>
+                                    <input type="text" name="remarks" disabled class="form-control"
+                                        placeholder="Enter Remarks" required #remarks="ngModel"
+                                        [(ngModel)]="mffpartoneObj['remarks']">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.createdon' | translate }} </label>
+                                    <input type="text" disabled class="form-control"
+                                        value="{{mffpartoneObj.created_on | date: 'yyyy-MM-dd HH:mm:ss'}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.createdby' | translate }}</label>
+                                    <input type="text" disabled class="form-control"
+                                        value="{{mffpartoneObj.created_by}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.updatedon' | translate }}</label>
+                                    <input type="text" disabled class="form-control"
+                                        value="{{mffpartoneObj.modified_on | date: 'yyyy-MM-dd HH:mm:ss'}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.updatedby' | translate }}</label>
+                                    <input type="text" disabled class="form-control"
+                                        value="{{mffpartoneObj.modified_by}}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <h6>{{ 'sugarmill.stockin.statement(Last5Days)' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <app-card cardTitle="{{ 'sugarmill.stockin.currentseasonmolassesaccount' | translate }}"
+                                    blockClass="table-border-style" class="list-panel">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>{{ 'sugarmill.common.date' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.tankname' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.openinstockby' | translate }}<br>
+                                                        {{ 'sugarmill.stockin.account(A)' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.molassesonnewsesason' | translate }}<br>{{ 'sugarmill.stockin.receivedondate(B)' | translate }}
+                                                    </th>
+                                                    <th>{{ 'sugarmill.stockin.totaldispatch(C)' | translate }}<br>{{ 'sugarmill.stockin.distllery+osshops' | translate }}<br>{{ 'sugarmill.stockin.industries+tradeaftersale' | translate }}
+                                                    </th>
+                                                    <th> {{ 'sugarmill.stockin.closingbalance' | translate }}<br>
+                                                        {{ 'sugarmill.stockin.ofmolasses(A+B-C)' | translate }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>11/11/2020 </td>
+                                                    <td>378340.55</td>
+                                                    <td>9542</td>
+                                                    <td>15000</td>
+                                                    <td>372882.55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>10/11/2020</td>
+                                                    <td>377840.55</td>
+                                                    <td>15000</td>
+                                                    <td>14500</td>
+                                                    <td>378340.55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>09/11/2020</td>
+                                                    <td>375340.55</td>
+                                                    <td>12500</td>
+                                                    <td>10000</td>
+                                                    <td>377840.55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>08/11/2020</td>
+                                                    <td>377840.55</td>
+                                                    <td>2500</td>
+                                                    <td>5000</td>
+                                                    <td>375340.55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>07/11/2020</td>
+                                                    <td>385342.55</td>
+                                                    <td>0</td>
+                                                    <td>7502</td>
+                                                    <td>377840.55</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </app-card>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right">
+                            <button type="button"
+                                class="btn btn-success">{{ 'sugarmill.common.print' | translate }}</button> &nbsp;
+                            <button type="button" class="btn btn-secondary"
+                                routerLink="/supplychainmanagement/sugarmills/stockin/add">{{ 'sugarmill.common.back' | translate }}</button>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ 'sugarmill.common.mf5part2' | translate }}">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.serialnoOfTank' | translate }}</label>
+                                    <input type="number" disabled name="serialnooftank" class="form-control"
+                                        placeholder="Enter Serial No of Tank " required #serialnooftank="ngModel"
+                                        [(ngModel)]="mf5part2Obj['serialnooftank']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.tankType' | translate }}</label>
+                                    <input type="text" disabled name="tanktype" class="form-control"
+                                        placeholder="Enter Tank Type" required #tanktype="ngModel"
+                                        [(ngModel)]="mf5part2Obj['tanktype']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.capacityofmolasses' | translate }}</label>
+                                    <input type="number" disabled name="capacity" class="form-control"
+                                        placeholder="Enter Capacity of Molasses" required #capacity="ngModel"
+                                        [(ngModel)]="mf5part2Obj['capacity']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.dimensionspage' | translate }}</label>
+                                    <input type="number" disabled name="dimensionspage" class="form-control"
+                                        placeholder="Enter Dimensions Page" required #dimensionspage="ngModel"
+                                        [(ngModel)]="mf5part2Obj['dimensionspage']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.dimensions' | translate }} </label>
+                                    <input type="number" disabled name="dimensions" class="form-control"
+                                        placeholder="Enter Dimensions" required #dimensions="ngModel"
+                                        [(ngModel)]="mf5part2Obj['dimensions']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.date' | translate }}</label>
+                                    <input type="date" name="reqdate" disabled class="form-control"
+                                        placeholder="Enter Opening Stock" required #reqdate="ngModel"
+                                        [(ngModel)]="mf5part2Obj['reqdate']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.openinstockbyaccount' | translate }}</label>
+                                    <input type="number" (keyup)='caltotalmolasses()' disabled name="openstock"
+                                        class="form-control" placeholder="Enter Date" required #openstock="ngModel"
+                                        [(ngModel)]="mf5part2Obj['openstock']">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.stockin.molassesReceivedOnDate' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.quantityQtl' | translate }}</label>
+                                    <input type="number" name="quantity" disabled class="form-control"
+                                        placeholder="Enter Quantity" required #quantity="ngModel"
+                                        [(ngModel)]="mf5part2Obj['quantity']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.brix (%)' | translate }}</label>
+                                    <input type="number" (keyup)='caltotalmolasses()' disabled name="brix"
+                                        class="form-control" placeholder="Enter Brix" required #brix="ngModel"
+                                        [(ngModel)]="mf5part2Obj['brix']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.totalsugar(Qtl)' | translate }}</label>
+                                    <input type="number" name="totalsugar" disabled class="form-control"
+                                        placeholder="Enter Total Sugar" required #totalsugar="ngModel"
+                                        [(ngModel)]="mf5part2Obj['totalsugar']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.transferfromtank(Qtl)' | translate }}</label>
+                                    <input type="number" name="transferfromtank" disabled class="form-control"
+                                        placeholder="Enter Transfer from Tank" required #transferfromtank="ngModel"
+                                        [(ngModel)]="mf5part2Obj['transferfromtank']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.total' | translate }}</label>
+                                    <input type="number" name="molassestotal" disabled class="form-control"
+                                        placeholder="Enter Total" required #molassestotal="ngModel"
+                                        [(ngModel)]="mf5part2Obj['molassestotal']">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.stockin.dispatchofmolassesondate' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.nameofdistillery' | translate }}</label>
+                                    <input type="text" name="nameofdistillery" disabled class="form-control"
+                                        placeholder="Enter Total Capacity(Qtl)" required #nameofdistillery="ngModel"
+                                        [(ngModel)]="mf5part2Obj['nameofdistillery']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.Quantitysupplied' | translate }}</label>
+                                    <input type="number" name="quantitysuppliedmolasses" disabled class="form-control"
+                                        placeholder="Enter Quantity Supplied" required
+                                        #quantitysuppliedmolasses="ngModel"
+                                        [(ngModel)]="mf5part2Obj['quantitysuppliedmolasses']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.no.sofo.sShops' | translate }}</label>
+                                    <input type="text" name="nameofosshops" disabled class="form-control"
+                                        placeholder="Enter Name of O.S Shops" required #nameofosshops="ngModel"
+                                        [(ngModel)]="mf5part2Obj['nameofosshops']">
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.stockin.Quantitysupplied' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.nameofindunits' | translate }}</label>
+                                    <input type="number" (keyup)='calQtySupplied()' disabled name="nameodindunits"
+                                        class="form-control" placeholder="Enter Name of O.S Shops" required
+                                        #nameodindunits="ngModel" [(ngModel)]="mf5part2Obj['nameodindunits']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.quantitysupplied(Qtl)' | translate }}</label>
+                                    <input type="number" (keyup)='calQtySupplied()' disabled name="quantitysupplied"
+                                        class="form-control" placeholder="Enter Quantity Supplied" required
+                                        #quantitysupplied="ngModel" [(ngModel)]="mf5part2Obj['quantitysupplied']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.soldtoTrade(Qtl)' | translate }}</label>
+                                    <input type="number" (keyup)='calQtySupplied()' disabled name="soldtotrade"
+                                        class="form-control" placeholder="Enter Sold to Trade" required
+                                        #soldtotrade="ngModel" [(ngModel)]="mf5part2Obj['soldtotrade']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.total' | translate }}</label>
+                                    <input type="number" name="quantitysuppliedtotal" disabled class="form-control"
+                                        placeholder="Enter Total" required #quantitysuppliedtotal="ngModel"
+                                        [(ngModel)]="mf5part2Obj['quantitysuppliedtotal']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.closingbalance' | translate }}</label>
+                                    <input type="number" name="closingbalance" disabled class="form-control"
+                                        placeholder="Enter Closing Balnce" required #closingbalance="ngModel"
+                                        [(ngModel)]="mf5part2Obj['closingbalance']">
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="pb-4 m-0">{{ 'sugarmill.stockin.molassesanalysis' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.layer' | translate }}</label>
+                                    <input type="number" name="layer" disabled class="form-control"
+                                        placeholder="Enter Layer" required #layer="ngModel"
+                                        [(ngModel)]="mf5part2Obj['layer']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.brix' | translate }}</label>
+                                    <input type="number" name="analysbrix" disabled class="form-control"
+                                        placeholder="Enter Brix" required #analysbrix="ngModel"
+                                        [(ngModel)]="mf5part2Obj['analysbrix']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.stockin.percentageofototalsugars' | translate }}</label>
+                                    <input type="number" name="percentageoftotalsugar" disabled class="form-control"
+                                        placeholder="Enter Percentage of Total Sugar" required
+                                        #percentageoftotalsugar="ngModel"
+                                        [(ngModel)]="mf5part2Obj['percentageoftotalsugar']">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>{{ 'sugarmill.common.remarks' | translate }}</label>
+                                    <input type="text" name="remarks" disabled class="form-control"
+                                        placeholder="Enter Remarks" required #remarks="ngModel"
+                                        [(ngModel)]="mf5part2Obj['remarks']">
+                                </div>
+                            </div>
+                        </div>
+                        <h6>{{ 'sugarmill.stockin.statement(Last5Days)' | translate }}</h6>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <app-card cardTitle="{{ 'sugarmill.stockin.tankwisedaily' | translate }}"
+                                    blockClass="table-border-style" class="list-panel">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>{{ 'sugarmill.common.date' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.tankname' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.openinstockby' | translate }}<br>
+                                                        {{ 'sugarmill.stockin.account(A)' | translate }}</th>
+                                                    <th>{{ 'sugarmill.stockin.molassesonnewsesason' | translate }}<br>{{ 'sugarmill.stockin.receivedondate(B)' | translate }}
+                                                    </th>
+                                                    <th>{{ 'sugarmill.stockin.totaldispatch(C)' | translate }}<br>{{ 'sugarmill.stockin.distllery+osshops' | translate }}<br>{{ 'sugarmill.stockin.industries+tradeaftersale' | translate }}
+                                                    </th>
+                                                    <th> {{ 'sugarmill.stockin.closingbalance' | translate }}<br>
+                                                        {{ 'sugarmill.stockin.ofmolasses(A+B-C)' | translate }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>11/11/2020</td>
+                                                    <td>NMT 01</td>
+                                                    <td>656678</td>
+                                                    <td>9542</td>
+                                                    <td>15000</td>
+                                                    <td>651220</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>10/11/2020</td>
+                                                    <td>NMT 05</td>
+                                                    <td>377840.55</td>
+                                                    <td>15000</td>
+                                                    <td>14500</td>
+                                                    <td>378340.55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>09/11/2020</td>
+                                                    <td>NMT 002</td>
+                                                    <td>22450.89</td>
+                                                    <td>7549</td>
+                                                    <td>2500</td>
+                                                    <td>27499.89</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>08/11/2020</td>
+                                                    <td>NMT 03</td>
+                                                    <td>12500</td>
+                                                    <td>2500</td>
+                                                    <td>5000</td>
+                                                    <td>10000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>07/11/2020</td>
+                                                    <td>NMT 04</td>
+                                                    <td>385342.55</td>
+                                                    <td>12350</td>
+                                                    <td>7502</td>
+                                                    <td>377840.55</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </app-card>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right">
+                            <button type="button" class="btn btn-success" (click)="printthedoc()" >{{ 'sugarmill.common.print' | translate }}</button> &nbsp;
+                            <button type="button" class="btn btn-secondary"
+                                routerLink="/supplychainmanagement/sugarmills/stockin/add">{{ 'sugarmill.common.back' | translate }}</button>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </app-card>
+    </div>
+</div>

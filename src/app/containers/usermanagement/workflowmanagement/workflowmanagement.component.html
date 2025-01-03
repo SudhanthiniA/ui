@@ -1,0 +1,105 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'usermanagement.workflow.workflowmanagementlist' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button"
+        routerLink="/usermanagement/workflowmanagement/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'usermanagement.workflow.addworkflowmanagement' | translate }}
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'usermanagement.workflow.workflowmanagement' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'usermanagement.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.workflow.modulename' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">Sugar Mill</option>
+                            <option value="">Distillery</option>
+                            <option value="">Bonds</option>
+                            <option value="">Wholesale</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.workflow.submodulename' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">Stock In</option>
+                            <option value="">Molasses Receipt & Consumption</option>
+                            <option value="">Tank Registration</option>
+                            <option value="">Dispatch</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'usermanagement.usermanagement.designation' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">AEC Distillery/DEO</option>
+                            <option value="">Excise HQ</option>
+                            <option value="">DEC License</option>
+                            <option value="">JT. Comm. (HQ)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'usermanagement.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'usermanagement.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'usermanagement.workflow.workflowmanagementlist' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'usermanagement.workflow.modulename' | translate }}</th>
+                            <th>{{ 'usermanagement.workflow.screenname' | translate }}</th>
+                            <th>{{ 'usermanagement.common.status' | translate }}</th>
+                            <th>{{ 'usermanagement.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="workFlowList?.length != 0">
+                        <tr *ngFor="let x of workFlowList let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{x.moduleName}}</td>
+                            <td>{{x.screenName}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="x.active">Active</span>
+                                <span class="badge m-r-5 badge-light-danger" *ngIf="!x.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/usermanagement/workflowmanagement/view/{{x.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/usermanagement/workflowmanagement/edit/{{x.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- <tbody *ngIf="workFlowList?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

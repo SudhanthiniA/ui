@@ -1,0 +1,488 @@
+<h5 class="m-b-10 ng-star-inserted">Add Bottling Production Plan</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bottling Production Plan</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+<div class="row">
+    <form #bottlingForm="ngForm" autocomplete="off">
+    <div class="col-xl-12">
+         <!-- <form #bottlingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="Add - Bottling Plan" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" name ="botteldate" id="botteldate" class="form-control" placeholder="Enter Date"
+                            #botteldate="ngModel"  [(ngModel)]="bottlingprodplan['botteldate']">
+                            <div *ngIf="botteldate.invalid && (botteldate.dirty || botteldate.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="botteldate?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mapped/Un-Mapped</label>
+                            <select id="mappunmap" name="mappunmap" required class="form-control"  #mappunmap="ngModel"  [(ngModel)]="bottlingprodplan['mappunmap']">
+                                <option value="">Select</option>
+                                <option value="Mapped">Mapped</option>
+                                <option value="Un-Mapped">Un-Mapped</option>
+                            </select>
+
+                            <div *ngIf="mappunmap.invalid && (mappunmap.dirty || mappunmap.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="mappunmap?.errors?.required"><i class="fa fa-times"></i>
+                                    mappunmap is required </div>
+
+                        </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Type
+                            </label>
+                            <select id="liquortype" name="liquortype" required class="form-control" #liquortype="ngModel"  [(ngModel)]="bottlingprodplan['liquortype']">
+                                <option value="">Select</option>
+                                <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="liquortype.invalid && (liquortype.dirty || liquortype.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="liquortype?.errors?.required"><i class="fa fa-times"></i>
+                                    liquortype is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Licence Type
+                            </label>
+                            <select id="licencetype" name="licencetype" required class="form-control" #licencetype="ngModel"  [(ngModel)]="bottlingprodplan['licencetype']" >
+                                <option value="">Select</option>
+                                <option *ngFor="let data of licenceTypeList" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="licencetype.invalid && (licencetype.dirty || licencetype.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="licencetype?.errors?.required"><i class="fa fa-times"></i>
+                                    licencetype is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Licence No.</label>
+                            <select id="licenceno" name="licenceno" required class="form-control" #licenceno="ngModel"  [(ngModel)]="bottlingprodplan['licenceno']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of licenseeData" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+
+                            <div *ngIf="licenceno.invalid && (licenceno.dirty || licenceno.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="licenceno?.errors?.required"><i class="fa fa-times"></i>
+                                    licenceno is required </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        <!-- </form> -->
+    </div>
+    <div class="col-xl-12">
+        <!-- <form #bottlingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="Product " class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plan ID
+                            </label>
+                            <input type="text" required  name ="palnid" id="palnid" class="form-control"
+                                placeholder="Enter Plan ID" #palnid="ngModel"  [(ngModel)]="bottlingprodplan['palnid']">
+
+                                <div *ngIf="palnid.invalid && (palnid.dirty || palnid.touched || formSubmitted)"
+                                class="error-msg">
+                                    <div *ngIf="palnid?.errors?.required"><i class="fa fa-times"></i>
+                                        palnid is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand
+                            </label>
+                            <select id="brand" name="brand" required class="form-control" #brand="ngModel"  [(ngModel)]="bottlingprodplan['brand']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                            </select>
+
+                            <div *ngIf="brand.invalid && (brand.dirty || brand.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="brand?.errors?.required"><i class="fa fa-times"></i>
+                                    brand is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size
+                            </label>
+                            <select id="size" name ="size" required class="form-control" #size="ngModel"  [(ngModel)]="bottlingprodplan['size']">
+                                <option value="">Select</option>
+                                <option value ="type1">Type 1</option>
+                            </select>
+                            <div *ngIf="size.invalid && (size.dirty || size.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="size?.errors?.required"><i class="fa fa-times"></i>
+                                    size is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Cases
+                            </label>
+                            <input type="text" required id="noofcases" name="noofcases" class="form-control"
+                                placeholder="Enter No. of Cases" #noofcases="ngModel"  [(ngModel)]="bottlingprodplan['noofcases']">
+
+                                <div *ngIf="noofcases.invalid && (noofcases.dirty || noofcases.touched || formSubmitted)"
+                                class="error-msg">
+                                    <div *ngIf="noofcases?.errors?.required"><i class="fa fa-times"></i>
+                                        noofcases is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity(B.L)
+                            </label>
+                            <input type="text" required id="quantitybl" name="quantitybl" class="form-control"
+                                placeholder="Enter Quantity(B.L)" #quantitybl="ngModel"  [(ngModel)]="bottlingprodplan['quantitybl']">
+                                <div *ngIf="quantitybl.invalid && (quantitybl.dirty || quantitybl.touched || formSubmitted)"
+                                class="error-msg">
+                                    <div *ngIf="quantitybl?.errors?.required"><i class="fa fa-times"></i>
+                                        quantitybl is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Package Type
+                            </label>
+                            <select id="packagetype" name="packagetype" required class="form-control" #packagetype="ngModel"  [(ngModel)]="bottlingprodplan['packagetype']">
+                                <option value="">Select</option>
+                                <option *ngFor="let data of packagetypeData" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+                            <div *ngIf="packagetype.invalid && (packagetype.dirty || packagetype.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="packagetype?.errors?.required"><i class="fa fa-times"></i>
+                                    packagetype is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No. of Bottle Per Case
+                            </label>
+                            <select id="bottlerpercase" name ="noofbottlepercase" required class="form-control" #noofbottlepercase="ngModel"  [(ngModel)]="bottlingprodplan['noofbottlepercase']">
+                                <option value="">Select</option>
+                                <option value="10">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                            </select>
+                            <div *ngIf="noofbottlepercase.invalid && (noofbottlepercase.dirty || noofbottlepercase.touched || formSubmitted)"
+                            class="error-msg">
+                                <div *ngIf="noofbottlepercase?.errors?.required"><i class="fa fa-times"></i>
+                                    noofbottlepercase is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Planned No. of Bottles
+                            </label>
+                            <input type="text" required id="planned" name="plannednoofbottles" class="form-control"
+                                placeholder="Enter Planned No. of Bottles"  #plannednoofbottles="ngModel"  [(ngModel)]="bottlingprodplan['plannednoofbottles']">
+
+                                <div *ngIf="plannednoofbottles.invalid && (plannednoofbottles.dirty || plannednoofbottles.touched || formSubmitted)"
+                                class="error-msg">
+                                    <div *ngIf="plannednoofbottles?.errors?.required"><i class="fa fa-times"></i>
+                                        plannednoofbottles is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right mb-2">
+                        <button type="submit" class="btn btn-primary mr-2"(click)="adddata(bottlingForm)">Add</button>
+                        <button type="submit" class="btn btn-secondary" (click)="clears(bottlingForm)">Clear</button>
+                    </div> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Plan ID</th>
+                                        <th>Brand</th>
+                                        <th>Size</th>
+                                        <th>No. of Cases</th>
+                                        <th>Quantity(B.L)</th>
+                                        <th>Package Type</th>
+                                        <th>No. of Bottle Per Case</th>
+                                        <th>Planned No. of Bottles</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of tabledata; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{data.palnid}}</td>
+                                        <td class="text-left">{{data.brand}}</td>
+                                        <td class="text-left">{{data.size}}</td>
+                                        <td class="text-left">{{data.noofcases}}</td>
+                                        <td class="text-left">{{data.quantitybl}}</td>
+                                        <td class="text-left">{{data.noofbottlepercase}}</td>
+                                        <td class="text-left">{{data.packagetype}}</td>
+                                        <td class="text-left">{{data.plannednoofbottles}}</td>
+
+                                        <td class="table-action-column">
+                                            <button class="btn btn-icon btn-primary" type="button"
+                                                routerLink="/supplychainmanagement/distillery/bottlingindent/view">
+                                                <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="bindelements(i,tabledata)">
+                                                <i class="feather icon-edit-2"></i></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        <!-- </form> -->
+    </div>
+    </form>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-success ml-2 mb-2"(click)="adddata(bottlingForm)">Add Row</button>
+                        <button type="submit" class="btn btn-danger ml-2 mb-2" (click)="clears(bottlingForm)">Delete Row</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"(click)="savetable()">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/bottlingproductionplan/list">Cancel</button>
+    </div>
+</div>
+
+
+<!-- <div class="row">
+
+    <div class="col-xl-12">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Indent Request(Molasses) Details" class="list-panel add-panel">
+                <div class="row">
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required name="botteldate" class="form-control" placeholder="Enter Date" 
+                                #botteldate="ngModel"  [(ngModel)]="indentRequestObject['botteldate']">
+                   
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mapped/Un-Mapped</label>
+
+                            <select id="mappunmap" name="mappunmap" required #productTypeId="ngModel"  [(ngModel)]="indentRequestObject['mappunmap']" 
+                                required class="form-control">
+                                <option value="">select</option>
+                                 <option value="Mapped">Mapped</option>
+                                <option value="Un-Mapped">Un-Mapped</option>
+                            </select>
+                        </div>
+                    
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Type</label>
+
+                            <select id="liquortype" name="liquortype" required  #liquortype="ngModel" [(ngModel)]="indentRequestObject['liquortype']" 
+                                required class="form-control">
+                                <option value="">select</option>
+                                <option *ngFor = "let data of rawmaterialList" value="{{data.id}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                     
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Licence Type</label>
+                            <select id="licencetype" name="licencetype" required #licencetype="ngModel"  [(ngModel)]="indentRequestObject['licencetype']" 
+                                required class="form-control">
+                                <option value="">select</option>
+                                <option *ngFor="let data of licenceTypeList" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                      
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Licence No.</label>
+    
+                            <select id="licenceno" name="licenceno" required #licenceno="ngModel" [(ngModel)]="indentRequestObject['licenceno']" 
+                                 class="form-control">
+                                <option value="">select</option>
+                                <option *ngFor="let data of licenseeData" value ="{{data.id}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                      
+                    </div>
+                  
+                </div>
+          
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Existing Capacity" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plan ID</label>
+                            <input type="number" name="palnid"
+                                class="form-control"  placeholder="" 
+                                #palnid="ngModel" [(ngModel)]="indentRequestObject['palnid']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand</label>
+                                <select id="brand" name="brand" required class="form-control" #brand="ngModel"  [(ngModel)]="indentRequestObject['brand']">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let data of brandlists" value="{{data.id}}">{{data.brandName}}</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select id="grade" name="size" #size="ngModel"  [(ngModel)]="indentRequestObject['size']"
+                                 class="form-control">
+                                <option value="100M">100M</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>No. of Cases</label>
+                                <input type="number"  name="noofcases"
+                                    class="form-control" placeholder="" 
+                                    #noofcases="ngModel" [(ngModel)]="indentRequestObject['noofcases']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Quantity(B.L)</label>
+                                <input type="number"  name="quantitybl"
+                                    class="form-control" placeholder="" 
+                                    #quantitybl="ngModel" [(ngModel)]="indentRequestObject['quantitybl']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Package Type</label>
+                                <select id="grade" name="packagetype" #packagetype="ngModel"  [(ngModel)]="indentRequestObject['packagetype']"
+                                     class="form-control">
+                                    <option value="">select</option>
+                                    <option *ngFor="let data of packagetypeData" value ="{{data.id}}">{{data.name}}</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>No. of Bottle Per Case</label>
+                                    <select id="grade" name="noofbottlepercase" #noofbottlepercase="ngModel"  [(ngModel)]="indentRequestObject['noofbottlepercase']"
+                                         class="form-control">
+                                         <option value="">Select</option>
+                                         <option value="10">50</option>
+                                         <option value="100">100</option>
+                                         <option value="200">200</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Planned No. of Bottles</label>
+                                        <input type="number"  name="plannednoofbottles"
+                                            class="form-control" placeholder="" 
+                                            #plannednoofbottles="ngModel" [(ngModel)]="indentRequestObject['plannednoofbottles']">
+                                    </div>
+                                </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+            <button type="submit" class="btn btn-primary mr-2"(click)="saveData(indentrequestForm)">Add</button>
+            <button type="submit" class="btn btn-secondary" (click)="clear()">Clear</button>
+    </div>
+
+   
+    <div class="col-xl-12">
+        <app-card cardTitle="Bootling Production Planing" class="list-panel add-panel">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Plan ID</th>
+                            <th>Brand</th>
+                            <th>Size</th>
+                            <th>No. of Cases</th>
+                            <th>Quantity(B.L)</th>
+                            <th>Package Type</th>
+                            <th>No. of Bottle Per Case</th>
+                            <th>Planned No. of Bottles</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tabledata; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.palnid}}</td>
+                            <td class="text-left">{{data.brand}}</td>
+                            <td class="text-left">{{data.size}}</td>
+                            <td class="text-left">{{data.noofcases}}</td>
+                            <td class="text-left">{{data.quantitybl}}</td>
+                            <td class="text-left">{{data.noofbottlepercase}}</td>
+                            <td class="text-left">{{data.packagetype}}</td>
+                            <td class="text-left">{{data.plannednoofbottles}}</td>
+    
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/bottlingindent/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/passandpermit/gatepasspd25/add">
+                                    <i class="feather icon-edit-2"></i></button>
+    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2"(click)="savetable()">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/bottlingproductionplan/list">Cancel</button>
+    </div>
+</div> -->

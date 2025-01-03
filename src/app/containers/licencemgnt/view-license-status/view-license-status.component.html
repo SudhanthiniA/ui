@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search License" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                    <div class="form-group">
+                        <label>License Number</label>
+                        <input type="text" class="form-control" placeholder="License Number" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                    <div class="form-group">
+                        <label>License Category</label>
+                        <input type="text" class="form-control" [(ngModel)]="searchInput.licenseCategory" placeholder="License Category"/>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                    <div class="form-group">
+                        <label>License Sub Category</label>
+                        <input type="text" class="form-control" [(ngModel)]="searchInput.licenseSubCategory" placeholder="License Sub Category"/>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.daterange' | translate }}</label>
+                        <input type="text" class="form-control" name="daterange"
+                            autocomplete="off"
+                            ngxDaterangepickerMd
+                            [(ngModel)]="searchDateRange"
+                            [locale]="locale"
+                            showCancel="true"
+                            placeholder="Choose start and end date"/>
+                    </div>
+                </div>
+            </div>
+            <div class="text-content text-right mb-4">
+                <button type="button" (click)="searchLicense()" class="btn btn-secondary mb-2 ml-2">Search</button>
+                <button type="button" (click)="clearSearch()" class="btn btn-secondary mb-2 ml-2">Clear</button>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="License {{ 'master.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)" (downloadAction)="onDownload($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

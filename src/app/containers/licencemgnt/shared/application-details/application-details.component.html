@@ -1,0 +1,33 @@
+<app-card cardTitle="{{'licenseMgnt.applicationDetailsTitle' | translate}}" class="list-panel view-panel">
+    <div class="row">
+      
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.financial_yearText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{applicationDetail ? applicationDetail.financialYear : '-'}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.dateofApplicationText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{applicationDetail ? applicationDetail.applicationDate : '-'}}
+        </div>
+        <ng-container *ngIf="applicationDetail?.licenseSubCategory">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.licenseTypeText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{applicationDetail?.licenseSubCategory}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="applicationDetail?.entityFirmDesc">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.entityofFirmText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{applicationDetail?.entityFirmDesc}}
+            </div>
+        </ng-container>
+    </div>
+</app-card>

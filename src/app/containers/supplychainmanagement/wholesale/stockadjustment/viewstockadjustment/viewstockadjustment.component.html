@@ -1,0 +1,80 @@
+<h5 class="m-b-10 ng-star-inserted">
+    View Stock Adjustment
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Stock Adjustment</a></li>
+     <li class="breadcrumb-item">View</li>
+ </ul>
+
+<div class="row">
+   
+    <div class="col-xl-12">
+        <app-card cardTitle="Stock Adjustment Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   {{stockObj.date}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Adjustment Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockObj.adjustmentNumber}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockObj.status}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">From Unit<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockObj.fromUnit}}
+                </div>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center" >
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Product Name</th>
+                                    <th>Liquor type</th>
+                                    <th>Size</th>
+                                    <th>Package Type</th>
+                                    <th>Total No. of cases</th>
+                                    <th>Total No. of Bottles</th>
+                                    <th>Bartch No</th>
+                                    <th>Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of stockdata;let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.productName}}</td>
+                                    <td>{{item.liquorType}}</td>
+                                    <td>{{item.size}}</td>
+                                    <td>{{item.packageTye}}</td>
+                                    <td>{{item.totalNoOfCases}}</td>
+                                    <td>{{item.totalNoOfBottles}}</td>
+                                    <td>{{item.batchNo}}</td>
+                                    <td>{{item.expiryDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-secondary mb-2 ml-2"
+            routerLink="/supplychainmanagement/wholesale/stockadjustment/list">Back</button>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Transfer of Distillation List
+    <button type="submit" class="btn btn-success pull-right" routerLink="/supplychainmanagement/distillery/transferofdistillation/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Distillation
+    </button>
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0 mt-5">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Transfer of Distillation</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Raw Material Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Raw Material Name">
+                    </div>
+                </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                            <label>From Tank type </label>
+                            <select class="form-control"  name="fromTankType" >
+                                <option value="">select</option>
+                                <option value="From Tank type one">From Tank type one</option>
+                                <option value="From Tank type two">From Tank type two</option>
+                                <option value="From Tank type three">From Tank type three</option>
+                            </select>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>To Tank type</label>
+                          <select class="form-control" name="toTankType" >
+                            <option value="">select</option>
+                            <option value="To Tank type one">To Tank type one</option>
+                            <option value="To Tank type two">To Tank type two</option>
+                            <option value="To Tank type three">To Tank type three</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                  </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Transfer of Distillation List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Raw Material Name</th>
+                            <th>Quantity</th>
+                            <th>Measurement</th>
+                            <th>Quantity from Wighbridge</th>
+                            <th>From Tank type</th>
+                            <th>To Tank type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of stockinData; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.rawMaterialName}}</td>
+                            <td>{{data.quantity}}</td>
+                            <td>{{data.measurement}}</td>
+                            <td>{{data.quantityWighbridge}}</td>
+                            <td>{{data.fromTankType}}</td>
+                            <td>{{data.toTankType}}</td>
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary mr-2" type="button" routerLink="/supplychainmanagement/distillery/transferofdistillation/view/{{data.id}}">
+                                  <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary" type="button" routerLink="/supplychainmanagement/distillery/transferofdistillation/edit/{{data.id}}">
+                                <i class="feather icon-edit-2"></i></button>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item" href="javascript:">PDF</a>
+                  <a class="dropdown-item" href="javascript:">CSV</a>
+                  </div>
+              </div>
+              </div>
+           
+          </div>
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

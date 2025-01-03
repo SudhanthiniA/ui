@@ -1,0 +1,150 @@
+<h5 class="m-b-10 ng-star-inserted">BWFL Authorize Person</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL Authorize Person</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+
+        <app-card cardTitle="Authorize Person Details" class="list-panel view-panel">
+            <div class="row" *ngIf="authPersonData">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.salutationText' | translate}}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.salutationDesc}}</div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.firstNameText' | translate}}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.firstName}}</div>
+                <ng-container *ngIf="authPersonData.middleName">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.midNameText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{authPersonData.middleName ? authPersonData.middleName : '-'}}
+                    </div>
+                </ng-container>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.lastNameText' | translate}}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.lastName}}</div>
+                <ng-container *ngIf="isFileExists(licConst.FN_APPLI_PHOTO) as fileObj">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.applicantPhotoText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{fileObj.documentName}}
+                        <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                            (click)="downloadDocument(licConst.FN_APPLI_PHOTO)"> <i class="feather icon-eye"></i>
+                        </button>
+                    </div>
+                </ng-container>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.dobText' | translate}} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.dob}}</div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.genderText' | translate}} <span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.genderDesc}}</div>
+                <ng-container *ngIf="authPersonData.aadharNumber">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.aadharNumberText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.aadharNumber}}</div>
+                </ng-container>
+                <ng-container *ngIf="isFileExists(licConst.FN_APPLI_AADHAR) as fileObj">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.viewAadharText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{fileObj.documentName}}
+                        <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                            (click)="downloadDocument(licConst.FN_APPLI_AADHAR)"> <i class="feather icon-eye"></i>
+                        </button>
+                    </div>
+                </ng-container>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.emailIDText' | translate}}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.emailId}}</div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.mobileNumberText' | translate}}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.mobileNumber}}</div>
+                <ng-container *ngIf="authPersonData.panNumber">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.panNumberText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.panNumber}}</div>
+                </ng-container>
+                <ng-container *ngIf="isFileExists(licConst.FN_APPLI_PAN) as fileObj">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.viewPANText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{fileObj.documentName}}
+                        <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                            (click)="downloadDocument(licConst.FN_APPLI_PAN)"> <i class="feather icon-eye"></i>
+                        </button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="authPersonData.itrAssesmentYearDesc">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.select_itrText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.itrAssesmentYearDesc}}</div>
+                </ng-container>
+                <ng-container *ngIf="isFileExists(licConst.FN_APPLI_ITR) as fileObj">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.viewITR_Text' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{fileObj.documentName}}
+                        <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                            (click)="downloadDocument(licConst.FN_APPLI_ITR)"> <i class="feather icon-eye"></i>
+                        </button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="authPersonData.previousItrNotFiled">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.reasonIfPreviousAssessment_ITR_ViewedText' |
+                            translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{authPersonData?.previousItrNotFiled}}</div>
+                </ng-container>
+                <ng-container *ngIf="authPersonData?.authorizePersonAddressList">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'licenseMgnt.addrText' | translate}}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{authPersonData?.authorizePersonAddressList[0]?.tahsilDesc }}, {{authPersonData?.authorizePersonAddressList[0]?.districtDesc }},
+                        {{authPersonData?.authorizePersonAddressList[0]?.stateDesc }}, {{authPersonData?.authorizePersonAddressList[0]?.pinCode }}
+                    </div>
+                </ng-container>
+            </div>
+        </app-card>
+
+        <div class="text-content text-right mb-4">
+            <button type="button" class="btn btn-secondary mb-2 ml-2" (click)="back()">Back</button>
+        </div>
+
+    </div>
+</div>

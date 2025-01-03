@@ -1,0 +1,352 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Raise EAL Request
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">EAL Request</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Raise EAL Request</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-12">
+        <app-card cardTitle="Raise EAL Request" class="list-panel add-panel">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="">Application Date & Time
+                        </label>
+                        <input type="text" class="form-control" value="2024-08-02 17:28:34" disabled>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">License Number</label>
+                        <select required class="form-control">
+
+                            <option value="">Select</option>
+                            <option value="">24</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="">Entity Type
+                        </label>
+                        <input type="text" class="form-control" value="PARENT_UNIT" disabled>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="">Entity Address</label>
+                        <textarea disabled rows="1"
+                            class="form-control">test,Agra,AGRA,UTTAR PRADESH,INDIA,282001</textarea>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="">License Type
+                        </label>
+                        <input type="text" class="form-control" value="BWFL" disabled>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="">Unit Name</label>
+                        <input type="text" value="KLM UNIT" class="form-control" disabled>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Code Type</label>
+                        <select required class="form-control">
+                            <option value="">Select</option>
+                            <option value="">MAPPED</option>
+                            <option value="" selected>UNMAPPED</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </app-card>
+        <app-card cardTitle="Mapped" class="list-panel add-panel d-none">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                      <label class="mandatory">Transport Pass Number</label>
+                      <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">Yes</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">No</label>
+                    </div>
+                  </div> -->
+                <div class="table-responsive mb-2">
+                    <table class="table table-bordered mb-0">
+                        <tr>
+                            <th>S.No</th>
+                            <!-- <th>Carton Size</th> -->
+                            <th>Package Size</th>
+                            <th>Bottles per Case<span class="mandatory"></span></th>
+                            <th>Dimension</th>
+                            <th>Label per Roll</th>
+                            <th>No of Roll<span class="mandatory"></span></th>
+                            <th>No.of Barcode/cases Code</th>
+                            <th> No.of QR Code/Bottles</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <!-- <td>10</td> -->
+                            <td><select required class="form-control">
+
+                                    <option value="">Select</option>
+                                    <option value="">24</option>
+                                </select></td>
+                            <td>
+                                <select required class="form-control">
+
+                                    <option value="">Select</option>
+                                    <option value="">24</option>
+                                </select>
+                            </td>
+                            <!-- <td>RLR_AGRA-16072024-BWFL-PU-123456</td> -->
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" placeholder="Enter No of Roll" class="form-control"></td>
+                            <td></td>
+                            <td></td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-success" type="button" (click)="view(i)">
+                                    <i class="feather icon-plus"></i></button>
+                                <button class="btn btn-icon btn-danger ml-2" type="button" (click)="view(i)">
+                                    <i class="feather icon-trash"></i></button>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+        </app-card>
+
+        <app-card cardTitle="UN-Mapped" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-3 col-sm-12 col-12">
+                    <!-- <label class="mandatory">Transport Pass Number</label> -->
+                    <div class="segment">
+                      <input type="radio" name="tab" id="tab1" checked>
+                      <label class="" for="tab1">Barcode/QRcode</label>
+                      <input type="radio" name="tab" id="tab2">
+                      <label class="" for="tab2">Monocarton</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode and QRcode/Monocarton<span class="mandatory"></span></label>
+                    <input disabled class="form-control" type="text" value="Barcode">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode/QRcode<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>Barcode</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Dimension<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100MM (LENGTH) X 75 (WIDTH)">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Label per Roll<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="1000/ROLL">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No of Roll<span class="mandatory"></span></label>
+                    <input class="form-control"  type="text" placeholder="Enter No of Roll">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No.of Barcode/cases Code<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100000">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Printing Type<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>Horizontal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 text-right">
+
+                <button type="button" class="btn btn-primary ml-2 mb-2">Add</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2">Clear</button>
+            </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="UN-Mapped" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-3 col-sm-12 col-12">
+                    <!-- <label class="mandatory">Transport Pass Number</label> -->
+                    <div class="segment">
+                      <input type="radio" name="tab5" id="tab5" checked>
+                      <label class="" for="tab5">Barcode/QRcode</label>
+                      <input type="radio" name="tab6" id="tab6">
+                      <label class="" for="tab6">Monocarton</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode and QRcode/Monocarton<span class="mandatory"></span></label>
+                    <input disabled class="form-control" type="text" value="QRcode">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode/QRcode<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>QRcode</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Dimension<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100MM (LENGTH) X 75 (WIDTH)">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Label per Roll<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="1000/ROLL">
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No of Roll<span class="mandatory"></span></label>
+                    <input class="form-control"  type="text" placeholder="Enter No of Roll">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No.of QR Code/Bottles<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100000">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Printing Type<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>Horizontal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 text-right">
+
+                <button type="button" class="btn btn-primary ml-2 mb-2">Add</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2">Clear</button>
+            </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="UN-Mapped" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-6 col-md-3 col-sm-12 col-12">
+                    <!-- <label class="mandatory">Transport Pass Number</label> -->
+                    <div class="segment">
+                      <input type="radio" name="tab3" id="tab3" >
+                      <label class="" for="tab3">Barcode/QRcode</label>
+                      <input type="radio" name="tab4" id="tab4" checked>
+                      <label class="" for="tab4">Monocarton</label>
+                  </div>
+                </div>
+                <!-- <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode and QRcode/Monocarton<span class="mandatory"></span></label>
+                    <input disabled class="form-control" type="text">
+                </div>
+            </div> 
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Barcode/QRcode<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                </div>
+            </div>-->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Dimension<span class="mandatory"></span></label>
+                    <input disabled class="form-control" type="text" value="50MM (LENGTH) X 15MM (WIDTH)">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Label per Roll<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="10000">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No of Roll<span class="mandatory"></span></label>
+                    <input class="form-control" type="text" placeholder="Enter No of Roll">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No.of Barcode/cases Code<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>No.of QR Code/Bottles<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="200">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Default Wastage<span class="mandatory"></span></label>
+                    <input class="form-control" disabled type="text" value="100">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Printing Type<span class="mandatory"></span></label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 text-right">
+
+                <button type="button" class="btn btn-primary ml-2 mb-2">Add</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2">Clear</button>
+            </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right">
+
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2">Cancel</button>
+    </div>
+
+</div>

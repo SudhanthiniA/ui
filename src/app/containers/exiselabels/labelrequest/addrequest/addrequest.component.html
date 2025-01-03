@@ -1,0 +1,82 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} Request Label</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Exise Label</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Request Label</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{addedit}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Request" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select id="product" name="brandname" required #brandname="ngModel"
+                                [(ngModel)]="categoryObj['brandname']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of brands" value="{{year.name}}">{{year.name}}</option>
+                            </select>
+                            <div *ngIf="brandname.invalid && (brandname.dirty || brandname.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="brandname?.errors?.required"><i class="fa fa-times"></i>
+                                Brand is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size(In ML)</label>
+                            <select id="product" name="sizes" required #sizes="ngModel"
+                                [(ngModel)]="categoryObj['sizes']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of sizess" value="{{year.size}}">{{year.size}}</option>
+                            </select>
+                            <div *ngIf="sizes.invalid && (sizes.dirty || sizes.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="sizes?.errors?.required"><i class="fa fa-times"></i>
+                                Size is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pack Size</label>
+                            <input type="text" id="packsize" name="packsize" #packsize="ngModel"
+                                [(ngModel)]="categoryObj['packsize']" class="form-control"
+                                placeholder="Enter packsize">
+                        </div>
+                        <div *ngIf="packsize.invalid && (packsize.dirty || packsize.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="packsize?.errors?.required"><i class="fa fa-times"></i>
+                                Packsize is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="text" id="quantity" name="quantity" #quantity="ngModel"
+                                [(ngModel)]="categoryObj['quantity']" class="form-control"
+                                placeholder="Enter Quantity">
+                        </div>
+                        <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                Quantity is required </div>
+
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addcategory(categoryForm)">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateCategoryList()">Cancel</button>
+    </div>
+</div>

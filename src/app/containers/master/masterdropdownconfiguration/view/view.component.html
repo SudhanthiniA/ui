@@ -1,0 +1,113 @@
+<h5 class="m-b-10 ng-star-inserted">{{'master.dropdownmaster.independent.independentmasterconfigview'|translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.dropdownmaster.independent.indpenmasterconfig'|translate}} </a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'master.dropdownmaster.independent.indpenmasterconfigdet'|translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.dropdownmaster.independent.code'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{inDependMasterData?.paramKey}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.dropdownmaster.independent.value'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{inDependMasterData.paramValue}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'master.dropdownmaster.independent.description'|translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{inDependMasterData.description}}
+                </div>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.dropdownmaster.independent.dropdownvalues'|translate}}" class="list-panel view-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="20%">{{'master.dropdownmaster.independent.code'|translate}}</th>
+                            <th width="30%">{{'master.dropdownmaster.independent.value'|translate}}</th>
+                            <th width="20%">{{'master.dropdownmaster.independent.additional1'|translate}} </th>
+                            <th width="20%">{{'master.dropdownmaster.independent.additional2'|translate}}</th>
+                            <th width="10%">{{'master.dropdownmaster.independent.isactive'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="inDependMasterData?.downDropDownMasterValueList.length > 0">
+                        <tr *ngFor="let item of inDependMasterData.downDropDownMasterValueList; let i=index" id="row{{i}}">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-left">{{item?.paramKey}}</td>
+                            <td class="text-left">{{item?.paramValue}}</td>
+                            <td class="text-left">{{item?.additionalValue1}}</td>
+                            <td class="text-left">{{item?.additionalValue2}}</td>
+                            <td class="text-left">
+                                <span class="badge {{item.isActive ? 'badge-success' : 'badge-danger'}}">
+                                    {{ item.isActive ? 'Active' : 'In-Active' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <ng-container *ngIf="inDependMasterData?.downDropDownMasterValueList.length == 0">
+                        <tbody>
+                            <tr>
+                                <td colspan="100%" class="text-center">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </app-card>
+
+        <app-card cardTitle="{{'master.dropdownmaster.independent.commentlist'|translate}}" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+            </div>
+            <br /><br />
+
+            <!-- <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>UserName</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of commentList; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.createdDate | date:'dd-MM-yyyy h:mm:a'}}</td>
+                            <td>{{data.userName}}</td>
+                            <td>{{data.comments}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" [totalCount]="totalCount">
+                </app-mat-normal-table>
+            </div>
+
+        </app-card>
+
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary" routerLink="/master/dropdownconfiguration/list">
+                    {{ 'master.common.back' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

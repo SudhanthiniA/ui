@@ -1,0 +1,67 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }} {{ 'master.tankmaterial.tankmaterial' | translate }}
+</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }} {{ 'master.tankshape.tankshape' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.tankmaterial.tankmaterial' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankMaterialForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.tankmaterial.tankmaterial' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Material Code</label>
+                            <input type="text" disabled required class="form-control"
+                                value="TM1122">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Material Name</label>
+                            <input type="text" [(ngModel)]="tankMaterial.name" name="materialname"
+                                #materialname="ngModel" minlength="3" maxlength="100" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.name' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="materialname.invalid && (materialname.dirty || materialname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="materialname?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.name' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="materialname?.errors?.minlength && !materialname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Inactive</label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addtankmaterial(tankMaterialForm)">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/master/tankmaterial/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

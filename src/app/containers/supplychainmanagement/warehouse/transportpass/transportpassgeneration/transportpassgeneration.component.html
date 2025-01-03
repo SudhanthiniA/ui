@@ -1,0 +1,88 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Transport Pass Generation
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/transportpass/transportpassgeneration/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> Add Transport Pass Generation</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Transport Pass Generation</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <input type="text" class="form-control" placeholder="Enter License Type"
+                            name='licenseeType' #licenseeType="ngModel"  
+                            [(ngModel)]="TransportDetailsObj['licenseeType']">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>FL2 Gatepass No.</label>
+                            <input type="text" class="form-control" placeholder="Enter FL2 Gatepass No."
+                            name='gatePassNumber' #gatePassNumber="ngModel"  
+                            [(ngModel)]="TransportDetailsObj['gatePassNumber']">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No.</label>
+                            <input type="text" class="form-control" placeholder="Enter License No."
+                            name='licenseeNo' #licenseeNo="ngModel"  
+                            [(ngModel)]="TransportDetailsObj['licenseeNo']">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-primary mr-2" (click)=searchWareHousePass()>Search</button>
+                        <button type="button" class="btn btn-secondary" (click)=resetKey()>Clear</button>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Transport Pass Generation"  blockClass="table-border-style" class="list-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Date Created</th>
+                                <th>License Type</th>
+                                <th>FL2 Gatepass No.</th>
+                                <th>License No.</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="transportData?.length != 0">
+                            <tr *ngFor="let data of transportData; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{data?.passGenerationDate |  date: 'dd-MMM-yyyy'}}</td>
+                                <td>{{data?.licenseeType}}</td>
+                                <td>{{data?.gatePassNumber}}</td>
+                                <td>{{data?.licenseeNo}}</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Active</span>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" routerLink="/supplychainmanagement/warehouse/transportpass/transportpassgeneration/view/{{data.id}}">
+                                        <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" routerLink="/supplychainmanagement/warehouse/transportpass/transportpassgeneration/edit/{{data.id}}">
+                                        <i class="feather icon-edit-2"></i></button>
+                                    <!-- <button class="btn btn-icon btn-secondary mr-2" type="button" (click)="navigate(data.brandRegistrationId,'edit')">
+                                            <i class="feather icon-edit-2"></i></button> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<app-common-breadcrumb [titleSection]="titleSection" [text]="lastText" [breadcrumbs]="breadcrumbs">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Opening-Balance</label>
+                        <input type="number" class="form-control" required 
+                        placeholder="Enter Opening-Balance">
+                    </div>
+                </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Sales</label>
+                        <input type="text" class="form-control" required 
+                        placeholder="Enter Sales">
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Part 4 - Beer of Indian Manufacture" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2 new_table">
+                <!-- <table class="table table-bordered table-center">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">#</th>
+                            <th rowspan="2">Date</th>
+                            <th rowspan="2">Sales</th>
+                            <th colspan="2">Whisky, Brandy, Gin and Rum of Indian Manufacture</th>
+                            <th colspan="2">Beer of Indian Manufacture</th>                            
+                            <th rowspan="2">Status</th>
+                            <th rowspan="2">Action</th>
+                        </tr>
+                        <tr>
+                            
+                            <th>OPening Sale</th>
+                            <th>Closing Sale</th>
+                            <th>OPening Sale</th>
+                            <th>Closing Sale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-center">20-Jan-2021</td>
+                            <td class="text-right">2000.00</td>
+                            <td class="text-right">2000.00</td>
+                            <td class="text-right">2000.00</td>
+                            <td class="text-right">2000.00</td>
+                            <td class="text-right">2000.00</td>
+                            
+                             <td class="text-center">
+                                <span class="badge badge-light-success">Success</span>
+                            </td> 
+                             <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/retail/formfl25-a/part4/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button" 
+                                routerLink="/supplychainmanagement/retail/formfl25-a/part4/view">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+        </app-card>
+    </div>
+</div>

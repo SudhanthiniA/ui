@@ -1,0 +1,200 @@
+<h5 class="m-b-10 ng-star-inserted">
+  Brand Label Registration
+  <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/distillery/brandlabelreg/add" *ngIf="!workflowobj">
+    <i class="feather icon-plus mr-2"></i>
+    Add Brand Label Registration
+  </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">Brand Label Registration</a></li>
+  <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp" 
+  (click)="getAcceptedList()">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>Brand Approved</span>
+          <h3 class="mt-2">{{dataCount?.approved}}</h3>
+          <i class="fas fa-thumbs-up"></i>
+          <!-- <small>WWWW</small>    -->
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp" 
+  (click)="getPendingList()">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <!-- routerLink="/supplychainmanagement/sugarmills/stockin/list" -->
+      <div class="row align-items-center">
+        <div class="col">
+          <span>Brand Request Pending</span>
+          <h3 class="mt-2">{{dataCount?.pending}}</h3>
+          <i class="fas fa-hourglass-half"></i>
+          <!-- <small>WWW</small> -->
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp" 
+   (click)="getRejectedList()">
+    <app-card [hidHeader]="true" cardClass="comp-card bg-danger">
+      <!-- routerLink="/supplychainmanagement/sugarmills/stockout/list" -->
+      <div class="row align-items-center">
+        <div class="col">
+          <span>Brand Request Rejected</span>
+          <h3 class="mt-2">{{dataCount?.rejected}}</h3>
+          <i class="fas fa-thumbs-down text-danger"></i>
+          <!-- <small>WWW</small> -->
+        </div>
+      </div>
+    </app-card>
+    
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp" 
+   (click)="getInactiveList()">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <!-- routerLink="/supplychainmanagement/sugarmills/stockavailability" -->
+      <div class="row align-items-center">
+        <div class="col">
+          <span>Brand not Renewed/In- Active</span>
+          <h3 class="mt-2">{{dataCount?.inActive}}</h3>
+          <i class="fas fa-window-close"></i>
+          <!-- <small>WWWW</small> -->
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Search" class="search-panel">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Application Date</label>
+            <input type="date" [(ngModel)]="Obj['date']" class="form-control" />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Application No</label>
+            <input type="text" [(ngModel)]="Obj['application']" class="form-control"
+              placeholder="Enter Application No" />
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+              <label>Registration Year</label>
+              <select id="status" required  class="form-control" [(ngModel)]="Obj['year']">
+                  <option value="">Select</option>
+                  <option *ngFor="let tank of years" value="{{tank.paramValue}}">
+                    {{tank.paramValue}}</option>
+              </select>
+          </div>
+      </div> 
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>Brand Name
+            </label>
+            <select id="status" required class="form-control" [(ngModel)]="Obj['branName']">
+              <option value="">Select</option>
+              <option *ngFor="let tank of brandNames" value="{{tank.brandCode}}">
+                {{tank.brandName}}</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="col-12 text-right">
+          <button type="submit" class="btn btn-primary mr-2" (click)="searchTank()">Search</button>
+          <button type="submit" class="btn btn-secondary" (click)="clearData()">Cancel</button>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Brand Label Registration List" blockClass="table-border-style" class="list-panel">
+
+      <!-- <div class="row">
+                    <div class="col-12  mt-2">                   
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Date</th>
+                            <th>Application No</th>
+                             <th>Name of the Brand Registratnt</th>
+<th>License Type</th> 
+                            <th>Brand Name</th>
+                            <th>Liquor Type</th>
+                            <th>Validity of Registration</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td class="text-center">20-May-2021</td>
+                            <td class="text-center">AP1122</td>
+                             <td>Rampur India</td>
+                            <td>FL</td> 
+                            <td>Rampur Select</td>
+                            <td>Whisky</td>
+                            <td class="text-center">20-May-2022</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Active</span>
+                            </td>
+                           <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                routerLink="/supplychainmanagement/distillery/brandlabelreg/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                routerLink="/supplychainmanagement/distillery/brandlabelreg/edit">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div> -->
+
+      <div class="table-responsive">
+        <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond]="actionBtnBasedOnCond"
+          [actionKeys]="actionKeys" [dataSource]="dataSource" [pageSize]="pageSize"
+          (paginationEvent)="handlePagination($event)" (viewAction)="onView($event)" [totalCount]="totalCount"
+          (editAction)="onEdit($event)">
+        </app-mat-normal-table>
+      </div>
+      
+      <div class="row">
+        <div class="col-xl-4">
+          <div ngbDropdown>
+            <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+            <div ngbDropdownMenu>
+              <a class="dropdown-item" href="javascript:">Excel</a>
+              <a class="dropdown-item" href="javascript:">PDF</a>
+              <a class="dropdown-item" href="javascript:">CSV</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </app-card>
+  </div>
+</div>

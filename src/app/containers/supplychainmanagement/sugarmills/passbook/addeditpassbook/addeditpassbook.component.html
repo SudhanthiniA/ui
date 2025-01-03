@@ -1,0 +1,143 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.passbook.passbook' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/passbook/list']">{{ 'sugarmill.passbook.passbook' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'sugarmill.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'sugarmill.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #mf5partoneForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.passbook.enterpassbookdetails' | translate }}" 
+                class="list-panel add-panel">
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.date' | translate }}</label>
+                            <input type="date" disabled name="date" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterdate' | translate }}" required #date="ngModel"
+                                [(ngModel)]="passbookObj['date']">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.sugarmillname' | translate }}</label>
+                            <select name="sugarmillname" class="form-control" #sugarmillname="ngModel"
+                                [(ngModel)]="passbookObj['sugarmillname']" required>
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let vtype of sugarmillnamelist" value="{{vtype.name}}">{{vtype.name}}
+                                </option>
+                            </select>
+                            <!-- <div *ngIf="verificationtype.invalid && (verificationtype.dirty || verificationtype.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="verificationtype?.errors?.required"><i class="fa fa-times"></i>
+                                    Verification Type required </div>
+    
+                            </div> -->
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF4 {{ 'sugarmill.passbook.passnumber' | translate }}</label>
+                            <input type="text" name="mf4passnumber" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterpassnumber' | translate }}" required
+                                #mf4passnumber="ngModel" [(ngModel)]="passbookObj['mf4passnumber']">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF4 {{ 'sugarmill.passbook.generationdate' | translate }}</label>
+                            <input type="date" name="mf4generatedate" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterdate' | translate }}" required
+                                #mf4generatedate="ngModel" [(ngModel)]="passbookObj['mf4generatedate']">
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.liftedmolasses' | translate }}
+                                {{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)</label>
+                            <input type="number" name="liftedmolassescapacity" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterliftedmolassescapacity' | translate }}(Qtl)"
+                                required #liftedmolassescapacity="ngModel"
+                                [(ngModel)]="passbookObj['liftedmolassescapacity']">
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.distilleryIntake' | translate }}
+                                {{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)</label>
+                            <input type="number" name="distelleryintakecapacity" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterdistilleryintakecapacity' | translate }}(Qtl)"
+                                required #distelleryintakecapacity="ngModel"
+                                [(ngModel)]="passbookObj['distelleryintakecapacity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.remainingcapacityconsumption' | translate }}(Qtl) </label>
+                            <input type="number" name="remainingcapacityofconsumption" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterremainingcapacityconsumption' | translate }}(Qtl)"
+                                required #remainingcapacityofconsumption="ngModel"
+                                [(ngModel)]="passbookObj['remainingcapacityofconsumption']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.passbook.allocatedcapacity' | translate }}(Qtl)</label>
+                            <input type="number" name="allotedcapacity" class="form-control"
+                                placeholder="{{ 'sugarmill.passbook.enterallocatedcapacity' | translate }}(Qtl)"
+                                required #allotedcapacity="ngModel" [(ngModel)]="passbookObj['allotedcapacity']">
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" name="remarks" class="form-control" placeholder="Enter Remarks"
+                                required #remarks="ngModel" [(ngModel)]="passbookObj['remarks']">
+                        </div>
+                    </div>
+                </div> -->
+                </div>
+
+               
+
+            </app-card>
+        </form>
+    </div>
+     
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-info mr-2" (click)="previewcategory(mf5partoneForm)"> <i
+                    class="fa fa-eye"></i> &nbsp;{{ 'sugarmill.common.preview' | translate }}</button>
+            <button type="button" class="btn btn-warning mr-2"
+                (click)="saveData(mf5partoneForm,1)">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+            <button type="button" class="btn btn-success mr-2"
+                (click)="saveData(mf5partoneForm,2)">{{ 'sugarmill.common.submit' | translate }}</button>
+            <button type="button" class="btn btn-secondary"
+                routerLink="/supplychainmanagement/sugarmills/passbook/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+        </div>
+    
+</div>

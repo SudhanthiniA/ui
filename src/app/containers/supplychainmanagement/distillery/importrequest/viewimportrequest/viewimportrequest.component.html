@@ -1,0 +1,166 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Import Requests
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Requests</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+        routerLink="/supplychainmanagement/distillery/importrequest/list">Import Request </a></li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #importrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle=" Details Of Import Requests" class="list-panel view-panel">
+                <div class="row ">
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Year <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.year}}
+                    </div> -->
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Date <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.date | date: 'dd-MMM-yyyy' }}
+  
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Distillery Name <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.distilleryName}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Distillery Address<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.distilleryAddress}}
+                       
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Permit No <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.permitNo}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Name <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.name}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Address <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.address}}
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Import From <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.importFrom}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Country <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.country}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">State <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.state}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Type <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.type}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Tank <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{importrequestObject.tank}}
+                    </div>
+                  
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Strenght <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.strength}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Import Quantity (BL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.importQuantityBl}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Import Quantity (AL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.importQuantityAl}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Duty <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.duty}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Watage(BL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.wastageBl}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Wastage(AL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.wastageBl}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Net(BL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.netBl}}
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Net(AL) <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            {{importrequestObject.netAl}}
+                        </div>
+                    
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+   
+
+   
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success mr-2" *ngIf="addedit !== 'View'">Print</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/distillery/importrequest/add"
+            *ngIf="addedit !== 'View'">Back</button>
+       
+        <button type="button" class="btn btn-secondary" *ngIf="addedit == 'View'"
+            routerLink="/supplychainmanagement/distillery/importrequest/list">Back</button>
+    </div>
+
+   
+</div>

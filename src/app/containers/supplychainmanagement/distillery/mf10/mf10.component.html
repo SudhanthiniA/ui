@@ -1,0 +1,100 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF 10
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/distillery/mf10-molassesentry/add">
+        <i class="feather icon-plus"></i>
+       Add MF10 Molasses Entry
+    </button>    -->
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/mf10-molassesentry/list"> MF 10</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Molasses Type</label>
+                        <select id="molassesId"                                 required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select                                 required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchapi()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click) = "resetKey()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="MF 10 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Molasses Type</th>
+                            <th>Opening Stock on Nov 1st</th>
+                            <th>Closing Balance Till Date</th>
+                            <th>Book Balance</th>
+                           <th>Status</th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>1</td>
+                            <td>Light molasses</td>
+                            <td>1000</td>
+                            <td>100</td>
+                            <td>2000</td>
+                            <td class="text-center">
+                                <span class="badge m-r-5 badge-light-success">Active</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                   
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>  
+        </app-card>
+    </div>
+</div>

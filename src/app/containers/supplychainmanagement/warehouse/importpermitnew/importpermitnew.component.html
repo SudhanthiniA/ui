@@ -1,0 +1,132 @@
+<h5 class="m-b-10 ng-star-inserted"> {{'bondWarehouse.importPermitRequest.implist' | translate}}
+  <button class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/warehouse/importpermitnew/add" *ngIf='!workflowobj?.isEditable' type="submit">
+    <i class="feather icon-plus mr-2"></i> {{'bondWarehouse.importPermitRequest.addimport' | translate}}</button>
+</h5>
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.importPermitRequest.importpermit' | translate}}</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.list' | translate}}</a></li>
+</ul>
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="{{'bondWarehouse.importPermitRequest.implist' | translate}}" class="search-panel">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>{{'bondWarehouse.importPermitRequest.daterange' | translate}}
+            </label>
+            <input type="date" required class="form-control">
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+          <app-card [hidHeader]="true" cardClass="comp-card" (click)="searchImportPermit()">
+            <div class="row align-items-center">
+              <div class="col">
+                <span>{{'bondWarehouse.importPermitRequest.indentraised' | translate}}</span>
+                <h3 class="mt-2">{{totalCount}}</h3>
+                <i class="fas fa-external-link-alt"></i>
+              </div>
+            </div>
+          </app-card>
+        </div>
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+          <app-card [hidHeader]="true" cardClass="comp-card" (click)="acceptedImportPermit()">
+            <div class="row align-items-center">
+              <div class="col">
+                <span>{{'bondWarehouse.importPermitRequest.indentaccept' | translate}}</span>
+                <h3 class="mt-2">{{totalCountOne}}</h3>
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+          </app-card>
+        </div>
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+          <app-card [hidHeader]="true" cardClass="comp-card" (click)="pendingImportPermit()">
+            <div class="row align-items-center">
+              <div class="col">
+                <span>{{'bondWarehouse.importPermitRequest.indentpending' | translate}}</span>
+                <h3 class="mt-2">{{totalCountTwo}}</h3>
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+            </div>
+          </app-card>
+        </div>
+        <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+          <app-card [hidHeader]="true" cardClass="comp-card bg-danger" (click)="rejectImportPermit()">
+            <div class="row align-items-center">
+              <div class="col">
+                <span>{{'bondWarehouse.importPermitRequest.indentrejected' | translate}}</span>
+                <h3 class="mt-2">{{totalCountThree}}</h3>
+                <i class="fas fa-thumbs-down text-danger"></i>
+              </div>
+            </div>
+          </app-card>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>{{'bondWarehouse.importPermitRequest.importpermitnumber' | translate}}</label>
+            <input type="text" class="form-control" placeholder="Enter Import Permit No" name="indentNo"
+              #indentNo="ngModel" [(ngModel)]="importPermitObj['indentNo']">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>{{'bondWarehouse.importPermitRequest.permitdate' | translate}}</label>
+            <input type="date" class="form-control" name="indentDate" #indentDate="ngModel"
+              [(ngModel)]="importPermitObj['indentDate']">
+          </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Valid Upto</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div> -->
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="form-group">
+            <label>{{'bondWarehouse.common.status' | translate}}</label>
+            <select class="form-control">
+              <option>Select</option>
+              <!-- <option *ngFor="let s of dataSource" value="{{s.status}}"> {{s.status}}</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+          <button type="submit" class="btn btn-primary mr-2" (click)="searchImportPermit()">{{'bondWarehouse.common.search' | translate}}</button>
+          <button type="submit" class="btn btn-secondary" (click)="resetKey()">{{'bondWarehouse.common.cancel' | translate}}</button>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="{{'bondWarehouse.importPermitRequest.implist' | translate}}" blockClass="table-border-style" class="list-panel">
+      <div class="table-responsive">
+        <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+          [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+          [actionBtnBasedOnCond]="actionBtnBasedOnCond" (editAction)="onEdit($event)" (viewAction)="onView($event)">
+        </app-mat-normal-table>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+

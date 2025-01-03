@@ -1,0 +1,30 @@
+<app-card cardTitle="{{cardTitle ? cardTitle : 'Premises Details'}}" class="list-panel view-panel">
+    <div class="row">
+        <ng-container *ngIf="appliPremisesAddress?.unitName">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Unit Name<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">{{appliPremisesAddress?.unitName}}</div>
+        </ng-container>
+        <ng-container *ngIf="appliPremisesAddress">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.addrText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{appliPremisesAddress?.tahsilDesc }}, {{appliPremisesAddress?.districtDesc }}, {{appliPremisesAddress?.stateDesc }}, {{appliPremisesAddress?.pinCode }}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_OWNERSHIIP_DOC) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">View Ownership document<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_OWNERSHIIP_DOC)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</app-card>

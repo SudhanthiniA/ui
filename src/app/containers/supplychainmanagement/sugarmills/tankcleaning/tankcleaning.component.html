@@ -1,0 +1,268 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Tank Cleaning
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/tankconversion/add">
+        <i class="feather icon-plus mr-2"></i> Add Tank Cleaning
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li> -->
+            <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a>
+            </li>
+            <li class="breadcrumb-item"><a href="javascript:">Tank Cleaning</a>
+    </li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankConversionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control"  placeholder="Enter Request ID" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application No</label>
+                            <input type="text" class="form-control"  placeholder="Enter Application No" >
+
+                            <!-- <select class="form-control">
+
+                                <option>Select</option>
+                            </select> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request ID</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Name</label>
+                            <select id="tank" name="tank" class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div> -->
+
+                    <div class="col-12 text-right">
+                        <button type="submit"
+                            class="btn btn-primary mr-2" (click) ="searchTankTransfer()">{{ 'sugarmill.common.search' | translate }}</button>
+                        <button type="reset"
+                            class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Tank Cleaning List" blockClass="table-border-style" class="list-panel">
+            <!-- <div class="table-responsive mb-2">
+                <app-mat-normal-table [columns]="columns2" [actionBtnBasedOnCond]="actionBtnBasedOnCond"
+                    [actionKeys]="actionKeys" [dataSource]="dataSource2" [pageSize]="pageSize" [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination2($event)" (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div> -->
+            <div class="row">
+                <div class="col-xl-12 mb-2">
+                        <div class="table-responsive">
+                <table class="table table-bordered text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application No</th>
+                            <th>Date of Application</th>
+                            <th>Sugar Mill Name</th>
+                            <th>Sugar Mill Address</th>
+                            <th>Tank ID</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>AP12345</td>
+                            <td>20-Jul-2023</td>
+                            <td class="text-left">Triveni Sugar Mill</td>
+                            <td class="text-left">Milakpur Uttar Pradesh</td>
+                            <td class="text-left">Tank 1</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success">Approved</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/sugarmills/tankcleaning/view">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button  class="btn btn-icon btn-secondary ml-2"
+                                    type="button" routerLink="/supplychainmanagement/sugarmills/tankcleaning/add">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                </div>
+            </div>
+       
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div> 
+        </app-card>
+    </div>
+</div>
+<!-- <h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.tankconversion.tankconversionlist' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/tankconversion/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.tankconversion.addtankconversion' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.tankconversion.tankconversion' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankConversionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.applicationid' | translate }}</label>
+                            <input type="text" name="application_id" class="form-control"
+                                placeholder="{{ 'sugarmill.tankconversion.enterapplicationid' | translate }}"
+                                #application_id="ngModel" [(ngModel)]="tankConObj['application_id']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.tank' | translate }}</label>
+                            <select id="tank_id" name="tank_id" class="form-control" required #tank_id="ngModel"
+                                [(ngModel)]="tankConObj['tank_id']">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tanks of tanks" value="{{tanks.id}}">{{tanks.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)</label>
+                            <input type="number" name="total_capacity" class="form-control"
+                                placeholder="{{ 'sugarmill.tankconversion.entercapacity' | translate }}"
+                                #total_capacity="ngModel" [(ngModel)]="tankConObj['total_capacity']">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" (click)="searchConData()"
+                            class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                        <button type="reset" 
+                            class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.tankconversion.tankconversionlist' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable="ng" [dtOptions]="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.tankconversion.applicationid' | translate }}</th>
+                            <th>{{ 'sugarmill.tankregistration.tankname' | translate }}</th>
+                            <th>{{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)</th>
+                            <th>{{ 'sugarmill.tankconversion.balance' | translate }}(Qtl)</th>
+                            <th>{{ 'sugarmill.tankconversion.fromgrade' | translate }}</th>
+                            <th>{{ 'sugarmill.tankconversion.tograde' | translate }}</th>
+                            <th>{{ 'sugarmill.common.createdon' | translate }}</th>
+                            <th>{{ 'sugarmill.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="tankconverstionList?.length != 0">
+                        <tr *ngFor="let item of tankconverstionList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>TC000{{item?.id}}</td>
+                            <td class="text-left">{{item?.tankTypeResponseDto?.name || item?.tankName}}</td>
+                            <td class="text-right">{{item?.capacity}}</td>
+                            <td class="text-right">{{item?.balance}}</td>
+                            <td class="text-left">{{item?.molassesTypeResponseDto?.name || item?.fromGradeName}}</td>
+                            <td class="text-left">{{item?.molassesTypeResponseDto?.name ||  item?.toGradeName}}</td>
+                            <td>{{item?.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" (click)="navigateView(item.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="item.status == 'draft'" class="btn btn-icon btn-secondary ml-2"
+                                    type="button" (click)="navigateEdit(item.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div> -->

@@ -1,0 +1,104 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} {{ 'master.molasseslist.molassestype' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.molasseslist.molassestype' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'master.molasseslist.molassestype' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.molasseslist.enterbelowdetailstomolassestype' | translate }}"
+                class="list-panel add-panel">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.molasseslist.molassestypecode' | translate }}</label>
+                            <input type="text" disabled  class="form-control" minlength="3" maxlength="10"
+                                value="MT1122">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Molasses Type Name</label>
+                            <input type="text"  required class="form-control"
+                                placeholder="Enter Molasses Type Name">                           
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6 col-12">
+                        <label>TRS Applicable</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked>
+                            <label class="" for="tab1">Yes</label>
+                            <input type="radio" name="tab" id="tab2">
+                            <label class="" for="tab2">No </label>
+                            
+                        </div>
+                    </div>  
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.molasseslist.mintrs(%)' | translate }}</label>
+                            <input type="number" [(ngModel)]="molassesObject.minTrs" name="minTrs" #minTrs="ngModel"
+                                required class="form-control"
+                                placeholder="{{ 'master.molasseslist.entermintrs(%)' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="minTrs.invalid && (minTrs.dirty || minTrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="minTrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.molasseslist.mintrsrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.molasseslist.maxtrs(%)' | translate }}</label>
+                            <input type="number" [(ngModel)]="molassesObject.maxTrs" name="maxTrs" #maxTrs="ngModel"
+                                required class="form-control"
+                                placeholder="{{ 'master.molasseslist.entermaxtrs(%)' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="maxTrs.invalid && (maxTrs.dirty || maxTrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="maxTrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.molasseslist.maxtrsrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="molassesObject.isActive" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="molassesObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!molassesObject.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="molassesObject.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addmolasses(molassesForm)">{{ 'master.common.submit'
+            | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/molasses-type/list">{{
+            'master.common.cancel' | translate }}</button>
+    </div>
+</div>

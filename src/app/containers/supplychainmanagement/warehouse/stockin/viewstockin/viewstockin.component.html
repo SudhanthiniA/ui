@@ -1,0 +1,780 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'bondWarehouse.stockin.viewstockin' | translate}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.warehouse' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.stockin.stockin' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'bondWarehouse.common.view' | translate}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <app-card cardTitle="{{'bondWarehouse.stockin.stockindetails' | translate}}" class="list-panel add-panel">
+            
+        <ngb-tabset  #tabRef="ngbTabset" type="pills" class="mb-2">
+            <ngb-tab title="{{'bondWarehouse.stockin.permitdetails' | translate}}" id="indentdatils">
+              <ng-template ngbTabContent>
+                  <div class="row mt-2">
+                      <div class="col-12">
+                        <app-card cardTitle="{{'bondWarehouse.stockin.trasportdetails' | translate}}" class="list-panel view-panel">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.transportpassgen.transportpassno' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.transportPassDetails?.transportPassNumber}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Application Date<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.transportPassDetails?.issuedDate}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.noofpermits' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.transportPassDetails?.numberOfIndents}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.transportpassgen.transportpass' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.transportPassDetails?.transportPass}}
+                                    <button type="button" class="btn btn-success" 
+    routerLink="/supplychainmanagement/warehouse/stockin/view"><i class="fas fa-download"></i></button>
+                                </div>
+                            </div>
+                        </app-card>
+                      </div>
+                      <div class="col-12">
+                        <app-card cardTitle="Parent Unit Details" class="list-panel view-panel">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Parent Unit Type<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.licenseTypeDetails?.licenseType}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Parent Unit Name<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.licenseTypeDetails?.unitName}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">Parent Unit Address<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.licenseTypeDetails?.unitAddress}}
+                                     </div>
+                            </div>
+                        </app-card>
+                    </div> 
+                    <div class="col-xl-12">
+                        <app-card cardTitle="{{'bondWarehouse.receivedimportpermit.impdetails' | translate}}" class="list-panel view-panel"> 
+                            <div class="row">
+                                <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'bondWarehouse.TransportPassCancellation.sno'| translate}}</th>
+                                            <th>{{'bondWarehouse.receivedimportpermit.permitnumber' | translate}}</th>
+                                            <th>{{'bondWarehouse.receivedimportpermit.impdate' | translate}}</th>
+                                            <th>{{'bondWarehouse.receivedimportpermit.noofcasereq' | translate}}</th> 
+                                            <th>{{'bondWarehouse.receivedimportpermit.noofbottlereq' | translate}}</th>
+                                            <th>{{'bondWarehouse.stockin.noofcasesupplied' | translate}}</th>
+                                            <th>{{'bondWarehouse.stockin.noofbottlesupplied' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr *ngFor="let res of indentlist;let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{res.indentNo}}</td>
+                                            <td>{{res.indentDate}}</td>
+                                            <td>{{res.totRequestedCases}} </td>
+                                            <td>{{res.totRequestedBottles}}</td>
+                                            <td>{{res.totDispatchedCases}}</td>
+                                            <td>{{res.totDispatchedBottles}}</td>
+                                        </tr> -->
+                                        <tr *ngFor= " let data of stockInObj.indentNumberDetails; let i=index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{data.indentNumber}}</td>
+                                            <td>{{data.indentDate}}</td>
+                                            <td class="text-left">{{data.noofCasesRequested}}</td>
+                                            <td class="text-left">{{data.noofBottlesRequested}}</td>
+                                            <td class="text-left">{{data.noofCasesSupplied}}</td>
+                                            <td class="text-left">{{data.totalNumberOfBottlesSupplied}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6"> 
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.totalnoofcaserequested' | translate}} <span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj.totalNoOfCasesRequested}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.noofbottlereq' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj.noOfBottlesRequested}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.noofcasesupplied' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj.noOfCasesSupplied}}
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.noofbottlesupplied' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj.noOfBottlesSupplied}}
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </app-card>
+                    </div>
+                            <div class="col-xl-6">
+                        <app-card cardTitle="{{'bondWarehouse.stockin.damagemissingbottlesdetails' | translate}}" class="list-panel add-panel">
+                            <div class="row">
+                            
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.ifanydamages' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    {{stockInObj.damageDetails}} 
+                                </div>
+                            </div>
+                        </app-card>
+                            </div>
+                            <div class="col-xl-6">
+                                <app-card cardTitle="{{'bondWarehouse.stockin.receivingdetails' | translate}}" class="list-panel add-panel">
+                                    <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.receiveddate' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.receivedDate}} 
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <label class="w-100 view-label">{{'bondWarehouse.stockin.receivedby' | translate}}<span class="float-right">:</span></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    {{stockInObj?.receivedBy}} 
+                                </div>
+                               
+                            </div>
+                        </app-card>
+                    </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <button type="button" class="btn btn-primary mb-2" (click)="tabRef.select('damagedetails')">{{'bondWarehouse.common.next' | translate}}</button>
+                    <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/warehouse/stockin/list">{{'bondWarehouse.common.back' | translate}}</button>
+                <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+               <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+                 routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+                <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                routerLink="/supplychainmanagement/warehouse/stockin/list">{{'bondWarehouse.common.cancel' | translate}}</button>
+                
+            </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab  id="damagedetails">
+                <ng-template ngbTabTitle>{{'bondWarehouse.stockin.damageandmissingdetails' | translate}}</ng-template> 
+                <ng-template ngbTabContent>
+                          <div class="row mt-2">
+                            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Issue Type<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                               Damage Bottle
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Damage Type<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                               Seal Broken
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total Damaged Cases<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                               10
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Total Damaged Bottles<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                               20
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">Scan Details<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                
+                                <button type="button" class="btn btn-warning mb-2" data-toggle="modal"  (click)="caseModal()"
+routerLink="/supplychainmanagement/warehouse/stockin/view"><i class="far fa-eye"></i></button>
+                            </div>
+                             -->
+                                 
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'bondWarehouse.TransportPassCancellation.sno'| translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.issuetype' | translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.damagetype' | translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.nodamagedcases' | translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.noofmissingcases' | translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.nodamagedbottles' | translate}}</th>
+                                                <th>{{'bondWarehouse.stockin.nomissingbottles' | translate}}</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- <tr *ngFor="let res of damagelist;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td class="text-left">{{res.issueType}}</td>
+                                                <td>{{res.damagedType}}</td>
+                                                <td class="text-left">
+                                                    {{res.noOfDamagedCases}}
+                                                </td>
+                                                <td class="text-left">
+                                                    {{res.noOfMissingCases}} 
+                                                </td>
+                                                <td class="text-left">
+                                                    {{res.noOfDamagedBottles}} 
+                                                 </td>
+                                                 <td class="text-left">
+                                                    {{res.noOfMissingBottles}}
+                                                 </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.totalnoofdamagedcases' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.totDamagedCases}}  -->
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.totalnoofmissingcases' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.totMissedCases}}  -->
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.totalnoofdamagedbottles' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.totDamagedBottles}}  -->
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.totalnooofmissingmottles' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.totMissedBottles}}  -->
+                            </div>   
+                            
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.receiveddate' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.receivedDate}}  -->
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{'bondWarehouse.stockin.receivedby' | translate}}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <!-- {{damage1?.receivedBy}}  -->
+                            </div>
+                            </div> 
+                            <div class="col-12 text-right">
+                                <button type="button" class="btn btn-primary mb-2"  (click)="tabRef.select('indentno1')">{{'bondWarehouse.common.next' | translate}}</button>
+                                <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="tabRef.select('indentdatils')">{{'bondWarehouse.common.back' | translate}}</button>
+                            <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+                           <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+                             routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+                            <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                            routerLink="/supplychainmanagement/warehouse/stockin/list">{{'bondWarehouse.common.cancel' | translate}}</button>
+                            
+                        </div>                      
+              </ng-template>
+            </ngb-tab>
+
+            <ngb-tab  id="indentno1">
+                <ng-template ngbTabTitle>{{'bondWarehouse.stockin.permitno' | translate}}. 6234723922</ng-template> 
+                <ng-template ngbTabContent>
+                    <div class="row">
+                        <div class="col-12">
+                    <div class="table-responsive mt-2 mb-2">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.sno'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.brandname'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.packagesize'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.packagetype'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.noofcaserequested'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.noofbottlesrequested'| translate}}</th>
+                                    <th>{{'bondWarehouse.stockin.noofcasesupplied' | translate}}</th>
+                                    <th>{{'bondWarehouse.stockin.noofbottlesupplied' | translate}}</th>
+                                    <!-- <th>Amount</th>
+                                    <th>QR Scanned</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let data of stockInObj.permitArray; let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td class="text-left">{{data.brandName}}</td>
+                                    <td class="text-left">{{data.packageSize}}</td>
+                                    <td>{{data.PackageType}}</td>
+                                    <td class="text-left">{{data.totalNoOfCasesRequested}}</td>
+                                    <td class="text-left">{{data.noofBottlesRequested}}</td>
+                                    <td class="text-left">{{data.noofCasesSupplied}}</td>
+                                    <td class="text-left">{{data.noOfBottlesSupplied}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          <label class="w-100 view-label">Total No. of Cases Supplied<span class="float-right">:</span></label>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          5000
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          <label class="w-100 view-label">Total No. of Bottles Supplied<span class="float-right">:</span></label>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          500
+                      </div> -->
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'bondWarehouse.stockin.totdamagedcases' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stockInObj.totalDamagedCases}} 
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'bondWarehouse.stockin.totdamgedbottles' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         {{stockInObj.totalDamagedBottles}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'bondWarehouse.stockin.totmissingcase' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                         {{stockInObj.totalMissingCases}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{'bondWarehouse.stockin.totmissingbottles' | translate}}<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{stockInObj.totalMissingBottles}}
+                    </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <button type="button" class="btn btn-primary mb-2" (click)="tabRef.select('indentno2')">{{'bondWarehouse.common.next' | translate}}</button>
+                    <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="tabRef.select('damagedetails')">{{'bondWarehouse.common.back' | translate}}</button>
+                <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+               <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+                 routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+                <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                routerLink="/supplychainmanagement/warehouse/stockin/list">{{'bondWarehouse.common.cancel' | translate}}</button>
+                
+            </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab id="indentno2">
+                <ng-template ngbTabTitle>{{'bondWarehouse.stockin.permitno' | translate}}. 6234723923</ng-template>
+                <ng-template ngbTabContent>
+                    <div class="row">
+                        <div class="col-12">
+                    <div class="table-responsive mt-2 mb-2">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.sno'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.brandname'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.packagesize'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.packagetype'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.noofcaserequested'| translate}}</th>
+                                    <th>{{'bondWarehouse.TransportPassCancellation.noofbottlesrequested'| translate}}</th>
+                                    <th>{{'bondWarehouse.stockin.noofcasesupplied' | translate}}</th>
+                                    <th>{{'bondWarehouse.stockin.noofbottlesupplied' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let data of stockInObj.permitArray; let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td class="text-left">{{data.brandName}}</td>
+                                    <td class="text-left">{{data.packageSize}}</td>
+                                    <td>{{data.PackageType}}</td>
+                                    <td class="text-left">{{data.totalNoOfCasesRequested}}</td>
+                                    <td class="text-left">{{data.noofBottlesRequested}}</td>
+                                    <td class="text-left">{{data.noofCasesSupplied}}</td>
+                                    <td class="text-left">{{data.noOfBottlesSupplied}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Damaged Cases<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockInObj.totalDamagedCases}} 
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Damaged Bottles<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                     {{stockInObj.totalDamagedBottles}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Missing Cases<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                     {{stockInObj.totalMissingCases}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Missing Bottles<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockInObj.totalMissingBottles}}
+                </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <button type="button" class="btn btn-primary mb-2" (click)="tabRef.select('indentno3')">Next</button>
+                    <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="tabRef.select('damagedetails')">Back</button>
+                <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+               <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+                 routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+                <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                routerLink="/supplychainmanagement/warehouse/stockin/list">Cancel</button>
+                
+            </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab id="indentno3">
+                <ng-template ngbTabTitle>Permits No. 6234723924</ng-template>
+                <ng-template ngbTabContent>
+                    <div class="row">
+                        <div class="col-12">
+                    <div class="table-responsive mt-2 mb-2">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Brand Name</th>
+                                    <th>Package Size</th>
+                                    <th>Package Type</th>
+                                    <th>No. of Cases<br>Requested</th>
+                                    <th>No. of Bottles<br>Requested</th>
+                                    <th>No. of Cases<br>Supplied</th>
+                                    <th>No. of Bottles<br>Supplied</th>
+                                    <!-- <th>Amount</th>
+                                    <th>QR Scanned</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let data of stockInObj.permitArray; let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td class="text-left">{{data.brandName}}</td>
+                                    <td class="text-left">{{data.packageSize}}</td>
+                                    <td>{{data.PackageType}}</td>
+                                    <td class="text-left">{{data.totalNoOfCasesRequested}}</td>
+                                    <td class="text-left">{{data.noofBottlesRequested}}</td>
+                                    <td class="text-left">{{data.noofCasesSupplied}}</td>
+                                    <td class="text-left">{{data.noOfBottlesSupplied}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                        
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Damaged Cases<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockInObj.totalDamagedCases}} 
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Damaged Bottles<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                     {{stockInObj.totalDamagedBottles}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Missing Cases<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                     {{stockInObj.totalMissingCases}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Total Missing Bottles<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{stockInObj.totalMissingBottles}}
+                </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <!-- <button type="button" class="btn btn-primary mb-2">Next</button> -->
+                    <button type="button" class="btn btn-secondary ml-2 mb-2"(click)="tabRef.select('indentno2')">Back</button>
+                <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+               <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+                 routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+                <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                routerLink="/supplychainmanagement/warehouse/stockin/list">Cancel</button>
+                
+            </div>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+        </app-card>
+        
+    </div>
+   
+    
+   
+    <!-- <div class="col-12 text-right">
+        <button type="button" class="btn btn-primary mb-2">Next</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button> -->
+    <!-- <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button> -->
+   <!-- <button type="button" class="btn btn-primary ml-2 mb-2" 
+     routerLink="/supplychainmanagement/warehouse/stockin/view">Submit</button> -->
+    <!-- <button type="button" class="btn btn-secondary ml-2 mb-2" 
+    routerLink="/supplychainmanagement/warehouse/stockin/list">Cancel</button>
+    
+</div> -->
+</div>
+
+
+<app-ui-modal #caseDetails dialogClass="modal-dialog-centered modal-lg">
+    <div class="app-modal-header">
+        <h5 class="modal-title">Case Details</h5>
+<button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" 
+(click)="caseDetails.hide()"><span aria-hidden="true">&times;</span></button>
+    </div> 
+    <div class="app-modal-body">
+        <div class="row">
+
+            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label for="uploadpuc">Scan Barcode</label>
+                    <div class="input-group cust-file-button">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                            <label class="custom-file-label"></label>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+
+                      <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Case Name</th>
+                                        <th>Scanned Count</th>
+                                        <th>Select</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="text-left">
+                                           xxxxxx
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td class="text-left">
+                                            Remaining Cases
+                                        </td>
+                                        <td class="text-left">
+                                            10
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="uploadpuc">Scan Qr code</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                        <label class="custom-file-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                    <tr><th colspan="4">Bottle Details</th></tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Brand  name</th>
+                                        <th>Scanned Count</th>
+                                        <th>Select</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="text-left">
+                                            yyyyyyyy
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td class="text-left">
+                                            aaaaaaa
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td class="text-left">
+                                            bbbbbbbb
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td class="text-left">
+                                            ccccccc
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td class="text-left">
+                                            dddddd
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td class="text-left">
+                                            eeeeeeee
+                                        </td>
+                                        <td class="text-left">
+                                            1
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                         <td colspan="2" class="text-right">
+                                            Remaining Bottless
+                                        </td>
+                                        <td class="text-left">
+                                           6
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="checkbox" class="form-control" checked>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="text-right">
+                                            Mark as Damage
+                                       </td>
+                                       <td class="text-left">
+                                          
+                                       </td>
+                                       <td class="text-left">
+                                           <input type="checkbox" class="form-control" checked>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                    <td colspan="2" class="text-right">
+                                        Mark as Missing
+                                   </td>
+                                   <td class="text-left">
+                                     
+                                   </td>
+                                   <td class="text-left">
+                                       <input type="checkbox" class="form-control" checked>
+                                   </td>
+                               </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                      </div>
+         </div>
+         
+        </div>
+         <div class="app-modal-footer">
+             <div class="row">
+         <div class="col-12 text-right">
+             <!-- <button type="submit" class="btn btn-primary">Proceed</button>
+             <button type="submit" class="btn btn-secondary ml-2">Clear</button> -->
+             <button type="submit" class="btn btn-secondary ml-2">Back</button>
+         </div>
+        </div>
+         </div>
+        
+</app-ui-modal>

@@ -1,0 +1,78 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'usermanagement.roles.viewroles' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.usermanagement.usermanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'usermanagement.roles.rolemanagement' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{'usermanagement.common.view' | translate }}</li>
+</ul>
+<div class="row">
+    <form #userForm="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="{{ 'usermanagement.roles.detailsofviewroles' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 border-right menu_list" [ngClass]="{'disableDiv': true}">
+                        <label>{{ 'usermanagement.roles.menuslist' | translate }}</label>
+    
+                        <div id='treeparent'><ejs-treeview #treeview=""  id='treeelement' [fields]='field' [showCheckBox]='showCheckBox'  (nodeChecked)='nodeChecked($event)'></ejs-treeview></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{ 'usermanagement.roles.rolecode' | translate }}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                NB86
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{ 'usermanagement.roles.rolename' | translate }}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                               Sunil
+                            </div>
+                           
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">{{ 'usermanagement.common.status' | translate }}<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                Active
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">Created By<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                Admin
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">Created On<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                01 Nov 2021 & 16:53
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">Modified By<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                Assistant Admin
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <label class="w-100 view-label">Modified On<span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                01 Nov 2021 & 16:53
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+    </form>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-primary mr-2"
+            (click)="adduser(userForm)">Submit</button> -->
+        <button type="button" class="btn btn-secondary" (click)="navigaterolelist()">{{ 'usermanagement.common.back' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.stockin.stockin(MF5)list' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right" (click)="navigatetoadd()">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.stockin.addstockin(MF5)' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockin/list']">
+            Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/stockin/list']">
+            {{ 'sugarmill.stockin.addstockin(MF5)' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/stockin/list']">{{ 'sugarmill.common.list' | translate }}</a>
+    </li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #stockInForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.stockin.grade' | translate }}</label>
+                            <input type="number" name="grade" class="form-control" #grade="ngModel"
+                                [(ngModel)]="stockInObj['grade']" placeholder="Enter Grade">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.common.search' | translate }}</label>
+                            <input type="date" name="date" class="form-control" #date="ngModel"
+                                [(ngModel)]="stockInObj['date']">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" (click)="searchStockData()"
+                            class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                        <button type="reset" 
+                            class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.stockin.stockin(MF5)list' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable="ng" [dtOptions]="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.common.date' | translate }}</th>
+                            <th>{{ 'sugarmill.stockin.producedmolasses(Qtl)' | translate }}</th>
+                            <th>{{ 'sugarmill.stockin.grade' | translate }}</th>
+                            <th>{{ 'sugarmill.stockin.trs(%)' | translate }}</th>
+                            <th>{{ 'sugarmill.stockin.brix(%)' | translate }}</th>
+                            <th>{{ 'sugarmill.common.createdby' | translate }}</th>
+                            <th>{{ 'sugarmill.common.createdon' | translate }}</th>
+                            <th>{{ 'sugarmill.common.status' | translate }}</th>
+                            <th>{{ 'sugarmill.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="stockList?.length != 0">
+                        <tr *ngFor="let data of stockList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data?.date}}</td>
+                            <td class="text-left">{{data?.producedMolasses}}</td>
+                            <td class="text-left">{{data?.gradeId}}</td>
+                            <td class="text-right">{{data?.trs}}</td>
+                            <td class="text-right">{{data?.brix}}</td>
+                            <td class="text-left">{{data?.createdBy }}</td>
+                            <td>{{data?.createdOn | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success"
+                                    *ngIf="data.method !== 'Draft'">{{ 'sugarmill.stockin.submitted' | translate }}</span>
+                                <span class="badge m-r-5 badge-light-warning"
+                                    *ngIf="data.method == 'Draft'">{{ 'sugarmill.stockin.draft' | translate }}</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="data.method == 'Draft'" class="btn btn-icon btn-secondary ml-2"
+                                    type="button" (click)="navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

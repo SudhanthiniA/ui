@@ -1,0 +1,184 @@
+<h5 class="m-b-10 ng-star-inserted"> Allotment Request</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"  routerLink="/supplychainmanagement/distillery/allotmentrequest/list">Allotment Request</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Preview</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #stockForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details Preview Of  Allotment Request" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label"> Season Year<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.seasonYear}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Request Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.requestedDate | date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Validity<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.validityDate | date: 'dd-MMM-yyyy'}}
+                    </div> -->
+                  
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Sugarmill Name<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       Sugarmill 1
+                    </div> -->
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Requester Name<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.requesterName}}
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Requested Quantity for Reserved Molasses( In lakh qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" >
+                        {{allotmentrequestobj.requestedReservedMolasses}}
+                    </div> -->
+                   
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Reserved ( In lakh qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.reserved}}
+                    </div>
+                  
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Unreserved ( In lakh qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.unreserved}}
+                    </div>
+                  
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Total( In lakh qtl.)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{allotmentrequestobj.total}}
+                    </div>
+
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" >
+                            <label class="w-100 view-label">Remarks <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" >
+                        {{allotmentrequestobj?.remarks}}
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf = "entityType =='UP_EXCISE'">
+                        <input type="text" class="form-control" name="remarks" #remarks="ngModel"
+                        [(ngModel)]="approvalobj['remarks']">
+                        <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="remarks?.errors?.required"><i class="fa fa-times"></i>
+                                Remarks is Required </div>
+                        </div>
+                    </div>
+                </div>                     -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4" >
+        <button type="button" class="btn btn-success mr-2" >Print</button>
+        <button type="button" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/distillery/allotmentrequest/add"
+            >Back</button>
+            
+    </div>
+    <!-- <div class="col-xl-12" >
+     
+            <app-card cardTitle="Allotment Details"  class="list-panel add-panel">
+                <div class="row" *ngIf="allotmentdeatils?.length != 0">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Allotment No</th>
+                                        <th>Indent No</th>
+                                        <th>Sugarmill Name</th>
+                                        <th>Quantity(Qtl)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <tr *ngFor ="let item of allotmentdeatils; let i=index">
+                                     <td>{{i+1}}</td>
+                                     <td>{{item.allotmentNumber}}</td>
+                                     <td>{{item.indentNumber}}</td>
+                                     <td>{{item.sugarmillEntityName}}</td>
+                                     <td>{{item.quantity}}</td>
+                                 </tr>
+                             
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </app-card>
+  
+    </div> -->
+   
+   
+
+    <!-- <div class="col-xl-12" *ngIf ="logactive">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Logs" class="list-panel view-panel" *ngIf="addedit == 'View'">
+                <div class="row m-4 timeline_card" >
+                    <div class="col-12">
+                        <div class="timeline_icon text-center timeline_icon_bg1 h-100">
+                            <i class="far fa-comments"></i>
+                            <small>{{ allotmentrequestobj.updatedOn | date:'dd/MM/yyyy'}}<br> {{ allotmentrequestobj.updatedOn | date:'hh:mm'}}</small>
+                        </div>
+                        <div class="timeline_content">
+                            <div class="w-100 p-3 rounded timeline_box timeline_bg1">
+                                <h6>{{ allotmentrequestobj.nameOf }} ({{ allotmentrequestobj.designation}})</h6>
+                                <p class="mb-0">Name Of Approver</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="timeline_icon text-center timeline_icon_bg2 h-100">
+                            <i class="fas fa-check"></i>
+                            <small>{{ allotmentrequestobj.updatedOn | date:'dd/MM/yyyy'}}<br> {{ allotmentrequestobj.updatedOn | date:'hh:mm'}}</small>
+                        </div>
+                        <div class="timeline_content">
+                            <div class="w-100 p-3 rounded timeline_box timeline_bg2">
+                                <h6>{{ allotmentrequestobj.remarks }}</h6>
+                                <p class="mb-0">Remarks</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="timeline_icon text-center timeline_icon_bg3 h-100">
+                            <i class="fas fa-question"></i>
+                            <small>{{ allotmentrequestobj.updatedOn | date:'dd/MM/yyyy'}}<br> {{ allotmentrequestobj.updatedOn | date:'hh:mm'}}</small>
+                        </div>
+                        <div class="timeline_content">
+                            <div class="w-100 p-3 rounded timeline_box timeline_bg3">
+                                <h6>{{ allotmentrequestobj.updatedOn | date:'dd-MMM-yyyy'}}</h6>
+                                <p class="mb-0">Approval Date</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div> -->
+  
+ 
+</div>

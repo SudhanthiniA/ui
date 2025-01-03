@@ -1,0 +1,91 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.brand.addbrands' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.brand.editbrand' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.brand.brandmaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.brand.enterbelowdetailstoaddbrand' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'master.brand.brandcode' | translate }}</label>
+
+                            <input type="text" id="code" name="brandCode" #brandCode="ngModel" maxlength="10"
+                                minlength="3" [(ngModel)]="categoryObj['brandCode']" class="form-control" required
+                                placeholder="{{ 'master.brand.enterbrandcode' | translate }}" pattern="{{patternService.codePattern}}">
+                            <div *ngIf="brandCode.invalid && (brandCode.dirty || brandCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.brand.brandcode' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}</div>
+                                <div *ngIf="brandCode?.errors?.minlength && !brandCode?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="brandCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.brand.brandname' | translate }}</label>
+                            <input type="text" id="Name" name="brandName" #brandName="ngModel" maxlength="100"
+                                minlength="3" [(ngModel)]="categoryObj['brandName']" required class="form-control"
+                                placeholder="{{ 'master.brand.enterbrandname' | translate }}">
+                            <div *ngIf="brandName.invalid && (brandName.dirty || brandName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandName?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.brand.brandname' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}</div>
+                                <div *ngIf="brandName?.errors?.minlength && !brandName?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.liquortype.liquortype' | translate }}</label>
+                            <input type="text" id="description" name="description" #description="ngModel"
+                                [(ngModel)]="categoryObj['description']" class="form-control"
+                                placeholder="{{ 'master.liquortype.enterliquortype' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="categoryObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="categoryObj.isActive ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!categoryObj.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="categoryObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addbrand(categoryForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/brandmaster/list">{{ 'master.common.cancel'
+            | translate }}</button>
+    </div>
+</div>

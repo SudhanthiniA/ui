@@ -1,0 +1,110 @@
+<h5 class="m-b-10 ng-star-inserted">Purchase Permit Request</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Request</a></li>
+     <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/purchase-permitrequest-withinup/list">Purchase Permit Request</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #viewpurchaseForm="ngForm" autocomplete = "off">
+            <app-card cardTitle="{{addedit}} of Purchase Permit Within UP,Outsite UP, Outside Country(ENA,GENA,+21 Spirits)" class="list-panel view-panel">
+                <div class="row">
+                   
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        
+                            <label  class="w-100 view-label">Unit Name <span class="float-right">:</span></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                      <span>{{viewpurchasepermitobj.unitName}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       
+                            <label  class="w-100 view-label">Requested Spirit(BL)<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           
+                                <span>{{viewpurchasepermitobj.requestedSpiritBl}}</span>
+                      
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       
+                            <label  class="w-100 view-label">Spirit Type <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           
+                                <span>{{viewpurchasepermitobj.spiritType}}</span>
+                       
+                    </div>
+               
+
+                <!-- <h6 class="pb-4 m-0">Molasses Received on date</h6> -->
+                
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Purpose<span class="float-right">:</span></label>
+                    </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <span>{{viewpurchasepermitobj.purpose}}</span>
+                    </div>
+                 
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Installed Capacity of Distillery(in BL)Portable<span class="float-right">:</span></label>
+                    </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                                <span>{{viewpurchasepermitobj.insCtyOfDistInBLPortable}}</span>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label  class="w-100 view-label">Installed Capacity of Distillery(in BL)Industrial<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          
+                            <span>{{viewpurchasepermitobj.insCtyOfDistInBLIndustrial}}</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Production Quantity(in BL)Portable <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                      
+                        <span>{{viewpurchasepermitobj.prodQtyInBLPortable}}</span>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label  class="w-100 view-label">Production Quantity(in BL)Industrial <span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                  
+                    <span>{{viewpurchasepermitobj.prodQtyInBLIndustrial}}</span>
+            </div>
+            
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label  class="w-100 view-label">Purchase / Import Quantity(in BL) Portable<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+              
+                <span>{{viewpurchasepermitobj.purhOrImpQtyInBLPortable}}</span>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label  class="w-100 view-label">Purchase / Import Quantity(in BL) Industrial<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+          
+            <span>{{viewpurchasepermitobj.purhOrImpQtyInBLIndustrial}}</span>
+    </div>
+
+                    </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-success mr-2" *ngIf="addedit !== 'View'">Print</button>
+        <button type="button" class="btn btn-secondary"
+        routerLink="/supplychainmanagement/distillery/purchase-permitrequest-withinup/add"
+        *ngIf="addedit !== 'View'">Back</button>
+   
+    <button type="button" class="btn btn-secondary" *ngIf="addedit == 'View'"
+        routerLink="/supplychainmanagement/distillery/purchase-permitrequest-withinup/list">Back</button>
+</div>
+</div>

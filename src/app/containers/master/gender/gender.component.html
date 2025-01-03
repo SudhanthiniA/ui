@@ -1,0 +1,96 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" {{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.gender.gendercode' | translate }}</label>
+                        <input type="text" class="form-control" name=code #code= ngModel 
+                        [(ngModel)]="genderObj['code']" placeholder="{{ 'master.gender.entergencode' | translate }}">
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Gender Name</label>
+                        <input type="text" class="form-control" name=gender #gender= ngModel 
+                        [(ngModel)]="genderObj['name']" placeholder="{{ 'master.gender.entergenname' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.gender.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="genderObj['isActive']">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option value="true">{{ 'master.common.active' | translate }}</option>
+                            <option value="false">{{ 'master.common.inactive' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchGender()>  {{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()> {{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<app-card cardTitle="Gender Master Details" class="list-panel view-panel">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Gender Name</th>
+                        <th>Created By</th>
+                        <th>Created On</th>
+                        <th>Modified By</th>
+                        <th>Modified On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>TC001</td>
+                        <td class="text-left">Admin</td>
+                        <td class="text-center">01 Nov 2021 & 16:53</td>
+                        <td class="text-left">Assistant Admin</td>
+                        <td class="text-center">01 Nov 2021 & 16:53</td>
+                        <td class="text-center">
+                            <span class="badge badge-light-success">Active</span> </td>  
+                        <td class="table-action-column text-center">
+                            <button class="btn btn-icon btn-primary" type="button" 
+                            routerLink="/master/tankcategory/view">
+                                <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                routerLink="/master/tankcategory/add">
+                                <i class="feather icon-edit-2"></i></button> -->
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row w-100">
+            <div class="col-4">
+              <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle
+                  type="button">Download</button>
+                <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 text-right p-0">
+                <img src="assets/images/pagenation.png" />
+            </div>
+        </div>
+    </div>
+</app-card>

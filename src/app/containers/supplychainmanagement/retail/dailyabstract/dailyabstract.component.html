@@ -1,0 +1,120 @@
+<app-common-breadcrumb [titleSection]="titleSection" [text]="lastText" [breadcrumbs]="breadcrumbs">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Closing Balance - Whisky, Brandy, Gin & Rum of Foreign Manufacturer (in ML)</label>
+                        <input type="number" class="form-control" required
+                            placeholder="Enter Closing Balance - Whisky Brandy, Gin & Rum of Foreign Manufacturer (in ML)">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Closing Balance - Whisky, Brandy, Gin & Rum of Indian Manufacturer (in ML)</label>
+                        <input type="number" class="form-control" required
+                            placeholder="Enter Closing Balance - Whisky, Brandy, Gin & Rum  of Indian Manufacturer (in ML)">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Closing Balance - Other Spirits &amp; Liquors</label>
+                        <input type="number" class="form-control" required
+                            placeholder="Enter Closing Balance -Other Spirits & Liquors">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Daily Abstract of Receipts, Sales and Balance List" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive new_table">
+                <!-- <table class="table table-bordered table-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Closing Balance - Whisky, Brandy, Gin &amp; Rum of Foreign Manufacturer (in ML)</th>
+                            <th>Closing Balance - Whisky, Brandy, Gin &amp; Rum  of Indian Manufacturer (in ML)</th>
+                            <th>Closing Balance - Other Spirits &amp; Liquors</th>
+                            <th>Closing Balance - Port Sherry, Elaret Champange &amp; Wines of Other Sorts</th>
+                            <th>Closing Balance - Beer of Foreign Manufacturer (Including Cider)</th>
+                            <th>Closing Balance - Beer of Indian Manufacturer </th>
+                            <th>Closing Balance - Other Spirits &amp; Liquor</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-center">20-Jan-2021</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                            <td class="text-right">1000.00</td>
+                              <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/retail/dailyabstract/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button" 
+                                routerLink="/supplychainmanagement/retail/dailyabstract/add">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <!-- <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="col-12 text-right mb-4">
+                    <button type="button" class="btn btn-primary ml-2 mb-2" >Print</button>
+                    <button class="btn btn-success  ml-2 mb-2">Download</button>
+                  <button type="button" class="btn btn-secondary ml-2 mb-2" 
+                        routerLink="/supplychainmanagement/retail/dailyabstract/add">Back</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

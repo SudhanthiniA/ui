@@ -1,0 +1,82 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.mf4transportpass.mf4transport' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/transportgeneration/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.mf4transportpass.generate' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">
+            {{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.mf4transportpass.mf4transport' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #transportForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.indentno' | translate }}</label>
+                            <input type="text" name="indentNum" #indentNum="ngModel"
+                                [(ngModel)]="transportObj['indentNum']" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.indentno' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.mf4transportpass.distilleryname' | translate }}</label>
+                            <input type="text" name="distilleryName" #distilleryName="ngModel"
+                                [(ngModel)]="transportObj['distilleryName']" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'sugarmill.mf4transportpass.distilleryname' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="transportGenlistt()"
+                                class="btn btn-primary mr-2">{{ 'master.common.search' | translate }}</button>
+                            <button type="reset" (click)="clearData()"
+                                class="btn btn-secondary">{{ 'master.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card
+            cardTitle="{{ 'sugarmill.mf4transportpass.mf4transport' | translate }} {{ 'master.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)" [actionBtnBasedOnCond]="actionBtnBasedOnCond">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

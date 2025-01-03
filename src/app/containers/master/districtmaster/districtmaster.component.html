@@ -1,0 +1,105 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'master.district.district' | translate }} {{ 'master.common.list' | translate }}
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/master/district/add">
+    <i class="feather icon-plus mr-2"></i>
+    {{ 'master.district.adddistrict' | translate }}
+    </button>
+</h5>
+    
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.district.districtmaster' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.district.district' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.district.districtname' | translate }}</label>
+                        <input type="text" class="form-control" placeholder="{{ 'master.district.enterdistrictname' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.licence.daterange' | translate }}</label>
+                        <input type="text" name="daterange" ngxDaterangepickerMd
+                            [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}"
+                            class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control">
+                            <option>{{ 'master.common.select' | translate }}</option>
+                            <option value="active">Active</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchDistrict()">{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'master.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.district.district' | translate }} {{ 'master.common.list' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'master.district.districtcode' | translate }}</th>
+                            <th>{{ 'master.district.districtname' | translate }}</th>
+                            <th>{{ 'master.common.createdby' | translate }}</th>
+                            <th>{{ 'master.common.createdon' | translate }}</th>
+                            <th>{{ 'master.common.Modifiedby' | translate }}</th>
+                            <th>{{ 'master.common.Modifiedon' | translate }}</th>
+                            <th>{{ 'master.common.status' | translate }}</th>
+                            <th>{{ 'master.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody  *ngIf="districtList?.length != 0">
+                        <tr *ngFor="let data of districtList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.code}}</td>
+                            <td class="text-left">{{data.name}}</td>
+                            <td class="text-left">{{data.createdBy}}</td>
+                            <td>{{data.createdDate | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <td class="text-left">{{data.modifiedBy }}</td>
+                            <td>{{data.modifiedDate | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                <span class="badge m-r-5 badge-light-danger" *ngIf="!data.active">Inactive</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" (click) = "navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                (click) = "navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="districtList?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">{{ 'master.common.nodatafound' | translate }}!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+

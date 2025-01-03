@@ -1,0 +1,520 @@
+<h5 class="m-b-10 ng-star-inserted">Add Indent Request </h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Indent Request</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <ngb-accordion [closeOthers]="true" activeIds="static-1" class="next-accordion">
+            <ngb-panel id="static-1">
+                <ng-template ngbPanelTitle>
+                    <h5><a href="javascript:">Unit Details</a></h5>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                              <label>License Type
+                              </label>
+                              <select disabled class="form-control" name="statuss">
+                                <option value="">BWFL2</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                              <label>Unit Name</label>
+                            <input type="text" class="form-control" disabled placeholder="Enter Unit Name" value="Daurala Sugar Works"> 
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                              <label>Unit Address</label>
+                            <input type="text" class="form-control" disabled placeholder="Enter Unit Address" value="Plot no. 12, xyz nagar, Karnataka, Bangalore, Bangalore, Shivaji Nagar, Majestic, 500001"> 
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+
+        </ngb-accordion>
+    </div>
+    <div class="col-xl-12 mt-2">
+
+        <form [formGroup]='consignorForm' autocomplete="off">
+
+            <ngb-accordion [closeOthers]="true" activeIds="static-2" class="next-accordion">
+                <ngb-panel id="static-2">
+                    <ng-template ngbPanelTitle>
+                        <h5><a href="javascript:">Consignor Details</a></h5>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>License Type</label>
+                                    <select  required class="form-control">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12">
+                                <label>Unit Type</label>
+                                <select formControlName="entityType" 
+                                    (change)=getEntityType($event) required class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Distillery">Distillery</option>
+                                    <option value="Brewery">Brewery</option>
+                                    <option value="Bond Warehouse">Bond Warehouse</option>
+                                    <option value="Custom Bond Warehouse">Custom Bond Warehouse</option>
+                                </select>
+                                <div *ngIf="formSubmitted && consignorForm.get('entityType').errors || consignorForm.get('entityType').touched "
+                                    class="error-msg">
+                                    <span *ngIf="consignorForm.get('entityType').errors?.required"><i
+                                            class="fa fa-times"></i>
+                                        Unit Type is required
+                                    </span>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                  <label>Unit Type</label>
+                                  <input required disabled  class="form-control" 
+                                      value="Distillery">
+                                    
+                                </div>
+                              </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <label>Distillery Name</label>
+                                <input type="text" class="form-control">
+                                <!-- <select formControlName="entityName"
+                                    (change)=getEntityName($event) required class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Unit1">Unit 1</option>
+                                    <option value="Unit2">Unit 2</option>
+                                </select> -->
+                                <!-- <div *ngIf="formSubmitted && consignorForm.get('entityName').errors || consignorForm.get('entityName').touched "
+                                    class="error-msg">
+                                    <span *ngIf="consignorForm.get('entityName').errors?.required"><i
+                                            class="fa fa-times"></i>
+                                        Unit Name is required
+                                    </span>
+                                </div> -->
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label>Distillery Address
+                                    </label>
+                                    <select class="form-control" required >
+                                        <option value="">Select</option>
+                                                     </select>
+                                    <!-- <textarea class="form-control" formControlName="consignorUnitAddress" rows="1"
+                                        required disabled>Plot No. 12, Near Tripathi Super Store, Madhupuram, Bhitauli Khurd, IIM Road, Lucknow, UP 241001</textarea> -->
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+            </ngb-accordion>
+
+        </form>
+    </div>
+    <div class="col-xl-12 mt-2">
+        <app-card cardTitle="Indent Details" class="list-panel add-panel">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="table-responsive my-2">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>Financial Year</th>
+                                <th>Date</th>
+                                <th>District</th>
+                                <th>Strength</th>
+                                <th>No of indent raised today</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <select class="form-control" required>
+                                    <option value="">Select</option>
+                                  </select></td>
+                                  <td></td>
+                                <td>Lucknow</td>
+                                <td> <select class="form-control" required>
+                                    <option value="">Select</option>
+                                  </select></td>
+                                <td>30</td>
+                                
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </app-card>
+            <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                <form [formGroup]='indentDtlsForm' autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" value="" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Liquor Type</label>
+                            <select required class="form-control" >
+                                <option value="">Select</option>
+                                   </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Strength</label>
+                            <select required class="form-control" >
+                                <option value="">Select</option>
+                                   </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Liquor Subtype</label>
+                            <select  required class="form-control">
+                                <option value="">Select</option> 
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                          <label class="mandatory">Liquor Detailed Description</label>
+                          <select class="form-control" required>
+                            <option value="">Select</option>
+                                         </select>
+                         
+                        </div>
+                      </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Brand Name</label>
+                            <select   required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Parent ETIN</label>
+                            <select  required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Packaging Size</label>
+                            <select class="form-control" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Packaging Type</label>
+                            <select required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                          <label>No. of Bottles Per Case</label>
+                          <select class="form-control" disabled required>
+                            <option value="">Select</option>
+                                         </select>
+                         
+                        </div>
+                      </div>
+                      <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">EDP
+                            </label>
+                            <select required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                            
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">EDP Category</label>
+                            <select required class="form-control">
+                                <option value="">Select</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right" >
+                        <div class="">
+                            <button class="btn btn-icon btn-primary" (click)="addIndentForm(indentDtlsForm)"
+                                type="button">Add</button>
+                            <button class="btn btn-icon btn-secondary ml-2 " (click)="clearIndentForm()"
+                                type="button">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+           
+      <div class="row">
+        <div class="col-xl-12">
+            <div class="table-responsive my-2">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Brand Name<br>(Parent ETIN)</th>
+                            <th>Liquor Type</th>
+                            <th>Liquor Sub Type</th>
+                            <th>Liquor Detailed<br>Description</th>
+                            <th>Strength</th>
+                            <th>Packaging<br>Size</th>
+                            <th>Packaging<br>Type</th>
+                            <th>No of Bottles<br>per Case</th>
+                            <th>Available<br>Cases</th>
+                            <th>Available<br>Bottles</th>
+                            <th>No of<br>Bottles</th>
+                            <!-- <th>Price</th> -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Rampur Select</td>
+                            <td>CL</td>
+                            <td>Whishky</td>
+                            <td>Single Malt</td>
+                            <td> <select class="form-control">
+                                <option value="">Select</option>
+                                             </select></td>
+                            <td>750 ML</td>
+                            <td>Glass Bottle</td>
+                            <td>10</td>
+                            <td>100</td>
+                            <td>100</td>
+
+                            <!-- <td><input type="number" required class="form-control" placeholder="Enter No of Cases"></td> -->
+                            <td>10</td>
+                            <td class="text-center">
+                                <button class="btn btn-icon btn-secondary " type="button">
+                                    <i class="feather icon-edit-2"></i></button>
+
+                                <button class="btn btn-icon btn-danger ml-2 " type="button">
+                                    <i class="feather icon-trash"></i></button>
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  
+        <form [formGroup]="totalValuesForm">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total No. Cases
+                        </label>
+                        <input type="text" disabled required value="15"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total No.of Cases Permitted
+                        </label>
+                        <input type="text" disabled required value="2000"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total No. of Bottles
+                        </label>
+                        <input type="text" disabled required value="24000"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total Bulk Litres
+                        </label>
+                        <input type="text" disabled required value="1000"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Remarks
+                        </label>
+                        <input type="text"  required value=""
+                            class="form-control">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Is Payment Done?
+                        </label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked>
+                            <label class="" for="tab1">Yes</label>
+                            <input type="radio" name="tab" id="tab2">
+                            <label class="" for="tab2">No</label>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </form>
+    </app-card>
+    <app-card cardTitle="Duty Details" class="list-panel add-panel">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Consideration Fees<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                1000.00
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Add. Consideration Fees<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                800.00
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Special Add. Consideration Fees/Covid Fees<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                800.00
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Total Duty Amount<span
+                        class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                1800.00
+            </div>
+           
+        </div>
+    </app-card>
+
+
+
+        <!-- <app-card cardTitle="Payment Details" class="list-panel add-panel">
+            <form [formGroup]='paymentForm' autocomplete="off">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Amount
+                            </label>
+                            <input type="number" disabled class="form-control"
+                                placeholder="Enter Total Amount ">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Advance Amount
+                            </label>
+                            <input type="number"  class="form-control" required
+                                placeholder="Enter Advance Amount">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance Amount
+                            </label>
+                            <input type="number" disabled class="form-control" required
+                                value="100.00">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mode of Payment
+                            </label>
+                            <select  required class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Payment
+                            </label>
+                            <input  type="date"  required class="form-control">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reference No
+                            </label>
+                            <input  type="number"  required
+                                class="form-control" placeholder="Enter Reference No">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Challan No/Transaction  ID/Draft No
+                        </label>
+                        <input type="number" required class="form-control"
+                        placeholder="Enter Challan No/Transaction  ID/Draft No">
+                    </div>
+                </div>
+                </div>
+            </form>
+
+        </app-card> -->
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" *ngIf='(!workflowobj?.isEditable)'
+            (click)="preview()">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save
+            as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <!-- <button type="button" class="btn btn-primary ml-2 mb-2">Approve</button> -->
+        <!-- <button type="button" class="btn btn-danger ml-2 mb-2">Reject</button> -->
+        <select class="col-lg-2 col-md-2 col-sm-3 col-3" [(ngModel)]='rejectid'
+         *ngIf='workflowobj?.isSendBack && indendDtls.status !="APPROVED"'>
+            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+            <option value="{{ sebd.key}}" *ngFor='let sebd of workflowobj?.sendBackList'>{{ sebd.value}}</option>
+        </select>
+
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="submit('SENDBACK')"
+            *ngIf='workflowobj?.isSendBack && indendDtls.status !="APPROVED"'>Clarification Needed</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backToList()">Cancel</button>
+    </div>
+</div>

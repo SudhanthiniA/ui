@@ -1,0 +1,105 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add FL 25-B
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">FL 25-B</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <form [formGroup]="fl25bForm">
+    <div class="col-xl-12">
+        <app-card cardTitle="Add FL 25-B" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="text" disabled class="form-control" formControlName='date'>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of Ration Card Holder</label>
+                        <input type="text"  class="form-control" formControlName="rationCardHolder"
+                        placeholder="Enter Name of Ration Card Holder">
+                    </div>
+                    <div *ngIf ="formSubmitted && (f.rationCardHolder.errors)" class="error-msg">
+                            <div *ngIf ="f.rationCardHolder?.errors?.required">
+                                Card Holder Name is required
+                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Rank</label>
+                        <input type="text"  class="form-control" formControlName="rank"
+                        placeholder="Enter Rank">
+                    </div>
+                    <div *ngIf ="formSubmitted && (f.rank.errors)" class="error-msg">
+                        <div *ngIf ="f.rank?.errors?.required">
+                            Rank is required
+                        </div>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ration Card No.</label>
+                        <input type="number" class="form-control" formControlName="rationCardNo"
+                        placeholder="Enter Ration Card No.">
+                        <div *ngIf ="formSubmitted && (f.rationCardNo.errors)" class="error-msg">
+                            <div *ngIf ="f.rationCardNo?.errors?.required">
+                                Ration card no is required
+                            </div>
+                    </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Quota Fixed in Quarts</label>
+                        <input type="text" disabled class="form-control" formControlName="quotaFixedInQuarts"
+                        placeholder="Enter Quota fixed in Quarts">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Quantity Sold (in Quarts)</label>
+                        <input type="number" class="form-control"  formControlName="quantitySold"
+                        placeholder="Enter Quantity Sold (in Quarts)">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" formControlName="status">
+                        <option value="">Select</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <input type="text"  class="form-control" formControlName="remarks"
+                        placeholder="Enter Remarks">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+        
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/retail/formfl25-b/view">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+        (click)="save(fl25bForm, 'DRAFT')">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+        (click)="save(fl25bForm, 'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/retail/formfl25-b/list">Cancel</button>
+    </div>
+</form>
+</div>

@@ -1,0 +1,36 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'retail.salesallocatedvsachievdmonth.salesallocatedvsachievd(month)' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesallocatedvsachievdmonth.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesallocatedvsachievdmonth.reports' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.salesallocatedvsachievdmonth.salesallocatedvsachievd(month)' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let sales of salesAllocated">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.salesallocatedvsachievdmonth.month' | translate }}</p>
+            <h6 class="m-0">{{sales.month}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.salesallocatedvsachievdmonth.targetsalesforthemonth' | translate }}</p>
+            <h6 class="m-0">{{sales.targetSales}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.salesallocatedvsachievdmonth.actualsalesforthemonth' | translate }}</p>
+            <h6 class="m-0">{{sales.actualSales}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.salesallocatedvsachievdmonth.percentageoftargetachieved' | translate }}</p>
+            <h6 class="m-0">{{sales.percentage}}</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <img class="w-100" src="assets/images/Sales_Allocated_vs_Achieved_month.jpg" />
+        </app-card>
+    </div>
+</div>

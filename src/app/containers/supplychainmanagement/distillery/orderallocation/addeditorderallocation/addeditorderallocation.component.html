@@ -1,0 +1,126 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Order Allocation 
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Allocation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Edit</a></li>
+  </ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form  #orderallocationForm="ngForm" autocomplete="off">
+
+            <app-card cardTitle="Details of Selected Order Allocation" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Order ID</label>
+                            
+                            <input type="text" id="orederid" name="orederid"  #orederid="ngModel" [(ngModel)]="orderallocationObj['orederid']"
+                            required class="form-control" placeholder="Enter Order Id">
+                            <div *ngIf="orederid.invalid && (orederid.dirty || orederid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="orederid?.errors?.required"><i class="fa fa-times"></i>
+                                    Order ID is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select id="location"  name="location"  #location="ngModel" [(ngModel)]="orderallocationObj['location']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of locationlist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="location.invalid && (location.dirty || location.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="location?.errors?.required"><i class="fa fa-times"></i>
+                                Location is required </div>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select id="grade"  name="grade"  #grade="ngModel" [(ngModel)]="orderallocationObj['grade']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradeList" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="grade.invalid && (grade.dirty || grade.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="grade?.errors?.required"><i class="fa fa-times"></i>
+                                Grade is required </div>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity</label>
+                            <input type="text" id="availablequantity" name="availablequantity"  #availablequantity="ngModel" [(ngModel)]="orderallocationObj['availablequantity']"
+                            required class="form-control" placeholder="Enter Available Quantity">
+                            <div *ngIf="availablequantity.invalid && (availablequantity.dirty || availablequantity.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="availablequantity?.errors?.required"><i class="fa fa-times"></i>
+                                    Available Quantity is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Allocated Quantity</label>
+                            <input type="text" id="allocatedquantity" name="allocatedquantity"  #allocatedquantity="ngModel" [(ngModel)]="orderallocationObj['allocatedquantity']"
+                            required class="form-control" placeholder="Enter Allocated Quantity">
+                            <div *ngIf="allocatedquantity.invalid && (allocatedquantity.dirty || orederid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="allocatedquantity?.errors?.required"><i class="fa fa-times"></i>
+                                    Allocated Quantity is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <hr>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Created On </label>
+                            <input type="text" class="form-control" value="02-Sep-2020 12:26 PM">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Created By</label>
+                            <input type="text" class="form-control" value="Admin">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Updated on</label>
+                            <input type="text" class="form-control" value="03-Sep-2020 03:26 PM">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Updated by</label>
+                            <input type="text" class="form-control" value="Name1">
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" routerLink="/supplychainmanagement/sugarmills/orderallocation/list">Submit</button>
+                        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/sugarmills/orderallocation/list">Cancel</button>
+                    </div>
+                </div> -->
+            </app-card>
+
+        </form>
+      
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mr-2" (click) ="addorderAloocation(orderallocationForm)">Submit</button>
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/distillery/orderallocation/list">Cancel</button>
+    </div>
+</div>

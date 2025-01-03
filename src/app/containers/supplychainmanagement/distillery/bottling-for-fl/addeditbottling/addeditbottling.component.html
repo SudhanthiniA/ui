@@ -1,0 +1,390 @@
+<h5 class="m-b-10 ng-star-inserted">Add Bottling for FL</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bottling</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bottling for FL</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #ruleForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add - Bottling For FL" class="list-panel add-panel">
+                <div class="row">
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <!-- <input type="date" required id="date" class="form-control" placeholder="Enter Date"> -->
+                            <input type="date" required id="Date" name="Date" class="form-control"
+                             #Date="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['Date']">
+                        <div *ngIf="Date.invalid && (Date.dirty || Date.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Date?.errors?.required"><i class="fa fa-times"></i>
+                                Date is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type of Liquor</label>
+                            <select id="TypeOfLiquor" required class="form-control" name="TypeOfLiquor"  #TypeOfLiquor="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['TypeOfLiquor']">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                            <div *ngIf="TypeOfLiquor.invalid && (TypeOfLiquor.dirty || TypeOfLiquor.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="TypeOfLiquor?.errors?.required"><i class="fa fa-times"></i>
+                                Type Of Liquor is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Under</label>
+                            <select id="BottlingUnder" required class="form-control" name="BottlingUnder"  #BottlingUnder="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['BottlingUnder']">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                            <div *ngIf="BottlingUnder.invalid && (BottlingUnder.dirty || BottlingUnder.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="BottlingUnder?.errors?.required"><i class="fa fa-times"></i>
+                                Bottling Under is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License No.
+                            </label>
+                            <input required type="text" class="form-control" name="LicenseNo"  #LicenseNo="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['LicenseNo']"
+                                 placeholder="Enter License No.">
+                                 <div *ngIf="LicenseNo.invalid && (LicenseNo.dirty || LicenseNo.touched || formSubmitted)"
+                                 class="error-msg">
+                                 <div *ngIf="LicenseNo?.errors?.required"><i class="fa fa-times"></i>
+                                     License No is required </div>
+     
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Plan No.
+                            </label>
+                            <input required type="text" id="planno" class="form-control"  name="PlanNo"  #PlanNo="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['PlanNo']"
+                                 placeholder="Enter Plan No.">
+                                 <div *ngIf="PlanNo.invalid && (PlanNo.dirty || PlanNo.touched || formSubmitted)"
+                                 class="error-msg">
+                                 <div *ngIf="PlanNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Plan No is required </div>
+     
+                             </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #ruleForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Bottling Detail" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Vat
+                            </label>
+                            <select id="BottlingVat" required class="form-control"  name="BottlingVat"  #BottlingVat="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['BottlingVat']" required>
+                                <option value="">Select</option>
+                                <option>Type 1</option>
+                                <option>FL</option>
+                            </select>
+                            <div *ngIf="BottlingVat.invalid && (BottlingVat.dirty || BottlingVat.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="BottlingVat?.errors?.required"><i class="fa fa-times"></i>
+                                Bottling Vat is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance BL 
+                            </label>
+                            <input type="text" required  class="form-control"  name="BalBl"  #BalBl="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['BalBl']" required
+                                placeholder="Enter Balance BL">
+                                <div *ngIf="BalBl.invalid && (BalBl.dirty || BalBl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BalBl?.errors?.required"><i class="fa fa-times"></i>
+                                    Balancing Bl is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Strength
+                            </label>
+                            <select id="Strength" required class="form-control" name="Strength"  #Strength="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['Strength']" required>
+                                <option value="">Select</option>
+                                <option>Type 1</option>
+                            </select>
+                            <div *ngIf="Strength.invalid && (Strength.dirty || Strength.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Strength?.errors?.required"><i class="fa fa-times"></i>
+                                Strength is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name
+                            </label>
+                            <select id="BrandName" required class="form-control" name="BrandName"  #BrandName="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['BrandName']" required>
+                                <option value="">Select</option>
+                                <option>Type 1</option>
+                            </select>
+                            <div *ngIf="BrandName.invalid && (BrandName.dirty || BrandName.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="BrandName?.errors?.required"><i class="fa fa-times"></i>
+                                Brand Name is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size
+                            </label>
+                            <select id="Size" required class="form-control" name="Size"  #Size="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['Size']" required>
+                                <option value="">Select</option>
+                                <option>Type 1</option>
+                            </select>
+                            <div *ngIf="Size.invalid && (Size.dirty || Size.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="Size?.errors?.required"><i class="fa fa-times"></i>
+                                Size is required </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Planned Bottles
+                            </label>
+                            <input type="text" required id="PlannedBottles" class="form-control" name="PlannedBottles"  #PlannedBottles="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['PlannedBottles']" required
+                                placeholder="Enter Planned Bottles">
+                                <div *ngIf="PlannedBottles.invalid && (PlannedBottles.dirty || PlannedBottles.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="PlannedBottles?.errors?.required"><i class="fa fa-times"></i>
+                                    Planned Bottles is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity (M.L.)
+                            </label>
+                            <input type="text" id="QuantityInMl" class="form-control"  name="QuantityInMl"  #QuantityInMl="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['QuantityInMl']" required
+                                placeholder="Enter Quantity (M.L.)">
+                                <div *ngIf="QuantityInMl.invalid && (QuantityInMl.dirty || QuantityInMl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="QuantityInMl?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity(M.L.) is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity (No.of.Bottles)
+                            </label>
+                            <input type="text" required id="QuantityInBottle" class="form-control" name="QuantityInBottle"  #QuantityInBottle="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['QuantityInBottle']" required
+                                placeholder="Enter Quantity (No.of.Bottles)">
+                                <div *ngIf="QuantityInBottle.invalid && (QuantityInBottle.dirty || QuantityInBottle.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="QuantityInBottle?.errors?.required"><i class="fa fa-times"></i>
+                                    Quantity (No.of.Bottles) is required </div>
+    
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottled BL
+                            </label>
+                            <input type="text" required id="BottleBl" class="form-control" name="BottleBl"  #BottleBl="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['BottleBl']" required
+                                placeholder="Enter Bottled BL">
+                                <div *ngIf="BottleBl.invalid && (BottleBl.dirty || BottleBl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BottleBl?.errors?.required"><i class="fa fa-times"></i>
+                                    Bottled BL is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage of Bottling BL
+                            </label>
+                            <input type="text" required id="WastOfBottleBl" class="form-control" name="WastOfBottleBl"  #WastOfBottleBl="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['WastOfBottleBl']" required
+                                placeholder="Enter Wastage of Bottling BL">
+                                <div *ngIf="WastOfBottleBl.invalid && (WastOfBottleBl.dirty || WastOfBottleBl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="WastOfBottleBl?.errors?.required"><i class="fa fa-times"></i>
+                                    Wastage of Bottling B.L. is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wastage of Bottling AL
+                            </label>
+                            <input type="text" required id="wastofbotal" class="form-control" name="WastOfBottleAl"  #WastOfBottleAl="ngModel" required
+                            [(ngModel)]="bottlingForFlObj['WastOfBottleAl']" required
+                                placeholder="Enter Wastage of Bottling AL">
+                                <div *ngIf="WastOfBottleAl.invalid && (WastOfBottleAl.dirty || WastOfBottleAl.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="WastOfBottleAl?.errors?.required"><i class="fa fa-times"></i>
+                                    Wastage of Bottling A.L. is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bottling Fee
+                            </label>
+                            <input type="text" required id="BottlingFee" class="form-control" name="BottlingFee"  #BottlingFee="ngModel"
+                            [(ngModel)]="bottlingForFlObj['BottlingFee']" required
+                                placeholder="Enter Bottling Fee">
+                                <div *ngIf="BottlingFee.invalid && (BottlingFee.dirty || BottlingFee.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="BottlingFee?.errors?.required"><i class="fa fa-times"></i>
+                                    Bottling Fee is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cowcess + Track N Trace Fee
+                            </label>
+                            <input type="text" required id="CowCess" class="form-control"  name="CowCess"  #CowCess="ngModel"
+                            [(ngModel)]="bottlingForFlObj['CowCess']" required
+                                placeholder="Enter Cowcess + Track N Trace Fee">
+                                <div *ngIf="CowCess.invalid && (CowCess.dirty || CowCess.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="CowCess?.errors?.required"><i class="fa fa-times"></i>
+                                    Cowcess + Track N Trace Fee is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Calculated Duty
+                            </label>
+                            <input type="text" required id="CalculatedDuty" class="form-control" name="CalculatedDuty"  #CalculatedDuty="ngModel"
+                            [(ngModel)]="bottlingForFlObj['CalculatedDuty']" required
+                                placeholder="Enter Calculated Duty">
+                                <div *ngIf="CalculatedDuty.invalid && (CalculatedDuty.dirty || CalculatedDuty.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="CalculatedDuty?.errors?.required"><i class="fa fa-times"></i>
+                                    Calculated Duty is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right mb-2">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="adddata(ruleForm)">Add</button>
+                        <button type="submit" class="btn btn-secondary" (click)="clear(ruleForm)">Clear</button>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Bottling Vat</th>
+                                        <th>Balance BL</th>
+                                        <th>Strength</th>
+                                        <th>Brand Name</th>
+                                        <th>Size</th>
+                                        <th>Planned Bottles</th>
+                                        <th>Quantity (M.L.)</th>
+                                        <th>Quantity (No.of.Bottles)</th>
+                                        <th>Bottled BL</th>
+                                        <th>Wastage of Bottling BL</th>
+                                        <th>Wastage of bottling AL</th>
+                                        <th>Bottling Fee</th>
+                                        <th>Cowcess + Track N Trace Fee</th>
+                                        <th>Calculated Duty</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of tabledata; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{data.BottlingVat}}</td>
+                                        <td class="text-left">{{data.BalBl}}</td>
+                                        <td class="text-left">{{data.Strength}}</td>
+                                        <td class="text-left">{{data.BrandName}}</td>
+                                        <td class="text-left">{{data.Size}}</td>
+                                        <td class="text-left">{{data.PlannedBottles}}</td>
+                                        <td class="text-left">{{data.QuantityInMl}}</td>
+                                        <td class="text-left">{{data.QuantityInBottle}}</td>
+                                        <td>{{data.BottleBl}}</td>
+                                        <td class="text-right">{{data.WastOfBottleBl}}</td>
+                                        <td class="text-right">{{data.WastOfBottleAl}}</td>
+                                        <td>{{data.BottlingFee}}</td>
+                                        <td>{{data.CowCess}}</td>
+                                        <td>{{data.CalculatedDuty}}</td>
+                                        <td class="table-action-column">
+                                            <button class="btn btn-icon btn-danger" type="button">
+                                                <i class="feather icon-trash-2"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                <i class="feather icon-edit-2"></i></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mb-2" (click)="savetable()">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/bottling-for-fl/list">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }} " class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.location' | translate }} </label>
+                        <input type="text" class="form-control" [(ngModel)]="locationObj.locationName"
+                        placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.location' | translate }}  {{ 'master.common.name' | translate }} ">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.country' | translate }} </label>
+                        <select class="form-control" [(ngModel)]="locationObj.country" name="country_uuid" 
+                        #country_uuid="ngModel" (change)="getStatesByCountryId($event.target.value)">
+                            <option disabled value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let country of countryData" value="{{country.id}}"> {{country.countryName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.state' | translate }} </label>
+                        <select class="form-control" [(ngModel)]="locationObj.state" name="state_uuid"
+                         #state_uuid="ngModel">
+                            <option disabled value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let state of stateData" value="{{state.stateName}}"> {{state.stateName}} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }} </label>
+                        <select class="form-control" [(ngModel)]="locationObj.isActive">
+                            <option disabled value="">{{ 'master.common.select' | translate }}</option>
+                            <option value= true>Active</option>
+                            <option value= false>InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2"
+                    (click)=search()>{{ 'master.common.search' | translate }} </button>
+                    <button type="submit" class="btn btn-secondary" (click)=clear()
+                    >{{ 'master.common.cancel' | translate }} </button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.location' | translate }} {{ 'master.common.list' | translate }} " blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table
+                    [columns]="columns" 
+                    [actionKeys]="actionKeys"
+                    [dataSource]="dataSource" 
+                    [pageSize]="pageSize" 
+                    [totalCount]="totalCount"
+                    (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

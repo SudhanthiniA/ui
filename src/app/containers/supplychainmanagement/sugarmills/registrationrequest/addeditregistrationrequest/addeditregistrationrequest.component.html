@@ -1,0 +1,126 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Registration Request Edit
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Registration Request</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Edit</a></li>
+  </ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #registartionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details of Selected Registration Request Edit" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Treasury Details</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.treasurydetails}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Name</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.sugarmillname}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.district}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Year of Establishment</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.yearofestblishment}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.molasesquantity}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar </label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.sugarquantity}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tons/Day</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.tonsperday}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tons/Season</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.tonspersession}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Captive Distilleries</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.captivedisterilies}}">
+                        </div>
+                    </div>
+                </div>
+                
+            </app-card>
+
+        </form>
+      
+    </div>
+
+    <div class="col-xl-12">
+        <form #registartionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details of Selected Registration Request Create" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Created On </label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.created_on}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Created By</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.created_by}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Updated On</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.modified_on}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Updated By</label>
+                            <input type="text" disabled="disabled" class="form-control" value="{{registrationObj.modified_by}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" id="remarks" name="remarks"  #remarks="ngModel" [(ngModel)]="registrationObj['remarks']"
+                             class="form-control" placeholder="Enter Remarks">
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" (click)="addstock(registartionForm)" class="btn btn-primary mr-2">Submit</button>
+        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/sugarmills/registrationrequest/list">Cancel</button>
+    </div>
+</div>

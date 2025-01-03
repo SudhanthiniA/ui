@@ -1,0 +1,249 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,FormArray, Validators } from '@angular/forms';
+import { Router,ActivatedRoute } from '@angular/router';
+import { formatDate } from '@angular/common';
+import { AlertService, DistrictMasterService, StatemasterService } from '@app/services';
+import { NewlicenceCl10aService } from  '@app/services/new-licence/newlicence-cl10a.service';
+
+interface Post {
+  startDate: Date;
+}
+@Component({
+  selector: 'app-cl10a',
+  templateUrl: './cl10a.component.html',
+  styleUrls: ['./cl10a.component.scss']
+})
+export class Cl10aComponent implements OnInit {
+
+  ClForm:FormGroup;
+  formSubmitted=false;
+  purposeofevent:string;
+  urban:boolean=false;
+  rural:boolean=false;
+  editId: any;
+  addedit: any;
+  // new code
+  shopurban: boolean = false;
+  shoprural: boolean = false;
+  post: Post = {
+    startDate: new Date(Date.now())
+  }
+  constructor(
+    private state : StatemasterService,
+    private district : DistrictMasterService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alert: AlertService,
+    private newLicenceCLService:NewlicenceCl10aService
+  ) { }
+
+  ngOnInit() {
+
+    this.bhagCLFormGrp();
+    // this.WithinUpObj.date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.route.params.subscribe(params => {
+      if (params.id) {
+        // this.getWithinUpById(params.id);
+        // this.WithinUpObj.id = params.id;
+        this.editId = params.id;
+        // this.addedit = 'Edit';
+
+      }
+    });
+    this.addedit = this.router.url.includes('add') === true ? 'Add' : 'Edit';
+  }
+
+  bhagCLFormGrp() {
+    this.ClForm = this.formBuilder.group({
+        
+    "applicantAadharNo": ['', Validators.required],
+    "applicantMailId": ['', Validators.required],
+    "applicantMobileNumber": ['', Validators.required],
+    //"applicantPhotograph": [''],
+    "country":['INDIA', Validators.required],
+    "applicationDate": [formatDate(this.post.startDate, 'yyyy-MM-dd', 'en')],
+    "applicationFees": [''],
+    "bankAccountNumber":['', Validators.required],
+    "bankIfsc": ['', Validators.required],
+    "bankName": ['', Validators.required],
+    "blockId":[''],
+    "districtId": ['', Validators.required],
+    "dob": ['', Validators.required],
+    "financialyear":['2020-2021'],
+    "firstName": ['', Validators.required],
+    "genderId":['', Validators.required],
+    "lastName": ['',Validators.required],
+    "locality": ['', Validators.required],
+    "middleName":[''],
+    "muncipalAreaId": [''],
+    "panNumber": ['', Validators.required],
+    "pincode": [''],
+    "policeStation": ['', Validators.required],
+    "salutationId": ['', Validators.required],
+    "shopBlockId": [''],
+    "shopCountry":['INDIA', Validators.required],
+    "shopDistrictId":['', Validators.required],
+    "shopLocality": [''],
+    "shopMunicipalAreaId":[''],
+    "shopPincode": [''],
+    "shopPoliceStation":['', Validators.required],
+    "shopStateId":['', Validators.required],
+    "shopStreet": [''],
+    "shopTehsilId": ['', Validators.required],
+    "shopUrbanRural": ['', Validators.required],
+    "shopVillageId":[''],
+    "shopWard": [''],
+    "stateId": ['', Validators.required],
+    "street":['', Validators.required],
+    "tehsilId":['', Validators.required],
+    "urbanOrRural":['', Validators.required],
+    "villageId":[''],
+    "ward": [''],
+
+        "salesManDetailsEntityList": this.formBuilder.array([
+          this.buildformgroup()
+        ])
+       
+    })
+  }
+
+  public addEmptyCtrl(): void {
+    (this.ClForm.get('salesManDetailsEntityList') as FormArray).push(this.buildformgroup());
+  }
+  buildformgroup(data?: any){
+
+    return this.formBuilder.group({
+      'address': '',
+      'fullName': '',
+    });
+  }
+  addrow() {
+    (this.ClForm.get('salesManDetailsEntityList') as FormArray).push(this.buildformgroup());
+    console.log(this.ClForm.get('salesManDetailsEntityList') );
+    
+   }
+   removeSelectedRow(idx: number) {
+    (this.ClForm.get('salesManDetailsEntityList') as FormArray).removeAt(idx);
+    }
+    eventbar(event,value){
+      console.log(value);
+      
+     if (value == 'Yes') {
+       this.purposeofevent = 'commercial';
+     } else {
+       this.purposeofevent = 'noncommercial';
+     }
+   }
+  
+  addCLDetails(ClForm) {
+    console.log(ClForm);
+    let form = this.ClForm.value
+    this.formSubmitted = false;
+    if (ClForm.invalid) { 
+      this.formSubmitted = true;
+    } 
+     else {
+      this.newLicenceCLService.createClAForm(form).subscribe((responceData: any) => {
+          this.alert.showSuccess('Record created successfully', 'Success');
+          this.router.navigate(['/licencemgnt/bhang']);
+      })
+      
+    }
+  }
+  show($event){
+    let urbanshow = $event.target.value;
+    console.log($event.target.value);
+    if(urbanshow == 1){
+        this.urban = true;
+        this.rural = false;
+    }
+    else if(urbanshow == 2){
+      this.rural = true;
+      this.urban = false;
+    }
+    
+  }
+
+  show1($event){
+    let shopurbanshow = $event.target.value;
+    console.log($event.target.value);
+    if(shopurbanshow == 1){
+        this.shopurban = true;
+        this.shoprural = false;
+    }
+    else if(shopurbanshow == 2){
+      this.shoprural = true;
+      this.shopurban = false;
+    }
+    
+  }
+
+  reset(ClForm){
+    this.ClForm.reset()
+  }
+
+  // new code variable declaration
+  urbancheck:any;
+  // check box code
+
+  checkboxchange(event) {
+    console.log(event.target.checked)
+    this.urbancheck = event.target.checked;
+    if (this.urbancheck == true) {
+      this.ClForm.patchValue({
+        shopCountry:this.ClForm.value.shopCountry,
+        shopMunicipalAreaId: this.ClForm.value.muncipalAreaId,
+        shopBlockId: this.ClForm.value.blockId,
+        shopVillageId: this.ClForm.value.villageId,
+        shopLocality: this.ClForm.value.locality,
+        shopStreet: this.ClForm.value.street,
+        shopPincode: this.ClForm.value.pincode,
+        shopStateId: this.ClForm.value.stateId,
+        shopDistrictId: this.ClForm.value.districtId,
+        shopTehsilId: this.ClForm.value.tehsilId,
+        shopUrbanRural: this.ClForm.value.urbanOrRural,
+        shopWard: this.ClForm.value.ward,
+        shopPoliceStation: this.ClForm.value.policeStation,
+      });
+      console.log(this.ClForm.value.shopurban);
+      
+      if(this.ClForm.value.shopurban == 1){
+        this.shopurban = true;
+        this.shoprural = false;
+      }
+      else if(this.ClForm.value.shopurban == 2){
+        this.shoprural = true;
+        this.shopurban = false;
+      }
+    }
+    else if (this.urbancheck == false) {
+      this.ClForm.patchValue({
+        shopMunicipalAreaId: '',
+        shopBlockId: '',
+        shopVillageId: '',
+        shopLocality: '',
+        shopStreet: '',
+        shopPincode:'',
+        shopStateId: '',
+        shopDistrictId:'',
+        shopTehsilId: '',
+        shopUrbanRural:'',
+        shopWard: '',
+        shopPoliceStation: '',
+      });
+      if(this.ClForm.value.shopurban == 1){
+        this.shopurban = true;
+        this.shoprural = false;
+      }
+      else if(this.ClForm.value.shopurban == 2){
+        this.shoprural = true;
+        this.shopurban = false;
+      }
+    }
+  }
+  preview(form){
+    sessionStorage.setItem('formdata',JSON.stringify(form.value));
+    this.router.navigate(['/licencemgnt/bhang/cl10a/view'])
+  }
+}

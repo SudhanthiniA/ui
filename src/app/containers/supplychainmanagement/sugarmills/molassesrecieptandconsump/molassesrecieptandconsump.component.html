@@ -1,0 +1,152 @@
+<!-- <h5 class="m-b-10 ng-star-inserted" >
+    {{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/molassesrecieptandconsumption/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.molassesreciept.addmolasses' | translate }}
+    </button>
+</h5> -->
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">
+    <li class="breadcrumb-item"><a
+            href="javascript:">{{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}</a></li></a>
+    </li>
+    <li class="breadcrumb-item">
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #receiptForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.steeltankno' | translate }}</label>
+                            <select id="tank" name="tankId" #tankId="ngModel" [(ngModel)]="receiptObj['tankId']"
+                                required class="form-control">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of tanklist" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.consumption' | translate }}</label>
+                            <input type="text" name="consumption" #consumption="ngModel"
+                                [(ngModel)]="receiptObj['consumption']" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'sugarmill.molassesreciept.consumption' | translate }}">
+                        </div> -->
+                    <!-- </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesreciept.actualbalance' | translate }}</label>
+                            <input type="number" name="actualBalance" #actualBalance="ngModel"
+                                [(ngModel)]="receiptObj['actualBalance']" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'sugarmill.molassesreciept.actualbalance' | translate }}">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Date
+                            </label>
+                            <input type="date" name="fromDate" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterrequestdate' | translate }}" required
+                                #fromDate="ngModel" [(ngModel)]="receiptObj['fromDate']" required
+                            >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>To Date
+                            </label>
+                            <input type="date" name="toDate" class="form-control"
+                                placeholder="{{ 'sugarmill.tankregistration.enterrequestdate' | translate }}" required
+                                #toDate="ngModel" [(ngModel)]="receiptObj['toDate']" required
+                            >
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="getmolassesreciept()"
+                                class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                            <button type="reset" (click)="clearedata()"
+                                class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card
+            cardTitle="{{ 'sugarmill.molassesreciept.molassesreceiptandconsumption' | translate }}  {{'master.common.list' | translate}}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <!-- <table class="table table-bordered" datatable="ng" [dtOptions]="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.molassesreciept.steeltankno' | translate }}</th>
+                            <th>{{ 'sugarmill.molassesreciept.openingbalance' | translate }}</th>
+                            <th>{{ 'sugarmill.molassesreciept.recipetbalance' | translate }} </th>
+                            <th>{{ 'sugarmill.molassesreciept.consumption' | translate }}</th>
+                            <th>{{ 'sugarmill.molassesreciept.bookbalance' | translate }}</th>
+                            <th>{{ 'sugarmill.molassesreciept.actualbalance' | translate }} </th>
+                            <th>{{'master.common.action' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="molassesrecieptList?.length != 0">
+                        <tr *ngFor="let data of molassesrecieptList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data?.tankTypeResponseDto?.name}}</td>
+                            <td class="text-right">{{data?.openingBalance}} </td>
+                            <td class="text-right">{{data?.reciptBalance}}</td>
+                            <td class="text-right">{{data?.consumption}}</td>
+                            <td class="text-right">{{data?.bookBalance}}</td>
+                            <td class="text-right">{{data?.actualBalance}}</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <button *ngIf="data.method == 'draft'" class="btn btn-icon btn-secondary ml-2" type="button"
+                                    (click)="navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <app-mat-normal-table [columns]="columns"  [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

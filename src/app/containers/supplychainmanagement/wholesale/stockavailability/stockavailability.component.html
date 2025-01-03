@@ -1,0 +1,449 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'wholesale.stockavailabilitydetails.stockavailability' | translate}}
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/wholesale/indentrequest/add">
+    <i class="feather icon-external-link mr-2"></i>
+    Raise Indent
+</button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'wholesale.stockinhand.wholesale' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'wholesale.stockavailabilitydetails.stockavailability' | translate}}</a></li>
+    <li class="breadcrumb-item">{{ 'master.common.list' | translate}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <!-- <app-card cardTitle="Search" class="search-panel"> -->
+        <!-- <div class="row">
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                   <label>Search by Unit Name/Brand Name</label>
+                   <div class="custom-control custom-switch">
+                     <input type="checkbox" class="custom-control-input" id="customswitch1" checked>
+                     <label class="custom-control-label" for="customswitch1">Unit Name</label>
+                   </div>
+                 </div>
+                 </div> -->
+        <!-- <div class="row ">
+                    <div class="col-12 mb-2">
+                        <label>Search by Unit Name/Brand Name</label>
+                        <ul class="nav nav-pills segment">
+                          <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" value="unitName" (click)="onClickChange('UNITNAME')" 
+                            onMouseOver="this.style.cursor='pointer'">Unit Name</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" value="brandName" (click)="onClickChange('BRANDNAME')" 
+                            onMouseOver="this.style.cursor='pointer'">Brand Name</a>
+                          </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Type</label>
+                            <select  class="form-control">
+                               <option value="">Select</option>
+                               <option>Active</option>
+                           </select>
+                        </div>
+                    </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                   <div class="form-group">
+                       <label>Unit Name</label>
+                       <select   class="form-control">
+                          <option value="">Select</option>
+                          <option>Active</option>
+                      </select>
+                   </div>
+               </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                   <div class="form-group">
+                       <label>Unit Address</label>
+                       <select  class="form-control">
+                           <option value="">Select</option>
+                           <option>Active</option>
+                       </select>
+                    </div>
+               </div> 
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                   <div class="form-group">
+                       <label>Brand Name</label>
+                       <select   class="form-control">
+                           <option value="">Select</option>
+                           <option>Active</option>
+                       </select>
+                    </div>
+               </div> 
+          
+             
+              
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card> -->
+        <app-card cardTitle="{{ 'master.common.search' | translate}}" class="search-panel">
+            <form #searchForm="ngForm">
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <label>{{ 'wholesale.stockavailabilitydetails.searchby' | translate}}</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked>
+                            <label class="" for="tab1">Unit Name</label>
+                            <input type="radio" name="tab" id="tab2">
+                            <label class="" for="tab2">Brand Name</label>
+                        </div>
+                        <!-- <ul class="nav nav-pills segment">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" value="unitName" (click)="onClickChange('UNITNAME')" 
+                        onMouseOver="this.style.cursor='pointer'">{{ 'wholesale.stockavailabilitydetails.unitname' | translate}}</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" value="brandName" (click)="onClickChange('BRANDNAME')" 
+                        onMouseOver="this.style.cursor='pointer'">{{ 'wholesale.stockavailabilitydetails.brandname' | translate}}</a>
+                      </li>
+                    </ul> -->
+                    </div>
+                    <!-- <div class="col-12 mb-2">
+                    <label>Search by Unit Name/Brand Name</label>
+                    <div class="switch-checkbox">
+                        <label class="switch-light mb-0">
+                                <input type="checkbox">
+                                <span>
+                                    <span>Unit Name</span>
+                                    <span>Brand Name</span>
+                                </span>
+                                <a class="btn btn-primary"></a>
+                        </label>
+                    </div>
+                </div> -->
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <label>Search by Unit Name/Brand Name</label>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customswitch1" checked>
+                      <label class="custom-control-label" for="customswitch1">Brand Name</label>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- <div  class="row mt-2">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.liquortype' | translate}}</label>
+                            <select name="liquorType" #liquorType="ngModel" 
+                        (ngModelChange)="LiquorType($event)"    [(ngModel)]="stockInAvaObj['liquorType']" class="form-control">
+                                <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                                <option *ngFor="let item of liquorNames" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                         </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.liquorsubtype' | translate}}</label>
+                            <select  class="form-control" name="subLiquorType" #subLiquorType="ngModel"
+                            (ngModelChange)="subLiqrType($event)"   [(ngModel)]="stockInAvaObj['subLiquorType']">
+                                <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                                <option *ngFor="let item of subLiquorList" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                         </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Detailed Description</label>
+                            <select name="liquorCategory" #liquorCategory="ngModel"
+                            (ngModelChange)="LiquorCategory($event)"   [(ngModel)]="stockInAvaObj['liquorCategory']" class="form-control">
+                                <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                                <option>Active</option>
+                            </select>
+                         </div>
+                    </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'wholesale.stockavailabilitydetails.brandname' | translate}}</label>
+                        <select class="form-control" name="brandName" #brandName="ngModel"
+                        (ngModelChange)="BrandName($event)"   [(ngModel)]="stockInAvaObj['brandName']">
+                           <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                           <option *ngFor="let item of brandNames" value="{{item.brandName}}">{{item.brandName}}</option>
+                       </select>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Packaging Size</label>
+                        <select class="form-control" name="packAgeSize" #packAgeSize="ngModel"
+                        (ngModelChange)="PackAgeSize($event)"   [(ngModel)]="stockInAvaObj['packAgeSize']">
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option>Active</option>
+                        </select>
+                     </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Packaging Type</label>
+                        <select class="form-control" name="packageType" #packageType="ngModel"
+                        (ngModelChange)="PackageType($event)"   [(ngModel)]="stockInAvaObj['packageType']">
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option>Active</option>
+                        </select>
+                     </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>No.of Bottles per case</label>
+                        <select class="form-control">
+                            <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                            <option>Active</option>
+                        </select>
+                     </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label>Include Out of Stock</label>
+                    <div class="custom-control">
+                      <input type="checkbox" class="custom-control-input" id="customswitch1" checked>
+                      <label class="custom-control-label" for="customswitch1">Check this Custom Switches</label>
+                    </div>
+                  </div>
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <select   class="form-control">
+                           <option value="">Select</option>
+                           <option>Active</option>
+                       </select>
+                    </div>
+                </div> 
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">{{'master.common.search' | translate}}</button>
+                     <button type="submit" class="btn btn-secondary">{{'master.common.cancel' | translate}}</button>
+                 </div>
+             </div> -->
+                <div *ngIf="searchType" class="row mt-2">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.unittype' | translate}}</label>
+                            <select class="form-control" name="unitType" #unitType="ngModel" (ngModelChange)="getUnitType($event)" [(ngModel)]="stockInAvaObj['unitType']">
+                           <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                           <option value="Distillery">Distillery</option>
+                                <option value="Brewery">Brewery</option>
+                                <option value="Bond Warehouse">Bond Warehouse</option>
+                                <option value="Custom Bond Warehouse">Custom Bond Warehouse</option>
+                       </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.unitname' | translate}}</label>
+                            <select class="form-control" name="unitName" #unitName="ngModel" (ngModelChange)="getUnitName($event)" [(ngModel)]="stockInAvaObj['unitName']">
+                      <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                      <option>Active</option>
+                  </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.unitaddress' | translate}}</label>
+                            <select class="form-control" name="unitAddress" #unitAddress="ngModel" (ngModelChange)="UnitAddress($event)" [(ngModel)]="stockInAvaObj['unitAddress']">
+                       <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                       <option>Active</option>
+                   </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'wholesale.stockavailabilitydetails.brandname' | translate}}</label>
+                            <select class="form-control" name="brandName" #brandName="ngModel" (ngModelChange)="BrandName($event)" [(ngModel)]="stockInAvaObj['brandName']">
+                       <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                       <option *ngFor="let item of brandNames" value="{{item.brandName}}">{{item.brandName}}</option>
+                   </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Bottles</label>
+                            <select class="form-control">
+                    <option value="">{{ 'usermanagement.common.select' | translate }}</option>
+                    <option>0</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                </select>
+                        </div>
+                    </div> -->
+
+
+                    <div class="col-md-6">
+                        <label>Include Out of Stock</label>
+                        <div class="custom-control">
+                            <input type="checkbox" class="custom-control-input" id="customswitch1" checked>
+                            <label class="custom-control-label" for="customswitch1">Check this Custom Switches</label>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">{{'master.common.search' | translate}}</button>
+                        <button type="submit" class="btn btn-secondary">{{'master.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card *ngIf="searchType" cardTitle="{{ 'wholesale.stockavailabilitydetails.stockavailabilitylist' | translate}}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <!-- <app-mat-normal-table [columns]="unitName"  [dataSource]="dataSourceUintName"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondInprogress" 
+                       [totalCount]="totalCountInprogress" [pageSize]="pageSizeUnitName" (paginationEvent)="handlePagination($event)"
+                       (editAction)="editt($event)" (viewAction)="view($event)">
+                     </app-mat-normal-table> -->
+                <table class="table table-bordered mb-0" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>{{ 'wholesale.stockavailabilitydetails.sno' | translate}}</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.brandname' | translate}}({{ 'wholesale.stockavailabilitydetails.brandnameparentetn' | translate}})</th>
+                            <th>Liquor Type</th>
+                            <th>Liquor Sub Type</th>
+                            <th>Liquor Detailed Description</th>
+                            <th>Packaging Size(ml)</th>
+                            <th>Packaging Type</th>
+                            <th>No. of Bottles per Case</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.availablecases' | translate}}</th>
+                            <th>Available Bottles</th>
+                            <!-- <th>Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">Rampur Select</td>
+                            <td class="text-left">FL</td>
+                            <td class="text-left">Whishky</td>
+                            <td class="text-left">Single Malt</td>
+                            <td class="text-left">750 ML</td>
+                            <td class="text-left">Glass Bottle</td>
+                            <td class="text-left">100</td>
+                            <td class="text-left">1000</td>
+                            <td class="text-left">10</td>
+                            <!-- <td class="table-action-column text-center">
+                            <button class="btn btn-icon btn-primary" type="button"
+                            routerLink="/supplychainmanagement/wholesale/stockavailability/view" >
+                                <i class="feather icon-eye"></i></button>
+                                
+                        </td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'master.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+        <app-card cardTitle="{{ 'wholesale.stockavailabilitydetails.stockbrandnamelist' | translate}}" blockClass="table-border-style" class="list-panel">
+
+            <!-- <div class="table-responsive">
+                    <app-mat-normal-table [columns]="brandName"  [dataSource]="dataSourceBrandName"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondInprogress" 
+                       [totalCount]="totalCountBrandName" [pageSize]="pageSizeBrandName" (paginationEvent)="handlePagination1($event)"
+                       (editAction)="editt($event)" (viewAction)="view($event)">
+                     </app-mat-normal-table>
+                </div> -->
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered mb-0" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>{{ 'wholesale.stockavailabilitydetails.sno' | translate}}</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.licensetype' | translate}}</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.unitname' | translate}}</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.unitlocation' | translate}}</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.brandname' | translate}}({{ 'wholesale.stockavailabilitydetails.brandnameparentetn' | translate}})</th>
+                            <th>Liquor Type</th>
+                            <th>Liquor Sub Type</th>
+                            <th>Liquor Detailed Description</th>
+                            <th>Packaging Size(ml)</th>
+                            <th>Packaging Type</th>
+                            <th>No.of Bottles Per Case</th>
+                            <th>{{ 'wholesale.stockavailabilitydetails.availablecases' | translate}}</th>
+                            <th>Available Bottles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">BWFL 2</td>
+                            <td class="text-left">Daurla Distillery</td>
+                            <td class="text-left">Lucknow</td>
+                            <td>Rampur Select</td>
+                            <td class="text-left">FL</td>
+                            <td class="text-left">Whishky</td>
+                            <td class="text-left">Single Malt</td>
+                            <td class="text-left">750 ML</td>
+                            <td class="text-left">Glass Bottle</td>
+                            <td class="text-left">10</td>
+                            <td class="text-left">100</td>
+                            <td class="text-left">1000</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <div class="table-responsive">
+                 <table class="table table-bordered"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Brand Name</th>
+                             <th>Size</th>
+                             <th>Available Cases</th>
+                             <th>Available Bottles</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let data of stockavaillist; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.BrandName}}</td>
+                            <td class="text-center">{{data.Size}}</td>
+                            <td class="text-center">{{data.AvailClass}}</td>
+                            <td>{{data.AvailBottles}}</td> -->
+            <!-- <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" >
+                                    <i class="feather icon-external-link"></i></button>
+                                 
+                                
+                                
+                            </td> -->
+            <!-- </tr>
+                         
+                     </tbody>
+                 </table>
+             </div> -->
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'master.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

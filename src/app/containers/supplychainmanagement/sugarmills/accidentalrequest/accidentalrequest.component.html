@@ -1,0 +1,168 @@
+<h5 class="m-b-10">
+    Accidental Case
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/supplychainmanagement/wholesale/accidentalrequest/add">
+    <i class="feather icon-plus mr-2"></i>
+    Add Accidental Case
+</button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Accidental Case</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="{{'bondWarehouse.common.search' | translate}}" class="search-panel">
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.accidentalcase.request' | translate}}</label>
+                            <input type="text" id="request" placeholder="Enter Request Id" 
+                                class="form-control">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request ID</label>
+                            <select class="form-control">
+                            <option>Select</option>    
+                            </select>
+    
+                        </div>
+                    </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Date</label>
+                            <input type="date" id="requestdate" placeholder="Enter Request Date"  class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transport Pass No</label>
+                            <select class="form-control">
+                                <option>Select</option>    
+                                </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.accidentalcase.transportpassdate' | translate}}</label>
+                            <input type="date" id="gatedate"  class="form-control">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Accident Type</label>
+                            <select class="form-control">
+                                <option>Select</option>    
+                                </select>
+                        </div>
+                    </div>
+<!-- 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gatepass Type</label>
+                            <select id="type" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gatepass Date</label>
+                            <input type="date" id="gatedate" placeholder="Enter Gatepass Date"  class="form-control">
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.common.status' | translate}}
+                            </label>
+                            <select id="status" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">{{'bondWarehouse.common.search' | translate}}</button>
+                        <button type="submit" class="btn btn-secondary">{{'bondWarehouse.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'bondWarehouse.accidentalcase.aclist' | translate}}" class="list-panel">
+       
+            <div class="row">
+                <div class="col-xl-12 mb-2">
+                    <!-- <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                        [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                        (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                    </app-mat-normal-table> -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center mb-0" >
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Request Id</th>
+                                    <th>Request Date</th>
+                                    <!-- <th>Transport Pass No.</th> -->
+                                    <th>Accident Type</th>
+                                    <th>Accident Location District</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                            <td>REQ001</td>
+                            <td>20-Jul-2021</td>
+                            <!-- <td>TRAN001</td> -->
+                            <td class="text-left">Vehicle Damaged But product Good</td>
+                            <td class="text-left">Lucknow</td>
+                            <td><span class="badge badge-light-success">Approved</span></td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary ml-2 mb-2" type="button" >
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2 mb-2" type="button">
+                                       <i class="feather icon-edit-2"></i></button>
+                                
+                            </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                      
+                </div>
+             
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>  
+        </app-card>
+    </div>
+
+</div>

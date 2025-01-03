@@ -1,0 +1,118 @@
+<!-- <p>pd17-registerof-bonds works!</p> -->
+
+
+<h5 class="m-b-10 ng-star-inserted">
+    PD-17 Bond Register
+    <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/distillery/pd17-pd/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add  PD 17
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">PD-17(Bond Register)</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+    </ul>
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+              
+             
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date	</label>
+                        <input type="date" placeholder="Enter Date" class="form-control">
+                    </div>
+                </div>
+
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent Number</label>
+                        <input type="number" class="form-control" placeholder="Enter Number" >
+                    </div>
+                </div>
+           
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Verified</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary" >Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="PD-17 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S No</th>
+                            <th>Date</th>
+                            <th>Name of Distiller</th>
+                            <th>Date and Period of Bond</th>
+                            <th>Amount of Bond</th>
+                            <!-- <th>Place of Consignment</th> -->
+                           <th> Quantity of Spirit in Alcohol Spirit </th>
+                           <!-- <th> Amount of Duty at the Rate Prescribed in the Bond</th> -->
+                           <th>Status</th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let data of pd17List; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.NameOfDistiller}}</td>
+                            <td>{{data.DatePeriodOfBond}}</td>
+                            <td>{{data.AmountOfBond}}</td>
+                            <td>{{data.PlaceOfConsignee}}</td>
+                            <td>{{data.QualityOfSpiritInAlcohol}}</td>
+                            <td>{{data.AmountOfDuty}}</td>
+                            <td class="table-action-column">
+                                <span class="badge m-r-5 badge-light-success" *ngIf="data.status" >Submitted</span>
+                                <span class="badge m-r-5 badge-light-warning" *ngIf="!data.status">Draft</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                routerLink="/supplychainmanagement/distillery/pd17-registerof-bonds/view/{{data.id}}">
+                                <i class="feather icon-eye"></i></button>
+                            <button   class="btn btn-icon btn-secondary ml-2" type="button"
+                            routerLink="/supplychainmanagement/distillery/pd17-registerof-bonds/edit/{{data.id}}">
+                              <i class="feather icon-edit-2"></i></button>
+                              
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:">Excel</a>
+                    <a class="dropdown-item" href="javascript:">PDF</a>
+                    <a class="dropdown-item" href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div> -->
+        </app-card>
+    </div>
+</div>

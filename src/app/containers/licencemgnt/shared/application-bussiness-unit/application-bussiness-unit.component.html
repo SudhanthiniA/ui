@@ -1,0 +1,273 @@
+<app-card cardTitle="{{cardTitle ? cardTitle : 'Premises Details'}}" class="list-panel view-panel">
+    <div class="row">
+        <ng-container *ngIf="businessUnitDetails?.firmTypeCode">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.entityofFirmText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.firmTypeCode}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails?.firmCompanyName">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.entityofFirmText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.firmCompanyName}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.firmLicenseNumber">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.firmLicNoOfUnitText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.firmLicenseNumber}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.licenseValidityDate">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.licValidUpToText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.licenseValidityDate}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_UNIT_LICENSE) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewValidLicenceCopyText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_UNIT_LICENSE)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_AFFADAVAIT) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewAffidavitText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_AFFADAVAIT)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.firmCompanyPanNumber">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.company_Firm_PAN_NumberText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.firmCompanyPanNumber}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_COMP_PAN) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewCompanyFirmPANText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_COMP_PAN)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.itrAssessmentYearDesc">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.select_itrText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.itrAssessmentYearDesc}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.previusItrViewReason">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.reasonIfPrevItrUploadedText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.previusItrViewReason}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.gstNumber">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.gst_NumberText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.gstNumber}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_GSTIN) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewGSTINText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_GSTIN)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.anuualTurnOver">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.annualTurnoverinLakhsText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.anuualTurnOver}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_ANNUAL_TURNOVER_CERT) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_CertificateofAnnualTurnoverIssuedbyaRegisteredCAonhisLetterheadText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_ANNUAL_TURNOVER_CERT)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.annualProductionCapacity">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_annualProductionCapacityInLakhsCasesText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.annualProductionCapacity}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_CERT_OF_OTHER_STATE_OFFICIAL) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_certificateofOtherStateExciseOfficialDulySignedStampedText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_CERT_OF_OTHER_STATE_OFFICIAL)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_DECLARATION) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_downloadtheDeclarationFormatText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_DECLARATION)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_DECLARATION) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.viewtheFilledDeclarationFormText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_DECLARATION)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.stateSupplyDesc">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_StatesWithPopulationMoreThan1crinWhichSupplyareMadeText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.stateSupplyDesc}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="businessUnitDetails.stateQuantitySupply">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_QuantityProductionSupplyinEachStateText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.stateQuantitySupply}}
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_ITR_LASTYR) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_ITRText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_ITR_LASTYR)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_CERT_INCORP) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_CertificationofIncorporationText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_CERT_INCORP)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_MOM_OF_ARTICLE) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_MemorandumofAssociationText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_MOM_OF_ARTICLE)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_ART_OF_ASSOC) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_ArticleofAssociationText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_ART_OF_ASSOC)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_RESU_OF_AUTH) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_ResolutionofAuthorizationText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_RESU_OF_AUTH)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="businessUnitDetails?.ownershipTypeDesc">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Ownership Type<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{businessUnitDetails?.ownershipTypeDesc}}
+            </div>
+        </ng-container> -->
+
+        <ng-container *ngIf="isFileExists(licenseConsts.FN_BUSSUNIT_OWNERSHIIP_DOC) as fileObj">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.view_OwnershipDocumentText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{fileObj.documentName}}
+                <button class="btn btn-icon btn-primary mr-2 mb-2" type="button"
+                    (click)="downloadDocument(licenseConsts.FN_BUSSUNIT_OWNERSHIIP_DOC)"> <i class="feather icon-eye"></i>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="appliPremisesAddr">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'licenseMgnt.addressText' | translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{appliPremisesAddr?.tahsilDesc }}, {{appliPremisesAddr?.districtDesc }}, {{appliPremisesAddr?.stateDesc }}, {{appliPremisesAddr?.pinCode }}
+            </div>
+        </ng-container>
+    </div>
+</app-card>

@@ -1,0 +1,269 @@
+<h5 class="m-b-10 ng-star-inserted">
+  Add  Tank Cleaning
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li> -->
+            <li class="breadcrumb-item"><a href="javascript:">Sugar Mill</a>
+            </li>
+            <li class="breadcrumb-item"><a href="javascript:">Tank Cleaning</a>
+    </li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Tank Cleaning"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Date of Application</label>
+                            <input type="date" disabled
+                                value="" required 
+                                class="form-control">
+                                <!-- <select class="form-control" required >
+                                    <option value="">Select</option>
+                                    
+                                </select> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Registration Type</label>
+                            <select class="form-control" required >
+                                <option value="">Select</option>
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Registration No</label>
+                            <select class="form-control" required >
+                                <option value="">Select</option>
+                            </select>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Name</label>
+                            <input type="text"  disabled class="form-control" required
+                                value="Triveni Sugar Mill">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Address</label>
+                            <textarea class="form-control" rows="1" disabled>Milakpur Uttar Pradesh</textarea>
+                            <!-- <input type="text"  disabled class="form-control" required
+                                value="Tank 1"> -->
+                        </div>
+                    </div>
+                    
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="form-group">
+                    <label class="mandatory">Is the tank Empty</label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">Yes</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">No</label>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Tank Details"
+            class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">Tank ID</label>
+                        <select class="form-control" required >
+                            <option value="">Select</option>
+                            
+                        </select>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Available Quantity</label>
+                        <input type="text"  disabled class="form-control" required
+                            value="0">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Designated Material</label>
+                        <input type="text"  disabled class="form-control" required
+                            value="B Heavy Molasses">
+                    </div>
+                </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reason for Tank Cleaning
+                            </label>
+                            <input type="text"   class="form-control" required
+                                placeholder="Enter Reason for Tank Cleaning">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <label class="mandatory">Upload Document</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control"  
+                                placeholder="Upload Document"
+                                aria-label="" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><i
+                                        class="fas fa-upload"></i></button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+    </div>
+    
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2" (click)="navigatePreview(tankForm)">
+            {{ 'sugarmill.common.preview' | translate }} </button>
+        <button type="button" (click)="addTankConversion(tankForm, 'DRAFT')"
+            class="btn btn-warning ml-2 mb-2">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addTankConversion(tankForm, 'INITIATE')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            (click)="navigatetankconverstionList()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div>
+<!-- <h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.tankconversion.addtankconversion' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/tankconversion/list']">{{ 'sugarmill.tankconversion.tankconversion' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'sugarmill.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'sugarmill.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #tankconvertionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.tankconversion.entertankconversiondetails' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.tank' | translate }}</label>
+                            <select id="tankId" name="tankId" required #tankId="ngModel"
+                                (change)="gettankdetails($event.target.value)"
+                                [(ngModel)]="tankconverstionObj['tankId']" class="form-control">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of tankList" value={{item.id}}>{{item.name}}</option>
+                            </select>
+                            <div *ngIf="tankId.invalid && (tankId.dirty || tankId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="tankId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.tankisrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankregistration.capacity' | translate }}(Qtl)</label>
+                            <input type="text" id="capacity" disabled required name="capacity" #capacity="ngModel"
+                                [(ngModel)]="tankconverstionObj['capacity']" class="form-control"
+                                placeholder="{{ 'sugarmill.tankconversion.entercapacity' | translate }}">
+                            <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="capacity?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.capacityisrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.balance' | translate }}(Qtl)</label>
+                            <input type="text" id="balance" disabled required name="balance" #balance="ngModel"
+                                [(ngModel)]="tankconverstionObj['balance']" class="form-control"
+                                placeholder="{{ 'sugarmill.tankconversion.enternalance' | translate }}">
+                            <div *ngIf="balance.invalid && (balance.dirty || balance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="balance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.balanceisrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.fromgrade' | translate }}</label>
+                            <select id="fromGradeId" name="fromGradeId" disabled required #fromGradeId="ngModel"
+                                [(ngModel)]="tankconverstionObj['fromGradeId']" class="form-control">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of gradeList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="fromGradeId.invalid && (fromGradeId.dirty || fromGradeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fromGradeId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.fromgraderequired' | translate }} </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.tograde' | translate }}</label>
+                            <select id="toGradeId" name="toGradeId" required #toGradeId="ngModel"
+                                [(ngModel)]="tankconverstionObj['toGradeId']" class="form-control">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let item of gradeList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="toGradeId.invalid && (toGradeId.dirty || toGradeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="toGradeId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.tograderequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.tankconversion.Reasonforconversion' | translate }}</label>
+                            <input type="text" id="reasonForConvestion" required name="reasonForConvestion"
+                                #reasonForConvestion="ngModel" [(ngModel)]="tankconverstionObj['reasonForConvestion']"
+                                class="form-control"
+                                placeholder="{{ 'sugarmill.tankconversion.enterreason' | translate }}">
+                            <div *ngIf="reasonForConvestion.invalid && (reasonForConvestion.dirty || reasonForConvestion.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reasonForConvestion?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.tankconversion.reasonconversionrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="navigatetankconverstionPreview()">
+            {{ 'sugarmill.common.preview' | translate }}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="addtankconvertion(tankconvertionForm,'draft')">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addtankconvertion(tankconvertionForm,'submit')">{{ 'sugarmill.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            (click)="navigatetankconverstionList()">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div> -->

@@ -1,0 +1,81 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.returncustomer.viewreturn' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.returncustomer.returncustomer' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.view' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.common.transactionid' | translate }}</p>
+            <h6 class="m-0">6234723922</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.returncustomer.transportdate' | translate }}</p>
+            <h6 class="m-0">12 Jan 2021 14:34:42</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.returncustomer.customerdetails' | translate }}" class="list-panel add-panel">
+            <div class="table-responsive ">
+                <table class="table table-bordered text-center text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'retail.transaction.datetime' | translate }}</th>
+                            <th>{{ 'retail.stockavailability.productname' | translate }}</th>
+                            <th>{{ 'retail.stockavailability.packagetype' | translate }}</th>
+                            <th>{{ 'retail.common.size' | translate }}</th>
+                            <th>{{ 'retail.common.quantity' | translate }}</th>
+                            <th>{{ 'retail.common.amount' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let product of productDetails">
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.dateTime}}</td>
+                            <td class="text-left">{{product.productName}}</td>
+                            <td>{{product.packageType}}</td>
+                            <td>{{product.size}}</td>
+                            <td>{{product.quantity}}</td>
+                            <td class="text-right">{{product.amount}}</td>
+                        </tr>
+                     </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.returncustomer.remarks' | translate }}</p>
+            <h6 class="m-0">Bottle Leakage</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.common.createdon' | translate }}</p>
+            <h6 class="m-0">12 Jan 2020 22:30:34</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{ 'retail.common.createdby' | translate }}</p>
+            <h6 class="m-0">Sivashankar</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-4">
+        <p class="mt-2 mb-0">{{ 'retail.returncustomer.amountrefunded' | translate }}</p>
+        <h4 class="mb-0">₹2,8000.00</h4>
+    </div>
+    <div class="col-12 text-right mt-2 mb-4">
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/retail/returnfromcustomer">{{ 'retail.common.back' | translate }}</button>
+    </div>
+</div>

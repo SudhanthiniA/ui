@@ -1,0 +1,273 @@
+<!-- <h5 class="m-b-10 ng-star-inserted">Add Tank Repair
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/tankrepair/list">Tank Repair</a></li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Tank Repair" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Date</label>
+                            <input type="date" disabled class="form-control" value="{{ post.startDate | date:'yyyy-MM-dd' }}" 
+                            #requestDate="ngModel" [(ngModel)]="tankreqObj['requestDate']" name="requestDate" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Repair Type</label>
+                            <select class="form-control" name="repairType" #repairType="ngModel" [(ngModel)]="tankreqObj['repairType']" required>
+                                <option>Minor</option>
+                                <option>Major</option>
+                            </select>
+                            <div *ngIf="repairType.invalid && (repairType.dirty || repairType.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="repairType?.errors?.required"><i class="fa fa-times"></i>
+                                Repair Type is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Name</label>
+                            <select class="form-control" name="tankName" #tankName="ngModel" [(ngModel)]="tankreqObj['tankName']" required>
+                                <option>Select</option>
+                                <option *ngFor="let item of tankList" value={{item.id}}>{{item.name}}</option>
+                            </select>
+                            <div *ngIf="tankName.invalid && (tankName.dirty || tankName.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="tankName?.errors?.required"><i class="fa fa-times"></i>
+                                Tank Name is required </div>
+                        </div>
+                        </div>
+                    </div>
+                     
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Is tank Filled</label>
+                                <input type="text" disabled class="form-control" required placeholder="Yes">
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Capacity(Qtl)</label>
+                            <input type="number" disabled class="form-control"  #capacity="ngModel" [(ngModel)]="tankreqObj['capacity']" name="capacity" 
+                                placeholder="Enter Capacity(Qtl)">
+                                <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="capacity?.errors?.required"><i class="fa fa-times"></i>
+                                    Capacity(Qtl) is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type</label>
+                            <input type="text" disabled class="form-control" #spiritType="ngModel" [(ngModel)]="tankreqObj['spiritType']" name="spiritType"  placeholder="Enter Spirit Type">
+                            <div *ngIf="spiritType.invalid && (spiritType.dirty || spiritType.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="spiritType?.errors?.required"><i class="fa fa-times"></i>
+                                Spirit Type is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Reason for Repair</label>
+                            <textarea class="form-control" rows="1" #reasonForRepair="ngModel" [(ngModel)]="tankreqObj['reasonForRepair']" placeholder="Enter Reason for Repair" name="reasonForRepair" required></textarea>
+                            <div *ngIf="reasonForRepair.invalid && (reasonForRepair.dirty || reasonForRepair.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="reasonForRepair?.errors?.required"><i class="fa fa-times"></i>
+                                Reason for Repair is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Specification for Repairs</label>
+                            <textarea class="form-control" rows="1"
+                                placeholder="Enter Specification for Repairs" #specification="ngModel" [(ngModel)]="tankreqObj['specification']" name="specification" required></textarea>
+                                <div *ngIf="specification.invalid && (specification.dirty || specification.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="specification?.errors?.required"><i class="fa fa-times"></i>
+                                    Specification for Repairs is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Duration of Repair</label>
+                            <input type="number" class="form-control" #durationOfrepair="ngModel" [(ngModel)]="tankreqObj['durationOfrepair']" name="durationOfrepair"  placeholder="Enter Duration of Repair">
+                            <div *ngIf="durationOfrepair.invalid && (durationOfrepair.dirty || durationOfrepair.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="durationOfrepair?.errors?.required"><i class="fa fa-times"></i>
+                                Repair Type is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Attachments</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/distillery/tankrepair/view"(click)="navigatetankPreview(Pd25Form)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="navigatetankPreview(Pd25Form)">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" >Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/tankrepair/list">Cancel</button>
+    </div>
+</div> -->
+
+<h5 class="m-b-10 ng-star-inserted">
+   Add Tank Repair and Maintenance
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Portable Distillery</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Tank Repair and Maintenance</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Tank Repair/Maintenance" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" disabled class="form-control" required placeholder="10-Jan-2021">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Proposed Start date of Dismantle</label>
+                            <input type="date" class="form-control" required placeholder="15-Jan-2021">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Proposed End date of Dismantle</label>
+                            <input type="date" class="form-control" required placeholder="20-Jan-2021">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Repair Type/Maintenance Type</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank ID</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Empty or Not</label>
+                            <input type="text" disabled class="form-control" required placeholder="Tank Empty">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Capacity</label>
+                            <input type="text" disabled class="form-control" required placeholder="1000">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Designated Material</label>
+                            <input type="text" disabled class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc" class="mandatory">Repair/Maintenance Attachments</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reason for Repair/Maintenance</label>
+                            <input type="text"  class="form-control" required placeholder="Enter Reason for Repair">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Specification for Repairs/Maintenance</label>
+                            <input type="text"  class="form-control" required placeholder="Enter Specification for Repairs/Maintenance">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Duration of Repair/Maintenance</label>
+                            <input type="text"  class="form-control" required placeholder="Enter Duration of Repair/Maintenance">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Schedule Start Date</label>
+                            <input type="date" class="form-control" required placeholder="10-Jan-2021">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason for Dismentle</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Remarks">
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2">Cancel</button>
+    </div>
+</div>

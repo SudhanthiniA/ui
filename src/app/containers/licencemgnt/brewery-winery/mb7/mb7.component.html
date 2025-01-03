@@ -1,0 +1,1198 @@
+<h5 class="m-b-10 ng-star-inserted">Applicant - Application for License M.B -7</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">smallBrewery Winery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Applicant - Application for License M.B -7</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="MB7Form" autocomplete="off">
+            <app-card cardTitle="Application Form" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="text"   class="form-control" formControlName='financialYear' readonly placeholder="2020-2021" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" readonly class="form-control" formControlName='dateOfApplication' value="{{ post.startDate | date:'yyyy-MM-dd' }}">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control">
+                                 <option>Select</option>
+                                 <option>CL2</option>
+                                 <option>FL2</option>
+                               </select>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select  class="form-control" formControlName='saluatation' (change)="gender1($event)">
+                                <option value="">Select</option>
+                                         <option>Mr.</option>
+                                         <option>Miss.</option>
+                                         <option>Mrs.</option>
+                                       </select>
+                                       <div *ngIf="formSubmitted && MB7Form.get('saluatation').errors || MB7Form.get('saluatation').touched "
+                                       class="error-msg">
+                                       <span *ngIf="MB7Form.get('saluatation').errors?.required">
+                                        Salutation is required
+                                       </span>
+                                   </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text"  class="form-control" formControlName='firstName' placeholder="Enter First Name">
+                            <div *ngIf="formSubmitted && MB7Form.get('firstName').errors || MB7Form.get('firstName').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('firstName').errors?.required">
+                                First Name is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text"    class="form-control" formControlName='middleName' placeholder="Enter Middle Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text"  class="form-control" formControlName='lastName' placeholder="Enter Last Name">
+                            <div *ngIf="formSubmitted && MB7Form.get('lastName').errors || MB7Form.get('lastName').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('lastName').errors?.required">
+                                Last Name is required
+                            </span>
+                        </div>                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile Number of Applicant</label>
+                            <input type="text"  class="form-control" formControlName='mobileNumber' placeholder="Enter Mobile Number"
+                            minlength="10" maxlength="10"
+                            (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && MB7Form.get('mobileNumber').errors || MB7Form.get('mobileNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('mobileNumber').errors?.required">
+                                Mobile Number of Applicant is required
+                            </span>
+                            
+                            <span *ngIf="MB7Form.get('mobileNumber').errors?.minlength">
+                                Please Enter Minimum 10 Numbers
+                            </span>
+                            <!-- <span *ngIf="MB7Form.get('mobileNumber').errors?.maxlength">
+                                Please Enter Maximum 10 Numbers
+                            </span> -->
+                        </div>                         </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Email Id of Applicant</label>
+                            <input type="email"  class="form-control" formControlName='emailId' placeholder="Enter Email Id">
+                            <div *ngIf="formSubmitted && MB7Form.get('emailId').errors || MB7Form.get('emailId').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('emailId').errors?.required">
+                                Email Id of Applicant is required
+                            </span>
+                            <span *ngIf="MB7Form.get('emailId').errors?.email">
+                                Email must be a valid email address
+                            </span>
+                        </div>                            </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar Number of Applicant</label>
+                            <input type="text"  class="form-control" formControlName='aadhaarNumber' placeholder="Enter Aadhaar Number" minlength="12" maxlength="12"
+                            (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && MB7Form.get('aadhaarNumber').errors || MB7Form.get('aadhaarNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('aadhaarNumber').errors?.required">
+                                Aadhaar Number of Applicant is required
+                            </span>
+                            <span *ngIf="MB7Form.get('aadhaarNumber').errors?.minlength">
+                                Please Enter minimum 12 values
+                            </span>
+                            <span *ngIf="MB7Form.get('aadhaarNumber').errors?.maxlength">
+                                Please Enter maximum 12 values
+                            </span>
+                        </div>                         </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select  class="form-control" formControlName='gender' >
+                                <option value="">Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('gender').errors || MB7Form.get('gender').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('gender').errors?.required">
+                               Gender is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date"  class="form-control" formControlName='dateOfBirth' placeholder="" [max]="maxDate">
+                            <div *ngIf="formSubmitted && MB7Form.get('dateOfBirth').errors || MB7Form.get('dateOfBirth').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('dateOfBirth').errors?.required">
+                                Date of Birth is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text"  class="form-control" formControlName='panNumber' placeholder="Enter PAN Number"
+                            minlength="10" maxlength="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}">
+                            <div *ngIf="formSubmitted && MB7Form.get('panNumber').errors || MB7Form.get('panNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('panNumber').errors?.required">
+                                PAN Number is required
+                            </span>
+                            <span *ngIf="MB7Form.get('panNumber').errors?.minlength">
+                                Please enter minimum 10 values
+                            </span>
+                            <!-- <span *ngIf="MB7Form.get('panNumber').errors?.maxlength">
+                                Please enter maximum 10 values
+                            </span> -->
+                            <span *ngIf="MB7Form.get('panNumber').errors?.pattern">
+                                Please Enter Valid PAN Number
+                            </span>
+                        </div>                           </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Address of the Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" readonly  class="form-control" readonly formControlName='country' placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"  class="form-control" formControlName='applicantPinCode' (keypress)="numberOnly($event)" minlength="6" maxlength="6"  placeholder="Enter Pincode">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantPinCode').errors || MB7Form.get('applicantPinCode').touched "
+                            class="error-msg">
+                            <!-- <span *ngIf="MB7Form.get('applicantPinCode').errors?.pattern">
+                                Please Enter Maximum 6 Numbers
+                            </span> -->
+                            <span *ngIf="MB7Form.get('applicantPinCode').errors?.minlength">
+                                Please Enter Minimum 6 Numbers
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='applicantState' (change)="getdistrict($event)" required>
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of states" value="{{item.id}}">{{item.stateName}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantState').errors || MB7Form.get('applicantState').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantState').errors?.required">
+                                    State is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='applicantDistrict' required>
+                                  <option value="">Select</option>
+                                  <option *ngFor="let item of districts" value="{{item.id}}">{{item.name}}</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantDistrict').errors || MB7Form.get('applicantDistrict').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantDistrict').errors?.required">
+                                    District is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='applicantTehsil' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Tehsil1</option>
+                                   <option value=2>Tehsil2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantTehsil').errors || MB7Form.get('applicantTehsil').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantTehsil').errors?.required">
+                                    Tehsil is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='applicantUrbanOrRural'  (change)="urban($event)"  required>
+                                     <option value="">Select</option>
+                                     <option value=1>Urban</option>
+                                     <option value=2>Rural</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantUrbanOrRural').errors || MB7Form.get('applicantUrbanOrRural').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantUrbanOrRural').errors?.required">
+                                    Urban/Rural is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headurban == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='applicantMunicipalArea' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Municipal Area1</option>
+                                   <option value=2>Municipal Area2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantMunicipalArea').errors || MB7Form.get('applicantMunicipalArea').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantMunicipalArea').errors?.required">
+                                    Municipal Area is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headurban == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"  class="form-control" formControlName='applicantWard' placeholder="Enter Ward"
+                            pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantWard').errors || MB7Form.get('applicantWard').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicantWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headrural == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text"  class="form-control" formControlName='applicantBlock'  placeholder="Enter Block">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantBlock').errors || MB7Form.get('applicantBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicantBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="headrural == true"  class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='applicantVillage' placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantVillage').errors || MB7Form.get('applicantVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicantVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='applicantPoliceStation' required>
+                                   <option value="">Select</option>
+                                   <option value=1>Police Station1</option>
+                                   <option value=2>Police Station2</option>
+                                 </select>
+                                 <div *ngIf="formSubmitted && MB7Form.get('applicantPoliceStation').errors || MB7Form.get('applicantPoliceStation').touched "
+                                 class="error-msg">
+                                 <span *ngIf="MB7Form.get('applicantPoliceStation').errors?.required">
+                                    Police Station is required
+                                 </span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='applicantLocality' required placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantLocality').errors || MB7Form.get('applicantLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicantLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='applicantStreet' required placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicantStreet').errors || MB7Form.get('applicantStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicantStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+
+            <app-card cardTitle="Address of the Distillery" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1.value" (change)="checkboxchange($event)">
+                                <!-- (click)="licenseType($event, 'pd1')" -->
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"    class="form-control" readonly formControlName='distilleryCountry'  placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"    class="form-control" formControlName='distilleryPinCode' (keypress)="numberOnly($event)" 
+                              minlength="6" maxlength="6"
+                             placeholder="Enter Pincode">
+                             <div *ngIf="formSubmitted && MB7Form.get('distilleryPinCode').errors || MB7Form.get('distilleryPinCode').touched "
+                             class="error-msg">
+                             <!-- <span *ngIf="MB7Form.get('applicantPinCode').errors?.pattern">
+                                 Please Enter Maximum 6 Numbers
+                             </span> -->
+                             <span *ngIf="MB7Form.get('distilleryPinCode').errors?.minlength">
+                                 Please Enter Minimum 6 Numbers
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='distilleryState'  (change)="getdistillerydistrict($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of states" value="{{item.id}}">{{item.stateName}}</option>
+                             </select>
+                             <div *ngIf="formSubmitted && MB7Form.get('distilleryState').errors || MB7Form.get('distilleryState').touched "
+                             class="error-msg">
+                             <span *ngIf="MB7Form.get('distilleryState').errors?.required">
+                                State is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='distilleryDistrict'>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of distillerydistricts" value="{{item.id}}">{{item.name}}</option>
+                               </select>
+                               <div *ngIf="formSubmitted && MB7Form.get('distilleryDistrict').errors || MB7Form.get('distilleryDistrict').touched "
+                               class="error-msg">
+                               <span *ngIf="MB7Form.get('distilleryDistrict').errors?.required">
+                                  District is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='distilleryTehsil'>
+                                <option value="">Select</option>
+                                <option value=1>Tehsil1</option>
+                                <option value=2>Tehsil2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('distilleryTehsil').errors || MB7Form.get('distilleryTehsil').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('distilleryTehsil').errors?.required">
+                                 Tehsil is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='distilleryUrbanOrRural' (change)="show1($event)">
+                                <option value="">Select</option>
+                                <option value=1>Urban</option>
+                                <option value=2>Rural</option>
+                            </select>
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryUrbanOrRural').errors || MB7Form.get('distilleryUrbanOrRural').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryUrbanOrRural').errors?.required">
+                               Urban/Rural is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="distilleryUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='distilleryMunicipalArea'>
+                                <option value="">Select</option>
+                                <option value=1>Municipal Area1</option>
+                                <option value=2>Municipal Area2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('distilleryMunicipalArea').errors || MB7Form.get('distilleryMunicipalArea').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('distilleryMunicipalArea').errors?.required">
+                                 Municipal Area is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div *ngIf="distilleryUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"    class="form-control" formControlName='distilleryWard'  placeholder="Enter Ward"
+                            pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryWard').errors || MB7Form.get('distilleryWard').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="distilleryrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text"  class="form-control" formControlName='distilleryBlock' placeholder="Enter Block">
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryBlock').errors || MB7Form.get('distilleryBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div *ngIf="distilleryrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='distilleryVillage' placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryVillage').errors || MB7Form.get('distilleryVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='distilleryPoliceStation'>
+                                <option value="">Select</option>
+                                <option value=1>Police Station1</option>
+                                <option value=2>Police Station2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('distilleryPoliceStation').errors || MB7Form.get('distilleryPoliceStation').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('distilleryPoliceStation').errors?.required">
+                                 Police Station is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='distilleryLocality' placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryLocality').errors || MB7Form.get('distilleryLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='distilleryStreet' placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && MB7Form.get('distilleryStreet').errors || MB7Form.get('distilleryStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('distilleryStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>                         </div>
+                    </div>
+
+
+                </div>
+
+            </app-card>
+            <app-card cardTitle="Bar License Information" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Bar Unit</label>
+                            <input type="text"  class="form-control" formControlName='barUnitName' placeholder="Enter bar unit name">
+                            <div *ngIf="formSubmitted && MB7Form.get('barUnitName').errors || MB7Form.get('barUnitName').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barUnitName').errors?.required">
+                                Name of the Bar Unit is required
+                            </span>
+                        </div>  
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1"  value="Pd1.value" (change)="checkboxchange1($event)">
+                                <!-- (click)="licenseType($event, 'pd1')" -->
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"    class="form-control" readonly formControlName='premiseCountry'  placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"    class="form-control" formControlName='barPinCode'  placeholder="Enter Pincode"
+                            (keypress)="numberOnly($event)" minlength="6"
+                            maxlength = "6">
+                            <div *ngIf="formSubmitted && MB7Form.get('barPinCode').errors || MB7Form.get('barPinCode').touched "
+                            class="error-msg">
+                            <!-- <span *ngIf="MB7Form.get('barPinCode').errors?.pattern">
+                                Please Enter Maximum 6 Numbers
+                            </span> -->
+                            <span *ngIf="MB7Form.get('barPinCode').errors?.minlength">
+                                Please Enter Minimum 6 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='barState'  (change)="getbardistrict($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bartates" value="{{item.id}}">{{item.stateName}}</option>
+                             </select>
+                             <div *ngIf="formSubmitted && MB7Form.get('barState').errors || MB7Form.get('barState').touched "
+                             class="error-msg">
+                             <span *ngIf="MB7Form.get('barState').errors?.required">
+                                State is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='barDistrict'>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bardistricts" value="{{item.id}}">{{item.name}}</option>
+                               </select>
+                               <div *ngIf="formSubmitted && MB7Form.get('barDistrict').errors || MB7Form.get('barDistrict').touched "
+                               class="error-msg">
+                               <span *ngIf="MB7Form.get('barDistrict').errors?.required">
+                                  District is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='barTehsil'>
+                                <option value="">Select</option>
+                                <option value=1>Tehsil1</option>
+                                <option value=2>Tehsil2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('barTehsil').errors || MB7Form.get('barTehsil').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('barTehsil').errors?.required">
+                                 Tehsil is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='barUrbanOrRural' (change)="show2($event)">
+                                <option value="">Select</option>
+                                <option value=1>Urban</option>
+                                <option value=2>Rural</option>
+                            </select>
+                            <div *ngIf="formSubmitted && MB7Form.get('barUrbanOrRural').errors || MB7Form.get('barUrbanOrRural').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barUrbanOrRural').errors?.required">
+                               Urban/Rural is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="barUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='barMunicipalArea'>
+                                <option value="">Select</option>
+                                <option value=1>Municipal Area1</option>
+                                <option value=2>Municipal Area2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('barMunicipalArea').errors || MB7Form.get('barMunicipalArea').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('barMunicipalArea').errors?.required">
+                                 Municipal Area is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div *ngIf="barUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"    class="form-control" formControlName='barWard'  placeholder="Enter Ward"
+                            pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && MB7Form.get('barWard').errors || MB7Form.get('barWard').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="barrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text"  class="form-control" formControlName='barBlock' placeholder="Enter Block">
+                            <div *ngIf="formSubmitted && MB7Form.get('barBlock').errors || MB7Form.get('barBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>                         </div>
+                    </div>
+                    <div *ngIf="barrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='barVillage' placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && MB7Form.get('barVillage').errors || MB7Form.get('barVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='barPoliceStation'>
+                                <option value="">Select</option>
+                                <option value=1>Police Station1</option>
+                                <option value=2>Police Station2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('barPoliceStation').errors || MB7Form.get('barPoliceStation').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('barPoliceStation').errors?.required">
+                                 Police Station is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='barLocality' placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && MB7Form.get('barLocality').errors || MB7Form.get('barLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='barStreet' placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && MB7Form.get('barStreet').errors || MB7Form.get('barStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('barStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>                          </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total area of ​​the bar (in sq.m.)</label>
+                            <input type="number" class="form-control" formControlName='totalArea'  required placeholder="Enter Total area">
+                            <div *ngIf="formSubmitted && MB7Form.get('totalArea').errors || MB7Form.get('totalArea').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('totalArea').errors?.required">
+                                Total area of ​​the bar is required
+                            </span>
+                        </div>  
+                        </div>
+                    </div>
+
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Details of Small Brewery" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Small Brewery</label>
+                            <input type="text" class="form-control" formControlName='smallBreweryName'  required placeholder="Enter bar unit name">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryName').errors || MB7Form.get('smallBreweryName').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryName').errors?.required">
+                                Name of the Small Brewery is required
+                            </span>
+                        </div>  
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1.value" (change)="checkboxchange2($event)">
+                                <!-- (click)="licenseType($event, 'pd1')" -->
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"    class="form-control" readonly formControlName='smallBreweryCountry'  placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text"    class="form-control" formControlName='smallBreweryPinCode'  placeholder="Enter Pincode"
+                            (keypress)="numberOnly($event)" 
+                            minlength = "6" maxlength="6">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryPinCode').errors || MB7Form.get('smallBreweryPinCode').touched "
+                            class="error-msg">
+                            <!-- <span *ngIf="MB7Form.get('smallBreweryPinCode').errors?.pattern">
+                                Please Enter Maximum 6 Numbers
+                            </span> -->
+                            <span *ngIf="MB7Form.get('smallBreweryPinCode').errors?.minlength">
+                                Please Enter Minimum 6 Numbers
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select  class="form-control" formControlName='smallBreweryState'  (change)="getbrewerydistrict($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bartates" value="{{item.id}}">{{item.stateName}}</option>
+                             </select>
+                             <div *ngIf="formSubmitted && MB7Form.get('smallBreweryState').errors || MB7Form.get('smallBreweryState').touched "
+                             class="error-msg">
+                             <span *ngIf="MB7Form.get('smallBreweryState').errors?.required">
+                                State is required
+                             </span>
+                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select  class="form-control" formControlName='smallBreweryDistrict' (change)="getbrewerydistrict($event)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of brewerydistricts" value="{{item.id}}">{{item.name}}</option>
+                               </select>
+                               <div *ngIf="formSubmitted && MB7Form.get('smallBreweryDistrict').errors || MB7Form.get('smallBreweryDistrict').touched "
+                               class="error-msg">
+                               <span *ngIf="MB7Form.get('smallBreweryDistrict').errors?.required">
+                                  District is required
+                               </span>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select  class="form-control" formControlName='smallBreweryTehsil'>
+                                <option value="">Select</option>
+                                <option value=1>Tehsil1</option>
+                                <option value=2>Tehsil2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('smallBreweryTehsil').errors || MB7Form.get('smallBreweryTehsil').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('smallBreweryTehsil').errors?.required">
+                                 Tehsil is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select  class="form-control" formControlName='smallBreweryUrbanOrRural' (change)="show3($event)">
+                                <option value="">Select</option>
+                                <option value=1>Urban</option>
+                                <option value=2>Rural</option>
+                            </select>
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryUrbanOrRural').errors || MB7Form.get('smallBreweryUrbanOrRural').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryUrbanOrRural').errors?.required">
+                               Urban/Rural is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="smallBreweryUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Municipal Area</label>
+                            <select  class="form-control" formControlName='smallBreweryMunicipalArea'>
+                                <option value="">Select</option>
+                                <option value=1>Municipal Area1</option>
+                                <option value=2>Municipal Area2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('smallBreweryMunicipalArea').errors || MB7Form.get('smallBreweryMunicipalArea').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('smallBreweryMunicipalArea').errors?.required">
+                                 Municipal Area is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div *ngIf="smallBreweryUrbanOrRural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Ward</label>
+                            <input type="text"    class="form-control" formControlName='smallBreweryWard'  placeholder="Enter Ward"
+                            pattern="^[a-z0-9](?!.*?[^\na-z0-9]{2}).*?[a-z0-9]$">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryWard').errors || MB7Form.get('smallBreweryWard').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryWard').errors?.pattern">
+                                Please Enter Alphanumeric Values
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="smallBreweryrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Block</label>
+                            <input type="text"  class="form-control" formControlName='smallBreweryBlock' placeholder="Enter Block">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryBlock').errors || MB7Form.get('smallBreweryBlock').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryBlock').errors?.required">
+                                Block is required
+                            </span>
+                        </div>                         </div>
+                    </div>
+                    <div *ngIf="smallBreweryrural == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Village</label>
+                            <input type="text"  class="form-control" formControlName='smallBreweryVillage' placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryVillage').errors || MB7Form.get('smallBreweryVillage').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryVillage').errors?.required">
+                                Village is required
+                            </span>
+                        </div>                             </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select  class="form-control" formControlName='smallBreweryPoliceStation'>
+                                <option value="">Select</option>
+                                <option value=1>Police Station1</option>
+                                <option value=2>Police Station2</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('smallBreweryPoliceStation').errors || MB7Form.get('smallBreweryPoliceStation').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('smallBreweryPoliceStation').errors?.required">
+                                 Police Station is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text"  class="form-control" formControlName='smallBreweryLocality' placeholder="Enter Locality">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryLocality').errors || MB7Form.get('smallBreweryLocality').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryLocality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>                          </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text"  class="form-control" formControlName='smallBreweryStreet' placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && MB7Form.get('smallBreweryStreet').errors || MB7Form.get('smallBreweryStreet').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('smallBreweryStreet').errors?.required">
+                                Street is required
+                            </span>
+                        </div>                             </div>
+                    </div>
+
+
+
+                </div>
+            </app-card>
+            <app-card cardTitle="Attachments" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">List of equipments along with Invoice</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">No objection certificate issued by Uttar Pradesh Pollution Control Board</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">License/registration issued by  local water consumption</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Production capacity per day / year of small smallBrewery</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Details of each room, place and vessels</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Original Layout and Map</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </app-card>
+
+
+
+
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="text"  class="form-control" formControlName='bankAccountNumber' placeholder="Enter Bank Account Number"
+                           minlength="12" maxlength = "12" (keypress)="numberOnly($event)">
+                            <div *ngIf="formSubmitted && MB7Form.get('bankAccountNumber').errors || MB7Form.get('bankAccountNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('bankAccountNumber').errors?.required">
+                                Bank Account Number is required
+                            </span>
+                            <span *ngIf="MB7Form.get('bankAccountNumber').errors?.minlength">
+                                Please Enter Minimum 12 Numbers
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text"  class="form-control" formControlName='bankIFSC' placeholder="Enter IFSC"
+                            minlength="11" maxlength="11"  pattern="^(?=.*?[A-Za-z])(?=.*?[0-9])[A-Za-z0-9]+$">
+                            <div *ngIf="formSubmitted && MB7Form.get('bankIFSC').errors || MB7Form.get('bankIFSC').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('bankIFSC').errors?.required">
+                                Bank IFSC is required
+                            </span>
+                            <span *ngIf="MB7Form.get('bankIFSC').errors?.pattern">
+                                Enter Valid Bank IFSC Code
+                            </span>
+                            <span *ngIf="MB7Form.get('bankIFSC').errors?.minlength">
+                                Please Enter Minimum 11 Values
+                            </span>
+                        </div>                           </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select  class="form-control" formControlName='bankName'>
+                                <option value="">Select</option>
+                                <option value=1>State Bank Of India</option>
+                                <option value=2>Canara Bank</option>
+                              </select>
+                              <div *ngIf="formSubmitted && MB7Form.get('bankName').errors || MB7Form.get('bankName').touched "
+                              class="error-msg">
+                              <span *ngIf="MB7Form.get('bankName').errors?.required">
+                                 Bank Name is required
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Payment- Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application/Processing Fees</label>
+                            <input type="text"  class="form-control" formControlName='applicationFees' placeholder="Enter Application/Processing Fees" minlength="10"  maxlength = "10">
+                            <div *ngIf="formSubmitted && MB7Form.get('applicationFees').errors || MB7Form.get('applicationFees').touched "
+                            class="error-msg">
+                            <span *ngIf="MB7Form.get('applicationFees').errors?.required">
+                                Application/Processing Fees is required
+                            </span>
+                            <span *ngIf="MB7Form.get('applicationFees').errors?.minlength">
+                                Please Enter Minimum 10 Numbers
+                             </span>
+                        </div>                           </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2" (click)="add(MB7Form)">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2"  (click)="navigate(MB7Form)">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="add(MB7Form)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+        </div>
+    </form>
+
+    </div>
+</div>

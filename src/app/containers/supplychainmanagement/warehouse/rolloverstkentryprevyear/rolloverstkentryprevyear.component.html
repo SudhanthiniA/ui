@@ -1,0 +1,158 @@
+<h5 class="m-b-10 ng-star-inserted">Rollover Stock Entry(Previous Year)
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/warehouse/rolloverstkentryprevyear/add">
+        <i class="feather icon-plus mr-2"></i>
+        Rollover Stock Entry
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Rollover Stock Entry(Previous Year)</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name(2020-21)</label>
+                            <select id="brand" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Package</label>
+                            <select id="package" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select id="size" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Box</label>
+                            <select id="box" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status
+                            </label>
+                            <select id="status" required class="form-control">
+                                <option value="">Select</option>
+                                <option>Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+
+    <div class="col-xl-12">
+        <app-card cardTitle="Details of Rollover Stock entry(Previous Year)" blockClass="table-border-style"
+            class="list-panel">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Brand Name</th>
+                                <th>Package</th>
+                                <th>Size</th>
+                                <th>Box</th>
+                                <th>MRP 2018-19</th>
+                                <th>Total Box</th>
+                                <th>Total MRP</th>
+                                <th>Roll Over Boxes</th>
+                                <th>Total Cowcess</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="transportData?.length != 0">
+                            <tr *ngFor="let data of transportData; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{data.brandRegistrationId}}</td>
+                                <td>{{data.packageId}}</td>
+                                <td>{{data.sizeId}}</td>
+                                <td>{{data.boxId}}</td>
+                                <td>{{data.previousYearMrp}}</td>
+                                <td>{{data.totalBox}}</td>
+                                <td>{{data.totalMrp}}</td>
+                                <td>{{data.rollOverBoxes}}</td>
+                                <td>{{data.totalCowcess}}</td>
+                                <td> <span class="badge badge-light-success">{{data.status}}</span></td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                        <i class="feather icon-edit-2"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!-- <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-left">HIGHBURY CLASSIC SUPERIOR GRAIN WHISKY</td>
+
+                                <td class="text-left">
+                                    Bottle
+                                </td>
+                                <td class="text-left">375ML
+                                </td>
+                                <td class="text-left">23
+                                </td>
+                                <td class="text-right">2000.00</td>
+                                <td class="text-left">10</td>
+                                <td class="text-left">10</td>
+                                <td class="text-left">10</td>
+                                <td class="text-left">10</td>
+                                <td> <span class="badge badge-light-success">Approved</span></td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                        <i class="feather icon-edit-2"></i></button>
+                                </td>
+                            </tr>
+                        </tbody> -->
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-xl-4">
+                <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:">Excel</a>
+                        <a class="dropdown-item" href="javascript:">PDF</a>
+                        <a class="dropdown-item" href="javascript:">CSV</a>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+</div>

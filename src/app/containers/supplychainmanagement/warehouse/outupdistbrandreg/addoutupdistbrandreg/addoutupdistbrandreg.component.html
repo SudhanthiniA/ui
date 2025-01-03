@@ -1,0 +1,446 @@
+<h5 class="m-b-10 ng-star-inserted">Add Brand Registration
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brand Registration</a></li>
+
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]='brandform' autocomplete="off">
+            <app-card cardTitle="Add Brand Registration" class="list-panel add-panel">
+
+                <ngb-tabset  #tabSet="ngbTabset" type="pills" class="mb-2">
+                    <ngb-tab title="Brand Details" id="branddetails">
+                        <ng-template ngbTabContent>
+                            
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <app-card cardTitle="Add New brand" class="list-panel add-panel">
+                                        <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" disabled class="form-control"  formControlName='date'>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Previous Registered Year</label>
+                                        <select class="form-control"  formControlName='previousyear' [attr.disabled]='workflowobj?.isEditable'>
+                                          <option value="">select</option>
+                                        <option *ngFor ='let year of financeyear' value="{{year.code}}">{{year.code}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="d-block"></label>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" 
+                                        data-toggle="modal" 
+                                                            (click)="addConfirmation()">
+                                        <label class="custom-control-label" for="customRadioInline1">Yes
+                                           </label>
+                                        </div>
+                                </div> -->
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Registration Year (Year &amp; Date)</label>
+                                        <input type="date" class="form-control"  formControlName='registrationyear' [readonly]='workflowobj?.isEditable'>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Registration for No of Years</label>
+                                        <input type="text"  class="form-control"  
+                                        placeholder="Enter Registration for No of Years" formControlName='noyears' [readonly]='workflowobj?.isEditable'>
+                                        <div *ngIf="f.noyears.invalid && (f.noyears.dirty || f.noyears.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.noyears?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Number of years is required
+                                        </div>
+                                    </div>
+                                        
+                                    </div>
+                                </div>
+                                        </div>
+                                    </app-card>
+                                <app-card cardTitle="Bottling Unit Details" class="list-panel add-panel">
+                                    <div class="row">
+                           
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>License Type Brand Registrant</label>
+                                    <input type="text"   class="form-control" 
+                                    placeholder="Enter License Type Brand Registrant" formControlName='bottlinglicencetype' disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Registration Number/License No</label>
+                                        <input type="number"   class="form-control" 
+                                        placeholder="Enter Registration Number/License No" formControlName='bottlinglicencenum' disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Unit Name</label>
+                                        <input type="text"   class="form-control" 
+                                        placeholder="WW Unit" formControlName='bottlingunitname' disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Unit Address </label>
+                                      
+                                        <textarea class="form-control"  rows="2" formControlName='bottlingaddress' disabled></textarea>
+                                    </div>
+                                </div>
+                                    </div>
+                                </app-card>
+                                <app-card cardTitle="Brand Owner Details" class="list-panel add-panel">
+                                    <div class="row">
+                               
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
+                                    <div class="form-group">
+                                        <label>Brand Owner (All License) Unit Name </label>
+                                        <input type="text"   class="form-control" 
+                                        placeholder="Kuldeep Sharma" formControlName='brandunitname' disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Brand Owner Address </label>
+                                      
+                                        <textarea class="form-control"  rows="2" formControlName='brandaddress' disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Origin
+                                        </label>
+                                        <select class="form-control"  (change)="getOriginlistbyDomainId($event.target.value)" 
+                                        formControlName='brandorigin' [attr.disabled]='workflowobj?.isEditable'>
+                                          <option value="">select</option>
+                                            <option *ngFor="let d of domainlist" value="{{d.name}}">{{d.name}} </option>
+                                        </select>
+                                        <div *ngIf="f.brandorigin.invalid && (f.brandorigin.dirty || f.brandorigin.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandorigin?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Origin is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Country State/District
+                                        </label>
+                                        <select class="form-control"  formControlName='brandunitstate' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor="let s of statelist" value="{{s.id}}">{{s.name || s.stateName || s.countryName}} </option>
+                                        </select>
+                                        <div *ngIf="f.brandunitstate.invalid && (f.brandunitstate.dirty || f.brandunitstate.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandunitstate?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Sub origin is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                </app-card>
+                                <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                                    <div class="row">
+                               
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Brand Name</label>
+                                        <select class="form-control" required formControlName='brandname'
+                                         (change)='checkother($event.target.value)' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor="let data of brandmaster" value="{{data.brandName}}">{{data.brandName}}</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                        <div *ngIf="f.brandname.invalid && (f.brandname.dirty || f.brandname.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandname?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Brand name is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf='otherbrand'>
+                                        <div class="form-group">
+                                            <label>Brand Name</label>
+                                            <input type="text"   class="form-control"  formControlName='brandname1' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Liquor Type</label>
+                                        <select class="form-control"  formControlName='liquortype'
+                                        (change)=getSubLiquorType($event.target.value) [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor = "let data of liquortypeList" value="{{data.name}}">{{data.name}}</option>
+                                        </select>
+                                        <div *ngIf="f.liquortype.invalid && (f.liquortype.dirty || f.liquortype.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.liquortype?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Liquor type is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Sub Liquor Type</label>
+                                        <select class="form-control"  formControlName='brandsubliquortype' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor="let d of subliquortype" value="{{d.name}}">{{d.name}} </option>
+                                        </select>
+                                        <div *ngIf="f.brandsubliquortype.invalid && (f.brandsubliquortype.dirty || f.brandsubliquortype.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandsubliquortype?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Sub liquor type is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Liquor Category</label>
+                                        <select class="form-control"  formControlName='brandliquorcategory' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor = "let data of liquorcategory" value="{{data.name}}">{{data.name}}</option>
+                                        </select>
+                                        <div *ngIf="f.brandliquorcategory.invalid && (f.brandliquorcategory.dirty || f.brandliquorcategory.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandsubliquortype?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Liquor category is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Strength</label>
+                                        <input type="number"  required disabled class="form-control" value="56" formControlName='strength'>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Supply Type</label>
+                                        <select class="form-control"  formControlName='brandsupplytype' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor = "let data of supplytype" value="{{data.name}}">{{data.name}}</option>
+                                        </select>
+                                        <div *ngIf="f.brandsupplytype.invalid && (f.brandsupplytype.dirty || f.brandsupplytype.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandsupplytype?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Supply type is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Domain</label>
+                                        <select class="form-control"  formControlName='branddomain' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor="let d of domainlist" value="{{d.name}}">{{d.name}} </option>
+                                        </select>
+                                        <div *ngIf="f.branddomain.invalid && (f.branddomain.dirty || f.branddomain.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.branddomain?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                           Domain is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>EDP</label>
+                                        <input type="number"   class="form-control"  [readonly]='workflowobj?.isEditable'
+                                        placeholder="Enter EDP" formControlName='brandedp'>
+                                        <div *ngIf="f.brandedp.invalid && (f.brandedp.dirty || f.brandedp.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandedp?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                           EDP is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        <select class="form-control"  formControlName='brandcategory' [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">select</option>
+                                            <option *ngFor = "let data of category" value="{{data.name}}">{{data.name}}</option>
+                                        </select>
+                                        <div *ngIf="f.brandcategory.invalid && (f.brandcategory.dirty || f.brandcategory.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandcategory?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                           Please select category
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="f.liquortype.value =='Beer'">
+                                    <div class="form-group">
+                                        <label>Shelf Life</label>
+                                        <input type="text"   class="form-control"  [readonly]='workflowobj?.isEditable'
+                                        placeholder="Enter Shelf Life" formControlName='shelflife'>
+                                        <div *ngIf="f.shelflife.invalid && (f.shelflife.dirty || f.shelflife.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.shelflife?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                            Shelf Life is required
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Brand Registration for</label>
+                                        <select class="form-control"  formControlName='brandregistrationfor' disabled>
+                                          <option value="">select</option>
+                                          <option *ngFor="let modu of moduleArr" value={{modu.id}}>
+                                            {{modu.name}}</option>
+                                        </select>
+                                        <div *ngIf="f.brandregistrationfor.invalid && (f.brandregistrationfor.dirty || f.brandregistrationfor.touched || formSubmitted)"
+                                        class="error-msg">
+                                        <div *ngIf="f.brandregistrationfor?.errors?.required">
+                                            <i class="fa fa-times"></i>
+                                           Please select brand registration
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="f.brandname.value !='others'">
+                                    <div class="form-group">
+                                        <label>Parent Code ETIN</label>
+                                        <input type="text"   class="form-control" disabled
+                                        placeholder="Enter Parent Code ETIN" formControlName='parentetin'>
+                                    </div>
+                                </div>                               
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Brand Registration Fees</label>
+                                        <input type="number"   class="form-control"  [readonly]='workflowobj?.isEditable'
+                                        placeholder="Enter Brand Registration Fees" formControlName='brandfees'>
+                                    </div>
+                                </div>
+                                    </div>
+                                </app-card>
+                               
+                            </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="raw">
+                        <ng-template ngbTabTitle>Raw Material Details
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                    
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Raw Materials Name</th>
+                                                    <th>Raw Materials Quantity(LQtnl)</th>
+                                                    <th>Unit Name</th>
+                                                    <th *ngIf="!workflowobj?.isEditable">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr formArrayName="rawmaterialdetails" 
+                                                *ngFor="let pres of brandform?.get('rawmaterialdetails')['controls']; let i=index"
+                                                id="row{{i}}">
+                                                    <td>{{i+1}}</td>
+                                                   
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <select class="form-control" formControlName="rawmaterialid" (change)="ramaterialChange(i)" [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                                            <option value="">Select</option>
+                                                            <option *ngFor="let d of rawmaterial" value="{{d.name}}">{{d.name}} </option>
+                                                        </select>
+                                                    </td>
+                                                   
+                                                    <td class="text-left" [formGroupName]='i'>
+                                                        <input type="number" class="form-control"
+                                                            placeholder="Enter Raw Materials Quantity(LQtnl)" formControlName="rawmaterialquantity" [readonly]='workflowobj?.isEditable' /></td>
+                                                     <td class="text-left" [formGroupName]='i'>
+                                                                <input type="text" class="form-control" 
+                                                                    placeholder="Enter unit Name" readonly formControlName="unitname"/></td>
+                                                   
+                                                    <td class="table-action-column text-center" *ngIf="!workflowobj?.isEditable">
+                                                        <button class="btn btn-icon btn-primary" type="button" (click)='addgroup()'>
+                                                            <i class="feather icon-plus"></i></button>
+                                                        <button class="btn btn-icon btn-danger ml-2" type="button" (click)='deleterow(i)'>
+                                                            <i class="fas fa-trash-alt"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+
+                
+            </app-card>
+            
+
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="nexttoraw('raw')" *ngIf="idstatus == 'branddetails'">Next</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="nexttoraw('branddetails')"  *ngIf="idstatus == 'raw'">Previous</button>
+        <button type="button" class="btn btn-info mb-2 ml-2"
+            routerLink="/supplychainmanagement/warehouse/outupdistbrandreg/view" *ngIf = '!workflowobj?.isEditable'>Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addregistration(brandform,'DRAFT')" *ngIf = '!workflowobj?.isEditable'>Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addregistration(brandform,'SUBMITTED')" *ngIf = '!workflowobj?.isEditable'>Submit</button>
+       
+            <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="addregistration(brandform,'APPROVED')"
+            *ngIf='responceData?.isShowButtons && (workflowobj?.isEditable) '>Approve</button>
+        <button type="button" class="btn btn-danger ml-2 mb-2"
+            (click)="addregistration(brandform,'REJECTED')"
+            *ngIf='  responceData?.isShowButtons && workflowobj?.isRejected'>Reject</button>
+       
+            <select class="col-lg-2 col-md-2 col-sm-3 col-3" [(ngModel)]='rejectid'
+                *ngIf='responceData?.isShowButtons && workflowobj?.isSendBack'>
+                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                <option value="{{ sebd.key}}" *ngFor='let sebd of workflowobj?.sendBackList'>{{ sebd.value}}</option>
+            </select>
+       
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addregistration(brandform,'SENDBACK')"
+            *ngIf='responceData?.isShowButtons && workflowobj?.isSendBack'>Clarification Needed</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/warehouse/outupdistbrandreg/list">Cancel</button>
+
+
+    </div>
+</div>

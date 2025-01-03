@@ -1,0 +1,210 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} Label Design</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Exise Label</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Label Design</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{addedit}}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #categoryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Label Design" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Label Name</label>
+                            <input type="text" id="labelname" name="labelname" #labelname="ngModel"
+                                [(ngModel)]="categoryObj['labelname']" class="form-control"
+                                placeholder="Enter Label Name">
+                        </div>
+                        <div *ngIf="labelname.invalid && (labelname.dirty || labelname.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="labelname?.errors?.required"><i class="fa fa-times"></i>
+                                Label Name is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brewery Name</label>
+                            <input type="text" id="breweryname" name="breweryname" #breweryname="ngModel"
+                                [(ngModel)]="categoryObj['breweryname']" class="form-control"
+                                placeholder="Enter Brewery Name">
+                        </div>
+                        <div *ngIf="breweryname.invalid && (breweryname.dirty || breweryname.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="breweryname?.errors?.required"><i class="fa fa-times"></i>
+                                Brewery Name is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select id="product" name="brandname" required #brandname="ngModel"
+                                [(ngModel)]="categoryObj['brandname']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of brands" value="{{year.name}}">{{year.name}}</option>
+                            </select>
+                            <div *ngIf="brandname.invalid && (brandname.dirty || brandname.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="brandname?.errors?.required"><i class="fa fa-times"></i>
+                                Brand is required </div>
+
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <select id="product" name="product" required #product="ngModel"
+                                [(ngModel)]="categoryObj['product']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of sizess" value="{{year.size}}">{{year.size}}</option>
+                            </select>
+                            <div *ngIf="product.invalid && (product.dirty || product.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="product?.errors?.required"><i class="fa fa-times"></i>
+                                Size is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="type" name="type" required #type="ngModel" [(ngModel)]="categoryObj['type']"
+                                class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of typess" value="{{year.size}}">{{year.size}}</option>
+                            </select>
+                            <div *ngIf="type.invalid && (type.dirty || type.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="type?.errors?.required"><i class="fa fa-times"></i>
+                                    Size is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="text" id="quantity" name="quantity" #quantity="ngModel"
+                                [(ngModel)]="categoryObj['quantity']" class="form-control" placeholder="Enter Quantity">
+                        </div>
+                        <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                Quantity is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Establishment</label>
+                            <input type="text" id="establish" name="establish" #establish="ngModel"
+                                [(ngModel)]="categoryObj['establish']" class="form-control"
+                                placeholder="Enter Establishment">
+                        </div>
+                        <div *ngIf="establish.invalid && (establish.dirty || establish.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="establish?.errors?.required"><i class="fa fa-times"></i>
+                                Establishment is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Hieght</label>
+                            <input type="text" id="hight" name="hight" #hight="ngModel"
+                                [(ngModel)]="categoryObj['hight']" class="form-control" placeholder="Enter Hieght">
+                        </div>
+                        <div *ngIf="hight.invalid && (hight.dirty || hight.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="hight?.errors?.required"><i class="fa fa-times"></i>
+                                Hieght is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Width</label>
+                            <input type="text" id="width" name="width" #width="ngModel"
+                                [(ngModel)]="categoryObj['width']" class="form-control" placeholder="Enter Width">
+                        </div>
+                        <div *ngIf="width.invalid && (width.dirty || width.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="width?.errors?.required"><i class="fa fa-times"></i>
+                                Width is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Color Selection</label>
+                            <select id="color" name="color" required #color="ngModel" [(ngModel)]="categoryObj['color']"
+                                class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let year of colors" value="{{year.name}}">{{year.name}}</option>
+                            </select>
+                            <div *ngIf="color.invalid && (color.dirty || color.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="color?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="logo">Logo/Halogram</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="logo" #logo="ngModel" [(ngModel)]="categoryObj['logo']" id="logo">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Cutomize label</label>
+                            <input type="text" id="custom" name="custom" #custom="ngModel"
+                                [(ngModel)]="categoryObj['custom']" class="form-control" required>
+                        </div>
+                        <div *ngIf="custom.invalid && (custom.dirty || custom.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="custom?.errors?.required"><i class="fa fa-times"></i>
+                                Cutomize label is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>QR Code configuration</label>
+                            <input type="text" id="qrcode" name="qrcode" #qrcode="ngModel"
+                                [(ngModel)]="categoryObj['qrcode']" class="form-control" required>
+                        </div>
+                        <div *ngIf="qrcode.invalid && (qrcode.dirty || qrcode.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="qrcode?.errors?.required"><i class="fa fa-times"></i>
+                                QR Code is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="categoryObj['status']" class="custom-control-input" id="customswitch1"
+                                    [attr.checked]="categoryObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!categoryObj.status">Inactive</label>
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="categoryObj.status">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2"
+            (click)="addcategory(categoryForm)">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateCategoryList()">Cancel</button>
+    </div>
+</div>

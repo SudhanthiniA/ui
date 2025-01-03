@@ -1,0 +1,62 @@
+<app-common-breadcrumb [titleSection]="titleSection" [text]="lastText" [breadcrumbs]="breadcrumbs">
+</app-common-breadcrumb>  
+<!-- [text]="lastText" -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.transaction.billnumber' | translate }}</label>
+                        <input type="number" class="form-control" placeholder="{{ 'retail.transaction.enterbill' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.dateofpurchase' | translate }}</label>
+                        <input type="date" class="form-control" placeholder="Enter Date of Purchase">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.transaction.paymentstatus' | translate }}</label>
+                        <select class="form-control">
+                            <option>500</option>
+                            <option>800</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'retail.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'retail.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.transaction.list' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{ 'retail.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

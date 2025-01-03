@@ -1,0 +1,223 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 10</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 10</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row"> 
+    <div class="col-xl-12">
+        <form #Bwfl10Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add BWFL 10" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description Of Foreign Liquor
+                            </label>
+                            <input type="text" class="form-control" placeholder="Details"  class="form-control"
+                             name="liquorDescription"  #liquorDescription="ngModel"
+                            [(ngModel)]="Bwfl10Obj['liquorDescription']" required>
+                            <div *ngIf="liquorDescription.invalid && (liquorDescription.dirty || liquorDescription.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="liquorDescription?.errors?.required"><i class="fa fa-times"></i>
+                                    Issued PassNumber is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Brand
+                            </label>
+                            <select name='brandRegistrationId' #brandRegistrationId="ngModel"  
+                            [(ngModel)]="Bwfl10Obj['brandRegistrationId']" class="form-control" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let b of allbrands" value={{b.id}}>
+                                    {{b.brandName}}
+                                </option>
+                            </select>
+                            <div *ngIf="brandRegistrationId.invalid && (brandRegistrationId.dirty || brandRegistrationId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandRegistrationId?.errors?.required"><i class="fa fa-times"></i>
+                                   Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Stock Remaining at the end of previous Month
+                            </label>
+                            <input type="text" required class="form-control" placeholder="200" 
+                            name="stockRemaining"  #stockRemaining="ngModel"
+                            [(ngModel)]="Bwfl10Obj['stockRemaining']">
+                            <div *ngIf="stockRemaining.invalid && (stockRemaining.dirty || stockRemaining.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="stockRemaining?.errors?.required"><i class="fa fa-times"></i>
+                                    stock Remaining is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <div class="col-xl-12">
+                <app-card cardTitle="Receipt during the Present Month as per the Register" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" required class="form-control" placeholder="" 
+                                name="bwfl10Date"  #bwfl10Date="ngModel"
+                                [(ngModel)]="Bwfl10Obj['bwfl10Date']" >
+                                <div *ngIf="bwfl10Date.invalid && (bwfl10Date.dirty || bwfl10Date.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="bwfl10Date?.errors?.required"><i class="fa fa-times"></i>
+                                        Date is required
+                                    </div>
+                                </div>
+                                <!-- <select class="form-control">
+                                    <option>Select</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Name
+                                </label>
+                                <input type="text" required class="form-control" placeholder=" Enter Name" 
+                                name="bwfl10Name"  #bwfl10Name="ngModel"
+                                [(ngModel)]="Bwfl10Obj['bwfl10Name']">
+                                <div *ngIf="bwfl10Name.invalid && (bwfl10Name.dirty || bwfl10Name.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="bwfl10Name?.errors?.required"><i class="fa fa-times"></i>
+                                        Name is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Address of Consigner
+                                </label>
+                                <input type="text" required class="form-control" placeholder="Chennai"  
+                                name="consignerAddress"  #consignerAddress="ngModel"
+                                [(ngModel)]="Bwfl10Obj['consignerAddress']">
+                                <div *ngIf="consignerAddress.invalid && (consignerAddress.dirty || consignerAddress.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="consignerAddress?.errors?.required"><i class="fa fa-times"></i>
+                                        Address is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </app-card>
+            </div>
+
+            <div class="col-xl-12">
+                <app-card cardTitle="Quantity" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Bulk
+                                </label>
+                                <input type="number" id="noofbottles"  class="form-control" placeholder="250" >
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>A.L
+                                </label>
+                                <input type="number"  class="form-control" placeholder="180">
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+
+            <div class="col-xl-12">
+                <app-card cardTitle="Issue during the Month" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Bulk
+                                </label>
+                                <input type="number" id="noofbottles"  class="form-control" placeholder="200">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>A.L
+                                </label>
+                                <input type="number"  class="form-control" placeholder="200">
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+
+            <div class="col-xl-12">
+                <app-card cardTitle="Balance at the end of Present Month" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Bulk
+                                </label>
+                                <input type="number" id="noofbottles"  class="form-control" placeholder="280">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>A.L
+                                </label>
+                                <input type="number"  class="form-control" placeholder="380">
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+
+            <div class="col-xl-12">
+                <app-card cardTitle="Wastage" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Bulk
+                                </label>
+                                <input type="number" id="noofbottles"  class="form-control" placeholder="50">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>A.L
+                                </label>
+                                <input type="number"  class="form-control" placeholder="80">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label>Remarks
+                                </label>
+                                <input type="text"  class="form-control" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+        </form>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/bwfl10/list">Back</button>
+            <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addBwfl10Details('Bwfl10Form','DRAFT')">Save as Draft</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addBwfl10Details('Bwfl10Form','SUBMITTED')" >Submit</button>
+            <!-- routerLink="/supplychainmanagement/warehouse/bwfl10/list" -->
+            <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="Bwfl10Form.resetForm({})">Clear</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'retail.indentallocatedvsreceived.indentallocatedvsreceived' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.indentallocatedvsreceived.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.indentallocatedvsreceived.reports' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'retail.indentallocatedvsreceived.indentallocatedvsreceived' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let indent of indentAllocated">
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.indentallocatedvsreceived.month' | translate }}</p>
+            <h6 class="m-0">{{indent.month}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.indentallocatedvsreceived.indentallocated' | translate }}</p>
+            <h6 class="m-0">{{indent.indentAllocated}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.indentallocatedvsreceived.indentreceived' | translate }}</p>
+            <h6 class="m-0">{{indent.indentReceived}}</h6>
+        </app-card>
+        <app-card [hidHeader]="true" class="list-panel">
+            <p class="m-0">{{'retail.indentallocatedvsreceived.percentageofalllocatedvsreceived' | translate }}</p>
+            <h6 class="m-0">{{indent.percentage}}</h6>
+        </app-card>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <img class="w-100" src="assets/images/Indent_Allocated_vs_Received.jpg" />
+        </app-card>
+    </div>
+</div>

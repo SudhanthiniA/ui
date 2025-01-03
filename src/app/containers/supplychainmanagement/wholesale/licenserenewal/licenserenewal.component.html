@@ -1,0 +1,145 @@
+<h5 class="m-b-10">
+    License Renewal
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/wholesale/licenserenewal/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add License Renewal
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">License Renewal</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application ID</label>
+                        <input type="number" class="form-control" required placeholder="Enter Application ID">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Name </label>
+                        <input type="text" class="form-control" required placeholder="Enter Application Name">
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Type</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License No</label>
+                        <input type="text" class="form-control" required placeholder="Enter License No">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="License Renewal List" blockClass="table-border-style" class="list-panel">
+        <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive mb-2">
+                        <table class="table table-bordered table-center"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    <th>Application ID</th>
+                                    <th>Application Name </th>
+                                    <th>License Type</th>
+                                    <th>Application Type</th>
+                                    <th>District</th>
+                                    <th>License No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let res of listvalue;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td class="text-center">{{res.applicationId}}</td>
+                                    <td>{{res.applicationName}}</td>
+                                    <td>{{res.licenseType}}</td>
+                                    <td>{{res.applicationType}}</td>
+                                    <td class="text-left">{{res.District}}</td>
+                                    <td class="text-center">{{res.licenseNo}}</td>
+
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button"
+                                        (click)="view(i)">
+                                            <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="edit(i)" >
+                                                <i class="feather icon-edit"></i></button>
+                                        <!-- <button class="btn btn-icon btn-success ml-2" type="button"
+                                            routerLink="/supplychainmanagement/retail/licenserenewal/add">
+                                            <i class="feather icon-upload"></i></button>
+                                        <button class="btn btn-icon btn-primary ml-2" type="button"
+                                            routerLink="/supplychainmanagement/wholesale/licenserenewal/view">
+                                            <i class="feather icon-credit-card"></i></button>
+                                        <button class="btn btn-icon btn-warning ml-2" type="button"
+                                            routerLink="/supplychainmanagement/retail/licenserenewal/add">
+                                            <i class="far fa-address-card"></i></button>
+                                        <button class="btn btn-icon btn-success ml-2" type="button"
+                                            routerLink="/supplychainmanagement/wholesale/licenserenewal/view">
+                                            <i class="feather icon-check"></i></button>
+                                        <button class="btn btn-icon btn-primary ml-2" type="button"
+                                            routerLink="/supplychainmanagement/retail/licenserenewal/add">
+                                            <i class="feather icon-check-square"></i></button> -->
+                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

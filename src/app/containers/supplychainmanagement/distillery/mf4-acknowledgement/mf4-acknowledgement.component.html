@@ -1,0 +1,151 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF4 Acknowledgement List
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">MF4 Transport Pass</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">MF4 Acknowledgement</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        
+        <app-card cardTitle="Search" class="search-panel">
+            <form #mf4AckForm="ngForm" autocomplete="off">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Gate Pass No</label>
+                        <input type="text" class="form-control" placeholder="Enter Gate Pass No" required  name="gatepassno" #gatepassno="ngModel" [(ngModel)]="searchmf4Obj['gatepassno']" >
+                        <div *ngIf="gatepassno.invalid && (gatepassno.dirty || gatepassno.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gatepassno?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gate Pass No is required
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchmf4(mf4AckForm)">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="clear()">Cancel</button>
+                </div>
+            </div>
+            </form>
+            <div class="row mt-3" *ngIf="searchValue" >
+                <div class="col-xl-12">
+                    <app-card cardTitle="MF4 Acknowledgement List" blockClass="table-border-style" class="list-panel">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th width="4%">#</th>
+                                        <th width="10%">MF4 Gate Pass No</th>
+                                        <th width="23%">MF4 Generation Date</th>
+                                        <th width="16%">Sugar Mill Name</th>
+                                        <th width="10%">Vehicle Number</th>
+                                        <th width="10%">Supply Type</th>
+                                        <th width="10%">Duration</th>
+                                        <th width="13%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{this.mf4searchdata?.mf4GatePassNo}}</td>
+                                        <td>{{this.mf4searchdata?.mf4GenerationDate}}</td>
+                                        <td class="text-left">{{this.mf4searchdata?.sugarMillName}}</td>
+                                        <td class="text-left">{{this.mf4searchdata?.vehicleNumber}}</td>
+                                        <td>{{this.mf4searchdata?.supplyType}}</td>
+                                        <td>{{this.mf4searchdata?.duration}}</td>
+                                        <td class="table-action-column">
+                                            <button class="btn btn-icon btn-primary mr-2" type="button" (click)="updatemf4(this.mf4searchdata.id)">
+                                                Vehicle Arrived
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="mf4searchdata?.length == 0">
+                                    <tr>
+                                        <td colspan="100%" class="no-data-available">No data found!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </app-card>
+        
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="MF4 Acknowledgement List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th width="4%">#</th>
+                            <th width="10%">MF4 Gate Pass No</th>
+                            <th width="23%">MF4 Generation Date</th>
+                            <th width="16%">Sugar Mill Name</th>
+                            <th width="10%">Vehicle Number</th>
+                            <th width="10%">Supply Type</th>
+                            <th width="10%">Duration</th>
+                            <th width="13%">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of mf4partonelist;let i=index">
+                            <td>{{i+1}}</td>
+                            <td (click)="navigate(data.id)" class="text-primary text-left" style="cursor: pointer;">{{data.mf4GatePassNo}}</td>
+                            <td>{{data.mf4GenerationDate}}</td>
+                            <td class="text-left">{{data.sugarMillName}}</td>
+                            <td class="text-left">{{data.vehicleNumber}}</td>
+                            <td>{{data.supplyType}}</td>
+                            <td>{{data.duration}}</td>
+                            <td class="table-action-column">
+                                <span class="badge m-r-5 badge-light-success">{{data.status}}</span>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td>2</td>
+                            <td class="text-left">DFR134GTH</td>
+                            <td>18-11-2020</td>
+                            <td class="text-left">Durusa Sugar Mill </td>
+                            <td class="text-left">UP03 HJ3764</td>
+                            <td>Box</td>
+                            <td>2hr</td>
+                            <td class="table-action-column">
+                                <span class="badge m-r-5 badge-light-success">Arrived</span>
+                            </td>
+                        </tr> -->
+                        <!-- <tr>
+                            <td>3</td>
+                            <td class="text-left">ERP134WER</td>
+                            <td>17-11-2020</td>
+                            <td class="text-left">Miru Sugar Mill </td>
+                            <td class="text-left">UP03 OJ3094</td>
+                            <td>Box</td>
+                            <td>1hr</td>
+                            <td class="table-action-column">
+                                <span class="badge m-r-5 badge-light-success">Arrived</span>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                    <tbody *ngIf="mf4searchdata?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

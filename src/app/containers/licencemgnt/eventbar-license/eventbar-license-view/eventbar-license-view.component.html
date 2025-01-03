@@ -1,0 +1,241 @@
+<h5 class="m-b-10 ng-star-inserted">Eventbar License</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Eventbar License</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-application-details [applicationDetail]="licenseData"></app-application-details>
+        <app-application-applicant-details [appliApplicantDetail]="licenseData?.applicantDetails"
+            [appliApplicantAddr]="licenseData?.addressList[0]"></app-application-applicant-details>
+
+        <app-card cardTitle="Event Details" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Organisation / Individual<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.requiredForDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Organisation / Individual Name<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.organizationName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Purpose of Event<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.eventType}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Date of Event<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.eventDate}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">From<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.eventStartTime}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">To<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.eventEndTime}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Address<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.addressList[1].street}}
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Approximate Perticipants in the Event<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <br>
+                    {{licenseData?.eventBarLicenses.eventParticipantCount}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Approximate Quantity of FL/Beer etc (in Bottles) for
+                        consumption<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <br>
+                    {{licenseData?.eventBarLicenses.approxBottleConsumptionCount}}
+                </div>
+
+            </div>
+        </app-card>
+
+        <app-card cardTitle="Product Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                    <label class="w-100 view-label">Name of Desired Shop within Purview of city/Sector of applicant
+                        venue (From
+                        where liquor to be purchased)<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.shopCityDesc}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Seller Name<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.sellerName}}
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Seller Mobile Number<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    {{licenseData?.eventBarLicenses.sellerMobileNumber}}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center text-center">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Category</th>
+                                    <th>Name of Brand</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of licenseData?.eventBarLicenses.productList; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.category}}</td>
+                                    <td>{{item.brandName}}</td>
+                                    <td>{{item.quatity}}</td>
+                                    <td>{{item.price}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+
+        <app-application-bank-details [appliBankDetail]="licenseData?.bankList[0]"></app-application-bank-details>
+        <app-application-paymentfee-details [appliPaymentDetail]="licenseData"></app-application-paymentfee-details>
+
+        <app-application-logs 
+            *ngIf="licenseComments.length > 0"
+            [licenseComments]="licenseComments"
+            [checkList]="this.licenseData?.checkList"
+            [isOfficier]="isOfficier">
+        </app-application-logs>
+
+         <app-card cardTitle="{{'licenseMgnt.remarksText' | translate}}" *ngIf="!isCustomer" class="list-panel add-panel">
+            <div class="row" [formGroup]="commentForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">{{'licenseMgnt.remarksText' | translate}}</label>
+                        <textarea class="form-control" formControlName="comments" rows="2"></textarea>
+                        <app-show-errors eleName="Comment" [frmSub]="commandformSub"
+                            [control]="commentForm.controls.comments">
+                        </app-show-errors>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+
+        <div class="text-content text-right mb-4">
+            <ng-container *ngIf="isOfficier">
+
+                <ng-container *ngIf="licenseStatus === licenseConsts.STATUS_IN_PROGRESS">
+                    <button type="button" class="btn btn-success mb-2 ml-2" data-toggle="modal"
+                        data-target="#checklistModal">Checklist</button>
+                    <ng-container *ngIf="isSendBack">
+                        <ng-container [formGroup]="sendbackForm">
+                            <div class="form-group btn_container_select mb-2 ml-2">
+                                <select class="form-control" formControlName="sendback">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of sendBackList" value="{{item.key}}">{{item.value}}</option>
+                                </select>
+                                <app-show-errors eleName="Send Back" [frmSub]="formSubmitted" [control]="sendbackForm.controls.sendback">
+                                </app-show-errors>
+                            </div>
+                            <button type="button" class="btn btn-warning mb-2 ml-2"
+                                (click)="onSubmit(licenseConsts.STATUS_SENDBACK)">Clarify</button>
+                        </ng-container>
+                    </ng-container>
+                    <button type="button" class="btn btn-primary mb-2 ml-2" *ngIf="isForwardWithOutApproval"
+                        (click)="onSubmit(licenseConsts.STATUS_APPROVED)">Forward without Approval</button>
+                    <button type="button" class="btn btn-success mb-2 ml-2" (click)="onSubmit(licenseConsts.STATUS_APPROVED)">
+                        {{ isFinished ? 'Recommand' : 'Forward with Approval' }}
+                    </button>
+                    <button type="button" class="btn btn-danger mb-2 ml-2" *ngIf="isRejected"
+                        (click)="onSubmit(licenseConsts.STATUS_REJECTED)">Reject</button>
+                </ng-container>
+
+            </ng-container>
+            <ng-container *ngIf="isCustomer">
+                
+            </ng-container>
+            <button type="button" class="btn btn-secondary mb-2 ml-2" (click)="back()">Back</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Checklist Verification -->
+<div class="modal fade" id="checklistModal" tabindex="-1" role="dialog" aria-labelledby="checklistModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checklistModalLabel">Checklist Verification</h5>
+                <button type="button" #checkListCloseBtn class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="checkList">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Checklist</th>
+                                    <th>Is it Verified</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="checkListForm">
+                                <tr *ngFor="let item of checkList; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td><label class="w-100 view-label">{{item.paramValue}}</label></td>
+                                    <td>
+                                        <mat-radio-group
+                                            [formControl]="getCheckListDocumentFormArray.at(i).get('isVerified')"
+                                            aria-label="Select an option">
+                                            <mat-radio-button color="primary" [value]="true"> Yes </mat-radio-button>
+                                            <mat-radio-button color="primary" [value]="false"> No </mat-radio-button>
+                                        </mat-radio-group>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="onCheckListSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

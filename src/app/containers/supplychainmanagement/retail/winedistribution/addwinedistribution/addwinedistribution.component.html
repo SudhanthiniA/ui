@@ -1,0 +1,409 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Wine Distribution Ledger
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wine Distribution Ledger</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="wineDistributionForm" autocomplete="off">
+        <app-card cardTitle="Add Wine Distribution Ledger" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Received Date</label>
+                        <input type="date" class="form-control" formControlName='receivedDate'>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('receivedDate').errors || wineDistributionForm.get('receivedDate').touched "
+                        class="error-msg">
+                        <span *ngIf="wineDistributionForm.get('receivedDate').errors?.required">
+                            Received Date is required
+                        </span>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass Number</label>
+                        <input type="text" class="form-control" formControlName='transportPassNumber' 
+                        placeholder="Enter Transport Pass Number">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('transportPassNumber').errors || wineDistributionForm.get('transportPassNumber').touched "
+                        class="error-msg">
+                        <span *ngIf="wineDistributionForm.get('transportPassNumber').errors?.required">
+                            Transport Pass Number is required
+                        </span>
+                    </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>TP QR Code Number</label>
+                        <input type="number" class="form-control" formControlName='tpQRCodeNumber'
+                            placeholder="Enter TP QR Code Number">
+                            <div *ngIf="formSubmitted && wineDistributionForm.get('tpQRCodeNumber').errors || wineDistributionForm.get('tpQRCodeNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('tpQRCodeNumber').errors?.required">
+                                TP QR Code Number is required
+                            </span>
+                        </div>
+                        </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of Retail Shop</label>
+                        <input type="text" class="form-control" formControlName='nameOfRetailShop' 
+                        placeholder="Enter Name of Retail Shop">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('nameOfRetailShop').errors || wineDistributionForm.get('nameOfRetailShop').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('nameOfRetailShop').errors?.required">
+                                Name of Retail Shop is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Country</label>
+                        <select class="form-control" formControlName='country'>
+                            <option>India</option>
+                        </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('country').errors || wineDistributionForm.get('country').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('country').errors?.required">
+                                Country is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Pincode</label>
+                        <input type="text"  class="form-control" formControlName='pincode'
+                             placeholder="Enter Pincode">
+                             <div *ngIf="formSubmitted && wineDistributionForm.get('pincode').errors || wineDistributionForm.get('pincode').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('pincode').errors?.required">
+                                Pincode is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <select class="form-control" formControlName='state' (change)="getDistrict($event)">
+                            <option value="">Select</option>
+                                <option *ngFor="let item of states" value="{{item.id}}">{{item.stateName}}</option>
+                             </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('state').errors || wineDistributionForm.get('state').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('state').errors?.required">
+                                State is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>District </label>
+                        <select class="form-control" formControlName='district'>
+                            <option value="">Select</option>
+                              <option *ngFor="let item of districts" value="{{item.id}}">{{item.name}}</option>
+                             </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('district').errors || wineDistributionForm.get('district').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('district').errors?.required">
+                                District is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Tehsil </label>
+                        <select class="form-control" formControlName='tehsil'>
+                            <option value="">Select</option>
+                              <option *ngFor="let item of tehsils" value="{{item.id}}">{{item.name}}</option>
+                             </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('tehsil').errors || wineDistributionForm.get('tehsil').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('tehsil').errors?.required">
+                                Tehsil is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Urban/Rural </label>
+                        <select class="form-control" formControlName='urbanRural'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of urbanRurals" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('urbanRural').errors || wineDistributionForm.get('urbanRural').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('urbanRural').errors?.required">
+                                Urban/Rural is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Municipal Area </label>
+                        <select class="form-control" formControlName='municipalArea'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of municipalAreas" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('municipalArea').errors || wineDistributionForm.get('municipalArea').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('municipalArea').errors?.required">
+                                Municipal Area is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ward </label>
+                        <select class="form-control" formControlName='ward'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of wards" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('ward').errors || wineDistributionForm.get('ward').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('ward').errors?.required">
+                                Ward is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Police Station  </label>
+                        <select class="form-control" formControlName='policeStation'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of policeStations" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('policeStation').errors || wineDistributionForm.get('policeStation').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('policeStation').errors?.required">
+                                Police Station is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Locality </label>
+                        <select class="form-control" formControlName='Locality'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of localities" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('Locality').errors || wineDistributionForm.get('Locality').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('Locality').errors?.required">
+                                Locality is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Street</label>
+                        <input type="text"  class="form-control" formControlName='street'
+                             placeholder="Enter Street">
+                             <div *ngIf="formSubmitted && wineDistributionForm.get('street').errors || wineDistributionForm.get('street').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('street').errors?.required">
+                                Street is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Number</label>
+                        <input type="number"  class="form-control" formControlName='applicationNumber' 
+                        placeholder="Enter Application Number">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('applicationNumber').errors || wineDistributionForm.get('applicationNumber').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('applicationNumber').errors?.required">
+                                Application Number is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of Brand</label>
+                        <input type="text" class="form-control" formControlName='nameOfBrand' 
+                        placeholder="Enter Name of Brand">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('nameOfBrand').errors || wineDistributionForm.get('nameOfBrand').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('nameOfBrand').errors?.required">
+                                Name of Brand is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Intensity</label>
+                        <input type="text" class="form-control" formControlName='intensity' 
+                        placeholder="Enter Intensity">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('intensity').errors || wineDistributionForm.get('intensity').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('intensity').errors?.required">
+                                Intensity is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Size</label>
+                        <select class="form-control" formControlName='size'>
+                            <option value="">Select</option>
+                            <option *ngFor="let item of sizes" value="{{item.id}}">{{item.name}}</option>
+                           </select>
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('size').errors || wineDistributionForm.get('size').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('size').errors?.required">
+                                Size is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Wine Count</label>
+                        <input type="number" class="form-control" formControlName='wineCount' 
+                        placeholder="Enter Wine Count">
+                        <div *ngIf="formSubmitted && wineDistributionForm.get('wineCount').errors || wineDistributionForm.get('wineCount').touched "
+                            class="error-msg">
+                            <span *ngIf="wineDistributionForm.get('wineCount').errors?.required">
+                                Wine Count is required
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </app-card>
+        <app-card cardTitle="Add Unit details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License type </label>
+                        <input type="text" required class="form-control" placeholder="Enter License type">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Unit Name</label>
+                        <input type="text" required class="form-control" placeholder="Enter Unit Name">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Unit Address</label>
+                        <input type="text" required class="form-control" placeholder="Enter Unit Address">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Add Wine Ledger Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Brand Name</th>
+                                    <th>Package Size</th>
+                                    <th>Package Type</th>
+                                    <th>Category</th>                               
+                                    <th>Strength</th>
+                                    <th>No.of cases</th>
+                                    <th>No. of Bottles </th>  
+                                    <th>Bulk Litre</th>
+                                    <th>Total No.of Cases</th>
+                                    <th>Total No.of Bottles</th>
+                                    <th>Total Bulk Litres</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Enter Strength">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Enter No.of cases">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Enter No. of Bottles">
+                                    </td>
+                                    
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Enter Bulk Litre">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Enter Total No.of Cases">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" placeholder="Enter Total No.of Bottles">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Enter Total Bulk Litres">
+                                    </td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button">
+                                            <i class="feather icon-plus"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+   
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2"
+            routerLink="/supplychainmanagement/retail/winedistribution/view">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addWineDistribution(wineDistributionForm)">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addWineDistribution(wineDistributionForm)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/retail/winedistribution/list">Cancel</button>
+    </div>
+    </form>
+</div>
+</div>

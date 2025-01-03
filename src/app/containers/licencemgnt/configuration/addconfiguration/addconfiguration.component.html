@@ -1,0 +1,962 @@
+<h5 class="m-b-10 ng-star-inserted">{{'master.licenseconfiguration.licenseconfiguration'|translate}}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'master.licenseconfiguration.licenseconfiguration'|translate}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="LicenseConfigForm" autocomplete="off">
+
+            <app-card cardTitle="{{'master.licenseconfiguration.licenseconfigurationdetails'|translate}}" class="list-panel add-panel">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.licenseconfiguration.date'|translate}} & {{'master.licenseconfiguration.time'|translate}}</label>
+                            <input type="date" class="form-control" disabled formControlName='dateTime' />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'master.licenseconfiguration.entity'|translate}}</label>
+                            <select class="form-control" formControlName='entityCode'
+                                (change)="onEntityChange($event.target.value)" [attr.disabled]='entityCode ? true:null'>
+                                <option disabled selected value="">{{'master.common.select'|translate}}</option>
+                                <option *ngFor="let item of entityList" value="{{item.code}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="Entity" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('entityCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'master.licenseconfiguration.licensetype'|translate}}</label>
+                            <select class="form-control" formControlName='licenseTypeCode'
+                                (change)="onLicenseTypeChange($event.target.value)"
+                                [attr.disabled]='licenseTypeCode ? true:null'>
+                                <option value="">{{'master.common.select'|translate}}</option>
+                                <option *ngFor="let item of licenseTypeList" value="{{item.licenseTypeCode}}">
+                                    {{item.licenseTypeDesc}}
+                                </option>
+                            </select>
+                            <app-show-errors eleName="License Type" [frmSub]="formSubmitted"
+                                [control]="getFormCntr('licenseTypeCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'master.licenseconfiguration.status'|translate}} <span class="error-msg">*</span></label>
+                            <div class="row m-t-10">
+                                &nbsp;&nbsp; &nbsp;
+                                <input type="radio" value="true" class="mt-1" id="sw1" formControlName="status">
+                                <label for="sw1">&nbsp;&nbsp; {{'master.common.active'|translate}}</label> &nbsp;&nbsp;&nbsp;
+                                <input type="radio" value="false" class="mt-1" id="sw2" formControlName="status">
+                                <label for="sw2">&nbsp;&nbsp; {{'master.common.inactive'|translate}}</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary ml-2 mb-2" (click)="loadData()">{{'master.licenseconfiguration.loaddata'|translate}}</button>
+                </div>
+
+                <ngb-tabset type="pills" (tabChange)="beforeChange($event)" #myTabSet="ngbTabset">
+
+                    <ngb-tab id="{{PROP_CONFIG}}" title="{{'master.licenseconfiguration.configuration'|translate}}" formGroupName="{{PROP_CONFIG}}">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-4">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.first'|translate}} / {{'master.licenseconfiguration.lastlicense'|translate}}?</label>
+                                        <select class="form-control" formControlName="licenseFirstCode"
+                                            (change)="onLicenseFirstChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseCountList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="First / Last License" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('licenseFirstCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.domain'|translate}}</label>
+                                        <select class="form-control" formControlName="domainCode"
+                                            (change)="onDomainChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseDomainList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="Domain" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('domainCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.entitytype'|translate}}</label>
+                                        <select class="form-control" formControlName="entityTypeCode"
+                                            (change)="onEntityTypeChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseEntityTypeList"
+                                                value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="Entity Type" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('entityTypeCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.licensetenure'|translate}}</label>
+                                        <select class="form-control" formControlName="licenseTenureCode"
+                                            (change)="onLicenseTenureChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseTenureList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="License Tenure" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('licenseTenureCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.licensefunctionalyear'|translate}}</label>
+                                        <select class="form-control" formControlName="licenseFinancialYearCode"
+                                            (change)="onLicenseFinancialYearChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseFinancialYearList"
+                                                value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="License Functional year" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('licenseFinancialYearCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.renewaltimeline'|translate}}</label>
+                                        <select class="form-control" formControlName="renewalTimeCode"
+                                            (change)="onRenewalTimeChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseRenewalList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                        <app-show-errors eleName="Renewal Timeline" [frmSub]="formSubmitted"
+                                            [control]="getLicConfigFormCntr('renewalTimeCode')">
+                                        </app-show-errors>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <!-- <button class="btn btn-primary ml-2 mb-2"
+                                        (click)="myTabSet.select(PROP_PRE_REQ)">Save & Next</button> -->
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_PRE_REQ)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="{{PROP_PRE_REQ}}" title="{{'master.licenseconfiguration.prerequisitelicense'|translate}}" formArrayName="{{PROP_PRE_REQ}}">
+                        <ng-template ngbTabContent>
+
+                            <div class="row mt-4">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.entity'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="licPreReq.entityCode"
+                                            (change)="onEntityLicPreReqChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of entityList" value="{{item.code}}">
+                                                {{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.licensetype'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="licPreReq.licenseTypeCode"
+                                            [ngModelOptions]="{standalone: true}"
+                                            (change)="onlicenseTypeLicPreReqChange($event.target.value)">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of licenseTypePreReqList"
+                                                value="{{item.licenseTypeCode}}">
+                                                {{item.licenseTypeDesc}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-left">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addLicensePreReq()"
+                                            *ngIf="licPreReq.editRow.length == ''">{{'master.common.add'|translate}}</button>
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addLicensePreReq()"
+                                            *ngIf="licPreReq.editRow.length != ''">{{'master.common.update'|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'master.licenseconfiguration.entity'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.licensetype'|translate}}</th>
+                                            <th>{{'master.common.action'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="getLicPreReqFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let preCntrl of getLicPreReqFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <td>{{preCntrl.value.entityDesc}}</td>
+                                            <td>{{preCntrl.value.licenseTypeDesc}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                    (click)="editLicensePreReq(preCntrl, i)">
+                                                    <i class="feather icon-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-danger"
+                                                    (click)="deleteLicensePreReq(preCntrl, i)">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="getLicPreReqFormCntr()['controls'].length == 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_CONFIG)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_PROD)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="{{PROP_PROD}}" title="{{'master.licenseconfiguration.productdetails'|translate}}" formArrayName="{{PROP_PROD}}">
+                        <ng-template ngbTabContent>
+
+                            <div class="row mt-4">
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.rawmaterial'|translate}} / {{'master.licenseconfiguration.finishedgoods'|translate}} ?</label>
+                                        <div class="">
+                                            <select class="form-control" [(ngModel)]="prodDet.materialTypeCode"
+                                                (change)="onMaterialTypeChange($event.target.value)"
+                                                [ngModelOptions]="{standalone: true}">
+                                                <option value="">{{'master.common.select'|translate}}</option>
+                                                <option *ngFor="let item of goodsMaterialList"
+                                                    value="{{item.paramKey}}">
+                                                    {{item.paramValue}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.typeofgoods'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="prodDet.goodTypeCode"
+                                            (change)="onGoodTypeChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of goodsTypeList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.subcategory'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="prodDet.subCategoryCode"
+                                            (change)="onSubCategoryChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of goodsCtegoryList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">Item</label>
+                                        <select class="form-control" [(ngModel)]="prodDet.itemCode"
+                                            (change)="onItemChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let item of goodsItemList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <label class="mandatory">{{'master.licenseconfiguration.quotaapplicable'|translate}}</label>
+                                    <div class="segment">
+                                        <input type="radio" name="tab" id="tab1" [(ngModel)]="prodDet.isQuotaApplicable"
+                                            [ngModelOptions]="{standalone: true}" value="true">
+                                        <label for="tab1">{{'master.common.yes'|translate}}</label>
+                                        <input type="radio" name="tab" id="tab2" [(ngModel)]="prodDet.isQuotaApplicable"
+                                            [ngModelOptions]="{standalone: true}" value="false">
+                                        <label for="tab2">{{'master.common.no'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.quota'|translate}}</label>
+                                        <input type="number" class="form-control" [(ngModel)]="prodDet.quotaQuantity"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.quotatimeline'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="prodDet.quotaTimeLineCode"
+                                            (change)="onQuotaTimeLineChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of qutaTimelineList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addProductDeatils()"
+                                            *ngIf="prodDet.editRow.length == ''">{{'master.common.add'|translate}}</button>
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addProductDeatils()"
+                                            *ngIf="prodDet.editRow.length != ''">{{'master.common.update'|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="sub-title">{{'master.licenseconfiguration.rawmaterial'|translate}}</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'master.licenseconfiguration.typeofgoods'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.subcategory'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.rawmaterial'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.quotaapplicable'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.quota'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.quotatimeline'|translate}}</th>
+                                            <th>{{'master.common.action'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="getProDetFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let proCntrl of getProDetFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <ng-container *ngIf="proCntrl.value.materialTypeCode == 'RAW_MATERIAL'">
+                                                <td>{{proCntrl.value.goodTypeDesc}}</td>
+                                                <td>{{proCntrl.value.subCategoryDesc}}</td>
+                                                <td>{{proCntrl.value.itemDesc}}</td>
+                                                <td *ngIf="proCntrl.value.isQuotaApplicable == 'true'">Yes</td>
+                                                <td *ngIf="proCntrl.value.isQuotaApplicable != 'true'">No</td>
+                                                <td>{{proCntrl.value.quotaQuantity}}</td>
+                                                <td>{{proCntrl.value.quotaTimeLineDesc}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                        (click)="editProductDeatils(proCntrl, i)">
+                                                        <i class="feather icon-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon btn-danger"
+                                                        (click)="deleteProductDeatils(proCntrl, i)">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </button>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="checkProductTypeExists('RAW_MATERIAL') === 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+                            <h5 class="sub-title">{{'master.licenseconfiguration.finishedgoods'|translate}}</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <tr>
+                                        <th>{{'master.licenseconfiguration.typeofgoods'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.subcategory'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.finishedgoods'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.quotaapplicable'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.quota'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.quotatimeline'|translate}}</th>
+                                        <th>{{'master.common.select'|translate}}</th>
+                                    </tr>
+                                    <tbody *ngIf="getProDetFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let proCntrl of getProDetFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <ng-container *ngIf="proCntrl.value.materialTypeCode == 'FINISH_GOODS'">
+                                                <td>{{proCntrl.value.goodTypeDesc}}</td>
+                                                <td>{{proCntrl.value.subCategoryDesc}}</td>
+                                                <td>{{proCntrl.value.itemDesc}}</td>
+                                                <td *ngIf="proCntrl.value.isQuotaApplicable == 'true'">Yes</td>
+                                                <td *ngIf="proCntrl.value.isQuotaApplicable != 'true'">No</td>
+                                                <td>{{proCntrl.value.quotaQuantity}}</td>
+                                                <td>{{proCntrl.value.quotaTimeLineDesc}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                        (click)="editProductDeatils(proCntrl, i)">
+                                                        <i class="feather icon-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon btn-danger"
+                                                        (click)="deleteProductDeatils(proCntrl, i)">
+                                                        <i class="feather icon-trash-2"></i>
+                                                    </button>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="checkProductTypeExists('FINISH_GOODS') === 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_PRE_REQ)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_FEE)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="{{PROP_FEE}}" title="{{'master.licenseconfiguration.feesdetails'|translate}}" formArrayName="{{PROP_FEE}}">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-4">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.feestype'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="feesDet.feeTypeCode"
+                                            (change)="onFeeTypeChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of feeTypeList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.amount'|translate}}</label>
+                                        <input type="number" class="form-control" [(ngModel)]="feesDet.amount"
+                                            [ngModelOptions]="{standalone: true}" maxlength="8" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-left">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addFeeDeatils()" *ngIf="feesDet.editRow.length == ''">{{'master.common.add'|translate}}</button>
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addFeeDeatils()"
+                                            *ngIf="feesDet.editRow.length != ''">{{'master.common.update'|translate}}</button>
+                                        <button class="btn btn-warning ml-2 mb-2 button-top-push"
+                                            type="button">{{'master.common.download'|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <tr>
+                                        <th>{{'master.licenseconfiguration.feestype'|translate}}</th>
+                                        <th>{{'master.licenseconfiguration.amount'|translate}}</th>
+                                        <th>{{'master.common.action'|translate}}</th>
+                                    </tr>
+                                    <tbody *ngIf="getFeeDetFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let feeCntrl of getFeeDetFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <td>{{feeCntrl.value.feeTypeDesc}}</td>
+                                            <td>{{feeCntrl.value.amount}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                    (click)="editFeeDeatils(feeCntrl, i)">
+                                                    <i class="feather icon-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-danger"
+                                                    (click)="deleteFeeDeatils(feeCntrl, i)">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="getFeeDetFormCntr()['controls'].length == 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_PROD)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_TANK)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="{{PROP_TANK}}" title="{{'master.licenseconfiguration.tankdetails'|translate}}" formArrayName="{{PROP_TANK}}">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.applicabletanktype'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="tankDet.tankTypeCode"
+                                            (change)="onTankTypeChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of tankTypeList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.maximumcapacity'|translate}}</label>
+                                        <input type="text" class="form-control" [(ngModel)]="tankDet.maxCapacity"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-10 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.tankdimension'|translate}}</label>
+
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <input type="text" class="form-control" placeholder="Length"
+                                                    [(ngModel)]="tankDet.tankLength"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <input type="text" class="form-control" placeholder="Breadth"
+                                                    [(ngModel)]="tankDet.tankBreadth"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                <input type="text" class="form-control" placeholder="Height"
+                                                    [(ngModel)]="tankDet.tankHeight"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-12 text-left">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addTankDeatils()" *ngIf="tankDet.editRow.length == ''">{{'master.common.add'|translate}}</button>
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addTankDeatils()"
+                                            *ngIf="tankDet.editRow.length != ''">{{'master.common.update'|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'master.licenseconfiguration.applicabletanktype'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.maximumcapacity'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.tankdimension'|translate}}</th>
+                                            <th>{{'master.common.action'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="getTankDetFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let tankCntrl of getTankDetFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <td>{{tankCntrl.value.tankTypeDesc}}</td>
+                                            <td>{{tankCntrl.value.maxCapacity}}</td>
+                                            <td>{{tankCntrl.value.tankLength}} X {{tankCntrl.value.tankBreadth}} X
+                                                {{tankCntrl.value.tankHeight}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                    (click)="editTankDeatils(tankCntrl, i)">
+                                                    <i class="feather icon-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-danger"
+                                                    (click)="deleteTankDeatils(tankCntrl, i)">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="getTankDetFormCntr()['controls'].length == 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_FEE)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_CHECK)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="{{PROP_CHECK}}" title="{{'master.licenseconfiguration.checklist'|translate}}" class="mb-3" formArrayName="{{PROP_CHECK}}">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-4">
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.checklist'|translate}}</label>
+                                        <select class="form-control" [(ngModel)]="checklist.checkListCode"
+                                            (change)="onChecklistChange($event.target.value)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <option value="">{{'master.common.select'|translate}}</option>
+                                            <option *ngFor="let item of checkList" value="{{item.paramKey}}">
+                                                {{item.paramValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="mandatory">{{'master.licenseconfiguration.description'|translate}}</label>
+                                        <input type="text" class="form-control" [(ngModel)]="checklist.description"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-12 text-left">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addChecklist()" *ngIf="checklist.editRow.length == ''">{{'master.common.select'|translate}}</button>
+                                        <button class="btn btn-primary mb-2 button-top-push" type="button"
+                                            (click)="addChecklist()"
+                                            *ngIf="checklist.editRow.length != ''">{{'master.common.update'|translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'master.licenseconfiguration.checklist'|translate}}</th>
+                                            <th>{{'master.licenseconfiguration.description'|translate}}</th>
+                                            <th>{{'master.common.action'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="getChecklistFormCntr()['controls'].length > 0">
+                                        <tr *ngFor="let cheCntrl of getChecklistFormCntr()['controls']; let i=index"
+                                            [formGroupName]="i">
+                                            <td>{{cheCntrl.value.checkListDesc}}</td>
+                                            <td>{{cheCntrl.value.description}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-primary mr-2"
+                                                    (click)="editChecklist(cheCntrl, i)">
+                                                    <i class="feather icon-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-danger"
+                                                    (click)="deleteChecklist(cheCntrl, i)">
+                                                    <i class="feather icon-trash-2"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <ng-container *ngIf="getChecklistFormCntr()['controls'].length == 0">
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="100%">{{'master.licenseconfiguration.norecordfound'|translate}}!</td>
+                                            </tr>
+                                        </tfoot>
+                                    </ng-container>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_TANK)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-success ml-2 mb-2" (click)="myTabSet.select(PROP_CHECK)">
+                                        {{'master.common.next'|translate}}
+                                    </button>
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab title="{{'master.licenseconfiguration.licensemapping'|translate}}" class="mb-3">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                                    <app-card cardTitle="{{'master.licenseconfiguration.indentaccept'|translate}}"
+                                        class="text-center custom-multiselect-box mapping_accordion">
+                                        <ul class="text-left">
+                                            <ngb-accordion [closeOthers]="true" activeIds="static-1"
+                                                class="next-accordion">
+                                                <ngb-panel *ngFor="let data of indentAcceptList; let i=index" id="{{data.code}}">
+                                                    <ng-template ngbPanelTitle>
+                                                        <h5>
+                                                            <a href="javascript:">
+                                                                <input type="checkbox" value="{{data.id}}" (click)='checkAll(data.id, $event.target.checked, data, i)'
+                                                                    id="{{data.id}}" [checked]="data.checked">
+                                                                {{data.name}}
+                                                            </a>
+                                                        </h5>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <ul>
+                                                            <li *ngFor="let item of data.licenseList; let j=index">
+                                                                <input type="checkbox" value="{{item.id}}" [checked]="item.checked"
+                                                                    (click)="checkSingle(data.code, $event.target.checked, data, j)">
+                                                                {{item.licenseTypeDesc}}
+                                                            </li>
+                                                        </ul>
+                                                    </ng-template>
+                                                </ngb-panel>
+                                            </ngb-accordion>
+                                        </ul>
+                                    </app-card>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-12 text-center">
+                                    <div class="row my-5">
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-primary mr-2  mb-3" type="button" (click)="moveEntityToAcceptSingle()">
+                                                <i class="feather icon-chevron-left"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-secondary mr-2  mb-3" type="button" (click)="moveEntityToAcceptAll()">
+                                                <i class="feather icon-chevrons-left"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-primary mr-2 mb-3" type="button" (click)="moveAcceptToEntitySingle()">
+                                                <i class="feather icon-chevron-right"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-secondary mr-2 mb-3" type="button" (click)="moveAcceptToEntityAll()">
+                                                <i class="feather icon-chevrons-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-3 col-sm-3 col-12">
+                                    <app-card cardTitle="{{'master.licenseconfiguration.entitytypes'|translate}}"
+                                        class="text-center custom-multiselect-box mapping_accordion">
+                                        <ul class="text-left">
+                                            <ngb-accordion [closeOthers]="true" activeIds="static-1"
+                                                class="next-accordion" (panelChange)='panelShadow($event, shadow)'>
+                                                <ngb-panel *ngFor="let data of entityTypeList; let i=index"
+                                                    id="{{data.code}}">
+                                                    <ng-template ngbPanelTitle>
+                                                        <h5>
+                                                            <a href="javascript:">
+                                                                <input type="checkbox" value="{{data.id}}"
+                                                                    (click)='checkAll(data.id, $event.target.checked, data, i)'
+                                                                    id="{{data.id}}" [checked]="data.checked">
+                                                                {{data.name}}
+                                                            </a>
+                                                        </h5>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <ul>
+                                                            <li *ngFor="let item of data.licenseList; let j=index">
+                                                                <input type="checkbox" value="{{item.id}}"
+                                                                    [checked]="item.checked"
+                                                                    (click)="checkSingle(data.code, $event.target.checked, data, j)">
+                                                                {{item.licenseTypeDesc}}
+                                                            </li>
+                                                        </ul>
+                                                    </ng-template>
+                                                </ngb-panel>
+                                            </ngb-accordion>
+                                        </ul>
+                                    </app-card>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-12 text-center">
+                                    <div class="row my-5">
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-primary mr-2 mb-3" type="button" (click)="moveEntityToRequestSingle()">
+                                                <i class="feather icon-chevron-right"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-secondary mr-2 mb-3" type="button" (click)="moveEntityToRequestAll()">
+                                                <i class="feather icon-chevrons-right"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-primary mr-2  mb-3" type="button" (click)="moveRequestToEntitySingle()">
+                                                <i class="feather icon-chevron-left"></i></button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-icon btn-secondary mr-2  mb-3" type="button" (click)="moveRequestToEntityAll()">
+                                                <i class="feather icon-chevrons-left"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+                                    <app-card cardTitle="{{'master.licenseconfiguration.indentrequest'|translate}}"
+                                        class="text-center custom-multiselect-box mapping_accordion">
+                                        <ul class="text-left">
+                                            <ngb-accordion [closeOthers]="true" activeIds="static-1"
+                                                class="next-accordion">
+                                                <ngb-panel *ngFor="let data of indentRequestList; let i=index" id="{{data.code}}">
+                                                    <ng-template ngbPanelTitle>
+                                                        <h5>
+                                                            <a href="javascript:">
+                                                                <input type="checkbox" value="{{data.id}}" (click)='checkAll(data.id, $event.target.checked, data, i)'
+                                                                    id="{{data.id}}" [checked]="data.checked" id="checkall">
+                                                                {{data.name}}
+                                                            </a>
+                                                        </h5>
+                                                    </ng-template>
+                                                    <ng-template ngbPanelContent>
+                                                        <ul>
+                                                            <li *ngFor="let item of data.licenseList; let j=index">
+                                                                <input type="checkbox" value="{{item.id}}" [checked]="item.checked"
+                                                                    (click)="checkSingle(data.code, $event.target.checked, data, j)">
+                                                                {{item.licenseTypeDesc}}
+                                                            </li>
+                                                        </ul>
+                                                    </ng-template>
+                                                </ngb-panel>
+                                            </ngb-accordion>
+                                        </ul>
+                                    </app-card>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-warning ml-2 mb-2" (click)="myTabSet.select(PROP_CHECK)">
+                                        {{'master.common.previous'|translate}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-right">
+                                    <button class="btn btn-primary ml-2 mb-2" (click)="submit()">
+                                        {{'master.common.submit'|translate}}
+                                    </button>
+                                    <button class="btn btn-secondary ml-2 mb-2" (click)="cancel()">
+                                        {{'master.common.cancel'|translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </app-card>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<app-common-breadcrumb [titleSection]="titleSection" [text]="lastText" [breadcrumbs]="breadcrumbs">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Sales Ledger List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Opening Balance</th>
+                            <th>New Purchase</th>
+                            <th>Total Stock</th>
+                            <th>Sales</th>
+                            <th>Closing Balance</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-center">20-Jan-2021</td>
+                            <td class="text-left">5000</td>
+                            <td class="text-left">3000</td>
+                            <td class="text-left">8000</td>
+                            <td class="text-left">3000</td>
+                            <td class="text-left">5000</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/retail/salesledger/view">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    routerLink="/supplychainmanagement/retail/salesledger/add">
+                                    <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                    (viewAction)="onView($event)">
+                </app-mat-normal-table> -->
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-primary ml-2 mb-2" >Next</button>
+          <button type="button" class="btn btn-secondary ml-2 mb-2">Previous</button>
+        </div>
+
+
+    </div>
+</div>

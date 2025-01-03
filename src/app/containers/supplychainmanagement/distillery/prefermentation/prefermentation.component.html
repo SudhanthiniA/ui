@@ -1,0 +1,47 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Prefermentation
+    <button type="submit" class="btn btn-success pull-right mr-2 custom_add_button"
+        routerLink="/supplychainmanagement/distillery/prefermentation/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Prefermentation
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Prefermentation</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                        <label>Ot Number</label>
+                        <input type="text" class="form-control" placeholder="Enter Ot Number" name="from"
+                        #from="ngModel" [(ngModel)]="prefermentsearchObj['otNumber']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12  text-right mt-4">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchConData()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="cleardata()">Clear</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="List of Prefermentation Details" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive mb-2">
+                <app-mat-normal-table [columns]="columns" [actionBtnBasedOnCond] ="actionBtnBasedOnCond" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

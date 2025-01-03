@@ -1,0 +1,317 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.inspectionreport.inspectionreportadd' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{
+            'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/inspectionreport/list']">{{
+            'sugarmill.inspectionreport.inspectionreport' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.add' | translate }}</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #inspectionform="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.inspectionreport.enterinspectionreportdetails' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.inspectiondate' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="date" name="Inspection Date" class="form-control"
+                                placeholder="Enter Inspection Date" #inspectionDate="ngModel"
+                                [(ngModel)]="inspectionData['inspectionDate']" required>
+                            <div *ngIf="inspectionDate.invalid && (inspectionDate.dirty || inspectionDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="inspectionDate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.inspectiondate' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.verificationtype' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select name="verificationTypeId" class="form-control" placeholder="Enter Verification Type"
+                                #verificationTypeId="ngModel" [(ngModel)]="inspectionData['verificationTypeId']"
+                                required>
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let vtype of virificationtype" value="{{vtype.id}}">{{vtype.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="verificationTypeId.invalid && (verificationTypeId.dirty || verificationTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="verificationTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.verificationtype' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.tankno' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <select name="Tank" class="form-control" (change)='autopopulatedbalace($event.target.value)' placeholder="Enter Steel Tank No"
+                                #steelTankNumberId="ngModel" [(ngModel)]="inspectionData['steelTankNumberId']" required>
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tank of tanktypeno" value="{{tank.id}}">{{tank.tankName}}</option>
+                            </select>
+                            <div *ngIf="steelTankNumberId.invalid && (steelTankNumberId.dirty || steelTankNumberId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="steelTankNumberId?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.tankno' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.inspectionreport.drydip' | translate }} 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" required name="Dry Dip" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.drydip' | translate }}"
+                                #dryDipMeter="ngModel" [(ngModel)]="inspectionData['dryDipMeter']">
+                            <div class="text-primary">{{inWords(inspectionData['dryDipMeter'], 'meter')}}</div>
+                            <div *ngIf="dryDipMeter.invalid && (dryDipMeter.dirty || dryDipMeter.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dryDipMeter?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.drydip' | translate }}{{
+                                    'sugarmill.common.isrequired' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.inspectionreport.wetdip' | translate }} 
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" required name="Wet Dip" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.wetdip' | translate }}"
+                                #wetDipMeter="ngModel" [(ngModel)]="inspectionData['wetDipMeter']">
+                            <div class="text-primary">{{inWords(inspectionData['wetDipMeter'], 'meter')}}</div>
+                            <div *ngIf="wetDipMeter.invalid && (wetDipMeter.dirty || wetDipMeter.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="wetDipMeter?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.wetdip' | translate }} {{
+                                    'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.molasses' | translate }} (Ltr)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="Molasses in Litre" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.molasses' | translate }}"
+                                #molassesInLiter="ngModel" required [(ngModel)]="inspectionData['molassesInLiter']">
+                            <div class="text-primary">{{inWords(inspectionData['molassesInLiter'], 'Liters')}}</div>
+
+                            <div *ngIf="molassesInLiter.invalid && (molassesInLiter.dirty || molassesInLiter.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="molassesInLiter?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.molasses' | translate }} {{
+                                    'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.molasses' | translate }}(Qtl)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="Molasses in Quintal" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.molasses' | translate }}"
+                                #molassesInQuintal="ngModel" required [(ngModel)]="inspectionData['molassesInQuintal']">
+                            <div class="text-primary">{{inWords(inspectionData['molassesInQuintal'], 'Quintal')}}</div>
+
+                            <div *ngIf="molassesInQuintal.invalid && (molassesInQuintal.dirty || molassesInQuintal.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="molassesInQuintal?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.molasses' | translate }} {{
+                                    'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.trs' | translate }}(%)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="trs" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.trs' | translate }}"
+                                #trs="ngModel" [(ngModel)]="inspectionData['trs']" required>
+                            <div class="text-primary">{{inWords(inspectionData['trs'], 'Persent')}}</div>
+
+                            <div *ngIf="trs.invalid && (trs.dirty || trs.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="trs?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.trs' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.brix' | translate }}(%)
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="Brix" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.brix' | translate }}"
+                                #brix="ngModel" [(ngModel)]="inspectionData['brix']" required>
+                            <div class="text-primary">{{inWords(inspectionData['brix'], 'Persent')}}</div>
+
+                            <div *ngIf="brix.invalid && (brix.dirty || brix.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brix?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.brix' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.inspectionreport.openingbal' | translate }} (In QTL)</label>
+                            <input type="number" name="Opening Balance" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.openingbal' | translate }}"
+                                #openingBalance="ngModel" required [(ngModel)]="inspectionData['openingBalance']">
+                            <div class="text-primary">{{inWords(inspectionData['openingBalance'], 'Quintal')}}</div>
+
+                            <div *ngIf="openingBalance.invalid && (openingBalance.dirty || openingBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="openingBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.openingbal' | translate }} {{
+                                    'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.inspectionreport.receiptbal' | translate }} (In QTL)</label>
+                            <input type="number" name="Reciept Balance" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.receiptbal' | translate }}"
+                                #recieptBalance="ngModel" required [(ngModel)]="inspectionData['recieptBalance']">
+                            <div class="text-primary">{{inWords(inspectionData['recieptBalance'], 'Quintal')}}</div>
+
+                            <div *ngIf="recieptBalance.invalid && (recieptBalance.dirty || recieptBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recieptBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.receiptbal' | translate }} {{
+                                    'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.inspectionreport.total' | translate }}</label>
+                            <input type="number" name="Total" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.total' | translate }}"
+                                #total="ngModel" [(ngModel)]="inspectionData['total']" required>
+                            <!-- <div class="text-primary">{{inWords(inspectionData['total'], 'total')}}</div> -->
+
+                            <div *ngIf="total.invalid && (total.dirty || total.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="total?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.total' | translate }} {{ 'sugarmill.common.isrequired' |
+                                    translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.inspectionreport.actutaltotal' | translate }}
+                            </label>
+                            <input type="number" name="ActualBalance" (keyup)='wastegebalance()'class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.actutaltotal' | translate }}"
+                                #actualBalance="ngModel" [(ngModel)]="inspectionData['actualBalance']" required>
+                            <!-- <div class="text-primary">{{inWords(inspectionData['actualBalance'], 'actualBalance')}}</div> -->
+
+                            <div *ngIf="actualBalance.invalid && (actualBalance.dirty || actualBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="actualBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.actutaltotal' | translate }} {{ 'sugarmill.common.isrequired' |
+                                    translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'sugarmill.inspectionreport.wastage' | translate }}</label>
+                            <input type="number" name="Wastage" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.inspectionreport.wastage' | translate }}"
+                                #wastage="ngModel" [(ngModel)]="inspectionData['wastage']" required >
+                            <!-- <div class="text-primary">{{inWords(inspectionData['total'], 'total')}}</div> -->
+
+                            <div *ngIf="wastage.invalid && (wastage.dirty || wastage.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="wastage?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.inspectionreport.wastage' | translate }} {{ 'sugarmill.common.isrequired' |
+                                    translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="{{ 'sugarmill.inspectionreport.inspectionList' | translate }}"
+                blockClass="table-border-style" class="list-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ 'sugarmill.inspectionreport.inspectiondate' | translate }}</th>
+                                <th>{{ 'sugarmill.inspectionreport.verificationtype' | translate }}</th>
+                                <!-- <th>{{ 'sugarmill.inspectionreport.tankno' | translate }}</th> -->
+                                <th>{{ 'sugarmill.inspectionreport.trs' | translate }}(%)</th>
+                                <th>{{ 'sugarmill.inspectionreport.brix' | translate }}(%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- <tr *ngFor="let inpect of inspectionreportLists; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{inpect.inspectionDate | date: 'dd-MMM-yyyy'}}</td>
+                                <td>{{getverificationtype(inpect?.verificationTypeId)}} </td>
+                                <td>{{inpect.trs}}</td>
+                                <td>{{inpect.brix}}</td>
+                            </tr> -->
+
+                            <tr>
+                                <td>1</td>
+                                <td>12-May-2021</td>
+                                <td>Type 1</td>
+                                <td>20</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewinspection(inspectionform)">{{
+            'sugarmill.common.preview' | translate }}</button>
+        <button type="submit" class="btn btn-warning ml-2 mb-2" (click)="saveinspection(inspectionform,'draft')">{{
+            'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="submit" class="btn btn-primary ml-2 mb-2" (click)="saveinspection(inspectionform,'save')">{{
+            'sugarmill.common.submit' | translate }}</button>
+        <button type="submit" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/inspectionreport/list">{{ 'sugarmill.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock In Hand
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> Stock in Hand</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Debond Unit</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form #searchForm="ngForm">
+
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date"  class="form-control" 
+                            placeholder="Enter Date"/>
+                    </div>
+                </div>  -->
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <label>View by Custom Bondwarehouse/ Debond Unit</label>
+                        <div class="segment">
+                            <input type="radio" name="tab" id="tab1" checked>
+                            <label class="" for="tab1">Custom Bondwarehouse</label>
+                            <input type="radio" name="tab" id="tab2">
+                            <label class="" for="tab2">Debond Unit</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select class="form-control" name="brandName">
+                            <option value="">Select</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Type</label>
+                            <select class="form-control" name="liquorType">
+                            <option value="">Select</option>
+
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Sub Type</label>
+                            <select class="form-control" name="subLiquorType">
+                            <option value="">Select</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Liquor Detailed Description</label>
+                            <select class="form-control" name="liquorDetailedDescription">
+                            <option value="">Select</option>
+                        </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Liquor Detailed Description</label>
+                        <input class="form-control" type="text" placeholder="Enter Liquor Detailed Description">
+                      </div>
+                </div>  -->
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2" (click)="StockInHandList()">Search</button>
+                        <button type="submit" class="btn btn-secondary" (click)="clear()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="CBW/Debond Unit - Stock-In-Hand Details" blockClass="table-border-style" class="list-panel">
+            <!--  <div class="table-responsive">
+               <app-mat-normal-table [columns]="inprogress"  [dataSource]="dataSourceStockInHand"  
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)">
+              </app-mat-normal-table> 
+                 
+             </div>-->
+            <div class="row">
+                <!-- <div class="col-12 mb-4">
+                    <label></label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">CB 1</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">CB 2</label>
+                    </div>
+                </div> -->
+                <div class="col-12 mb-4">
+                    <label></label>
+                    <div class="segment">
+                        <input type="radio" name="tab" id="tab1" checked>
+                        <label class="" for="tab1">BIO A</label>
+                        <input type="radio" name="tab" id="tab2">
+                        <label class="" for="tab2">BIO B</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Brand Name</th>
+                            <th>Liquor Type</th>
+                            <th>Liquor Sub Type</th>
+                            <th>Liquor Detailed Description</th>
+                            <th>Package Size</th>
+                            <th>Package Type</th>
+                            <th>No of Bottle Per Case</th>
+                            <th>Available Cases</th>
+                            <th>Available Bottles</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Kingfisher</td>
+                            <td>Beer</td>
+                            <td>Strong</td>
+                            <td>Detail of Liquor</td>
+                            <td>650ml</td>
+                            <td>Glass Bottle</td>
+                            <td>30</td>
+                            <td>100</td>
+                            <td>3000</td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                <i class="feather icon-eye"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

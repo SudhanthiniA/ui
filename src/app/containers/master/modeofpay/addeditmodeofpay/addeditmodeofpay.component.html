@@ -1,0 +1,108 @@
+<h5 class="m-b-10 ng-star-inserted"> Add Mode of Payment</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Location</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/master/modeofpay/list">Mode of Payment </a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #modeofpayForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}}  Mode of Payment" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Payment Mode Code</label>
+                            <input type="text" disabled  class="form-control" minlength="3" maxlength="10" value="MPMC001">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.modeofpay.paymentcode' | translate }} </label>
+                            <input type="text" [(ngModel)]="paymentObj.code" name="code"
+                                #code="ngModel" required class="form-control"
+                                minlength="3" maxlength="10" placeholder="{{ 'master.modeofpay.enterstatuscode' | translate }} "
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.paymentcodeisrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.maxlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.paymentcodemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.paymentcodeminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Payment Mode Name</label>
+                            <input type="text" [(ngModel)]="paymentObj.stages" name="name" #name="ngModel" minlength="3"
+                                maxlength="100" required class="form-control"
+                                placeholder="Enter Payment Mode Name"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.nameisrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.maxlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.namemaximum50charactor' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.modeofpay.nameminimum3charactor' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Offline/Online</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1">Offline</label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.modeofpay.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="paymentObj.isActive" name="active" #active="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="paymentObj.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!paymentObj.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="paymentObj.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addmodeofpay(modeofpayForm)">{{
+            'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/master/modeofpay/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

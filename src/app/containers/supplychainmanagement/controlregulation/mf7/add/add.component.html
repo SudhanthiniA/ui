@@ -1,0 +1,243 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF 7
+    </h5>
+    <ul class="breadcrumb p-0">
+        <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+        <li class="breadcrumb-item"><a href="javascript:"
+                [routerLink]="['/supplychainmanagement/dashboard']">Control Regulation</a></li>
+        <li class="breadcrumb-item"><a href="javascript:">MF 7</a>
+        </li>
+        <li class="breadcrumb-item">Add</li>
+    </ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #treasuryForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Fortnightly Statement of TRS% & Brix% of Molasses Store in Tanks at Top, Middle, and Bottom Layer" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">#</th>
+                                    <th rowspan="2">Tank ID<span class="madatory text-danger">*</span></th>
+                                    <th rowspan="2">Ouantity of Molasses  in Tank (Qtl)</th>
+                                    <th rowspan="2">Depth of Molasses Tanks Cms (DIP)</th>
+                                    <th rowspan="2">Dep. in cms</th>
+                                    <th rowspan="2">Brix%</th>
+                                    <th colspan="3">Total Reducing Sugar(TRS%)</th>
+                                    <th rowspan="2">Action</th>
+                                </tr>
+                                <tr>
+                                    <th>Top Layer</th>
+                                    <th>Middle Layer</th>
+                                    <th>Bottom Layer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> 1 </td>
+                                    <td>
+                                        <select class="form-control width_150">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-right">50000</td>
+                                    <td class="text-right">50</td>
+                                    <td class="text-right">6578</td>
+                                    <td class="text-right">82.2</td>
+                                    <td class="text-right">44.06</td>
+                                    <td class="text-right">44.05</td>
+                                    <td class="text-right">44.07</td>
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-success" type="button"
+                                            routerLink="/supplychainmanagement/distillery/brewery/wholesaleindent/view">
+                                            <i class="feather icon-plus"></i></button>
+                                        <button class="btn btn-icon btn-danger ml-2" type="button">
+                                            <i class="feather icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="">Name of Analyst</label>
+                                <input type="text" class="form-control" placeholder="Enter Name of Analyst">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label class="">Upload Digital Sign</label>
+                                <div class="input-group cust-file-button">
+                                    <div class="custom-file">
+                                        <input type="file" id="customFilessss" class="custom-file-input"
+                                            formControlName='trademarkUpload' accept="image/png,image/jpeg"
+                                            (change)="onFileChange($event, 'trademarkUploadFiles', brandform)">
+                                        <label class="custom-file-label"></label>
+                                        <label class="custom-file-label" for="customFilessss"></label>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Entity Type<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Distillery</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Name of Sugar Mill<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Daural Sugarmill</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Address<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Plot No. 12, Near Tripathi Super Store, Madhupuram, Bhitauli Khurd, IIM Road, Lucknow, UP 241001</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Molasses Year<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>2020-2021</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Financial Year<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>2020-2021</span>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>No of Tank Storage</th>
+                                       <th>Quantity of Molasses in Tank</th>
+                                        <th>Dip. in cms</th>
+                                        <th>Depth of Molasses Tanks Cms</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td><input type="number" required class="form-control" placeholder="Enter No of Tank Storage"></td>
+                                        <td><input type="number" required class="form-control" placeholder="Enter Quantity of Molasses in Tank"></td>
+                                        <td><input type="number" required class="form-control" placeholder="Enter Dip. in cms"></td>
+                                        <td><input type="number" required class="form-control" placeholder="Enter Depth of Molasses Tanks Cms"></td>
+                                      
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-success" type="button">
+                                            <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button">
+                                            <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                      
+                    </div> -->
+            </app-card>
+            <!-- <app-card cardTitle="Details of Molasses Analysis" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Tank No<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>NMT-1</span>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Brix%<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>82.2</span>
+                    </div>
+                   
+                </div>
+            </app-card>
+            <app-card cardTitle="Production of Molasses" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <h6>Total Reducing Sugar%</h6>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Top Layer</label>
+                            <input type="number" disabled  class="form-control" value="44.06">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Middle Layer</label>
+                            <input type="number" disabled  class="form-control" value="44.05">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Bottom Layer</label>
+                            <input type="number" disabled  class="form-control" value="44.07">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name and Sign. of Analysis</label>
+                            <input type="text" disabled  class="form-control" value="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Produced Reserved</label>
+                            <input type="text" required  class="form-control" placeholder="Enter Produced Reserved">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <input type="checkbox" class="checkbox d-inline" id="sameAddress"
+                                    (change)="onCheckboxChange($event.target.checked)">
+                                    I hereby declare that the above statements are correct to the best of my knowledge
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Date</label>
+                            <input type="date" required  class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc" class="mandatory">Authorised Signatory</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </app-card> -->
+                    
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info">Preview</button>
+        <button type="button" class="btn btn-warning ml-2">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2" routerLink="/supplychainmanagement/controlregulation/mf7/list">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2">Cancel</button>
+    </div>
+</div>
+

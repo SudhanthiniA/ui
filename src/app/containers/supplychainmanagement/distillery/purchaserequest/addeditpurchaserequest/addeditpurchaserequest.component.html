@@ -1,0 +1,350 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Purchase Request 
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+        routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Request </a></li>
+
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/purchaserequest/list">Purchase Request </a></li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #purchaserequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{addedit}} - Purchase Within UP,Outsite UP, Outside Country(ENA,GENA,+21 Spirits)" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Molasses Type</label>
+                            <div class="custom-control ">
+                                <div *ngFor="let list of molassestypelist; let i=index;" class="fleft">
+                                    <input type="radio" id="molassestypelist_{{i}}" name="molassesType"#molassesType="ngModel" [(ngModel)]="purchaserequestObj['molassesType']" value="{{list.name}}">
+                                    <label for="molassestypename">{{list.name}}</label><br>
+                                    <!-- <input class="custom-control-input" id="customCheck{{i}}" type="radio" value="{{list.name}}"> 
+                                    <label class="custom-control-label" for="customCheck{{i}}">{{list.name}}</label> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+
+                </div>
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" required name="year" class="form-control" placeholder="Enter year" 
+                                #year="ngModel" disabled [(ngModel)]="purchaserequestObj['year']">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required name="requestate" class="form-control" placeholder="Enter Date" 
+                                #date="ngModel" disabled [(ngModel)]="purchaserequestObj['date']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillery Name</label>
+                            <input type="text" name="distilleryName" class="form-control"
+                                placeholder="Enter Name Of the Distillery"  #distilleryName="ngModel" disabled
+                                [(ngModel)]="purchaserequestObj['distilleryName']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" name="distilleryaddress" class="form-control"
+                                placeholder="Enter Name Of the Distillery"  #distilleryAddress="ngModel" disabled
+                                [(ngModel)]="purchaserequestObj['distilleryAddress']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" [(ngModel)]="purchaserequestObj.district" name="district" #district="ngModel"
+                                required>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of districtList" value="{{item.name}}"> {{item.name}} </option>
+                            </select>
+                            <div *ngIf="district.invalid && (district.dirty || district.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="district?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    District is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Purchased From</label>
+                            <div class="custom-control ">
+                                <div *ngFor="let list of importfromList; let i=index;" class="fleft">
+                                    <input type="radio" id="importfromList_{{i}}" name="importFrom"#purchaseFrom="ngModel" [(ngModel)]="purchaserequestObj['purchaseFrom']" value="{{list.name}}">
+                                    <label for="male">{{list.name}}</label><br>
+                                    <!-- <input class="custom-control-input" id="customCheck{{i}}" type="radio" value="{{list.name}}"> 
+                                    <label class="custom-control-label" for="customCheck{{i}}">{{list.name}}</label> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                    
+                   
+                  
+                 
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirt Type</label>
+
+                            <div class="custom-control ">
+                                <div *ngFor="let list of typelist; let i=index;" class="fleft">
+                                    <input type="radio" id="typelist_{{i}}" name="type"#spiritType="ngModel" [(ngModel)]="purchaserequestObj['spiritType']" value="{{list.name}}">
+                                    <label for="male">{{list.name}}</label><br>
+                                    <!-- <input class="custom-control-input" id="customCheck{{i}}" type="radio" value="{{list.name}}"> 
+                                    <label class="custom-control-label" for="customCheck{{i}}">{{list.name}}</label> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="type.invalid && (type.dirty || type.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="type?.errors?.required"><i class="fa fa-times"></i>
+                                Type is required </div>
+
+                        </div> -->
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> Unit Address</label>
+                            <input type="text" name="address"
+                                class="form-control"  placeholder="Enter Unit Address" required
+                                #unitAddress="ngModel" [(ngModel)]="purchaserequestObj['unitAddress']">
+                                <div *ngIf="unitAddress.invalid && (unitAddress.dirty || unitAddress.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="unitAddress?.errors?.required"><i class="fa fa-times"></i>
+                                    Unit Address is required </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Vat</label>
+    
+                            <select id="tank" name="tank" #spiritVat="ngModel" [(ngModel)]="purchaserequestObj['spiritVat']"
+                                 class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of tanklist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <!-- <div *ngIf="tank.invalid && (tank.dirty || tank.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="tank?.errors?.required"><i class="fa fa-times"></i>
+                                Stock Type is required </div>
+    
+                        </div> -->
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #purchaserequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Balance Quantity" class="list-panel add-panel">
+                    <div  class = "row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>BL</label>
+                                <input type="number" disabled (keyup)='caltotal()' name="bl"
+                                    class="form-control" placeholder="Enter BL"
+                                     #bl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['bl']">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>AL</label>
+                                <input type="number" disabled (keyup)='caltotal()' name="al"
+                                    class="form-control" placeholder="Enter AL"
+                                     #al="ngModel"
+                                    [(ngModel)]="purchaserequestObj['al']">
+                            </div>
+                        </div>
+                       
+                        
+                      
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Strength</label>
+                                <input type="number" disabled (keyup)='caltotal()' name="strength"
+                                    class="form-control" placeholder="Enter Strength"
+                                     #strength="ngModel"
+                                    [(ngModel)]="purchaserequestObj['strength']">
+                            </div>
+                        </div>
+                    </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #purchaserequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Quantity" class="list-panel add-panel">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Recieve-BL</label>
+                                <input type="number"  (keyup)='calnetbl()' name="recivebl" required
+                                    class="form-control" placeholder="Enter Recieve-BL"
+                                     #recivebl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['recivebl']">
+                                    <div *ngIf="recivebl.invalid && (recivebl.dirty || recivebl.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="recivebl?.errors?.required"><i class="fa fa-times"></i>
+                                        Recieve-BL is required </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Recieve-AL</label>
+                                <input type="number" placeholder="Enter Recieve-AL" name="reciveal" class="form-control"  #reciveal="ngModel" required
+                                    [(ngModel)]="purchaserequestObj['reciveal']">
+                                    <div *ngIf="reciveal.invalid && (reciveal.dirty || reciveal.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="reciveal?.errors?.required"><i class="fa fa-times"></i>
+                                        Recieve-AL is required </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Recieve Strength</label>
+                                <input type="number" placeholder="Enter Strength" name="reciveStrength" class="form-control" disabled  #reciveStrength="ngModel"
+                                    [(ngModel)]="purchaserequestObj['reciveStrength']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Duty</label>
+                                <input type="number"   name="duty" required
+                                    class="form-control" placeholder="Enter Duty"
+                                     #duty="ngModel"
+                                    [(ngModel)]="purchaserequestObj['duty']">
+                                    <div *ngIf="duty.invalid && (duty.dirty || duty.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="duty?.errors?.required"><i class="fa fa-times"></i>
+                                        Duty is required </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Permit No</label>
+                                <input type="text" name="permitNo"
+                                    class="form-control"  placeholder="Enter Permit No" required
+                                    #permitNo="ngModel" [(ngModel)]="purchaserequestObj['permitNo']">
+                                    <div *ngIf="permitNo.invalid && (permitNo.dirty || permitNo.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="permitNo?.errors?.required"><i class="fa fa-times"></i>
+                                        Permit No is required </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Permit Date</label>
+                                <input type="date" name="permitDate"
+                                    class="form-control"  placeholder="Enter Permit No"  required
+                                    #permitDate="ngModel" [(ngModel)]="purchaserequestObj['permitDate']">
+                                    <div *ngIf="permitDate.invalid && (permitDate.dirty || permitDate.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="permitDate?.errors?.required"><i class="fa fa-times"></i>
+                                        Permit Date is required </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Wastage BL</label>
+                                <input type="number"  (keyup)='calnetbl()' name="wastageBl"
+                                    class="form-control" placeholder="Enter Wastage BL"
+                                     #wastageBl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['wastageBl']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Wastage AL</label>
+                                <input type="number" disabled name="wastageAl" class="form-control"  #wastageAl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['wastageAl']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Net(BL)</label>
+                                <input type="number" disabled  name="netbl"
+                                    class="form-control" placeholder="Enter Net(BL)"
+                                     #netBl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['netBl']">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Net(AL)</label>
+                                <input type="number" disabled name="netal" class="form-control"  #netAl="ngModel"
+                                    [(ngModel)]="purchaserequestObj['netAl']">
+                            </div>
+                        </div>
+
+                    </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(purchaserequestForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(purchaserequestForm,1)">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="ShowPOpUp(purchaserequestForm,2)"
+            >Submit</button>
+            <!-- (click)="saveData(purchaserequestForm,2)" -->
+            <button #buttonForPop type="button" class="btn btn-primary ml-2 mb-2"  hidden
+            (click)="exampleModalCenter.show()">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/purchaserequest/list">Cancel</button>
+    </div>
+    <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered">
+        <div class="app-modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+          <h6 class="text-secondary text-center">Are you sure you want to Submit?</h6>
+        </div>
+        <div class="app-modal-footer">
+          <button type="button" class="btn btn-primary" (click)="saveData(purchaserequestForm,2)">Yes</button>
+          <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal" (click)="exampleModalCenter.hide()">No</button>
+        </div>
+      </app-ui-modal>
+</div>

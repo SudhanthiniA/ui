@@ -1,0 +1,163 @@
+<h5 class="m-b-10 ng-star-inserted">
+    <!-- {{ 'sugarmill.MF9.productionforecast(MF9)list' | translate }} -->Declaration for Year (MF 9)
+    <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/sugarmills/mf9/add" *ngIf='!workflowobj?.isEditable'>
+        <i class="feather icon-plus mr-2"></i>
+       Add Declaration for Year (MF 9)
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']"><i
+                class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/mf9/list']">{{ 'sugarmill.MF9.sugarmill' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/sugarmills/mf9/list']">
+        Declaration for Year (MF 9)</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}
+    </li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application No
+                        </label>
+                        <input type="text" class="form-control" placeholder="Enter Application No
+                        ">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Financial Year
+                        </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of SugarMill
+
+                        </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <div class="form-group">
+                        <!-- <label>&nbsp;</label> -->
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2">Search</button>
+                            <button type="submit" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<!--  -->
+<!-- <div class="row">
+
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.MF9.MF9list' | translate }}" blockClass="table-border-style"
+            class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    [actionBtnBasedOnCond]="actionBtnBasedOnCond" (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Declaration for Year (MF 9) List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Application<br> No</th>
+                            <th>Date of <br>Application</th>
+                            <th>Financial<br> Year</th>
+                            <th>Estimate of <br>Production of Molasses</th>
+                            <!-- <th>Tank Name</th> -->
+                            <th>Cane Crushing<br> Season </th>
+                            <!-- <th>Packaging Size</th> -->
+                            <th>Name of <br>SugarMill</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td class="text-center">20NJNJ876</td>
+                            <td class="text-center">10/10/2021</td>
+                            <td class="text-center">2020-2021</td>
+                            <td class="text-left">12</td>
+                            <!-- <td>Tank 1</td> -->
+                            <td>-</td>
+                            <!-- <td>750 ML</td> -->
+                            <td>Daural Sugarmill</td>
+                            <td class="text-center"><span class="badge badge-light-success">Success</span></td>
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/distillery/qrcodewastage/view">
+                        <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/supplychainmanagement/distillery/qrcodewastage/add">
+                        <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">Pdf</a>
+                            <a class="dropdown-item" href="javascript:">Jpg</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>
+        </app-card>
+    </div>

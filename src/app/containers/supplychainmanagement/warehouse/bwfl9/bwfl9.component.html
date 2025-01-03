@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">BWFL 9
+    <button class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/warehouse/bwfl9/add" type="submit">
+    <i class="feather icon-plus mr-2"></i> Add BWFL 9</button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 9</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">List</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Brand Name</label>
+                        <select name='brandRegistrationId' #brandRegistrationId="ngModel"  
+                        [(ngModel)]="bwfl9Obj['brandRegistrationId']" class="form-control">
+                            <option value="">Select</option>
+                            <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                {{b.brandName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Issued Pass Date</label>
+                        <input type="date" class="form-control" placeholder="">
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-36 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Description of liquor(Whisky, Brandy,Gin, Rum, Beer)</label>
+                        <input type="text" class="form-control" placeholder="Beer"
+                        name="liquorDescription" #liquorDescription="ngModel"
+                            [(ngModel)]="bwfl9Obj['liquorDescription']">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>No. of Cases</label>
+                        <input type="number" class="form-control" placeholder="Enter No. of Cases">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>In Bulk</label>
+                        <input type="number" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Strength A.L</label>
+                        <input type="number" class="form-control" placeholder="">
+                    </div>
+                </div> -->
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchBwfl9()>Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetKey()>Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="BWFL9 List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Description of liquor(Whisky, Brandy,Gin, Rum, Beer)</th>
+                            <th>Brand Name</th>
+                            <th>Beer</th>
+                            <th>Quantity in Bulk Litres</th>
+                            <th>Alcohol</th>
+                            <th>Total</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of bwfl9Data; let i = index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td class="text-center">{{data.liquorDescription}}</td>
+                            <td class="text-center">{{data.brandRegistrationId }}</td>
+                            <td class="text-center">{{data.beer}}</td>
+                            <td class="text-center">{{data.quantityInBulkLitres}}</td>
+                            <td class="text-center">{{data.alcohol }}</td>
+                            <td class="text-center">{{data.total }}</td>
+
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button" routerLink="/supplychainmanagement/warehouse/bwfl9/view/{{data.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="/supplychainmanagement/warehouse/bwfl9/edit/{{data.id}}">
+                                        <i class="feather icon-edit-2"></i></button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>

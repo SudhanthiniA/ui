@@ -1,0 +1,74 @@
+<h5 class="m-b-10 ng-star-inserted">View Molasses</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Indent Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Molasses</a></li>
+    <li aria-current="page" class="breadcrumb-item active">View</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesForm="ngForm" autocomplete="off">
+            <app-card cardTitle="View Details of Molasses" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Requested Id<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.requestedId}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.date}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Location<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.location}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Requested By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.requestedBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Requested By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.requestedBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Status<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{liquorObj.status}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Remarks<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6">
+                        <div class="form-group">
+                            <input type="text" id="remarks" name="remarks" #remarks="ngModel" [(ngModel)]="liquorObj['remarks']"
+                                class="form-control" required placeholder="Enter Remarks Name">
+                        </div>
+                        <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="remarks?.errors?.required"><i class="fa fa-times"></i>
+                               Remarks is required </div>
+
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-warning mr-2" (click)="addMolasses(molassesForm)">Reject</button>
+        <button type="button" class="btn btn-primary mr-2" (click)="addMolasses(molassesForm)">Approve</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>

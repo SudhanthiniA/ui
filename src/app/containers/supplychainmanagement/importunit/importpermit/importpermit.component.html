@@ -1,0 +1,193 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Import Permit  Request
+    <button type="submit" class="btn btn-success pull-right custom_add_button" routerLink="/supplychainmanagement/distillery/importpermit/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Import Permit Request
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Import Unit</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Import Permit</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+<div class="row">
+    <div class="col-12">
+        <div class="dashboard-st d-flex justify-content-between flex-lg-row flex-wrap flex-md-row flex-column">
+        
+    <div class=" dashboard_bg1">
+        <app-card [hidHeader]="true" cardClass="comp-card">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Total Count
+            </span>
+              <h3 class="mt-2">100</h3>
+              <i class="fas fa-file-alt"></i>
+              
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class=" dashboard_bg2">
+        <app-card [hidHeader]="true" cardClass="comp-card">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Import pending 
+            </span>
+              <h3 class="mt-2">200</h3>
+              <i class="fas fa-file-import"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class=" dashboard_bg4">
+        <app-card [hidHeader]="true" cardClass="comp-card bg-danger">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Import Accepted 
+            </span>
+              <h3 class="mt-2">10</h3>
+              <i class="fas fa-thumbs-down text-danger"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class=" dashboard_bg3">
+        <app-card [hidHeader]="true" cardClass="comp-card">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Import Rejected 
+            </span>
+              <h3 class="mt-2">50</h3>
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class=" dashboard_bg3">
+        <app-card [hidHeader]="true" cardClass="comp-card ">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Import Inprogress 
+            </span>
+              <h3 class="mt-2">200</h3>
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class=" dashboard_bg5">
+        <app-card [hidHeader]="true" cardClass="comp-card ">
+          <div class="row align-items-center">
+            <div class="col">
+              <span>Import cancelled 
+            </span>
+              <h3 class="mt-2">200</h3>
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+          </div>
+        </app-card>
+      </div>
+           </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <app-card cardTitle="Search" class="search-panel">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Indent date </label>
+                          <input type="date" class="form-control" name="permitNo" >
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Unit name </label>
+                          <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                 
+                  <div class="col-12 text-right">
+                      <div>
+                          <button type="submit" class="btn btn-primary mr-2"  (click)="searchapi()">Search</button>
+                          <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                      </div>
+                 </div>
+                </div>
+            </app-card>
+        </div>
+    </div>
+<div class="row">
+  <div class="col-xl-12">
+      <app-card cardTitle="Import Permit List" blockClass="table-border-style" class="list-panel">
+          <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Import permit Number </th>
+                          <th>Permit Date</th>
+                          <th>Total No. of Cases/Monocartons</th>
+                          <th>Total No. of Bottles </th>
+                          <th>Unit Type</th>
+                          <th>Unit name </th>
+                          <th>Status</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>BIO-100-20240415140204306</td>
+                          <td class="text-left">11/04/2024</td>
+                          <td class="text-left">1800</td>
+                          <td class="text-left">5400</td>
+                          <td class="text-left">BIO 1</td>
+                          <td class="text-left">CBONDBIO-100</td>    
+                          <td>
+                              <span class="badge m-r-5 badge-light-success">Submitted</span>
+                              <!-- <span class="badge m-r-5 badge-light-warning">Draft</span> -->
+                          </td>
+                 
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary" type="button"
+                                  routerLink="">
+                                  <i class="feather icon-eye"></i></button>
+                              <button  class="btn btn-icon btn-secondary ml-2" type="button"
+>
+                                <i class="fa fa-window-close"></i></button>
+                          </td>
+                       
+                       
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="row">
+            <div class="col-xl-4" >
+                <div ngbDropdown>
+                <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                <div ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:" (click)="getPdfData1('downloadExcel')">Excel</a>
+                <a class="dropdown-item" href="javascript:">PDF</a>
+                <a class="dropdown-item" href="javascript:">CSV</a>
+                </div>
+            </div>
+            </div>
+           
+        </div>
+      </app-card>
+  </div>
+</div>

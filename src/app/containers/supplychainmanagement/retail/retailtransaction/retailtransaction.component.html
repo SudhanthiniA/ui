@@ -1,0 +1,395 @@
+<h5 class="m-b-10">
+    Retail Transaction
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right"
+    routerLink="/masterwarehouse/mwhmapping/add">
+    <i class="feather icon-plus mr-2"></i>
+    Add Accidental Request
+</button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail Transaction </a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Cards" class="list-panel">
+            <div class="row">
+                <div class="col-3 dashboard_bg1 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>Total Penalty </span>
+                                <h3 class="mt-2">Rs.14</h3>
+                                
+                                <i class="fas fa-money-bill-wave"></i>
+                                <!-- <small>WWWW</small>    -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-3 dashboard_bg4 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>Applied Penalty</span>
+                                <h3 class="mt-2">Rs.3</h3>
+                                
+                                <i class="fas fa-file-alt"></i>
+                                <!-- <small>WWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-3 dashboard_bg2 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>Penalty Paid</span>
+                                <h3 class="mt-2">Rs.24</h3>
+                                <i class="fas fa-wallet"></i>
+                                <!-- <small>WWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+                <div class="col-3 dashboard_bg7 animate__animated animate__backInUp">
+                    <app-card [hidHeader]="true" cardClass="comp-card">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span>Penalty Not Paid</span>
+                                <h3 class="mt-2">Rs.11</h3>
+                                <i class="fas fa-money-bill"></i>
+                                <!-- <small>WWW</small> -->
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Year </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Month </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>District </label>
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Shop ID </label>
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                    </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Retail Transaction List" blockClass="table-border-style" class="list-panel">
+            <ngb-tabset type="pills">
+                <ngb-tab title="All" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered table-center text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Year </th>
+                                        <th>Month </th>
+                                        <th>District </th>
+                                        <th>Shop ID </th>
+                                        <th>Shop Name</th>
+                                        <th>MGQ/MGR Assigned</th>
+                                        <th>MGQ/MGR Lifted</th>
+                                        <th>MGQ/MGR Pending for Lifting</th> 
+                                            <th>MGQ/MGR Transfer to other Shop</th>
+                                            <th>MGQ/MGR Received from other shop </th>
+                                            <th>Total MGQ/MGR Lifted </th>
+                                            <th>Fine Status </th>
+                                        <th>Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2024-2025</td>
+                                        <td>Jun</td>
+                                        <td>Lucknow  </td>
+                                        <td>10150</td>
+                                        <td>Apna Shop </td>
+                                        <td>10000.00</td>
+                                        <td>800.00</td>
+                                        <td>200.00</td>
+                                        <td>100.00</td>
+                                        <td>0.00</td>
+                                        <td></td>
+                                        <!-- <td>21.11</td>
+                            <td>123.14</td>
+                            <td>65.08</td>
+                            <td>65.54</td>
+                            <td>32.37</td> -->
+                                        <td>Yes </td>
+                                        <!-- <td>
+                                <div class="segment">
+                                    <input type="radio" name="tab" id="tab1" checked>
+                                    <label class="" for="tab1">Applicable</label>
+                                    <input type="radio" name="tab" id="tab2">
+                                    <label class="" for="tab2">Not Applicable</label>
+                                </div>
+                            </td> -->
+                                        <td>
+                                            <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="">
+                                                <i class="feather icon-edit-2"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="row">
+                  <div class="col-4">
+                    <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle
+                        type="button">Download</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:">Excel</a>
+                        <a class="dropdown-item"  href="javascript:">Pdf</a>
+                        <a class="dropdown-item"  href="javascript:">Jpg</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8 text-right p-0">
+                      <img src="assets/images/pagenation.png" />
+                  </div>
+              </div>  -->
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Fine Applicable" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered table-center text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Year </th>
+                                        <th>Month </th>
+                                        <th>District </th>
+                                        <th>Shop ID </th>
+                                        <th>Shop Name</th>
+                                        <th>MGQ/MGR Assigned</th>
+                                            <th>MGQ/MGR Lifted </th>
+                                            <th>MGQ/MGR Pending for Lifting </th>
+                                            <th>MGQ/MGR Transfer to Other Shop </th>
+                                            <th>MGQ/MGR Received From Other Shop </th>
+                                            <th>Total MGQ/MGR Lifted </th>
+                                            <th>Fine Status </th>
+                                        <th>Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2024-2025</td>
+                                        <td>Jun </td>
+                                        <td>Lucknow  </td>
+                                        <td>10150</td>
+                                        <td>Apna Shop</td>
+                                        <td class="text-right">10000.00</td>
+                                        <td class="text-right">800.00</td>
+                                        <td class="text-right">200.00</td>
+                                        <td class="text-right">100.00</td>
+                                        <td class="text-right">0.00</td>
+                                        <td></td>
+                                        <!-- <td>21.11</td>
+                                    <td>123.14</td>
+                                    <td>65.08</td>
+                                    <td>65.54</td>
+                                    <td>32.37</td> -->
+                                        <td>Yes </td>
+                                        <!-- <td>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">Applicable</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">Not Applicable</label>
+                                        </div>
+                                    </td> -->
+                                        <td>
+                                            <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="">
+                                                <i class="feather icon-edit-2"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Fine Not Applicable" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered table-center text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Year </th>
+                                        <th>Month </th>
+                                        <th>District </th>
+                                        <th>Shop ID </th>
+                                        <th>Shop Name</th>
+                                        <th>MGQ/MGR Assigned</th>
+                                            <th>MGQ/MGR Lifted </th>
+                                            <th>MGQ/MGR Pending for Lifting </th>
+                                            <th>MGQ/MGR Transfer to other Shop </th>
+                                            <th>MGQ/MGR Received from other shop </th>
+                                            <th>Total MGQ/MGR Lifted </th>
+                                            <th>Fine status </th>
+                                            <th>Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2024-2025</td>
+                                        <td>Jun</td>
+                                        <td>Lucknow </td>
+                                        <td>10150</td>
+                                        <td>Apna Shop </td>
+                                        <td class="text-right">10000.00</td>
+                                        <td class="text-right">800.00</td>
+                                        <td class="text-right">200.00</td>
+                                        <td class="text-right">100.00</td>
+                                        <td class="text-right">0.00</td>
+                                        <!-- <td>21.11</td>
+                                    <td>123.14</td>
+                                    <td>65.08</td>
+                                    <td>65.54</td>
+                                    <td>32.37</td> -->
+                                    <td></td>
+                                        <td>Yes </td>
+                                        
+                                        <!-- <td>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">Applicable</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">Not Applicable</label>
+                                        </div>
+                                    </td> -->
+                                        <td>
+                                            <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="">
+                                                <i class="feather icon-edit-2"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Completed" class="mb-3">
+                    <ng-template ngbTabContent>
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered table-center text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Year </th>
+                                        <th>Month </th>
+                                        <th>District </th>
+                                        <th>Shop ID </th>
+                                        <th>Shop Name</th>
+                                        <th>MGQ/MGR Assigned</th>
+                                            <th>MGQ/MGR Lifted </th>
+                                            <th>MGQ/MGR Pending for Lifting </th>
+                                            <th>MGQ/MGR Transfer to other Shop </th>
+                                            <th>MGQ/MGR Received from other shop </th>
+                                            <th>Total MGQ/MGR Lifted </th>
+                                            <th>Fine status </th>
+                                            <th>Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2024-2025</td>
+                                        <td>Jun</td>
+                                        <td>Lucknow </td>
+                                        <td>10150</td>
+                                        <td>Apna Shop </td>
+                                        <td class="text-right">10000.00</td>
+                                        <td class="text-right">800.00</td>
+                                        <td class="text-right">200.00</td>
+                                        <td class="text-right">100.00</td>
+                                        <td class="text-right">0.00</td>
+                                        <!-- <td>21.11</td>
+                                    <td>123.14</td>
+                                    <td>65.08</td>
+                                    <td>65.54</td>
+                                    <td>32.37</td> -->
+                                    <td></td>
+                                        <td>Yes </td>
+                                        <!-- <td>
+                                        <div class="segment">
+                                            <input type="radio" name="tab" id="tab1" checked>
+                                            <label class="" for="tab1">Applicable</label>
+                                            <input type="radio" name="tab" id="tab2">
+                                            <label class="" for="tab2">Not Applicable</label>
+                                        </div>
+                                    </td> -->
+                                        <td>
+                                            <button class="btn btn-icon btn-primary" type="button" routerLink="">
+                                                <i class="feather icon-eye"></i></button>
+                                            <button class="btn btn-icon btn-secondary ml-2" type="button" routerLink="">
+                                                <i class="feather icon-edit-2"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </app-card>
+    </div>
+</div>

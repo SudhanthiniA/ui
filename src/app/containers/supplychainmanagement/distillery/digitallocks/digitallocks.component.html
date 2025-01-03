@@ -1,0 +1,88 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Digital Locks List
+    <button type="submit" class="btn btn-success pull-right"
+        routerLink="/supplychainmanagement/distillery/digitallocks/add">
+        <i class="feather icon-plus mr-2"></i>
+        Add Digital Locks
+    </button>
+</h5>
+
+
+<ul class="breadcrumb p-0 mt-3">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Digital Locks</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Opening Date</label>
+                        <input type="datetime-local" class="form-control" placeholder="Enter Opening date">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Opening Time</label>
+                        <input type="datetime-local   " class="form-control" placeholder="Enter Opening Time">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Digital Locks List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Opening Date</th>
+                            <th>Reason For Opening</th>
+                            <th>Opening Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="digitallocksList?.length != 0">
+                        <tr *ngFor="let data of digitallocksList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.openingDate | date: 'dd-MMM-yyyy'}}</td>
+                            <td class="text-left">{{data.reasonOpening}}</td>
+                            <td>{{data.openingTime | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                    (click)="navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+    </div>
+</div>

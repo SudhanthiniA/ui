@@ -1,0 +1,884 @@
+<h5 class="m-b-10 ng-star-inserted">
+    PD 9C (Efficiency Summary) {{addedit}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/list">Fermentation and Distillation</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/list"
+            routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/list">PD 9C (Efficiency Summary)</a>
+    </li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <!--Enter PD 9C Efficiency Summary Details-->
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add PD 9C" class="list-panel add-panel">
+                <div class="row">
+                    <div *ngIf = "!this.editId" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>OT Number</label>
+                            <select class="form-control" name="referenceno"
+                            #referenceno="ngModel" [(ngModel)]="pd9cEfficiencyObj['referenceno']"  >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of refno" value="{{item.id}}">
+                                    {{item.referenceNumber}}
+                                </option>
+                            </select>
+                        </div>
+                    
+                     </div>
+                     <div  *ngIf = "this.editId"class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference No</label>
+                       
+                       <input type="text" class="form-control" name="referenceNumber" disabled  #referenceNumber="ngModel" [(ngModel)]="pd9cEfficiencyObj['referenceNumber']">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Period" class="list-panel add-panel">
+                <div class="row">
+                    <!-- <div *ngIf = "!this.editId" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD9 Reference No</label>
+                            <select class="form-control" name="referenceno"
+                            #referenceno="ngModel" [(ngModel)]="pd9cEfficiencyObj['referenceno']"  >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of refno" value="{{item.id}}">
+                                    {{item.referenceNumber}}
+                                </option>
+                            </select>
+                        </div>
+                    
+                     </div>
+                     <div  *ngIf = "this.editId"class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference No</label>
+                       
+                       <input type="text" class="form-control" name="referenceNumber" disabled  #referenceNumber="ngModel" [(ngModel)]="pd9cEfficiencyObj['referenceNumber']">
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Date and Time</label>
+                            <input type="datetime-local" required name="fromDate" class="form-control"
+                                placeholder="Enter Date" #fromDate="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['fromDate']">
+                            <div *ngIf="fromDate.invalid && (fromDate.dirty || fromDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fromDate?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    From Date and Time is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>To Date and Time</label>
+                            <input type="datetime-local" required name="toDate" class="form-control"
+                                placeholder="Enter toDate" #toDate="ngModel" [(ngModel)]="pd9cEfficiencyObj['toDate']">
+                            <div *ngIf="toDate.invalid && (toDate.dirty || toDate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="toDate?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    To Date and Time is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses used (In Qtl.)</label>
+                            <input type="number" required name="molassesUsed" class="form-control"
+                                placeholder="Enter Molasses Used" maxlength="50" #molassesUsed="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['molassesUsed']">
+                            <div *ngIf="molassesUsed.invalid && (molassesUsed.dirty || molassesUsed.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="molassesUsed?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Molasses used (In Qtl.) is required
+                                </div>
+                                <div *ngIf="molassesUsed?.errors?.maxlength && !molassesUsed?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Date and Time</label>
+                            <input type="text" required disabled class="form-control"
+                                value="20/05/2021" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>To Date and Time</label>
+                            <input type="text" required disabled class="form-control"
+                                value="25/05/2021" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses used (In Qtl.)</label>
+                            <input type="number" required disabled class="form-control"
+                                value="50" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Volume and Initial Gravity of Wash Made in </label>
+                            <input type="number" disabled required class="form-control"
+                                value="70" >
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Volume and Initial Gravity of Wash Made in Fermenter No." class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Fermenter Name</th>
+                                <th>Wash Quantity</th>
+                                <th>Initial Gravity</th>
+                                <th>% of TRS used in molasses</th>
+                                <th>% of FS used in molasses</th>
+                                <th>Total FS unused (In Qtl.)</th>
+                                <th>Alcohol % in wash</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" class="form-control" placeholder="Enter Fermenter Name"/></td>
+                                <td><input type="number" class="form-control" placeholder="Enter Wash Quantity"/></td>
+                                <td><input type="number" class="form-control" placeholder="Enter Initial Gravity"/></td>
+                                <td><input type="number" class="form-control" disabled value="10"/></td>
+                                <td><input type="number" class="form-control" disabled value="15"/></td>
+                                <td><input type="number" class="form-control" disabled value="5000"/></td>
+                                <td><input type="number" class="form-control" disabled value="40"/></td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/view">
+                                    <i class="feather icon-plus"></i></button>
+                                <button  class="btn btn-icon btn-danger ml-2" type="button"
+                                routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/edit">
+                                  <i class="feather icon-trash"></i></button>
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>I</label>
+                            <input type="number" required name="gravityOne" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravityOne="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravityOne']">
+                            <div *ngIf="gravityOne.invalid && (gravityOne.dirty || gravityOne.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravityOne?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravityOne?.errors?.maxlength && !gravityOne?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>II</label>
+                            <input type="number" required name="gravityTwo" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravityTwo="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravityTwo']">
+                            <div *ngIf="gravityTwo.invalid && (gravityTwo.dirty || gravityTwo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravityTwo?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravityTwo?.errors?.maxlength && !gravityTwo?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>III</label>
+                            <input type="number" required name="gravityThree" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravityThree="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravityThree']">
+                            <div *ngIf="gravityThree.invalid && (gravityThree.dirty || gravityThree.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravityThree?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravityThree?.errors?.maxlength && !gravityThree?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>IV</label>
+                            <input type="number" required name="gravityFour" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravityFour="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravityFour']">
+                            <div *ngIf="gravityFour.invalid && (gravityFour.dirty || gravityFour.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravityFour?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravityFour?.errors?.maxlength && !gravityFour?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>V</label>
+                            <input type="number" required name="gravityFive" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravityFive="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravityFive']">
+                            <div *ngIf="gravityFive.invalid && (gravityFive.dirty || gravityFive.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravityFive?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravityFive?.errors?.maxlength && !gravityFive?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>VI</label>
+                            <input type="number" required name="gravitySix" class="form-control"
+                                placeholder="Enter Gravity" maxlength="50" #gravitySix="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['gravitySix']">
+                            <div *ngIf="gravitySix.invalid && (gravitySix.dirty || gravitySix.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="gravitySix?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Gravity required
+                                </div>
+                                <div *ngIf="gravitySix?.errors?.maxlength && !gravitySix?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>% of TRS Used in Molasses</label>
+                            <input type="number" required name="trsMolasses" class="form-control"
+                                placeholder="Enter % of TRS Used in Molasses" maxlength="50" #trsMolasses="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['trsMolasses']">
+                            <div *ngIf="trsMolasses.invalid && (trsMolasses.dirty || trsMolasses.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="trsMolasses?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    % of TRS Used required
+                                </div>
+                                <div *ngIf="trsMolasses?.errors?.maxlength && !trsMolasses?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>% of FS Used in Molasses</label>
+                            <input type="number" required name="fsMolasses" class="form-control"
+                                placeholder="Enter % of FS Used in Molasses" maxlength="50" #fsMolasses="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['fsMolasses']">
+                            <div *ngIf="fsMolasses.invalid && (fsMolasses.dirty || fsMolasses.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fsMolasses?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    % of FS Used required
+                                </div>
+                                <div *ngIf="fsMolasses?.errors?.maxlength && !fsMolasses?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total FS Unused (In Qtls)</label>
+                            <input type="number" required name="fsunused" class="form-control"
+                                placeholder="EnterTotal FS Unused (In Qtls)" maxlength="50" #fsunused="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['fsunused']">
+                            <div *ngIf="fsunused.invalid && (fsunused.dirty || fsunused.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fsunused?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Total FS Unused required
+                                </div>
+                                <div *ngIf="fsunused?.errors?.maxlength && !fsunused?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol % in Wash</label>
+                            <input type="number" required name="alcoholInWash" class="form-control"
+                                placeholder="Enter Total Wash Distilled" maxlength="50" #alcoholInWash="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['alcoholInWash']">
+                            <div *ngIf="alcoholInWash.invalid && (alcoholInWash.dirty || alcoholInWash.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="alcoholInWash?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcohol % required
+                                </div>
+                                <div *ngIf="alcoholInWash?.errors?.maxlength && !alcoholInWash?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Alcohol Production" class="list-panel add-panel">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>S No</th>
+                                <th>Spirit Type</th>
+                                <th>BL</th>
+                                <th>AL</th>
+                                <th>Fermentation Efficiency</th>
+                                <th>Distillation Efficiency</th>
+                                <th>Overall Efficiency</th>
+                                <th>Recovery AL/Qtls/Molasses</th>
+                                <th>Recovery AL/Qtls/FS</th>
+                                <th>Fermentation Loss</th>
+                                <th>Distillation Loss</th>
+                                <th>Total Loss</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" class="form-control" disabled value="Type 1"/></td>
+                                <td><input type="number" class="form-control" disabled value="60"/></td>
+                                <td><input type="number" class="form-control" disabled value="40"/></td>
+                                <td><input type="number" class="form-control" disabled value="10"/></td>
+                                <td><input type="number" class="form-control" disabled value="15"/></td>
+                                <td><input type="number" class="form-control"disabled  value="20"/></td>
+                                <td><input type="number" class="form-control" disabled value="40"/></td>
+                                <td><input type="number" class="form-control" disabled value="15"/></td>
+                                <td><input type="number" class="form-control" disabled value="20"/></td>
+                                <td><input type="number" class="form-control" disabled value="40"/></td>
+                                <td><input type="number" class="form-control" disabled value="10"/></td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button"
+                                    routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/view">
+                                    <i class="feather icon-plus"></i></button>
+                                <button  class="btn btn-icon btn-danger ml-2" type="button"
+                                routerLink="/supplychainmanagement/distillery/pd9c-efficiencysummary/edit">
+                                  <i class="feather icon-trash"></i></button>
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Spent Wash Analysis" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol %</label>
+                            <input type="number" class="form-control" disabled value="20" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fusel Oil %</label>
+                            <input type="number" class="form-control" disabled value="10" />
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Spent Less Analysis" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol %</label>
+                            <input type="number" class="form-control" disabled value="20" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fusel Oil %</label>
+                            <input type="number" class="form-control" disabled value="10" />
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <!-- <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Rectified Spirit" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bulk Ltrs</label>
+                            <input type="number" required name="rectifiedBulkLtrs" class="form-control"
+                                placeholder="Enter Bulk Ltrs" maxlength="50" #rectifiedBulkLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['rectifiedBulkLtrs']">
+                            <div *ngIf="rectifiedBulkLtrs.invalid && (rectifiedBulkLtrs.dirty || rectifiedBulkLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rectifiedBulkLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Bulk Ltrs required
+                                </div>
+                                <div
+                                    *ngIf="rectifiedBulkLtrs?.errors?.maxlength && !rectifiedBulkLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic Ltrs</label>
+                            <input type="number" required name="rectifiedAlcoholicLtrs" class="form-control"
+                                placeholder="Enter Alcoholic Ltrs" maxlength="50" #rectifiedAlcoholicLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['rectifiedAlcoholicLtrs']">
+                            <div *ngIf="rectifiedAlcoholicLtrs.invalid && (rectifiedAlcoholicLtrs.dirty || rectifiedAlcoholicLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="rectifiedAlcoholicLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcoholic Ltrs required
+                                </div>
+                                <div
+                                    *ngIf="rectifiedAlcoholicLtrs?.errors?.maxlength && !rectifiedAlcoholicLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Absolute Alcohol" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bulk Ltrs</label>
+                            <input type="number" required name="absoluteBulkLtrs" class="form-control"
+                                placeholder="Enter Bulk Ltrs" maxlength="50" #absoluteBulkLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['absoluteBulkLtrs']">
+                            <div *ngIf="absoluteBulkLtrs.invalid && (absoluteBulkLtrs.dirty || absoluteBulkLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="absoluteBulkLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Bulk Ltrs required
+                                </div>
+                                <div *ngIf="absoluteBulkLtrs?.errors?.maxlength && !absoluteBulkLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic Ltrs</label>
+                            <input type="number" required name="absoluteAlcoholicLtrs" class="form-control"
+                                placeholder="Enter Alcoholic Ltrs" maxlength="50" #absoluteAlcoholicLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['absoluteAlcoholicLtrs']">
+                            <div *ngIf="absoluteAlcoholicLtrs.invalid && (absoluteAlcoholicLtrs.dirty || absoluteAlcoholicLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="absoluteAlcoholicLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcoholic Ltrs required
+                                </div>
+                                <div
+                                    *ngIf="absoluteAlcoholicLtrs?.errors?.maxlength && !absoluteAlcoholicLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Plain Spirit" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bulk Ltrs</label>
+                            <input type="number" required name="plainBulkLtrs" class="form-control"
+                                placeholder="Enter Bulk Ltrs" maxlength="50" #plainBulkLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['plainBulkLtrs']">
+                            <div *ngIf="plainBulkLtrs.invalid && (plainBulkLtrs.dirty || plainBulkLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="plainBulkLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Bulk Ltrs required
+                                </div>
+                                <div *ngIf="plainBulkLtrs?.errors?.maxlength && !plainBulkLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcoholic Ltrs</label>
+                            <input type="number" required name="plainAlcoholicLtrs" class="form-control"
+                                placeholder="Enter Alcoholic Ltrs" maxlength="50" #plainAlcoholicLtrs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['plainAlcoholicLtrs']">
+                            <div *ngIf="plainAlcoholicLtrs.invalid && (plainAlcoholicLtrs.dirty || plainAlcoholicLtrs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="plainAlcoholicLtrs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcoholic Ltrs required
+                                </div>
+                                <div
+                                    *ngIf="plainAlcoholicLtrs?.errors?.maxlength && !plainAlcoholicLtrs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fermentation Efficiency</label>
+                            <input type="number" required name="fermentationEfficiency" class="form-control"
+                                placeholder="Enter Fermentation Efficiency" maxlength="50"
+                                #fermentationEfficiency="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['fermentationEfficiency']">
+                            <div *ngIf="fermentationEfficiency.invalid && (fermentationEfficiency.dirty || fermentationEfficiency.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fermentationEfficiency?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Fermentation Efficiency required
+                                </div>
+                                <div
+                                    *ngIf="fermentationEfficiency?.errors?.maxlength && !fermentationEfficiency?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillation Efficiency</label>
+                            <input type="number" required name="distillationEfficiency" class="form-control"
+                                placeholder="Enter Distillation Efficiency" maxlength="50"
+                                #distillationEfficiency="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['distillationEfficiency']">
+                            <div *ngIf="distillationEfficiency.invalid && (distillationEfficiency.dirty || distillationEfficiency.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distillationEfficiency?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Distillation Efficiency required
+                                </div>
+                                <div
+                                    *ngIf="distillationEfficiency?.errors?.maxlength && !distillationEfficiency?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Overall Efficiency</label>
+                            <input type="number" required name="overallEfficiency" class="form-control"
+                                placeholder="Enter Overall Efficiency" maxlength="50" #overallEfficiency="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['overallEfficiency']">
+                            <div *ngIf="overallEfficiency.invalid && (overallEfficiency.dirty || overallEfficiency.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="overallEfficiency?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Overall Efficiency required
+                                </div>
+                                <div
+                                    *ngIf="overallEfficiency?.errors?.maxlength && !overallEfficiency?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Recovery AL/Qtls/Molasses</label>
+                            <input type="number" required name="recoveryAlmolasses" class="form-control"
+                                placeholder="Enter Recovery AL/Qtls/Molasses" maxlength="50"
+                                #recoveryAlmolasses="ngModel" [(ngModel)]="pd9cEfficiencyObj['recoveryAlmolasses']">
+                            <div *ngIf="recoveryAlmolasses.invalid && (recoveryAlmolasses.dirty || recoveryAlmolasses.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recoveryAlmolasses?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Recovery AL/Qtls/Molasses required
+                                </div>
+                                <div
+                                    *ngIf="recoveryAlmolasses?.errors?.maxlength && !recoveryAlmolasses?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Recovery AL/Qtls/FS</label>
+                            <input type="number" required name="recoveryAlfs" class="form-control"
+                                placeholder="Enter Recovery AL/Qtls/FS" maxlength="50" #recoveryAlfs="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['recoveryAlfs']">
+                            <div *ngIf="recoveryAlfs.invalid && (recoveryAlfs.dirty || recoveryAlfs.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recoveryAlfs?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Recovery AL/Qtls/FS required
+                                </div>
+                                <div *ngIf="recoveryAlfs?.errors?.maxlength && !recoveryAlfs?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fermentation Loss</label>
+                            <input type="number" required name="fermentationLoss" class="form-control"
+                                placeholder="Enter Fermentation Loss" maxlength="50" #fermentationLoss="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['fermentationLoss']">
+                            <div *ngIf="fermentationLoss.invalid && (fermentationLoss.dirty || fermentationLoss.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="fermentationLoss?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Fermentation Loss required
+                                </div>
+                                <div *ngIf="fermentationLoss?.errors?.maxlength && !fermentationLoss?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distillation Loss</label>
+                            <input type="number" required name="distillationLoss" class="form-control"
+                                placeholder="Enter Distillation Loss" maxlength="50" #distillationLoss="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['distillationLoss']">
+                            <div *ngIf="distillationLoss.invalid && (distillationLoss.dirty || distillationLoss.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distillationLoss?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Distillation Loss required
+                                </div>
+                                <div *ngIf="distillationLoss?.errors?.maxlength && !distillationLoss?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Loss</label>
+                            <input type="number" required name="totalLoss" class="form-control"
+                                placeholder="Enter Total Loss" maxlength="50" #totalLoss="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['totalLoss']">
+                            <div *ngIf="totalLoss.invalid && (totalLoss.dirty || totalLoss.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="totalLoss?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Total Loss required
+                                </div>
+                                <div *ngIf="totalLoss?.errors?.maxlength && !totalLoss?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Spent Wash Analysis" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol %</label>
+                            <input type="number" required name="spentWashAlcohol" class="form-control"
+                                placeholder="Enter Alcohol %" maxlength="50" #spentWashAlcohol="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['spentWashAlcohol']">
+                            <div *ngIf="spentWashAlcohol.invalid && (spentWashAlcohol.dirty || spentWashAlcohol.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="spentWashAlcohol?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcohol % required
+                                </div>
+                                <div *ngIf="spentWashAlcohol?.errors?.maxlength && !spentWashAlcohol?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fusel Oil %</label>
+                            <input type="number" required name="spentWashFuelOil" class="form-control"
+                                placeholder="Enter Fusel Oil %" maxlength="50" #spentWashFuelOil="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['spentWashFuelOil']">
+                            <div *ngIf="spentWashFuelOil.invalid && (spentWashFuelOil.dirty || spentWashFuelOil.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="spentWashFuelOil?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Fusel Oil % required
+                                </div>
+                                <div *ngIf="spentWashFuelOil?.errors?.maxlength && !spentWashFuelOil?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #pd9bForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Spent Less Analysis" class="list-panel add-panel">
+              
+                <div class="row">
+                
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Alcohol %</label>
+                            <input type="number" required name="spentlessAlcohol" class="form-control"
+                                placeholder="Enter Alcohol %" maxlength="50" #spentlessAlcohol="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['spentlessAlcohol']">
+                            <div *ngIf="spentlessAlcohol.invalid && (spentlessAlcohol.dirty || spentlessAlcohol.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="spentlessAlcohol?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Alcohol % required
+                                </div>
+                                <div *ngIf="spentlessAlcohol?.errors?.maxlength && !spentlessAlcohol?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Fuel Oil %</label>
+                            <input type="number" required name="spentlessFuelOil" class="form-control"
+                                placeholder="Enter Fusel Oil %" maxlength="50" #spentlessFuelOil="ngModel"
+                                [(ngModel)]="pd9cEfficiencyObj['spentlessFuelOil']">
+                            <div *ngIf="spentlessFuelOil.invalid && (spentlessFuelOil.dirty || spentlessFuelOil.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="spentlessFuelOil?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Fusel Oil % required
+                                </div>
+                                <div *ngIf="spentlessFuelOil?.errors?.maxlength && !spentlessFuelOil?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div> -->
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewPd9c(pd9bForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(pd9bForm,'INITIATED')">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="saveData(pd9bForm,'SUBMITTED')">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="backtoHome()">Cancel</button>
+    </div>
+</div>

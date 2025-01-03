@@ -1,0 +1,129 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Register Management List
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Register Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Registration</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel" >
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Applicant Name">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Registration Type</label>
+                        <select class="form-control">
+                            <option>select</option>
+                            <option value="active">Applicant</option>
+                            <option value="disabled">Cocument</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <input type="text" name="daterange" ngxDaterangepickerMd
+                            [locale]="{applyLabel: 'Okay', format: 'DD-MM-YYYY', separator: ' To '}" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option>select</option>
+                            <option value="active">Active</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                            <button type="submit" class="btn btn-primary mr-2">Search</button>
+                            <button type="submit" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" Registartion List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Registration Type</th>
+                            <th>Applicant Name</th>
+                            <!-- <th>Father Name</th> -->
+                            <th>DOB</th>
+                            <!-- <th>Email Address</th> -->
+                            <th>Mobile Number</th>
+                            <!-- <th>PAN Card Number</th> -->
+                            <!-- <th>Aadhaar Number</th> -->
+                            <!-- <th>Applicant Address</th> -->
+                            <!-- <th>Created By</th> -->
+                            <th>Created On</th>
+                            <!-- <th>Modified By</th> -->
+                            <!-- <th>Modified On</th> -->
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="registerdetails?.length != 0">
+                        <tr *ngFor="let data of registerdetails;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.registrationtype}}</td>
+                            <td>{{data.applicantname}}</td>
+                            <!-- <td>{{data.fathername}}</td> -->
+                            <td>{{data.dob}}</td>
+                            <!-- <td>{{data.EmailAddress}}</td> -->
+                            <td>{{data.mobile}}</td>
+                            <!-- <td>{{data.PANCardNumber}}</td> -->
+                            <!-- <td>{{data.AadhaarNumber}}</td> -->
+                            <!-- <td>{{data.ApplicantAddress}}</td> -->
+                            <!-- <td>{{data.created_by}}</td> -->
+                            <td>{{data.created_on | date: 'dd-MMM-yyyy hh:mm a'}}</td>
+                            <!-- <td>{{data.modified_by }}</td> -->
+                            <!-- <td>{{data.modified_on | date: 'dd-MMM-yyyy hh:mm a'}}</td> -->
+                            <td>
+                                <span class="badge m-r-5 badge-success" *ngIf="data.status">Active</span>
+                                <span class="badge m-r-5 badge-danger" *ngIf="!data.status">Inactive</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" (click) = "navigateView(data.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary" type="button"
+                                (click) = "navigateEdit(data.id)">
+                                    <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="registerdetails?.length == 0">
+                        <tr>
+                            <td colspan="100%" class="no-data-available">No data found!</td>
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+

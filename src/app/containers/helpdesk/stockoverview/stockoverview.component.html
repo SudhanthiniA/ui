@@ -1,0 +1,213 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Stock Overview
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/wholesale/indentrequestnew/add">
+      <i class="feather icon-plus mr-2"></i> 
+      Stock Overview 
+    </button> -->
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Overview</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>Date Range</label>
+            <input type="text" value="20/10/2022" class="form-control">
+        </div>
+    </div>
+    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>License Type
+        </label>
+            <select class="form-control">
+         <option>select</option>
+       </select>
+        </div>
+    </div> 
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+        <div class="form-group">
+            <label>License Number
+        </label>
+            <select class="form-control">
+          <option>select</option>
+        </select>
+        </div>
+    </div>-->
+</div>
+<div class="row">
+    <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('ALL')">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total No. of <br>Codes</span>
+                    <h3 class="mt-2">1000</h3>
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" (click)="cardOnClick('ACCEPTED')" cardClass="comp-card">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total No. of <br>Mapped Codes</span>
+                    <h3 class="mt-2">800</h3>
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-md-4 col-xl-4 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('PENDING')">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total No. of <br>Un-mapped Codes</span>
+                    <h3 class="mt-2">200</h3>
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <!-- <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" cardClass="comp-card bg-danger" (click)="cardOnClick('REJECTED')">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total no. of QRcode <br> Used</span>
+                    <h3 class="mt-2">100</h3>
+                    <i class="fas fa-thumbs-down  text-danger"></i>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('REJECTED')">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total no. of balance <br> barcode</span>
+                    <h3 class="mt-2">300</h3>
+                    <i class="fas fa-thumbs-down"></i>
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+        <app-card [hidHeader]="true" cardClass="comp-card" (click)="cardOnClick('REJECTED')">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span>Total no. of Balance <br> QRcode</span>
+                    <h3 class="mt-2">200</h3>
+                    <i class="fas fa-thumbs-down"></i>
+                </div>
+            </div>
+        </app-card>
+    </div> -->
+</div>
+
+<ngb-tabset type="pills" class="mb-2">
+    <ngb-tab title="Mapped ">
+        <ng-template ngbTabContent>
+            <div class="row mt-2">
+                <div class="col-xl-12">
+                    <app-card cardTitle="" blockClass="table-border-style" class="list-panel">
+                        <div class="table-responsive mb-2">
+                            <table class="table table-bordered mb-0">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Packaging<br>Size</th>
+                                    <th>Carton size</th>
+                                    <th> No. of Barcode</th>
+                                    <th> No. of QR code</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>500ml</td>
+                                    <td>10</td>
+                                    <td>200</td>
+                                    <td>100</td>
+                                    <!-- <td class="text-center"><span class="badge badge-light-success">Approved</span></td> -->
+                                    <td class="table-action-column text-center"><button class="btn btn-icon btn-primary" type="button" (click)="view(i)">
+                                <i class="feather icon-eye"></i></button>
+                                        <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="edit(i)">
+                                    <i class="feather icon-edit-2"></i></button> -->
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div ngbDropdown>
+                                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                                    <div ngbDropdownMenu>
+                                        <a class="dropdown-item" href="javascript:">Excel</a>
+                                        <a class="dropdown-item" href="javascript:">Pdf</a>
+                                        <a class="dropdown-item" href="javascript:">Jpg</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>Un-Mapped</ng-template>
+        <ng-template ngbTabContent>
+            <app-card cardTitle="" blockClass="table-border-style" class="list-panel">
+                <div class="table-responsive mb-2">
+                    <table class="table table-bordered mb-0">
+                        <tr>
+                            <th>S.No</th>
+                            <!-- <th>Packaging<br>Size</th>
+                            <th>Carton size</th> -->
+                            <th> No. of Barcode</th>
+                            <th> No. of QR code</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <!-- <td>500ml</td>
+                            <td>10</td> -->
+                            <td>200</td>
+                            <td>100</td>
+                            <!-- <td class="text-center"><span class="badge badge-light-success">Approved</span></td> -->
+                            <td class="table-action-column text-center"><button class="btn btn-icon btn-primary" type="button" (click)="view(i)">
+                        <i class="feather icon-eye"></i></button>
+                                <!-- <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="edit(i)">
+                            <i class="feather icon-edit-2"></i></button> -->
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div ngbDropdown>
+                            <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                            <div ngbDropdownMenu>
+                                <a class="dropdown-item" href="javascript:">Excel</a>
+                                <a class="dropdown-item" href="javascript:">Pdf</a>
+                                <a class="dropdown-item" href="javascript:">Jpg</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 text-right p-0">
+                        <img src="assets/images/pagenation.png" />
+                    </div>
+                </div>
+            </app-card>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

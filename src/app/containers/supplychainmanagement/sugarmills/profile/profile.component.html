@@ -1,0 +1,291 @@
+<h5 class="m-b-10 ng-star-inserted">
+  Profile
+</h5>
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Sugar Mill</a>
+  </li>
+  <li class="breadcrumb-item"><a href="javascript:">Profile</a></li>
+</ul>
+<div class="row">
+  <div class="col-xl-12">
+    <app-card cardTitle="Entity Profile" blockClass="table-border-style" class="list-panel view-panel">
+      <div class="row">
+        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 text-center">
+          <div class="rounded-lg profile_image"><i class="icon feather icon-user"></i></div>
+          <!-- <img class="card-img-top rounded-lg mb-2" src="https://th.bing.com/th/id/OIP.KblwsoBkvrKZZoP7rYQh9gHaHa?pid=Api&rs=1" alt="Card image cap" /> -->
+          <button type="button" class="btn btn-primary mr-1"><i class="icon feather icon-edit text-white"></i></button>
+          <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteconfirmation.show()"><i class="icon feather icon-trash text-white"></i></button>
+
+          <app-ui-modal #deleteconfirmation dialogClass="modal-dialog-centered">
+            <div class="app-modal-header">
+              <h5 class="modal-title">Delete Confirmation</h5>
+              <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="deleteconfirmation.hide()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="app-modal-body text-center">
+              <div clas="col-lg-12 col-md-12 col-sm-12 col-12">
+                <i class="display-4 feather icon-alert-triangle text-warning"></i>
+              </div>
+              <p class="h6 mt-2">Are you sure do you want to delete Profile Image?</p>
+            </div>
+            <div class="app-modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="deleteconfirmation.hide()">No</button>
+              <button type="button" class="btn btn-primary ml-2">Yes</button>
+            </div>
+          </app-ui-modal>
+
+        </div>
+        <div class="col-xl-10 col-lg-9 col-md-9 col-sm-12">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <table class="table table-borderless">
+                <tr>
+                  <td class="view-label">Season Year</td>
+                  <td>:</td>
+                  <td>2020-2021</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Name of Entity</td>
+                  <td>:</td>
+                  <td>Triveni Sugar Mill unit</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Applicant Type</td>
+                  <td>:</td>
+                  <td>Individual</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Status</td>
+                  <td>:</td>
+                  <td>Propreiter</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Address</td>
+                  <td>:</td>
+                  <td>Rampur</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Year of Inception</td>
+                  <td>:</td>
+                  <td>2020</td>
+                </tr>
+                <tr>
+                  <td class="view-label">License Category</td>
+                  <td>:</td>
+                  <td>Sugar mill</td>
+                </tr>
+                <tr>
+                  <td class="view-label">License for Manufactory</td>
+                  <td>:</td>
+                  <td>Manufactory</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <table class="table table-borderless">
+                <tr>
+                  <td class="view-label">License for Manufacturing</td>
+                  <td>:</td>
+                  <td>Manufacturing</td>
+                </tr>
+                <tr>
+                  <td class="view-label">PAN</td>
+                  <td>:</td>
+                  <td>UPEAA2991N</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Tagged to Group of Companies</td>
+                  <td>:</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Group of companies</td>
+                  <td>:</td>
+                  <td>Triveni Sugar Mill</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Total Cane Crushing Capacity</td>
+                  <td>:</td>
+                  <td>500000</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Total Molasses Storage Capacity</td>
+                  <td>:</td>
+                  <td>300000</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Allotment Id</td>
+                  <td>:</td>
+                  <td>1234asd</td>
+                </tr>
+                <tr>
+                  <td class="view-label">Category Type</td>
+                  <td>:</td>
+                  <td>Capitive</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-12">
+    <app-card [hidHeader]="true" blockClass="table-border-style" class="list-panel view-panel">
+      <div class="row">
+        <div class="col-12">
+          <ngb-tabset class="profile_tab">
+            <ngb-tab title="Asset Details">
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="table-responsive mt-1">
+                      <table class="table table-bordered" datatable>
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name of Tank</th>
+                            <th>Grade</th>
+                            <th>Capacity</th>
+                            <th>Registered on</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>						
+                            <td>Tank T1</td>
+                            <td>B Heavy</td>
+                            <td>100000</td>
+                            <td>01-Jan-2005</td>                              
+                          </tr>
+                          <tr>
+                            <td>2</td>				
+                            <td>Tank T2</td>
+                            <td>B Heavy</td>
+                            <td>200000</td>
+                            <td>01-Jan-2005 </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>		
+                            <td>Tank T3</td>
+                            <td>C Heavy</td>
+                            <td>100000</td>
+                            <td>01-Jan-2005 </td>
+                          </tr>
+                          <tr>
+                            <td>4</td>				
+                            <td>Tank T4</td>
+                            <td>C Heavy</td>
+                            <td>200000</td>
+                            <td>01-Jan-2005 </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-4">
+                        <div ngbDropdown>
+                          <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                          <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Payment and Dues">
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Year</th>
+                            <th>Deposit Period</th>
+                            <th>Due/Penalty For</th>
+                            <th>Due Amount</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>				
+                            <td>2019-2020</td>
+                            <td>2020-2021</td>
+                            <td>Renewal</td>
+                            <td>67364</td>
+                            <td>28-Nov-2020</td>
+                            <td>Approved</td>
+                            <td class="table-action-column text-center">              
+                              <button class="btn btn-icon btn-primary" type="button">                       
+                                E-payment
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>		
+                            <td>2019-2020</td>
+                            <td>2019-2020</td>
+                            <td>Penalty on Molasses</td>
+                            <td>50000</td>
+                            <td>15-Oct-2020</td>
+                            <td>Approved</td>
+                            <td class="table-action-column text-center">              
+                              <button class="btn btn-icon btn-primary" type="button">                       
+                                E-payment
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>				
+                            <td>2019-2020</td>
+                            <td>2019-2020</td>
+                            <td>Dues</td>
+                            <td>5000</td>
+                            <td>30-Oct-2020</td>
+                            <td>Approved</td>
+                            <td class="table-action-column text-center">              
+                              <button class="btn btn-icon btn-primary" type="button">                       
+                                E-payment
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-4">
+                        <div ngbDropdown>
+                          <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                          <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

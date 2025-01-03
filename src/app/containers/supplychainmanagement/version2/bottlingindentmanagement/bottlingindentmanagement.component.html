@@ -1,0 +1,241 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Bottling Indent Management
+ 
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Brewery</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Bottling Indent Management</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Search" class="search-panel">
+             <div class="row">
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Indent No</label>
+                         <input type="text" class="form-control" placeholder="Enter Indent No"/>
+                     </div>
+                 </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                     <label>Indent Date</label>
+                     <input type="date" required class="form-control">
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent From</label>
+                        <input type="text" class="form-control" placeholder="Enter Indent From"/>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent To</label>
+                        <input type="text" class="form-control" placeholder="Enter Indent To"/>
+                    </div>
+                </div> 
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                     <div class="form-group">
+                         <label>Status
+                         </label>
+                         <select id="supplytype" name="supplytype" required class="form-control">
+                             <option value="">Select</option>
+                             <option>Active</option>
+                         </select>
+                     </div>
+                 </div>
+                 
+                 <div class="col-12 text-right">
+                     <button type="submit" class="btn btn-primary mr-2">Search</button>
+                     <button type="submit" class="btn btn-secondary">Cancel</button>
+                 </div>
+             </div>
+         </app-card>
+     </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+         <app-card cardTitle="Bottling Indent Management List" blockClass="table-border-style" class="list-panel">
+            <div class="row">
+                    <div class="col-12 text-right mb-4">
+                        <div>
+                        <button type="button" class="btn btn-primary ml-2">Add New Request</button>
+                        <button type="button" class="btn btn-warning ml-2">View/Approve</button>
+                        <button type="button" class="btn btn-secondary ml-2">Modification</button>
+                        <button type="button" class="btn btn-danger ml-2">Cancel</button>
+                        <button type="button" class="btn btn-success ml-2">Accept</button>
+                    </div>
+                    </div>
+                <div class="col-12 mb-2">
+                 <div class="table-responsive">
+                 <table class="table table-bordered mb-0" >
+                     <thead>
+                         <tr>
+                             <th>S.No</th>
+                             <th>Indent From Entity</th>
+                             <th>Indent to Entity</th>
+                             <th>Indent No</th>
+                             <th>Indent Date</th>
+                             <th>Total No of Cases</th>
+                             <th>Total No of Bottles</th>
+                             <th>Status</th>
+                             <th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td>1</td>
+                             <td>Daurala Distillery</td>
+                             <td>DK Sugar Works</td>
+                             <td>625489789</td>
+                             <td class="text-center">10-Jan-2022</td>
+                             <td class="text-left">10</td>
+                             <td class="text-left">100</td>
+                             <td class="text-center">
+                                 <span class="badge badge-light-primary">Submitted</span>
+                             </td>
+                             <td class="table-action-column text-center">
+                                <div class="form-group mb-0">
+                                    <div class="form-group d-inline">
+                                        <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                            (change)="onCheckboxChange($event.target.checked)">
+                                    </div>
+                                </div>
+                                 
+                             </td>
+                         </tr>
+                         <tr>
+                            <td>2</td>
+                            <td>Unnao Distillery</td>
+                            <td>Sir Shadi Lal Distillery</td>
+                            <td>625489789</td>
+                            <td class="text-center">10-Jan-2022</td>
+                            <td class="text-left">15</td>
+                            <td class="text-left">150</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-info">Initiated</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                               <div class="form-group mb-0">
+                                   <div class="form-group d-inline">
+                                       <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                           (change)="onCheckboxChange($event.target.checked)">
+                                   </div>
+                               </div>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Majhola Distillery</td>
+                            <td>Central Distilleries</td>
+                            <td>625489788</td>
+                            <td class="text-center">06-Jan-2022</td>
+                            <td class="text-left">20</td>
+                            <td class="text-left">200</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-success">Approved</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                               <div class="form-group mb-0">
+                                   <div class="form-group d-inline">
+                                       <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                           (change)="onCheckboxChange($event.target.checked)">
+                                   </div>
+                               </div>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Kesar Interprises</td>
+                            <td>Narang Industries</td>
+                            <td>625489780</td>
+                            <td class="text-center">06-Jan-2022</td>
+                            <td class="text-left">10</td>
+                            <td class="text-left">100</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-warning">Cancellation Requested</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                               <div class="form-group mb-0">
+                                   <div class="form-group d-inline">
+                                       <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                           (change)="onCheckboxChange($event.target.checked)">
+                                   </div>
+                               </div>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Daurala Distillery</td>
+                            <td>DK Sugar Works</td>
+                            <td>625489775</td>
+                            <td class="text-center">05-Jan-2022</td>
+                            <td class="text-left">15</td>
+                            <td class="text-left">150</td>
+                            <td class="text-center">
+                                <span class="badge badge-light-danger">Cancellation Approved</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                               <div class="form-group mb-0">
+                                   <div class="form-group d-inline">
+                                       <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                           (change)="onCheckboxChange($event.target.checked)">
+                                   </div>
+                               </div>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Pilkhani Distillery</td>
+                            <td>DK Sugar Works</td>
+                            <td>625489774</td>
+                            <td class="text-center">04-Jan-2022</td>
+                            <td class="text-left">20</td>
+                            <td class="text-left">200</td>
+                             <td class="text-center">
+                                <span class="badge badge-light-success">Accepted</span>
+                            </td>
+                            <td class="table-action-column text-center">
+                               <div class="form-group mb-0">
+                                   <div class="form-group d-inline">
+                                       <input type="radio" class="checkbox d-inline" id="sameAddress"
+                                           (change)="onCheckboxChange($event.target.checked)">
+                                   </div>
+                               </div>
+                                
+                            </td>
+                        </tr>
+                     </tbody>
+                 </table>
+             </div>
+            </div>
+        </div>
+             <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>  
+         </app-card>
+     </div>
+ </div>
+ 
+ 
+ 

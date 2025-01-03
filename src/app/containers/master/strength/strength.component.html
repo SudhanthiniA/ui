@@ -1,0 +1,224 @@
+<!-- <app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb> -->
+<h5 class="m-b-10 ng-star-inserted">
+    Strength
+     <button type="submit" class="btn btn-success pull-right custom_add_button"
+     routerLink='/master/strength/add'>
+     <i class="feather icon-plus mr-2"></i>
+     Add Strength
+ </button>
+ </h5>
+ 
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Strength</a></li>
+     <li class="breadcrumb-item">List</li>
+ </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Strength Master</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.strengthMaster.code' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="strengthObj['code']"
+                         placeholder="{{ 'master.common.enter' | translate }} {{ 'master.strengthMaster.list' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.strengthMaster.strength' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="strengthObj['strength']" 
+                        placeholder="{{ 'master.common.enter' | translate }} {{ 'master.strengthMaster.strength' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.strengthMaster.liquorCategory' | translate }} </label>
+                        <select class="form-control" [(ngModel)]="strengthObj['category']">
+                            <option value = "">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let data of liquorCategoryList" value={{data.id}}>
+                                {{data.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.Status.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="strengthObj['isActive']"> 
+                            <option>{{ 'master.common.select' | translate }}</option>
+                            <option value= "true">{{ 'master.common.active' | translate }}</option>
+                            <option value="false">{{ 'master.common.inactive' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchStrength()>{{ 'master.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary"
+                    (click)=resetForm()>{{ 'master.common.cancel' | translate }}</button>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <button type="submit" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Strength List" blockClass="table-border-style" class="list-panel">
+            <!-- <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+</div> -->
+                <!-- <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'master.strengthMaster.code' | translate }}</th>
+                            <th>{{ 'master.strengthMaster.strength' | translate }}</th>
+                            <th>{{ 'master.strengthMaster.liquorCategory' | translate }}</th>
+                            <th>{{ 'master.Status.status' | translate }}</th>
+                            <th>{{ 'master.common.action' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="strengthList?.length != 0">
+                        
+                            <tr *ngFor="let data of strengthList;let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{data.code}}</td>
+                                <td class="text-left">{{data.strength}}</td>
+                                <td class="text-left">{{data.category}}</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success" *ngIf="data.active">Active</span>
+                                    <span class="badge m-r-5 badge-light-danger" *ngIf="!data.active">Inactive</span>
+                                </td>
+                                <td class="table-action-column">
+                                    <button class="btn btn-icon btn-primary" type="button" (click) = "navigateView(data.id)">
+                                        <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                    (click) = "navigateEdit(data.id)">
+                                        <i class="feather icon-edit-2"></i></button>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table> -->
+                <div class="table-responsive mb-2">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Strength Master</th>
+                                <th>Created By</th>
+                                <th>Created On</th>
+                                <th>Modified By</th>
+                                <th>Modified On</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1
+                                </td>
+    
+                                <td class="text-left">Medium</td>
+                                <td class="text-left">Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td class="text-left">Assistant Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Active</span>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                        <i class="feather icon-eye"></i></button>
+                                        <button class="btn btn-icon btn-secondary " type="button" >
+                                            <i class="feather icon-edit-2"></i></button>
+        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2
+                                </td>
+    
+                                <td class="text-left">Low</td>
+                                <td class="text-left">Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td class="text-left">Assistant Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Active</span>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                        <i class="feather icon-eye"></i></button>
+                                        <button class="btn btn-icon btn-secondary " type="button" >
+                                            <i class="feather icon-edit-2"></i></button>
+        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3
+                                </td>
+    
+                                <td class="text-left">High</td>
+                                <td class="text-left">Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td class="text-left">Assistant Admin</td>
+                                <td class="text-center">01 Nov 2021 & 16:53</td>
+                                <td>
+                                    <span class="badge m-r-5 badge-light-success">Active</span>
+                                </td>
+                                <td class="table-action-column text-center">
+                                    <button class="btn btn-icon btn-primary mr-2" type="button" >
+                                        <i class="feather icon-eye"></i></button>
+                                        <button class="btn btn-icon btn-secondary " type="button" >
+                                            <i class="feather icon-edit-2"></i></button>
+        
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                   <div class="col-4">
+                     <div ngbDropdown>
+                       <button class="btn btn-success" ngbDropdownToggle
+                         type="button">Download</button>
+                       <div ngbDropdownMenu>
+                         <a class="dropdown-item" href="javascript:">Excel</a>
+                         <a class="dropdown-item"  href="javascript:">Pdf</a>
+                         <a class="dropdown-item"  href="javascript:">Jpg</a>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-8 text-right p-0">
+                       <img src="assets/images/pagenation.png" />
+                   </div>
+               </div>
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.country' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="blockObj.country_id" name="country_uuid"
+                            #country_uuid="ngModel" (change)="getStatesByCountryId($event.target.value)">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let country of countryData" value="{{country.id}}"> {{country.countryName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.state' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="blockObj.state_id" name="state_uuid"
+                            #state_uuid="ngModel" (change)="getDistrictsByStateId($event.target.value)">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let state of stateData" value="{{state.id}}"> {{state.stateName}} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.district' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="blockObj.district_id" name="district_uuid"
+                            #district_uuid="ngModel">
+                            <option value="">{{ 'master.common.select' | translate }}</option>
+                            <option *ngFor="let district of districtData" value="{{district.id}}"> {{district.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.block' | translate }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="blockObj.block_name"
+                            placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.block' | translate }}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'master.common.status' | translate }}</label>
+                        <select class="form-control" [(ngModel)]="blockObj.active">
+                            <option value=''>{{ 'master.common.select' | translate }}</option>
+                            <option value=true>Active</option>
+                            <option value=false>InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)=searchBlock()>{{ 'master.common.search' |
+                        translate }}</button>
+                    <button type="submit" class="btn btn-secondary" (click)=resetForm()>{{ 'master.common.cancel' |
+                        translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'master.common.block' | translate }} {{ 'master.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                    (editAction)="onEdit($event)" (viewAction)="onView($event)">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

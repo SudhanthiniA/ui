@@ -1,0 +1,113 @@
+<h5 class="m-b-10 ng-star-inserted">View Requition of Raw Material</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Requition of Raw Material</a></li>
+    <li aria-current="page" class="breadcrumb-item active">View</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #materialsForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to Add Requition of Raw Material " class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Product Name<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{reqrawlists.productname}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Grade<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{reqrawlists.grade}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Requisition Quantity<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{reqrawlists.requisitionqty}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Measurement<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{reqrawlists.measurement}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Request Date<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{reqrawlists.requestdate}}
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" disabled name="productname" class="form-control" #productname="ngModel" [(ngModel)]="reqrawlists['productname']"
+                             placeholder="Enter Product Name" required>
+                        </div>
+                        <div *ngIf="productname.invalid && (productname.dirty || productname.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="productname?.errors?.required"><i class="fa fa-times"></i>
+                              Product Name is required </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select class="form-control" disabled name="grade" #grade="ngModel" [(ngModel)]="reqrawlists['grade']" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let data of categoryType" value="{{data.value}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="grade.invalid && (grade.dirty || grade.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="grade?.errors?.required"><i class="fa fa-times"></i>
+                              Grade is required </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requisition Quantity</label>
+                            <input type="number" disabled class="form-control" name="requisitionqty" #requisitionqty="ngModel" [(ngModel)]="reqrawlists['requisitionqty']"
+                             placeholder="Enter Requisition Quantity" required>
+                        </div>
+                        <div *ngIf="requisitionqty.invalid && (requisitionqty.dirty || requisitionqty.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="requisitionqty?.errors?.required"><i class="fa fa-times"></i>
+                                Requisition Quantity is required </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Measurement</label>
+                            <select class="form-control" disabled name="measurement" #measurement="ngModel" [(ngModel)]="reqrawlists['measurement']" required>
+                                <option value="">Select</option>
+                                <option *ngFor="let data of categoryType" value="{{data.value}}">{{data.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="measurement.invalid && (measurement.dirty || measurement.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="measurement?.errors?.required"><i class="fa fa-times"></i>
+                                Measurement is required </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Request Date</label>
+                            <input type="date" disabled class="form-control" name="requestdate" #requestdate="ngModel" [(ngModel)]="reqrawlists['requestdate']" 
+                            placeholder="Enter Request Date" required>
+                        </div>
+                        <div *ngIf="requestdate.invalid && (requestdate.dirty || requestdate.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="requestdate?.errors?.required"><i class="fa fa-times"></i>
+                                Request Date is required </div>
+                        </div>
+                    </div> -->
+                   
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <!-- <button type="button" class="btn btn-primary mr-2"  (click)="addRawMaterials(materialsForm)">Submit</button> -->
+        <button type="button" class="btn btn-secondary" routerLink="/supplychainmanagement/distillery/requitionofrawmaterial/list">Back</button>
+    </div>
+</div>

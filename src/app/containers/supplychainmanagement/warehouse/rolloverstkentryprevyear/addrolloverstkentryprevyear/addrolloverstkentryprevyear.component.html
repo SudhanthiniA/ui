@@ -1,0 +1,150 @@
+<h5 class="m-b-10 ng-star-inserted">Add Rollover Stock Entry(Previous Year)</h5>
+<ul class="breadcrumb p-0">
+   <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+   <li class="breadcrumb-item"><a href="javascript:">Rollover Stock Entry(Previous Year)</a></li>
+   <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+   <div class="col-xl-12">
+      <form [formGroup]="rollover" autocomplete="off">
+         <app-card cardTitle="Enter Details to Add Rollover Stock Entry(Previous Year)" class="list-panel add-panel">
+            <div class="row">
+               <div class="table-responsive">
+                  <table class="table table-bordered">
+                     <thead>
+                        <tr>
+                           <th>S.No</th>
+                           <th>Brand Name</th>
+                           <th>Package</th>
+                           <th>Size</th>
+                           <th>Box</th>
+                           <th>MRP 2018-19</th>
+                           <th>Rollover Boxes</th>
+                           <th>Cowcess fees</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr formArrayName="rolloverlist"
+                           *ngFor="let pres of rollover?.get('rolloverlist')['controls']; let i=index" id="row{{i}}">
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0">
+                                 {{i+1}}
+                              </div>
+                           </td>
+
+
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <select class="form-control" formControlName="brandRegistrationId"
+                                    style="width: 96px;">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of brandname" value="{{item.id}}">{{item.brandName}}
+                                    </option>
+
+                                 </select>
+                                 <!-- <select id="brand" required class="form-control" required formControlName="brandRegistrationId">
+                                 <option value="">Select</option>
+                                 <option>Active</option>
+                              </select>                                   -->
+                              </div>
+                           </td>
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <select id="package" class="form-control" formControlName="packageId"
+                                    style="width: 96px;">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of package" value="{{item.id}}">{{item.name}}</option>
+                                 </select>
+                              </div>
+                           </td>
+                           <td [formGroupName]="i">
+                              <select id="size" class="form-control" formControlName="sizeId" style="width: 96px;">
+                                 <option value="">Select</option>
+                                 <option>375ML</option>
+                              </select>
+                           </td>
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <select id="box" class="form-control" formControlName="boxId" style="width: 96px;">
+                                    <option value="">Select</option>
+                                    <option>23</option>
+                                 </select>
+                              </div>
+                           </td>
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <input type="number" class="form-control" formControlName="previousYearMrp"
+                                    placeholder="Enter MRP 2018-19">
+                              </div>
+                           </td>
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <input type="number" class="form-control" formControlName="rollOverBoxes"
+                                    placeholder="Enter Rollover Boxes">
+                              </div>
+                           </td>
+                           <td [formGroupName]="i">
+                              <div class="form-group  mb-0 view">
+                                 <input type="number" class="form-control" formControlName="cowcessFees"
+                                    placeholder="Enter Cowcess fees">
+                              </div>
+                           </td>
+                           <!-- <td> -->
+                           <td class="table-action-column text-center">
+                              <button class="btn btn-icon btn-primary ml-2" type="button" (click)="addrow()">
+                                 <i class="feather icon-plus"></i></button>
+                              <button *ngIf="i!==getPresFormLength()-1" class="btn btn-icon btn-danger ml-2"
+                                 type="button" (click)="removeSelectedRow(i)">
+                                 <i class="feather icon-trash-2" title="Delete" style="cursor: pointer;">
+                                 </i></button>
+                           </td>
+                           <!-- </td> -->
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                     <label>Total Box
+                     </label>
+                     <input type="number" required class="form-control" formControlName="totalBox" class="form-control"
+                        placeholder="Enter Total Box">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                     <label>Total MRP
+                     </label>
+                     <input type="number" required class="form-control" formControlName="totalMrp" class="form-control"
+                        placeholder="Enter Total MRP">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                     <label>Roll Over Boxes
+                     </label>
+                     <input type="number" required class="form-control" formControlName="rolloverBoxs"
+                        class="form-control" placeholder="Enter Rollover Boxes">
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                     <label>Total Cowcess
+                     </label>
+                     <input type="number" required class="form-control" formControlName="totalCowcess"
+                        class="form-control" placeholder="Enter Total Cowcess">
+                  </div>
+               </div>
+            </div>
+         </app-card>
+      </form>
+   </div>
+   <div class="col-12 text-right mb-4">
+      <!-- <button type="button" class="btn btn-primary ml-2 mb-2">Print</button> -->
+      <button type="button" class="btn btn-success ml-2 mb-2" (click)='addimportpermit(rollover,"SUBMIT")'>Submit</button>
+      <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/warehouse/rolloverstkentryprevyear/list">Cancel</button>
+   </div>
+</div>

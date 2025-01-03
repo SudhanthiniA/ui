@@ -1,0 +1,208 @@
+<h5 class="m-b-10 ng-star-inserted">View Applicant - Registration of BWFL Parent Unit</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail/Model</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Applicant - Registration of BWFL Parent Unit</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">View</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'licenseMgnt.viewRegistrationofBWFLParentUnitText' | translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.yearofRegistrationText' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    2020-2021
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.applicationDateText' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    20-Mar-2021
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="{{'licenseMgnt.distilleryBreweryorBottlingUnitDetailTitle' | translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{'licenseMgnt.unitText' | translate}}<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    Distillery
+                </div>
+            </div>
+        </app-card>
+        <app-application-bussiness-unit 
+            *ngIf="licenseData?.businessUnitDetails" 
+            cardTitle="Unit Information"
+            [businessUnitDetails]="licenseData?.businessUnitDetails"
+            [appliPremisesAddr]="licenseData?.addressList[1]">
+        </app-application-bussiness-unit>
+
+        <app-card cardTitle="{{'licenseMgnt.registrationforBondWarehouseText' | translate}}" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">S.No<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    BW01lck(BW01Lucknow)
+                </div>
+            </div>
+        </app-card>
+
+        <app-application-applicant-details 
+            *ngIf="licenseData?.applicantDetails"
+            cardTitle="Name of the Authorize Person"
+            [appliApplicantDetail]="licenseData?.applicantDetails"
+            [appliApplicantAddr]="licenseData?.addressList[0]">
+        </app-application-applicant-details>
+
+        <app-application-bank-details *ngIf="licenseData?.bankList" [appliBankDetail]="licenseData?.bankList[0]">
+        </app-application-bank-details>
+
+        
+        <app-application-logs 
+            *ngIf="licenseComments.length > 0"
+            [licenseComments]="licenseComments"
+            [checkList]="this.licenseData?.checkList"
+            [isOfficier]="isOfficier">
+        </app-application-logs>
+
+        <app-card cardTitle="{{'licenseMgnt.remarksText' | translate}}" *ngIf="showRemarksSec" class="list-panel add-panel">
+            <div class="row" [formGroup]="commentForm">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label class="mandatory">{{'licenseMgnt.remarksText' | translate}}</label>
+                        <textarea class="form-control" formControlName="comments" rows="2"></textarea>
+                        <app-show-errors eleName="Comment" [frmSub]="commandformSub" [control]="commentForm.controls.comments">
+                        </app-show-errors>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+
+        <div class="text-content text-right mb-4">
+            <ng-container *ngIf="isOfficier">
+                <ng-container *ngIf="licenseStatus === licConst.STATUS_IN_PROGRESS || licenseStatus === licConst.STATUS_SENDBACK">
+                    <button type="button" class="btn btn-warning mb-2 ml-2" data-toggle="modal"
+                        data-target="#checklistModal">{{'licenseMgnt.checklistText' | translate}}</button>
+                    <ng-container *ngIf="isSendBack">
+                        <ng-container [formGroup]="sendbackForm">
+                            <div class="form-group btn_container_select mb-2 ml-2">
+                                <select class="form-control" class="form-control" formControlName="sendback" (change)="buttionvalidate($event)">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of sendBackList" value="{{item.key}}">
+                                        {{item.value}}</option>
+                                </select>
+                                <app-show-errors eleName="Send Back" [frmSub]="formSubmitted" [control]="sendbackForm.controls.sendback">
+                                </app-show-errors>
+                            </div>
+                            <button type="button" class="btn btn-primary mb-2 ml-2" [disabled]="isButtionshow"
+                                (click)="onSubmit(licConst.STATUS_SENDBACK)">{{'licenseMgnt.clarifyText' | translate}}</button>
+                        </ng-container>
+                    </ng-container>
+                    <button type="button" *ngIf="isForwardWithOutApproval" class="btn btn-primary mb-2"
+                        (click)="onSubmit(licConst.STATUS_APPROVED)">{{'licenseMgnt.forwardwithoutApprovalText' | translate}}</button>
+                    <button type="button" class="btn btn-success mb-2" (click)="onSubmit(licConst.STATUS_APPROVED)">
+                        {{ isFinished ? 'Recommand' : 'Forward with Approval' }}
+                    </button>
+                    <button type="button" *ngIf="isRejected" class="btn btn-danger mb-2"
+                        (click)="onSubmit(licConst.STATUS_REJECTED)">
+                        {{'licenseMgnt.rejectText' | translate}}
+                    </button>
+                </ng-container>
+
+                <!-- <ng-container
+                    *ngIf="licenseStatus === licConst.STATUS_PENDING_SITE_VISIT && workFlowConfig && workFlowConfig.isSiteVisitNeeded">
+                    <ng-container *ngIf="workFlowConfig.isCustomerSiteInformationRequired">
+                        <button type="button" class="btn btn-primary mb-2 ml-2"
+                            (click)="onSubmit(licConst.STATUS_SENDBACK)">Clarify</button>
+                        <button type="button" class="btn btn-success mb-2"
+                            (click)="onSubmit(licConst.STATUS_REJECTED_SITE_VISIT)">
+                            Not Approved
+                        </button>
+                    </ng-container>
+                    <button type="button" class="btn btn-primary mb-2"
+                        (click)="onSubmit(licConst.STATUS_APPROVED_SITE_VISIT)">Site
+                        Approved</button>
+                </ng-container>
+
+                <ng-container *ngIf="licenseStatus === licConst.STATUS_REJECTED_SITE_VISIT && !isFinished">
+                    <button type="button" class="btn btn-primary mb-2 ml-2"
+                        (click)="onSubmit(licConst.STATUS_SEND_BACK_REJECTED_SITE_VISIT)">Re-Consideration</button>
+                    <button type="button" class="btn btn-success mb-2"
+                        (click)="onSubmit(licConst.STATUS_FORWARD_REJECTED_SITE_VISIT)">
+                        Forward
+                    </button>
+                </ng-container>
+
+                <ng-container *ngIf="licenseStatus === licConst.STATUS_FORWARD_REJECTED_SITE_VISIT && isFinished">
+                    <button type="button" class="btn btn-primary mb-2 ml-2"
+                        (click)="onSubmit(licConst.STATUS_RECONSIDER_REJECTED_SITE_VISIT)">Re-Consideration</button>
+                    <button type="button" class="btn btn-success mb-2" (click)="onSubmit(licConst.STATUS_REJECTED)">
+                        Reject
+                    </button>
+                </ng-container> -->
+
+                <button type="button" *ngIf="licenseStatus === licConst.STATUS_PENDING_DSC" class="btn btn-success mb-2 ml-2"
+                    (click)="issueLicense()">
+                    {{'licenseMgnt.issueLicenseText' | translate}}
+                </button>
+
+            </ng-container>
+
+            <button type="button" class="btn btn-primary mb-2" [routerLink]="['/licencemgnt/viewLicenseStatus']"> {{'licenseMgnt.backText' | translate}}</button>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Checklist Verification -->
+<div class="modal fade" id="checklistModal" tabindex="-1" role="dialog" aria-labelledby="checklistModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checklistModalLabel">{{'licenseMgnt.checklistVerificationText' | translate}}</h5>
+                <button type="button" #checkListCloseBtn class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="checkList">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{'licenseMgnt.sNoText' | translate}}</th>
+                                    <th>{{'licenseMgnt.checklistText' | translate}}</th>
+                                    <th>{{'licenseMgnt.isitVerifiedText' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="checkListForm">
+                                <tr *ngFor="let item of checkList; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td><label class="w-100 view-label">{{item.paramValue}}</label></td>
+                                    <td>
+                                        <mat-radio-group
+                                            [formControl]="getCheckListDocumentFormArray.at(i).get('isVerified')"
+                                            aria-label="Select an option">
+                                            <mat-radio-button color="primary" [value]="true"> Yes </mat-radio-button>
+                                            <mat-radio-button color="primary" [value]="false"> No </mat-radio-button>
+                                        </mat-radio-group>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="onCheckListSubmit()">{{'licenseMgnt.submitText' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

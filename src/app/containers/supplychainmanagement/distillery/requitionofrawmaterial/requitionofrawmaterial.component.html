@@ -1,0 +1,113 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Requition of Raw Material List
+    <button type="submit" class="btn btn-success pull-right" routerLink="/supplychainmanagement/distillery/requitionofrawmaterial/add">
+        <i class="feather icon-plus mr-2"></i>
+       Add Requition
+    </button>
+  </h5>
+  
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Requition of Raw Material</a></li>
+    <li class="breadcrumb-item">List</li>
+  </ul>
+  
+  <div class="row">
+      <div class="col-xl-12">
+          <app-card cardTitle="Search" class="search-panel">
+              <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Product Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Product Name">
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Grade</label>
+                          <select class="form-control"  name="grade">
+                            <option value="">Select</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                        </select>
+                      </div>
+                  </div>
+  
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                      <div class="form-group">
+                          <label>Measurement</label>
+                          <select class="form-control" name="measurement">
+                            <option value="">select</option>
+                            <option value="Measurement 1">Measurement 1</option>
+                            <option value="Measurement 2">Measurement 2</option>
+                            <option value="Measurement 3">Measurement 3</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-12 text-right">
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+               </div>
+              </div>
+          </app-card>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Requition of Raw Material List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Grade</th>
+                            <th>Requisition Quantity </th>
+                            <th>Measurement</th>
+                            <th>Request Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     
+                        <tr *ngFor="let item of rawmaterials">
+                          <td>1</td>
+                          <td>{{item.productname}}</td>
+                          <td>{{item.grade}}</td>
+                          <td>{{item.requisitionqty}}</td>
+                          <td>{{item.measurement}}</td>
+                          <td>{{item.requestdate}}</td>
+                          <td class="table-action-column">
+                              <button class="btn btn-icon btn-primary mr-2" type="button" (click)="navigateView()">
+                                  <i class="feather icon-eye"></i></button>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+              <div class="col-xl-4" >
+                  <div ngbDropdown>
+                  <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                  <div ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:">Excel</a>
+                  <a class="dropdown-item" href="javascript:">PDF</a>
+                  <a class="dropdown-item" href="javascript:">CSV</a>
+                  </div>
+              </div>
+              </div>
+           
+          </div>
+        </app-card>
+    </div>
+  </div>
+  
+  
+  

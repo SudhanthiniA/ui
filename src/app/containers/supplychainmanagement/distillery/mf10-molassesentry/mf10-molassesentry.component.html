@@ -1,0 +1,100 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF 10 Molasses Entry List
+    <!-- <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/distillery/mf10-molassesentry/add">
+        <i class="feather icon-plus"></i>
+       Add MF10 Molasses Entry
+    </button>    -->
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/mf6-part-one/list">Molasses In-Ward At Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/mf10-molassesentry/list"> MF 10 Molasses Entry</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Molasses Type</label>
+                        <select id="molassesId" name="molassesId" #molassesId="ngModel" [(ngModel)]="molassesentrysearchObj['molassesId']"
+                                required class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of molassestypeData" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Total Molasses Received</label>
+                        <input type="number" class="form-control" placeholder="Enter Total Molasses Received">
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchapi()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click) = "resetKey()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" MF 10 Molasses Entry List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Molasses Type</th>
+                            <th>Opening Stock on Nov 1st</th>
+                            <th>Total Molasses Received</th>
+                            <th>Book Balance</th>
+                           <th>Process Storage & Balance</th>
+                           <th>Total Transit Wastage </th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let item of molassesEntryList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.molassesName?.name}}</td>
+                            <td>{{item.openingStockOn1stNovember}}</td>
+                            <td class="">{{item.totalMolassesReceived}}</td>
+                            <td>{{item.bookBalance}}</td>
+                            <td>{{item.processesAndStorageWastage}}</td>
+                            <td>{{item.totalTransitWastageTillSept2020}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary mr-2" type="button" 
+                                routerLink="/supplychainmanagement/distillery/mf10-molassesentry/view/{{item.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                   
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                        href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                        href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                        href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                    </div>
+                </div>
+                </div>
+            </div> -->
+        </app-card>
+    </div>
+</div>

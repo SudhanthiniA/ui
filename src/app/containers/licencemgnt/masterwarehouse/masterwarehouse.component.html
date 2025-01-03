@@ -1,0 +1,1161 @@
+<h5 class="m-b-10 ng-star-inserted">Registration of Master Warehouse </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Brewery Winery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Applicant - Registration of Master Warehouse</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="LMForm" autocomplete="off">
+
+            <app-card cardTitle="Registration of Master Warehouse" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial year</label>
+                            <input type="number" readonly class="form-control" formControlName='financialYear'
+                                placeholder="2020-2021">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Application</label>
+                            <input type="date" disabled class="form-control" formControlName='dateOfApplication'
+                                value="{{ post.startDate | date:'yyyy-MM-dd' }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='photoOfApplicant'
+                                        (change)="onFileChange($event, 'photoOfApplicantFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('photoOfApplicant').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('photoOfApplicant').errors?.required">
+                                    Applicant Photo is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Photo of Shop</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='photoOfShop'
+                                        (change)="onFileChange($event, 'photoOfShopFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('photoOfShop').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('photoOfShop').errors?.required">
+                                    Applicant Photo is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Applicant Personal Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Salutation</label>
+                            <select class="form-control" (change)="onGenderChange($event.target.value)"
+                                formControlName='salutation' required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of salutationObj" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('salutation').errors || LMForm.get('salutation').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('salutation').errors?.required">
+                                    Salutation is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">First Name</label>
+                            <input type="text" class="form-control" formControlName='firstName'
+                                placeholder="Enter First Name">
+                            <div *ngIf="formSubmitted && LMForm.get('firstName').errors || LMForm.get('firstName').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('firstName').errors?.required">
+                                    First Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" formControlName='middleName'
+                                placeholder="Enter Middle Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Last Name</label>
+                            <input type="text" class="form-control" formControlName='lastName' required
+                                placeholder="Enter Last Name">
+                            <div *ngIf="formSubmitted && LMForm.get('lastName').errors || LMForm.get('lastName').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('lastName').errors?.required">
+                                    Last Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Date of Birth</label>
+                            <input type="date" required class="form-control" formControlName='dateOfBirth'
+                                [max]="maxDate" placeholder="">
+                            <div *ngIf="formSubmitted && LMForm.get('dateOfBirth').errors || LMForm.get('dateOfBirth').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('dateOfBirth').errors?.required">
+                                    Date of Birth is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Gender</label>
+                            <select class="form-control" required formControlName='gender'>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of genders" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('gender').errors || LMForm.get('gender').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('gender').errors?.required">
+                                    Gender is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Aadhaar Number</label>
+                            <input type="text" minlength="12" maxlength="12" (keypress)="numberOnly($event)"
+                                class="form-control" formControlName='aadharNumber' placeholder="Enter Aadhaar Number">
+                            <div *ngIf="formSubmitted && LMForm.get('aadharNumber').errors || LMForm.get('aadharNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('aadharNumber').errors?.required">
+                                    Aadhaar Number is required
+                                </span>
+                                <span *ngIf="LMForm.get('aadharNumber').errors?.minlength">
+                                    Please Enter Minimum 12 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('aadharNumber').errors?.maxlength">
+                                    Please Enter Maximum 12 Numbers
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='aadhar'
+                                        (change)="onFileChange($event, 'aadharFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('aadhar').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('aadhar').errors?.required">
+                                    Upload Aadhar is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Email Id</label>
+                            <input type="text" class="form-control" formControlName='emailId' required
+                                placeholder="Enter Email Id">
+                            <div *ngIf="formSubmitted && LMForm.get('emailId').errors || LMForm.get('emailId').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('emailId').errors?.required">
+                                    Email Id is required
+                                </span>
+                                <span *ngIf="LMForm.get('emailId').errors?.email">
+                                    Email Id must be a valid email address
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Mobile Number</label>
+                            <input type="text" minlength="10" maxlength="10" (keypress)="numberOnly($event)"
+                                class="form-control" formControlName='mobileNo' required
+                                placeholder="Enter Mobile Number">
+                            <div *ngIf="formSubmitted && LMForm.get('mobileNo').errors || LMForm.get('mobileNo').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('mobileNo').errors?.required">
+                                    Mobile Number is required
+                                </span>
+                                <span *ngIf="LMForm.get('mobileNo').errors?.minlength">
+                                    Please Enter Minimum 10 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('mobileNo').errors?.maxlength">
+                                    Please Enter Maximum 10 Numbers
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">PAN Number</label>
+                            <input type="text" class="form-control" formControlName='panNumber' minlength="10"
+                                pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" formControlName='panNo' maxlength="10"
+                                placeholder="Enter PAN Number" required>
+                            <div *ngIf="formSubmitted && LMForm.get('panNo').errors || LMForm.get('panNo').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('panNo').errors?.required">
+                                    PAN Number is required
+                                </span>
+                                <span *ngIf="LMForm.get('panNo').errors?.pattern">
+                                    Please Enter Valid PAN Number
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='PAN'
+                                        (change)="onFileChange($event, 'PANFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('PAN').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('PAN').errors?.required">
+                                    Upload PAN is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Name of Applicant's Father/Husband:</label>
+                            <input type="text" class="form-control" formControlName='fatherHusbandName' required
+                                placeholder="Enter Name of Applicant's Father/Husband">
+                            <div *ngIf="formSubmitted && LMForm.get('fatherHusbandName').errors || LMForm.get('fatherHusbandName').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('fatherHusbandName').errors?.required">
+                                    Mobile Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Select ITR</label>
+                            <select class="form-control" formControlName='ITR' required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of ITRList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload ITR (Last year)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='ITRLastYear'
+                                        (change)="onFileChange($event, 'ITRLastYearFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('ITRLastYear').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('ITRLastYear').errors?.required">
+                                    Applicant Photo is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Reason if, Previous Assessment ITR uploaded</label>
+                            <input type="text" class="form-control" formControlName='assessmentITR' required
+                                placeholder="Enter Name of Applicant's Father/Husband">
+                            <div *ngIf="formSubmitted && LMForm.get('assessmentITR').errors || LMForm.get('assessmentITR').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('assessmentITR').errors?.required">
+                                    Previous Assessment ITR is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Upload Character Certificate</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='characterCertificate'
+                                        (change)="onFileChange($event, 'characterCertificateFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('characterCertificate').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('characterCertificate').errors?.required">
+                                    Upload Certificate is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Affaidavit for Eligilibility</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName='affaidavitForEligilibility'
+                                        (change)="onFileChange($event, 'affaidavitForEligilibilityFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('affaidavitForEligilibility').errors"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('affaidavitForEligilibility').errors?.required">
+                                    Upload Certificate is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Address of the Applicant" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" readonly class="form-control" formControlName='country' value='INDIA'
+                                placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Pincode</label>
+                            <input type="text" required minlength="6" maxlength="6" (keypress)="numberOnly($event)"
+                                class="form-control" formControlName='pincode' placeholder="Enter Pincode" required>
+                            <div *ngIf="formSubmitted && LMForm.get('pincode').errors || LMForm.get('pincode').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('pincode').errors?.minlength">
+                                    Please Enter Minimum 6 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('pincode').errors?.required">
+                                    Gender is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">State</label>
+                            <select class="form-control" formControlName='state' required
+                                (change)="onChangeState($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('state').errors || LMForm.get('state').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('state').errors?.required">
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District</label>
+                            <select class="form-control" formControlName='district' required
+                                (change)="onDistrictChange($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of districtList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('district').errors || LMForm.get('district').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('district').errors?.required">
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tehsil</label>
+                            <select class="form-control" formControlName='tehsil' required
+                                (change)="onChangeTehsil($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of tehsilList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('tehsil').errors || LMForm.get('tehsil').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('tehsil').errors?.required">
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Urban/Rural</label>
+                            <select class="form-control" formControlName='localityType'
+                                (change)="onChangeLocalityType($event.target.value)" required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('localityType').errors || LMForm.get('localityType').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('localityType').errors?.required">
+                                    Urban/Rural is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urbanFlag == true">
+                        <div class="form-group">
+                            <label class="mandatory">Municipal Area</label>
+                            <select class="form-control" formControlName='muncipal' required
+                                (change)="onChangeMuncipal($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of muncipalList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('muncipal').errors || LMForm.get('muncipal').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('muncipal').errors?.required">
+                                    Municipal Area is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="urbanFlag == true">
+                        <div class="form-group">
+                            <label class="mandatory">Ward</label>
+                            <input type="text" class="form-control" pattern="^[a-zA-Z0-9]*$" formControlName='ward'
+                                placeholder="Enter Ward">
+                            <div *ngIf="formSubmitted && LMForm.get('ward').errors || LMForm.get('ward').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('ward').errors?.pattern">
+                                    Please enter Alphanumeric values
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="ruralFlag == true">
+                        <div class="form-group">
+                            <label class="mandatory">Block</label>
+                            <select class="form-control" formControlName='block' required
+                                (change)="onChangeBlock($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of blockList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('block').errors || LMForm.get('block').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('block').errors?.required">
+                                    Block is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf="ruralFlag == true">
+                        <div class="form-group">
+                            <label class="mandatory">Village</label>
+                            <input type="text" class="form-control" formControlName='village' required
+                                placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && LMForm.get('village').errors || LMForm.get('village').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('village').errors?.required">
+                                    Village is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Police Station</label>
+                            <select class="form-control" formControlName='policeStation' required
+                                (change)="onChangepoliceStation($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('policeStation').errors || LMForm.get('policeStation').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('policeStation').errors?.required">
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Locality</label>
+                            <input type="text" class="form-control" formControlName='locality' required
+                                placeholder="Enter locality">
+                            <div *ngIf="formSubmitted && LMForm.get('locality').errors || LMForm.get('locality').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('locality').errors?.required">
+                                    Locality is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Street</label>
+                            <input type="text" class="form-control" formControlName='street' required
+                                placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && LMForm.get('street').errors || LMForm.get('street').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('street').errors?.required">
+                                    Street is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </app-card>
+
+            <app-card cardTitle="Master Warehouse Premises" class="list-panel add-panel">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label>Address Type</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" formControlName="addressType" value="Own"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Own</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" formControlName="addressType" value="Rent"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Rent</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline3" formControlName="addressType" value="Lease"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline3">Lease</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Ownership Document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='ownershipDocument'
+                                        (change)="onFileChange($event, 'ownershipDocumentFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('ownershipDocument').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('ownershipDocument').errors?.required">
+                                    Applicant Photo is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" formControlName='premisesCountry' readonly value=0
+                                placeholder="INDIA">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Pincode</label>
+                            <input type="text" minlength="6" maxlength="6" (keypress)="numberOnly($event)"
+                                class="form-control" formControlName='premisesPincode' placeholder="Enter Pincode">
+                            <div *ngIf="formSubmitted && LMForm.get('premisesPincode').errors || LMForm.get('premisesPincode').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesPincode').errors?.minlength">
+                                    Please Enter Minimum 6 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('premisesPincode').errors?.maxlength">
+                                    Please Enter Maximum 6 Numbers
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">State</label>
+                            <select class="form-control" formControlName='premisesState'
+                                (change)="onChangePremisesState($event.target.value)" required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of stateList" value="{{item.id}}">{{item.stateName}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesState').errors || LMForm.get('premisesState').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesState').errors?.required">
+                                    State is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">District</label>
+                            <select class="form-control" formControlName='premisesDistrict'
+                                (change)="onChangePremisesDistrict($event.target.value, true)" required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of premisesDistrictsList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesDistrict').errors || LMForm.get('premisesDistrict').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesDistrict').errors?.required">
+                                    District is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tehsil</label>
+                            <select class="form-control" formControlName='premisesTehsil' required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of premisesTehsilList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesTehsil').errors || LMForm.get('premisesTehsil').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesTehsil').errors?.required">
+                                    Tehsil is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Urban/Rural</label>
+                            <select class="form-control" formControlName='premisesUrban'
+                                (change)="onChangeLocalityTypePremises($event.target.value)" required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of localityTypeList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesUrban').errors || LMForm.get('premisesUrban').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesUrban').errors?.required">
+                                    Urban/Rural is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="premisesUrbanFlag == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Municipal Area</label>
+                            <select class="form-control" formControlName='premisesMuncipal' required
+                                (change)="onChangeMuncipalPremises($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of premisesMuncipalList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesMuncipal').errors || LMForm.get('premisesMuncipal').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesMuncipal').errors?.required">
+                                    Municipal Area is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="premisesUrbanFlag == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Ward</label>
+                            <input type="text" class="form-control" formControlName='premisesWard'
+                                placeholder="Enter Ward">
+                        </div>
+                    </div>
+                    <div *ngIf="premisesRuralFlag == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Block</label>
+                            <select class="form-control" formControlName='premisesBlock' required
+                                (change)="onChangeBlockPremises($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of premisesBlockList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesBlock').errors || LMForm.get('premisesBlock').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesBlock').errors?.required">
+                                    Block is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="premisesRuralFlag == true" class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Village</label>
+                            <input type="text" class="form-control" required formControlName='premisesVillage' required
+                                placeholder="Enter Village">
+                            <div *ngIf="formSubmitted && LMForm.get('premisesVillage').errors || LMForm.get('premisesVillage').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesVillage').errors?.required">
+                                    Village is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Police Station</label>
+                            <select class="form-control" formControlName='premisesPoliceStation' required
+                                (change)="onChangepoliceStationPremises($event.target.value)">
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of premisesPoliceStationList" value="{{item.id}}">{{item.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('premisesPoliceStation').errors || LMForm.get('premisesPoliceStation').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesPoliceStation').errors?.required">
+                                    Police Station is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Locality</label>
+                            <input type="text" class="form-control" formControlName='premisesLocality' required
+                                placeholder="Enter locality">
+                            <div *ngIf="formSubmitted && LMForm.get('premisesLocality').errors || LMForm.get('premisesLocality').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesLocality').errors?.required">
+                                    Locality is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Street</label>
+                            <input type="text" class="form-control" formControlName='premisesStreet' required
+                                placeholder="Enter Street">
+                            <div *ngIf="formSubmitted && LMForm.get('premisesStreet').errors || LMForm.get('premisesStreet').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('premisesStreet').errors?.required">
+                                    Street is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Add Entity" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Entity</th>
+                                        <th>Authorize Person</th>
+                                        <th>Unit Name </th>
+                                        <th>District </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="entityArrayList"
+                                        *ngFor="let form of LMForm?.get('entityArrayList')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td>{{i+1}}</td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <select class="form-control" formControlName="entity">
+                                                    <option disabled selected value="">Select</option>
+                                                    <option *ngFor="let item of entityList" value="{{item.id}}">
+                                                        {{item.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" required formControlName="authorizePerson"
+                                                    class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="text" required formControlName="unitName" rows="1"
+                                                class="form-control" placeholder="">
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <div class="form-group mb-0">
+                                                <input type="text" required maxlength="10"
+                                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                    formControlName="District" class="form-control" placeholder="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-icon btn-success mr-2" type="button"
+                                                (click)="addrow(i)">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button *ngIf="i!==getFormLength()-1" class="btn btn-icon btn-danger mr-2"
+                                                type="button" (click)="removeSelectedRow(i)">
+                                                <i class="feather icon-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Attachments" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Layout Plan</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='layoutPlan'
+                                        (change)="onFileChange($event, 'layoutPlanFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('layoutPlan').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('layoutPlan').errors?.required">
+                                    Layout Plan is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Solvency Certificate / Property certificate by Authorize Income tax
+                                valuer</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName='solvencyCertificateAutorized'
+                                        (change)="onFileChange($event, 'solvencyCertificateAutorizedFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('solvencyCertificateAutorized').errors"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('solvencyCertificateAutorized').errors?.required">
+                                    Solvency Certificate / Property certificate by Authorize Income tax is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Validity of Solvency certificate / certificate of Property</label>
+                            <input type="text" class="form-control" formControlName='validityOfSolvencyCertificate'
+                                placeholder="Enter Validity of Solvency certificate / certificate of Property" required>
+                            <div *ngIf="formSubmitted && LMForm.get('validityOfSolvencyCertificate').errors || LMForm.get('validityOfSolvencyCertificate').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('validityOfSolvencyCertificate').errors?.required">
+                                    Validity of Solvency certificate / certificate of Property is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Fire Safety NoC</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='fireSafetyNoC'
+                                        (change)="onFileChange($event, 'fireSafetyNoCFileSourceaffadavait', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('fireSafetyNoC').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('fireSafetyNoC').errors?.required">
+                                    Fire Safety NoC is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Affadavait</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='affadavait'
+                                        (change)="onFileChange($event, 'affadavaitFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('affadavait').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('affadavait').errors?.required">
+                                    Affadavait is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>GSTIN of the Unit</label>
+                            <input type="text" class="form-control" formControlName='GSTINUnit'
+                                placeholder="Enter GSTIN of the Unit" required>
+                            <div *ngIf="formSubmitted && LMForm.get('GSTINUnit').errors || LMForm.get('GSTINUnit').touched"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('GSTINUnit').errors?.required">
+                                    GSTIN of the Unit is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload GSTIN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='gSTIN'
+                                        (change)="onFileChange($event, 'gSTINFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('gSTIN').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('gSTIN').errors?.required">
+                                    Upload is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Fssai certificate</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='fssaiCertificate'
+                                        (change)="onFileChange($event, 'fssaiCertificateFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('fssaiCertificate').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('fssaiCertificate').errors?.required">
+                                    Fssai certificate is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">NoC of premises </label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='noCOfpremises'
+                                        (change)="onFileChange($event, 'noCOfpremisesFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('noCOfpremises').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('noCOfpremises').errors?.required">
+                                    NoC of premises is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Certificate of pollution control</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName='certificateOfPollutionControl'
+                                        (change)="onFileChange($event, 'certificateOfPollutionControlFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('certificateOfPollutionControl').errors"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('certificateOfPollutionControl').errors?.required">
+                                    Certificate of pollution control is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>PAN No.</label>
+                            <input type="text" class="form-control" formControlName='PANNumber' placeholder="Enter PAN No" required>
+                            <div *ngIf="formSubmitted && LMForm.get('PANNumber').errors || LMForm.get('PANNumber').touched" class="error-msg">
+                                <span *ngIf="LMForm.get('PANNumber').errors?.required">
+                                    PAN No is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='PANDocument'
+                                        (change)="onFileChange($event, 'PANDocumentFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('PANDocument').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('PANDocument').errors?.required">
+                                    Upload PAN is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Solvency Certificate/ Certificate of property issued by Autorized
+                                Income tax Valuer</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                        formControlName='solvencyCertificateIssuedAutorized'
+                                        (change)="onFileChange($event, 'solvencyCertificateIssuedAutorizedFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('solvencyCertificateIssuedAutorized').errors"
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('solvencyCertificateIssuedAutorized').errors?.required">
+                                    Solvency Certificate/ Certificate of property issued by Autorized
+                                    Income tax Valuer is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Validity of Solvency Certificate/ Certificate of property</label>
+                            <input type="text" class="form-control" formControlName='ValidityOfSolvencyCertificateNew' placeholder="Enter Validity of Solvency Certificate/ Certificate of property" required>
+                            <div *ngIf="formSubmitted && LMForm.get('ValidityOfSolvencyCertificateNew').errors || LMForm.get('ValidityOfSolvencyCertificateNew').touched" class="error-msg">
+                                <span *ngIf="LMForm.get('ValidityOfSolvencyCertificateNew').errors?.required">
+                                    Validity of Solvency Certificate/ Certificate of property is required
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc"> Affaidavit for Eligilibility</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='affaidavit'
+                                        (change)="onFileChange($event, 'affaidavitFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('affaidavit').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('affaidavit').errors?.required">
+                                    Affaidavit for Eligilibility is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Bank Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bank Account Number</label>
+                            <input type="text" (keypress)="numberOnly($event)" class="form-control"
+                                formControlName="bankAccountNo" placeholder="Enter Bank Account Number">
+                            <div *ngIf="formSubmitted && LMForm.get('bankAccountNo').errors || LMForm.get('bankAccountNo').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('bankAccountNo').errors?.required">
+                                    Bank Account Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bank IFSC</label>
+                            <input type="text" minlength="11" maxlength="11" class="form-control"
+                                formControlName="bankIfsc" pattern="^(?=.*?[A-Za-z])(?=.*?[0-9])[A-Za-z0-9]+$"
+                                placeholder="Enter Bank IFSC">
+                            <div *ngIf="formSubmitted && LMForm.get('bankIfsc').errors || LMForm.get('bankIfsc').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('bankIfsc').errors?.required">
+                                    Bank IFSC is required
+                                </span>
+                                <span *ngIf="LMForm.get('bankIfsc').errors?.minlength">
+                                    Please Enter Minimum 11 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('bankIfsc').errors?.maxlength">
+                                    Please Enter Maximum 11 Numbers
+                                </span>
+                                <span *ngIf="LMForm.get('bankIfsc').errors?.pattern">
+                                    Enter Valid Bank IFSC Code
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Bank Name</label>
+                            <select class="form-control" formControlName="bankName" required>
+                                <option disabled selected value="">Select</option>
+                                <option *ngFor="let item of bankList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && LMForm.get('bankName').errors || LMForm.get('bankName').touched "
+                                class="error-msg">
+                                <span *ngIf="LMForm.get('bankName').errors?.required">
+                                    Bank Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='cancelCheque'
+                                        (change)="onFileChange($event, 'cancelChequeFileSource', LMForm)">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <div *ngIf="formSubmitted && LMForm.get('cancelCheque').errors" class="error-msg">
+                                <span *ngIf="LMForm.get('cancelCheque').errors?.required">
+                                    Applicant Photo is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+
+        <div class=" text-content text-right mb-4">
+            <button type="button" class="btn btn-warning mb-2 ml-2" (click)="onSubmit(LMForm)">Save as draft</button>
+            <button type="button" class="btn btn-info mb-2 ml-2" (click)="preview(LMForm)">Preview</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" (click)="onSubmit(LMForm)">Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Cancel</button>
+        </div>
+    </div>
+</div>

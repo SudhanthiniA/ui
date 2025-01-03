@@ -1,0 +1,267 @@
+<h5 class="m-b-10 ng-star-inserted"> Add BWFL 7</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">BWFL 7</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<div class="row">
+    <form #bwfl7form="ngForm" autocomplete="off">
+        <div class="col-xl-12">
+             <app-card cardTitle="Enter Details to Add BWFL 7" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Pass covering issues from the bonded warehouse of foreign liquor at
+                            </label>
+                            <input type="text" name="passCoveringIssue" #passCoveringIssue="ngModel" [(ngModel)]="bwfl7obj['passCoveringIssue']" class="form-control" placeholder="">
+                            <div *ngIf="passCoveringIssue.invalid && (passCoveringIssue.dirty || passCoveringIssue.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="passCoveringIssue?.errors?.required"><i class="fa fa-times"></i>
+                                    passCoveringIssue is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pass Number
+                            </label>
+                            <input type="text" name="passNumber" #passNumber="ngModel" [(ngModel)]="bwfl7obj['passNumber']" required class="form-control" placeholder="785498">
+                            <div *ngIf="passNumber.invalid && (passNumber.dirty || passNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="passNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    pass Number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date
+                            </label>
+                            <input type="date" name="bwfl7Date" #bwfl7Date="ngModel" [(ngModel)]="bwfl7obj['bwfl7Date']" required class="form-control" placeholder="">
+                            <div *ngIf="bwfl7Date.invalid && (bwfl7Date.dirty || bwfl7Date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="bwfl7Date?.errors?.required"><i class="fa fa-times"></i>
+                                    System date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-xl-12">
+            <!-- <form #boxingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="Current To" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Cosigner</label>
+                            <input type="text" name="nameOfConsigner" #nameOfConsigner="ngModel" [(ngModel)]="bwfl7obj['nameOfConsigner']" required class="form-control" placeholder="Sara">
+                            <!-- <select class="form-control" name="nameOfConsigner" #nameOfConsigner="ngModel" [(ngModel)]="bwfl7obj['nameOfConsigner']" required>
+                                <option value="">Select</option>
+                                <option value="0">ABC</option>
+                                <option value="1">DEF</option>
+                            </select> -->
+                            <div *ngIf="nameOfConsigner.invalid && (nameOfConsigner.dirty || nameOfConsigner.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfConsigner?.errors?.required"><i class="fa fa-times"></i>
+                                    name Of Consigner is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Consignee
+                            </label>
+                            <input type="text" name="nameOfConsignee" #nameOfConsignee="ngModel" [(ngModel)]="bwfl7obj['nameOfConsignee']" required class="form-control" placeholder="Jean">
+                            <div *ngIf="nameOfConsignee.invalid && (nameOfConsignee.dirty || nameOfConsignee.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfConsignee?.errors?.required"><i class="fa fa-times"></i>
+                                    name Of Consignee is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Which Dispatched
+                            </label>
+                             <select class="form-control" name="dispatched" #dispatched="ngModel" [(ngModel)]="bwfl7obj['dispatched']" required class="form-control">
+                                <option value="">Select</option>
+                                <option value=0>ABC</option>
+                                <option value=1>DEF</option>
+                            </select>
+                            <div *ngIf="dispatched.invalid && (dispatched.dirty || dispatched.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatched?.errors?.required"><i class="fa fa-times"></i>
+                                    dispatched is required
+                                </div>
+                            </div>
+                            <!-- <input type="text" name="dispatched" #dispatched="ngModel" [(ngModel)]="bwfl7obj['dispatched']" required class="form-control" placeholder="Product"> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Number
+                            </label>
+                            <input type="number" name="permitNumber" #permitNumber="ngModel" [(ngModel)]="bwfl7obj['permitNumber']" required class="form-control" placeholder="98581">
+                            <div *ngIf="permitNumber.invalid && (permitNumber.dirty || permitNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="permitNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    permit Number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Permit
+                            </label>
+                            <input type="date" name="dateOfPermit" #dateOfPermit="ngModel" [(ngModel)]="bwfl7obj['dateOfPermit']" required class="form-control" placeholder="">
+                            <div *ngIf="dateOfPermit.invalid && (dateOfPermit.dirty || dateOfPermit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dateOfPermit?.errors?.required"><i class="fa fa-times"></i>
+                                    Permit date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Officer Incharge
+                                bonded warehouse
+                                
+                            </label>
+                            <input type="text" name="officerIncharge" #officerIncharge="ngModel" [(ngModel)]="bwfl7obj['officerIncharge']" required class="form-control" placeholder="Product">
+                            <div *ngIf="officerIncharge.invalid && (officerIncharge.dirty || officerIncharge.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="officerIncharge?.errors?.required"><i class="fa fa-times"></i>
+                                    officer Incharge is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Description of  Foreign Liquor
+                            </label>
+                            <input type="text" name="descriptionOfFL" #descriptionOfFL="ngModel" [(ngModel)]="bwfl7obj['descriptionOfFL']" required class="form-control" placeholder="JD">
+                            <div *ngIf="descriptionOfFL.invalid && (descriptionOfFL.dirty || descriptionOfFL.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="descriptionOfFL?.errors?.required"><i class="fa fa-times"></i>
+                                    description Of FL is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group"> 
+                            <label>Brand Name </label>
+                            <select name='brandRegistrationId' #brandRegistrationId="ngModel"  
+                            [(ngModel)]="bwfl7obj['brandRegistrationId']" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let b of allbrands" value="{{b.id}}">
+                                    {{b.brandName}}
+                                </option>
+                            </select>
+                            <div *ngIf="brandRegistrationId.invalid && (brandRegistrationId.dirty || brandRegistrationId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandRegistrationId?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Batch Number
+                            </label>
+                            <input type="text" name="batchNumber" #batchNumber="ngModel" [(ngModel)]="bwfl7obj['batchNumber']" required class="form-control" placeholder="4598">
+                            <div *ngIf="batchNumber.invalid && (batchNumber.dirty || batchNumber.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="batchNumber?.errors?.required"><i class="fa fa-times"></i>
+                                    batch Number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <!-- </form> -->
+        </div>
+
+        <div class="col-xl-12">
+            <!-- <form #boxingForm="ngForm" autocomplete="off"> -->
+            <app-card cardTitle="Bottles (Quantity contained in)" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quart
+                            </label>
+                            <input type="number" name="quart" #quart="ngModel" [(ngModel)]="bwfl7obj['quart']" id="noofbottles" required class="form-control" placeholder="250">
+                            <div *ngIf="quart.invalid && (quart.dirty || quart.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quart?.errors?.required"><i class="fa fa-times"></i>
+                                    quart is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pint
+                            </label>
+                            <input type="number" name="pint" #pint="ngModel" [(ngModel)]="bwfl7obj['pint']" required class="form-control" placeholder="180">
+                            <div *ngIf="pint.invalid && (pint.dirty || pint.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="pint?.errors?.required"><i class="fa fa-times"></i>
+                                    pint is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Nips
+                            </label>
+                            <input type="number" name="nips" #nips="ngModel" [(ngModel)]="bwfl7obj['nips']" required class="form-control" placeholder="100">
+                            <div *ngIf="nips.invalid && (nips.dirty || nips.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nips?.errors?.required"><i class="fa fa-times"></i>
+                                    nips is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Bulk Litres
+                            </label>
+                            <input type="number" name="totalBulkLtr" #totalBulkLtr="ngModel" [(ngModel)]="bwfl7obj['totalBulkLtr']" required class="form-control" placeholder="150000">
+                            <div *ngIf="totalBulkLtr.invalid && (totalBulkLtr.dirty || totalBulkLtr.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="totalBulkLtr?.errors?.required"><i class="fa fa-times"></i>
+                                    totalBulkLtr is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-secondary  mb-2" routerLink="/supplychainmanagement/warehouse/bwfl7/list">Back</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addbwfl7Details(bwfl7form,'DRAFT')">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addbwfl7Details(bwfl7form,'SUBMITTED')" >Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="bwfl7form.resetForm({})">Clear</button>
+                <!-- routerLink="/supplychainmanagement/warehouse/bwfl7/list" -->
+            </div>
+        </div>
+    </form>
+</div>

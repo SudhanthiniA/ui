@@ -1,0 +1,1081 @@
+<h5 class="m-b-10 ng-star-inserted">Bond License BWFL 2</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'licenseMgnt.title' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'licenseMgnt.bondWareHouseTitle' | translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{screenObj[screenSubType]}}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off" [formGroup]="bondForm">
+            <app-card cardTitle="Registration for Bonds in UP" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'licenseMgnt.financialYear' | translate}}</label>
+                            <input type="text" class="form-control" formControlName="financialYear" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <!-- <label>{{'licenseMgnt.appl_date' || translate}}</label> -->
+                            <label>Date of Application</label>
+                            <input type="text" class="form-control" placeholder="Date of Application" formControlName="applicationDate" readonly>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+             
+             <app-card cardTitle="Distillery/Brewery or Bottling Unit Detail" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Parent Unit</label>
+                            <input type="text" class="form-control" value="Distillery" disabled />
+                            <app-show-errors eleName="Parent Unit" [frmSub]="formSubmitted" [control]="getFormCntr('parentUnit')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type </label>
+                            <input type="text" class="form-control" value="BWFL2A" disabled />
+                            <app-show-errors eleName="License Type" [frmSub]="formSubmitted" [control]="getFormCntr('licenseType')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Unit </label>
+                            <input type="text" class="form-control" value="Krishna Distillery" disabled />
+                            <app-show-errors eleName="Name of the Unit" [frmSub]="formSubmitted" [control]="getFormCntr('nameOfUnit')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="display: none;">
+                        <div class="form-group">
+                            <button (click)="loadDummyBondFormData()">Load-Data</button>
+                        </div>
+                    </div>
+                </div>
+             </app-card>
+            <app-card cardTitle="Address of the Unit" class="list-panel add-panel" formGroupName="addrUnit">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" formControlName='countryCode' disabled>
+                                <option value="">Select</option>
+                                <option value="1">India</option>
+                            </select>
+                            <app-show-errors eleName="Country" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('countryCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" formControlName="pincode" placeholder="Enter Pincode" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Pincode" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('pincode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="stateCode" (change)="onStateChange($event.target.value, SEC_UNIT_OFC)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="State" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('stateCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="districtCode" (change)="onDistrictChange($event.target.value, SEC_UNIT_OFC)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of unitOfcDistrictListByState" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="District" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('districtCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="tahsilCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of unitOfctalukList" value="{{item.id}}">{{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="Tehsil" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('tahsilCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="localityType" (change)="onLocalityChange($event,LOCA_FOR_UNIT)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of urbanRuralArr" value="{{item.key}}">{{item.value}}</option>
+                            </select>
+                            <app-show-errors eleName="Urban/Rural" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('localityType')"></app-show-errors>
+                        </div>
+                    </div>
+                   
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Municipal Area</label>
+                                <select class="form-control" formControlName="municipalAreaCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Ward</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="Enter Ward" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('ward')"></app-show-errors>
+                            </div>
+                        </div>
+                  
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Block</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="Enter Block" [readonly]="isReadOnly">
+                                <!-- <select class="form-control" formControlName="block" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of blockList" value="{{item.id}}">{{item.name}}</option>
+                                </select> -->
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('block')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Village</label>
+                                <input type="text" class="form-control" formControlName="villageCode" placeholder="Enter Village" [readonly]="isReadOnly">
+                                <!-- <select class="form-control" formControlName="villageCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of villageList" value="{{item.id}}">{{item.name}}</option>
+                                </select> -->
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('villageCode')"></app-show-errors>
+                            </div>
+                        </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStationCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Police Station" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('policeStationCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="locality" placeholder="Enter Locality" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('locality')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="Enter Street" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('street')"></app-show-errors>
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+            <app-card cardTitle="Attachments of the Unit" class="list-panel add-panel" formGroupName="addrUnit">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Firm's License No. of the Unit </label>
+                            <input type="number" class="form-control" formControlName="firmsLicenseNoOfUnit" placeholder="Enter Firm's License No. of the Unit" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Firm's License" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('firmsLicenseNoOfUnit')"></app-show-errors>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Valid Licence Copy</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='license_file' (change)="onBondLicFileChange($event, SRC_LIC, FN_LIC)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload Valid Licence Copy" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('license_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_LIC, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_LIC, FILE_BUSSINESS)">{{isBondFile(FN_LIC,FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload BWFL 3 Bond Document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='bwfl_doc_file' (change)="onBondLicFileChange($event, SRC_BWFL_BOND_DOC, FN_BWFL_BOND_DOC)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload BWFL 3 Bond Document" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('bwfl_doc_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_BWFL_BOND_DOC, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_BWFL_BOND_DOC, FILE_BUSSINESS)">{{isBondFile(FN_BWFL_BOND_DOC, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Power of Attorney</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='power_attrorney_file' (change)="onBondLicFileChange($event, SRC_POW_ATTRON, FN_POW_ATTRON)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload Power of Attorney" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('power_attrorney_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_POW_ATTRON, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_POW_ATTRON, FILE_BUSSINESS)">{{isBondFile(FN_POW_ATTRON, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Criteria Affaidavit</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='affaidavit_file' (change)="onBondLicFileChange($event, SRC_AFFAID, FN_AFFAID)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload Criteria Affaidavit" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('affaidavit_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_AFFAID,FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_AFFAID, FILE_BUSSINESS)">{{isBondFile(FN_AFFAID,FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN No. of the Unit </label>
+                            <input type="text" class="form-control" formControlName="panNoOfUnit" placeholder="Enter PAN No. of the Unit" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Pan no of the unit" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('panNoOfUnit')"></app-show-errors>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='pan_file' (change)="onBondLicFileChange($event, SRC_PAN, FN_PAN)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="PAN File" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('pan_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_PAN, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_PAN, FILE_BUSSINESS)">{{isBondFile(FN_PAN, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Select ITR</label>
+                            <select class="form-control" formControlName="itrAssesmentYearCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">select</option>
+                                <option *ngFor="let item of itrAssesmentList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="ITR" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('itrAssesmentYearCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload ITR</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='itr_file' (change)="onBondLicFileChange($event, SRC_ITR, FN_ITR)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="ITR File" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('itr_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_ITR, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_ITR, FILE_BUSSINESS)">{{isBondFile(FN_ITR, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason if, Previous Assessment ITR uploaded</label>
+                            <input type="text" class="form-control" formControlName="previusItrUploadReason" placeholder="Enter Reason if, Previous Assessment ITR uploaded" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Previous Assessment ITR" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('previusItrUploadReason')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">GSTIN of the Unit</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='gstin_file' (change)="onBondLicFileChange($event, SRC_GSTIN, FN_GSTIN)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="GSTIN of the Unit" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('gstin_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_GSTIN,FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_GSTIN, FILE_BUSSINESS)">{{isBondFile(FN_GSTIN,FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Annual Turnover (in Lakhs)</label>
+                            <input type="number" class="form-control" formControlName="annualTurnOver" placeholder="Enter Annual Turnover (in Lakhs)" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Annual Turnover" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('annualTurnOver')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Certificate of annual turnover issued by a registered CA on his Letterhead</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='annual_turnover_file' (change)="onBondLicFileChange($event, SRC_ANNUAL_TURN, FN_ANNUAL_TURN)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certificate of annual turnover letter" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('annual_turnover_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_ANNUAL_TURN,FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_ANNUAL_TURN, FILE_BUSSINESS)">{{isBondFile(FN_ANNUAL_TURN,FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-0 mt-4">
+                        <button type="button" class="btn btn-success ml-2 mb-2">Download the Declaration </button>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Annual Production Capacity(In Lakhs cases)</label>
+                            <input type="number" class="form-control" formControlName="annualProductionCapacity" placeholder="Enter Annual Production Capacity" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Annual Production Capacity" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('annualProductionCapacity')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">certificate of other state excise official (Duly signed & Stamped)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='certificate_of_state_excise_file' (change)="onBondLicFileChange($event, SRC_CERT_STATE_EXCISE, FN_CERT_STATE_EXCISE)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Certificate of other state excise" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('certificate_of_state_excise_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_CERT_STATE_EXCISE, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_CERT_STATE_EXCISE, FILE_BUSSINESS)">{{isBondFile(FN_CERT_STATE_EXCISE, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-0 mt-4">
+                        <button type="button" class="btn btn-success ml-2 mb-2">Download the Declaration </button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload the above Declaration</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='declaration_file' (change)="onBondLicFileChange($event, SRC_DECLARATION, FN_DECLARATION)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Upload the above Declaration" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('declaration_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_DECLARATION, FILE_BUSSINESS)">
+                                <button (click)="downloadDocument(FN_DECLARATION, FILE_BUSSINESS)">{{isBondFile(FN_DECLARATION, FILE_BUSSINESS).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>States with population more than 1cr in which supply are made</label>
+                            <!-- (change)="getStateData($event.target.value, SEC_UNIT_OFC_STORE)" -->
+                            <select class="form-control" formControlName="stateSupplyCode"  [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="States with population more than 1cr" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('stateSupplyCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Production/Supply in each state</label>
+                            <input type="number" class="form-control" formControlName="stateQuantitySupply" placeholder="Enter Quantity Production/Supply in each state" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Quantity Production" [frmSub]="formSubmitted" [control]="getAddrUnitFormCntr('stateQuantitySupply')"></app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Applicant Details" class="list-panel add-panel" formGroupName="applDet">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Salutation</label>
+                            <select class="form-control" formControlName="salutation" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">select</option>
+                                <option *ngFor="let item of salutationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Salutation" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('salutation')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name" [readonly]="isReadOnly">
+                            <app-show-errors eleName="First Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('firstName')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" formControlName="middleName" placeholder="Enter Middle Name" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Middle Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('middleName')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Last Name </label>
+                            <input type="text" class="form-control" formControlName="lastName" placeholder="Enter Last Name" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Last Name" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('lastName')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Photo of Applicant</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='applicant_photo_file' (change)="onBondLicAppliFileChange($event, SRC_APPLI_PHOTO, FN_APPLI_PHOTO)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Photo of Applicant" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('applicant_photo_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_APPLI_PHOTO, FILE_APPLICANT)">
+                                <button (click)="downloadDocument(FN_APPLI_PHOTO, FILE_APPLICANT)">{{isBondFile(FN_APPLI_PHOTO, FILE_APPLICANT).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Designation of the Applicant</label>
+                            <input type="text" class="form-control" formControlName="applicantDesignation" placeholder="Enter Designation of the Applicant" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Designation of the Applicant" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('applicantDesignation')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mobile No. of the Applicant</label>
+                            <input type="text" class="form-control" formControlName="mobileNumber" placeholder="Enter Mobile No. of the Applicant" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Mobile No" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('mobileNumber')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mail ID of the Applicant</label>
+                            <input type="email" class="form-control" formControlName="emailId" placeholder="Enter Mail ID of the Applicant" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Mail ID" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('emailId')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Name of the Applicant's Father/Husband</label>
+                            <input type="text" class="form-control" formControlName="applicantFatherHusbandName" placeholder="Enter Name of the Applicant's Father/Husband" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Name" [frmSub]="formSubmitted"
+                                [control]="getApplDetFormCntr('applicantFatherHusbandName')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Aadhaar No. of the Applicant</label>
+                            <input type="text" class="form-control" formControlName="aadharNumber" placeholder="Enter Aadhaar No. of the Applicant" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Aadhaar No" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('aadharNumber')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Aadhar</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='aadhar_file' (change)="onBondLicAppliFileChange($event, SRC_AADHAR, FN_AADHAR)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Aadhaar File" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('aadhar_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_AADHAR, FILE_APPLICANT)">
+                                <button (click)="downloadDocument(FN_AADHAR, FILE_APPLICANT)">{{isBondFile(FN_AADHAR, FILE_APPLICANT).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control" formControlName="genderCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of genderList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Gender" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('genderCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" formControlName="dob" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Date of Birth" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('dob')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PAN Number</label>
+                            <input type="text" class="form-control" formControlName="panNumber" placeholder="Enter PAN No." [readonly]="isReadOnly">
+                            <app-show-errors eleName="PAN Number" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('panNumber')"></app-show-errors>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload PAN</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='pan_file' (change)="onBondLicAppliFileChange($event, SRC_APPLI_PAN, FN_APPLI_PAN)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="PAN File" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('pan_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_APPLI_PAN, FILE_APPLICANT)">
+                                <button (click)="downloadDocument(FN_APPLI_PAN, FILE_APPLICANT)">{{isBondFile(FN_APPLI_PAN, FILE_APPLICANT).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Select ITR</label>
+                            <select class="form-control" formControlName="itrAssesmentYearCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">select</option>
+                                <option *ngFor="let item of itrAssesmentList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Select ITR" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('itrAssesmentYearCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload ITR</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='itr_file' (change)="onBondLicAppliFileChange($event, SRC_APPLI_ITR, FN_APPLI_ITR)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="ITR File" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('itr_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_APPLI_ITR, FILE_APPLICANT)">
+                                <button (click)="downloadDocument(FN_APPLI_ITR, FILE_APPLICANT)">{{isBondFile(FN_APPLI_ITR, FILE_APPLICANT).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason if, Previous Assessment ITR uploaded</label>
+                            <input type="text" class="form-control" formControlName="previousItrNotFiled" placeholder="Enter Reason if, Previous Assessment ITR uploaded" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Previous Assessment ITR" [frmSub]="formSubmitted" [control]="getApplDetFormCntr('previousItrNotFiled')"></app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Address" class="list-panel add-panel" formGroupName="addr">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <div class="form-group d-inline">
+                            <!-- (change)="checkboxchange1($event)" -->
+                            <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1" >
+                            <label class="cr mr-2" for="pd1">Click if the address is same as above </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" formControlName='countryCode' disabled>
+                                <option value="">Select</option>
+                                <option value="1">India</option>
+                            </select>
+                            <app-show-errors eleName="Country" [frmSub]="formSubmitted" [control]="getAddrFormCntr('countryCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" formControlName="pincode" placeholder="Enter Pincode" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Pincode" [frmSub]="formSubmitted" [control]="getAddrFormCntr('pincode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="stateCode" (change)="onStateChange($event.target.value, SEC_ADDR_DET)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="State" [frmSub]="formSubmitted" [control]="getAddrFormCntr('stateCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="districtCode" (change)="onDistrictChange($event.target.value, SEC_ADDR_DET)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of addressDetDistrictListByState" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="District" [frmSub]="formSubmitted" [control]="getAddrFormCntr('districtCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="tahsilCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of addressDettalukList" value="{{item.id}}">{{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="Tehsil" [frmSub]="formSubmitted" [control]="getAddrFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="localityType" (change)="onLocalityChange($event,LOCA_FOR_ADDR)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of urbanRuralArr" value="{{item.key}}">{{item.value}}</option>
+                            </select>
+                            <app-show-errors eleName="Urban/Rural" [frmSub]="formSubmitted" [control]="getAddrFormCntr('localityType')"></app-show-errors>
+                        </div>
+                    </div>
+                    
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Municipal Area</label>
+                                <select class="form-control" formControlName="municipalAreaCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                    <option value="">Select</option>                             
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted" [control]="getAddrFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Ward</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="Enter Ward" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted" [control]="getAddrFormCntr('ward')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                  
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Block</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="Enter Block" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getAddrFormCntr('block')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Village</label>
+                                <input type="text" class="form-control" formControlName="villageCode" placeholder="Enter Village" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getAddrFormCntr('villageCode')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                   
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStationCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Police Station" [frmSub]="formSubmitted" [control]="getAddrFormCntr('policeStationCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="locality" placeholder="Enter locality" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted" [control]="getAddrFormCntr('locality')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="Enter Street" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted" [control]="getAddrFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="BWFL Premises" class="list-panel add-panel" formGroupName="bwflPremises">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District Category</label>
+                            <select class="form-control" formControlName="districtcategory" >
+                                <option value="default">select</option>
+                                <option >Category 1</option>
+                                <option >Category 2</option>
+                                <option >Category 3</option>
+                                <option >Category 4</option>
+                            </select>
+                            <app-show-errors eleName="Premises Ownership" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('premisesOwnership')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Name</label>
+                            <input type="text" class="form-control" formControlName="unitName" placeholder="Enter Unit Name" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Unit Name" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('unitName')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Premises Ownership</label>
+                            <select class="form-control" formControlName="premisesOwnership" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">select</option>
+                                <option *ngFor="let item of premisesOwnershipList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Premises Ownership" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('premisesOwnership')"></app-show-errors>
+                        </div>
+                    </div>
+                    <!-- Upload -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Ownership document</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='ownership_file' (change)="onBondLicPremFileChange($event, SRC_PREM_OWNERSHIP, FN_PREM_OWNERSHIP)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Ownership document file" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('ownership_file')"></app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_PREM_OWNERSHIP, FILE_PREMISES)">
+                                <button (click)="downloadDocument(FN_PREM_OWNERSHIP, FILE_PREMISES)">{{isBondFile(FN_PREM_OWNERSHIP, FILE_PREMISES).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="form-group d-inline">
+                                <!-- (change)="checkboxchange2($event)" -->
+                                <input type="checkbox" class="checkbox d-inline" id="applicationtype_pd1" value="Pd1">
+                                <label class="cr mr-2" for="pd1">Click if the address is same as above </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" formControlName='countryCode' disabled>
+                                <option value="">Select</option>
+                                <option value="1">India</option>
+                            </select>
+                            <app-show-errors eleName="Country" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('countryCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" formControlName="pincode" placeholder="Enter Pincode" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Pincode" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('pincode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control" formControlName="stateCode" (change)="onStateChange($event.target.value, SEC_ADDR_BWFL)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stateList" value={{item.id}}>{{item.stateName}}</option>
+                            </select>
+                            <app-show-errors eleName="State" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('stateCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <select class="form-control" formControlName="districtCode" (change)="onDistrictChange($event.target.value, SEC_ADDR_BWFL)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of addressBWFLDistrictListByState" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="District" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('districtCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tehsil</label>
+                            <select class="form-control" formControlName="tahsilCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of addressBWFLTalukList" value="{{item.id}}">{{item.talukName}}</option>
+                            </select>
+                            <app-show-errors eleName="Tehsil" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('tahsilCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Urban/Rural</label>
+                            <select class="form-control" formControlName="localityType" (change)="onLocalityChange($event,LOCA_FOR_PREM_ADDR)" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of urbanRuralArr" value="{{item.key}}">{{item.value}}</option>
+                            </select>
+                            <app-show-errors eleName="Locality Type" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('localityType')"></app-show-errors>
+                        </div>
+                    </div>
+                   
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Municipal Area</label>
+                                <select class="form-control" formControlName="municipalAreaCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of municipalityList" value="{{item.id}}">{{item.name}}</option>
+                                </select>
+                                <app-show-errors eleName="Municipal Area" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('municipalAreaCode')"></app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Ward</label>
+                                <input type="text" class="form-control" formControlName="ward" placeholder="Enter Ward" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Ward" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('ward')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                  
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Block</label>
+                                <input type="text" class="form-control" formControlName="block" placeholder="Enter Block" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Block" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('block')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Village</label>
+                                <input type="text" class="form-control" formControlName="villageCode" placeholder="Enter Village" [readonly]="isReadOnly">
+                                <app-show-errors eleName="Village" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('villageCode')">
+                                </app-show-errors>
+                            </div>
+                        </div>
+                  
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Police Station</label>
+                            <select class="form-control" formControlName="policeStationCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of policeStationList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Police Station" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('policeStationCode')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" formControlName="locality" placeholder="Enter locality" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Locality" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('locality')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Street</label>
+                            <input type="text" class="form-control" formControlName="street" placeholder="Enter Street" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Street" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('street')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload The Boundries (chouhddi)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='boundries_file' (change)="onBondLicPremFileChange($event, SRC_BOUNDRY_FILE, FN_BOUNDRY_FILE)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Boundries file" [frmSub]="formSubmitted" [control]="getbwflPremFormCntr('boundries_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_BOUNDRY_FILE, FILE_PREMISES)">
+                                <button (click)="downloadDocument(FN_BOUNDRY_FILE, FILE_PREMISES)">{{isBondFile(FN_BOUNDRY_FILE, FILE_PREMISES).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Bank Details" class="list-panel add-panel" formGroupName="bankDet">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="text" class="form-control" formControlName="accountNumber" placeholder="Enter Bank Account Number" [readonly]="isReadOnly">
+                            <app-show-errors eleName="Account Number" [frmSub]="formSubmitted" [control]="getBankDetFormCntr('accountNumber')"></app-show-errors>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank IFSC</label>
+                            <input type="text" class="form-control" formControlName="ifscCode" placeholder="Enter Bank IFSC" [readonly]="isReadOnly">
+                            <app-show-errors eleName="IFSC Code" [frmSub]="formSubmitted" [control]="getBankDetFormCntr('ifscCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <select class="form-control" formControlName="bankCode" [attr.disabled]="isReadOnly ? 'disabled' : null">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of bankList" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <app-show-errors eleName="Bank Name" [frmSub]="formSubmitted" [control]="getBankDetFormCntr('bankCode')">
+                            </app-show-errors>
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadpuc">Upload Cancel Cheque</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" formControlName='cancel_cheque_file' (change)="onBondLicBankFileChange($event, SRC_CAN_CHEQUE, FN_CAN_CHEQUE)" accept="image/png,image/jpeg">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                            <app-show-errors eleName="Cancel cheque file" [frmSub]="formSubmitted" [control]="getBankDetFormCntr('cancel_cheque_file')">
+                            </app-show-errors>
+                            <div class="file-upload" *ngIf="isBondFile(FN_CAN_CHEQUE, FILE_BANK)">
+                                <button (click)="downloadDocument(FN_CAN_CHEQUE, FILE_BANK)">{{isBondFile(FN_CAN_CHEQUE, FILE_BANK).documentName}}</button>
+                                <button mat-icon-button color="danger" class="upload-btn float-right">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Payment- Processing Fees" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Fees/ Processing fees</label>
+                            <input type="number" class="form-control" formControlName="applicantFees" disabled value=0>
+                            <app-show-errors eleName="Application Fees" [frmSub]="formSubmitted" [control]="getFormCntr('applicantFees')"></app-show-errors>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+		
+		<app-card cardTitle="Approval Remarks" class="list-panel view-panel">
+            <div class="row">
+
+
+       
+                <div class="col-md-12">
+                
+                            <div class="remark-timeline remark-timeline--animate remark-timeline--one-column">
+                                <div class="remark-timeline-item remark-timeline-element">
+                                    <div> <span class="remark-timeline-icon bounce-in"> <i class="badge badge-dot badge-dot-xl badge-success"></i> </span>
+                                        <div class="remark-timeline-content bounce-in">
+                                            <h4 class="timeline-title">AEC(L&ID)Remarks</h4>
+                                            <p><span class="text-success">Remarks : </span>all check complete </p><span class="circle-timeline"></span> <span class="remark-timeline-date"><b>20-Jan-2021</b>9:30 AM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            
+                            </div>
+                        
+                        
+                            <textarea class="form-control" placeholder="Justification"></textarea>
+
+                    </div>
+            </div>
+       
+        
+        </app-card> 
+
+        
+        
+        
+        <div class="text-content text-right mb-4" >
+            <button type="button" class="btn btn-info mb-2 ml-2" >Preview</button>
+            <button type="button" class="btn btn-warning mb-2 ml-2" >Save as draft</button>
+            <button type="button" class="btn btn-primary mb-2 ml-2" >Submit</button>
+            <button type="button" class="btn btn-secondary mb-2 ml-2">Reset</button>
+        </div>
+        
+       
+</div>

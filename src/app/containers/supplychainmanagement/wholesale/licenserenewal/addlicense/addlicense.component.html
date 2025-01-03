@@ -1,0 +1,214 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add License Renewal
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">License Renewal</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+<div class="row">
+    <form [formGroup]="createForm" autocomplete="off">
+    <div class="col-xl-12">
+        <app-card cardTitle="Application Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>License Type</label>
+                        <input type="text" disabled class="form-control" required formControlName="licenseType">
+                        <div *ngIf="formSubmitted && createForm.get('licenseType').errors || createForm.get('licenseType').touched " class="error-msg">
+                            <span *ngIf="createForm.get('licenseType').errors?.required">
+                                License Type is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant Type</label>
+                        <input type="text" disabled class="form-control" required formControlName="applicationType"
+                        value="Individual">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>District of Godown Location</label>
+                        <input type="text" disabled class="form-control" formControlName="districtGodownLocation" 
+                        value="Lucknow">
+                    </div>
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Basic Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Godown Location</label>
+                        <input type="text" disabled class="form-control" formControlName="godownLocation"  
+                        value="Lucknow">
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of the Applicantion</label>
+                        <input type="text" disabled class="form-control" formControlName="applicationName"   
+                        value="Neeraj Kumar">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Father/Husband Name</label>
+                        <input type="text" disabled class="form-control" formControlName="applicanatFather" 
+                        value="Late Murali">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application Date of Birth</label>
+                        <input type="date" disabled class="form-control"  formControlName="applicationDob" 
+                        value="22-Aug-2020">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <input type="text" disabled class="form-control"  formControlName="Gender"  
+                        value="Male">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant's AADHAR No</label>
+                        <input type="number" disabled class="form-control" formControlName="applicantAadharNo"   
+                        value="654516215">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant's PAN No</label>
+                        <input type="text" disabled class="form-control" formControlName="applicantPanNo"   
+                        value="ADE564484F">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant's Mobile No</label>
+                        <input type="text" disabled class="form-control" formControlName="applicantMobileNo"  
+                        value="95541151541">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Applicant's Email ID</label>
+                        <input type="text" disabled class="form-control" formControlName="applicantEmailId"  
+                        value="Neeraj@gmail.com">
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Date of Solvency Certificate/Asset Certificate</label>
+                        <input type="date"  class="form-control" formControlName="dateOfSolvency">
+                        <div *ngIf="formSubmitted && createForm.get('dateOfSolvency').errors || createForm.get('dateOfSolvency').touched " class="error-msg">
+                            <span *ngIf="createForm.get('dateOfSolvency').errors?.required">
+                                Date of Solvency Certificate/Asset Certificate is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>The Name of the State From Where the Solvency Certificate has been Issued </label>
+                        <select class="form-control" formControlName="nameOfState">
+                            <option value="">Select</option>
+                            <option value="Up">Up</option>
+                        </select>
+                        <div *ngIf="formSubmitted && createForm.get('nameOfState').errors || createForm.get('nameOfState').touched " class="error-msg">
+                            <span *ngIf="createForm.get('nameOfState').errors?.required">
+                                The Name of the State From Where the Solvency Certificate has been Issued  is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>The Name of the District From Where the Solvency Certificate has been Issued </label>
+                        <select class="form-control" formControlName="nameOfDistrict">
+                            <option value="">Select</option>
+                            <option value="Lucknow">Lucknow</option>
+                        </select>
+                        <div *ngIf="formSubmitted && createForm.get('nameOfDistrict').errors || createForm.get('nameOfDistrict').touched " class="error-msg">
+                            <span *ngIf="createForm.get('nameOfDistrict').errors?.required">
+                                The Name of the District From Where the Solvency Certificate has been Issued  is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Value of Solvency Certificate/Asset Certificate(In Rs)</label>
+                        <input type="number"  class="form-control"  formControlName="valueSolvency" 
+                        placeholder="Enter Value of Solvency Certificate/Asset Certificate(In Rs)">
+                        <div *ngIf="formSubmitted && createForm.get('valueSolvency').errors || createForm.get('valueSolvency').touched " class="error-msg">
+                            <span *ngIf="createForm.get('valueSolvency').errors?.required">
+                                Value of Solvency Certificate/Asset Certificate(In Rs)  is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label>Name and Address of the Authorized Income Tax Valuer</label>
+                        <input type="text"  class="form-control" formControlName="nameAddTaxValuer"  
+                        placeholder="Enter Name and Address of the Authorized Income Tax Valuer">
+                        <div *ngIf="formSubmitted && createForm.get('nameAddTaxValuer').errors || createForm.get('nameAddTaxValuer').touched " class="error-msg">
+                            <span *ngIf="createForm.get('nameAddTaxValuer').errors?.required">
+                                Name and Address of the Authorized Income Tax Valuer is required
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+        <app-card cardTitle="Address Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>House No.</label>
+                        <input type="text" disabled class="form-control"  formControlName="houseNo" 
+                        value="12">
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Locality</label>
+                        <input type="text" disabled class="form-control" formControlName="Locality">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" disabled class="form-control" formControlName="State">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>District</label>
+                        <input type="text" disabled class="form-control" formControlName="District" 
+                        value="Lucknow">
+                    </div>
+                </div>
+                
+            </div>
+        </app-card>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mb-2"
+        (click)="addRegistration(createForm)">Renew</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/licenserenewal/list">Cancel</button>
+    </div>
+</form>
+</div>

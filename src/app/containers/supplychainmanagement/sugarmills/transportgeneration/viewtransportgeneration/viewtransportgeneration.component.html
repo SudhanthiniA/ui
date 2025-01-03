@@ -1,0 +1,381 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.mf4transportpass.mf4transport' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/transportgeneration/list']">
+            {{ 'sugarmill.mf4transportpass.mf4transport' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'View'">
+        {{ 'master.common.view' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Preview'">
+        {{ 'master.common.preview' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.mf-4passgene' | translate }}"
+                class="list-panel view-panel">
+                <div class="row mb-2 pb-2">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">
+                            {{ 'sugarmill.mf4transportpass.passgenerationdate' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.passGenerationDate |  date: 'dd-MMM-yyyy hh:mm a'}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.season' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.season}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">Indent Quantity<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.indentQuantity}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.supplytype' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.supplyTypeResponseDto?.name || viewData?.supplyTypeId}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.mf4transportpass.sugarmillname' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillName}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.addressline1' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillAddrs1}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.addressline2' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillAddrs2}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.country' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillCountry}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.state' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillState}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.district' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillDistrict}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.pincode' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.sugarmillPincode}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">Grade<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.gradeDto?.name}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.deliverydetails' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.domain' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.domainResponseDto?.name || viewData?.domainId}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.gatepassno' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.gatePassNumber}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.indentno' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.indentNumber || viewData?.orderId}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.indentdate' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.indentDate}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.mf4transportpass.distilleryname' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distName}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">
+                            {{ 'sugarmill.mf4transportpass.addressline1' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distAddrs1}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.addressline2' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distAddrs2}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.country' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distCountry}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.state' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distState}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.district' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distDistrict}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.pincode' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.distPincode}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label
+                            class="w-100 view-label">{{ 'sugarmill.mf4transportpass.modeoftransport' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transferModeResponseDto?.name}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12" *ngIf="viewData?.transferModeResponseDto?.id == '6' || viewData?.modeOfTransportId == '6' ">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.vehicledesc' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.vehiclenum' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.vehicleNumber || viewData?.vechicleNumber}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.drivername' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.driverName || viewData?.driverName}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.route' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.routeMasterResponseDto?.routeName || viewData?.routeId}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.gpsdeviceid' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.gpsDeviceId || viewData?.gpsId}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">Trs<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.trs || viewData?.trs}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">Brix<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.brix || viewData?.brix}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12" *ngIf="viewData?.transferModeResponseDto?.id == '6' ||viewData?.modeOfTransportId == '6'">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.transportdetails' | translate }}"
+                class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label"> {{ 'sugarmill.mf4transportpass.grossweight' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.grossWeight || viewData?.tankwiseGross}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.tare' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.tareWeight || viewData?.tankwiseTare}}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.netweight' | translate }}<span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        {{viewData?.transportVehicleDtlsDto?.netWeight || viewData?.tankwiseNet}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.mf4transportpass.listoftransportpass' | translate }}"
+                class="list-panel view-panel">
+                <div class="table-responsive">
+                    <table class="table table-inverse table-bordered m-0">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="22%">{{ 'sugarmill.mf4transportpass.tank' | translate }}</th>
+                                <th width="22%">{{ 'sugarmill.mf4transportpass.grade' | translate }}</th>
+                                <th width="22%">{{ 'sugarmill.mf4transportpass.trs' | translate }}</th>
+                                <th width="22%">{{ 'sugarmill.mf4transportpass.brix' | translate }}</th>
+                                <th width="22%">Current Stock</th>
+                                <th width="18%">{{ 'sugarmill.mf4transportpass.quantity' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="addedit == 'View'">
+                            <tr *ngFor="let tanks of viewData?.stockOutDtlsDtoList;let i=index">
+                                <td>{{i+1}}</td>
+                                <td class="text-left">{{tanks?.tankRegid}}</td>
+                                <td class="text-left">{{tanks?.gradeName}}</td>
+                                <td class="text-right">{{tanks?.trs}}</td>
+                                <td class="text-right">{{tanks?.brix}}</td>
+                                <td class="text-right">{{tanks?.tankCapacity}}</td>
+                                <td class="text-left">{{tanks?.quantity}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="addedit != 'View'">
+                            <tr *ngFor="let tanks of viewData?.tankDetail;let i=index">
+                                <td>{{i+1}}</td>
+                                <td class="text-left">{{tanks?.tankRegid}}</td>
+                                <td class="text-left">{{tanks?.gradeName}}</td>
+                                <td class="text-right">{{tanks?.trs}}</td>
+                                <td class="text-right">{{tanks?.brix}}</td>
+                                <td class="text-right">{{tanks?.tankCapacity}}</td>
+                                <td class="text-left">{{tanks?.quantity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12" *ngIf="addedit == 'View'">
+        <form [formGroup]="transportpassFormGroup" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'sugarmill.common.inspection' | translate }} {{ 'sugarmill.common.details' | translate }}"
+                class="list-panel view-panel">
+                <div class="row mb-2 pb-2">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.inspectedby' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        {{viewData?.createdBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.designation' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        {{viewData?.updatedBy}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.mf4transportpass.inspectedon' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        {{viewData?.createdOn}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        <label class="w-100 view-label">{{ 'sugarmill.common.remarks' | translate }} <span
+                                class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" *ngIf="addedit == 'View'">
+                        {{viewData?.remarks}}
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-secondary"
+            [routerLink]="['/supplychainmanagement/sugarmills/transportgeneration/list']"
+            *ngIf="addedit == 'View'">{{ 'sugarmill.common.cancel' | translate }}</button>
+        <a class="btn btn-success" *ngIf="addedit != 'View'" href="assets/images/mf4_transport_pass_print.png"
+            target="blank">{{ 'sugarmill.common.print' | translate }}</a>
+        &nbsp;&nbsp;
+        <button type="submit" class="btn btn-secondary"
+            [routerLink]="['/supplychainmanagement/sugarmills/transportgeneration/add']"
+            *ngIf="addedit != 'View'">{{ 'sugarmill.common.back' | translate }}</button>
+    </div>
+</div>

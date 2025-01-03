@@ -1,0 +1,166 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{'wholesale.breakageentry.breakageentry'| translate}}
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/wholesale/breakageentry/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{'wholesale.breakageentry.addbreakageentry'| translate}}
+    </button>
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockinhand.wholesale'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.breakageentry.breakageentry'| translate}} </a></li>
+    <li class="breadcrumb-item">{{'wholesale.common.list'|translate}}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'wholesale.common.search' | translate}}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Application No</label>
+                        <input type="text" class="form-control" placeholder="Enter Application No">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.breakageentry.brandname' | translate}}</label>
+                        <select id="brand" class="form-control" name="brandName" [(ngModel)]="breakageObj.brandName">
+                            <option value="">{{'wholesale.common.select'| translate}}</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.breakageentry.brandname' | translate}}</label>
+                        <select class="form-control" name="liquorType" [(ngModel)]="breakageObj.liquorType">
+                            <option value="">{{'wholesale.common.select'| translate}}</option>
+                        </select>
+                    </div>
+                </div> -->
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Sub Liquor Type</label>
+                        <select class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Package Type</label>
+                        <select id="pack" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Packaging Type</label>
+                        <select id="size" name="packageSize" [(ngModel)]="breakageObj.packageSize" required
+                            class="form-control">
+                            <option value="">{{'wholesale.common.select'| translate}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status
+                        </label>
+                        <select id="status" required class="form-control">
+                            <option value="">Select</option>
+                            <option>Active</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2"
+                        (click)="searchBrakage()">{{'wholesale.common.search'| translate}}</button>
+                    <button type="submit" class="btn btn-secondary">{{'wholesale.common.cancel'| translate}}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'wholesale.breakageentry.breakageentrylist'|translate}}" blockClass="table-border-style"
+            class="list-panel">
+            <!-- <div class="table-responsive">
+           <app-mat-normal-table [columns]="accepted" [actionKeys]="actionKeysAccepted" [dataSource]="dataSourceAccepted"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondAccepted" 
+                [totalCount]="totalCount" [pageSize]="pageSize" (paginationEvent)="handlePagination($event)"
+                (editAction)="edit($event)" (viewAction)="view($event)">
+            </app-mat-normal-table>
+
+            </div> -->
+            <div class="row">
+                <div class="col-12 my-2">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Application No</th>
+                                    <th>Date</th>
+                                    <!-- <th>Transport Pass Type</th> -->
+                                    <th>No of Bottles Missings                                    </th>
+                                    <th>No of Cases Missings                                    </th>
+                                    <th>No of Damaged Cases</th>
+                                    <th>No of Damaged Bottles</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>AP1122</td>
+                                    <td>20-Apr-2021</td>
+                                    <!-- <td>BWFL-FL36</td> -->
+                                    <td class="text-left">100</td>
+                                    <td class="text-left">100</td>
+                                    <td class="text-left">750</td>
+                                    <td class="text-left">10</td>
+                                    <!-- <td class="text-left">100</td> -->
+                                    <td class="table-action-column text-center">
+                                        <button class="btn btn-icon btn-primary" type="button" 
+                                            routerLink="/supplychainmanagement/wholesale/breakageentry/view">
+                                            <i class="feather icon-eye"></i></button>
+                                        <button class="btn btn-icon btn-secondary ml-2" type="button"
+                                        routerLink="/supplychainmanagement/wholesale/breakageentry/add">
+                                            <i class="feather icon-edit-2"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle
+                      type="button">Download</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:">Excel</a>
+                      <a class="dropdown-item"  href="javascript:">Pdf</a>
+                      <a class="dropdown-item"  href="javascript:">Jpg</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8 text-right p-0">
+                    <img src="assets/images/pagenation.png" />
+                </div>
+            </div>  
+        </app-card>
+    </div>
+</div>

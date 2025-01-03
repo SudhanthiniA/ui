@@ -1,0 +1,39 @@
+<app-common-breadcrumb [titleSection]="titleSection" [breadcrumbs]="breadcrumbs" [text]="lastText">
+</app-common-breadcrumb>  
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.transactionid' | translate }}</label>
+                        <input type="number" class="form-control" name="indent" placeholder="{{ 'retail.common.entertransactionid' | translate }}" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'retail.common.dateofpurchase' | translate }}</label>
+                        <input type="date" class="form-control" name="indent" placeholder="Enter Date of Purchase" />
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2">{{ 'retail.common.search' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary">{{ 'retail.common.cancel' | translate }}</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.returncustomer.list' | translate }}" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive new_table">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                    [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (viewAction)="onView()">
+                </app-mat-normal-table>
+            </div>
+        </app-card>
+    </div>
+</div>

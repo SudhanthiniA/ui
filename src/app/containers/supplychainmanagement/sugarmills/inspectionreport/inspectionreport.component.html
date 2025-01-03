@@ -1,0 +1,93 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.common.inspection' | translate }} (MST/IST)
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/sugarmills/inspectionreport/add">
+        <i class="feather icon-plus mr-2"></i>
+        {{ 'sugarmill.inspectionreport.addinspection' | translate }}
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']"><i
+                class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/inspectionreport/list']">{{ 'sugarmill.inspectionreport.inspectionreport' | translate }}</a>
+    </li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #inspectionForm="ngForm" autocomplete="off">
+            <app-card cardTitle="{{ 'sugarmill.common.search' | translate }}" class="search-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.inspectionreport.inspectiondate' | translate }}</label>
+                            <input type="date" name="ins_date" #ins_date="ngModel"
+                                [(ngModel)]="inspectionObj['ins_date']" class="form-control"
+                                style='text-transform:uppercase'>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.verificationtype' | translate }}</label>
+                            <select id="verificationTypeId" name="verificationTypeId" class="form-control"
+                                #verificationTypeId="ngModel" [(ngModel)]="inspectionObj['verificationTypeId']">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tanks of verificationType" value="{{tanks.id}}">{{tanks.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.inspectionreport.tankno' | translate }}</label>
+                            <select id="steel_tank_number" name="steel_tank_number" class="form-control"
+                                #steel_tank_number="ngModel" [(ngModel)]="inspectionObj['steel_tank_number']">
+                                <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                                <option *ngFor="let tanks of tankTypeNo" value="{{tanks.id}}">{{tanks.tankName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <div>
+                            <button type="submit" (click)="getreports()"
+                                class="btn btn-primary mr-2">{{'sugarmill.common.search' | translate }}</button>
+                            <button type="reset"   (click)="clearData()"
+                                class="btn btn-secondary">{{'sugarmill.common.cancel' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'sugarmill.inspectionreport.inspectionList' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" [totalCount]="totalCount" (paginationEvent)="handlePagination($event)"
+                (editAction)="onEdit($event)" (viewAction)="onView($event)">
+            </app-mat-normal-table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 mt-2">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle
+                            type="button">{{ 'sugarmill.common.download' | translate }}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                                href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

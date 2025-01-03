@@ -1,0 +1,127 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'master.common.add' | translate }} {{ 'master.common.block' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.block' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{ 'master.common.add' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #blockForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.common.block' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.common.code' | translate }}</label>
+                            <input type="text" disabled class="form-control"
+                                value="BM1122" minlength="3" maxlength="10" required class="form-control">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.block' | translate }}</label>
+                            <input type="text" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.block' | translate }}"
+                                [(ngModel)]="blockObject.name" name="blockname" #blockname="ngModel" minlength="3"
+                                maxlength="100" required class="form-control" (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="blockname.invalid && (blockname.dirty || blockname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="blockname?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.block' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="blockname?.errors?.maxlength && !blockname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.block' | translate }} {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="blockname?.errors?.minlength && !blockname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.block' | translate }} {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.country' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="countryData" [placeholder]="'Select'"
+                            [(ngModel)]="blockObject.country" [settings]="countryDropDownSettings"
+                            (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                            [required]='countryRequired' (onDropDownClose)="onDropDownClose()"
+                            [ngClass]="countryDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!countryRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.state' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="stateData" [placeholder]="'Select'"
+                            [(ngModel)]="blockObject.state" [settings]="stateDropDownSettings"
+                            (onSelect)="onStateSelect($event)" (onDeSelect)="onStateDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeState($event)"
+                            (onDropDownClose)="onDropDownCloseState()" [required]='stateRequired'
+                            [ngClass]="stateDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!stateRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.district' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="districtData" [placeholder]="'Select'"
+                            [(ngModel)]="blockObject.districtId" [settings]="districtDropDownSettings"
+                            (onSelect)="ondistrictSelect($event)" (onDeSelect)="onDistrictDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeDistrict($event)"
+                            (onDropDownClose)="onDropDownCloseDistrict()" [required]='districtRequired'
+                            [ngClass]="districtDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!districtRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.district' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="blockObject.active" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="blockObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!blockObject.active">
+                                    {{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="blockObject.active">
+                                    {{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addblock(blockForm)">
+            {{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/block/list">
+            {{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Delink
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+      <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+      <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.stockinhand.wholesale'  | translate}}</a></li>
+      <li class="breadcrumb-item"><a href="javascript:">Delink</a></li>
+      <li class="breadcrumb-item">{{ 'master.common.list' | translate}}</li>
+  </ul>
+ 
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <form [formGroup]="indentForm" autocomplete="off">
+                <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Indent No</label>
+                        <input type="text" placeholder="Indent No" class="form-control"/>
+                    </div>
+                </div> 
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Delink Case Code</label>
+                            <input type="text" class="form-control" 
+                            placeholder="Delink Case Code"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sub ETIN</label>
+                            <input type="text" class="form-control" 
+                            placeholder="Sub ETIN" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control"/>
+                    </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-2">Search</button>
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Delink Case Details" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" > 
+                    <thead>
+                    <tr>
+                            <th>S.No</th>
+                            <th>Delink Case Code</th>
+                            <th>Sub ETIN</th>
+                            <th>Brand Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="text-left">DL001</td>
+                            <td>ETIN1122</td>
+                            <td>Whiskey</td>
+                            <td>
+                            <button class="btn btn-icon btn-primary" type="button"
+                            routerLink="/supplychainmanagement/wholesale/delink/view"  >
+                            <i class="feather icon-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item"
+                            href="javascript:">Excel</a>
+                            <a class="dropdown-item"
+                                href="javascript:">PDF</a>
+                            <a class="dropdown-item"  href="javascript:">CSV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+ 

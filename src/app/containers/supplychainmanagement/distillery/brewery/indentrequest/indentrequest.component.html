@@ -1,0 +1,311 @@
+<h5 class="m-b-10 ng-star-inserted">
+Indent Request
+     <button type="submit" class="btn btn-success custom_add_button pull-right"
+     routerLink="/supplychainmanagement/wholesale/indentacceptance/add">
+     <i class="feather icon-plus mr-2"></i>
+     Add Indent Request
+ </button>
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+      <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+      <li class="breadcrumb-item"><a href="javascript:">Brewery</a></li>
+      <li class="breadcrumb-item"><a href="javascript:">Indent Request</a></li>
+      <li class="breadcrumb-item">List</li>
+  </ul>
+ 
+ <div class="row">
+   <div class="col-xl-12">
+       <app-card cardTitle="Search" class="search-panel">
+        <form [formGroup]="indentForm" autocomplete="off">
+           <div class="row">
+             <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+             <label>Unit Type</label>
+             <div class="segment">
+               <input type="radio" name="tab" id="tab1" checked>
+               <label class="" for="tab1">FL2</label>
+               <input type="radio" name="tab" id="tab2">
+               <label class="" for="tab2">FL2B</label>
+               <input type="radio" name="tab" id="tab3">
+               <label class="" for="tab3">Master Warehosue</label>
+           </div>
+         </div> -->
+         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="form-group">
+                <label>Indent No</label>
+                <!--<input type="text" formControlName="indentNO" class="form-control" 
+                placeholder="Enter Indent No"/>!-->
+                <select class="form-control">
+                 <option>select</option>
+               </select>
+            </div>
+        </div> 
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div class="form-group">
+                  <label>Indent Date</label>
+                  <input type="date" formControlName="indentDate"  class="form-control"/>
+              </div>
+          </div> 
+         
+             
+              
+              
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                 <div class="form-group">
+                     <label>Unit Name</label>
+                     <!--<input type="text" formControlName="unitName" class="form-control" 
+                        placeholder="Enter Unit Name" />-->
+                        <select class="form-control">
+                         <option>select</option>
+                       </select>
+                 </div>
+             </div>
+              <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                 <div class="form-group">
+                     <label>Unit Type</label>
+                     <input type="text" class="form-control" 
+                        placeholder="Enter Unit Type" />
+                 </div>
+             </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                      <label>No of Cases Requested</label>
+                      <input type="text" id="noofcasesrequested" required class="form-control" 
+                          placeholder="Enter No of Cases Requested" />
+ 
+                   </div>
+              </div> 
+              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                      <label>No. of Bottles Requested</label>
+                      <input type="text" id="noofbottlesrequested" required class="form-control" 
+                          placeholder="Enter No. of Bottles Requested" />
+ 
+                   </div>
+              </div>  -->
+              <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                  <div class="form-group">
+                      <label>Status
+                      </label>
+                      <select  class="form-control">
+                          <option value="">Select</option>
+                          <option>Active</option>
+                      </select>
+                  </div>
+              </div>
+               <div class="col-12 text-right">
+                   <button type="submit" class="btn btn-primary mr-2">Search</button>
+                   <button type="submit" class="btn btn-secondary">Cancel</button>
+               </div>
+           </div>
+        </form>
+       </app-card>
+   </div>
+ </div>
+ <div class="row">
+     <div class="col-xl-12">
+       <app-card [hidHeader]="true" cardTitle="Indent Request"
+         blockClass="table-border-style" class="list-panel stockavailability_tab">
+         <!-- <div class="row">
+           <div class="col mb-2">
+             <label class="font-weight-bold float-left mt-1 mr-4 text-dark">Unit Type</label>
+             <ul class="nav nav-pills segment float-left">
+               <li class="nav-item">
+                 <a class="nav-link active" data-toggle="pill" href="#home">FL2</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" data-toggle="pill" href="#menu1">FL2B</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" data-toggle="pill" href="#menu2">Master Warehouse</a>
+               </li>
+             </ul>
+             </div>
+         </div> -->
+         <ngb-tabset type="pills">
+           <ngb-tab title="Payment Completed" class="mb-3">
+             <ng-template ngbTabContent>
+               <div class="table-responsive mb-2">
+                 <table class="table table-bordered text-center mb-0">
+                   <thead>
+                     <tr>
+                       <th>S.No</th>
+                       <th>Indent No.</th>
+                       <th>Indent Date</th>
+                       <th>Total No of Cases</th>
+                       <th>Total No of Bottles</th>
+                       <th>Unit Type</th>
+                       <th>Unit Name</th>
+                       <th>Status</th>
+                       <th>Action</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr>
+                       <td>1</td>
+                       <!-- <td class="text-left">FL</td> -->
+                       <td>FL0001</td>
+                       <td>20-Apr-2021</td>
+                       <td class="text-left">10</td>
+                       <td class="text-left">100</td> 
+                       <!-- <td>FL2</td> -->
+                       <td class="text-left">Daurala Sugar Works</td>
+                       <td class="text-left">Brewery</td>
+                       <td class="text-center">
+                         <span class="badge badge-light-success">Completed</span>
+                     </td>
+                     <td class="table-action-column text-center">
+                        <button class="btn btn-icon btn-primary" type="button"
+                            routerLink="/supplychainmanagement/distillery/brewery/indentfl11a/view">
+                            <i class="feather icon-eye"></i></button>
+                            <button class="btn btn-icon btn-secondary ml-2" type="button"
+                            routerLink="/supplychainmanagement/distillery/brewery/gatepassfrombrewery/add">
+                            <i class="feather icon-edit-2"></i></button>
+                    </td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+               <div class="row">
+                 <div class="col-xl-4" >
+                     <div ngbDropdown>
+                     <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                     <div ngbDropdownMenu>
+                       <a class="dropdown-item"
+                       href="javascript:">Excel</a>
+                   <a class="dropdown-item"
+                       href="javascript:">PDF</a>
+                   <a class="dropdown-item"  href="javascript:">CSV</a>
+                     </div>
+                 </div>
+                 </div>
+                
+             </div>
+             </ng-template>
+           </ngb-tab>
+           <ngb-tab title="Payment In Progress" class="mb-3">
+            <ng-template ngbTabContent>
+                <div class="table-responsive mb-2">
+                  <table class="table table-bordered text-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Indent No.</th>
+                        <th>Indent Date</th>
+                        <th>Total No of Cases</th>
+                        <th>Total No of Bottles</th>
+                        <th>Unit Type</th>
+                        <th>Unit Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <!-- <td class="text-left">FL</td> -->
+                        <td>FL0001</td>
+                        <td>20-Apr-2021</td>
+                        <td class="text-left">10</td>
+                        <td class="text-left">100</td> 
+                        <!-- <td>FL2</td> -->
+                        <td class="text-left">Daurala Sugar Works</td>
+                        <td class="text-left">Brewery</td>
+                        <td class="text-center">
+                          <span class="badge badge-light-warning">In Progress</span>
+                      </td>
+                      <td class="table-action-column text-center">
+                         <button class="btn btn-icon btn-primary" type="button"
+                             routerLink="/supplychainmanagement/distillery/brewery/indentfl11a/view">
+                             <i class="feather icon-eye"></i></button>
+                             <button class="btn btn-icon btn-secondary ml-2" type="button"
+                             routerLink="/supplychainmanagement/distillery/brewery/gatepassfrombrewery/add">
+                             <i class="feather icon-edit-2"></i></button>
+                     </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                  <div class="col-xl-4" >
+                      <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item"
+                        href="javascript:">Excel</a>
+                    <a class="dropdown-item"
+                        href="javascript:">PDF</a>
+                    <a class="dropdown-item"  href="javascript:">CSV</a>
+                      </div>
+                  </div>
+                  </div>
+                 
+              </div>
+              </ng-template>
+           </ngb-tab>
+           <ngb-tab title="Payment Failed">
+            <ng-template ngbTabContent>
+                <div class="table-responsive mb-2">
+                  <table class="table table-bordered text-center mb-0">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Indent No.</th>
+                        <th>Indent Date</th>
+                        <th>Total No of Cases</th>
+                        <th>Total No of Bottles</th>
+                        <th>Unit Type</th>
+                        <th>Unit Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <!-- <td class="text-left">FL</td> -->
+                        <td>FL0001</td>
+                        <td>20-Apr-2021</td>
+                        <td class="text-left">10</td>
+                        <td class="text-left">100</td> 
+                        <!-- <td>FL2</td> -->
+                        <td class="text-left">Daurala Sugar Works</td>
+                        <td class="text-left">Brewery</td>
+                        <td class="text-center">
+                          <span class="badge badge-light-danger">Failed</span>
+                      </td>
+                      <td class="table-action-column text-center">
+                         <button class="btn btn-icon btn-primary" type="button"
+                             routerLink="/supplychainmanagement/distillery/brewery/indentfl11a/view">
+                             <i class="feather icon-eye"></i></button>
+                             <button class="btn btn-icon btn-secondary ml-2" type="button"
+                             routerLink="/supplychainmanagement/distillery/brewery/gatepassfrombrewery/add">
+                             <i class="feather icon-edit-2"></i></button>
+                     </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                  <div class="col-xl-4" >
+                      <div ngbDropdown>
+                      <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                      <div ngbDropdownMenu>
+                        <a class="dropdown-item"
+                        href="javascript:">Excel</a>
+                    <a class="dropdown-item"
+                        href="javascript:">PDF</a>
+                    <a class="dropdown-item"  href="javascript:">CSV</a>
+                      </div>
+                  </div>
+                  </div>
+                 
+              </div>
+              </ng-template>
+           
+           </ngb-tab>
+         </ngb-tabset>
+       </app-card>
+     </div>
+   </div>
+ 

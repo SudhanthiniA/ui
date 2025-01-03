@@ -1,0 +1,153 @@
+<h5 class="m-b-10 ng-star-inserted">Add Stock Adjustment</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Stock Adjustment</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="stockForm" autocomplete="off">
+            <app-card cardTitle="Enter Details to Add Stock Adjustment" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" formControlName="date" required
+                                placeholder="Enter Date">
+                            <div *ngIf="formSubmitted && stockForm.get('date').errors || stockForm.get('date').touched "
+                                class="error-msg">
+                                <span *ngIf="stockForm.get('date').errors?.required"><i class="fa fa-times"></i>
+                                    Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Adjustment Number</label>
+                            <input type="text" class="form-control" formControlName="adjustmentNumber"
+                                required placeholder="Enter Adjustment Number">
+                            <div *ngIf="formSubmitted && stockForm.get('adjustmentNumber').errors || stockForm.get('adjustmentNumber').touched "
+                                class="error-msg">
+                                <span *ngIf="stockForm.get('adjustmentNumber').errors?.required"><i
+                                        class="fa fa-times"></i>
+                                    Adjustment Number is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control" formControlName="status" required>
+                                <option value="">Choose</option>
+                                <option value="Submitted">Submitted</option>
+                                <option value="Verified">Verified</option>
+                            </select>
+                            <div *ngIf="formSubmitted && stockForm.get('status').errors || stockForm.get('status').touched "
+                                class="error-msg">
+                                <span *ngIf="stockForm.get('status').errors?.required"><i class="fa fa-times"></i>
+                                    Status is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Unit</label>
+                            <input type="text" class="form-control" formControlName="fromUnit" required
+                                placeholder="Enter From Unit">
+                            <div *ngIf="formSubmitted && stockForm.get('fromUnit').errors || stockForm.get('fromUnit').touched "
+                                class="error-msg">
+                                <span *ngIf="stockForm.get('fromUnit').errors?.required"><i class="fa fa-times"></i>
+                                    From Unit is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Product Name</th>
+                                        <th>Liquor type</th>
+                                        <th>Size</th>
+                                        <th>Package Type</th>
+                                        <th>Total No. of cases</th>
+                                        <th>Total No. of Bottles</th>
+                                        <th>Bartch No</th>
+                                        <th>Expiry Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr formArrayName="productList"
+                                        *ngFor="let pres of stockForm?.get('productList')['controls']; let i=index"
+                                        id="row{{i}}">
+                                        <td [formGroupName]="i">{{i+1}}</td>
+                                        <td [formGroupName]="i">
+                                            <select class="form-control"  formControlName="productName">
+                                                <option value="Product1">Product1</option>
+                                            </select>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <select class="form-control"  formControlName="liquorType"> 
+                                                <option value="Liquor Type1">Liquor Type1</option>
+                                            </select>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <select class="form-control" formControlName="size">
+                                                <option>650ml</option>
+                                            </select>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <select class="form-control" formControlName="packageType">
+                                                <option>Package Type1</option>
+                                            </select>
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="number" class="form-control" formControlName="totalNoOfCases"
+                                                placeholder="Enter Total No. of cases" />
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="number" class="form-control" formControlName="totalNoOfBottles"
+                                                placeholder="Enter Total No. of Bottles" />
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="number" class="form-control" formControlName="batchNo"
+                                             placeholder="Enter Bartch No" />
+                                        </td>
+                                        <td [formGroupName]="i">
+                                            <input type="date" class="form-control"  formControlName="expiryDate"
+                                             placeholder="Enter Expiry Date" />
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-success" type="button" (click)="addrow()">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button"  *ngIf="i!==getPresFormLength()-1" (click)="removeSelectedRow(i)">
+                                                <i class="feather icon-trash-2"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="view(stockForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/stockadjustment/list">Save as Draft </button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"  (click)="stockAdjustment(stockForm)"
+           >Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/stockadjustment/list">Cancel</button>
+    </div>
+</div>

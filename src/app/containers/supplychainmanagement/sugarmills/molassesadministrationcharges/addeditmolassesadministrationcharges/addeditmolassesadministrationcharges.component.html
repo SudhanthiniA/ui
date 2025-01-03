@@ -1,0 +1,170 @@
+<h5 class="m-b-10 ng-star-inserted"> {{ 'sugarmill.molassesadminstration.molassesadminstrationcharges' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']"><i
+                class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{
+            'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/molassesadministrationcharges/list']">{{
+            'sugarmill.molassesadminstration.molassesadminstrationcharges' | translate }}</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+<div class="row">
+    <form #molassesadministrationchargesForm="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="Enter Molasses Administration Charges Details            "
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group position-relative calendar">
+                            <label class="m-0">Date
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="text" name="reqdate" placeholder="Enter Date" required #reqdate="ngModel"
+                                [(ngModel)]="molassesadministrationchargesObj['reqdate']" class="form-control"
+                                [owlDateTimeTrigger]="dtPicker20" [owlDateTime]="dtPicker20" id="bussinessin" disabled>
+                            <i class="trigger" [owlDateTimeTrigger]="dtPicker20" class="fas fa-calendar-alt prefix"></i>
+                            <owl-date-time #dtPicker20></owl-date-time>
+                            <!-- <label>{{ 'sugarmill.common.date' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="date" name="reqdate" class="form-control" placeholder="Enter Date" required
+                                #reqdate="ngModel" [(ngModel)]="molassesadministrationchargesObj['requestDate']"> -->
+                            <div *ngIf="reqdate.invalid && (reqdate.dirty || reqdate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reqdate?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.common.date' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesadminstration.openingbal' | translate }}</label>
+                            <input type="number" name="openingbalance" class="form-control"
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesadminstration.openingbal' | translate }}"
+                                #openingbalance="ngModel" disabled
+                                [(ngModel)]="molassesadministrationchargesObj['openingBalance']">
+                            <div class="text-primary">{{inWords(molassesadministrationchargesObj['openingBalance'],
+                                'Rupess Only')}}</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="m-0">{{ 'sugarmill.molassesadminstration.deposite' | translate }}
+                                <label class="error-msg">*</label>
+                            </label>
+                            <input type="number" name="deposit" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'sugarmill.molassesadminstration.deposite' | translate }}"
+                                required #deposit="ngModel" (keyup)="calTotals()"
+                                [(ngModel)]="molassesadministrationchargesObj['deposit']">
+                            <div class="text-primary">{{inWords(molassesadministrationchargesObj['deposit'], 'Rupess
+                                Only')}}</div>
+                            <div *ngIf="deposit.invalid && (deposit.dirty || deposit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="deposit?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesadminstration.deposite' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.molassesadminstration.total' | translate }}</label>
+                            <input type="number" name="total" class="form-control" required #total="ngModel"
+                                [(ngModel)]="molassesadministrationchargesObj['total']" disabled
+                                placeholder="{{ 'sugarmill.common.enter' | translate }} {{ 'sugarmill.molassesadminstration.total' | translate }}">
+                            <div class="text-primary">{{inWords(molassesadministrationchargesObj['total'], 'Rupess
+                                Only')}}</div>
+                            <div *ngIf="total.invalid && (total.dirty || total.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="total?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.molassesadminstration.total' | translate }}
+                                    {{ 'sugarmill.common.isrequired' | translate }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" class="form-control" placeholder="Enter Remarks">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Consumed" blockClass="table-border-style" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Total Dispatched Quantity of Molasses</label>
+                            <input type="text" class="form-control" disabled placeholder="5000">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Non Captive Dispatch Quantity of Molasses Qtls. (IN UP)</label>
+                            <input type="text" class="form-control" disabled placeholder="4000">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Admin Duty Per Quintal(Inside UP)</label>
+                            <input type="text" class="form-control" disabled placeholder="4567">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Non Captive Dispatch Quantity of Molasses Qtls. (Outside UP)</label>
+                            <input type="text" class="form-control" disabled placeholder="3456">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Admin Duty Per Quintal(Outside Up)</label>
+                            <input type="text" class="form-control" disabled placeholder="345">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Total Admin Duty on Both Type of Dispatches</label>
+                            <input type="text" class="form-control" disabled placeholder="19">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance (Rs)</label>
+                            <input type="text" class="form-control" disabled placeholder="7">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remark</label>
+                            <input type="text" class="form-control" placeholder="Enter Remark">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+        
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-info ml-2 mb-2"
+                (click)="previewData(molassesadministrationchargesForm)">{{ 'master.common.preview' | translate
+                }}</button>
+            <button type="button" class="btn btn-warning ml-2 mb-2"
+                (click)="saveData(molassesadministrationchargesForm,'draft')">{{ 'sugarmill.common.saveasdraft' |
+                translate }}</button>
+            <button type="button" class="btn btn-primary ml-2 mb-2"
+                (click)="saveData(molassesadministrationchargesForm,'submit')">{{ 'master.common.submit' | translate
+                }}</button>
+            <button type="button" class="btn btn-secondary ml-2 mb-2"
+                routerLink="/supplychainmanagement/sugarmills/molassesadministrationcharges/list">{{
+                'master.common.cancel' | translate }}</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,461 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} Export Permit Request
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Request</a>
+    </li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/export-permit-request/list">Export
+            Permit request</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #addimportForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details Of Export Permit request" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Export</label>
+                            <div class="d-flex">
+                                <div>
+                                    <input type="radio" id="export" name="export" #export="ngModel"
+                                        [(ngModel)]="addexportobj['export']" value="Export Outside State">&nbsp;
+                                    <label for="Export Outside State" class="px-2">Export Outside State</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="export" name="export" #export="ngModel"
+                                        [(ngModel)]="addexportobj['export']" value="Export Outside Country">&nbsp;
+                                    <label for="Export Outside Country" class="pl-2">Export Outside Country</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" disabled class="form-control" required placeholder="10-Jan-2021">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignee</label>
+                            <input type="text" disabled class="form-control" required placeholder="-">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" disabled class="form-control" required placeholder="Chennai">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" disabled class="form-control" required placeholder="Chennai">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" disabled class="form-control" required placeholder="Tamilnadu">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" disabled class="form-control" required placeholder="India">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" disabled class="form-control" required placeholder="6000011">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Import Permit No</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Import Permit No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Import Permit Issue Date </label>
+                            <input type="date" class="form-control" required placeholder="Enter the Import Permit Issue Date ">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Validty of Import Permit</label>
+                            <input type="date" class="form-control" required placeholder="Enter the Validty of Import Permit (In Terms of Date)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignor</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Adress line</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Address line">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" class="form-control" required placeholder="Enter the District">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" class="form-control" required placeholder="Enter the State">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" class="form-control" required placeholder="Enter the Pincode">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sprit Quantity(BL)</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>BL</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Purpose </label>
+                            <input type="text" class="form-control" required placeholder="Enter the Purpose ">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Purchaser Name/Address</label>
+                                <input type="text" class="form-control"  placeholder="Enter Name of Purchaser Name/Address" name="purchaserNameAddress" #purchaserNameAddress="ngModel" required
+                                [(ngModel)]="addexportobj['purchaserNameAddress']">
+                                <div *ngIf="purchaserNameAddress.invalid && (purchaserNameAddress.dirty || purchaserNameAddress.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="purchaserNameAddress?.errors?.required"><i class="fa fa-times"></i>
+                                    Purchaser Name/Address is required </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Purchaser State</label>
+                                    <select class="form-control" name="purchaserStateId" #purchaserStateId="ngModel" [(ngModel)]="addexportobj['purchaserStateId']" required>
+                                        <option value="">Select</option>
+                                        <option value="1">Daman</option>
+                                        <option value="2">Diu</option>
+                                    </select>
+                                    <div *ngIf="purchaserStateId.invalid && (purchaserStateId.dirty || purchaserStateId.touched || formSubmitted)" class="error-msg">
+                                        <div *ngIf="purchaserStateId?.errors?.required"><i class="fa fa-times"></i>Purchaser State is required </div>
+                                      </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label> Purchaser Country</label>
+                                        <select class="form-control" name="purchaserCountryId" #purchaserCountryId="ngModel" [(ngModel)]="addexportobj['purchaserCountryId']" required>
+                                            <option value="">Select</option>
+                                            <option value="1">India</option>
+                                           
+                                        </select>
+                                        <div *ngIf="purchaserCountryId.invalid && (purchaserCountryId.dirty || purchaserCountryId.touched || formSubmitted)" class="error-msg">
+                                            <div *ngIf="purchaserCountryId?.errors?.required"><i class="fa fa-times"></i> Purchaser Country is required </div>
+                                          </div>
+                                        </div>
+                                       
+                                    </div>
+                               
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Requested Spirit</label>
+                                <input type="text" class="form-control"  placeholder="Enter Requested Spirit" name="requestedSpirit" #requestedSpirit="ngModel" required
+                                [(ngModel)]="addexportobj['requestedSpirit']">
+                                <div *ngIf="requestedSpirit.invalid && (requestedSpirit.dirty || requestedSpirit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="requestedSpirit?.errors?.required"><i class="fa fa-times"></i>
+                                    Requested Spirit is required </div>
+                            </div>
+                                </div>
+                            </div>
+                      
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Spirit Type</label>
+                                    <select class="form-control" name="spiritType" #spiritType="ngModel" [(ngModel)]="addexportobj['spiritType']" required>
+                                        <option value="">Select</option>
+                                        <option value="1">ENA</option>
+                                    </select>
+                                    <div *ngIf="spiritType.invalid && (spiritType.dirty || spiritType.touched || formSubmitted)" class="error-msg">
+                                        <div *ngIf="spiritType?.errors?.required"><i class="fa fa-times"></i>Spirit Type is required </div>
+                                      </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Purpose</label><br>
+                                        <input type="text" class="form-control" name="purpose" placeholder="Enter Purpose" #purpose="ngModel"
+                                            [(ngModel)]="addexportobj['purpose']" required>
+                                            <div *ngIf="purpose.invalid && (purpose.dirty || purpose.touched || formSubmitted)"
+                                            class="error-msg">
+                                            <div *ngIf="purpose?.errors?.required"><i class="fa fa-times"></i>
+                                                Purpose Is Required </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label>Installed Capacity of Distillery(in BL) Portable</label>
+                                            <input type="text" class="form-control" name="installedCapacityPortable" placeholder="Enter Installed Capacity of Distillery(in BL) Portable" #installedCapacityPortable="ngModel"
+                                            [(ngModel)]="addexportobj['installedCapacityPortable']" required>
+                                            <div *ngIf="installedCapacityPortable.invalid && (installedCapacityPortable.dirty || installedCapacityPortable.touched || formSubmitted)"
+                                            class="error-msg">
+                                            <div *ngIf="installedCapacityPortable?.errors?.required"><i class="fa fa-times"></i>
+                                                Installed Capacity of Distillery(in BL) Portable Is Required </div>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label>Installed Capacity of Distillery(in BL) Industrial</label>
+                                                <input type="text" class="form-control" name="installedCapacityIndustrial" placeholder="Enter Installed Capacity of Distillery(in BL) Industrial" #installedCapacityIndustrial="ngModel"
+                                                [(ngModel)]="addexportobj['installedCapacityIndustrial']" required>
+                                                <div *ngIf="installedCapacityIndustrial.invalid && (installedCapacityIndustrial.dirty || installedCapacityIndustrial.touched || formSubmitted)"
+                                                class="error-msg">
+                                                <div *ngIf="installedCapacityIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                                    Installed Capacity of Distillery(in BL) Industrial Is Required </div>
+                                            </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Production Quantity(in BL) Portable</label>
+                                                    <input type="text" class="form-control" name="productionQuantityPortable" placeholder="Enter Production Quantity(in BL) Portable" #productionQuantityPortable="ngModel"
+                                                    [(ngModel)]="addexportobj['productionQuantityPortable']" required>
+                                                    <div *ngIf="productionQuantityPortable.invalid && (productionQuantityPortable.dirty || productionQuantityPortable.touched || formSubmitted)"
+                                                    class="error-msg">
+                                                    <div *ngIf="productionQuantityPortable?.errors?.required"><i class="fa fa-times"></i>
+                                                        Production Quantity(in BL) Portable Is Required </div>
+                                                </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label>Production Quantity(in BL)Industrial</label>
+                                                        <input type="text" class="form-control" name="productionQuantityIndustrial" placeholder="Enter Production Quantity(in BL)Industrial" #productionQuantityIndustrial="ngModel"
+                                                        [(ngModel)]="addexportobj['productionQuantityIndustrial']" required>
+                                                        <div *ngIf="productionQuantityIndustrial.invalid && (productionQuantityIndustrial.dirty || productionQuantityIndustrial.touched || formSubmitted)"
+                                                        class="error-msg">
+                                                        <div *ngIf="productionQuantityIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                                            Production Quantity(in BL)Industrial Is Required </div>
+                                                    </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label>Purchase / Import Quantity(in BL)Portable</label>
+                                                            <input type="text" class="form-control" name="purchaseQuantityPortable" placeholder="Enter Purchase / Import Quantity(in BL)Portable" #purchaseQuantityPortable="ngModel"
+                                                            [(ngModel)]="addexportobj['purchaseQuantityPortable']" required>
+                                                            <div *ngIf="purchaseQuantityPortable.invalid && (purchaseQuantityPortable.dirty || purchaseQuantityPortable.touched || formSubmitted)"
+                                                            class="error-msg">
+                                                            <div *ngIf="purchaseQuantityPortable?.errors?.required"><i class="fa fa-times"></i>
+                                                                Purchase / Import Quantity(in BL)Portable Is Required </div>
+                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label>Purchase / Import Quantity(in BL)Industrial</label>
+                                                                <input type="text" class="form-control" name="purchaseQuantityIndustrial" placeholder="Enter Purchase / Import Quantity(in BL)Industrial" #purchaseQuantityIndustrial="ngModel"
+                                                                [(ngModel)]="addexportobj['purchaseQuantityIndustrial']" required>
+                                                                <div *ngIf="purchaseQuantityIndustrial.invalid && (purchaseQuantityIndustrial.dirty || purchaseQuantityIndustrial.touched || formSubmitted)"
+                                                                class="error-msg">
+                                                                <div *ngIf="purchaseQuantityIndustrial?.errors?.required"><i class="fa fa-times"></i>
+                                                                    Purchase / Import Quantity(in BL)Industrial Is Required </div>
+                                                            </div>
+                                                                </div>
+                                                            </div> -->
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sale From</label>
+                            <div class="d-flex">
+                                <div>
+                                    <input type="radio" id="saleFrom" name="saleFrom" #saleFrom="ngModel"
+                                        [(ngModel)]="addexportobj['saleFrom']" value="Portable Capacity">&nbsp;
+                                    <label for="Portable Capacity" class="px-2">Portable Capacity</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="saleFrom" name="saleFrom" #saleFrom="ngModel"
+                                        [(ngModel)]="addexportobj['saleFrom']" value="Industrial Capacity">&nbsp;
+                                    <label for="Industrial Capacity" class="pl-2">Industrial Capacity</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label>Sale Agreement No</label>
+                                                                    <input type="text" class="form-control" name="saleAgreementNo" placeholder="Enter Sale Agreement No" #saleAgreementNo="ngModel"
+                                                                    [(ngModel)]="addexportobj['saleAgreementNo']" required>
+                                                                    <div *ngIf="saleAgreementNo.invalid && (saleAgreementNo.dirty || saleAgreementNo.touched || formSubmitted)"
+                                                                    class="error-msg">
+                                                                    <div *ngIf="saleAgreementNo?.errors?.required"><i class="fa fa-times"></i>
+                                                                        Sale Agreement No Is Required </div>
+                                                                </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Sale Agreement Date</label>
+                                                                        <input type="date" class="form-control" name="saleAgreementDate" #saleAgreementDate="ngModel"
+                                                                        [(ngModel)]="addexportobj['saleAgreementDate']" required>
+                                                                        <div *ngIf="saleAgreementDate.invalid && (saleAgreementDate.dirty || saleAgreementDate.touched || formSubmitted)"
+                                                                        class="error-msg">
+                                                                        <div *ngIf="saleAgreementDate?.errors?.required"><i class="fa fa-times"></i>
+                                                                            Sale Agreement Date Is Required </div>
+                                                                    </div>
+                                                                        </div>
+                                                                    </div>
+                                                                   
+                                                                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                                                                        <div class="form-group">
+                                                                            <label for="uploadsaleagreement">Upload Sale Agreement Letter(.pdf files only with max size of 15 KB)</label>
+                                                                            <div class="input-group cust-file-button">
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" name="uploadSaleAgreement" id="uploadSaleAgreement" #uploadSaleAgreement="ngModel"
+                                                                                    [(ngModel)]="addexportobj['uploadSaleAgreement']" accept="application/pdf,application/vnd.ms-excel">
+                                                                                    <label class="custom-file-label">Choose file</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> -->
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Agreement Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consent/Sale Agreement No</label>
+                            <input type="text" class="form-control" required
+                                placeholder="Enter the Consent/Sale Agreement No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consent/Sale Agreement Date</label>
+                            <input type="date" class="form-control" required
+                                placeholder="Enter the Consent/Sale Agreement No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consent/Sale Agreement Validity</label>
+                            <input type="text" class="form-control" required
+                                placeholder="Enter the Consent/Sale Agreement Validity">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Enclosurement (Checklist) Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadsaleagreement">Upload Sale Agreement Letter(.pdf files only with max size
+                                of 15 KB)</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadSaleAgreement"
+                                        id="uploadSaleAgreement">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadsaleagreement">Upload Consent</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadSaleAgreement"
+                                        id="uploadSaleAgreement">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="uploadsaleagreement">Upload Import Permission For Import Origin State</label>
+                            <div class="input-group cust-file-button">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadSaleAgreement"
+                                        id="uploadSaleAgreement">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(addimportForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addapi(addimportForm,false)">Save as
+            Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2" (click)="ShowPOpUp(addimportForm,true)">Submit</button>
+        <!-- (click)="addapi(addimportForm,true)" -->
+        <button #buttonForPop type="button" class="btn btn-primary ml-2 mb-2" hidden
+            (click)="exampleModalCenter.show()">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/export-permit-request/list">Cancel</button>
+    </div>
+    <app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered">
+        <div class="app-modal-header">
+            <h5 class="modal-title">Confirmation</h5>
+            <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+                (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="app-modal-body">
+            <h6 class="text-secondary text-center">Are you sure you want to Submit?</h6>
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-primary" (click)="addapi(addimportForm,true)">Yes</button>
+            <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal"
+                (click)="exampleModalCenter.hide()">No</button>
+        </div>
+    </app-ui-modal>
+</div>

@@ -1,0 +1,61 @@
+<h5 class="m-b-10 ng-star-inserted">Bottling Production Plan
+    <button type="submit" class="btn btn-success custom_add_button pull-right"
+        routerLink="/supplychainmanagement/distillery/bottlingproplannew/add" *ngIf="!workflowobj">
+        <i class="feather icon-plus mr-2"></i>
+        Bottling Production Plan
+    </button>
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bottling Production Plan</a></li>
+    <li class="breadcrumb-item">List</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" required 
+                        [(ngModel)]="bppSearchObj['search']">
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="searchBPP()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="clearData()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Bottling Production Plan List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys" [dataSource]="dataSource"
+                [pageSize]="pageSize" (paginationEvent)="handlePagination($event)" (editAction)="onEdit($event)"
+                (viewAction)="onView($event)" [actionBtnBasedOnCond]="actionBtnBasedOnCond" [totalCount]="totalCount">
+            </app-mat-normal-table>
+            </div>
+            <!-- <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:">Excel</a>
+                            <a class="dropdown-item" href="javascript:">PDF</a>
+                            <a class="dropdown-item" href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </app-card>
+    </div>
+</div>

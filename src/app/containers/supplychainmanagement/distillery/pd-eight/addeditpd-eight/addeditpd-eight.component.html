@@ -1,0 +1,236 @@
+<h5 class="m-b-10 ng-star-inserted">{{addedit}} PD-8A (Wash Collected & Molasses Consumed)</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd-8/list">Fermentation and
+            Distillation</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/pd-8/list">PD-8A (Wash Details)</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #pd8Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details Of PD-8A (Wash Collected & Molasses Consumed)"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" placeholder="Enter Date" name="validity"
+                                #validity="ngModel" [(ngModel)]="pd8areferenceObj['date']" required>
+                            <div *ngIf="validity.invalid && (validity.dirty || validity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="validity?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf = "!this.editId" class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference No</label>
+                            <select class="form-control" name="productionPd8Id"
+                            #productionPd8Id="ngModel" [(ngModel)]="pd8areferenceObj['productionPd8Id']" (change)="getpd8autopopulatedata(pd8areferenceObj['productionPd8Id'])" required >
+                                <option value="">Select</option>
+                                <option *ngFor="let item of pd8referencelist" value="{{item.id}}">
+                                    {{item.referenceNumber}}
+                                </option>
+                            </select>
+                            <div *ngIf="productionPd8Id.invalid && (productionPd8Id.dirty || productionPd8Id.touched || formSubmitted)"
+                            class="error-msg">
+                            <div *ngIf="productionPd8Id?.errors?.required"><i class="fa fa-times"></i>
+                                PD8 Reference No is required </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div  *ngIf = "this.editId"class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>PD8 Reference No</label>
+                       
+                       <input type="text" class="form-control" name="referenceNumber" disabled  #referenceNumber="ngModel" [(ngModel)]="pd8areferenceObj['referenceNumber']">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Temperature</label>
+                            <input type="number" class="form-control" disabled placeholder="" name="temparature"
+                                #temparature="ngModel" [(ngModel)]="pd8areferenceObj['temparature']" required>
+                            <div *ngIf="temparature.invalid && (temparature.dirty || temparature.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="temparature?.errors?.required"><i class="fa fa-times"></i>
+                                    Temperature is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Degree</label>
+                            <input type="number" class="form-control" name="degree" placeholder="Enter Degree"
+                                #degree="ngModel" [(ngModel)]="pd8areferenceObj['degree']" required>
+                            <div *ngIf="degree.invalid && (degree.dirty || degree.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="degree?.errors?.required"><i class="fa fa-times"></i>
+                                    Degree is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Particular</label>
+                            <input type="number" class="form-control" name="particular" placeholder="Enter Particular"
+                                #particular="ngModel" [(ngModel)]="pd8areferenceObj['particular']" required>
+                            <div *ngIf="particular.invalid && (particular.dirty || particular.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="particular?.errors?.required"><i class="fa fa-times"></i>
+                                    Particular is required </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wash In Ltrs</label>
+                            <input type="number" disabled class="form-control" name="washInLtr" placeholder=""
+                                #washInLtr="ngModel" [(ngModel)]="pd8areferenceObj['washInLtr']" required>
+                            <div *ngIf="washInLtr.invalid && (washInLtr.dirty || washInLtr.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="washInLtr?.errors?.required"><i class="fa fa-times"></i>
+                                    Wash In Ltrs is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Weight of Molasses (Qtl.)</label>
+                            <input type="number" disabled class="form-control" name="molassesWeight"
+                                placeholder="" #molassesWeight="ngModel"
+                                [(ngModel)]="pd8areferenceObj['molassesWeight']" required>
+                            <div *ngIf="molassesWeight.invalid && (molassesWeight.dirty || molassesWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="molassesWeight?.errors?.required"><i class="fa fa-times"></i>
+                                    Weight of Molasses is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #pd8Form="ngForm" autocomplete="off">
+            <app-card cardTitle="WASH SET UP" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wash/ Back No</label>
+                            <input type="number" class="form-control" name="setupWashNo" placeholder="" disabled
+                                #setupWashNo="ngModel" [(ngModel)]="pd8areferenceObj['setupWashNo']" required>
+                            <div *ngIf="setupWashNo.invalid && (setupWashNo.dirty || setupWashNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="setupWashNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Wash/ Back No is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Initial Gravity</label>
+                            <input type="number" class="form-control" name="initialGravity"
+                                placeholder="" #initialGravity="ngModel" disabled
+                                [(ngModel)]="pd8areferenceObj['initialGravity']" required>
+                            <div *ngIf="initialGravity.invalid && (initialGravity.dirty || initialGravity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="initialGravity?.errors?.required"><i class="fa fa-times"></i>
+                                    Initial Gravity is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dry Dip (cms.)</label>
+                            <input type="number" class="form-control" name="setUpDryDip" placeholder="Enter Dry Dip (cms.)"
+                                #setUpDryDip="ngModel" [(ngModel)]="pd8areferenceObj['setUpDryDip']" required>
+                            <div *ngIf="setUpDryDip.invalid && (setUpDryDip.dirty || setUpDryDip.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="setUpDryDip?.errors?.required"><i class="fa fa-times"></i>
+                                    Dry Dip is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #pd8Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Wash Distilled" class="list-panel add-panel">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Wash/ Back No</label>
+                            <input type="number" class="form-control" name="distilledWashNo" placeholder="" disabled
+                                #distilledWashNo="ngModel" [(ngModel)]="pd8areferenceObj['distilledWashNo']" required>
+                            <div *ngIf="distilledWashNo.invalid && (distilledWashNo.dirty || distilledWashNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distilledWashNo?.errors?.required"><i class="fa fa-times"></i>
+                                    Wash/ Back No is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Final Gravity</label>
+                            <input type="number" class="form-control" name="finalGravity" placeholder="" disabled
+                                #finalGravity="ngModel" [(ngModel)]="pd8areferenceObj['finalGravity']" required>
+                            <div *ngIf="finalGravity.invalid && (finalGravity.dirty || finalGravity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="finalGravity?.errors?.required"><i class="fa fa-times"></i>
+                                    Final Gravity is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dry Dip (cms.)</label>
+                            <input type="number" class="form-control" name="distilledDryDip" placeholder="Enter Dry Dip (cms.)"
+                                #distilledDryDip="ngModel" [(ngModel)]="pd8areferenceObj['distilledDryDip']" required>
+                            <div *ngIf="distilledDryDip.invalid && (distilledDryDip.dirty || distilledDryDip.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distilledDryDip?.errors?.required"><i class="fa fa-times"></i>
+                                    Dry Dip is required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Distilled Wash Qty</label>
+                            <input type="number" class="form-control" name="distilledWashQty" placeholder="Enter Distilled Wash Qty"
+                                #distilledWashQty="ngModel" [(ngModel)]="pd8areferenceObj['distilledWashQty']" required>
+                            <div *ngIf="distilledWashQty.invalid && (distilledWashQty.dirty || distilledWashQty.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="distilledWashQty?.errors?.required"><i class="fa fa-times"></i>
+                                    Distilled Wash Qty is required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(pd8Form)">Preview</button>
+        <!-- <button type="button"  class="btn btn-warning ml-2 mb-2" (click)="addPd8aDeatils(pd8Form,'INITIATED')">Save as
+            Draft</button> -->
+        <button type="button" [disabled]="!pd8Form.valid" class="btn btn-primary ml-2 mb-2" (click)="addPd8aDeatils(pd8Form,'SUBMITTED')">Submit</button>
+        <!-- addPd8aDeatils(pd8Form,true) -->
+        <!-- <button #buttonForPop type="button" class="btn btn-primary ml-2 mb-2" hidden
+            (click)="exampleModalCenter.show()">Submit</button> -->
+        <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="back()">Cancel</button>
+    </div>
+    
+</div>

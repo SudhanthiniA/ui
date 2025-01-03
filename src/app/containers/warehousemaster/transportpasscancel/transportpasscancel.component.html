@@ -1,0 +1,263 @@
+<h5 class="m-b-10 ng-star-inserted">
+   {{'wholesale.transportpasscancel.transportpasscancellation' | translate}}
+    <button type="submit" class="btn btn-success custom_add_button pull-right" *ngIf='!workflowobj?.isEditable'
+    routerLink="/supplychainmanagement/wholesale/transportpasscancel/add">
+    <i class="feather icon-plus mr-2"></i>
+    {{'wholesale.transportpasscancel.transportpasscancellation' | translate}}
+</button>
+ </h5>
+ 
+ <ul class="breadcrumb p-0">
+     <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+     <li class="breadcrumb-item"><a href="javascript:">Master Warehouse</a></li>
+     <li class="breadcrumb-item"><a href="javascript:">{{'wholesale.transportpasscancel.transportpasscancellation' | translate}}</a></li>
+     <li class="breadcrumb-item">{{'wholesale.common.list' | translate}}</li>
+ </ul>
+ <div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'wholesale.common.search' | translate}}" class="search-panel">
+          <form #cancelForm='ngForm' autocomplete="off">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.transportpasscancel.applicationid' | translate}}</label>
+                        <input type="text" name='applicationId' #applicationId="ngModel" [(ngModel)]="transportListObj['applicationId']" class="form-control"
+                      
+                            placeholder="{{'wholesale.transportpasscancel.enterapplicationid' | translate}}">
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Transport Pass Type</label>
+                        <select class="form-control"  name='transPortPassType' #transPortPassType="ngModel"  (change)="changePassType(transportListObj['transPortPassType'])" [(ngModel)]="transportListObj['transPortPassType']">
+                            <option value="">Select</option>
+                            <option>TransportPassType1</option>
+                            <option>TransportPassType2</option>
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.transportpasscancel.applicationdate' | translate}}</label>
+                        <input type="date" class="form-control" name="apllicationDate" #apllicationDate="ngModel" [(ngModel)]=transportListObj.apllicationDate >
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.transportpasscancel.premisestype' | translate}}</label>
+                        <select class="form-control" name='premisesType' #premisesType="ngModel"  (change)="changePrimesType(transportListObj['premisesType'])" [(ngModel)]="transportListObj['premisesType']">
+                            <option value="">{{'wholesale.common.select' | translate}}</option>
+                            <option>{{'wholesale.transportpasscancel.withinpremises' | translate}}</option>
+                            <option>{{'wholesale.transportpasscancel.outsidepremises' | translate}}</option>
+                            <!-- <option>Premises type2</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{'wholesale.transportpasscancel.requesttype' | translate}}</label>
+                        <select class="form-control"  name='requestType' #requestType="ngModel"  (change)="changeRequestType(transportListObj['requestType'])" [(ngModel)]="transportListObj['requestType']" >
+                            <option value="">{{'wholesale.common.select' | translate}}</option>
+                            <option>{{'wholesale.transportpasscancel.modification' | translate}}</option>
+                            <option>{{'wholesale.transportpasscancel.cancellation' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+              
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click)="TransPassCanAproRecSearch1()">{{'wholesale.common.search'| translate}}</button>
+                    <button type="submit" class="btn btn-secondary"(click)="cancel()">{{'wholesale.common.cancel' | translate}}</button>
+                </div>
+            </div>
+        </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="{{'wholesale.transportpasscancel.transportpasscancellationlist' | translate}}"  blockClass="table-border-style" class="list-panel">          
+            <ngb-tabset #tabSet="ngbTabset" type="pills" class="mb-2">
+                      <ngb-tab title="{{'wholesale.transportpasscancel.pendingforapproval' | translate}}" id="IN_PROGRESS">
+                           <ng-template ngbTabContent>
+                                <div class="row">
+                                     <div class="col-12 mb-2">
+                                        <!-- <div class="table-responsive">
+                                            <app-mat-normal-table [columns]="pendings" [actionKeys]="actionKeysInprogrss" [dataSource]="dataSourceInprogress"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondInprogress" 
+                                               [totalCount]="totalCountInprogress" [pageSize]="pageSizeInprogress" (paginationEvent)="handlePagination1($event)"
+                                               (editAction)="editt($event)" (viewAction)="view($event)">
+                                           </app-mat-normal-table>
+                                           </div> -->
+                                        <div class="table-responsive ">
+                                            <table class="table table-bordered table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Application ID</th>
+                                                        <!-- <th>Transport Pass Type</th> -->
+                                                        <th>Transport Pass  No</th>
+                                                        <th>Application Date</th>
+                                                        <th>Premises Type</th>
+                                                        <th>Request Type</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td class="text-center">AP1122</td>
+                                                        <!-- <td class="text-center">-</td> -->
+                                                        <td class="text-center">TP1122</td>
+                                                         <td class="text-center">20-Jul-2021</td>
+                                                        <td class="text-left">Within UP</td>
+                                                        <td class="text-left">Type 1</td>
+                                                      <td class="text-center">
+                                <span class="badge badge-light-warning">Pending</span>
+                            </td>                           
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                routerLink="/supplychainmanagement/wholesale/transportpasscancel/view">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button" >
+                                        <i class="feather icon-edit-2"></i></button>
+                            </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                   </div>
+                                                    </ng-template>
+                </ngb-tab>
+                <ngb-tab class="mt-2" id="APPROVED"> 
+                    <ng-template ngbTabTitle>{{'wholesale.transportpasscancel.approved' | translate}}</ng-template> 
+                    <ng-template ngbTabContent>
+                               <div class="row">
+                                    <div class="col-12">
+                                        <!-- <div class="table-responsive">
+                                            <app-mat-normal-table [columns]="Approved" [actionKeys]="actionKeysAproved" [dataSource]="dataSourceApproved"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondApproved" 
+                                               [totalCount]="totalCountApproved" [pageSize]="pageSizeApproved" (paginationEvent)="handlePagination2($event)"
+                                               (editAction)="editt($event)" (viewAction)="onViewapp($event)">
+                                           </app-mat-normal-table>
+                                           </div> -->
+                                           <div class="table-responsive ">
+                                            <table class="table table-bordered table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Application ID</th>
+                                                        <!-- <th>Transport Pass Type</th> -->
+                                                        <th>Transport Pass  No</th>
+                                                        <th>Application Date</th>
+                                                        <th>Premises Type</th>
+                                                        <th>Request Type</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td class="text-center">AP1122</td>
+                                                        <!-- <td class="text-center">-</td> -->
+                                                        <td class="text-center">TP1122</td>
+                                                         <td class="text-center">20-Jul-2021</td>
+                                                        <td class="text-left">Within UP</td>
+                                                        <td class="text-left">Type 1</td>
+                                                      <td class="text-center">
+                                <span class="badge badge-light-primary">Approved</span>
+                            </td>                           
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                (click)="view(res.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="edit(res.id)" >
+                                        <i class="feather icon-edit-2"></i></button>
+                            </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                   </div>
+                        
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab  id="SENDBACK">                  
+                    <ng-template ngbTabTitle>{{'wholesale.transportpasscancel.revertback' | translate}}</ng-template>
+                    <ng-template ngbTabContent>
+                               <div class="row">
+                                    <div class="col-12">
+                                        <!-- <div class="table-responsive">
+                                            <app-mat-normal-table [columns]="Sendback" [actionKeys]="actionKeysSendback" [dataSource]="dataSourceSendBack"  [actionBtnBasedOnCond] ="actionBtnBasedOnCondSendback" 
+                                               [totalCount]="totalCountSendback" [pageSize]="pageSizeSendback" (paginationEvent)="handlePagination3($event)"
+                                               (editAction)="editt($event)" (viewAction)="viewRevert($event)">
+                                           </app-mat-normal-table>
+                                           </div> -->
+                                           <div class="table-responsive ">
+                                            <table class="table table-bordered table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Application ID</th>
+                                                        <!-- <th>Transport Pass Type</th> -->
+                                                        <th>Transport Pass  No</th>
+                                                        <th>Application Date</th>
+                                                        <th>Premises Type</th>
+                                                        <th>Request Type</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td class="text-center">AP1122</td>
+                                                        <!-- <td class="text-center">-</td> -->
+                                                        <td class="text-center">TP1122</td>
+                                                         <td class="text-center">20-Jul-2021</td>
+                                                        <td class="text-left">Within UP</td>
+                                                        <td class="text-left">Type 1</td>
+                                                      <td class="text-center">
+                                <span class="badge badge-light-danger">Revert</span>
+                            </td>                           
+                            <td class="table-action-column text-center">
+                                <button class="btn btn-icon btn-primary" type="button"
+                                (click)="view(res.id)">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button class="btn btn-icon btn-secondary ml-2" type="button" (click)="edit(res.id)" >
+                                        <i class="feather icon-edit-2"></i></button>
+                            </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                   </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+            <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">{{'wholesale.common.download' | translate}}</button>
+                    <div ngbDropdownMenu>
+                      <a class="dropdown-item"
+                      href="javascript:">Excel</a>
+                  <a class="dropdown-item"
+                      href="javascript:">PDF</a>
+                  <a class="dropdown-item"  href="javascript:">CSV</a>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+        </app-card>
+    </div>
+ </div>
+
+
+
+
+
+ 

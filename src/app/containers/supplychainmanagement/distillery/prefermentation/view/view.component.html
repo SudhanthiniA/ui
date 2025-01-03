@@ -1,0 +1,126 @@
+<h5 class="m-b-10 ng-star-inserted">View Pre-fermentation
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Industrial Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/prefermentation/list">
+            Pre-fermentation</a></li>
+
+    <li aria-current="page" class="breadcrumb-item active">View</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="Pre-Fermentation Details" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">OT Number<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{prefermntorObj.otProductionPlan?.otNumber}}</span>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">No of Yesat Vessels<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{prefermntorObj.otProductionPlan?.yeastVesselsCount}}</span>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">
+                            No of Pre-Fermenter Requires<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>{{prefermntorObj.otProductionPlan?.preFermenterCount}}</span>
+                    </div>
+
+
+                </div>
+                <div class="row mt-4 mb-3">
+                    <div class="col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-center">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Pre-Frementer Number</th>
+                                        <th>Pre-Fermenter Filling Serial No</th>
+                                        
+                                        <th>Date and Time of Setup</th>
+                                        <th>Material Type</th>
+                                        <th>Molasses Tank No</th>
+                                        <!-- <th>Molasses Type</th> -->
+                                        <th>Quantity of Molasses</th>
+                                        <th>Quantity of Broth Prepared</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                     
+                                        <td>
+                                            {{prefermntorObj.preFerRefNo}}
+                                        </td>
+                                        <td>
+                                            {{prefermntorObj.prefermentationTankName}}
+                                        </td>
+
+                                        <td>
+                                            {{prefermntorObj.setupDateTime | date:'dd-MMM-yyyy'}}
+                                        </td>
+
+                                        <td>
+                                            {{prefermntorObj.tankRegistrationEntity?.specification}}
+                                        </td>
+                                        <td>
+                                            {{prefermntorObj.tankRegistrationEntity?.tankName}}
+                                        </td>
+                                        <td>
+                                            {{prefermntorObj.molassesQty}}
+                                        </td>
+
+                                        <td>
+                                            {{prefermntorObj.preparedBrothQty}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row"> -->
+
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Status<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Active</span>
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Approved By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>Admin</span>
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Approved on<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <span>20-Jan-2021</span>
+                    </div> -->
+                <!-- </div> -->
+            </app-card>
+
+
+
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/distillery/prefermentation/list">Back</button>
+    </div>
+</div>

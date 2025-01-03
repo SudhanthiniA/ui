@@ -1,0 +1,146 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.taulk' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.taulk' | translate }}</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.taulk' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #taulkForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.common.taulk' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.taulk' | translate }}</label>
+                            <input type="text" [(ngModel)]="taulkObject.name" name="taulkname" #taulkname="ngModel"
+                                minlength="3" maxlength="100" required class="form-control"
+                                pattern="^[a-zA-Z0-9]+$"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.taulkname' | translate }} "
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="taulkname.invalid && (taulkname.dirty || taulkname.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="taulkname?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.taulkname' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="taulkname?.errors?.maxlength && !taulkname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.taulkname' | translate }}
+                                    {{ 'master.common.ismaximum' | translate }}
+                                </div>
+                                <div *ngIf="taulkname?.errors?.minlength && !taulkname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.taulkname' | translate }}
+                                    {{ 'master.common.isminimum' | translate }}
+                                </div>
+                                <div *ngIf="taulkname?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.country' | translate }}</label>
+                            <!-- <select class="form-control" [(ngModel)]="taulkObject.country" name="country_uuid"
+                                #country_uuid="ngModel" required (change)="getState($event.target.value)">
+                                <option value=""> {{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let country of countryData" value="{{country.id}}">
+                                    {{country.countryName}}
+                                </option>
+                            </select>
+                            <div *ngIf="country_uuid.invalid && (country_uuid.dirty || country_uuid.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="country_uuid?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.country' | translate }}
+                                    {{ 'master.common.isrequired' | translate }}
+                                </div>
+                            </div> -->
+                            <ng-multiselect-dropdown [data]="countryData" [placeholder]="'Select'"
+                            [(ngModel)]="taulkObject.country" [settings]="countryDropDownSettings"
+                            (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                            [required]='countryRequired' (onDropDownClose)="onDropDownClose()"
+                            [ngClass]="countryDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!countryRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.country' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.state' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="stateData" [placeholder]="'Select'"
+                                [(ngModel)]="taulkObject.state" [settings]="stateDropDownSettings"
+                                (onSelect)="onStateSelect($event)" (onDeSelect)="onStateDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeState($event)"
+                                (onDropDownClose)="onDropDownCloseState()" [required]='stateRequired'
+                                [ngClass]="stateDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!stateRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.common.state' | translate }} {{ 'master.common.isrequired' | translate
+                                }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.district' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="districtData" [placeholder]="'Select'"
+                            [(ngModel)]="taulkObject.districtId" [settings]="districtDropDownSettings"
+                            (onSelect)="ondistrictSelect($event)" (onDeSelect)="onDistrictDeselect($event)"
+                            [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChangeDistrict($event)"
+                            (onDropDownClose)="onDropDownCloseDistrict()" [required]='districtRequired'
+                            [ngClass]="districtDropDownSettings.singleSelection ? 'singleselect' : '' ">
+                        </ng-multiselect-dropdown>
+                        <div *ngIf="!districtRequired && formSubmitted" class="error-msg">
+                            <i class="fa fa-times"></i>
+                            {{ 'master.common.district' | translate }} {{ 'master.common.isrequired' | translate
+                            }}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory"> {{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="taulkObject.active" name="status" #status="ngModel"
+                                    class="custom-control-input" id="switch1"
+                                    [attr.checked]="taulkObject.status ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!taulkObject.active">
+                                    {{ 'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="taulkObject.active">
+                                    {{ 'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addtaulk(taulkForm)">
+            {{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/taluk/list">
+            {{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>

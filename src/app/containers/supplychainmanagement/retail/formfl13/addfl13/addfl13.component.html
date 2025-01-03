@@ -1,0 +1,174 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add FL13
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">FL 13</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="fl13Form" autocomplete="off">
+            <app-card cardTitle="Add FL 13" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Licensee Name</label>
+                            <input type="text" class="form-control" formControlName='licenseeName'
+                                placeholder="Enter Licensee Name">
+                            <div *ngIf="formSubmitted && fl13Form.get('licenseeName').errors || fl13Form.get('licenseeName').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('licenseeName').errors?.required">
+                                    Licensee Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>License Type</label>
+                            <select class="form-control"  formControlName='licenseType'>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of licenseTypes" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && fl13Form.get('licenseType').errors || fl13Form.get('licenseType').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('licenseType').errors?.required">
+                                    License Type is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <select class="form-control" formControlName='locality'>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of localities" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && fl13Form.get('locality').errors || fl13Form.get('locality').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('locality').errors?.required">
+                                    Locality is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">Same Permises</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                        class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="customRadioInline2">Separate
+                                        Permises</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Licence Fees Realised in Advance</label>
+                            <input type="number" class="form-control" formControlName='licenseFeesAdvance'
+                                placeholder="Enter Licence Fees Realised in Advance">
+                            <div *ngIf="formSubmitted && fl13Form.get('licenseFeesAdvance').errors || fl13Form.get('licenseFeesAdvance').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('licenseFeesAdvance').errors?.required">
+                                    Licence Fees Realised in Advance is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Spirits and Wines of Indian and Foreign Made Both" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Rate per Quart</label>
+                            <input type="number" class="form-control" formControlName='rate1'
+                                placeholder="Enter Rate per Quart">
+                            <div *ngIf="formSubmitted && fl13Form.get('rate1').errors || fl13Form.get('rate1').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('rate1').errors?.required">
+                                    Rate per Quart is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Amount of License Fee on Spirit</label>
+                            <input type="number" class="form-control" formControlName='licenseFeeonSpirit'
+                                placeholder="Enter Amount of License Fee on Spirit" (keyup)="calculateAmount()">
+                            <div *ngIf="formSubmitted && fl13Form.get('licenseFeeonSpirit').errors || fl13Form.get('licenseFeeonSpirit').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('licenseFeeonSpirit').errors?.required">
+                                    Enter Amount of License Fee on Spirit is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Beer on Indian and Foreign Made Both" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Rate per Quart</label>
+                            <input type="number" class="form-control" formControlName='rate2'
+                                placeholder="Enter Rate per Quart">
+                            <div *ngIf="formSubmitted && fl13Form.get('rate2').errors || fl13Form.get('rate2').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('rate2').errors?.required">
+                                    Rate per Quart is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Amount of License Fee on Beer</label>
+                            <input type="number" class="form-control" formControlName='licenseFeeonBeer'
+                                placeholder="Enter Amount of License Fee on Beer" (keyup)="calculateAmount()">
+                            <div *ngIf="formSubmitted && fl13Form.get('licenseFeeonBeer').errors || fl13Form.get('licenseFeeonBeer').touched "
+                                class="error-msg">
+                                <span *ngIf="fl13Form.get('licenseFeeonBeer').errors?.required">
+                                    Amount of License Fee on Beer is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total Amount of License Fee</label>
+                            <input type="number" disabled class="form-control" formControlName='totalAmount'
+                                placeholder="Enter Total Amount of License Fee">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl13/view">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addFL13(fl13Form)">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addFL13(fl13Form)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl13/list">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

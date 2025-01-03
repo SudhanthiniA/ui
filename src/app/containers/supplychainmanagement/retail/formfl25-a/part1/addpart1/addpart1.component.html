@@ -1,0 +1,97 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Part 1- Inspections by Excise and Other Officer
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">FL 25-A</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Part 1- Inspections by Excise and Other Officer</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="partForm" autocomplete="off">
+            <app-card cardTitle="Register to be Maintaned by Foreign Liqour Seller" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date </label>
+                            <input type="date" disabled class="form-control" formControlName='date'>
+                            <div *ngIf="formSubmitted && partForm.get('date').errors || partForm.get('date').touched "
+                                class="error-msg">
+                                <span *ngIf="partForm.get('date').errors?.required">
+                                    Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Hour of Inspection</label>
+                            <input type="date" class="form-control" formControlName='hourofInspection'>
+                            <div *ngIf="formSubmitted && partForm.get('hourofInspection').errors || partForm.get('hourofInspection').touched "
+                                class="error-msg">
+                                <span *ngIf="partForm.get('hourofInspection').errors?.required">
+                                    Hour of Inspection is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Pection Note Including Stock Verification</label>
+                            <input type="text" class="form-control" formControlName='date'
+                                placeholder="Enter Pection Note Including Stock Verification">
+                            <div *ngIf="formSubmitted && partForm.get('hourofInspection').errors || partForm.get('hourofInspection').touched "
+                                class="error-msg">
+                                <span *ngIf="partForm.get('hourofInspection').errors?.required">
+                                    Hour of Inspection is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Details of Breaches Deteched</label>
+                            <input type="text" class="form-control" formControlName='breachesDeteched'
+                                placeholder="Enter Details of Breaches Deteched">
+                            <div *ngIf="formSubmitted && partForm.get('breachesDeteched').errors || partForm.get('breachesDeteched').touched "
+                                class="error-msg">
+                                <span *ngIf="partForm.get('breachesDeteched').errors?.required">
+                                    Details of Breaches Deteched is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Inspector Name</label>
+                            <input type="text" class="form-control" formControlName='inspectorName'
+                                placeholder="Enter Inspector Name">
+                            <div *ngIf="formSubmitted && partForm.get('inspectorName').errors || partForm.get('inspectorName').touched "
+                                class="error-msg">
+                                <span *ngIf="partForm.get('inspectorName').errors?.required">
+                                    Inspector Name is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+
+
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl25-a/part1/list">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addForm(partForm)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl25-a/part1/list">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

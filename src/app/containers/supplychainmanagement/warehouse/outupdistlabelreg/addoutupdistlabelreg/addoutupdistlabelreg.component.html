@@ -1,0 +1,806 @@
+<h5 class="m-b-10 ng-star-inserted">Add Label Registration</h5>
+<ul class="breadcrumb p-0">
+   <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+   <li class="breadcrumb-item"><a href="javascript:">Warehouse</a></li>
+   <li class="breadcrumb-item"><a href="javascript:">Label Registration</a></li>
+   <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+<div class="row">
+   <div class="col-xl-12">
+     
+         <app-card cardTitle="Add Label Registration" class="list-panel add-panel">
+
+            <ngb-tabset type="pills" class="mb-2">
+               <ngb-tab title="Label Details">
+                  <ng-template ngbTabContent>
+                     <div class="row mt-2">
+                        <div class="col-12">
+
+
+                           <app-card cardTitle="Unit Details" class="list-panel add-panel">
+                              <form [formGroup]="labelReg" autocomplete="off">
+                              <div class="row">
+                                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Unit Type</label>
+                                       <input type="text" class="form-control"  value="Parent Type"
+                                          formControlName="unitType" disabled>
+                                       <!-- disabled -->
+                                       <div
+                                          *ngIf="formSubmitted && labelReg.get('unitType').errors || labelReg.get('unitType').touched "
+                                          class="error-msg">
+                                          <span *ngIf="labelReg.get('unitType').errors?.required">
+                                             unitType is required
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>License Type</label>
+                                       <input type="text" class="form-control"  
+                                          formControlName="licenseType" disabled>
+                                       <!-- disabled -->
+                                       <div
+                                          *ngIf="formSubmitted && labelReg.get('licenseType').errors || labelReg.get('licenseType').touched "
+                                          class="error-msg">
+                                          <span *ngIf="labelReg.get('licenseType').errors?.required">
+                                             licenseType is required
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>License No</label>
+                                       <input type="text" disabled class="form-control" 
+                                           formControlName="licenseNo">
+                                       <!-- formControlName="licenseNo"  -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('licenseNo').errors || labelReg.get('licenseNo').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('licenseNo').errors?.required">
+                                       licenseNo is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Unit Name</label>
+                                       <input type="text" class="form-control" 
+                                           formControlName="unitName" disabled>
+                                       <!-- disabled -->
+                                       <div
+                                          *ngIf="formSubmitted && labelReg.get('unitName').errors || labelReg.get('unitName').touched "
+                                          class="error-msg">
+                                          <span *ngIf="labelReg.get('unitName').errors?.required">
+                                             unitName is required
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group">
+                                       <label>Address</label>
+                                       <textarea class="form-control" rows="2" formControlName="address" disabled>
+                                 <!-- disabled -->
+                                 <div *ngIf="formSubmitted && labelReg.get('address').errors || labelReg.get('address').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('address').errors?.required">
+                                       address is required
+                                    </span>
+                                 </div>
+                              </textarea>
+                                    </div>
+                                 </div>
+                                 <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                           <div class="form-group">
+                              <label>Unit Type</label>
+                              <input type="text" disabled class="form-control" required
+                                 value="BWFL">
+                           </div>
+                           </div> -->
+                              </div>
+                           </form>
+                           </app-card>
+                           <app-card cardTitle="Brand Details" class="list-panel add-panel">
+                              <form [formGroup]="labelReg" autocomplete="off">
+                              <div class="row">
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Application No</label>
+                                       <select class="form-control" 
+                                          (change)="getbranddetails($event.target.value)"
+                                          formControlName='applicationNumber' required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">Select</option>
+                                          <option *ngFor='let appnum of applicatio_num' value="{{appnum.id}}">
+                                             {{appnum.applicationNumber}}</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Parent Code</label>
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="parentCode">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Brand Name</label>
+
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="brandName">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Liquor Type</label>
+
+                                       <input type="text" disabled  class="form-control" value="Whisky"
+                                          formControlName="liquorType">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Sub Liquor Type</label>
+
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="subliquorType">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Liquor Category</label>
+
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="liquorCategory">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Strength</label>
+                                       <input type="number" disabled  class="form-control"
+                                          formControlName="strength">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>EDP </label>
+                                       <input type="number" disabled  class="form-control"
+                                          formControlName="edp">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Supply Type</label>
+
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="supplyType">
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Domain</label>
+
+                                       <input type="text" disabled  class="form-control"
+                                          formControlName="domain">
+                                       <!-- formControlName="domain" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('domain').errors || labelReg.get('domain').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('domain').errors?.required">
+                                       domain is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                              </div>
+                              </form>
+                           </app-card>
+                           <app-card cardTitle="Label Details" class="list-panel add-panel">
+                              <form [formGroup]="labeldetails" autocomplete="off">
+                              <div class="row">
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Packaging Size</label>
+                                       <select class="form-control"  formControlName='packagingsize' required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">Select</option>
+                                          <option *ngFor='let s of sizelist' value="{{s.desc}}">{{s.desc}}</option>
+                                       </select>
+
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Packaging Type</label>
+                                       <select class="form-control"  formControlName='packagingType' required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value="">Select</option>
+                                          <option *ngFor='let s of packagetypelist' value="{{s.name}}">{{s.name}}</option>
+                                       </select>
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Supply Type</label>
+                                       <select class="form-control"  formControlName='supplyType' required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                          <option value=""> Select</option>
+                                          <option *ngFor='let supply of supplytype' value="{{supply.name}}">{{supply.name}}</option>
+                                       </select>
+
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Domain</label>
+                                       <input type="text" disabled  class="form-control" value="Within UP"
+                                          formControlName="domain" required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                       <!-- formControlName="domain" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('domain').errors || labelReg.get('domain').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('domain').errors?.required">
+                                       domain is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>GTIN</label>
+                                       <input type="text"  class="form-control" placeholder="Enter GTIN"
+                                          formControlName="gtin" required  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                       <!-- formControlName="gitn" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('gtin').errors || labelReg.get('gtin').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('gtin').errors?.required">
+                                       GTIN is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Carton Size</label>
+                                       <input type="number"  class="form-control" required
+                                          placeholder="Enter Carton Size" formControlName="cartonsize"  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                       <!-- formControlName="cartonsize" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('cartonSize').errors || labelReg.get('cartonSize').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('cartonSize').errors?.required">
+                                       carton Size is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Number of Labels</label>
+                                       <input type="number"  class="form-control" required
+                                          placeholder="Enter Number of Labels" formControlName="numeroflabels"  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>
+                                       <!-- formControlName="nomberoflbels" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('nomberoflbels').errors || labelReg.get('nomberoflbels').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('nomberoflbels').errors?.required">
+                                       nomberoflbels is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Label Fees</label>
+                                       <input type="number" disabled  class="form-control" value="800.00"
+                                          formControlName="labelFee">
+                                       <!-- formControlName="labelFee" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('labelFee').errors || labelReg.get('labelFee').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('labelFee').errors?.required">
+                                       labelFee is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>EDP</label>
+                                       <input type="number" disabled  class="form-control" value="900.00"
+                                          formControlName="edp">
+                                       <!-- formControlName="edp" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('sdp').errors || labelReg.get('sdp').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('edp').errors?.required">
+                                       edp is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Consideration Fees</label>
+                                       <input type="number" disabled  class="form-control" value="80.00"
+                                          formControlName="considerationFee">
+                                       <!-- formControlName="considerationFee" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('considerationFee').errors || labelReg.get('considerationFee').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('considerationFee').errors?.required">
+                                       consideration Fee is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Additional Consideration Fees</label>
+                                       <input type="number" disabled  class="form-control" value="90.00"
+                                          formControlName="additionalConsiderationFee">
+                                       <!-- formControlName="additionalConsiderationFee" -->
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('additionalConsiderationFee').errors || labelReg.get('additionalConsiderationFee').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('additionalConsiderationFee').errors?.required">
+                                       additional Consideration Fee is required
+                                    </span>
+                                 </div> -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Export Fees</label>
+                                       <input type="number" disabled  class="form-control" value="70.00"
+                                          formControlName="exportFee">
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('exportFee').errors || labelReg.get('exportFee').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('exportFee').errors?.required">
+                                       exportFee is required
+                                    </span>
+                                 </div>  formControlName="exportFee"-->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Permit Fees</label>
+                                       <input type="number" disabled  class="form-control" value="90.00"
+                                          formControlName="permitFee">
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('permitFee').errors || labelReg.get('permitFee').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('permitFee').errors?.required">
+                                       permitFee is required
+                                    </span>
+                                 </div> formControlName="permitFee"-->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Wholesaler Margin</label>
+                                       <input type="number" disabled  class="form-control" value="1200.00"
+                                          formControlName="wholesalerMargin">
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('wholesalerMargin').errors || labelReg.get('wholesalerMargin').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('wholesalerMargin').errors?.required">
+                                       wholesalerMargin is required
+                                    </span>
+                                 </div> formControlName="wholesalerMargin" -->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>Retailer Margin</label>
+                                       <input type="number" disabled  class="form-control" value="300.00"
+                                          formControlName="retailmargin">
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('retailmargin').errors || labelReg.get('retailmargin').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('retailmargin').errors?.required">
+                                       retailmargin is required
+                                    </span>
+                                 </div>  formControlName="retailmargin"-->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="form-group">
+                                       <label>MRP</label>
+                                       <input type="number" disabled  class="form-control" value="3540.00"
+                                          formControlName="mrp">
+                                       <!-- <div *ngIf="formSubmitted && labelReg.get('mrp').errors || labelReg.get('mrp').touched "
+                                    class="error-msg">
+                                    <span *ngIf="labelReg.get('mrp').errors?.required">
+                                       mrp is required
+                                    </span>
+                                 </div>  formControlName="mrp"-->
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-right" *ngIf="!workflowobj?.isEditable">
+                                    <!-- <button class="btn btn-icon btn-success  " type="button" data-toggle="modal"
+                                       >Upload</button> -->
+                                    <button class="btn btn-icon btn-primary ml-2" type="button" (click)="addRegistration(labeldetails)"  [attr.disabled]='workflowobj?.isEditable?"Disabled":null'>Add</button>
+                                    <button class="btn btn-icon btn-secondary ml-2 " type="button">Cancel</button>
+                                 </div>
+                                 <div class="col-12">
+                                    <div class="table-responsive mt-2">
+                                       <table class="table table-bordered">
+                                          <thead>
+                                             <tr>
+                                                <th>#</th>
+                                                <th>Packaging Size</th>
+                                                <th>Packaging Type</th>
+                                                <th>Supply Type</th>
+                                                <th>Domain</th>
+                                                <th>GTIN</th>
+                                                <th>Carton Size</th>
+                                                <th>Number of Labels</th>
+                                                <th>Label Fees</th>
+                                                <th>EDP </th>
+                                                <th>Consideration Fees</th>
+                                                <th>Additional Consideration Dees</th>
+                                                <th>Export Fees</th>
+                                                <th>Permit Fees</th>
+                                                <th>Wholesaler Margin</th>
+                                                <th>Retailer Margin</th>
+                                                <th>MRP</th>
+                                                <th *ngIf="!workflowobj?.isEditable">Action</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr *ngFor='let labeltbl of labeldata;let i=index'>
+                                                <td>{{i+1}}</td>
+                                                <td class="text-left">
+                                                   {{labeltbl.packagingsize}}
+                                                </td>
+                                                <td>{{labeltbl.packagingType}}</td>
+                                                <td>{{labeltbl.supplyType}}</td>
+                                                <td>{{labeltbl.domain}}</td>
+                                                <td class="text-center">{{labeltbl.gtin}}</td>
+                                                <td>
+                                                   {{labeltbl.cartonsize}}
+                                                </td>
+                                               
+                                                <td class="text-right"> {{labeltbl.numeroflabels}}</td>
+                                                <td class="text-right">{{labeltbl.labelFee}}</td>
+                                                <td class="text-right">{{labeltbl.edp}}</td>
+                                                <td class="text-right">{{labeltbl.considerationFee}}</td>
+                                                <td class="text-right">{{labeltbl.additionalConsiderationFee}}</td>
+                                                <td class="text-right">{{labeltbl.exportFee}}</td>
+                                                <td class="text-right">{{labeltbl.permitFee}}</td>
+                                                <td class="text-right">{{labeltbl.retailmargin}}</td>
+                                                <td class="text-right">{{labeltbl.wholesalerMargin}}</td>
+                                                <td class="text-right">{{labeltbl.mrp}}</td>
+                                                <td class="table-action-column text-center" *ngIf="!workflowobj?.isEditable">
+                                                   <button class="btn btn-icon btn-primary" type="button" (click)='edittabledata(labeltbl,i)' *ngIf="!workflowobj?.isEditable">
+                                                      <i class="feather icon-edit-2"></i></button>
+                                                   <button class="btn btn-icon btn-danger ml-2" type="button" (click)='deletetabledata(i)' *ngIf="!workflowobj?.isEditable">
+                                                      <i class="fas fa-trash-alt"></i></button>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                              </form>
+                           </app-card>
+
+                        </div>
+                     </div>
+                  </ng-template>
+               </ngb-tab>
+
+               <ngb-tab>
+
+                  <ng-template ngbTabTitle>Upload Label
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                     <form [formGroup]="labelupload" autocomplete="off">
+                     <div class="row mt-2">
+
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Application No
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           AP1122
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Application Date
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           20-Mar-2021
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                             <label class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                         </div>
+                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            Type 1
+                                   </div> -->
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                             <label class="w-100 view-label">Liquor Type<span class="float-right">:</span></label>
+                         </div>
+                         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            Type 1
+                         </div> -->
+
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Liquor Sub Type
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           Single Malt
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Liquor Category
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           IMFL
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Domain
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           Within UP
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Supply type
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           Wine
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Brand Name
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           Rampur Select
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Package Size
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           900
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Package Type
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           Glass Bottle
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            <label class="w-100 view-label">Strength<span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                            55
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          <label class="w-100 view-label">EDP<span class="float-right">:</span></label>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                          1000.00
+                      </div> -->
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           <label class="w-100 view-label">Number of Labels
+                              <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                              <span class="float-right">:</span></label>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                           3
+                           <!-- {{OutUpDistLabelObj?.applicationNuber}} -->
+                        </div>
+                        <div class="col-12">
+                           <h6 class="text-left mt-1 mb-3">Label List</h6>
+                        </div>
+
+                        <div class="col-12">
+                           <div class="table-responsive">
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr>
+                                       <th>#</th>
+                                       <th>Description</th>
+                                       <th>Upload Images</th>
+                                       <th>View</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td>
+                                          <input type="text" class="form-control" placeholder="Enter Description">
+                                       </td>
+                                       <td class="text-left">
+                                          <div class="form-group">
+                                             <!-- <label for="uploadpuc">Upload Images</label> -->
+                                             <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                   <input type="file" class="custom-file-input" name="uploadpuc"
+                                                      id="uploadpuc" formControlName = 'uploadlabel1'>
+                                                   <label class="custom-file-label">Choose file</label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td class="text-left"></td>
+                                       <td class="table-action-column text-center">
+                                          <!-- <button class="btn btn-icon btn-primary" type="button">
+                                               <i class="feather icon-plus"></i></button> -->
+                                          <button class="btn btn-icon btn-danger ml-2" type="button">
+                                             <i class="fas fa-trash-alt"></i></button>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>2</td>
+                                       <td>
+                                          <input type="text" class="form-control" placeholder="Enter Description">
+                                       </td>
+                                       <td class="text-left">
+                                          <div class="form-group">
+                                             <!-- <label for="uploadpuc">Upload Images</label> -->
+                                             <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                   <input type="file" class="custom-file-input" name="uploadpuc"
+                                                      id="uploadpuc" formControlName = 'uploadlabel2'>
+                                                   <label class="custom-file-label">Choose file</label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td class="text-left"></td>
+                                       <td class="table-action-column text-center">
+                                          <button class="btn btn-icon btn-danger ml-2" type="button">
+                                             <i class="fas fa-trash-alt"></i></button>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>3</td>
+                                       <td>
+                                          <input type="text" class="form-control" placeholder="Enter Description">
+                                       </td>
+                                       <td class="text-left">
+                                          <div class="form-group">
+                                             <!-- <label for="uploadpuc">Upload Images</label> -->
+                                             <div class="input-group cust-file-button">
+                                                <div class="custom-file">
+                                                   <input type="file" class="custom-file-input" name="uploadpuc"
+                                                      id="uploadpuc" formControlName = 'uploadlabel3'>
+                                                   <label class="custom-file-label">Choose file</label>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td class="text-left"></td>
+                                       <td class="table-action-column text-center">
+                                          <button class="btn btn-icon btn-danger ml-2" type="button">
+                                             <i class="fas fa-trash-alt"></i></button>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <p>Note: The maximum file size for file upload is 2.0 MB and format must be JPG/JPEG/PNG and
+                              PDF</p>
+                        </div>
+
+                        <div class="col-12">
+                           <h6 class="text-left mt-1 mb-3">Other Documents</h6>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                           <div class="form-group">
+                              <label for="uploadpuc">Upload Affidavit</label>
+                              <div class="input-group cust-file-button">
+                                 <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc" formControlName = 'uploadaffidavit'>
+                                    <label class="custom-file-label"></label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                           <div class="form-group">
+                              <label for="uploadpuc">Upload Trademark Registration</label>
+                              <div class="input-group cust-file-button">
+                                 <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc" formControlName = 'uploadtrademark'>
+                                    <label class="custom-file-label"></label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                           <div class="form-group">
+                              <label for="uploadpuc">Upload Certificate of Brand Ownership</label>
+                              <div class="input-group cust-file-button">
+                                 <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="uploadpuc" id="uploadpuc" formControlName = 'uploadbrandownership'>
+                                    <label class="custom-file-label"></label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     </form>
+                  </ng-template>
+               </ngb-tab>
+            </ngb-tabset>
+
+
+         </app-card>
+
+
+
+     
+   </div>
+   <div class="col-12 text-right mb-4">
+      <!-- <button type="button" class="btn btn-primary ml-2 mb-2">Next</button>
+      <button type="button" class="btn btn-secondary ml-2 mb-2">Back</button> -->
+      <button type="button" class="btn btn-info mb-2 ml-2"
+         routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/view" *ngIf = '!workflowobj?.isEditable'>Preview</button>
+      <button type="button" class="btn btn-warning ml-2 mb-2" (click)='addLabelGenDetails(labelReg,"DRAFT")' *ngIf = '!workflowobj?.isEditable'>Save as Draft</button>
+      <button type="button" class="btn btn-primary ml-2 mb-2" (click)='addLabelGenDetails(labelReg,"Submitted")' *ngIf = '!workflowobj?.isEditable'>Submit</button>
+      <button type="button" class="btn btn-primary ml-2 mb-2"
+      (click)='addLabelGenDetails(labelReg,"APPROVED")'
+      *ngIf='responceData?.isShowButtons && (workflowobj?.isEditable) '>Approve</button>
+  <button type="button" class="btn btn-danger ml-2 mb-2"
+      (click)="addLabelGenDetails(labelReg,'REJECTED')"
+      *ngIf='  responceData?.isShowButtons && workflowobj?.isRejected'>Reject</button>
+ 
+      <select class="col-lg-2 col-md-2 col-sm-3 col-3" [(ngModel)]='rejectid'
+          *ngIf='responceData?.isShowButtons && workflowobj?.isSendBack'>
+          <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+          <option value="{{ sebd.key}}" *ngFor='let sebd of workflowobj?.sendBackList'>{{ sebd.value}}</option>
+      </select>
+ 
+  <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addLabelGenDetails(labelReg,'SENDBACK')"
+      *ngIf='responceData?.isShowButtons && workflowobj?.isSendBack'>Clarification Needed</button>
+      <button type="button" class="btn btn-secondary ml-2 mb-2"
+         routerLink="/supplychainmanagement/warehouse/outupdistlabelreg/list">Cancel</button>
+   </div>
+</div>
+<app-ui-modal #exampleModalCenter dialogClass="modal-dialog-centered modal-lg">
+   <div class="app-modal-header">
+      <h5 class="modal-title">Upload Label</h5>
+      <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close"
+         (click)="exampleModalCenter.hide()"><span aria-hidden="true">&times;</span></button>
+   </div>
+   <div class="app-modal-body">
+
+
+   </div>
+   <div class="app-modal-footer">
+      <div class="row">
+         <div class="col-12 text-right">
+
+         </div>
+      </div>
+   </div>
+
+</app-ui-modal>

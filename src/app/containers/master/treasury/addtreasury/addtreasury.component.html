@@ -1,0 +1,126 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.treasury.add' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.treasury.edit' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.treasury.treasury' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #treasuryForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.treasury.treasury' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Treasury Master Code</label>
+                            <input type="text" disabled  class="form-control" value="TMC001">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Division</label>
+                            <select class="form-control" required>
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Treasury Name</label>
+                            <input type="text" required  class="form-control" placeholder="Enter Treasury Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Treasury Code</label>
+                            <input type="text" required  class="form-control" placeholder="Enter Treasury Code">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.treasury.code' | translate }}</label>
+                            <input type="text" id="treasuryCode" name="treasuryCode" #treasuryCode="ngModel"
+                                [(ngModel)]="treasuryObj['treasuryCode']" minlength="3" maxlength="10"
+                                class="form-control" required pattern="{{patternService.codePattern}}"
+                                placeholder="{{ 'master.treasury.entercode' | translate }}">
+                            <div *ngIf="treasuryCode.invalid && (treasuryCode.dirty || treasuryCode.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="treasuryCode?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.treasury.coderequired' | translate }} </div>
+                                <div *ngIf="treasuryCode?.errors?.minlength && !treasuryCode?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="treasuryCode?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.treasury.name' | translate }}</label>
+                            <input type="text" id="treasuryName" name="treasuryName" #treasuryName="ngModel"
+                                [(ngModel)]="treasuryObj['treasuryName']" minlength="3" maxlength="100" required
+                                class="form-control" placeholder="{{ 'master.treasury.entername' | translate }}">
+                            <div *ngIf="treasuryName.invalid && (treasuryName.dirty || treasuryName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="treasuryName?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.treasury.namerequired' | translate }} </div>
+                                <div *ngIf="treasuryName?.errors?.minlength && !treasuryName?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.treasury.division' | translate }}</label>
+                            <ng-multiselect-dropdown [data]="divisionList" [placeholder]="'Select'"
+                                [(ngModel)]="treasuryObj.divisionObj" [settings]="divisionDropDownSettings"
+                                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeselect($event)"
+                                [ngModelOptions]="{standalone: true}" (onFilterChange)="onFilterChange($event)"
+                                [required]='divisionRequired' (onDropDownClose)="onDropDownClose()"
+                                class="singleselect">
+                            </ng-multiselect-dropdown>
+                            <div *ngIf="!divisionRequired && formSubmitted" class="error-msg">
+                                <i class="fa fa-times"></i>
+                                {{ 'master.treasury.divisionrequired' | translate }}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="treasuryObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="treasuryObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!treasuryObj.isActive">{{
+                                        'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="treasuryObj.isActive">{{
+                                        'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        </div>
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-primary mr-2" (click)="addTreasury(treasuryForm)">{{ 'master.common.submit' |
+                        translate }}</button>
+                <button type="button" class="btn btn-secondary" (click)="navigatepenaltyList()">{{ 'master.common.cancel' |
+                        translate }}</button>
+            </div>
+        
+    
+</div>

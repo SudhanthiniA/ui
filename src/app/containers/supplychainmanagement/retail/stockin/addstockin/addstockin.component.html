@@ -1,0 +1,263 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'retail.stockin.add' | translate }}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.supplychainmanagement' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.retail' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.stockin.stockin' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'retail.common.add' | translate }}</a></li>
+</ul>
+
+<div class="row" [formGroup]="stockinFormGroup">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.passnumber' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('transportPassNumber').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.indentnumber' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('indentNumber').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.unitname' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('unitName').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.unitaddress' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('unitAddress').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.location' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('location').value}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <app-card [hidHeader]="true" class="list-panel">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.noofrequested' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('noofBottlesRequested').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.noofreceived' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('NoofBottlesReceived').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.bottlesrequested' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('totalBottlesRequested').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.sentby' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('totalBottlesSentByWholesaler').value}}
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <label class="w-100 view-label">{{ 'retail.stockin.totalamount' | translate }}<span
+                            class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    {{stockinFormGroup.get('totalAmount').value}}
+                </div>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="{{ 'retail.stockin.receiveddetails' | translate }}" class="list-panel add-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'retail.stockavailability.productname' | translate }}</th>
+                            <th>{{ 'retail.common.size' | translate }}</th>
+                            <th>{{ 'retail.stockin.case' | translate }}</th>
+                            <th>{{ 'retail.stockin.bottle' | translate }}</th>
+                            <th>{{ 'retail.stockin.total' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr formArrayName="receivedBottlesList"
+                            *ngFor="let item of stockinFormGroup.get('receivedBottlesList')['controls']; let j=index">
+                            <td>{{j+1}}</td>
+                            <td [formGroupName]="j">{{item.get('productName').value}}</td>
+                            <td>{{item.get('size').value}}</td>
+                            <td>{{item.get('case').value}}</td>
+                            <td>{{item.get('bottle').value}}</td>
+                            <td>{{item.get('total').value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </app-card>
+    </div>
+    <div class="col-xl-12">
+        <form [formGroup]="stockinFormGroup">
+            <app-card cardTitle="{{ 'retail.stockin.damagedmissing' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 border-right">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="damageBottle"
+                                    (change)="bottlesStatus($event, 1)">
+                                <label class="form-check-label"
+                                    for="damageBottle">{{ 'retail.stockin.damagebottles' | translate }}</label>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="damageBottle">
+                            <label>{{ 'retail.stockin.bottlescount' | translate }}</label>
+                            <input type="number" class="form-control"
+                                placeholder="{{ 'retail.stockin.enterbottlecount' | translate }}"
+                                formControlName="damageBottlesCount" />
+                            <div class="error-msg">
+                                <span *ngIf="stockinFormGroup.controls.damageBottlesCount.hasError('required')">
+                                    Damage Bottles count is required
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="missingBottle"
+                                    (change)="bottlesStatus($event, 2)">
+                                <label class="form-check-label"
+                                    for="missingBottle">{{ 'retail.stockin.missingbottles' | translate }}</label>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="missingBottle">
+                            <label>{{ 'retail.stockin.bottlescount' | translate }}</label>
+                            <input type="number" class="form-control" name="indent"
+                                placeholder="{{ 'retail.stockin.enterbottlecount' | translate }}"
+                                formControlName="missingBottlesCount" />
+                            <div class="error-msg">
+                                <span *ngIf="stockinFormGroup.controls.missingBottlesCount.hasError('required')">
+                                    Missing Bottles count is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive mt-3" *ngIf="missingBottle || damageBottle">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ 'retail.stockavailability.productname' | translate }}</th>
+                                <th>{{ 'retail.stockin.damagedormissing' | translate }}</th>
+                                <th>{{ 'retail.common.size' | translate }}</th>
+                                <th>{{ 'retail.common.quantity' | translate }}</th>
+                                <!-- <th>Price</th> -->
+                                <th>{{ 'retail.common.action' | translate }} </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr formArrayName="damageBottlesList"
+                                *ngFor="let item of stockinFormGroup.get('damageBottlesList')['controls']; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <div class="form-group mb-0" [formGroupName]="i">
+                                        <select class="form-control" formControlName="productId"
+                                            (change)="addProductId(i, $event)">
+                                            <option *ngFor="let pro of productList" value="{{pro.productId}}">
+                                                {{pro.productname}}</option>
+                                        </select>
+                                        <div class="error-msg text-left"
+                                            *ngIf="formSubmitted && stockinFormGroup.controls.damageBottlesList.controls[i].controls.productId.hasError('required')">
+                                            Product Name is required
+                                        </div>
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group mb-0">
+                                        <select class="form-control" formControlName="damagedOrMissing">
+                                            <option value="">Select</option>
+                                            <option value="1">Damaged</option>
+                                            <option value="2">Missing</option>
+                                        </select>
+                                        <div class="error-msg text-left"
+                                            *ngIf="formSubmitted && stockinFormGroup.controls.damageBottlesList.controls[i].controls.damagedOrMissing.hasError('required')">
+                                            Damage/Missing is required
+                                        </div>
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group mb-0">
+                                        <select class="form-control" formControlName="size">
+                                            <option value="">Select</option>
+                                            <option value="1">750ml</option>
+                                            <option value="2">350ml</option>
+                                        </select>
+                                        <div class="error-msg text-left"
+                                            *ngIf="formSubmitted && stockinFormGroup.controls.damageBottlesList.controls[i].controls.size.hasError('required')">
+                                            Size is required
+                                        </div>
+                                    </div>
+                                </td>
+                                <td [formGroupName]="i">
+                                    <div class="form-group mb-0">
+                                        <input formControlName="quantity" type="number" maxlength="8"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            (keyup)="calAmout(item.get('productId').value, $event, i)" />
+                                        <div class="error-msg text-left" style="padding-left: 11px;"
+                                            *ngIf="formSubmitted && stockinFormGroup.controls.damageBottlesList.controls[i].controls.quantity.hasError('required')">
+                                            Quantity is required
+                                        </div>
+                                        <!-- <div *ngIf="formSubmitted && stockinFormGroup.value.damageBottlesCount == gridDamage">
+                                                Count is mismatched
+                                        </div> -->
+                                    </div>
+                                </td>
+                                <!-- <td [formGroupName]="i">{{item.get('price')?.value}}</td> -->
+                                <td><button *ngIf="i!==getPresFormLength()-1" class="btn btn-icon btn-danger"
+                                        (click)="deleteRow(i)"><i class="fas fa-times"></i></button>
+                                    <button *ngIf="i === getPresFormLength()-1" class="btn btn-icon btn-info ml-2"
+                                        (click)="addItem()"><i class="fas fa-plus"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mr-2"
+            (click)="addStockIn(stockinFormGroup)">{{ 'retail.common.submit' | translate }}</button>
+        <button type="submit" class="btn btn-secondary"
+            routerLink="/supplychainmanagement/retail/stockin">{{ 'retail.common.cancel' | translate }}</button>
+    </div>
+</div>

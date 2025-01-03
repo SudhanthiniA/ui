@@ -1,0 +1,139 @@
+<h5 class="m-b-10 ng-star-inserted">
+    AEC Approval
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">AEC Approval</a></li>
+    <li class="breadcrumb-item active"><a href="javascript:">View Only</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+</ul>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Process Details" class="search-panel">
+            <form [formGroup]="transitForm" autocomplete="off">
+                <!--  -->
+                <div class="row">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'bondWarehouse.transportpassgen.issuedate' | translate}}</label>
+                            <input type="date" class="form-control" formControlName="issueDate" />
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Process</label>
+                            <select id="status" class="form-control"  >
+                          
+                                <option value="">Select</option>
+                                <option value="INPROGRESS">Dip Book</option>
+                                <option>Production Plan</option>
+<option> Blending Transfer</option>
+<option> Blending Transfer PD 18</option>
+<option> Blending Transfer PD 25</option>
+<option> Bottling Plan</option>
+<option> FL 36 Draft (FL2 Dispatch)</option>
+<option> CLB10-CL2 Dispatch</option>
+<option> Transport Pass CLB11</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-12">
+                        <label class="d-block">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="search()">{{'bondWarehouse.common.search'| translate}}</button>
+                        <button type="submit" class="btn btn-secondary" (click)="cancel()">{{'bondWarehouse.common.cancel' | translate}}</button>
+                    </div>
+                </div>
+
+            </form>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Blending Process Details
+        " class="list-panel">
+         
+                        <div class="row mt-2">
+                            <div class="col-12 mb-0">
+                                <!-- <div class="table-responsive">
+                                    <app-mat-normal-table [columns]="columns" [actionKeys]="actionKeys"
+                                        [dataSource]="dataSource" [totalCount]="totalCount" [pageSize]="pageSize"
+                                        (paginationEvent)="handlePagination1($event)" (editAction)="onEdit($event)"
+                                        (viewAction)="onView($event)">
+                                    </app-mat-normal-table>
+                                    
+                                </div> -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Request ID</th>
+                                                <th>Request Date</th>
+                                                <th>Distillery Name</th>
+                                                <th>Brand License Type</th>
+                                                <th>Brand Name</th>
+                                                <th>Estimated Quantity</th>
+                                                <th>Currently With</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>ERY17/GOR/23-24/21NOV23/001493
+                                                </td>
+                                                <td>21-Nov-2023</td>
+                                                <td class="text-left">INDIA GLYCOLS LTD
+                                                </td>
+                                                <td class="text-left">CLB1
+                                                </td>
+                                                <td class="text-left">BUNTY AUR BABLI
+                                                </td>
+                                                <!-- <td>84-2020-21-FL36-3764</td> -->
+                                                <td class="text-left">29017
+                                                </td>
+                                                <td></td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-light-warning">Approved</span>
+                                                </td>
+                                                <td class="table-action-column text-center">
+                                                    <button class="btn btn-icon btn-primary" type="button"
+                                                        routerLink="/supplychainmanagement/wholesale/transitgatepass/cancelmodify">
+                                                        <i class="feather icon-eye"></i></button>
+                                                    <!-- <button class="btn btn-icon btn-secondary ml-2" type="button">
+                                                        <i class="feather icon-edit-2"></i></button> -->
+                                                </td>
+                                            </tr>
+                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                              <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle
+                                  type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                  <a class="dropdown-item" href="javascript:">Excel</a>
+                                  <a class="dropdown-item"  href="javascript:">Pdf</a>
+                                  <a class="dropdown-item"  href="javascript:">Jpg</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-8 text-right p-0">
+                                <img src="assets/images/pagenation.png" />
+                            </div>
+                        </div>
+        </app-card>
+    </div>
+</div>

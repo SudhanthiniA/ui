@@ -1,0 +1,382 @@
+<h5 class="m-b-10 ng-star-inserted">Add Export Indent (Liquor)
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Export Indent (Liquor)</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+<!-- <div class="row">
+    <div class="col-xl-12">
+        <form #indentForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Export Indent (Liquor)" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="date" name="date" required #date="ngModel"
+                                [(ngModel)]="exportObj['date']" class="form-control" placeholder="Enter Date">
+                            <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is Required </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <label>Export To (Outside State, Outside Country)</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                    class="custom-control-input" checked>
+                                <label class="custom-control-label" for="customRadioInline1">Outside State</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Outside Country</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Importing Unit</label>
+                            <input type="text" id="Unit" name="unit" [(ngModel)]="exportObj['unit']" #unit="ngModel"
+                                required class="form-control" placeholder="Enter Importing Unit">
+                            <div *ngIf="unit.invalid && (unit.dirty || unit.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="unit?.errors?.required"><i class="fa fa-times"></i>
+                                    Importing Unit is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Brand Name</label>
+                            <select id="brandId" name="brandId" #brandId="ngModel" [(ngModel)]="exportObj['brandId']"
+                                [required]="true" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</option>
+                            </select>
+                            <div *ngIf="brandId.invalid && (brandId.dirty || brandId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brandId?.errors?.required"><i class="fa fa-times"></i>
+                                    Brand Name is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Size of Bottle</label>
+                            <input type="text" id="size" name="size" [(ngModel)]="exportObj['size']" required
+                                #size="ngModel" class="form-control" placeholder="Enter Size of Bottle">
+                            <div *ngIf="size.invalid && (size.dirty || size.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="size?.errors?.required"><i class="fa fa-times"></i>
+                                    size of Bottle is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Package Type</label>
+                            <select id="packageTypeId" name="packageTypeId" #packageTypeId="ngModel"
+                                [(ngModel)]="exportObj['packageTypeId']" [required]="true" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let package of packageTypes" value="{{package.id}}">{{package.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="packageTypeId.invalid && (packageTypeId.dirty || packageTypeId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="packageTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                    Package Type is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Cases</label>
+                            <input type="text" id="cases" name="cases" required class="form-control" #cases="ngModel"
+                                [(ngModel)]="exportObj['cases']" placeholder="Enter No of Cases">
+                            <div *ngIf="cases.invalid && (cases.dirty || cases.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="cases?.errors?.required"><i class="fa fa-times"></i>
+                                    No of Cases is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Bottles</label>
+                            <input type="text" id="bottles" name="bottles" disabled required #cases="ngModel"
+                                [(ngModel)]="exportObj['bottles']" class="form-control"
+                                placeholder="Enter No of Bottles">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>B.L</label>
+                            <input type="text" id="bl" name="bl" class="form-control" #bl="ngModel"
+                                [(ngModel)]="exportObj['bl']" required placeholder="Enter B.L">
+                            <div *ngIf="bl.invalid && (bl.dirty || bl.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="bl?.errors?.required"><i class="fa fa-times"></i>
+                                    B.L is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Importor Unit</label>
+                            <select id="unitId" name="unitId" #unitId="ngModel" [(ngModel)]="exportObj['unitId']"
+                                [required]="true" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let unit of importorUnits" value="{{unit.id}}">{{unit.name}}</option>
+                            </select>
+                            <div *ngIf="unitId.invalid && (unitId.dirty || unitId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="unitId?.errors?.required"><i class="fa fa-times"></i>
+                                    Name of the Importer Unit is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" disabled required class="form-control" placeholder="Enter Address">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" disabled required class="form-control" placeholder="Enter District">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" disabled required class="form-control" placeholder="Enter State">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" disabled required class="form-control" placeholder="Enter Country">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Pin</label>
+                            <input type="number" disabled required class="form-control" placeholder="Enter Pin">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of the Export Unit</label>
+                            <select id="exportUnitId" name="exportUnitId" #exportUnitId="ngModel"
+                                [(ngModel)]="exportObj['exportUnitId']" [required]="true" class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let unit of ExportNames" value="{{unit.id}}">{{unit.name}}</option>
+                            </select>
+                            <div *ngIf="exportUnitId.invalid && (exportUnitId.dirty || exportUnitId.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="exportUnitId?.errors?.required"><i class="fa fa-times"></i>
+                                    Name of the Importer Unit is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Export permission details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Importer Exporter Code (IEC No.)</label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Importer Exporter Code (IEC No.)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Certificate Issue Date</label>
+                            <input type="date" disabled required class="form-control"
+                                placeholder="Enter Certificate Issue Date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Certificate Valid Date</label>
+                            <input type="date" disabled required class="form-control"
+                                placeholder="Enter Certificate Valid Date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Uploaded Importer Exporter Ceritificate</label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Uploaded Importer Exporter Ceritificate">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Registration Cum Membership No(RCMC No.)</label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Registration Cum Membership No(RCMC No.)">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>RCM Certificate Issue Date</label>
+                            <input type="date" disabled required class="form-control"
+                                placeholder="Enter RCM Certificate Issue Date">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>RCM Certificate Valid Date</label>
+                            <input type="date" disabled required class="form-control"
+                                placeholder="Enter RCM Certificate Valid Date">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Uploaded RCM Certificate</label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Uploaded RCM Certificate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Star House Certificate </label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Star House Certificate ">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Export House No</label>
+                            <input type="text" disabled required class="form-control"
+                                placeholder="Enter Export House No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>GSTIN No</label>
+                            <input type="text" disabled required class="form-control" placeholder="Enter GSTIN No">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Bank Account Details</label>
+                            <input type="text" id="accountDetails" name="accountDetails" required class="form-control"
+                                #accountDetails="ngModel" [(ngModel)]="exportObj['accountDetails']"
+                                placeholder="Enter Bank Account Details">
+                            <div *ngIf="accountDetails.invalid && (accountDetails.dirty || accountDetails.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="accountDetails?.errors?.required"><i class="fa fa-times"></i>
+                                    Bank Account Details is Required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info ml-2 mb-2" (click)="navigatePreview()">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2" (click)="addExportIndent(indentForm)">Save as
+                    Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2"
+                    (click)="addExportIndent(indentForm)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="navigateList()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #Pd25Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Export Indent" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Number</label>
+                            <input type="number" class="form-control" required
+                                placeholder="Enter Permit Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Export To</label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignee</label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Address </label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>District </label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignor </label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Type </label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sprit Quantity(Bl) </label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Requested Spirit Quantity(Bl)</label>
+                            <input type="text" class="form-control" required placeholder="Enter Requested Spirit">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance Quantity</label>
+                            <input type="text" disabled class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/exportindentliquor/list">Cancel</button>
+    </div>
+
+</div>

@@ -1,0 +1,111 @@
+<h5 class="m-b-10 ng-star-inserted">
+    {{ 'sugarmill.common.inspection' | translate }}
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Excise</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"> {{ 'sugarmill.common.inspection' | translate }}</a></li>
+    <li class="breadcrumb-item">{{ 'sugarmill.common.list' | translate }}</li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" {{ 'sugarmill.common.search' | translate }}" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.common.inspection' | translate }}
+                            {{ 'sugarmill.common.date' | translate }}</label>
+                        <input type="date" class="form-control" style='text-transform:uppercase'>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.common.inspection' | translate }}
+                            {{ 'sugarmill.common.type' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                            <option>MST</option>
+                            <option>IST</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>{{ 'sugarmill.common.tankname' | translate }}</label>
+                        <select class="form-control">
+                            <option value="">{{ 'sugarmill.common.select' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 text-right">
+                    <div>
+                        <button type="submit"
+                            class="btn btn-primary mr-2">{{ 'sugarmill.common.search' | translate }}</button>
+                        <button type="submit"
+                            class="btn btn-secondary">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card
+            cardTitle="{{ 'sugarmill.inspectionreport.inspection' | translate }} {{ 'sugarmill.common.list' | translate }}"
+            blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-striped" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'sugarmill.common.inspection' | translate }}
+                                {{ 'sugarmill.common.date' | translate }}</th>
+                            <th>{{ 'sugarmill.common.inspection' | translate }}
+                                {{ 'sugarmill.common.type' | translate }}</th>
+                            <th>{{ 'sugarmill.common.tankname' | translate }}</th>
+                            <th>{{ 'sugarmill.common.trs' | translate }}(%)</th>
+                            <th>{{ 'sugarmill.common.brix' | translate }}(%)</th>
+                            <th>{{ 'sugarmill.common.status' | translate }}</th>
+                            <th style="text-align: center;width: 100px;">{{ 'sugarmill.common.action' | translate }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let inpect of inspectionreportLists; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{inpect?.inspectionDate | date: 'dd-MMM-yyyy'}}</td>
+                            <td>{{inpect?.verificationTypeResponseDto?.verificationName}} </td>
+                            <td>{{inpect?.tankTypeResponseDto?.name}}</td>
+                            <td>{{inpect?.trs}}</td>
+                            <td>{{inpect?.brix}}</td>
+                            <td>
+                                <span class="badge m-r-5 badge-success" *ngIf="inpect.status =='1'">Verified</span>
+                                <span class="badge m-r-5 badge-danger" *ngIf="!inpect.status=='2'">Pending</span>
+                            </td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary mr-4" type="button"
+                                    (click)="navigateView(inpect.id)">
+                                    <i class="feather icon-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div ngbDropdown>
+                        <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"  href="javascript:">Excel</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"  href="javascript:">PDF</a>
+                            <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"  href="javascript:">JPG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

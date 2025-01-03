@@ -1,0 +1,103 @@
+<h5 class="m-b-10 ng-star-inserted">Add Return Worklist</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Return Worklist</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+<div class="row">
+    <form [formGroup]="createForm" autocomplete="off">
+    <div class="col-xl-12">
+            <app-card cardTitle="Enter Details to Add Return Worklist" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>To( Unit Name)</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="toUnitName" required placeholder="Enter To( Unit Name)">
+                            <div *ngIf="formSubmitted && createForm.get('toUnitName').errors || createForm.get('toUnitName').touched " class="error-msg">
+                                <span *ngIf="createForm.get('toUnitName').errors?.required">
+                                    To( Unit Name) is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Shop Address</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="shopAddress" required placeholder="Enter Shop Address">
+                            <div *ngIf="formSubmitted && createForm.get('shopAddress').errors || createForm.get('shopAddress').touched " class="error-msg">
+                                <span *ngIf="createForm.get('shopAddress').errors?.required">
+                                    Shop Address is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From( Unit Name)</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="fromUnitName" required placeholder="Enter From( Unit Name)">
+                            <div *ngIf="formSubmitted && createForm.get('fromUnitName').errors || createForm.get('fromUnitName').touched " class="error-msg">
+                                <span *ngIf="createForm.get('fromUnitName').errors?.required">
+                                    From( Unit Name) is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Type</label>
+                            <select class="form-control" formControlName="unitType" >
+                                    <option>Select</option>
+                                <option>Unit Type1</option>
+                                <option>Unit Type2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Unit Address</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="unitAddress" required placeholder="Enter Unit Address">
+                            <div *ngIf="formSubmitted && createForm.get('unitAddress').errors || createForm.get('unitAddress').touched " class="error-msg">
+                                <span *ngIf="createForm.get('unitAddress').errors?.required">
+                                    Unit Address is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Scan QR code</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="scanQR" required placeholder="Enter Scan QR code">
+                            <div *ngIf="formSubmitted && createForm.get('scanQR').errors || createForm.get('scanQR').touched " class="error-msg">
+                                <span *ngIf="createForm.get('scanQR').errors?.required">
+                                    Scan QR code is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Enter QR code</label>
+                            <input type="text" name="Brand" class="form-control" formControlName="qrCode" required placeholder="Enter Enter QR code">
+                            <div *ngIf="formSubmitted && createForm.get('qrCode').errors || createForm.get('qrCode').touched " class="error-msg">
+                                <span *ngIf="createForm.get('qrCode').errors?.required">
+                                    Enter QR code is required
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+    </div>
+   
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2"  (click)="view(createForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+        (click)="addRegistration(createForm)">Save as Draft </button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"  (click)="addRegistration(createForm)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/wholesale/returnworklist/list">Cancel</button>
+    </div>
+</form>
+</div>

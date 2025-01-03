@@ -1,0 +1,161 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Order Allocation View
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Order Allocation</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">View</a></li>
+  </ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form  #orderallocationForm="ngForm" autocomplete="off">
+           <app-card cardTitle="Details View of Selected Order Allocation" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Order ID<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.orederid}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Location<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.location}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Grade<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.grade}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Available Quantity<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.availablequantity}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Allocated Quantity<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.allocatedquantity}}
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Order ID</label>
+                            
+                            <input type="text" disabled id="orederid" name="orederid"  #orederid="ngModel" [(ngModel)]="orderallocationObj['orederid']"
+                            required class="form-control" placeholder="Enter Stock Name">
+                            <div *ngIf="orederid.invalid && (orederid.dirty || orederid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="orederid?.errors?.required"><i class="fa fa-times"></i>
+                                    Order ID is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select id="location" disabled name="location"  #location="ngModel" [(ngModel)]="orderallocationObj['location']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of locationlist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="location.invalid && (location.dirty || location.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="location?.errors?.required"><i class="fa fa-times"></i>
+                                Location is required </div>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select id="grade" disabled name="grade"  #grade="ngModel" [(ngModel)]="orderallocationObj['grade']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradeList" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="grade.invalid && (grade.dirty || grade.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="grade?.errors?.required"><i class="fa fa-times"></i>
+                                Grade is required </div>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available Quantity</label>
+                            <input type="text" disabled id="availablequantity" name="availablequantity"  #availablequantity="ngModel" [(ngModel)]="orderallocationObj['availablequantity']"
+                            required class="form-control" placeholder="Enter Available Quantity">
+                            <div *ngIf="availablequantity.invalid && (availablequantity.dirty || availablequantity.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="availablequantity?.errors?.required"><i class="fa fa-times"></i>
+                                    Available Quantity is required </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Allocated Quantity</label>
+                            <input type="text" disabled id="allocatedquantity" name="allocatedquantity"  #allocatedquantity="ngModel" [(ngModel)]="orderallocationObj['allocatedquantity']"
+                            required class="form-control" placeholder="Enter Allocated Quantity">
+                            <div *ngIf="allocatedquantity.invalid && (allocatedquantity.dirty || orederid.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="allocatedquantity?.errors?.required"><i class="fa fa-times"></i>
+                                    Allocated Quantity is required </div>
+    
+                            </div>
+                        </div>
+                    </div> -->
+                  
+                </div>
+           </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form  #orderallocationForm="ngForm" autocomplete="off">
+           <app-card cardTitle="Details View of Selected Order Allocation Create" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Created On<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.created_on}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Created By<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.created_by}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Updated on<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.modified_on}}
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label class="w-100 view-label">Updated by<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        {{orderallocationObj.modified_by}}
+                    </div>
+
+                    
+                   
+                </div>
+            </app-card>
+
+        </form>
+      
+
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/orderallocation/list">Approve</button>
+        <button type="submit" class="btn btn-danger ml-2 mb-2" routerLink="/supplychainmanagement/distillery/orderallocation/list">Reject</button>
+        <button type="submit" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/orderallocation/list">Back</button>
+    </div>
+</div>

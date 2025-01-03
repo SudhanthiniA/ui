@@ -1,0 +1,90 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">{{ 'master.gst.addgstmaster' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.gst.editgstmaster' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.inventory' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/inventory/gstmaster/list">{{ 'master.gst.gstmaster' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <form #gstForm="ngForm" autocomplete="off" class="w-100">
+        <div class="col-xl-12">
+            <app-card cardTitle="Enter Below Details to Add GST" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label  class="mandatory">{{ 'master.common.code' | translate }}</label>
+                            <input type="text" id="code" required name="code" #code="ngModel" pattern="^[a-zA-Z0-9]+$"
+                                [(ngModel)]="gstObj['code']" class="form-control" maxlength="10" minlength="3"
+                                placeholder="{{ 'master.supplytype.entercode' | translate }}">
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.common.code' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.pleaseentermaximumcharacters' | translate }} </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.name' | translate }}</label>
+                            <input type="text" id="Name" required name="name" #name="ngModel"
+                                [(ngModel)]="gstObj['name']" class="form-control" maxlength="100" minlength="3"
+                                placeholder="{{ 'master.supplytype.entername' | translate }}">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.common.name' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern"><i
+                                        class="fa fa-times"></i>
+                                    {{ 'master.ingredient.namemaximumcharacters' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'master.common.description' | translate }}</label>
+                            <input type="text" id="description" name="description" #description="ngModel"
+                                [(ngModel)]="gstObj['description']" class="form-control"
+                                placeholder="{{ 'master.common.enterdescription' | translate }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="gstObj['isActive']" class="custom-control-input" id="customswitch1">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!gstObj.isActive">Inactive</label>
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="gstObj.isActive">Active</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </app-card>
+        </div>
+        <div class="col-12 text-right mb-4">
+            <button type="button" class="btn btn-primary mr-2" (click)="addgst(gstForm)">{{ 'master.common.submit' |
+                translate }}</button>
+            <button type="button" class="btn btn-secondary" (click)="navigateGstList()">{{ 'master.common.cancel' |
+                translate }}</button>
+        </div>
+    </form>
+</div>

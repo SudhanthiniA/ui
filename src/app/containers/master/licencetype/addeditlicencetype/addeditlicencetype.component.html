@@ -1,0 +1,84 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">Add License Type</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' | translate }} {{
+    'master.licencetype.licencetype' | translate }} </h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Master</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">License Type</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">{{ 'master.common.add' |
+        translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Edit'">{{ 'master.common.edit' |
+        translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #licencetypeForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add License Type" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">License Type Code</label>
+
+                            <input type="text" id="code"  minlength="3" maxlength="10" class="form-control"
+                                disabled value="LT1122">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">License Type Name</label>
+
+                            <input type="text" id="Name" name="name" #name="ngModel" minlength="3" maxlength="100"
+                                [(ngModel)]="licencetypeObj['name']" required class="form-control"
+                                placeholder="Enter License Type Name">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="name?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'master.licencetype.licencetypename' | translate }} {{ 'master.common.isrequired'
+                                    | translate }}
+                                </div>
+                                <div *ngIf="name?.errors?.minlength && !name?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.licencetype.nameminimumcharacters' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">License Description</label>
+                            <select id="type" name="type" required #type="ngModel" [(ngModel)]="licencetypeObj['type']"
+                                class="form-control">
+                                <option value="">{{ 'master.common.select' | translate }}</option>
+                                <option *ngFor="let subcat of liquorList" value="{{subcat.name}}">{{subcat.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="active" name="active" #active="ngModel"
+                                    [(ngModel)]="licencetypeObj['isActive']" class="custom-control-input"
+                                    id="customswitch1" [attr.checked]="licencetypeObj.active ? '' : null">
+                                <label class="custom-control-label" for="customswitch1"
+                                    *ngIf="!licencetypeObj.isActive">{{ 'master.licence.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="licencetypeObj.isActive">{{
+                                    'master.licence.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addlicencetype(licencetypeForm)">{{
+            'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="navigateLicenceTypeList()">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

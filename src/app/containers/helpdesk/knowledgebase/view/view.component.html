@@ -1,0 +1,154 @@
+<h5 class="m-b-10 ng-star-inserted">{{'helpdesk.knowledgebase.viewknowledgebase'|translate}}
+
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.helpdesk'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.knowledgebase.knowledgebase'|translate}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{'helpdesk.common.view'|translate}}</a></li>
+</ul>
+
+
+<div class="row">
+<div class="col-xl-12">
+    <app-card cardTitle="View Knowledge Base" class="list-panel view-panel">
+        <div class="row">
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'helpdesk.knowledgebase.issuetype'|translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{status?.issueName}}
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">{{'helpdesk.common.status'|translate}}<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                {{status?.active==true?'Active':'Inactive'}}
+            </div>
+            <div class="col-12 text-center mt-2">
+                <div class="table-responsive mb-2">
+                    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                            <tr>
+                                <th>{{'helpdesk.knowledgebase.sno'|translate}}</th>
+                                <th>{{'helpdesk.knowledgebase.knowledgesolution'|translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="obj?.length != 0">
+                            <tr *ngFor="let data of obj;let i=index">
+                                <td>
+                                    {{i+1}}
+                                </td>
+
+                                <td class="text-center">{{data.answer}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Knowledge Base ID<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Application Response Slowness
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Category<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Incident
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Sub Category<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                network2
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Priority<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                P1
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">SLA<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                12
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Issue Details<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Incident Issue
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Knowledge Solution<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                Restart Modem
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Knowledge or Solution Count <span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                30
+            </div>
+            
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <label class="w-100 view-label">Remarks<span class="float-right">:</span></label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                -
+            </div>
+           
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <label>Issue Resolved</label>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                <div class="segment">
+                    <input type="radio" name="tab" id="tab1" checked>
+                    <label class="" for="tab1">Yes</label>
+                    <input type="radio" name="tab" id="tab2">
+                    <label class="" for="tab2">No</label>
+                </div>
+            </div>  
+        </div>
+    </app-card>
+</div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mb-2" routerLink="">Submit</button>
+        <button type="submit" class="btn btn-secondary mb-2 ml-2" routerLink="/helpdesk/knowledgebase/list">{{'helpdesk.common.back'|translate}}</button>
+    </div>
+    <div class="col-xl-12">
+        <app-card cardTitle="Activity Log" class="list-panel view-panel">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Created by<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   Helpdesk
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Created on<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    20-Jul-2021
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Updated by<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                   Helpdesk
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    <label class="w-100 view-label">Updated on<span class="float-right">:</span></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                    20-Jul-2021
+                </div> 
+            </div>
+        </app-card>
+    </div>
+</div>

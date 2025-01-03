@@ -1,0 +1,166 @@
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'Add'">
+    {{ 'master.common.add' | translate }} {{ 'master.common.country' | translate }}</h5>
+<h5 class="m-b-10 ng-star-inserted" *ngIf="this.addedit == 'edit'">
+    {{ 'master.common.edit' | translate }} {{ 'master.common.country' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.masters' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.location' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'master.common.country' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'Add'">
+        {{ 'master.common.add' | translate }}</li>
+    <li aria-current="page" class="breadcrumb-item active" *ngIf="this.addedit == 'edit'">
+        {{ 'master.common.edit' | translate }}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #countryForm="ngForm" autocomplete="off">
+            <app-card
+                cardTitle="{{ 'master.common.enterbelowdetails' | translate }} {{ 'master.common.country' | translate }}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">{{ 'master.country.countrycode' | translate }}</label>
+                            <input type="text" disabled  minlength="3" maxlength="10" required class="form-control"
+                                value="CM1122">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Code</label>
+                            <input type="text"  required class="form-control"
+                                placeholder="Enter Code">
+                           
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.code' | translate }}</label>
+                            <input type="text" class="form-control" [(ngModel)]="countryObject.code" #code="ngModel"
+                                name="code" required minlength="3" maxlength="10"
+                                pattern="{{patternService.codePattern}}"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.code' | translate }}"
+                                (keypress)="removeFirstSpace($event)" />
+                            <div *ngIf="code.invalid && (code.dirty || code.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="code?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.code' | translate }} {{ 'master.common.isrequired' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.minlength && !code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.code' | translate }} {{ 'master.common.isminimum' | translate }}
+                                </div>
+                                <div *ngIf="code?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.alphanumeric' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.shortname' | translate }}</label>
+                            <input type="text" [(ngModel)]="countryObject.shortName" name="shortName"
+                                #shortName="ngModel" pattern="{{patternService.shortNamePattern}}" minlength="3"
+                                maxlength="15" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.shortname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="shortName.invalid && (shortName.dirty || shortName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="shortName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }} {{ 'master.common.isrequired' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.minlength && !shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.shortname' | translate }} {{ 'master.common.isminimum' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="shortName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Please enter characters only
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.country.countryname' | translate }}</label>
+                            <input type="text" [(ngModel)]="countryObject.countryName" name="countryName"
+                                #countryName="ngModel" minlength="3" maxlength="20" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.country.countryname' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="countryName.invalid && (countryName.dirty || countryName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="countryName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.country.countryname' | translate }} {{ 'master.common.isrequired' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="countryName?.errors?.maxlength && !countryName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.country.countryname' | translate }} {{ 'master.common.ismaximum' |
+                                    translate }}
+                                </div>
+                                <div *ngIf="countryName?.errors?.minlength && !countryName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.country.countryname' | translate }} {{ 'master.common.isminimum' |
+                                    translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.currency' | translate }}</label>
+                            <input type="text" [(ngModel)]="countryObject.currency" name="currency" #currency="ngModel"
+                                minlength="3" maxlength="15" required class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{ 'master.common.currency' | translate }}"
+                                (keypress)="removeFirstSpace($event)">
+                            <div *ngIf="currency.invalid && (currency.dirty || currency.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="currency?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.currency' | translate }} {{ 'master.common.isrequired' | translate
+                                    }}
+                                </div>
+                                <div *ngIf="currency?.errors?.minlength && !currency?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    {{ 'master.common.enter' | translate }} {{ 'master.common.isminimum' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{ 'master.common.status' | translate }}</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" [(ngModel)]="countryObject.isActive" name="active"
+                                    #active="ngModel" class="custom-control-input" id="switch1"
+                                    [attr.checked]="countryObject.active ? '' : null">
+                                <label class="custom-control-label" for="switch1" *ngIf="!countryObject.isActive">{{
+                                    'master.common.inactive' | translate }}</label>
+                                <label class="custom-control-label" for="switch1" *ngIf="countryObject.isActive">{{
+                                    'master.common.active' | translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="addcountry(countryForm)">{{ 'master.common.submit' |
+            translate }}</button>
+        <button type="button" class="btn btn-secondary" routerLink="/location/country/list">{{ 'master.common.cancel' |
+            translate }}</button>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add Dispatch
+  </h5>
+  
+  <ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Bonds</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Dispatch</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+  </ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #dispatchForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Details of Selected Dispatch Add" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Order ID</label>   
+                            <input type="text" class="form-control" placeholder="Enter Order Id"
+                            #orderid = "ngModel" [(ngModel)]="dispatchobj['orderid']" name ="orderid">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Dispatch Date</label>
+                            <input type="datetime-local" class="form-control" placeholder="Enter Dispatch Date"
+                            #dispatchdate = "ngModel" [(ngModel)]="dispatchobj['dispatchdate']" name ="dispatchdate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consignment Number</label>
+                            <input type="text"  class="form-control" placeholder="Enter Consignment Number"
+                            #consigmentnum = "ngModel" [(ngModel)]="dispatchobj['consigmentnum']" name ="consigmentnum">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Delivery Date</label>
+                            <input type="datetime-local" class="form-control" placeholder="Enter Delivery Date"
+                            #deliverydate = "ngModel" [(ngModel)]="dispatchobj['deliverydate']" name ="deliverydate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Before Loading of Molasses</label>
+                            <input type="number" class="form-control" placeholder="Enter Molasses"
+                            #molases = "ngModel" [(ngModel)]="dispatchobj['molases']" name ="molases">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>After Loading of Molasses</label>
+                            <input type="number" class="form-control" placeholder="Enter Molasses"
+                            #aftermolases = "ngModel" [(ngModel)]="dispatchobj['aftermolases']" name ="aftermolases">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vehicle Type</label>
+                            <select class="form-control" #vehicletype = "ngModel" [(ngModel)]="dispatchobj['vehicletype']" name ="vehicletype">
+                                <option value="type1">type1</option>
+                                <option value="type2">type2</option>
+                                <option value="type3">type3</option>
+                                <option value="type4">type4</option>
+                                <option value="type5">type5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vehicle Number</label>
+                            <input type="text" class="form-control" placeholder="Enter Vehicle Number"
+                            #vehiclenum= "ngModel" [(ngModel)]="dispatchobj['vehiclenum']" name ="vehiclenum">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Vendor Location</label>
+                            <select class="form-control"  #location= "ngModel" [(ngModel)]="dispatchobj['location']" name ="location">
+                                <option value="location1">location1</option>
+                                <option value="location2">location2</option>
+                                <option value="location3">location3</option>
+                                <option value="location4">location4</option>
+                                <option value="location4">location5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Location</label>
+                            <input type="text" class="form-control" placeholder="Enter Sugar Mill Location"
+                            #sugermilllocation= "ngModel" [(ngModel)]="dispatchobj['sugermilllocation']" name ="sugermilllocation">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sample ID</label>
+                            <input type="number" class="form-control" placeholder="Enter Sample ID"
+                            #sampleid= "ngModel" [(ngModel)]="dispatchobj['sampleid']" name ="sampleid">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Route</label>
+                            <input type="text" class="form-control" placeholder="Enter Route"
+                            #route= "ngModel" [(ngModel)]="dispatchobj['route']" name ="route">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+        </form>
+       
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="submit" class="btn btn-primary mr-2" (click)="savedispach()">Submit</button>
+        <button type="submit" class="btn btn-secondary" routerLink="/supplychainmanagement/bonds/dispatch/list">Cancel</button>
+    </div>
+</div>

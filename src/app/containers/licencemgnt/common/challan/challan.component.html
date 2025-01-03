@@ -1,0 +1,85 @@
+<h5 class="m-b-10 ng-star-inserted">Wholesale License
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Licence Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Wholesale License</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off">
+            <app-card cardTitle="Challan Details" class="list-panel view-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Mode of Payment</label>
+                            <select class="form-control" disabled>
+                                <option selected>{{paymentData?.modeOfPayment}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Application Number</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.accountNumber}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Payment Transaction Number</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.transactionNumber}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>System Challan Number</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.sytemChallanNumber}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Payment Instrument</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.paymentInstrument}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Paid Amount</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.paymentAmount}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Payment</label>
+                            <input type="text" readonly class="form-control" value="{{paymentData?.createdDate}}">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+</div>
+
+<div class="text-right mb-2">
+    <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal"> Submit </button>
+    <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Close</button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Challan Acknowledgement</h5>
+                <button type="button" class="close" #checkListCloseBtn data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                Challan details Submitted Successfully towards the Application number <b>{{applicationNumber}}</b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="onOk()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

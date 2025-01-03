@@ -1,0 +1,101 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.stockavailability.addstockavail' | translate }}</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.stockavailability.stockavailability' | translate }}</a></li>
+    <li aria-current="page" class="breadcrumb-item active">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #stockForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter Below Details to {{addedit}} Stock" class="list-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockavailability.stockname' | translate }}</label>
+
+                            <input type="text" id="stockname" name="stockname"  #stockname="ngModel" [(ngModel)]="stockavailabilityObj['stockname']"
+                                required class="form-control" placeholder="Enter Stock Name">
+                                <div *ngIf="stockname.invalid && (stockname.dirty || stockname.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="stockname?.errors?.required"><i class="fa fa-times"></i>
+                                        {{ 'sugarmill.stockavailability.stocknameisrequired' | translate }}</div>
+        
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.common.quantity' | translate }}</label>
+                            <input type="number" id="quantity" name="quantity" #quantity="ngModel" [(ngModel)]="stockavailabilityObj['quantity']"
+                                class="form-control" required placeholder="Enter Quantity">
+                                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                        {{ 'sugarmill.stockavailability.quantityisrequired' | translate }}</div>
+        
+                                </div>        
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{ 'sugarmill.stockavailability.measurement' | translate }}</label>
+
+                            <select id="measurement"  name="measurement" #messurement="ngModel" [(ngModel)]="stockavailabilityObj['messurement']"    required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of messurementlist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="messurement.invalid && (messurement.dirty || messurement.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="messurement?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.stockavailability.measurementisrequired' | translate }} </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.stockavailability.location' | translate }}</label>
+                            <select id="location"  name="location"  #location="ngModel" [(ngModel)]="stockavailabilityObj['location']"  required   class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of locationlist" value="{{item.name}}">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="location.invalid && (location.dirty || location.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="location?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.stockavailability.locisreq' | translate }}</div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label> {{ 'sugarmill.stockavailability.tank' | translate }} </label>
+                            <input type="number" id="tank" name="tank" #tank="ngModel" [(ngModel)]="stockavailabilityObj['tank']"
+                            class="form-control" required placeholder="Enter Tank Details">
+                            <div *ngIf="tank.invalid && (tank.dirty || tank.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="tank?.errors?.required"><i class="fa fa-times"></i>
+                                    {{ 'sugarmill.stockavailability.tankisreq' | translate }}</div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" id="status" name="status" #status="ngModel"
+                                    [(ngModel)]="stockavailabilityObj['status']" class="custom-control-input" id="customswitch1" [attr.checked]="stockavailabilityObj.status ? '' : null">
+                                <label class="custom-control-label" for="customswitch1" *ngIf="!stockavailabilityObj.status">Inactive</label>
+                                <label class="custom-control-label" for="customswitch1" *ngIf="stockavailabilityObj.status">Active</label>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-12 text-right">
+                        <button type="button" (click)="addstock(stockForm)" class="btn btn-primary mr-2">{{ 'sugarmill.common.submit' | translate }}</button>
+                        <button type="button" class="btn btn-secondary"  routerLink="/supplychainmanagement/sugarmills/stockavailability/list">{{ 'sugarmill.common.cancel' | translate }}</button>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+        
+    </div>
+</div>

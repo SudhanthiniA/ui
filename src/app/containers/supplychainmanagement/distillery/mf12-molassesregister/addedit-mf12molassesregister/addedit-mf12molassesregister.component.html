@@ -1,0 +1,373 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF12 Molasses Register {{addedit}}
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/mf6-part-one/list">Molasses In-Ward At Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+        routerLink="/supplychainmanagement/distillery/mf12-molassesregister/list">MF12 Molasses Register </a></li>
+    <li class="breadcrumb-item">{{addedit}}</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #molassesregisterForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Enter MF12 Molasses Register Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Unloading Molasses</label>
+                            <input type="date" disabled required name="dateOfUnloading" class="form-control" placeholder="Enter Date" 
+                                #dateOfUnloading="ngModel" [(ngModel)]="molassesregisterObject['dateOfUnloading']">
+                                <div *ngIf="dateOfUnloading.invalid && (dateOfUnloading.dirty || dateOfUnloading.touched || formSubmitted)"
+                                    class="error-msg">
+                                    <div *ngIf="dateOfUnloading?.errors?.required">
+                                        <i class="fa fa-times"></i>
+                                        Date of Unloading Molasses required
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name of Sugar Factory</label>
+                            <input type="text" disabled required name="sugarFactoryName" class="form-control" placeholder="Enter Sugar Factory Name" 
+                               minlength="2" maxlength="50" #sugarFactoryName="ngModel" [(ngModel)]="molassesregisterObject['sugarFactoryName']">
+                                <div *ngIf="sugarFactoryName.invalid && (sugarFactoryName.dirty || sugarFactoryName.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="sugarFactoryName?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Sugar Factory Name required
+                                </div>
+                                <div *ngIf="sugarFactoryName?.errors?.maxlength && !sugarFactoryName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="sugarFactoryName?.errors?.minlength && !sugarFactoryName?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>MF-4 Gate Pass No</label>
+                            <input type="text" disabled required name="mf4GatePass" class="form-control" placeholder="Enter MF4 Gate Pass" 
+                            minlength="2" maxlength="50" #mf4GatePass="ngModel" [(ngModel)]="molassesregisterObject['mf4GatePass']">
+                                <div *ngIf="mf4GatePass.invalid && (mf4GatePass.dirty || mf4GatePass.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="mf4gatepass?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    MF-4 Gate Pass No required
+                                </div>
+                                <div *ngIf="mf4GatePass?.errors?.maxlength && !mf4GatePass?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="mf4GatePass?.errors?.minlength && !mf4GatePass?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" disabled required name="date" class="form-control" placeholder="Enter Date" 
+                                #date="ngModel" [(ngModel)]="molassesregisterObject['date']">
+                                <div *ngIf="date.invalid && (date.dirty || date.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="date?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Date required
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Road Tanker No</label>
+                            <input type="text" disabled required name="roadTankerNo" class="form-control" placeholder="Enter Road Tanker No" 
+                            minlength="2" maxlength="50"  #roadTankerNo="ngModel" [(ngModel)]="molassesregisterObject['roadTankerNo']">
+                                <div *ngIf="roadTankerNo.invalid && (roadTankerNo.dirty || roadTankerNo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="roadTankerNo?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Road Tanker No required
+                                </div>
+                                <div *ngIf="roadTankerNo?.errors?.maxlength && !roadTankerNo?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="roadTankerNo?.errors?.minlength && !roadTankerNo?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Incoming Time (Hrs)</label>
+                            <input type="time" disabled required name="incomingTime" class="form-control" placeholder="Enter Incoming Time" 
+                                #incomingTime="ngModel" [(ngModel)]="molassesregisterObject['incomingTime']">
+                                <div *ngIf="incomingTime.invalid && (incomingTime.dirty || incomingTime.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="incomingTime?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Incoming Time required
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                 </div>
+                </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #molassesregisterForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Dispatch Account" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gross Weight (Qtl)</label>
+                            <input type="number" disabled required name="dispatchGrossWeight" class="form-control" placeholder="Enter Gross Weight" 
+                            maxlength="50"  #dispatchGrossWeight="ngModel" [(ngModel)]="molassesregisterObject['dispatchGrossWeight']">
+                                <div *ngIf="dispatchGrossWeight.invalid && (dispatchGrossWeight.dirty || dispatchGrossWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchGrossWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Gross Weight required
+                                </div>
+                                <div *ngIf="dispatchGrossWeight?.errors?.maxlength && !dispatchGrossWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tare Weight (Qtl)</label>
+                            <input type="number" disabled required name="dispatchtareWeight" class="form-control" placeholder="Enter Tare Weight" 
+                            maxlength="50"   #dispatchtareWeight="ngModel" [(ngModel)]="molassesregisterObject['dispatchtareWeight']">
+                                <div *ngIf="dispatchtareWeight.invalid && (dispatchtareWeight.dirty || dispatchtareWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchtareWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Tare Weight required
+                                </div>
+                                <div *ngIf="dispatchtareWeight?.errors?.maxlength && !dispatchtareWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Net Weight (Qtl)</label>
+                            <input type="number" disabled required name="dispatchNetWeight" class="form-control" placeholder="Enter Net Weight" 
+                             maxlength="50"   #dispatchNetWeight="ngModel" [(ngModel)]="molassesregisterObject['dispatchNetWeight']">
+                                <div *ngIf="dispatchNetWeight.invalid && (dispatchNetWeight.dirty || dispatchNetWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="dispatchNetWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Net Weight required
+                                </div>
+                                <div *ngIf="dispatchNetWeight?.errors?.maxlength && !dispatchNetWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                 </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #molassesregisterForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Reciept Account" class="list-panel add-panel">
+                <!-- <h6 class="pb-4 m-0">MF5 Part1</h6> -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Gross Weight (Qtl)</label>
+                            <input type="number" disabled required name="recieptGrossWeight" class="form-control" placeholder="Enter Gross Weight" 
+                            maxlength="50"   #recieptGrossWeight="ngModel" [(ngModel)]="molassesregisterObject['recieptGrossWeight']">
+                                <div *ngIf="recieptGrossWeight.invalid && (recieptGrossWeight.dirty || recieptGrossWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recieptGrossWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Gross Weight required
+                                </div>
+                                <div *ngIf="recieptGrossWeight?.errors?.maxlength && !recieptGrossWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tare Weight (Qtl)</label>
+                            <input type="number" disabled required name="recieptTareWeight" class="form-control" placeholder="Enter Tare Weight" 
+                             maxlength="50"   #recieptTareWeight="ngModel" [(ngModel)]="molassesregisterObject['recieptTareWeight']">
+                                <div *ngIf="recieptTareWeight.invalid && (recieptTareWeight.dirty || recieptTareWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recieptTareWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Tare Weight required
+                                </div>
+                                <div *ngIf="recieptTareWeight?.errors?.maxlength && !recieptTareWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Net Weight (Qtl)</label>
+                            <input type="number" disabled required name="recieptNetWeight" class="form-control" placeholder="Enter Net Weight" 
+                             maxlength="50"   #recieptNetWeight="ngModel" [(ngModel)]="molassesregisterObject['recieptNetWeight']">
+                                <div *ngIf="recieptNetWeight.invalid && (recieptNetWeight.dirty || recieptNetWeight.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="recieptNetWeight?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Net Weight required
+                                </div>
+                                <div *ngIf="recieptNetWeight?.errors?.maxlength && !recieptNetWeight?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                            </div>         
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Tanker Sealed Or Unsealed With Excise Seal</label>
+
+                            <select id="tankerSealed"  name="tankerSealed" #tankerSealed="ngModel" [(ngModel)]="molassesregisterObject['tankerSealed']"
+                                required class="form-control">
+                                <option value="">Select</option>
+                                <option value="Sealed">Sealed</option>
+                                <option value="Unsealed">Unsealed</option>
+                            </select>
+                        </div>
+                        <div *ngIf="tankerSealed.invalid && (tankerSealed.dirty || tankerSealed.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="tankerSealed?.errors?.required"><i class="fa fa-times"></i>
+                                Tanker Sealed is required </div>
+
+                        </div>
+                    </div> -->
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Tanker Sealed Or Unsealed With Excise Seal</label>
+                            <input type="text" disabled  class="form-control" placeholder="500" >
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Outgoing Time (Hrs)</label>
+                            <input type="time" disabled required name="outGoingTime" class="form-control" placeholder="Enter Outgoing Time" 
+                                #outGoingTime="ngModel" [(ngModel)]="molassesregisterObject['outGoingTime']">
+                                <div *ngIf="outGoingTime.invalid && (outGoingTime.dirty || outGoingTime.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="outGoingTime?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Outgoing Time required
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Chemist</label>
+                            <input type="text" disabled required name="chemist" class="form-control" placeholder="Enter Chemist" 
+                            minlength="2" maxlength="50"   #chemist="ngModel" [(ngModel)]="molassesregisterObject['chemist']">
+                                <div *ngIf="chemist.invalid && (chemist.dirty || chemist.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="chemist?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                   Chemist required
+                                </div>
+                                <div *ngIf="chemist?.errors?.maxlength && !chemist?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="chemist?.errors?.minlength && !chemist?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Inspector Excise</label>
+                            <input type="text" disabled required name="inspectorExcise" class="form-control" placeholder="Enter Inspector Excise" 
+                            minlength="2" maxlength="50"  #inspectorExcise="ngModel" [(ngModel)]="molassesregisterObject['inspectorExcise']">
+                                <div *ngIf="inspectorExcise.invalid && (inspectorExcise.dirty || inspectorExcise.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="inspectorExcise?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Inspector Excise required
+                                </div>
+                                <div *ngIf="inspectorExcise?.errors?.maxlength && !inspectorExcise?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="inspectorExcise?.errors?.minlength && !inspectorExcise?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Driver</label>
+                            <input type="text" disabled required name="driver" class="form-control" placeholder="Enter Driver" 
+                              minlength="2" maxlength="50"  #driver="ngModel" [(ngModel)]="molassesregisterObject['driver']">
+                                <div *ngIf="driver.invalid && (driver.dirty || driver.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="driver?.errors?.required">
+                                    <i class="fa fa-times"></i>
+                                    Driver required
+                                </div>
+                                <div *ngIf="driver?.errors?.maxlength && !driver?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Maximum 50 charactor
+                                </div>
+                                <div *ngIf="driver?.errors?.minlength && !driver?.errors?.pattern">
+                                    <i class="fa fa-times"></i>
+                                    Minimum 2 charactor
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                 </div>
+                 
+             </app-card>
+         </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewMolassess(molassesregisterForm)">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2" (click)="saveData(molassesregisterForm,1)">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="saveData(molassesregisterForm,2)">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            (click)="backtoHome()">Cancel</button>
+    </div>
+</div>                    

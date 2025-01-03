@@ -1,0 +1,16 @@
+<app-card cardTitle="{{'licenseMgnt.paymentFeesTitle' | translate}}" class="list-panel view-panel">
+    <div class="row" *ngIf="appliPaymentDetail">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.applicationFeeText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{appliPaymentDetail.paymentProcessingFee ? appliPaymentDetail.paymentProcessingFee : 0}}
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            <label class="w-100 view-label">{{'licenseMgnt.view_PaymentStatusText' | translate}}<span class="float-right">:</span></label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+            {{ appliPaymentDetail.isProcessingFeePaid ? 'Paid' : 'Pending' }}
+        </div>
+    </div>
+</app-card>

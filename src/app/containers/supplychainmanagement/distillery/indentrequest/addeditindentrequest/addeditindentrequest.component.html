@@ -1,0 +1,513 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Indent Request
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Request</a></li> -->
+
+    <li class="breadcrumb-item"><a href="javascript:"
+            routerLink="/supplychainmanagement/distillery/indentrequest/list">Indent Request</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Add Indent Request" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Financial Year</label>
+                            <input type="text" disabled class="form-control" value="2020-2021" >
+                  
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Year</label>
+                            <input type="number"  class="form-control" value="2021"  disabled>
+                  
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date of Indent</label>
+                            <input type="date" disabled class="form-control" placeholder="Enter Date" >
+                       
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Supply Type</label>
+                            <input type="text" class="form-control" value="Within UP" disabled>
+                  
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Molasses Grade</label>
+                            <input type="text" required class="form-control"
+                                placeholder="Enter Molasses Grade">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Indented Quantity</label>
+                            <input type="number" required class="form-control"
+                                placeholder="Enter Indented Quantity">
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label><label class="error-msg">*</label>Product Type</label>
+
+                            <select id="producttype" name="producttype" required #productTypeId="ngModel" (click)="gettankcapacity()" [(ngModel)]="indentRequestObject['productTypeId']" [disabled]=desibleflag
+                                required class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of producttypelist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="productTypeId.invalid && (productTypeId.dirty || productTypeId.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="productTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                Product Type is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label><label class="error-msg">*</label>Consumption Type</label>
+
+                            <select id="consumptiontype" name="consumptiontype" required #consumptionTypeId="ngModel" [(ngModel)]="indentRequestObject['consumptionTypeId']" [disabled]=desibleflag
+                                required class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of consumptiontypelist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="consumptionTypeId.invalid && (consumptionTypeId.dirty || consumptionTypeId.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="consumptionTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                Consumption Type is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label><label class="error-msg">*</label>Stock Type</label>
+
+                            <select id="stockType" name="stockTypeId" required #stockTypeId="ngModel" (change)="selectedstocktype(indentRequestObject['stockTypeId'])" [(ngModel)]="indentRequestObject['stockTypeId']"
+                                required class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of stockTypelist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="stockTypeId.invalid && (stockTypeId.dirty || stockTypeId.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="stockTypeId?.errors?.required"><i class="fa fa-times"></i>
+                                Stock Type is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label><label class="error-msg">*</label>Domain</label>
+    
+                            <select id="domain" name="domain" required #domainId="ngModel" [(ngModel)]="indentRequestObject['domainId']" [disabled]=desibleflag
+                                 class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of domainlist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="domainId.invalid && (domainId.dirty || domainId.touched || formSubmitted)" class="error-msg">
+                            <div *ngIf="domainId?.errors?.required"><i class="fa fa-times"></i>
+                                Domain is required </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12" *ngIf ="indentRequestObject.productTypeId == 12">
+                        <div class="form-group">
+                            
+                            <label>Molasses Type</label>
+    
+                            <select id="grade" name="gradeId" #gradeId="ngModel" (click)="gettankcapacity()" [(ngModel)]="indentRequestObject['gradeId']" [disabled]=desibleflag
+                                 class="form-control">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of gradelist" value="{{item.id}}">{{item.name}}</option>
+                            </select>
+                        </div>
+                        </div> -->
+                </div>
+                 
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Distillery Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Distillery Name <span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                       Daurala Distillery
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">License Type<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                      FL
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">License Number<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                LI1122
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        <label  class="w-100 view-label">Distillery Address<span class="float-right">:</span></label>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                        Plot No. 12, Near Tripathi Super Store, Madhupuram, Bhitauli Khurd, IIM Road, Lucknow, UP 241001
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Tank Capacity(Qtl)</label>
+                            <input type="number" name="molassestankcapacity"
+                                class="form-control" disabled placeholder="" 
+                                #molassestankcapacity="ngModel" [(ngModel)]="indentRequestObject['molassestankcapacity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Current Molasses Stock (Qtl)</label>
+                            <input type="number" disabled name="currentmolassestankcapacity"
+                                class="form-control" placeholder="" 
+                                #currentmolassestankcapacity="ngModel" [(ngModel)]="indentRequestObject['currentmolassestankcapacity']">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Pending Quantity To Be Lifted Against Previous Permissions(Qtl) </label>
+                            <input type="number" disabled name="pendingquantityagainestpreviousrequests"
+                                class="form-control" placeholder="" 
+                                #pendingquantityagainestpreviousrequests="ngModel" [(ngModel)]="indentRequestObject['pendingquantityagainestpreviousrequests']">
+                        </div>
+                    </div> -->
+
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label><label class="error-msg">*</label>Allotment Id</label>
+        
+                                <select id="allotmentId" name="allotmentId" required #allotmentId="ngModel" [(ngModel)]="indentRequestObject['allotmentId']" (click)="getautodata(indentRequestObject['allotmentId'])"
+                                     class="form-control">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let item of allotmetids" value="{{item.id}}">{{item.allotmentNumber}}</option>
+                                </select>
+                             
+                            </div>
+                            <div *ngIf="allotmentId.invalid && (allotmentId.dirty || allotmentId.touched || formSubmitted)" class="error-msg">
+                                <div *ngIf="allotmentId?.errors?.required"><i class="fa fa-times"></i>
+                                    Allotment Id is required </div>
+    
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Allotment Quantity(Qtl)</label>
+                                <input type="number" disabled (keyup)='caltotal()' name="allotmentquantity"
+                                    class="form-control" placeholder=""
+                                     #allotmentquantity="ngModel"
+                                    [(ngModel)]="indentRequestObject['allotmentquantity']">
+                                    <div class="text-primary">{{inWords(indentRequestObject['allotmentquantity'], 'quintal')}}</div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Consumption Quantity(Qtl)</label>
+                                <input type="number" disabled (keyup)='caltotal()' name="consumedquantity"
+                                    class="form-control" placeholder=""
+                                     #consumedquantity="ngModel"
+                                    [(ngModel)]="indentRequestObject['consumedquantity']">
+                                    <div class="text-primary">{{inWords(indentRequestObject['consumedquantity'], 'quintal')}}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Available Quantity(Qtl)</label>
+                                <input type="number" disabled name="availablequantity" class="form-control"  #availablequantity="ngModel"
+                                    [(ngModel)]="indentRequestObject['availablequantity']">
+                                    <div class="text-primary">{{inWords(indentRequestObject['availablequantity'], 'quintal')}}</div>
+
+                            </div>
+                        </div>
+
+                
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Daily Consumption(Qtl)</label>
+                            <input type="number" disabled name="dailyConsumption"
+                                class="form-control" placeholder="" 
+                                #dailyConsumption="ngModel" [(ngModel)]="indentRequestObject['dailyConsumption']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Molasses Available(Days)</label>
+                            <input type="number" disabled name="molassesAvailableForNoofdays"
+                                class="form-control" placeholder="" 
+                                #molassesAvailableForNoofdays="ngModel" [(ngModel)]="indentRequestObject['molassesAvailableForNoofdays']">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remaining Capacity (Qtl)</label>
+                            <input type="number" disabled name="remaincapacity"
+                                class="form-control" placeholder="" 
+                                #remaincapacity="ngModel" [(ngModel)]="indentRequestObject['remaincapacity']">
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+        <app-card cardTitle="Allotment Details" class="list-panel add-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        
+                        <label class="mandatory">Allotment Number</label>
+
+                        <select  required 
+                             class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Allotment Validity</label>
+                            <input type="date" disabled 
+                                class="form-control" 
+                                  >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Consumption Type</label>
+                            <input type="text" disabled 
+                                class="form-control" value="Type 1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Group Name</label>
+                            <input type="text" disabled 
+                                class="form-control" value="Group 1">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Allotment Quantity</label>
+                            <input type="text" disabled 
+                                class="form-control" value="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Balance Quantity</label>
+                            <input type="text" disabled 
+                                class="form-control" value="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Pending Quantity To Be Lifted Against Previous Indents</label>
+                            <input type="text" disabled 
+                                class="form-control" value="10">
+                        </div>
+                    </div>
+            </div>
+        </app-card>
+    </div>
+
+    <div class="col-xl-12">
+        <form #indentrequestForm="ngForm" autocomplete="off">
+            <app-card cardTitle="Indent Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        
+                        <label class="mandatory">Sugar Mill Name</label>
+
+                        <select id="sugarmillEntityId" required 
+                             class="form-control">
+                            <option value="">Select</option>
+                            <!-- <option *ngFor="let item of sugarmilllist" value="{{item.name}}">{{item.name}}</option> -->
+                            
+                        </select>
+                    </div>
+                    
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Consumption Type</label>
+                            <input type="text" disabled 
+                                class="form-control" value="Type 1" 
+                                  >
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label>Sugar Mill Address</label>
+                            <textarea class="form-control" disabled>33, Road no.2, Phase 3, Gomti nagar, Ward no. 3, Mohanlalganj, Lucknow, Uttar Pradesh, 225010, INDIA</textarea>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Supply Type</label>
+                            <input type="text" class="form-control" value="Within UP" disabled>
+                  
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Designated Material</label>
+                            <select class="form-control" required>
+                            <option>Select</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Molasses Grade</label>
+                            <select class="form-control" required>
+                            <option>Select</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Indented Quantity</label>
+                            <input type="number" required class="form-control"
+                                placeholder="Enter Indented Quantity">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        
+                        <div class="form-group">
+                            <label><label class="error-msg">*</label>Quantity(Qtl)</label>
+                            <input type="number" name="quantity" required  (keyup)= "validatequantity(quantity)" class="form-control"
+                                placeholder="Enter Quantity"  #quantity="ngModel"
+                                [(ngModel)]="indentRequestObject['quantity']" (change)="getquantity(quantity)">
+                                <div class="text-primary overflow-auto">{{inWords(indentRequestObject['quantity'], 'Quintals')}}</div>
+
+                                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                        Quantity is required </div>
+                                        <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                            Quantity should be less than Available Quantity(Qtl)
+                                            </div>
+            
+                                </div>
+                        </div>
+                    </div> -->
+                    
+                   
+                </div>
+            </app-card>
+            <!-- <app-card cardTitle="Allotment Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            
+                            <label class="mandatory">Allotment Number</label>
+    
+                            <select required 
+                                 class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Allotment Validity</label>
+                                <input type="date" disabled 
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Consumption Type</label>
+                                <input type="text" disabled  value="Type 1" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Allotment Quantity</label>
+                                <input type="text" disabled  value="10" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Balance Quantity</label>
+                                <input type="text" disabled  value="100" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label>Pending Quantity to be Lifted Against Previous Indents</label>
+                                <input type="text" disabled  value="100" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                        
+                </div>
+            </app-card> -->
+            <app-card cardTitle="Current Stock Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Daily Consumption</label>
+                            <input type="number" required  placeholder="Enter Daily Consumption" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remaining Capacity</label>
+                            <input type="number" required  placeholder="Enter Remaining Capacity" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Molasses Available for No.of Days</label>
+                            <input type="number" disabled  value="10" 
+                                class="form-control">
+                        </div>
+                    </div>
+                    
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2"> Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save
+            as draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+           
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/distillery/indentrequest/list">Cancel</button>
+    </div>
+
+</div>

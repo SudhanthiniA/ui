@@ -1,0 +1,131 @@
+<h5 class="m-b-10 ng-star-inserted">Add Yeast Process
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/yeastprocess/list">
+            Yeast Process</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form  *ngIf ="yeastprocessForm" [formGroup]="yeastprocessForm" autocomplete="off">
+            <app-card cardTitle="Yeast Preparation" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">OT Number</label>   
+                            <select class="form-control" required  formControlName="otnumber" (click)="getyeastveesel($event.target.value)">
+                                <option value="">Select</option>
+                                <option *ngFor="let item of otnumberlist" value="{{item.id}}">{{item.otNumber}}</option>
+                            </select>
+                            <div *ngIf="formSubmitted && yeastprocessForm.get('otnumber').errors || yeastprocessForm.get('otnumber').touched "
+                            class="error-msg">
+                            <span *ngIf="yeastprocessForm.get('otnumber').errors?.required"><i class="fa fa-times"></i>
+                                OT Number is required
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Yeast Vessels</label>
+                            <input type="text" disabled class="form-control"  value="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>No of Vessels Setup</label>
+                            <input type="text" disabled class="form-control"  value="10">
+                        </div>
+                    </div>
+                 
+                </div>
+            </app-card>
+
+            <app-card cardTitle="Molasses Based Used in Yeast Vessels" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date & Time of Setup<span class="mandatory"></span></th>
+                                        <th>Yeast vessel<span class="mandatory"></span></th>
+                                        <th>Raw Material Type<span class="mandatory"></span></th>
+                                        <th>Molasses Type<span class="mandatory"></span></th>
+                                        <th>Raw Material Tank<span class="mandatory"></span></th>
+                                        <th>Initial Dip Count<span class="mandatory"></span></th>
+                                        <th>Final Dip Count<span class="mandatory"></span></th>
+                                        <th>Molasses Quantity<span class="mandatory"></span></th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <input type="date" disabled class="form-control" required >
+                                        </td>
+
+                                        <td class="text-left">
+                                            <select class="form-control" required>
+                                                <option value="">Select</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-left">
+                                            <select class="form-control" required>
+                                                <option value="">Select</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-left">
+                                            <select class="form-control" required>
+                                                <option value="">Select</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-left">
+                                            <select class="form-control" required>
+                                                <option value="">Select</option>
+                                            </select>
+                                        </td>
+                                        
+                                        <td class="text-left">
+                                            <input type="text" class="form-control" required 
+                                                placeholder="Enter Initial Dip Count">
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="text" class="form-control" required 
+                                                placeholder="Enter Final Dip Count">
+                                        </td>
+                                        <td class="text-left">
+                                            <input type="text" class="form-control" required 
+                                                placeholder="Enter Molasses Quantity">
+                                        </td>
+                                        <td class="table-action-column text-center">
+                                            <button class="btn btn-icon btn-success" type="button">
+                                                <i class="feather icon-plus"></i></button>
+                                            <button class="btn btn-icon btn-danger ml-2" type="button">
+                                                <i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info mb-2">Preview</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2">Submit</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2" routerLink="/supplychainmanagement/distillery/yeastprocess/list">Cancel</button>
+    </div>
+</div>

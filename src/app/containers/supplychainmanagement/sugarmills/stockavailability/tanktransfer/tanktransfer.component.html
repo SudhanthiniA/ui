@@ -1,0 +1,170 @@
+<!-- <p>tanktransfer works!</p> -->
+<h5 class="m-b-10 ng-star-inserted">
+    Tank Transfer
+</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/sugarmills/inspectionreport/list']">tanktransfer</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.common.add' | translate }}</a></li>
+</ul>
+<div class="row">
+    <div class="col-xl-12">
+        <form #transferform="ngForm" autocomplete="off">
+            <app-card cardTitle="Details" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">    
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" name="reqdate" #reqdate="ngModel" [(ngModel)]="tanktransfer['reqdate']"
+                            [min]="mindate" class="form-control" placeholder="Select Date" required>
+                            <div *ngIf="reqdate.invalid && (reqdate.dirty || reqdate.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reqdate?.errors?.required"><i class="fa fa-times"></i>
+                                    Date is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <div class="row" style="margin-top: 40px;">
+                                <div class="custom-control">
+                                    <input type="radio" required id="transOrEmpt" name="transOrEmpt" #transOrEmpt="ngModel"
+                                        [(ngModel)]="tanktransfer['transOrEmpt']" value=true>
+                                    <label for="cane_syrup"> &nbsp; Transfer</label>
+                                </div>
+                                <div class="custom-control">
+                                    <input type="radio" required id="transOrEmpt" name="transOrEmpt" #transOrEmpt="ngModel"
+                                        [(ngModel)]="tanktransfer['transOrEmpt']" value=false>
+                                    <label for="cane_syrup"> &nbsp;Empty</label>
+                                </div>
+                            </div>
+                            <div *ngIf="transOrEmpt.invalid && (transOrEmpt.dirty || transOrEmpt.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="transOrEmpt?.errors?.required"><i class="fa fa-times"></i>
+                                    Please Check the Type
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #transferform="ngForm" autocomplete="off">
+            <app-card cardTitle="From Tank" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Name</label>
+                            <select class="form-control" name='tankName' #tankName="ngModel"
+                                [(ngModel)]="tanktransfer['tankName']" disabled>
+                                <option value="">select</option>
+                                <option *ngFor="let item of tankList" value="{{item.id}}">
+                                    {{item.tankName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transfer Quantity(Qtl)</label>
+                            <input type="text" name="transQty" #transQty="ngModel"
+                                [(ngModel)]="tanktransfer['transQty']" class="form-control"
+                                placeholder="Enter Transfer Quantity(Qtl)" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Grade</label>
+                            <select name='fromTankGrade' #fromTankGrade="ngModel"
+                                (change)="tankbyid($event.target.value)" [(ngModel)]="tanktransfer['fromTankGrade']"
+                                class="form-control" disabled>
+                                <option value="">select</option>
+                                <option *ngFor="let item of gradeData" value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #transferform="ngForm" autocomplete="off">
+            <app-card cardTitle="To Tank" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Transfer To</label>
+                            <select name='transTo' #transTo="ngModel" (change)="tankbyid($event.target.value)"
+                                [(ngModel)]="tanktransfer['transTo']" class="form-control"
+                                placeholder="Enter Verification Type" required>
+                                <option value="">select</option>
+                                <option *ngFor="let item of tankDetails" value="{{item.tankRegid}}">
+                                    {{item.tankName}}
+                                </option>
+                            </select>
+                            <div *ngIf="transTo.invalid && (transTo.dirty || transTo.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="transTo?.errors?.required"><i class="fa fa-times"></i>
+                                    Transfer To is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Capacity(Qtl)</label>
+                            <input type="text" name="capacity" class="form-control" #capacity="ngModel"
+                                [(ngModel)]="tanktransfer['capacity']" placeholder="Enter Transfer Quantity(Qtl)"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Available QuantityQtl)</label>
+                            <input type="text" name="avlQty" class="form-control" #avlQty="ngModel"
+                                [(ngModel)]="tanktransfer['avlQty']" placeholder="Available QuantityQtl)" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Tank Grade</label>
+                            <select name='toTankGrade' #toTankGrade="ngModel" (change)="tankbyid($event.target.value)"
+                                [(ngModel)]="tanktransfer['toTankGrade']" class="form-control" disabled>
+                                <option value="">select</option>
+                                <option *ngFor="let item of gradeData" value="{{item.id}}">
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Reason For Transfer</label>
+                            <input type="text" name="reason" class="form-control" #reason="ngModel"
+                                [(ngModel)]="tanktransfer['reason']" placeholder="Reason for transfer" required>
+                            <div *ngIf="reason.invalid && (reason.dirty || reason.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="reason?.errors?.required"><i class="fa fa-times"></i>
+                                    Reason is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="tanktransferdata(transferform)">Submit</button>
+        <button type="button" class="btn btn-secondary"
+            [routerLink]="['/supplychainmanagement/sugarmills/stockavailability/tankmaintainance',this.tanktransfer.tankname]">{{ 'sugarmill.common.cancel' | translate }}</button>
+    </div>
+</div>

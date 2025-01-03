@@ -1,0 +1,122 @@
+<h5 class="m-b-10 ng-star-inserted">{{ 'sugarmill.dashboard.Dashboard' | translate }}</h5>
+<span class="breadcrumb_right position-absolute">1-Nov-2019 to 31-Oct-2020</span>
+<ul class="breadcrumb p-0">
+  <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+  <li class="breadcrumb-item"><a href="javascript:">{{'sugarmill.dashboard.sugarmill' | translate}}</a></li>
+  <li class="breadcrumb-item"><a href="javascript:">{{ 'sugarmill.dashboard.Dashboard' | translate }}</a></li>
+</ul>
+<div class="row">
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg1 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.dashboard.molassesyear' | translate }}</span>
+          <h3 class="mt-2">{{viewData?.thisYear}}</h3>
+          <i class="fas fa-calendar-alt"></i>
+          <small>{{viewData?.thisYearStartDate}} to {{viewData?.thisYearEndDate}}</small>   
+        </div>  
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg2 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockin/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.dashboard.sugarcanecrushed(LQT)' | translate }}</span>
+          <h3 class="mt-2">{{viewData?.totalCaneCrushed}}</h3>
+          <i class="fas fa-mortar-pestle"></i>
+          <small>{{ 'sugarmill.dashboard.lakhquintal' | translate }}</small>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg3 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockout/list">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.dashboard.canesyrupproduced(LL)' | translate }}</span>
+          <h3 class="mt-2">{{viewData?.caneSyrupProduced}}</h3>
+          <i class="fas fa-glass-whiskey"></i>
+          <small>{{ 'sugarmill.dashboard.litterinlakhs' | translate }}</small>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-6 col-xl-3 col-sm-6 dashboard_bg4 animate__animated animate__backInUp">
+    <app-card [hidHeader]="true" cardClass="comp-card" routerLink="/supplychainmanagement/sugarmills/stockavailability">
+      <div class="row align-items-center">
+        <div class="col">
+          <span>{{ 'sugarmill.dashboard.molassesproduced(LQT)' | translate }}</span>
+          <h3 class="mt-2">{{viewData?.molasesProduced}}</h3>
+          <i class="fas fa-prescription-bottle"></i>
+          <small>{{ 'sugarmill.dashboard.lakhquintal' | translate }}</small>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<div class="dashboard-custom-card">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box1">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.molassesproductionreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-1.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="dashboardbarchart" class="mt-4 w-100"></div>
+      </app-card>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box2">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.molassesdispatchreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-2.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="dashboardbarcharts" class="mt-4 w-100"></div>
+      </app-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 animate__animated animate__backInUp graph_box3">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.entitywisedispatchreport' | translate }}" [options]="false">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <p class="text-primary text-center mt-3 mb-0"><b>{{ 'sugarmill.dashboard.b-Heavy' | translate }}</b><br><span class="text-dark">{{ 'sugarmill.dashboard.totalreservedmolasses' | translate }}</span></p>
+            <!-- <img src="assets/images/graph-new-3.jpg" class="w-100" />dashboardbarchartbgreport -->
+            <div [chart]="dashboardbarchartentdisreport" class="mt-4 w-100"></div>
+
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <p class="text-primary text-center mt-3 mb-0"><b>{{ 'sugarmill.dashboard.belowgradeandburntmolasses' | translate }} <br>{{ 'sugarmill.dashboard.dispatch' | translate }}</b><br><span class="text-dark">{{ 'sugarmill.dashboard.totalreceivedmolasses' | translate }}</span></p>
+            <!-- <img src="assets/images/graph-new-4.jpg" class="w-100" /> -->
+            <div [chart]="dashboardbarchartbgreport" class="mt-4 w-100"></div>
+
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box4">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.sugarmillproductionreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-5.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="dashboardbarchartproreport" class="mt-4 w-100"></div>
+
+      </app-card>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box5">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.reservedmolassesproductionreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-6.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="LinechartDashbord" class="mt-4 w-100"></div>
+      </app-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box6">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.reservedvsunreservedmolassesreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-7.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="dashboardbarchartres_vs_unres" class="mt-4 w-100"></div>
+      </app-card>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 animate__animated animate__backInUp graph_box7">
+      <app-card cardTitle="{{ 'sugarmill.dashboard.captiveandnoncaptivedispatchreport' | translate }}" [options]="false">
+        <!-- <img src="assets/images/graph-new-8.jpg" class="mt-4 w-100" /> -->
+        <div [chart]="dashboardbarchartcaptive" class="mt-4 w-100"></div>  
+      </app-card>
+    </div>
+  </div>
+</div>

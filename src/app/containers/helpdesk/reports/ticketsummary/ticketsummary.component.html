@@ -1,0 +1,458 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Helpdesk ticket Summary
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Helpdesk</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Ticket Summary</a></li>
+</ul>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" blockClass="table-border-style" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Search by</label>
+                        <select class="form-control">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="datetime-local" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>To Date </label>
+                        <input type="datetime-local" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mt-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary m-r-5">
+                            Search</button>
+                        <button class="btn btn-secondary">
+                            Clear</button>
+                    </div>
+                </div>
+
+            </div>
+           
+        </app-card>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <app-card cardTitle="Ticket Details" blockClass="table-border-style" class="list-panel stockavailability_tab">
+                    <!-- <div class="row">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12">
+                            <label>Wholesaler Type</label>
+                            <div class="d-flex">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="fl2" class="custom-control-input">
+                                    <label class="custom-control-label" for="fl2">FL2</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="fl2b" class="custom-control-input">
+                                    <label class="custom-control-label" for="fl2b">FL2B</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="cl" class="custom-control-input">
+                                    <label class="custom-control-label" for="cl">CL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <ngb-tabset type="pills">
+                        <ngb-tab title="By Category" class="mb-3">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Category Name</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Service Request</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-1" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>
+                                     
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="By sub Category">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Sub Category Name</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Service Request</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> 
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-2" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>                            
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="By Priority">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Priority</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Service Request</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-2" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>  
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="By Status">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Status</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Active</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-2" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>  
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="By Entity">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Entity</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Active</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-2" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>  
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="By Ageing">
+                            <ng-template ngbTabContent>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Ageing</th>
+                                                <!-- <th>Number Of Tickets</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>15</td>
+                                                <!-- <td>108</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 mb-2 ngb_accordion_1">
+                                    <ngb-accordion [closeOthers]="false" class="next-accordion">
+                                        <ngb-panel id="static-2" class="mt-2">
+                                            <ng-template ngbPanelTitle>
+                                                <h5>Expand/Collapse</h5>
+                                            </ng-template>
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="table-responsive mb-2 mt-2">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Date</th>
+                                                                        <th>Ticket Number</th>
+                                                                        <th>Ticket Status</th>
+                                                                        <th>Number of Tickets</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                       <td>10-02-2022</td>
+                                                                       <td>T001</td>
+                                                                        <td>Approved</td>
+                                                                        <td>108</td> 
+                                                                    </tr>
+                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </ng-template>
+                                        </ngb-panel>
+                                        
+                                        </ngb-accordion>
+                                        </div>  
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                    <div class="row">
+                        <div class="col-xl-4 mt-2">
+                            <div ngbDropdown>
+                                <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                                <div ngbDropdownMenu>
+                                    <a class="dropdown-item" href="javascript:">Pdf</a>
+                                    <a class="dropdown-item" href="javascript:">Excel</a>
+                                    <a class="dropdown-item" href="javascript:">Jpg</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </app-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,97 @@
+<h5 class="m-b-10 ng-star-inserted">
+    MF 12 Molasses Register List
+    <button type="submit" class="btn btn-success custom_add_button pull-right" routerLink="/supplychainmanagement/distillery/mf12-molassesregister/add">
+        <i class="feather icon-plus"></i>
+       Add MF12 Molasses Register
+    </button>   
+</h5>
+
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Distillery</a></li>
+    <li class="breadcrumb-item"><a routerLink="/supplychainmanagement/distillery/mf6-part-one/list">Molasses In-Ward At Distillery</a></li>
+    <li class="breadcrumb-item"><a href="javascript:" routerLink="/supplychainmanagement/distillery/mf12-molassesregister/list"> MF 12 Molasses Register</a></li>
+    <li aria-current="page" class="breadcrumb-item active">List</li>
+    </ul>
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle="Search" class="search-panel">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Name of Sugar Factory</label>
+                        <input type="text" class="form-control" placeholder="Enter Name of Sugar Factory" name="sugarFactoryName" #sugarFactoryName="ngModel" [(ngModel)]="mf12searchObj['sugarFactoryName']">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>MF-4 Gate Pass No</label>
+                        <input type="number" class="form-control" placeholder="Enter MF-4 Gate Pass No" name="mf4GatePass" #mf4GatePass="ngModel" [(ngModel)]="mf12searchObj['mf4GatePass']" >
+                    </div>
+                </div>
+                <div class="col-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-2" (click) = "searchapi()">Search</button>
+                    <button type="submit" class="btn btn-secondary" (click)="resetKey()">Cancel</button>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <app-card cardTitle=" MF 12 Molasses Register List" blockClass="table-border-style" class="list-panel">
+            <div class="table-responsive">
+                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Date of Unloading Molasses</th>
+                            <th>MF-4 Gate Pass No</th>
+                            <th>Name of Sugar Factory</th>
+                            <th>Gross Weight (Qtl)</th>
+                            <th>Tare Weight (Qtl)</th>
+                           <th>Net Weight (Qtl)</th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let item of molassesRegisterList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.dateOfUnloading | date: 'dd/MMM/yyyy'}}</td>
+                            <td>{{item.mf4GatePass}}</td>
+                            <td class="text-left">{{item.sugarFactoryName}}</td>
+                            <td class="text-right">{{item.dispatchGrossWeight}}</td>
+                            <td class="text-right">{{item.dispatchtareWeight}}</td>
+                            <td class="text-right">{{item.dispatchNetWeight}}</td>
+                            <td class="table-action-column">
+                                <button class="btn btn-icon btn-primary" type="button" 
+                                routerLink="/supplychainmanagement/distillery/mf12-molassesregister/view/{{item.id}}">
+                                    <i class="feather icon-eye"></i></button>
+                                    <button *ngIf="!item.status" class="btn btn-edit btn-secondary ml-2" type="button"                                    routerLink="/supplychainmanagement/distillery/mf12-molassesregister/edit/{{item.id}}">
+                                    <i class="feather icon-edit-2"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="row">
+                <div class="col-xl-4" >
+                    <div ngbDropdown>
+                    <button class="btn btn-success" ngbDropdownToggle type="button">Download</button>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" (click)="getPdfData1('downloadExcel')"
+                        href="javascript:">{{ 'sugarmill.common.excel' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadPdf')"
+                        href="javascript:">{{ 'sugarmill.common.pdf' | translate }}</a>
+                    <a class="dropdown-item" (click)="getPdfData1('downloadCsv')"
+                        href="javascript:">{{ 'sugarmill.common.csv' | translate }}</a>
+                    </div>
+                </div>
+                </div>
+            </div> -->
+        </app-card>
+    </div>
+</div>

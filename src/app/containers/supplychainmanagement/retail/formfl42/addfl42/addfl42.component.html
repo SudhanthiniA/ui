@@ -1,0 +1,151 @@
+<h5 class="m-b-10 ng-star-inserted">
+    Add FL 42
+</h5>
+
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Supply Chain Management</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Retail</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">FL 42</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Add</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form [formGroup]="fl42Form" autocomplete="off">
+            <app-card cardTitle="Add FL 42" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" class="form-control" formControlName='date'>
+                            <div *ngIf="formSubmitted && fl42Form.get('date').errors || fl42Form.get('date').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('date').errors?.required">
+                                    Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Spirit Opening Balance</label>
+                            <input type="number" class="form-control" formControlName='openingBalance' disabled
+                                placeholder="Enter Spirit Opening Balance">
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+            <app-card cardTitle="Receipts" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Where Received</label>
+                            <input type="text" class="form-control" formControlName='fromWhereReceived'
+                                placeholder="Enter From Where Received">
+                            <div *ngIf="formSubmitted && fl42Form.get('fromWhereReceived').errors || fl42Form.get('fromWhereReceived').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('fromWhereReceived').errors?.required">
+                                    From Where Received is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit No</label>
+                            <input type="text" class="form-control" formControlName='permitNo'
+                                placeholder="Enter Permit No">
+                            <div *ngIf="formSubmitted && fl42Form.get('permitNo').errors || fl42Form.get('permitNo').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('permitNo').errors?.required">
+                                    Permit No. is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Permit Date</label>
+                            <input type="date" class="form-control" formControlName='permitDate'>
+                            <div *ngIf="formSubmitted && fl42Form.get('permitDate').errors || fl42Form.get('permitDate').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('permitDate').errors?.required">
+                                    Permit Date is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" class="form-control" formControlName='quantity'
+                                placeholder="Enter Quantity">
+                            <div *ngIf="formSubmitted && fl42Form.get('quantity').errors || fl42Form.get('quantity').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('quantity').errors?.required">
+                                    Quantity is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Total</label>
+                            <input type="number" disabled class="form-control" formControlName='total'
+                                placeholder="Enter Total">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Quantity Issued for</label>
+                            <input type="number" class="form-control" formControlName='quantityIssuedFor'
+                                placeholder="Enter Quantity Issued for">
+                            <div *ngIf="formSubmitted && fl42Form.get('quantityIssuedFor').errors || fl42Form.get('quantityIssuedFor').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('quantityIssuedFor').errors?.required">
+                                    Quantity Issued for is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Closing Balance of Spirit</label>
+                            <input type="number" class="form-control" formControlName='closingBalance'
+                                placeholder="Enter Closing Balance of Spirit">
+                            <div *ngIf="formSubmitted && fl42Form.get('closingBalance').errors || fl42Form.get('closingBalance').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('closingBalance').errors?.required">
+                                    Closing Balance of Spirit is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" class="form-control" formControlName='remarks'
+                                placeholder="Enter Remarks">
+                            <div *ngIf="formSubmitted && fl42Form.get('remarks').errors || fl42Form.get('remarks').touched "
+                                class="error-msg">
+                                <span *ngIf="fl42Form.get('remarks').errors?.required">
+                                    Remarks is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-card>
+
+            <div class="col-12 text-right mb-4">
+                <button type="button" class="btn btn-info mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl42/view">Preview</button>
+                <button type="button" class="btn btn-warning ml-2 mb-2">Save as Draft</button>
+                <button type="button" class="btn btn-primary ml-2 mb-2" (click)="addFL42(fl42Form)">Submit</button>
+                <button type="button" class="btn btn-secondary ml-2 mb-2"
+                    routerLink="/supplychainmanagement/retail/formfl42/list">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

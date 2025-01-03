@@ -1,0 +1,557 @@
+<h5 class="m-b-10 ng-star-inserted">Add MF 5 Part 2</h5>
+<ul class="breadcrumb p-0">
+    <li class="breadcrumb-item"><a href="javascript:"><i class="feather icon-home"></i></a></li>
+    <!-- <li class="breadcrumb-item"><a href="javascript:" [routerLink]="['/supplychainmanagement/dashboard']">Supply Chain Management</a></li> -->
+    <li class="breadcrumb-item"><a href="javascript:"
+            [routerLink]="['/supplychainmanagement/dashboard']">{{ 'sugarmill.common.sugarmill' | translate }}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:">Current Yr Tank Summary (MF 5 Part 2)</a></li>
+    <li class="breadcrumb-item">Add</li>
+</ul>
+
+<div class="row">
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{'sugarmill.mf5part2.addedithead' | translate }}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Cane Crushing season (Molasses Year)
+                            </label>
+                            <input type="text" disabled class="form-control" value="20-Jul-2021">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">From Date</label>
+                            <input type="date"  class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">To Date</label>
+                            <input type="date"  class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank ID</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Tank Type</label>
+                            <input type="text"  class="form-control" disabled value="Molasses">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Capacity of Molasses </label>
+                            <input type="text"  disabled class="form-control" value="1000">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Dimensions Page</label>
+                            <input type="text" disabled class="form-control" value="10">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="">Dimensions</label>
+                            <input type="text" disabled class="form-control" value="100">
+                        </div>
+                    </div> -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Opening Stock by Account(Qtls)</label>
+                            <input type="text" disabled class="form-control" value="1000.00">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.serialnoOfTank' | translate}} </label>
+                            <input type="number" name="serialnooftank" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.serialnoOfTank' | translate}} " required #serialnooftank="ngModel"
+                                [(ngModel)]="mf5part2Obj['serialnooftank']">
+                                <div *ngIf="serialnooftank.invalid && (serialnooftank.dirty || serialnooftank.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="serialnooftank?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.serialnoOfTank' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.tankType' | translate}}</label>
+                            <input type="text" name="tanktype" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.tankType' | translate}}" required #tanktype="ngModel"
+                                [(ngModel)]="mf5part2Obj['tanktype']">
+                                <div *ngIf="tanktype.invalid && (tanktype.dirty || tanktype.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="tanktype?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.tankType' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.capacityofmolasses' | translate}}</label>
+                            <input type="number" name="capacity" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.capacityofmolasses' | translate}}" required #capacity="ngModel"
+                                [(ngModel)]="mf5part2Obj['capacity']">
+                                <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="tanktype?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.capacityofmolasses' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.dimensionspage' | translate}}</label>
+                            <input type="number" name="dimensionspage" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.dimensionspage' | translate}}" required #dimensionspage="ngModel"
+                                [(ngModel)]="mf5part2Obj['dimensionspage']">
+                                <div *ngIf="dimensionspage.invalid && (dimensionspage.dirty || dimensionspage.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="tanktype?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.dimensionspage' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.dimensions' | translate}} </label>
+                            <input type="number" name="dimensions" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.dimensions' | translate}}" required #dimensions="ngModel"
+                                [(ngModel)]="mf5part2Obj['dimensions']">
+                                <div *ngIf="dimensions.invalid && (dimensions.dirty || dimensions.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="dimensions?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.dimensions' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'master.common.date' | translate}}</label>
+                            <input type="date" name="reqdate" class="form-control" placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.date' | translate}}" required
+                                #reqdate="ngModel" [(ngModel)]="mf5part2Obj['reqdate']">
+                                <div *ngIf="reqdate.invalid && (reqdate.dirty || reqdate.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="reqdate?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.common.date' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'sugarmill.mf5part2.openingStockByAcc' | translate}}</label>
+                            <input type="number" (keyup)='caltotalmolasses()' name="openstock" class="form-control" placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.openingStockByAcc' | translate}}" required
+                                #openstock="ngModel" [(ngModel)]="mf5part2Obj['openstock']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['openstock'], 'Quintals')}}</div>
+                                <div *ngIf="openstock.invalid && (openstock.dirty || openstock.touched || formSubmitted)" class="error-msg">
+                                    <div *ngIf="openstock?.errors?.required"><i class="fa fa-times"></i>
+                                        {{'sugarmill.mf5part2.openingStockByAcc' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                                </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="Molasses Received Date "
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                          <thead>
+                            <tr>
+                              <th>S.No</th>
+                              <th>Opening Quantity (Qtls)<span class="mandatory"></span></th>
+                              <th>Brix(%)<span class="mandatory"></span></th>
+                              <th>Total Sugar(Qtl)<span class="mandatory"></span></th>
+                              <th>Recieved (Produced) from Tank(Qtl)<span class="mandatory"></span></th>
+                              <th>Total(Qtls)<span class="mandatory"></span></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td class="text-left">500</td>
+                              <td class="text-right">100%</td>
+                              <td class="text-left">1000</td>
+                              <td class="text-left">1000</td>
+                              <td class="text-left">2000</td>
+                            </tr>
+             
+                          </tbody>
+                        </table>
+                      </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.quantityQtl' | translate}}</label>
+                            <input type="number" name="quantity" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.quantityQtl' | translate}}"
+                                required #quantity="ngModel" [(ngModel)]="mf5part2Obj['quantity']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['quantity'], 'Quintals')}}</div>
+                            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantity?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.common.quantity' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.brix' | translate}}</label>
+                            <input type="number" (keyup)='caltotalmolasses()' name="brix" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.brix' | translate}}"
+                                required #brix="ngModel" [(ngModel)]="mf5part2Obj['brix']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['brix'], '%')}}</div>
+                            <div *ngIf="brix.invalid && (brix.dirty || brix.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="brix?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.common.brix' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.totalsugarQtl' | translate}}</label>
+                            <input type="number" name="totalSugar" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.totalsugarQtl' | translate}}"
+                                required #totalSugar="ngModel" [(ngModel)]="mf5part2Obj['totalSugar']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['totalSugar'], 'Quintals')}}</div>
+                            <div *ngIf="totalSugar.invalid && (totalSugar.dirty || totalSugar.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="totalSugar?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.totalsugarQtl' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.transferfromTank' | translate}}</label>
+                            <input type="number" name="transferFromTank" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.transferfromTank' | translate}}"
+                                required #transferFromTank="ngModel" [(ngModel)]="mf5part2Obj['transferFromTank']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['transferFromTank'], 'Quintals')}}</div>
+                            <div *ngIf="transferFromTank.invalid && (transferFromTank.dirty || transferFromTank.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="transferFromTank?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.transferfromTank' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>{{'sugarmill.mf5part2.total' | translate}}</label>
+                            <input type="number" disabled name="molassesTotal" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.total' | translate}}"
+                                required #molassesTotal="ngModel" [(ngModel)]="mf5part2Obj['molassesTotal']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['molassesTotal'], 'Quintals')}}</div>
+                            <div *ngIf="molassesTotal.invalid && (molassesTotal.dirty || molassesTotal.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="molassesTotal?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.common.brix' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{'sugarmill.mf5part2.dispatchofMolassesOnDate' | translate}}"
+                class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                              <thead>
+                                <tr>
+                                  <th>S.No</th>
+                                  <th>Name of Distillery<span class="mandatory"></span> </th>
+                                  <th>Quantity Supplied(Qtls)<span class="mandatory"></span></th>
+                                  <!-- <th>Other State</th>
+                                  <th>Quantity Supplied</th> -->
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td class="text-left">Daurala Distillery</td>
+                                  <td class="text-left">100</td>
+                                  <!-- <td>State</td>
+                                  <td>100</td> -->
+                                </tr>
+                 
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                  <thead>
+                                    <tr>
+                                      <th>S.No</th>
+                                      <!-- <th>Name of distillery </th>
+                                      <th>Quantity Supplied</th> -->
+                                      <th>Other State<span class="mandatory"></span></th>
+                                      <th>Quantity Supplied(Qtls)<span class="mandatory"></span></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>1</td>
+                                      <td class="text-left">1000</td>
+                                      <td class="text-left">100</td>
+                                    </tr>
+                     
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.nameOfDistillery' | translate}}</label>
+                            <input type="text" name="nameOfDistillery" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.nameOfDistillery' | translate}}"
+                                required #nameOfDistillery="ngModel" [(ngModel)]="mf5part2Obj['nameOfDistillery']">
+                            <div *ngIf="nameOfDistillery.invalid && (nameOfDistillery.dirty || nameOfDistillery.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfDistillery?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.nameOfDistillery' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.qtySupplied' | translate}}</label>
+                            <input type="number" name="quantitySuppliedMolasses" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.qtySupplied' | translate}}"
+                                required #quantitySuppliedMolasses="ngModel"
+                                [(ngModel)]="mf5part2Obj['quantitySuppliedMolasses']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['quantitySuppliedMolasses'], 'Quintals')}}</div>
+                            <div *ngIf="quantitySuppliedMolasses.invalid && (quantitySuppliedMolasses.dirty || quantitySuppliedMolasses.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantitySuppliedMolasses?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.qtySupplied' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.nameofOSshop' | translate}}</label>
+                            <input type="text" name="nameOfOsShops" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.nameofOSshop' | translate}}"
+                                required #nameOfOsShops="ngModel" [(ngModel)]="mf5part2Obj['nameOfOsShops']">
+                            <div *ngIf="nameOfOsShops.invalid && (nameOfOsShops.dirty || nameOfOsShops.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfOsShops?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.nameofOSshop' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{'sugarmill.mf5part2.qtySupplied' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                          <thead>
+                            <tr>
+                              <th>S.No</th>
+                              <th>Name of Ind Unit <span class="mandatory"></span></th>
+                              <th>Quantity Supplied (Qtls)<span class="mandatory"></span> </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td class="text-left">Daurala Unit</td>
+                              <td class="text-left">100</td>
+                            </tr>
+             
+                          </tbody>
+                        </table>
+                      </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Name of Industrial Unit</label>
+                            <input type="text" (keyup)='calQtySupplied()' name="nameOfIndUnits" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.nameofUnits' | translate}}"
+                                required #nameOfIndUnits="ngModel" [(ngModel)]="mf5part2Obj['nameOfIndUnits']">
+                            <div *ngIf="nameOfIndUnits.invalid && (nameOfIndUnits.dirty || nameOfIndUnits.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="nameOfIndUnits?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.nameofUnits' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.qtySuppliedQtl' | translate}}</label>
+                            <input type="number" (keyup)='calQtySupplied()' name="quantitySupplied" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.qtySuppliedQtl' | translate}}"
+                                required #quantitySupplied="ngModel" [(ngModel)]="mf5part2Obj['quantitySupplied']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['quantitySupplied'], 'Quintals')}}</div>
+                            <div *ngIf="quantitySupplied.invalid && (quantitySupplied.dirty || quantitySupplied.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantitySupplied?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.qtySuppliedQtl' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.soldtotrade' | translate}}</label>
+                            <input type="number" (keyup)='calQtySupplied()' name="soldToTrade" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.soldtotrade' | translate}}"
+                                required #soldToTrade="ngModel" [(ngModel)]="mf5part2Obj['soldToTrade']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['soldToTrade'], 'Quintals')}}</div>
+                            <div *ngIf="soldToTrade.invalid && (soldToTrade.dirty || soldToTrade.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="soldToTrade?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.soldtotrade' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.total' | translate}}</label>
+                            <input type="number" disabled name="quantitySuppliedTotal" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.total' | translate}}"
+                                required #quantitySuppliedTotal="ngModel"
+                                [(ngModel)]="mf5part2Obj['quantitySuppliedTotal']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['quantitySuppliedTotal'], 'Quintals')}}</div>
+                            <div *ngIf="quantitySuppliedTotal.invalid && (quantitySuppliedTotal.dirty || quantitySuppliedTotal.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="quantitySuppliedTotal?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.total' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.closingBalance' | translate}}</label>
+                            <input type="number" disabled name="closingBalance" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.closingBalance' | translate}}"
+                                required #closingBalance="ngModel" [(ngModel)]="mf5part2Obj['closingBalance']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['closingBalance'], 'Quintals')}}</div>
+                            <div *ngIf="closingBalance.invalid && (closingBalance.dirty || closingBalance.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="closingBalance?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.closingBalance' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+
+    <div class="col-xl-12">
+        <form #mf5part2Form="ngForm" autocomplete="off">
+            <app-card cardTitle="{{'sugarmill.mf5part2.analysisofMolasses' | translate}}" class="list-panel add-panel">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Brix(%)</label>
+                            <input type="text"  disabled class="form-control" placeholder="100">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Percentage of total sugars(TRS %)</label>
+                            <input type="text"  disabled class="form-control" placeholder="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Wastage</label>
+                            <input type="text"  disabled class="form-control" placeholder="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">Remarks </label>
+                            <input type="text" disabled class="form-control" placeholder="-">
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.layer' | translate}}</label>
+                            <input type="number" name="layer" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.layer' | translate}}"
+                                required #layer="ngModel" [(ngModel)]="mf5part2Obj['layer']">
+                            <div *ngIf="layer.invalid && (layer.dirty || layer.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="layer?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.layer' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.brix' | translate}}</label>
+                            <input type="number" name="analyseBrix" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.brix' | translate}}"
+                                required #analyseBrix="ngModel" [(ngModel)]="mf5part2Obj['analyseBrix']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['analyseBrix'], '%')}}</div>
+                            <div *ngIf="analyseBrix.invalid && (analyseBrix.dirty || analyseBrix.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="analyseBrix?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.common.brix' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.percentageofTotalSugars' | translate}}</label>
+                            <input type="number" name="percentageOfTotalSugar" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.percentageofTotalSugars' | translate}}"
+                                required #percentageOfTotalSugar="ngModel"
+                                [(ngModel)]="mf5part2Obj['percentageOfTotalSugar']">
+                                <div class="text-primary">{{inWords(mf5part2Obj['percentageOfTotalSugar'], '%')}}</div>
+                            <div *ngIf="percentageOfTotalSugar.invalid && (percentageOfTotalSugar.dirty || percentageOfTotalSugar.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="percentageOfTotalSugar?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.mf5part2.percentageofTotalSugars' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="mandatory">{{'sugarmill.mf5part2.remarks' | translate}}</label>
+                            <input type="text" name="remarks" class="form-control"
+                                placeholder="{{ 'master.common.enter' | translate }} {{'sugarmill.mf5part2.remarks' | translate}}"
+                                required #remarks="ngModel" [(ngModel)]="mf5part2Obj['remarks']">
+                            <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched || formSubmitted)"
+                                class="error-msg">
+                                <div *ngIf="remarks?.errors?.required"><i class="fa fa-times"></i>
+                                    {{'sugarmill.common.remarks' | translate}} {{'sugarmill.common.isrequired' | translate}} </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </app-card>
+        </form>
+    </div>
+    <div class="col-12 text-right mb-4">
+        <button type="button" class="btn btn-info ml-2 mb-2" (click)="previewcategory(mf5part2Form)">{{ 'master.common.preview' | translate }}</button>
+        <button type="button" class="btn btn-warning ml-2 mb-2"
+            (click)="saveData(mf5part2Form,'draft')">{{ 'sugarmill.common.saveasdraft' | translate }}</button>
+        <button type="button" class="btn btn-primary ml-2 mb-2"
+            (click)="saveData(mf5part2Form,'submit')">{{ 'master.common.submit' | translate }}</button>
+        <button type="button" class="btn btn-secondary ml-2 mb-2"
+            routerLink="/supplychainmanagement/sugarmills/mf5-part2/list">{{ 'master.common.cancel' | translate }}</button>
+    </div>
+</div>
